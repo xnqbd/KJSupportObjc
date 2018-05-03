@@ -1,0 +1,6 @@
+framework module Pods_KJSupportObjc {
+  umbrella header "Pods-KJSupportObjc-umbrella.h"
+
+  export *
+  module * { export * }
+}
