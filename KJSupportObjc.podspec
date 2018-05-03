@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
 
-s.name         = "SDAutoLayout"
+s.name         = "KJSupportObjc"
 s.version      = "0.0.1"
 s.summary      = "包含常见的分类、工具，UITableView、UICollectionView的工具等等"
 
@@ -24,6 +24,6 @@ s.source_files  = "KJSupportObjc/Objc/**/*.{h,m}"
 
 s.requires_arc = true
 
-# s.dependency "Masonry"
+s.dependency "Masonry"
 
 end
