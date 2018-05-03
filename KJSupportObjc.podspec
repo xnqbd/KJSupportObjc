@@ -17,7 +17,7 @@ s.platform     = :ios, "10.0"
 
 s.source       = { :git => "https://github.com/xnqbd/KJSupportObjc.git", :tag => "#{s.version}"}
 
-s.source_files  = "KJSupportObjc/KJSupportObjc/Objc"
+s.source_files  = "KJSupportObjc/KJSupportObjc/Objc/**/*.{h,m}"
 
 # s.public_header_files = "Classes/**/*.h"
 
