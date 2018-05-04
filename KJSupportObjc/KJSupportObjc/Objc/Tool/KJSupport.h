@@ -14,10 +14,10 @@
 #import "CommonCollectionViewTool.h"
 
 #import "BaseTableViewToolVC.h"
-#import "InformationTableVC.h"
 #import "LightStorageManager.h"
-#import "InformationTableVC.h"
 #import "NSObject+KJCategory.h"
 #import <objc/message.h>
+
+
 
 #endif /* KJSupport_h */

@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "MyInVC.h"
+
 #import "KJSupport.h"
 
 @interface ViewController ()
@@ -86,7 +86,7 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self presentViewController:[InformationTableVC new] animated:YES completion:nil];
+//    [self presentViewController:[InformationTableVC new] animated:YES completion:nil];
 }
 
 

@@ -42,8 +42,6 @@
 		95AE87BE209C099C0040E1C3 /* NSObject+GXArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE87B3209C099C0040E1C3 /* NSObject+GXArchiver.m */; };
 		95AE87BF209C099C0040E1C3 /* GXArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE87B4209C099C0040E1C3 /* GXArchiver.m */; };
 		95AE87C0209C099C0040E1C3 /* LightStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE87B9209C099C0040E1C3 /* LightStorageManager.m */; };
-		95AE87EB209C71DD0040E1C3 /* MyInVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE87EA209C71DD0040E1C3 /* MyInVC.m */; };
-		95AE87F4209C7DCC0040E1C3 /* InformationTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE87F3209C7DCC0040E1C3 /* InformationTableVC.m */; };
 		CDACA7DBCED5516CB3DEA72F /* Pods_KJSupportObjc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1CC382CDF748F1B8658DC0F /* Pods_KJSupportObjc.framework */; };
 /* End PBXBuildFile section */
 
@@ -115,10 +113,6 @@
 		95AE87B9209C099C0040E1C3 /* LightStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightStorageManager.m; sourceTree = "<group>"; };
 		95AE87BA209C099C0040E1C3 /* KJSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSupport.h; sourceTree = "<group>"; };
 		95AE87C1209C0A000040E1C3 /* LightStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightStorageManager.h; sourceTree = "<group>"; };
-		95AE87E9209C71DD0040E1C3 /* MyInVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyInVC.h; sourceTree = "<group>"; };
-		95AE87EA209C71DD0040E1C3 /* MyInVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyInVC.m; sourceTree = "<group>"; };
-		95AE87F2209C7DCC0040E1C3 /* InformationTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InformationTableVC.h; sourceTree = "<group>"; };
-		95AE87F3209C7DCC0040E1C3 /* InformationTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InformationTableVC.m; sourceTree = "<group>"; };
 		95AE87F5209C80320040E1C3 /* Information.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Information.h; sourceTree = "<group>"; };
 		A1CC382CDF748F1B8658DC0F /* Pods_KJSupportObjc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KJSupportObjc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46A270B9803A4F2C5498136 /* Pods-KJSupportObjc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KJSupportObjc.release.xcconfig"; path = "Pods/Target Support Files/Pods-KJSupportObjc/Pods-KJSupportObjc.release.xcconfig"; sourceTree = "<group>"; };
@@ -163,10 +157,6 @@
 				955997E3209AECF900163047 /* AppDelegate.m */,
 				955997E5209AECF900163047 /* ViewController.h */,
 				955997E6209AECF900163047 /* ViewController.m */,
-				95AE87F2209C7DCC0040E1C3 /* InformationTableVC.h */,
-				95AE87F3209C7DCC0040E1C3 /* InformationTableVC.m */,
-				95AE87E9209C71DD0040E1C3 /* MyInVC.h */,
-				95AE87EA209C71DD0040E1C3 /* MyInVC.m */,
 				955997E8209AECF900163047 /* Main.storyboard */,
 				955997EB209AECFA00163047 /* Assets.xcassets */,
 				955997ED209AECFA00163047 /* LaunchScreen.storyboard */,
@@ -485,7 +475,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				95599862209AED7F00163047 /* KJCell.m in Sources */,
-				95AE87F4209C7DCC0040E1C3 /* InformationTableVC.m in Sources */,
 				95599877209AED7F00163047 /* BaseCollectionViewToolVC.m in Sources */,
 				95AE8789209C049F0040E1C3 /* UIView+Desingable.m in Sources */,
 				95AE87BE209C099C0040E1C3 /* NSObject+GXArchiver.m in Sources */,
@@ -495,7 +484,6 @@
 				95AE8788209C049F0040E1C3 /* SpaceLabel.m in Sources */,
 				95599872209AED7F00163047 /* CommonTableViewCell.m in Sources */,
 				9559987C209AED7F00163047 /* CommonCollectionReusableView.m in Sources */,
-				95AE87EB209C71DD0040E1C3 /* MyInVC.m in Sources */,
 				95599870209AED7F00163047 /* CommonTableViewHeaderFooterView.m in Sources */,
 				95AE87C0209C099C0040E1C3 /* LightStorageManager.m in Sources */,
 				95599878209AED7F00163047 /* CommonCollectionViewTool.m in Sources */,

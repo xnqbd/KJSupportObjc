@@ -142,10 +142,14 @@
 - (NSMutableDictionary *)cell_Model_keyValues {
     if (_cell_Model_keyValues) return _cell_Model_keyValues;
     _cell_Model_keyValues = [NSMutableDictionary dictionary];
-    NSDictionary *dic = @{@"CommonCollectionViewCellModel" : @{cellKEY : @"CommonCollectionViewCell", isRegisterNibKEY : @NO},
-                          // 上面这个不要删除，只需 这样的键值对添加即可
-                          @"LifeIndexModel" : @{cellKEY : @"LifeIndexCell", isRegisterNibKEY : @YES}
+    NSDictionary *dic = @{@"CommonCollectionViewCellModel" : @{cellKEY : @"CommonCollectionViewCell", isRegisterNibKEY : @NO}
+                          // 上面这个不要删除，只需 这样的键值对添加即
                           };
+    if ([self.dataSource respondsToSelector:@selector(returnCell_Model_keyValues)]) {
+        NSDictionary *temp = [self.dataSource returnCell_Model_keyValues];
+        [_cell_Model_keyValues addEntriesFromDictionary:temp];
+    }
+    
     [_cell_Model_keyValues addEntriesFromDictionary:dic];
     
     for (NSString *key in _cell_Model_keyValues.allKeys) {

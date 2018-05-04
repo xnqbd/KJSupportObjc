@@ -15,15 +15,24 @@
 
 #define typeKJweakself __weak typeof(self) weak_Self = self
 
-
 @class CommonCollectionViewTool;
 
+
+@protocol CommonCollectionViewToolDataSource <NSObject>
+@required;
+
+/**
+ 键值对 @{@"CellModel" : @{cellKEY : @"UITableViewCell", isRegisterNibKEY: @NO}
+ 
+ @return 键值对
+ */
+- (NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues;
+
+@end
+
 @protocol CommonCollectionViewToolDelegate <NSObject>
-
 @optional;
-
 - (void)collectionView:(UICollectionView *_Nonnull)collectionView didSelectItemAtSection:(NSInteger)section item:(NSInteger)item model:(CommonCollectionViewCellModel *_Nonnull)model commonCollectionViewTool:(CommonCollectionViewTool *_Nullable)commonCollectionViewTool;
-
 @end
 
 
@@ -32,8 +41,13 @@
 
 @property (strong, nonatomic) NSArray <CommonCollectionViewSectionModel *>* _Nullable dataArr;
 
+
+@property (weak, nonatomic, nullable) id  <CommonCollectionViewToolDataSource> dataSource;
 @property (weak, nonatomic, nullable) id  <CommonCollectionViewToolDelegate> delegate;
 
+/**
+ 一定要赋值
+ */
 @property (weak, nonatomic) UICollectionView * collectView;
 
 @end
