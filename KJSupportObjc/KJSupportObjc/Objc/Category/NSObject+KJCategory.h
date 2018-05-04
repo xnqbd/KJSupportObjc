@@ -175,11 +175,7 @@ int getRandomNumber(int from, int to);
 
 + (UIBarButtonItem *)kj_itemWithTarget:(id)target action:(SEL)action image:(NSString *)image highImage:(NSString *)highImage;
 
-
 + (UIBarButtonItem *)kj_itemWithTarget:(id)target action:(SEL)action bgImage:(NSString *)bgImage text:(NSString *)text;
-
-
-
 
 @end
 
@@ -206,10 +202,18 @@ int getRandomNumber(int from, int to);
 
 
 
+@interface UITableView (KJCategory)
+
+- (void)kj_reloadData;
+
+@end
 
 
+@interface UICollectionView (KJCategory)
 
+- (void)kj_reloadData;
 
+@end
 
 
 #pragma mark - -----------------UIView-----------------

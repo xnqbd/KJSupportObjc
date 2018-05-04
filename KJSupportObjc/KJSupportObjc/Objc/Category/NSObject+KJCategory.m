@@ -655,6 +655,28 @@ int getRandomNumber(int from, int to) {
 
 
 
+@implementation UITableView (KJCategory)
+
+- (void)kj_reloadData {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self reloadData];
+    });
+}
+
+@end
+
+
+@implementation UICollectionView (KJCategory)
+
+- (void)kj_reloadData {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self reloadData];
+    });
+}
+
+@end
+
+
 
 
 #pragma mark - -----------------UIView-----------------

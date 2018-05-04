@@ -8,12 +8,22 @@
 //
 
 #import "InformationTableVC.h"
-#import "InformationCellModel.h"
 #import "CommonTableViewTool.h"
 
-@interface InformationTableVC ()
 
+@implementation InformationCell
+
+- (void)setupData:(CommonTableViewCellModel *)cellModel section:(NSInteger)section row:(NSInteger)row tableView:(UITableView *)tableView {
+    [super setupData:cellModel section:section row:row tableView:tableView];
+//    InformationCellModel *model = (InformationCellModel *)cellModel;
+//    NSLog(@"%@   第%ld分区  第%ld行   可以在这进行自己的操作 ", model.left_Title3, (long)section, (long)row);
+}
 @end
+
+
+@implementation InformationCellModel
+@end
+
 
 @implementation InformationTableVC
 
@@ -26,7 +36,6 @@
     
     NSMutableArray *cellModelArray = [NSMutableArray array];
     CommonSectionModel *sectionModel = [CommonSectionModel new];
-    
     
     {   // 我的资料
         InformationCellModel *model = [InformationCellModel new];
@@ -57,8 +66,8 @@
     }
     {   // 消息推送
         InformationCellModel *model = [InformationCellModel new];
-        model.left_ImageString2 = @"me_notice";
-        model.left_Title3 = @"消息推送";
+        model.left_ImageString2 = @"通知";
+        model.left_Title3 = @" 消息推送";
         model.showSwitch = YES;
         model.swicthBlock = ^(BOOL switchOn) {
             //  可以在这里进行 处理事件
@@ -82,11 +91,10 @@
     
     sectionModel.modelArray = cellModelArray;
     
-    
-    
     self.tableViewTool.dataArr = @[sectionModel];
     [self.tableView reloadData];
 }
+
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath * _Nonnull)indexPath model:(CommonTableViewCellModel * _Nullable)cellModel tableViewTool:(CommonTableViewTool * _Nonnull)tool {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

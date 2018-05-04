@@ -74,11 +74,11 @@
 
 
 /*
-    附加 View1
-    左   leftWrapView (imageBtn2   left_title3   left_subTitle4)
-    中   View5
-    右   rightWrapView (kjSwitch6  alikePriceLabel7   imageView8   arrowImageBtn9)
-    附加  View10
+ 附加 View1
+ 左   leftWrapView (imageBtn2   left_title3   left_subTitle4)
+ 中   View5
+ 右   rightWrapView (kjSwitch6  alikePriceLabel7   imageView8   arrowImageBtn9)
+ 附加  View10
  */
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -90,7 +90,7 @@
 
 
 #define imageBtn2_w_h  30
-#define arrowImageView9_w  11
+#define arrowImageView9_w  15
 #define kjSwitch6_w  60
 
 // 控件右边间距， 比如文字
@@ -165,10 +165,10 @@
     // 左
     [_imageBtn2 mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(weakSelf.leftWrapView).offset(margin);
-        make.top.bottom.equalTo(weakSelf.leftWrapView);
+        make.centerY.equalTo(weakSelf.leftWrapView);
         make.right.equalTo(weakSelf.left_title3.mas_left);
         // 一般图片大小设置为固定
-        make.width.equalTo(@(imageBtn2_w_h));
+        make.width.height.equalTo(@(imageBtn2_w_h));
     }];
     [_left_title3 mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(weakSelf.leftWrapView);
@@ -223,7 +223,7 @@
     if (debug) {
         self.view1.backgroundColor = [UIColor orangeColor];
         
-//        self.leftWrapView.backgroundColor = [UIColor redColor];
+        //        self.leftWrapView.backgroundColor = [UIColor redColor];
         self.imageBtn2.backgroundColor = [UIColor purpleColor];
         self.left_title3.backgroundColor = [UIColor brownColor];
         self.left_subTitle4.backgroundColor = [UIColor yellowColor];
@@ -231,30 +231,33 @@
         self.view5.backgroundColor = [UIColor cyanColor];
         
         self.kjSwitch6.backgroundColor = [UIColor blueColor];
-//        self.rightWrapView.backgroundColor = [UIColor darkGrayColor];
+        //        self.rightWrapView.backgroundColor = [UIColor darkGrayColor];
         self.alikePriceLabel7.backgroundColor = [UIColor greenColor];
         self.imageView8.backgroundColor = [UIColor redColor];
-//        self.arrowImageView9.backgroundColor = [UIColor grayColor];
+        self.arrowImageView9.backgroundColor = [UIColor grayColor];
         
         self.view10.backgroundColor = [UIColor blackColor];
     }
+    
+    
+    
 }
 
 - (void)setupData:(CommonTableViewCellModel *)cellModel section:(NSInteger)section row:(NSInteger)row tableView:(UITableView *)tableView {
     /*
-        不建议 调整左右间距， 如果想要调整左右间距， 可以通过拼接字符串或其他方式
+     不建议 调整左右间距， 如果想要调整左右间距， 可以通过拼接字符串或其他方式
      */
     
     KJCellModel *model = (KJCellModel *)self.cellModel;
     NSString *imageString = model.left_ImageString2;
     if ([self isEmptyString:imageString]) {
         [_imageBtn2 mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(@0);
+            make.width.height.equalTo(@0);
         }];
     } else {
         [self.imageBtn2 setImage:[UIImage imageNamed:imageString] forState:UIControlStateNormal];
         [_imageBtn2 mas_updateConstraints:^(MASConstraintMaker *make) {
-            make.width.equalTo(@(imageBtn2_w_h));
+            make.width.height.equalTo(@(imageBtn2_w_h));
         }];
     }
     
@@ -293,7 +296,7 @@
     
     if ([self isEmptyString:model.right_arrowImageString9]) {
         __weak typeof(self) weakSelf = self;
-       // 布局 arrow箭头图片
+        // 布局 arrow箭头图片
         [_arrowImageView9 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.centerY.right.equalTo(weakSelf.rightWrapView);
             make.width.height.equalTo(@0);
@@ -315,6 +318,7 @@
     LeftView *leftWrapView = [LeftView new];
     
     UIButton *imageBtn2 = [UIButton buttonWithType:UIButtonTypeCustom];
+    imageBtn2.userInteractionEnabled = NO;
     [leftWrapView addSubview:imageBtn2];
     
     
@@ -357,9 +361,12 @@
     [imageView8 setContentCompressionResistancePriority:UILayoutPriorityRequired - 2 forAxis:UILayoutConstraintAxisHorizontal];
     [rightWrapView addSubview:imageView8];
     
-    
+    // UIViewContentModeScaleAspectFill
+    // UIViewContentModeScaleAspectFit
+    // UIViewContentModeScaleToFill
     // 右边箭头图片
     UIImageView *arrowImageView9 = [UIImageView new];
+    arrowImageView9.contentMode = UIViewContentModeScaleAspectFit;
     [rightWrapView addSubview:arrowImageView9];
     
     self.leftWrapView = leftWrapView;
@@ -403,7 +410,7 @@
         make.centerY.equalTo(weakSelf.rightWrapView);
         make.right.equalTo(weakSelf.rightWrapView).offset(-margin);
         make.width.equalTo(@(arrowImageView9_w));
-//        make.height.equalTo(weakSelf.arrowImageView9.mas_width).multipliedBy(1.5);
+        make.height.equalTo(weakSelf.arrowImageView9.mas_width).multipliedBy(1.5);
     }];
 }
 
@@ -422,5 +429,6 @@
 
 
 @end
+
 
 

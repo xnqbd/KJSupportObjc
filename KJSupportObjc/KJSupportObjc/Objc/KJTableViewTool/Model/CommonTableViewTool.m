@@ -140,11 +140,14 @@
     _cell_Model_keyValues = [NSMutableDictionary dictionary];
     NSDictionary *dic = @{@"CommonTableViewCellModel" : @{cellKEY : @"CommonTableViewCell", isRegisterNibKEY : @NO},
                           @"KJCellModel" : @{cellKEY : @"KJCell", isRegisterNibKEY : @NO},
-                          @"InformationCellModel" : @{cellKEY : @"InformationCell", isRegisterNibKEY : @NO},
+                          @"InformationCellModel" : @{cellKEY : @"InformationCell", isRegisterNibKEY : @NO}
                           // 上面这三个不要删除，只需 这样的键值对添加即可
-                          @"WeatherCellModel" : @{cellKEY : @"WeatherCell", isRegisterNibKEY : @YES},
-                          @"HomeLifeIndexModel" : @{cellKEY : @"LifeIndexTableViewCell", isRegisterNibKEY : @YES}
                           };
+    if ([self.dataSource respondsToSelector:@selector(returnCell_Model_keyValues)]) {
+        NSDictionary *temp = [self.dataSource returnCell_Model_keyValues];
+        [_cell_Model_keyValues addEntriesFromDictionary:temp];
+    }
+    
     [_cell_Model_keyValues addEntriesFromDictionary:dic];
     
    

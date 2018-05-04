@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-//@class CommonSectionModel, CommonTableViewCellModel, CommonTableViewTool;
+
 #import "CommonSectionModel.h"
 #import "CommonTableViewCellModel.h"
 #import "KJCell.h"
@@ -16,6 +16,20 @@
 #import "CommonHeaderFooterModel.h"
 
 @class CommonTableViewTool;
+
+
+@protocol CommonTableViewToolDataSource <NSObject>
+
+@required;
+
+/**
+ 键值对 @{@"CellModel" : @{cellKEY : @"UITableViewCell", isRegisterNibKEY: @NO}
+ 
+ @return 键值对
+ */
+- (NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues;
+
+@end
 
 
 @protocol CommonTableViewToolDelegate <NSObject>
@@ -32,7 +46,7 @@
 @property (strong, nonatomic) NSArray <CommonSectionModel *>* _Nullable dataArr;
 
 @property (weak, nonatomic, nullable) id  <CommonTableViewToolDelegate> delegate;
-
+@property (weak, nonatomic, nullable) id  <CommonTableViewToolDataSource> dataSource;
 
 /**
  一定要赋值
