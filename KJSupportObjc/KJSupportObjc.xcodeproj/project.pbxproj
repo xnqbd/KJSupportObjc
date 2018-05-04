@@ -40,6 +40,11 @@
 		95AE8787209C049F0040E1C3 /* NSObject+KJCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE8781209C049F0040E1C3 /* NSObject+KJCategory.m */; };
 		95AE8788209C049F0040E1C3 /* SpaceLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE8784209C049F0040E1C3 /* SpaceLabel.m */; };
 		95AE8789209C049F0040E1C3 /* UIView+Desingable.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE8786209C049F0040E1C3 /* UIView+Desingable.m */; };
+		95AE87BB209C099C0040E1C3 /* FileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE87AD209C099C0040E1C3 /* FileManagerTool.m */; };
+		95AE87BD209C099C0040E1C3 /* NSObject+GXProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE87B2209C099C0040E1C3 /* NSObject+GXProperties.m */; };
+		95AE87BE209C099C0040E1C3 /* NSObject+GXArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE87B3209C099C0040E1C3 /* NSObject+GXArchiver.m */; };
+		95AE87BF209C099C0040E1C3 /* GXArchiver.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE87B4209C099C0040E1C3 /* GXArchiver.m */; };
+		95AE87C0209C099C0040E1C3 /* LightStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 95AE87B9209C099C0040E1C3 /* LightStorageManager.m */; };
 		CDACA7DBCED5516CB3DEA72F /* Pods_KJSupportObjc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1CC382CDF748F1B8658DC0F /* Pods_KJSupportObjc.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +110,18 @@
 		95AE8784209C049F0040E1C3 /* SpaceLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceLabel.m; sourceTree = "<group>"; };
 		95AE8785209C049F0040E1C3 /* NSObject+KJCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+KJCategory.h"; sourceTree = "<group>"; };
 		95AE8786209C049F0040E1C3 /* UIView+Desingable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Desingable.m"; sourceTree = "<group>"; };
+		95AE87AD209C099C0040E1C3 /* FileManagerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManagerTool.m; sourceTree = "<group>"; };
+		95AE87B1209C099C0040E1C3 /* GXArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GXArchiver.h; sourceTree = "<group>"; };
+		95AE87B2209C099C0040E1C3 /* NSObject+GXProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GXProperties.m"; sourceTree = "<group>"; };
+		95AE87B3209C099C0040E1C3 /* NSObject+GXArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+GXArchiver.m"; sourceTree = "<group>"; };
+		95AE87B4209C099C0040E1C3 /* GXArchiver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GXArchiver.m; sourceTree = "<group>"; };
+		95AE87B5209C099C0040E1C3 /* NSObject+GXProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GXProperties.h"; sourceTree = "<group>"; };
+		95AE87B6209C099C0040E1C3 /* NSObject+GXArchiver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+GXArchiver.h"; sourceTree = "<group>"; };
+		95AE87B7209C099C0040E1C3 /* FileManagerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerTool.h; sourceTree = "<group>"; };
+		95AE87B8209C099C0040E1C3 /* KJCommonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJCommonManager.h; sourceTree = "<group>"; };
+		95AE87B9209C099C0040E1C3 /* LightStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightStorageManager.m; sourceTree = "<group>"; };
+		95AE87BA209C099C0040E1C3 /* KJSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSupport.h; sourceTree = "<group>"; };
+		95AE87C1209C0A000040E1C3 /* LightStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightStorageManager.h; sourceTree = "<group>"; };
 		A1CC382CDF748F1B8658DC0F /* Pods_KJSupportObjc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KJSupportObjc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46A270B9803A4F2C5498136 /* Pods-KJSupportObjc.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KJSupportObjc.release.xcconfig"; path = "Pods/Target Support Files/Pods-KJSupportObjc/Pods-KJSupportObjc.release.xcconfig"; sourceTree = "<group>"; };
 		FB4C96EFE39912E2B649CED7 /* Pods-KJSupportObjc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KJSupportObjc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KJSupportObjc/Pods-KJSupportObjc.debug.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +177,7 @@
 		95599809209AED7E00163047 /* Objc */ = {
 			isa = PBXGroup;
 			children = (
+				95AE87AC209C099C0040E1C3 /* Tool */,
 				95AE8780209C049F0040E1C3 /* Category */,
 				9559980A209AED7E00163047 /* KJTableViewTool */,
 				9559983C209AED7F00163047 /* KJCollectionViewTool */,
@@ -335,6 +353,33 @@
 			path = Category;
 			sourceTree = "<group>";
 		};
+		95AE87AC209C099C0040E1C3 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				95AE87B0209C099C0040E1C3 /* GXArchiver */,
+				95AE87B7209C099C0040E1C3 /* FileManagerTool.h */,
+				95AE87AD209C099C0040E1C3 /* FileManagerTool.m */,
+				95AE87B8209C099C0040E1C3 /* KJCommonManager.h */,
+				95AE87C1209C0A000040E1C3 /* LightStorageManager.h */,
+				95AE87B9209C099C0040E1C3 /* LightStorageManager.m */,
+				95AE87BA209C099C0040E1C3 /* KJSupport.h */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		95AE87B0209C099C0040E1C3 /* GXArchiver */ = {
+			isa = PBXGroup;
+			children = (
+				95AE87B1209C099C0040E1C3 /* GXArchiver.h */,
+				95AE87B2209C099C0040E1C3 /* NSObject+GXProperties.m */,
+				95AE87B3209C099C0040E1C3 /* NSObject+GXArchiver.m */,
+				95AE87B4209C099C0040E1C3 /* GXArchiver.m */,
+				95AE87B5209C099C0040E1C3 /* NSObject+GXProperties.h */,
+				95AE87B6209C099C0040E1C3 /* NSObject+GXArchiver.h */,
+			);
+			path = GXArchiver;
+			sourceTree = "<group>";
+		};
 		DF7898F089E590DF79F7AE31 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,6 +516,7 @@
 				95599877209AED7F00163047 /* BaseCollectionViewToolVC.m in Sources */,
 				95AE8789209C049F0040E1C3 /* UIView+Desingable.m in Sources */,
 				95599869209AED7F00163047 /* InformationCell.m in Sources */,
+				95AE87BE209C099C0040E1C3 /* NSObject+GXArchiver.m in Sources */,
 				955997E7209AECF900163047 /* ViewController.m in Sources */,
 				955997F2209AECFA00163047 /* main.m in Sources */,
 				95AE8787209C049F0040E1C3 /* NSObject+KJCategory.m in Sources */,
@@ -478,10 +524,12 @@
 				95599872209AED7F00163047 /* CommonTableViewCell.m in Sources */,
 				9559987C209AED7F00163047 /* CommonCollectionReusableView.m in Sources */,
 				95599870209AED7F00163047 /* CommonTableViewHeaderFooterView.m in Sources */,
+				95AE87C0209C099C0040E1C3 /* LightStorageManager.m in Sources */,
 				95599878209AED7F00163047 /* CommonCollectionViewTool.m in Sources */,
 				9559986C209AED7F00163047 /* CommonSectionModel.m in Sources */,
 				9559986E209AED7F00163047 /* CommonTableViewCellModel.m in Sources */,
 				95599879209AED7F00163047 /* CommonCollectionViewCellModel.m in Sources */,
+				95AE87BD209C099C0040E1C3 /* NSObject+GXProperties.m in Sources */,
 				9559986D209AED7F00163047 /* CommonTableViewTool.m in Sources */,
 				9559987A209AED7F00163047 /* CommonCollectionReusableViewModel.m in Sources */,
 				95599871209AED7F00163047 /* TitleStyleTableViewHeaderFooterView.m in Sources */,
@@ -489,8 +537,10 @@
 				9559986A209AED7F00163047 /* BaseTableViewToolVC.m in Sources */,
 				9559986B209AED7F00163047 /* TitleStyleTableViewHeaderFooterViewModel.m in Sources */,
 				9559987D209AED7F00163047 /* CommonCollectionViewCell.m in Sources */,
+				95AE87BF209C099C0040E1C3 /* GXArchiver.m in Sources */,
 				95599863209AED7F00163047 /* KJCellModel.m in Sources */,
 				9559986F209AED7F00163047 /* CommonHeaderFooterModel.m in Sources */,
+				95AE87BB209C099C0040E1C3 /* FileManagerTool.m in Sources */,
 				9559987B209AED7F00163047 /* CommonCollectionViewSectionModel.m in Sources */,
 				95599868209AED7F00163047 /* InformationCellModel.m in Sources */,
 			);
