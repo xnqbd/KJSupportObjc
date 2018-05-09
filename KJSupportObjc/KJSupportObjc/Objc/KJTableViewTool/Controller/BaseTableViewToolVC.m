@@ -32,6 +32,7 @@
     _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:(UITableViewStyleGrouped)];
     _tableView.dataSource = self.tableViewTool;
     _tableView.delegate = self.tableViewTool;
+    
     _tableView.translatesAutoresizingMaskIntoConstraints = NO;
     [self.view addSubview:_tableView];
     
@@ -48,10 +49,12 @@
     _tableViewTool = [CommonTableViewTool new];
     _tableViewTool.delegate = self;
     _tableViewTool.tablView = self.tableView;
+    _tableViewTool.dataSource = self;
     return _tableViewTool;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath model:(CommonTableViewCellModel *)model tableViewTool:(CommonTableViewTool *)tool {
 }
+
 
 @end

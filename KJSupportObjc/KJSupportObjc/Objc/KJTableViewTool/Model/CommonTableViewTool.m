@@ -28,9 +28,6 @@
 @implementation CommonTableViewTool
 
 
-#define cellKEY  @"CellKEY"
-#define isRegisterNibKEY  @"isRegisterNibKEY"
-
 #pragma mark - UITableViewDelegate, UITableViewDataSource
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -138,10 +135,13 @@
 - (NSMutableDictionary *)cell_Model_keyValues {
     if (_cell_Model_keyValues) return _cell_Model_keyValues;
     _cell_Model_keyValues = [NSMutableDictionary dictionary];
-    NSDictionary *dic = @{@"CommonTableViewCellModel" : @{cellKEY : @"CommonTableViewCell", isRegisterNibKEY : @NO},
-                          @"KJCellModel" : @{cellKEY : @"KJCell", isRegisterNibKEY : @NO},
-                          @"InformationCellModel" : @{cellKEY : @"InformationCell", isRegisterNibKEY : @NO}
-                          // 上面这三个不要删除，只需 这样的键值对添加即可
+    
+    NSDictionary *dic = @{
+                          NSStringFromClass([CommonTableViewCellModel class]) : @{cellKEY : NSStringFromClass([CommonTableViewCell class]), isRegisterNibKEY : @NO},
+                          
+                          NSStringFromClass([KJCellModel class]) : @{cellKEY : NSStringFromClass([KJCell class]), isRegisterNibKEY : @NO}
+                          
+                          // 上面这两个个不要删除，只需 这样的键值对添加即可
                           };
     if ([self.dataSource respondsToSelector:@selector(returnCell_Model_keyValues)]) {
         NSDictionary *temp = [self.dataSource returnCell_Model_keyValues];
@@ -172,10 +172,9 @@
     if (_header_Model_keyValues) return _header_Model_keyValues;
     _header_Model_keyValues = [NSMutableDictionary dictionary];
     NSDictionary *dic = @{@"CommonHeaderFooterModel" : @"CommonTableViewHeaderFooterView",
-                          @"TitleStyleTableViewHeaderFooterViewModel" : @"TitleStyleTableViewHeaderFooterView",
+                          @"TitleStyleTableViewHeaderFooterViewModel" : @"TitleStyleTableViewHeaderFooterView"
                           // 上面这个不要删除，只需以 model : cell 这样的键值对添加即可
-                          @"DataModel" : @"HeaderView",
-                          @"CurveHeaderViewModel" : @"CurveHeaderView"
+
                           };
     [_header_Model_keyValues addEntriesFromDictionary:dic];
     return _header_Model_keyValues;

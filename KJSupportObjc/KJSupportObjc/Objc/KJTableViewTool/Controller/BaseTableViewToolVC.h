@@ -9,7 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "CommonTableViewTool.h"
 
-@interface BaseTableViewToolVC : UIViewController <CommonTableViewToolDelegate>
+
+
+#warning  注意: 继承于本来的子类， 需实现 CommonTableViewToolDataSource 协议
+@interface BaseTableViewToolVC : UIViewController <CommonTableViewToolDelegate, CommonTableViewToolDataSource>
 
 
 

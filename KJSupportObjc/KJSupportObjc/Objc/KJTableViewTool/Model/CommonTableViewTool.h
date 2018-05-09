@@ -15,16 +15,21 @@
 #import "CommonTableViewHeaderFooterView.h"
 #import "CommonHeaderFooterModel.h"
 
+
+#define cellKEY  @"CellKEY"
+#define isRegisterNibKEY  @"isRegisterNibKEY"
+
+
 @class CommonTableViewTool;
 
 
 @protocol CommonTableViewToolDataSource <NSObject>
 
 @required;
-
 /**
- 键值对 @{@"CellModel" : @{cellKEY : @"UITableViewCell", isRegisterNibKEY: @NO}
- 
+ 一定要匹配匹配正确
+ 键值对  @{NSStringFromClass([CommonTableViewCellModel class]) : @{cellKEY : NSStringFromClass([CommonTableViewCell class]), isRegisterNibKEY : @NO}};
+
  @return 键值对
  */
 - (NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues;

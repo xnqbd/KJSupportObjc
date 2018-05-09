@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		16B045AD20A3346300362478 /* DemoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045A720A3346200362478 /* DemoModel.m */; };
+		16B045AE20A3346300362478 /* DemoTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045AA20A3346300362478 /* DemoTableVC.m */; };
+		16B045AF20A3346300362478 /* DemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045AB20A3346300362478 /* DemoCell.m */; };
+		16B045B320A33AC400362478 /* InformationTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045B220A33AC400362478 /* InformationTableVC.m */; };
 		955997E4209AECF900163047 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 955997E3209AECF900163047 /* AppDelegate.m */; };
 		955997E7209AECF900163047 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955997E6209AECF900163047 /* ViewController.m */; };
 		955997EA209AECF900163047 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 955997E8209AECF900163047 /* Main.storyboard */; };
@@ -46,6 +50,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		16B045A720A3346200362478 /* DemoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoModel.m; sourceTree = "<group>"; };
+		16B045A820A3346200362478 /* DemoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoCell.h; sourceTree = "<group>"; };
+		16B045A920A3346300362478 /* DemoTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableVC.h; sourceTree = "<group>"; };
+		16B045AA20A3346300362478 /* DemoTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoTableVC.m; sourceTree = "<group>"; };
+		16B045AB20A3346300362478 /* DemoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoCell.m; sourceTree = "<group>"; };
+		16B045AC20A3346300362478 /* DemoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoModel.h; sourceTree = "<group>"; };
+		16B045B020A3349E00362478 /* KJSupportObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KJSupportObjc.h; path = KJSupportObjc/Objc/Tool/KJSupportObjc.h; sourceTree = SOURCE_ROOT; };
+		16B045B120A33AC400362478 /* InformationTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InformationTableVC.h; sourceTree = "<group>"; };
+		16B045B220A33AC400362478 /* InformationTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InformationTableVC.m; sourceTree = "<group>"; };
 		955997DF209AECF900163047 /* KJSupportObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KJSupportObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		955997E2209AECF900163047 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		955997E3209AECF900163047 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -111,7 +124,6 @@
 		95AE87B7209C099C0040E1C3 /* FileManagerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerTool.h; sourceTree = "<group>"; };
 		95AE87B8209C099C0040E1C3 /* KJCommonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJCommonManager.h; sourceTree = "<group>"; };
 		95AE87B9209C099C0040E1C3 /* LightStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightStorageManager.m; sourceTree = "<group>"; };
-		95AE87BA209C099C0040E1C3 /* KJSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSupport.h; sourceTree = "<group>"; };
 		95AE87C1209C0A000040E1C3 /* LightStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightStorageManager.h; sourceTree = "<group>"; };
 		95AE87F5209C80320040E1C3 /* Information.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Information.h; sourceTree = "<group>"; };
 		A1CC382CDF748F1B8658DC0F /* Pods_KJSupportObjc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KJSupportObjc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +169,14 @@
 				955997E3209AECF900163047 /* AppDelegate.m */,
 				955997E5209AECF900163047 /* ViewController.h */,
 				955997E6209AECF900163047 /* ViewController.m */,
+				16B045A820A3346200362478 /* DemoCell.h */,
+				16B045AB20A3346300362478 /* DemoCell.m */,
+				16B045AC20A3346300362478 /* DemoModel.h */,
+				16B045A720A3346200362478 /* DemoModel.m */,
+				16B045A920A3346300362478 /* DemoTableVC.h */,
+				16B045AA20A3346300362478 /* DemoTableVC.m */,
+				16B045B120A33AC400362478 /* InformationTableVC.h */,
+				16B045B220A33AC400362478 /* InformationTableVC.m */,
 				955997E8209AECF900163047 /* Main.storyboard */,
 				955997EB209AECFA00163047 /* Assets.xcassets */,
 				955997ED209AECFA00163047 /* LaunchScreen.storyboard */,
@@ -325,7 +345,6 @@
 				95AE87B8209C099C0040E1C3 /* KJCommonManager.h */,
 				95AE87C1209C0A000040E1C3 /* LightStorageManager.h */,
 				95AE87B9209C099C0040E1C3 /* LightStorageManager.m */,
-				95AE87BA209C099C0040E1C3 /* KJSupport.h */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -333,6 +352,7 @@
 		95AE87B0209C099C0040E1C3 /* GXArchiver */ = {
 			isa = PBXGroup;
 			children = (
+				16B045B020A3349E00362478 /* KJSupportObjc.h */,
 				95AE87B1209C099C0040E1C3 /* GXArchiver.h */,
 				95AE87B2209C099C0040E1C3 /* NSObject+GXProperties.m */,
 				95AE87B3209C099C0040E1C3 /* NSObject+GXArchiver.m */,
@@ -474,6 +494,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16B045B320A33AC400362478 /* InformationTableVC.m in Sources */,
+				16B045AE20A3346300362478 /* DemoTableVC.m in Sources */,
 				95599862209AED7F00163047 /* KJCell.m in Sources */,
 				95599877209AED7F00163047 /* BaseCollectionViewToolVC.m in Sources */,
 				95AE8789209C049F0040E1C3 /* UIView+Desingable.m in Sources */,
@@ -483,6 +505,7 @@
 				95AE8787209C049F0040E1C3 /* NSObject+KJCategory.m in Sources */,
 				95AE8788209C049F0040E1C3 /* SpaceLabel.m in Sources */,
 				95599872209AED7F00163047 /* CommonTableViewCell.m in Sources */,
+				16B045AF20A3346300362478 /* DemoCell.m in Sources */,
 				9559987C209AED7F00163047 /* CommonCollectionReusableView.m in Sources */,
 				95599870209AED7F00163047 /* CommonTableViewHeaderFooterView.m in Sources */,
 				95AE87C0209C099C0040E1C3 /* LightStorageManager.m in Sources */,
@@ -492,6 +515,7 @@
 				95599879209AED7F00163047 /* CommonCollectionViewCellModel.m in Sources */,
 				95AE87BD209C099C0040E1C3 /* NSObject+GXProperties.m in Sources */,
 				9559986D209AED7F00163047 /* CommonTableViewTool.m in Sources */,
+				16B045AD20A3346300362478 /* DemoModel.m in Sources */,
 				9559987A209AED7F00163047 /* CommonCollectionReusableViewModel.m in Sources */,
 				95599871209AED7F00163047 /* TitleStyleTableViewHeaderFooterView.m in Sources */,
 				955997E4209AECF900163047 /* AppDelegate.m in Sources */,
