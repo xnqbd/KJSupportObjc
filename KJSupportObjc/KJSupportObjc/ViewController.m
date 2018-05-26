@@ -10,6 +10,7 @@
 
 #import "DemoTableVC.h"
 #import "InformationTableVC.h"
+#import <CoreImage/CoreImage.h>
 
 @interface ViewController ()
 
@@ -21,6 +22,10 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor arc4Color];
+    
+    
+    
+//    [[CIImage alloc] ini]
     
 //    NSMutableArray *cellModelArray = [NSMutableArray array];
 //    CommonSectionModel *sectionModel = [CommonSectionModel new];
@@ -84,10 +89,11 @@
 //
 //    self.tableViewTool.dataArr = @[sectionModel];
 //    [self.tableView reloadData];
+    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self presentViewController:[InformationTableVC new] animated:YES completion:nil];
+    [self presentViewController:[DemoTableVC new] animated:YES completion:nil];
 }
 
 

@@ -11,7 +11,7 @@
 
 以下是用法:
 
-一般只需以下操作即可
+一般只需以下操作即可 ( 下面演示的是最简单的只有cell的情况， 如果要添加header视图或者footer视图，本git项目中TableViewToolDemo文件夹下有介绍)
 
 M: 新建模型 @interface DemoModel : CommonTableViewCellModel
 V: 新建视图 @interface DemoCell : CommonTableViewCell

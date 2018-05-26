@@ -25,6 +25,17 @@
 
 @protocol CommonTableViewToolDataSource <NSObject>
 
+@optional;
+
+/**
+ 一定要匹配匹配正确
+键值对   @{ NSStringFromClass([CommonHeaderFooterModel class]) : NSStringFromClass([CommonTableViewHeaderFooterView class])
+ }
+ @return 键值对
+ */
+- (nonnull NSDictionary <NSString *, NSString *> *)returnHeader_Model_keyValues;
+- (nonnull NSDictionary <NSString *, NSString *> *)returnFooter_Model_keyValues;
+
 @required;
 /**
  一定要匹配匹配正确
@@ -32,7 +43,7 @@
 
  @return 键值对
  */
-- (NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues;
+- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues;
 
 @end
 

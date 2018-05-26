@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) NSMutableDictionary *cell_Model_keyValues;
 @property (strong, nonatomic) NSMutableDictionary *header_Model_keyValues;
+@property (strong, nonatomic) NSMutableDictionary *footer_Model_keyValues;
 
 /**
  *  命名空间，为了防止Swift中没法加载正确的类名
@@ -33,6 +34,9 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
     CommonHeaderFooterModel *headerModel = self.dataArr[section].headerModel;
+    if (headerModel == nil) {
+        return nil;
+    }
     
     NSString *modelClassName = [NSString stringWithUTF8String:object_getClassName(headerModel)];
     
@@ -51,7 +55,7 @@
             headerView = [[[self returnClass_ClassString:headerClass] alloc] initWithReuseIdentifier:headerClass];
         }
         headerView.headerFooterModel = headerModel;
-        
+        [headerView setupData:headerModel section:section tableView:tableView];
         return headerView;
     } else {
         
@@ -59,22 +63,54 @@
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     
-    CommonHeaderFooterModel *headerModel = self.dataArr[section].headerModel;
+    CommonHeaderFooterModel *footerModel = self.dataArr[section].footerModel;
+    if (footerModel == nil) {
+        return nil;
+    }
     
-    NSDictionary *keyValue = @{@"CommonHeaderFooterModel" : @0.01,
-                            // 上面这个不要删除，只需以 model : height 这样的键值对添加即可
-                               @"DataModel" : @([UIScreen mainScreen].bounds.size.height - 70),
-                               @"CurveHeaderViewModel" : @300
-                               };
-    NSString *modelClassName = [NSString stringWithUTF8String:object_getClassName(headerModel)];
+    NSString *modelClassName = [NSString stringWithUTF8String:object_getClassName(footerModel)];
+    
     if ([modelClassName containsString:self.namespace]) { // 为了Swift处理命名空间
         NSUInteger from = [modelClassName rangeOfString:self.namespace].length;
         modelClassName = [modelClassName substringFromIndex:from];
     }
-    NSNumber *num = keyValue[modelClassName];
-    return num.floatValue;
+    
+    NSString *footerClass = self.footer_Model_keyValues[modelClassName];
+    
+    if (footerClass) {
+        
+        CommonTableViewHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:footerClass];
+        
+        if (footerView == nil) {
+            footerView = [[[self returnClass_ClassString:footerClass] alloc] initWithReuseIdentifier:footerClass];
+        }
+        footerView.headerFooterModel = footerModel;
+        [footerView setupData:footerModel section:section tableView:tableView];
+        return footerView;
+    } else {
+        return self.tempHeaderFooterView;
+    }
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    CommonSectionModel *sectionModel = self.dataArr[section];
+    CommonHeaderFooterModel *headerModel = sectionModel.headerModel;
+    if (headerModel == nil) {
+        return sectionModel.headerHeight;
+    } else {
+        return UITableViewAutomaticDimension;
+    }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    CommonHeaderFooterModel *footerModel = self.dataArr[section].footerModel;
+    if (footerModel == nil) {
+        return 0.01f;
+    } else {
+        return UITableViewAutomaticDimension;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -171,13 +207,35 @@
 - (NSMutableDictionary *)header_Model_keyValues {
     if (_header_Model_keyValues) return _header_Model_keyValues;
     _header_Model_keyValues = [NSMutableDictionary dictionary];
-    NSDictionary *dic = @{@"CommonHeaderFooterModel" : @"CommonTableViewHeaderFooterView",
-                          @"TitleStyleTableViewHeaderFooterViewModel" : @"TitleStyleTableViewHeaderFooterView"
-                          // 上面这个不要删除，只需以 model : cell 这样的键值对添加即可
-
+    
+    
+    if ([self.dataSource respondsToSelector:@selector(returnHeader_Model_keyValues)]) {
+        NSDictionary *temp = [self.dataSource returnHeader_Model_keyValues];
+        [_header_Model_keyValues addEntriesFromDictionary:temp];
+    }
+    NSDictionary *dic = @{
+                          NSStringFromClass([CommonHeaderFooterModel class]) :
+                          NSStringFromClass([CommonTableViewHeaderFooterView class])
                           };
     [_header_Model_keyValues addEntriesFromDictionary:dic];
     return _header_Model_keyValues;
+}
+
+- (NSMutableDictionary *)footer_Model_keyValues {
+    if (_footer_Model_keyValues) return _footer_Model_keyValues;
+    _footer_Model_keyValues = [NSMutableDictionary dictionary];
+    
+    
+    if ([self.dataSource respondsToSelector:@selector(returnFooter_Model_keyValues)]) {
+        NSDictionary *temp = [self.dataSource returnFooter_Model_keyValues];
+        [_footer_Model_keyValues addEntriesFromDictionary:temp];
+    }
+    NSDictionary *dic = @{
+                          NSStringFromClass([CommonHeaderFooterModel class]) :
+                              NSStringFromClass([CommonTableViewHeaderFooterView class])
+                          };
+    [_footer_Model_keyValues addEntriesFromDictionary:dic];
+    return _footer_Model_keyValues;
 }
 
 - (UIView *)tempHeaderFooterView {

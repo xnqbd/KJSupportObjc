@@ -10,4 +10,9 @@
 
 @interface CommonHeaderFooterModel : NSObject
 
+/**
+ 默认的 区头 或 区尾 的标题
+ */
+@property (copy, nonatomic) NSString *title;
+
 @end

@@ -12,7 +12,10 @@
 
 @interface CommonSectionModel : NSObject
 
+@property (assign, nonatomic) CGFloat headerHeight;
 @property (strong, nonatomic) CommonHeaderFooterModel *headerModel;
+
+@property (assign, nonatomic) CGFloat footerHeight;
 @property (strong, nonatomic) CommonHeaderFooterModel *footerModel;
 
 /**  这里面可能有各种类型的model */

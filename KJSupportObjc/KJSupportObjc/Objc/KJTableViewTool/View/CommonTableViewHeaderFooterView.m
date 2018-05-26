@@ -19,14 +19,9 @@
 }
 
 - (void)setupSubViews {
-    
 }
 
-- (void)setHeaderFooterModel:(CommonHeaderFooterModel *)headerFooterModel {
-    _headerFooterModel = headerFooterModel;
-    [self setupData];
-}
-- (void)setupData {
+- (void)setupData:(CommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(UITableView *)tableView {
 }
 
 

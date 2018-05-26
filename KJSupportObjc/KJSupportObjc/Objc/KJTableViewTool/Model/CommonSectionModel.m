@@ -16,4 +16,12 @@
     return model;
 }
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.headerHeight = 20;
+        self.footerHeight = 20;
+    }
+    return self;
+}
+
 @end

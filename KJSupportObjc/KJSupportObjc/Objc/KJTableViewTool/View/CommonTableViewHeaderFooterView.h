@@ -17,7 +17,11 @@
 
 - (void)setupSubViews;
 
-- (void)setupData;
+
+/**
+ *  此方法留着给子类重写，通常是拿到这几个参数 给子类的区头或区尾设置UI数据
+ */
+- (void)setupData:(CommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(UITableView *)tableView;
 
 
 

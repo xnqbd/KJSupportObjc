@@ -11,6 +11,11 @@
 		16B045AE20A3346300362478 /* DemoTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045AA20A3346300362478 /* DemoTableVC.m */; };
 		16B045AF20A3346300362478 /* DemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045AB20A3346300362478 /* DemoCell.m */; };
 		16B045B320A33AC400362478 /* InformationTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045B220A33AC400362478 /* InformationTableVC.m */; };
+		16B045B720B2FB5A00362478 /* UIColor-SKJCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B045B620B2FB5A00362478 /* UIColor-SKJCategory.swift */; };
+		16B045BD20B92D9C00362478 /* DemoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045BC20B92D9C00362478 /* DemoFooter.m */; };
+		16B045C020B92F8200362478 /* DemoHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045BF20B92F8200362478 /* DemoHeaderModel.m */; };
+		16B045C320B932CF00362478 /* DemoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045C120B932CF00362478 /* DemoHeader.m */; };
+		16B045C720B94E7000362478 /* DemoFooterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045C620B94E7000362478 /* DemoFooterModel.m */; };
 		955997E4209AECF900163047 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 955997E3209AECF900163047 /* AppDelegate.m */; };
 		955997E7209AECF900163047 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955997E6209AECF900163047 /* ViewController.m */; };
 		955997EA209AECF900163047 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 955997E8209AECF900163047 /* Main.storyboard */; };
@@ -23,7 +28,6 @@
 		95599865209AED7F00163047 /* arrow_right_black.png in Resources */ = {isa = PBXBuildFile; fileRef = 95599813209AED7F00163047 /* arrow_right_black.png */; };
 		95599866209AED7F00163047 /* 通知.png in Resources */ = {isa = PBXBuildFile; fileRef = 95599814209AED7F00163047 /* 通知.png */; };
 		9559986A209AED7F00163047 /* BaseTableViewToolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9559981F209AED7F00163047 /* BaseTableViewToolVC.m */; };
-		9559986B209AED7F00163047 /* TitleStyleTableViewHeaderFooterViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95599823209AED7F00163047 /* TitleStyleTableViewHeaderFooterViewModel.m */; };
 		9559986C209AED7F00163047 /* CommonSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95599824209AED7F00163047 /* CommonSectionModel.m */; };
 		9559986D209AED7F00163047 /* CommonTableViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 95599825209AED7F00163047 /* CommonTableViewTool.m */; };
 		9559986E209AED7F00163047 /* CommonTableViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95599827209AED7F00163047 /* CommonTableViewCellModel.m */; };
@@ -59,6 +63,17 @@
 		16B045B020A3349E00362478 /* KJSupportObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KJSupportObjc.h; path = KJSupportObjc/Objc/Tool/KJSupportObjc.h; sourceTree = SOURCE_ROOT; };
 		16B045B120A33AC400362478 /* InformationTableVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InformationTableVC.h; sourceTree = "<group>"; };
 		16B045B220A33AC400362478 /* InformationTableVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InformationTableVC.m; sourceTree = "<group>"; };
+		16B045B520B2FB5900362478 /* KJSupportObjc-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KJSupportObjc-Bridging-Header.h"; sourceTree = "<group>"; };
+		16B045B620B2FB5A00362478 /* UIColor-SKJCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-SKJCategory.swift"; sourceTree = "<group>"; };
+		16B045BB20B92D9C00362478 /* DemoFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoFooter.h; sourceTree = "<group>"; };
+		16B045BC20B92D9C00362478 /* DemoFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoFooter.m; sourceTree = "<group>"; };
+		16B045BE20B92F8200362478 /* DemoHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoHeaderModel.h; sourceTree = "<group>"; };
+		16B045BF20B92F8200362478 /* DemoHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoHeaderModel.m; sourceTree = "<group>"; };
+		16B045C120B932CF00362478 /* DemoHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoHeader.m; sourceTree = "<group>"; };
+		16B045C220B932CF00362478 /* DemoHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoHeader.h; sourceTree = "<group>"; };
+		16B045C420B9378600362478 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		16B045C520B94E7000362478 /* DemoFooterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoFooterModel.h; sourceTree = "<group>"; };
+		16B045C620B94E7000362478 /* DemoFooterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoFooterModel.m; sourceTree = "<group>"; };
 		955997DF209AECF900163047 /* KJSupportObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KJSupportObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		955997E2209AECF900163047 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		955997E3209AECF900163047 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -79,12 +94,10 @@
 		9559981F209AED7F00163047 /* BaseTableViewToolVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewToolVC.m; sourceTree = "<group>"; };
 		95599820209AED7F00163047 /* BaseTableViewToolVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewToolVC.h; sourceTree = "<group>"; };
 		95599822209AED7F00163047 /* CommonTableViewCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableViewCellModel.h; sourceTree = "<group>"; };
-		95599823209AED7F00163047 /* TitleStyleTableViewHeaderFooterViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleStyleTableViewHeaderFooterViewModel.m; sourceTree = "<group>"; };
 		95599824209AED7F00163047 /* CommonSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSectionModel.m; sourceTree = "<group>"; };
 		95599825209AED7F00163047 /* CommonTableViewTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewTool.m; sourceTree = "<group>"; };
 		95599826209AED7F00163047 /* CommonHeaderFooterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHeaderFooterModel.h; sourceTree = "<group>"; };
 		95599827209AED7F00163047 /* CommonTableViewCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCellModel.m; sourceTree = "<group>"; };
-		95599828209AED7F00163047 /* TitleStyleTableViewHeaderFooterViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleStyleTableViewHeaderFooterViewModel.h; sourceTree = "<group>"; };
 		95599829209AED7F00163047 /* CommonTableViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableViewTool.h; sourceTree = "<group>"; };
 		9559982A209AED7F00163047 /* CommonSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSectionModel.h; sourceTree = "<group>"; };
 		9559982B209AED7F00163047 /* CommonHeaderFooterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHeaderFooterModel.m; sourceTree = "<group>"; };
@@ -143,6 +156,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		16498F5920B95D7D00878DC5 /* TableViewToolDemo */ = {
+			isa = PBXGroup;
+			children = (
+				16B045A820A3346200362478 /* DemoCell.h */,
+				16B045AB20A3346300362478 /* DemoCell.m */,
+				16B045C220B932CF00362478 /* DemoHeader.h */,
+				16B045C120B932CF00362478 /* DemoHeader.m */,
+				16B045BE20B92F8200362478 /* DemoHeaderModel.h */,
+				16B045BF20B92F8200362478 /* DemoHeaderModel.m */,
+				16B045BB20B92D9C00362478 /* DemoFooter.h */,
+				16B045BC20B92D9C00362478 /* DemoFooter.m */,
+				16B045C520B94E7000362478 /* DemoFooterModel.h */,
+				16B045C620B94E7000362478 /* DemoFooterModel.m */,
+				16B045AC20A3346300362478 /* DemoModel.h */,
+				16B045A720A3346200362478 /* DemoModel.m */,
+				16B045A920A3346300362478 /* DemoTableVC.h */,
+				16B045AA20A3346300362478 /* DemoTableVC.m */,
+			);
+			path = TableViewToolDemo;
+			sourceTree = "<group>";
+		};
+		16498F5A20B95DB700878DC5 /* 个人资料界面 */ = {
+			isa = PBXGroup;
+			children = (
+				16B045B120A33AC400362478 /* InformationTableVC.h */,
+				16B045B220A33AC400362478 /* InformationTableVC.m */,
+			);
+			path = "个人资料界面";
+			sourceTree = "<group>";
+		};
+		16B045B420B2FB1900362478 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				16B045B620B2FB5A00362478 /* UIColor-SKJCategory.swift */,
+				16B045B520B2FB5900362478 /* KJSupportObjc-Bridging-Header.h */,
+			);
+			path = Swift;
+			sourceTree = "<group>";
+		};
 		955997D6209AECF900163047 = {
 			isa = PBXGroup;
 			children = (
@@ -169,14 +221,10 @@
 				955997E3209AECF900163047 /* AppDelegate.m */,
 				955997E5209AECF900163047 /* ViewController.h */,
 				955997E6209AECF900163047 /* ViewController.m */,
-				16B045A820A3346200362478 /* DemoCell.h */,
-				16B045AB20A3346300362478 /* DemoCell.m */,
-				16B045AC20A3346300362478 /* DemoModel.h */,
-				16B045A720A3346200362478 /* DemoModel.m */,
-				16B045A920A3346300362478 /* DemoTableVC.h */,
-				16B045AA20A3346300362478 /* DemoTableVC.m */,
-				16B045B120A33AC400362478 /* InformationTableVC.h */,
-				16B045B220A33AC400362478 /* InformationTableVC.m */,
+				16B045B420B2FB1900362478 /* Swift */,
+				16498F5920B95D7D00878DC5 /* TableViewToolDemo */,
+				16498F5A20B95DB700878DC5 /* 个人资料界面 */,
+				16B045C420B9378600362478 /* PrefixHeader.pch */,
 				955997E8209AECF900163047 /* Main.storyboard */,
 				955997EB209AECFA00163047 /* Assets.xcassets */,
 				955997ED209AECFA00163047 /* LaunchScreen.storyboard */,
@@ -252,12 +300,10 @@
 			isa = PBXGroup;
 			children = (
 				95599822209AED7F00163047 /* CommonTableViewCellModel.h */,
-				95599823209AED7F00163047 /* TitleStyleTableViewHeaderFooterViewModel.m */,
 				95599824209AED7F00163047 /* CommonSectionModel.m */,
 				95599825209AED7F00163047 /* CommonTableViewTool.m */,
 				95599826209AED7F00163047 /* CommonHeaderFooterModel.h */,
 				95599827209AED7F00163047 /* CommonTableViewCellModel.m */,
-				95599828209AED7F00163047 /* TitleStyleTableViewHeaderFooterViewModel.h */,
 				95599829209AED7F00163047 /* CommonTableViewTool.h */,
 				9559982A209AED7F00163047 /* CommonSectionModel.h */,
 				9559982B209AED7F00163047 /* CommonHeaderFooterModel.m */,
@@ -413,6 +459,7 @@
 				TargetAttributes = {
 					955997DE209AECF900163047 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 					};
 				};
 			};
@@ -495,7 +542,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				16B045B320A33AC400362478 /* InformationTableVC.m in Sources */,
+				16B045C320B932CF00362478 /* DemoHeader.m in Sources */,
 				16B045AE20A3346300362478 /* DemoTableVC.m in Sources */,
+				16B045C720B94E7000362478 /* DemoFooterModel.m in Sources */,
 				95599862209AED7F00163047 /* KJCell.m in Sources */,
 				95599877209AED7F00163047 /* BaseCollectionViewToolVC.m in Sources */,
 				95AE8789209C049F0040E1C3 /* UIView+Desingable.m in Sources */,
@@ -504,10 +553,12 @@
 				955997F2209AECFA00163047 /* main.m in Sources */,
 				95AE8787209C049F0040E1C3 /* NSObject+KJCategory.m in Sources */,
 				95AE8788209C049F0040E1C3 /* SpaceLabel.m in Sources */,
+				16B045B720B2FB5A00362478 /* UIColor-SKJCategory.swift in Sources */,
 				95599872209AED7F00163047 /* CommonTableViewCell.m in Sources */,
 				16B045AF20A3346300362478 /* DemoCell.m in Sources */,
 				9559987C209AED7F00163047 /* CommonCollectionReusableView.m in Sources */,
 				95599870209AED7F00163047 /* CommonTableViewHeaderFooterView.m in Sources */,
+				16B045C020B92F8200362478 /* DemoHeaderModel.m in Sources */,
 				95AE87C0209C099C0040E1C3 /* LightStorageManager.m in Sources */,
 				95599878209AED7F00163047 /* CommonCollectionViewTool.m in Sources */,
 				9559986C209AED7F00163047 /* CommonSectionModel.m in Sources */,
@@ -520,13 +571,13 @@
 				95599871209AED7F00163047 /* TitleStyleTableViewHeaderFooterView.m in Sources */,
 				955997E4209AECF900163047 /* AppDelegate.m in Sources */,
 				9559986A209AED7F00163047 /* BaseTableViewToolVC.m in Sources */,
-				9559986B209AED7F00163047 /* TitleStyleTableViewHeaderFooterViewModel.m in Sources */,
 				9559987D209AED7F00163047 /* CommonCollectionViewCell.m in Sources */,
 				95AE87BF209C099C0040E1C3 /* GXArchiver.m in Sources */,
 				95599863209AED7F00163047 /* KJCellModel.m in Sources */,
 				9559986F209AED7F00163047 /* CommonHeaderFooterModel.m in Sources */,
 				95AE87BB209C099C0040E1C3 /* FileManagerTool.m in Sources */,
 				9559987B209AED7F00163047 /* CommonCollectionViewSectionModel.m in Sources */,
+				16B045BD20B92D9C00362478 /* DemoFooter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,9 +718,11 @@
 			baseConfigurationReference = FB4C96EFE39912E2B649CED7 /* Pods-KJSupportObjc.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8V5GV6V7T2;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/KJSupportObjc/PrefixHeader.pch";
 				INFOPLIST_FILE = KJSupportObjc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -677,6 +730,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uback.KJSupportObjc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "KJSupportObjc/Swift/KJSupportObjc-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -686,9 +742,11 @@
 			baseConfigurationReference = F46A270B9803A4F2C5498136 /* Pods-KJSupportObjc.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8V5GV6V7T2;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/KJSupportObjc/PrefixHeader.pch";
 				INFOPLIST_FILE = KJSupportObjc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -696,6 +754,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.uback.KJSupportObjc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "KJSupportObjc/Swift/KJSupportObjc-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

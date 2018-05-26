@@ -1,0 +1,23 @@
+//
+//  PrefixHeader.pch
+//  KJSupportObjc
+//
+//  Created by chenkaijie on 2018/5/26.
+//  Copyright © 2018年 uback. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+
+#import "CommonTableViewTool.h"
+#import "CommonCollectionViewTool.h"
+
+#import "BaseTableViewToolVC.h"
+#import "InformationTableVC.h"
+#import "LightStorageManager.h"
+#import "InformationTableVC.h"
+#import "NSObject+KJCategory.h"
+
+
+#endif /* PrefixHeader_pch */
