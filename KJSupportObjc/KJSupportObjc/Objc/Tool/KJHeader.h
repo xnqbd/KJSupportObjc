@@ -17,15 +17,15 @@
 
 #define KJ_IsNull_Str(String)  ([String isKindOfClass:[NSNull class]] || String == nil|| [String isEqualToString:@""])
 
-#define KJ_ConfirmString(String) (IsNull_Str(String) ? @"" : String)
-#define KJ_SpaceString(String) (IsNull_Str(String) ? @" " : String)
+#define KJ_ConfirmString(String) (KJ_IsNull_Str(String) ? @"" : String)
+#define KJ_SpaceString(String) (KJ_IsNull_Str(String) ? @" " : String)
 
-#define KJ_ConfirmObject(object)  IsNull(object) ? nil : object
+#define KJ_ConfirmObject(object)  KJ_IsNull(object) ? nil : object
 
 #define KJ_IsNull_Num(Number)  ([Number isKindOfClass:[NSNull class]] || Number == nil)
 #define KJ_IsNull_Array(array)  ([array isKindOfClass:[NSNull class]] || array == nil)
 
-#define KJ_ConfirmNumber(Number) (IsNull_Num(Number) ? @0 : Number)
+#define KJ_ConfirmNumber(Number) (KJ_IsNull_Num(Number) ? @0 : Number)
 #define KJ_ConfirmDic(Dic) (([data isKindOfClass:[NSDictionary class]] == NO) ? [NSDictionary dictionary] : (NSDictionary *)data)
 
 

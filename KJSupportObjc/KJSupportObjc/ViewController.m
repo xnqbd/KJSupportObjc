@@ -23,7 +23,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor arc4Color];
-    
+
     
 //    NSMutableArray *cellModelArray = [NSMutableArray array];
 //    CommonSectionModel *sectionModel = [CommonSectionModel new];
