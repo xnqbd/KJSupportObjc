@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CommonCollectionViewTool.h"
 
 
 #warning  注意: 继承于本来的子类， 需实现 CommonCollectionViewToolDataSource 协议
