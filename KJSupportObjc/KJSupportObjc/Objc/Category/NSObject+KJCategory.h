@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Masonry/Masonry.h>
 
 
 int getRandomNumber(int from, int to);
@@ -218,6 +219,24 @@ int getRandomNumber(int from, int to);
 
 #pragma mark - -----------------UIView-----------------
 @interface UIView (KJCategory)
+
+
+/**
+ 这个在直接使用NSLayoutConstraint代码进行布局时使用
+ */
+@property (nonatomic, strong, readonly,) id kj_safeArea;
+
+
+/**
+ 这几个属性是 Masonry的封装
+ */
+@property (nonatomic, strong, readonly) MASViewAttribute * kjMas_safeAreaTop;
+@property (nonatomic, strong, readonly) MASViewAttribute * kjMas_safeAreaBottom;
+@property (nonatomic, strong, readonly) MASViewAttribute * kjMas_safeAreaLeft;
+@property (nonatomic, strong, readonly) MASViewAttribute * kjMas_safeAreaRight;
+
+
+
 @property (nonatomic, assign) CGFloat x;
 @property (nonatomic, assign) CGFloat y;
 @property (nonatomic, assign) CGFloat centerX;

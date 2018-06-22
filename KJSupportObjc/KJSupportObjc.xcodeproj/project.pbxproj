@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1657522120DCD4EB00CB0C8F /* 阿狸.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521820DCD4EB00CB0C8F /* 阿狸.png */; };
+		1657522220DCD4EB00CB0C8F /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521920DCD4EB00CB0C8F /* 4.png */; };
+		1657522320DCD4EB00CB0C8F /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521A20DCD4EB00CB0C8F /* 5.png */; };
+		1657522420DCD4EB00CB0C8F /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521B20DCD4EB00CB0C8F /* 7.png */; };
+		1657522520DCD4EB00CB0C8F /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521C20DCD4EB00CB0C8F /* 6.png */; };
+		1657522620DCD4EB00CB0C8F /* 2.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521D20DCD4EB00CB0C8F /* 2.png */; };
+		1657522720DCD4EB00CB0C8F /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521E20DCD4EB00CB0C8F /* 3.png */; };
+		1657522820DCD4EB00CB0C8F /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521F20DCD4EB00CB0C8F /* 1.png */; };
+		1657522920DCD4EB00CB0C8F /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657522020DCD4EB00CB0C8F /* 0.png */; };
 		16B045AD20A3346300362478 /* DemoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045A720A3346200362478 /* DemoModel.m */; };
 		16B045AE20A3346300362478 /* DemoTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045AA20A3346300362478 /* DemoTableVC.m */; };
 		16B045AF20A3346300362478 /* DemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045AB20A3346300362478 /* DemoCell.m */; };
@@ -16,6 +25,10 @@
 		16B045C020B92F8200362478 /* DemoHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045BF20B92F8200362478 /* DemoHeaderModel.m */; };
 		16B045C320B932CF00362478 /* DemoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045C120B932CF00362478 /* DemoHeader.m */; };
 		16B045C720B94E7000362478 /* DemoFooterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045C620B94E7000362478 /* DemoFooterModel.m */; };
+		16F58FA820DC90DC00031D87 /* MyFamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F58FA720DC90DC00031D87 /* MyFamilyViewController.m */; };
+		16F58FAC20DC978700031D87 /* MyFamilyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F58FAA20DC978700031D87 /* MyFamilyCell.m */; };
+		16F58FAD20DC978700031D87 /* MyFamilyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16F58FAB20DC978700031D87 /* MyFamilyCell.xib */; };
+		16F58FB020DC9A5900031D87 /* MyFamilyCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F58FAF20DC9A5900031D87 /* MyFamilyCellModel.m */; };
 		955997E4209AECF900163047 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 955997E3209AECF900163047 /* AppDelegate.m */; };
 		955997E7209AECF900163047 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955997E6209AECF900163047 /* ViewController.m */; };
 		955997EA209AECF900163047 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 955997E8209AECF900163047 /* Main.storyboard */; };
@@ -54,6 +67,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1657521120DCA3BD00CB0C8F /* KJHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJHeader.h; sourceTree = "<group>"; };
+		1657521820DCD4EB00CB0C8F /* 阿狸.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "阿狸.png"; sourceTree = "<group>"; };
+		1657521920DCD4EB00CB0C8F /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		1657521A20DCD4EB00CB0C8F /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		1657521B20DCD4EB00CB0C8F /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		1657521C20DCD4EB00CB0C8F /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		1657521D20DCD4EB00CB0C8F /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		1657521E20DCD4EB00CB0C8F /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		1657521F20DCD4EB00CB0C8F /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		1657522020DCD4EB00CB0C8F /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
 		16B045A720A3346200362478 /* DemoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoModel.m; sourceTree = "<group>"; };
 		16B045A820A3346200362478 /* DemoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoCell.h; sourceTree = "<group>"; };
 		16B045A920A3346300362478 /* DemoTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableVC.h; sourceTree = "<group>"; };
@@ -74,6 +97,13 @@
 		16B045C420B9378600362478 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		16B045C520B94E7000362478 /* DemoFooterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoFooterModel.h; sourceTree = "<group>"; };
 		16B045C620B94E7000362478 /* DemoFooterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoFooterModel.m; sourceTree = "<group>"; };
+		16F58FA620DC90DC00031D87 /* MyFamilyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFamilyViewController.h; sourceTree = "<group>"; };
+		16F58FA720DC90DC00031D87 /* MyFamilyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFamilyViewController.m; sourceTree = "<group>"; };
+		16F58FA920DC978700031D87 /* MyFamilyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFamilyCell.h; sourceTree = "<group>"; };
+		16F58FAA20DC978700031D87 /* MyFamilyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFamilyCell.m; sourceTree = "<group>"; };
+		16F58FAB20DC978700031D87 /* MyFamilyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyFamilyCell.xib; sourceTree = "<group>"; };
+		16F58FAE20DC9A5900031D87 /* MyFamilyCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFamilyCellModel.h; sourceTree = "<group>"; };
+		16F58FAF20DC9A5900031D87 /* MyFamilyCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFamilyCellModel.m; sourceTree = "<group>"; };
 		955997DF209AECF900163047 /* KJSupportObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KJSupportObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		955997E2209AECF900163047 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		955997E3209AECF900163047 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -186,6 +216,22 @@
 			path = "个人资料界面";
 			sourceTree = "<group>";
 		};
+		1657521720DCD4EB00CB0C8F /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				1657521820DCD4EB00CB0C8F /* 阿狸.png */,
+				1657521920DCD4EB00CB0C8F /* 4.png */,
+				1657521A20DCD4EB00CB0C8F /* 5.png */,
+				1657521B20DCD4EB00CB0C8F /* 7.png */,
+				1657521C20DCD4EB00CB0C8F /* 6.png */,
+				1657521D20DCD4EB00CB0C8F /* 2.png */,
+				1657521E20DCD4EB00CB0C8F /* 3.png */,
+				1657521F20DCD4EB00CB0C8F /* 1.png */,
+				1657522020DCD4EB00CB0C8F /* 0.png */,
+			);
+			path = Resource;
+			sourceTree = "<group>";
+		};
 		16B045B420B2FB1900362478 /* Swift */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +239,20 @@
 				16B045B520B2FB5900362478 /* KJSupportObjc-Bridging-Header.h */,
 			);
 			path = Swift;
+			sourceTree = "<group>";
+		};
+		16F58FA520DC907A00031D87 /* CollectionViewToolDemo */ = {
+			isa = PBXGroup;
+			children = (
+				16F58FA620DC90DC00031D87 /* MyFamilyViewController.h */,
+				16F58FA720DC90DC00031D87 /* MyFamilyViewController.m */,
+				16F58FAE20DC9A5900031D87 /* MyFamilyCellModel.h */,
+				16F58FAF20DC9A5900031D87 /* MyFamilyCellModel.m */,
+				16F58FA920DC978700031D87 /* MyFamilyCell.h */,
+				16F58FAA20DC978700031D87 /* MyFamilyCell.m */,
+				16F58FAB20DC978700031D87 /* MyFamilyCell.xib */,
+			);
+			path = CollectionViewToolDemo;
 			sourceTree = "<group>";
 		};
 		955997D6209AECF900163047 = {
@@ -223,8 +283,10 @@
 				955997E6209AECF900163047 /* ViewController.m */,
 				16B045B420B2FB1900362478 /* Swift */,
 				16498F5920B95D7D00878DC5 /* TableViewToolDemo */,
+				16F58FA520DC907A00031D87 /* CollectionViewToolDemo */,
 				16498F5A20B95DB700878DC5 /* 个人资料界面 */,
 				16B045C420B9378600362478 /* PrefixHeader.pch */,
+				1657521720DCD4EB00CB0C8F /* Resource */,
 				955997E8209AECF900163047 /* Main.storyboard */,
 				955997EB209AECFA00163047 /* Assets.xcassets */,
 				955997ED209AECFA00163047 /* LaunchScreen.storyboard */,
@@ -391,6 +453,7 @@
 				95AE87B8209C099C0040E1C3 /* KJCommonManager.h */,
 				95AE87C1209C0A000040E1C3 /* LightStorageManager.h */,
 				95AE87B9209C099C0040E1C3 /* LightStorageManager.m */,
+				1657521120DCA3BD00CB0C8F /* KJHeader.h */,
 			);
 			path = Tool;
 			sourceTree = "<group>";
@@ -486,11 +549,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1657522620DCD4EB00CB0C8F /* 2.png in Resources */,
+				1657522420DCD4EB00CB0C8F /* 7.png in Resources */,
+				1657522220DCD4EB00CB0C8F /* 4.png in Resources */,
+				1657522320DCD4EB00CB0C8F /* 5.png in Resources */,
+				1657522120DCD4EB00CB0C8F /* 阿狸.png in Resources */,
+				1657522720DCD4EB00CB0C8F /* 3.png in Resources */,
 				955997EF209AECFA00163047 /* LaunchScreen.storyboard in Resources */,
 				955997EC209AECFA00163047 /* Assets.xcassets in Resources */,
+				1657522920DCD4EB00CB0C8F /* 0.png in Resources */,
+				1657522520DCD4EB00CB0C8F /* 6.png in Resources */,
+				1657522820DCD4EB00CB0C8F /* 1.png in Resources */,
 				95599865209AED7F00163047 /* arrow_right_black.png in Resources */,
 				95599864209AED7F00163047 /* icon_data.png in Resources */,
 				95599866209AED7F00163047 /* 通知.png in Resources */,
+				16F58FAD20DC978700031D87 /* MyFamilyCell.xib in Resources */,
 				955997EA209AECF900163047 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,6 +627,7 @@
 				95AE8787209C049F0040E1C3 /* NSObject+KJCategory.m in Sources */,
 				95AE8788209C049F0040E1C3 /* SpaceLabel.m in Sources */,
 				16B045B720B2FB5A00362478 /* UIColor-SKJCategory.swift in Sources */,
+				16F58FAC20DC978700031D87 /* MyFamilyCell.m in Sources */,
 				95599872209AED7F00163047 /* CommonTableViewCell.m in Sources */,
 				16B045AF20A3346300362478 /* DemoCell.m in Sources */,
 				9559987C209AED7F00163047 /* CommonCollectionReusableView.m in Sources */,
@@ -575,9 +649,11 @@
 				95AE87BF209C099C0040E1C3 /* GXArchiver.m in Sources */,
 				95599863209AED7F00163047 /* KJCellModel.m in Sources */,
 				9559986F209AED7F00163047 /* CommonHeaderFooterModel.m in Sources */,
+				16F58FA820DC90DC00031D87 /* MyFamilyViewController.m in Sources */,
 				95AE87BB209C099C0040E1C3 /* FileManagerTool.m in Sources */,
 				9559987B209AED7F00163047 /* CommonCollectionViewSectionModel.m in Sources */,
 				16B045BD20B92D9C00362478 /* DemoFooter.m in Sources */,
+				16F58FB020DC9A5900031D87 /* MyFamilyCellModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,6 +800,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KJSupportObjc/PrefixHeader.pch";
 				INFOPLIST_FILE = KJSupportObjc/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -748,6 +825,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KJSupportObjc/PrefixHeader.pch";
 				INFOPLIST_FILE = KJSupportObjc/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -88,10 +88,10 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath * _Nonnull)indexPath model:(CommonTableViewCellModel * _Nullable)cellModel tableViewTool:(CommonTableViewTool * _Nonnull)tool {
+
+- (void)tableView:(UITableView *_Nullable)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *_Nonnull)indexPath model:(InformationCellModel *_Nullable)model tableViewTool:(CommonTableViewTool *_Nonnull)tool {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    InformationCellModel *model = (InformationCellModel *)cellModel;
     if (model.cellBlock) {
         model.cellBlock(model, section, row, indexPath);
     }

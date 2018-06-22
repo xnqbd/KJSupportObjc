@@ -13,8 +13,6 @@
 #import "CommonCollectionViewSectionModel.h"
 #import "CommonCollectionViewCell.h"
 
-#define typeKJweakself __weak typeof(self) weak_Self = self
-
 @class CommonCollectionViewTool;
 
 
@@ -22,7 +20,7 @@
 @required;
 
 /**
- 键值对 @{@"CellModel" : @{cellKEY : @"UITableViewCell", isRegisterNibKEY: @NO}
+ 键值对 @{NSStringFromClass([CommonTableViewCellModel class]) : @{cellKEY : NSStringFromClass([CommonTableViewCell class]), isRegisterNibKEY : @YES}};
  
  @return 键值对
  */

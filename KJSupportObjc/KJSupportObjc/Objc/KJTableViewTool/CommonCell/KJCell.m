@@ -238,17 +238,13 @@
         
         self.view10.backgroundColor = [UIColor blackColor];
     }
-    
-    
-    
 }
 
-- (void)setupData:(CommonTableViewCellModel *)cellModel section:(NSInteger)section row:(NSInteger)row tableView:(UITableView *)tableView {
+- (void)setupData:(KJCellModel *)model section:(NSInteger)section row:(NSInteger)row tableView:(UITableView *)tableView {
     /*
      不建议 调整左右间距， 如果想要调整左右间距， 可以通过拼接字符串或其他方式
      */
     
-    KJCellModel *model = (KJCellModel *)self.cellModel;
     NSString *imageString = model.left_ImageString2;
     if ([self isEmptyString:imageString]) {
         [_imageBtn2 mas_updateConstraints:^(MASConstraintMaker *make) {

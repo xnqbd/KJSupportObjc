@@ -14,7 +14,7 @@
 
 
 
-@interface KJCell : CommonTableViewCell
+@interface KJCell : CommonTableViewCell <KJCellModel *>
 
 
 

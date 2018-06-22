@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     NSMutableArray <CommonSectionModel *>*sections = [NSMutableArray array];
     

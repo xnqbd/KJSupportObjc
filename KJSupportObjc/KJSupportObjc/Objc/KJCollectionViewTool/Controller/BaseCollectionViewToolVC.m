@@ -16,7 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self collectionView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +25,73 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - 懒加载
+- (CommonCollectionViewTool *)collectionViewTool {
+    if (_collectionViewTool) return _collectionViewTool;
+    _collectionViewTool = [CommonCollectionViewTool new];
+    _collectionViewTool.delegate = self;
+    _collectionViewTool.collectView = self.collectionView;
+    _collectionViewTool.dataSource = self;
+    return _collectionViewTool;
 }
-*/
+
+- (UICollectionViewLayout *)get_subVC_collectionViewLayout {
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+//    CGRect rect = [UIScreen mainScreen].bounds;
+//    layout.itemSize = CGSizeMake(rect.size.width / 4.0, rect.size.width / 4.0);
+    layout.itemSize = CGSizeMake(100, 120);
+    // 一个分区内，两个cell之间的垂直最小间隔
+    layout.minimumLineSpacing = 10;
+    // 一个分区内，两个cell之间的水平最小间隔
+    layout.minimumInteritemSpacing = 10;
+    return layout;
+}
+
+
+- (UICollectionView *)collectionView {
+    if (_collectionView) return _collectionView;
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[self get_subVC_collectionViewLayout]];
+    _collectionView.backgroundColor = [UIColor whiteColor];
+    _collectionView.dataSource = self.collectionViewTool;
+    _collectionView.delegate = self.collectionViewTool;
+    [self.view addSubview:_collectionView];
+    
+    // 设置约束或者frame
+    [self layoutCollectionViewFrame];
+    
+    return _collectionView;
+}
+
+- (void)layoutCollectionViewFrame {
+    _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
+
+    UIView *subView = _collectionView;
+    UIView *superView = subView.superview;
+    
+    if (superView == nil) return;
+    
+    UIEdgeInsets edge = UIEdgeInsetsZero;
+    
+    subView.translatesAutoresizingMaskIntoConstraints = NO;
+    if (@available(iOS 11.0, *)) {
+        
+        id item = superView.safeAreaLayoutGuide;
+        
+        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:item attribute:NSLayoutAttributeLeft multiplier:1 constant:edge.left];
+        NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:item attribute:NSLayoutAttributeTop multiplier:1 constant:edge.top];
+        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:item attribute:NSLayoutAttributeRight multiplier:1 constant:edge.right];
+        NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:item attribute:NSLayoutAttributeBottom multiplier:1 constant:edge.bottom];
+        [superView addConstraints:@[left, top, right, bottom]];
+    } else {
+        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:superView attribute:NSLayoutAttributeLeft multiplier:1 constant:edge.left];
+        NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:superView attribute:NSLayoutAttributeTop multiplier:1 constant:edge.top];
+        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:superView attribute:NSLayoutAttributeRight multiplier:1 constant:edge.right];
+        NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:superView attribute:NSLayoutAttributeBottom multiplier:1 constant:edge.bottom];
+        [superView addConstraints:@[left, top, right, bottom]];
+    }
+}
+
+
+
 
 @end

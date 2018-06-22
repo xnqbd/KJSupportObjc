@@ -8,7 +8,8 @@
 
 //#import <KJSupportObjc/KJSupportObjc.h>
 #import "KJSupportObjc.h"
+#import "DemoModel.h"
 
-@interface DemoCell : CommonTableViewCell
+@interface DemoCell : CommonTableViewCell <DemoModel *>
 
 @end

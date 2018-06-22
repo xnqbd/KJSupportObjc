@@ -693,6 +693,43 @@ int getRandomNumber(int from, int to) {
 
 @implementation UIView (KJCategory)
 
+- (id)kj_safeArea {
+    if (@available(iOS 11.0, *)) {
+        return self.safeAreaLayoutGuide;
+    } else {
+        return self;
+    }
+}
+- (MASViewAttribute *)kjMas_safeAreaTop {
+    if (@available(iOS 11.0, *)) {
+        return self.mas_safeAreaLayoutGuideTop;
+    } else {
+        return self.mas_top;
+    }
+}
+- (MASViewAttribute *)kjMas_safeAreaBottom {
+    if (@available(iOS 11.0, *)) {
+        return self.mas_safeAreaLayoutGuideBottom;
+    } else {
+        return self.mas_bottom;
+    }
+}
+- (MASViewAttribute *)kjMas_safeAreaLeft {
+    if (@available(iOS 11.0, *)) {
+        return self.mas_safeAreaLayoutGuideLeft;
+    } else {
+        return self.mas_left;
+    }
+}
+- (MASViewAttribute *)kjMas_safeAreaRight {
+    if (@available(iOS 11.0, *)) {
+        return self.mas_safeAreaLayoutGuideRight;
+    } else {
+        return self.mas_right;
+    }
+}
+
+
 - (void)setX:(CGFloat)x {
     CGRect frame = self.frame;
     frame.origin.x = x;

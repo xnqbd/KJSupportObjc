@@ -10,9 +10,9 @@
 
 @class CommonTableViewCellModel;
 
-@interface CommonTableViewCell : UITableViewCell
+@interface CommonTableViewCell <E : CommonTableViewCellModel *> : UITableViewCell
 
-@property (nonatomic, strong) CommonTableViewCellModel *cellModel;
+@property (nonatomic, strong) E cellModel;
 
 /**
  *  此方法留着给子类重写，通常是拿到这几个参数 给子类cell设置UI数据

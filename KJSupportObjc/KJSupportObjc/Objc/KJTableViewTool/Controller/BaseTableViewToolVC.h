@@ -20,5 +20,11 @@
 
 @property (strong, nonatomic) CommonTableViewTool *tableViewTool;
 
+/**
+ 自定义TableView的约束或者 frame, 子类如果不重写，就默认和控制器一样大小
+ */
+- (void)layoutTableViewFrame;
+
+
 
 @end

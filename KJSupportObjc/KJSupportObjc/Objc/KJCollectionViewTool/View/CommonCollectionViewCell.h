@@ -10,13 +10,13 @@
 
 @class CommonCollectionViewCellModel;
 
-@interface CommonCollectionViewCell : UICollectionViewCell
+@interface CommonCollectionViewCell <E : CommonCollectionViewCellModel *> : UICollectionViewCell
 
-@property (strong, nonatomic) CommonCollectionViewCellModel *cellModel;
+@property (strong, nonatomic) E model;
 
 /**
  *  此方法留着给子类重写，通常是拿到这几个参数 给子类cell设置UI数据
  */
-- (void)setupData:(CommonCollectionViewCellModel *)cellModel section:(NSInteger)section item:(NSInteger)item collectionView:(UICollectionView *)collectionView;
+- (void)setupData:(E)cellModel section:(NSInteger)section item:(NSInteger)item collectionView:(UICollectionView *)collectionView;
 
 @end

@@ -10,14 +10,16 @@
 #define PrefixHeader_pch
 
 
-#import "CommonTableViewTool.h"
-#import "CommonCollectionViewTool.h"
+//#import "CommonTableViewTool.h"
+//#import "CommonCollectionViewTool.h"
+//
+//#import "BaseTableViewToolVC.h"
+//#import "InformationTableVC.h"
+//#import "LightStorageManager.h"
+//#import "InformationTableVC.h"
+//#import "NSObject+KJCategory.h"
 
-#import "BaseTableViewToolVC.h"
-#import "InformationTableVC.h"
-#import "LightStorageManager.h"
-#import "InformationTableVC.h"
-#import "NSObject+KJCategory.h"
+#import "KJSupportObjc.h"
 
 
 #endif /* PrefixHeader_pch */

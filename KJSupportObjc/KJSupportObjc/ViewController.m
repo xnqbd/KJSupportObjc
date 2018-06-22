@@ -11,6 +11,7 @@
 #import "DemoTableVC.h"
 #import "InformationTableVC.h"
 #import <CoreImage/CoreImage.h>
+#import "MyFamilyViewController.h"
 
 @interface ViewController ()
 
@@ -93,10 +94,16 @@
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    [self presentViewController:[DemoTableVC new] animated:YES completion:nil];
+    
 }
 
+- (IBAction)tabAction:(UIButton *)sender {
+    [self.navigationController pushViewController:[DemoTableVC new] animated:YES];
+}
 
+- (IBAction)collAction:(UIButton *)sender {
+    [self.navigationController pushViewController:[MyFamilyViewController new] animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
