@@ -26,7 +26,7 @@
 #define KJ_IsNull_Array(array)  ([array isKindOfClass:[NSNull class]] || array == nil)
 
 #define KJ_ConfirmNumber(Number) (IsNull_Num(Number) ? @0 : Number)
-
+#define KJ_ConfirmDic(Dic) (([data isKindOfClass:[NSDictionary class]] == NO) ? [NSDictionary dictionary] : (NSDictionary *)data)
 
 
 /** a 到 b 之间的随机数 */

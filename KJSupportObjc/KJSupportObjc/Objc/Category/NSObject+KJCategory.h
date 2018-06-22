@@ -22,6 +22,8 @@ int getRandomNumber(int from, int to);
  */
 - (void)executedOnceInTimeInterval:(NSTimeInterval)timeInterval block:(void(^)(void))block;
 
+
+
 @end
 
 #pragma mark - -----------------NSData-----------------

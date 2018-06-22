@@ -25,9 +25,6 @@
     self.view.backgroundColor = [UIColor arc4Color];
     
     
-    
-//    [[CIImage alloc] ini]
-    
 //    NSMutableArray *cellModelArray = [NSMutableArray array];
 //    CommonSectionModel *sectionModel = [CommonSectionModel new];
 //    
@@ -90,11 +87,9 @@
 //
 //    self.tableViewTool.dataArr = @[sectionModel];
 //    [self.tableView reloadData];
-    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
-    
 }
 
 - (IBAction)tabAction:(UIButton *)sender {
