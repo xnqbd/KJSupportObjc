@@ -105,9 +105,10 @@
     }
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    CommonHeaderFooterModel *footerModel = self.dataArr[section].footerModel;
+    CommonSectionModel *sectionModel = self.dataArr[section];
+    CommonHeaderFooterModel *footerModel = sectionModel.footerModel;
     if (footerModel == nil) {
-        return 0.01f;
+        return sectionModel.footerHeight;
     } else {
         return UITableViewAutomaticDimension;
     }
@@ -267,6 +268,10 @@
     return ocClass ? ocClass : swiftClass;
 }
 
+
+- (void)dealloc {
+    NSLog(@"%@ 销毁", self);
+}
 
 
 @end

@@ -25,6 +25,8 @@
 		16B045C020B92F8200362478 /* DemoHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045BF20B92F8200362478 /* DemoHeaderModel.m */; };
 		16B045C320B932CF00362478 /* DemoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045C120B932CF00362478 /* DemoHeader.m */; };
 		16B045C720B94E7000362478 /* DemoFooterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045C620B94E7000362478 /* DemoFooterModel.m */; };
+		16F5200820DE4ED000B77972 /* DelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F5200720DE4ED000B77972 /* DelegateViewController.m */; };
+		16F5201120DE5BCE00B77972 /* SimpleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F5201020DE5BCE00B77972 /* SimpleTableView.m */; };
 		16F58FA820DC90DC00031D87 /* MyFamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F58FA720DC90DC00031D87 /* MyFamilyViewController.m */; };
 		16F58FAC20DC978700031D87 /* MyFamilyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F58FAA20DC978700031D87 /* MyFamilyCell.m */; };
 		16F58FAD20DC978700031D87 /* MyFamilyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16F58FAB20DC978700031D87 /* MyFamilyCell.xib */; };
@@ -97,6 +99,10 @@
 		16B045C420B9378600362478 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		16B045C520B94E7000362478 /* DemoFooterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoFooterModel.h; sourceTree = "<group>"; };
 		16B045C620B94E7000362478 /* DemoFooterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoFooterModel.m; sourceTree = "<group>"; };
+		16F5200620DE4ED000B77972 /* DelegateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateViewController.h; sourceTree = "<group>"; };
+		16F5200720DE4ED000B77972 /* DelegateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateViewController.m; sourceTree = "<group>"; };
+		16F5200F20DE5BCE00B77972 /* SimpleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SimpleTableView.h; path = "KJSupportObjc/TableViewToolDemo/方法2/SimpleTableView.h"; sourceTree = SOURCE_ROOT; };
+		16F5201020DE5BCE00B77972 /* SimpleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SimpleTableView.m; path = "KJSupportObjc/TableViewToolDemo/方法2/SimpleTableView.m"; sourceTree = SOURCE_ROOT; };
 		16F58FA620DC90DC00031D87 /* MyFamilyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFamilyViewController.h; sourceTree = "<group>"; };
 		16F58FA720DC90DC00031D87 /* MyFamilyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFamilyViewController.m; sourceTree = "<group>"; };
 		16F58FA920DC978700031D87 /* MyFamilyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFamilyCell.h; sourceTree = "<group>"; };
@@ -189,20 +195,8 @@
 		16498F5920B95D7D00878DC5 /* TableViewToolDemo */ = {
 			isa = PBXGroup;
 			children = (
-				16B045A820A3346200362478 /* DemoCell.h */,
-				16B045AB20A3346300362478 /* DemoCell.m */,
-				16B045C220B932CF00362478 /* DemoHeader.h */,
-				16B045C120B932CF00362478 /* DemoHeader.m */,
-				16B045BE20B92F8200362478 /* DemoHeaderModel.h */,
-				16B045BF20B92F8200362478 /* DemoHeaderModel.m */,
-				16B045BB20B92D9C00362478 /* DemoFooter.h */,
-				16B045BC20B92D9C00362478 /* DemoFooter.m */,
-				16B045C520B94E7000362478 /* DemoFooterModel.h */,
-				16B045C620B94E7000362478 /* DemoFooterModel.m */,
-				16B045AC20A3346300362478 /* DemoModel.h */,
-				16B045A720A3346200362478 /* DemoModel.m */,
-				16B045A920A3346300362478 /* DemoTableVC.h */,
-				16B045AA20A3346300362478 /* DemoTableVC.m */,
+				16F5200320DE4E5300B77972 /* 方法1 */,
+				16F5200520DE4E9A00B77972 /* 方法2 */,
 			);
 			path = TableViewToolDemo;
 			sourceTree = "<group>";
@@ -239,6 +233,36 @@
 				16B045B520B2FB5900362478 /* KJSupportObjc-Bridging-Header.h */,
 			);
 			path = Swift;
+			sourceTree = "<group>";
+		};
+		16F5200320DE4E5300B77972 /* 方法1 */ = {
+			isa = PBXGroup;
+			children = (
+				16B045A820A3346200362478 /* DemoCell.h */,
+				16B045AB20A3346300362478 /* DemoCell.m */,
+				16B045C220B932CF00362478 /* DemoHeader.h */,
+				16B045C120B932CF00362478 /* DemoHeader.m */,
+				16B045BE20B92F8200362478 /* DemoHeaderModel.h */,
+				16B045BF20B92F8200362478 /* DemoHeaderModel.m */,
+				16B045BB20B92D9C00362478 /* DemoFooter.h */,
+				16B045BC20B92D9C00362478 /* DemoFooter.m */,
+				16B045C520B94E7000362478 /* DemoFooterModel.h */,
+				16B045C620B94E7000362478 /* DemoFooterModel.m */,
+				16B045AC20A3346300362478 /* DemoModel.h */,
+				16B045A720A3346200362478 /* DemoModel.m */,
+				16B045A920A3346300362478 /* DemoTableVC.h */,
+				16B045AA20A3346300362478 /* DemoTableVC.m */,
+			);
+			path = "方法1";
+			sourceTree = "<group>";
+		};
+		16F5200520DE4E9A00B77972 /* 方法2 */ = {
+			isa = PBXGroup;
+			children = (
+				16F5200620DE4ED000B77972 /* DelegateViewController.h */,
+				16F5200720DE4ED000B77972 /* DelegateViewController.m */,
+			);
+			path = "方法2";
 			sourceTree = "<group>";
 		};
 		16F58FA520DC907A00031D87 /* CollectionViewToolDemo */ = {
@@ -376,6 +400,8 @@
 		9559982C209AED7F00163047 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				16F5200F20DE5BCE00B77972 /* SimpleTableView.h */,
+				16F5201020DE5BCE00B77972 /* SimpleTableView.m */,
 				9559982D209AED7F00163047 /* CommonTableViewHeaderFooterView.m */,
 				9559982E209AED7F00163047 /* CommonTableViewCell.h */,
 				9559982F209AED7F00163047 /* TitleStyleTableViewHeaderFooterView.m */,
@@ -631,6 +657,7 @@
 				95599872209AED7F00163047 /* CommonTableViewCell.m in Sources */,
 				16B045AF20A3346300362478 /* DemoCell.m in Sources */,
 				9559987C209AED7F00163047 /* CommonCollectionReusableView.m in Sources */,
+				16F5201120DE5BCE00B77972 /* SimpleTableView.m in Sources */,
 				95599870209AED7F00163047 /* CommonTableViewHeaderFooterView.m in Sources */,
 				16B045C020B92F8200362478 /* DemoHeaderModel.m in Sources */,
 				95AE87C0209C099C0040E1C3 /* LightStorageManager.m in Sources */,
@@ -646,6 +673,7 @@
 				955997E4209AECF900163047 /* AppDelegate.m in Sources */,
 				9559986A209AED7F00163047 /* BaseTableViewToolVC.m in Sources */,
 				9559987D209AED7F00163047 /* CommonCollectionViewCell.m in Sources */,
+				16F5200820DE4ED000B77972 /* DelegateViewController.m in Sources */,
 				95AE87BF209C099C0040E1C3 /* GXArchiver.m in Sources */,
 				95599863209AED7F00163047 /* KJCellModel.m in Sources */,
 				9559986F209AED7F00163047 /* CommonHeaderFooterModel.m in Sources */,

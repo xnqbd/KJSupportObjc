@@ -12,6 +12,7 @@
 #import "InformationTableVC.h"
 #import <CoreImage/CoreImage.h>
 #import "MyFamilyViewController.h"
+#import "DelegateViewController.h"
 
 @interface ViewController ()
 
@@ -92,8 +93,12 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
 }
 
-- (IBAction)tabAction:(UIButton *)sender {
+- (IBAction)tab1Action:(UIButton *)sender {
     [self.navigationController pushViewController:[DemoTableVC new] animated:YES];
+}
+
+- (IBAction)tabAction:(UIButton *)sender {
+    [self.navigationController pushViewController:[DelegateViewController new] animated:YES];
 }
 
 - (IBAction)collAction:(UIButton *)sender {

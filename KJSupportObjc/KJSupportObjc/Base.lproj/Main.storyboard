@@ -22,8 +22,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ie7-tq-PPE">
-                                <rect key="frame" x="132" y="318.5" width="110" height="30"/>
-                                <state key="normal" title="TableViewDemo"/>
+                                <rect key="frame" x="132.5" y="318.5" width="109" height="30"/>
+                                <state key="normal" title="TableView方法2"/>
                                 <connections>
                                     <action selector="tabAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YdC-pi-s1B"/>
                                 </connections>
@@ -35,9 +35,18 @@
                                     <action selector="collAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wbt-yg-pOR"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRJ-Pv-Z5D">
+                                <rect key="frame" x="133.5" y="260" width="107" height="30"/>
+                                <state key="normal" title="TableView方法1"/>
+                                <connections>
+                                    <action selector="tab1Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c9d-Uj-fqT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ie7-tq-PPE" firstAttribute="top" secondItem="oRJ-Pv-Z5D" secondAttribute="bottom" constant="28.5" id="E5R-0l-05U"/>
+                            <constraint firstItem="oRJ-Pv-Z5D" firstAttribute="centerX" secondItem="ie7-tq-PPE" secondAttribute="centerX" id="H84-sD-iUz"/>
                             <constraint firstItem="ie7-tq-PPE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OgN-nN-OJv"/>
                             <constraint firstItem="A8g-VA-UEn" firstAttribute="top" secondItem="ie7-tq-PPE" secondAttribute="bottom" constant="50" id="eP1-Kz-qr2"/>
                             <constraint firstItem="ie7-tq-PPE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sHJ-05-qfk"/>

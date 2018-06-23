@@ -9,20 +9,19 @@
 #ifndef KJSupport_h
 #define KJSupport_h
 
-
 #import "CommonTableViewTool.h"
 #import "CommonCollectionViewTool.h"
-
+#import "SimpleTableView.h"
 
 
 #import "BaseTableViewToolVC.h"
+#import "BaseCollectionViewToolVC.h"
+
 #import "LightStorageManager.h"
 #import "NSObject+KJCategory.h"
 #import <objc/message.h>
 #import "KJHeader.h"
 #import <Masonry/Masonry.h>
-
-
 
 
 #endif /* KJSupport_h */

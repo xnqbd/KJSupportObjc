@@ -21,7 +21,7 @@
 - (UICollectionViewLayout *)get_subVC_collectionViewLayout;
 
 /**
- 自定义CollectionView的约束或者 frame, 子类如果不重写，就默认和控制器一样大小
+ 自定义CollectionView的约束或者 frame, 子类如果不重写，就默认和控制器一样大小, 注意：如果重写了此方法，一定不要调用[super layoutTableViewFrame];
  */
 - (void)layoutCollectionViewFrame;
 
