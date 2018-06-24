@@ -10,6 +10,7 @@
 #import "MyFamilyCell.h"
 #import "MyFamilyCellModel.h"
 #import <Masonry/Masonry.h>
+#import "MyFamilyLastCell.h"
 
 @interface MyFamilyViewController ()
 
@@ -71,12 +72,12 @@
         model2.identity = @"弟弟";
         model2.age = 33;
         
-        MyFamilyCellModel *model3 = [MyFamilyCellModel new];
-        model3.name = @"张飞";
-        model3.imageUrl = @"3";
-        model3.certifiedStatus = CertifiedStatus_noVerified;
-        model3.identity = @"弟弟";
-        model3.age = 32;
+        MyFamilyLastCellModel *model3 = [MyFamilyLastCellModel new];
+//        model3.name = @"张飞";
+//        model3.imageUrl = @"3";
+//        model3.certifiedStatus = CertifiedStatus_noVerified;
+//        model3.identity = @"弟弟";
+//        model3.age = 32;
         
         section.modelArray = @[model1, model2, model3];
         
@@ -98,7 +99,9 @@
 }
 
 - (NSDictionary<NSString *,NSDictionary<NSString *,id> *> *)returnCell_Model_keyValues {
-    return @{NSStringFromClass([MyFamilyCellModel class]) : @{cellKEY : NSStringFromClass([MyFamilyCell class]), isRegisterNibKEY : @YES}};
+    return @{NSStringFromClass([MyFamilyCellModel class]) : @{cellKEY : NSStringFromClass([MyFamilyCell class]), isRegisterNibKEY : @YES},
+             NSStringFromClass([MyFamilyLastCellModel class]) : @{cellKEY : NSStringFromClass([MyFamilyLastCell class]), isRegisterNibKEY : @YES}
+             };
 }
 
 - (UILabel *)headerLab {
@@ -118,9 +121,8 @@
     return _headerLab;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtSection:(NSInteger)section item:(NSInteger)item model:(MyFamilyCellModel *)model commonCollectionViewTool:(CommonCollectionViewTool *)commonCollectionViewTool {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtSection:(NSInteger)section item:(NSInteger)item selectIndexPath:(NSIndexPath *)indexPath model:(CommonCollectionViewCellModel *)model commonCollectionViewTool:(CommonCollectionViewTool *)commonCollectionViewTool {
     
 }
-
 
 @end

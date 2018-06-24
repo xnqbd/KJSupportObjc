@@ -128,9 +128,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger section = indexPath.section, row = indexPath.row;
     
-    CommonTableViewCellModel *cellModel = self.dataArr[section].modelArray[row];
+    CommonSectionModel *sectionModel = self.dataArr[section];
+    CommonTableViewCellModel *model = sectionModel.modelArray[row];
     
-    NSString *modelName = [NSString stringWithUTF8String:object_getClassName(cellModel)];
+    
+    
+    NSString *modelName = [NSString stringWithUTF8String:object_getClassName(model)];
     modelName = [self return_ModelName:modelName];
     
     if ([modelName containsString:self.namespace]) { // 为了Swift处理命名空间
@@ -152,8 +155,8 @@
             cell = [[CommonTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([CommonTableViewCell class])];
         }
     }
-    cell.cellModel = cellModel;
-    [cell setupData:cellModel section:section row:row tableView:tableView];
+    cell.cellModel = model;
+    [cell setupData:model section:section row:row selectIndexPath:indexPath tableView:tableView tableViewTool:self];
     return cell;
 }
 

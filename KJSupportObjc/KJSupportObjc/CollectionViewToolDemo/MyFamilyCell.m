@@ -14,13 +14,25 @@
     [super awakeFromNib];
 }
 
-- (void)setupData:(MyFamilyCellModel *)cellModel section:(NSInteger)section item:(NSInteger)item collectionView:(UICollectionView *)collectionView {
-    self.contentView.backgroundColor = [UIColor arc4Color];
-    self.avatarImageV.image = [UIImage kj_imageNamed:cellModel.imageUrl];
-    CertifiedStatus certifiedStatus = cellModel.certifiedStatus;
-
+- (void)setupData:(MyFamilyCellModel *)model section:(NSInteger)section item:(NSInteger)item selectIndexPath:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView collectionViewTool:(CommonCollectionViewTool *)tool {
+//    self.contentView.backgroundColor = [UIColor arc4Color];
+    self.avatarImageV.image = [UIImage kj_imageNamed:model.imageUrl];
+    CertifiedStatus certifiedStatus = model.certifiedStatus;
     
-    [self.certifiedBtn setTitle:certifiedStatus ? @"已认证" : @"待实名认证" forState:UIControlStateNormal];
+    NSString *status = nil;
+    switch (certifiedStatus) {
+        case CertifiedStatus_verified:
+            status = @"已认证";
+            break;
+        case CertifiedStatus_noVerified:
+            status = @"待实名认证";
+            break;
+            
+        default:
+            break;
+    }
+    
+    [self.certifiedBtn setTitle:status forState:UIControlStateNormal];
 }
 
 

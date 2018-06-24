@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class CommonCollectionViewCellModel;
+@class CommonCollectionViewCellModel, CommonCollectionViewTool;
 
 @interface CommonCollectionViewCell <E : CommonCollectionViewCellModel *> : UICollectionViewCell
 
@@ -17,6 +17,6 @@
 /**
  *  此方法留着给子类重写，通常是拿到这几个参数 给子类cell设置UI数据
  */
-- (void)setupData:(E)cellModel section:(NSInteger)section item:(NSInteger)item collectionView:(UICollectionView *)collectionView;
+- (void)setupData:(E)model section:(NSInteger)section item:(NSInteger)item selectIndexPath:(NSIndexPath *_Nonnull)indexPath collectionView:(UICollectionView *)collectionView collectionViewTool:(CommonCollectionViewTool *)tool;
 
 @end

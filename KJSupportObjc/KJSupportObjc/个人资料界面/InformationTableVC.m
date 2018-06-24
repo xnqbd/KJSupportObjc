@@ -5,11 +5,9 @@
 
 @implementation InformationCell
 
-- (void)setupData:(CommonTableViewCellModel *)cellModel section:(NSInteger)section row:(NSInteger)row tableView:(UITableView *)tableView {
+- (void)setupData:(InformationCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView tableViewTool:(CommonTableViewTool *)tool {
 #warning 下面这行代码不要删除
-    [super setupData:cellModel section:section row:row tableView:tableView];
-    
-    InformationCellModel *model = (InformationCellModel *)cellModel;
+    [super setupData:model section:section row:row selectIndexPath:indexPath tableView:tableView tableViewTool:tool];
     // 在这里进行给子类Cell身上的一些控件赋值
 }
 @end

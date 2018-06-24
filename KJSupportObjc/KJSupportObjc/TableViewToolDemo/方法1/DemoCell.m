@@ -22,8 +22,7 @@
     // Configure the view for the selected state
 }
 
-- (void)setupData:(CommonTableViewCellModel *)cellModel section:(NSInteger)section row:(NSInteger)row tableView:(UITableView *)tableView {
-    DemoModel *model = (DemoModel *)cellModel;
+- (void)setupData:(DemoModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView tableViewTool:(CommonTableViewTool *)tool {
     self.textLabel.text = model.name;
 }
 

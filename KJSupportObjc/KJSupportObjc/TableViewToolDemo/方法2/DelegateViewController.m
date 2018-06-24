@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor blueColor];
     _simpleTableView = [[SimpleTableView alloc] initWithFrame:CGRectMake(0, 100, 200, 200) style:(UITableViewStylePlain)];
     _simpleTableView.simpleTableViewDelegate = self;
     _simpleTableView.simpleTableViewDataSource = self;
@@ -84,6 +85,9 @@
     
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath model:(DemoModel *)model tableViewTool:(CommonTableViewTool *)tool {
+    NSLog(@"点击了 %@", model.name);
+}
 
 /**
  这个方法一定要实现

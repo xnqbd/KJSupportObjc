@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class CommonTableViewCellModel;
+@class CommonTableViewCellModel, CommonTableViewTool;
 
 @interface CommonTableViewCell <E : CommonTableViewCellModel *> : UITableViewCell
 
@@ -17,6 +17,7 @@
 /**
  *  此方法留着给子类重写，通常是拿到这几个参数 给子类cell设置UI数据
  */
-- (void)setupData:(CommonTableViewCellModel *)cellModel section:(NSInteger)section row:(NSInteger)row tableView:(UITableView *)tableView;
+- (void)setupData:(E)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *_Nonnull)indexPath tableView:(UITableView *)tableView tableViewTool:(CommonTableViewTool *_Nonnull)tool;
+
 
 @end

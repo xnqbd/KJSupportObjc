@@ -12,7 +12,7 @@
 @implementation CommonCollectionViewCell
 
 
-- (void)setupData:(CommonCollectionViewCellModel *)cellModel section:(NSInteger)section item:(NSInteger)item collectionView:(UICollectionView *)collectionView {
+- (void)setupData:(CommonCollectionViewCellModel *)model section:(NSInteger)section item:(NSInteger)item selectIndexPath:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView collectionViewTool:(CommonCollectionViewTool *)tool {
 }
 
 

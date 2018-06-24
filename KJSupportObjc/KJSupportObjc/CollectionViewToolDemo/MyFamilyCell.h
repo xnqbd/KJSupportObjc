@@ -34,4 +34,16 @@
  */
 @property (weak, nonatomic) IBOutlet UILabel *dataLab;
 
+/**
+ 我的家庭最后一个cell的背景View
+ */
+@property (weak, nonatomic) IBOutlet UIView *MyFamilyLastBGView;
+
+/**
+ 选择家长最后一个cell的背景View
+ */
+@property (weak, nonatomic) IBOutlet UIView *chooseParentsLastBGView;
+
+
+
 @end

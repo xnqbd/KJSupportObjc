@@ -68,7 +68,7 @@
     CommonCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellClass forIndexPath:indexPath];
     
     cell.model = model;
-    [cell setupData:model section:section item:item collectionView:collectionView];
+    [cell setupData:model section:section item:item selectIndexPath:indexPath collectionView:collectionView collectionViewTool:self];
     
     return cell;
 }
@@ -77,10 +77,10 @@
     NSInteger section = indexPath.section, item = indexPath.item;
     
     CommonCollectionViewSectionModel *sectionModel = self.dataArr[section];
-    CommonCollectionViewCellModel *cellModel = sectionModel.modelArray[item];
+    CommonCollectionViewCellModel *model = sectionModel.modelArray[item];
     
-    if ([self.delegate respondsToSelector:@selector(collectionView:didSelectItemAtSection:item:model:commonCollectionViewTool:)]) {
-        [self.delegate collectionView:collectionView didSelectItemAtSection:section item:item model:cellModel commonCollectionViewTool:self];
+    if ([self.delegate respondsToSelector:@selector(collectionView:didSelectItemAtSection:item:selectIndexPath:model:commonCollectionViewTool:)]) {
+        [self.delegate collectionView:collectionView didSelectItemAtSection:section item:item selectIndexPath:indexPath model:model commonCollectionViewTool:self];
     }
 }
 

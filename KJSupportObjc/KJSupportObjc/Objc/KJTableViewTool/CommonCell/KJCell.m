@@ -240,7 +240,7 @@
     }
 }
 
-- (void)setupData:(KJCellModel *)model section:(NSInteger)section row:(NSInteger)row tableView:(UITableView *)tableView {
+- (void)setupData:(KJCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView tableViewTool:(CommonTableViewTool *)tool {
     /*
      不建议 调整左右间距， 如果想要调整左右间距， 可以通过拼接字符串或其他方式
      */
