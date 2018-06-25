@@ -21,14 +21,15 @@
 #import "KJHeader.h"
 #import <Masonry/Masonry.h>
 
+IB_DESIGNABLE
 @interface SimpleTableView : UITableView <CommonTableViewToolDelegate, CommonTableViewToolDataSource>
 
 @property (strong, nonatomic) CommonTableViewTool *tableViewTool;
 
 @property (strong, nonatomic) NSArray <CommonSectionModel *>* _Nullable dataArr;
 
-@property (weak, nonatomic, nullable) id  <CommonTableViewToolDelegate> simpleTableViewDelegate;
-@property (weak, nonatomic, nullable) id  <CommonTableViewToolDataSource> simpleTableViewDataSource;
+@property (weak, nonatomic, nullable) IBOutlet id  <CommonTableViewToolDelegate> simpleTableViewDelegate;
+@property (weak, nonatomic, nullable) IBOutlet id  <CommonTableViewToolDataSource> simpleTableViewDataSource;
 
 
 @end

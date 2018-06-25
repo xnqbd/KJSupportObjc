@@ -12,7 +12,7 @@
 #import "CommonTableViewTool.h"
 #import "CommonCollectionViewTool.h"
 #import "SimpleTableView.h"
-
+#import "SimpleCollectionView.h"
 
 #import "BaseTableViewToolVC.h"
 #import "BaseCollectionViewToolVC.h"

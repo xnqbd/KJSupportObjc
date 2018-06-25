@@ -42,13 +42,22 @@
                                     <action selector="tab1Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c9d-Uj-fqT"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNP-vw-DXz">
+                                <rect key="frame" x="97" y="436" width="181" height="30"/>
+                                <state key="normal" title="CollectionViewDemo方法2"/>
+                                <connections>
+                                    <action selector="collAction2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PGp-Qn-lxX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="ie7-tq-PPE" firstAttribute="top" secondItem="oRJ-Pv-Z5D" secondAttribute="bottom" constant="28.5" id="E5R-0l-05U"/>
                             <constraint firstItem="oRJ-Pv-Z5D" firstAttribute="centerX" secondItem="ie7-tq-PPE" secondAttribute="centerX" id="H84-sD-iUz"/>
                             <constraint firstItem="ie7-tq-PPE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OgN-nN-OJv"/>
+                            <constraint firstItem="xNP-vw-DXz" firstAttribute="centerX" secondItem="A8g-VA-UEn" secondAttribute="centerX" id="QiB-bh-fJv"/>
                             <constraint firstItem="A8g-VA-UEn" firstAttribute="top" secondItem="ie7-tq-PPE" secondAttribute="bottom" constant="50" id="eP1-Kz-qr2"/>
+                            <constraint firstItem="xNP-vw-DXz" firstAttribute="top" secondItem="A8g-VA-UEn" secondAttribute="bottom" constant="7.5" id="imG-bh-9hU"/>
                             <constraint firstItem="ie7-tq-PPE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sHJ-05-qfk"/>
                             <constraint firstItem="A8g-VA-UEn" firstAttribute="centerX" secondItem="ie7-tq-PPE" secondAttribute="centerX" id="xBU-hD-lVz"/>
                         </constraints>

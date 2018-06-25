@@ -13,6 +13,7 @@
 #import <CoreImage/CoreImage.h>
 #import "MyFamilyViewController.h"
 #import "DelegateViewController.h"
+#import "CollectionVC2.h"
 
 @interface ViewController ()
 
@@ -104,11 +105,36 @@
 - (IBAction)collAction:(UIButton *)sender {
     [self.navigationController pushViewController:[MyFamilyViewController new] animated:YES];
 }
+- (IBAction)collAction2:(UIButton *)sender {
+    
+      [self.navigationController pushViewController:[CollectionVC2 new] animated:YES];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+/*
+ 
+ 其他卡  只能添加的是社保卡
+ 
+ 
+ 1. 其他卡  -> 添加社保卡 返回来变成 -> 社保卡
+ 
+ 2. 健康卡  其他卡  -> 添加社保卡 返回来变成 -> 健康卡  社保卡
+ 
+ 3. 社保卡
+ 
+ 4. 健康卡  社保卡
+ 
+ */
+
+
+
+
 
 
 @end

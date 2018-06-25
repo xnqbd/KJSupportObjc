@@ -215,6 +215,10 @@
 
 
 
+- (void)dealloc {
+    NSLog(@"%@ %p 销毁", [self class], self);
+}
+
 
 @end
 

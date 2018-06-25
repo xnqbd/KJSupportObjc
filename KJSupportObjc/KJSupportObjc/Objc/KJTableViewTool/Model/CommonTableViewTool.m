@@ -273,7 +273,7 @@
 
 
 - (void)dealloc {
-    NSLog(@"%@ 销毁", self);
+    NSLog(@"%@ %p 销毁", [self class], self);
 }
 
 

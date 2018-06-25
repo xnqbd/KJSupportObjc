@@ -7,9 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1625BB4D20DF583400C2976B /* MyFamilyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1625BB4C20DF583300C2976B /* MyFamilyCell.xib */; };
-		1625BB5120DF58DD00C2976B /* MyFamilyLastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1625BB4F20DF58DD00C2976B /* MyFamilyLastCell.m */; };
-		1625BB5220DF58DD00C2976B /* MyFamilyLastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1625BB5020DF58DD00C2976B /* MyFamilyLastCell.xib */; };
+		161CDCE320E097500000735B /* SimpleCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 161CDCE220E097500000735B /* SimpleCollectionView.m */; };
+		161CDCF020E0AF740000735B /* MyFamilyLastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161CDCE920E0AF740000735B /* MyFamilyLastCell.m */; };
+		161CDCF120E0AF740000735B /* MyFamilyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 161CDCEA20E0AF740000735B /* MyFamilyCell.xib */; };
+		161CDCF220E0AF740000735B /* MyFamilyCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161CDCEB20E0AF740000735B /* MyFamilyCellModel.m */; };
+		161CDCF320E0AF740000735B /* MyFamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 161CDCEC20E0AF740000735B /* MyFamilyViewController.m */; };
+		161CDCF420E0AF740000735B /* MyFamilyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161CDCED20E0AF740000735B /* MyFamilyCell.m */; };
+		161CDCF520E0AF740000735B /* MyFamilyLastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 161CDCEE20E0AF740000735B /* MyFamilyLastCell.xib */; };
+		161CDCFE20E0AFDC0000735B /* OnlyLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 161CDCFB20E0AFDB0000735B /* OnlyLabelCell.xib */; };
+		161CDCFF20E0AFDC0000735B /* OnlyLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 161CDCFD20E0AFDC0000735B /* OnlyLabelCell.m */; };
+		161CDD0220E0AFFB0000735B /* OnlyLabelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161CDD0120E0AFFB0000735B /* OnlyLabelModel.m */; };
+		161CDD0920E0B1100000735B /* CollectionVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 161CDD0720E0B1100000735B /* CollectionVC2.m */; };
+		161CDD0A20E0B1100000735B /* CollectionVC2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 161CDD0820E0B1100000735B /* CollectionVC2.xib */; };
 		1657522120DCD4EB00CB0C8F /* 阿狸.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521820DCD4EB00CB0C8F /* 阿狸.png */; };
 		1657522220DCD4EB00CB0C8F /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521920DCD4EB00CB0C8F /* 4.png */; };
 		1657522320DCD4EB00CB0C8F /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521A20DCD4EB00CB0C8F /* 5.png */; };
@@ -28,11 +37,11 @@
 		16B045C020B92F8200362478 /* DemoHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045BF20B92F8200362478 /* DemoHeaderModel.m */; };
 		16B045C320B932CF00362478 /* DemoHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045C120B932CF00362478 /* DemoHeader.m */; };
 		16B045C720B94E7000362478 /* DemoFooterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045C620B94E7000362478 /* DemoFooterModel.m */; };
+		16BD138120E0C69500615D47 /* VisitCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16BD138020E0C69500615D47 /* VisitCardModel.m */; };
+		16BD138520E0C6B000615D47 /* VisitCardCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16BD138320E0C6B000615D47 /* VisitCardCell.m */; };
+		16BD138620E0C6B000615D47 /* VisitCardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16BD138420E0C6B000615D47 /* VisitCardCell.xib */; };
 		16F5200820DE4ED000B77972 /* DelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F5200720DE4ED000B77972 /* DelegateViewController.m */; };
 		16F5201420DE5EEE00B77972 /* SimpleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F5201320DE5EEE00B77972 /* SimpleTableView.m */; };
-		16F58FA820DC90DC00031D87 /* MyFamilyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F58FA720DC90DC00031D87 /* MyFamilyViewController.m */; };
-		16F58FAC20DC978700031D87 /* MyFamilyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F58FAA20DC978700031D87 /* MyFamilyCell.m */; };
-		16F58FB020DC9A5900031D87 /* MyFamilyCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F58FAF20DC9A5900031D87 /* MyFamilyCellModel.m */; };
 		955997E4209AECF900163047 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 955997E3209AECF900163047 /* AppDelegate.m */; };
 		955997E7209AECF900163047 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955997E6209AECF900163047 /* ViewController.m */; };
 		955997EA209AECF900163047 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 955997E8209AECF900163047 /* Main.storyboard */; };
@@ -71,10 +80,26 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1625BB4C20DF583300C2976B /* MyFamilyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFamilyCell.xib; sourceTree = "<group>"; };
-		1625BB4E20DF58DD00C2976B /* MyFamilyLastCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFamilyLastCell.h; sourceTree = "<group>"; };
-		1625BB4F20DF58DD00C2976B /* MyFamilyLastCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFamilyLastCell.m; sourceTree = "<group>"; };
-		1625BB5020DF58DD00C2976B /* MyFamilyLastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyFamilyLastCell.xib; sourceTree = "<group>"; };
+		161CDCE120E097500000735B /* SimpleCollectionView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleCollectionView.h; sourceTree = "<group>"; };
+		161CDCE220E097500000735B /* SimpleCollectionView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleCollectionView.m; sourceTree = "<group>"; };
+		161CDCE620E0AF740000735B /* MyFamilyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFamilyCell.h; sourceTree = "<group>"; };
+		161CDCE720E0AF740000735B /* MyFamilyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFamilyViewController.h; sourceTree = "<group>"; };
+		161CDCE820E0AF740000735B /* MyFamilyCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFamilyCellModel.h; sourceTree = "<group>"; };
+		161CDCE920E0AF740000735B /* MyFamilyLastCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFamilyLastCell.m; sourceTree = "<group>"; };
+		161CDCEA20E0AF740000735B /* MyFamilyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFamilyCell.xib; sourceTree = "<group>"; };
+		161CDCEB20E0AF740000735B /* MyFamilyCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFamilyCellModel.m; sourceTree = "<group>"; };
+		161CDCEC20E0AF740000735B /* MyFamilyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFamilyViewController.m; sourceTree = "<group>"; };
+		161CDCED20E0AF740000735B /* MyFamilyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyFamilyCell.m; sourceTree = "<group>"; };
+		161CDCEE20E0AF740000735B /* MyFamilyLastCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyFamilyLastCell.xib; sourceTree = "<group>"; };
+		161CDCEF20E0AF740000735B /* MyFamilyLastCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyFamilyLastCell.h; sourceTree = "<group>"; };
+		161CDCFB20E0AFDB0000735B /* OnlyLabelCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnlyLabelCell.xib; sourceTree = "<group>"; };
+		161CDCFC20E0AFDC0000735B /* OnlyLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnlyLabelCell.h; sourceTree = "<group>"; };
+		161CDCFD20E0AFDC0000735B /* OnlyLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnlyLabelCell.m; sourceTree = "<group>"; };
+		161CDD0020E0AFFB0000735B /* OnlyLabelModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OnlyLabelModel.h; sourceTree = "<group>"; };
+		161CDD0120E0AFFB0000735B /* OnlyLabelModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OnlyLabelModel.m; sourceTree = "<group>"; };
+		161CDD0620E0B1100000735B /* CollectionVC2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionVC2.h; sourceTree = "<group>"; };
+		161CDD0720E0B1100000735B /* CollectionVC2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionVC2.m; sourceTree = "<group>"; };
+		161CDD0820E0B1100000735B /* CollectionVC2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionVC2.xib; sourceTree = "<group>"; };
 		1657521120DCA3BD00CB0C8F /* KJHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJHeader.h; sourceTree = "<group>"; };
 		1657521820DCD4EB00CB0C8F /* 阿狸.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "阿狸.png"; sourceTree = "<group>"; };
 		1657521920DCD4EB00CB0C8F /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
@@ -105,16 +130,15 @@
 		16B045C420B9378600362478 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		16B045C520B94E7000362478 /* DemoFooterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DemoFooterModel.h; sourceTree = "<group>"; };
 		16B045C620B94E7000362478 /* DemoFooterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoFooterModel.m; sourceTree = "<group>"; };
+		16BD137F20E0C69500615D47 /* VisitCardModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisitCardModel.h; sourceTree = "<group>"; };
+		16BD138020E0C69500615D47 /* VisitCardModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisitCardModel.m; sourceTree = "<group>"; };
+		16BD138220E0C6B000615D47 /* VisitCardCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisitCardCell.h; sourceTree = "<group>"; };
+		16BD138320E0C6B000615D47 /* VisitCardCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisitCardCell.m; sourceTree = "<group>"; };
+		16BD138420E0C6B000615D47 /* VisitCardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisitCardCell.xib; sourceTree = "<group>"; };
 		16F5200620DE4ED000B77972 /* DelegateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelegateViewController.h; sourceTree = "<group>"; };
 		16F5200720DE4ED000B77972 /* DelegateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateViewController.m; sourceTree = "<group>"; };
 		16F5201220DE5EEE00B77972 /* SimpleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleTableView.h; sourceTree = "<group>"; };
 		16F5201320DE5EEE00B77972 /* SimpleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleTableView.m; sourceTree = "<group>"; };
-		16F58FA620DC90DC00031D87 /* MyFamilyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFamilyViewController.h; sourceTree = "<group>"; };
-		16F58FA720DC90DC00031D87 /* MyFamilyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFamilyViewController.m; sourceTree = "<group>"; };
-		16F58FA920DC978700031D87 /* MyFamilyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFamilyCell.h; sourceTree = "<group>"; };
-		16F58FAA20DC978700031D87 /* MyFamilyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFamilyCell.m; sourceTree = "<group>"; };
-		16F58FAE20DC9A5900031D87 /* MyFamilyCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFamilyCellModel.h; sourceTree = "<group>"; };
-		16F58FAF20DC9A5900031D87 /* MyFamilyCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyFamilyCellModel.m; sourceTree = "<group>"; };
 		955997DF209AECF900163047 /* KJSupportObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KJSupportObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		955997E2209AECF900163047 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		955997E3209AECF900163047 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -197,6 +221,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		161CDCE420E0AF740000735B /* 方法2 */ = {
+			isa = PBXGroup;
+			children = (
+				161CDCFC20E0AFDC0000735B /* OnlyLabelCell.h */,
+				161CDCFD20E0AFDC0000735B /* OnlyLabelCell.m */,
+				161CDCFB20E0AFDB0000735B /* OnlyLabelCell.xib */,
+				161CDD0020E0AFFB0000735B /* OnlyLabelModel.h */,
+				161CDD0120E0AFFB0000735B /* OnlyLabelModel.m */,
+				16BD137F20E0C69500615D47 /* VisitCardModel.h */,
+				16BD138020E0C69500615D47 /* VisitCardModel.m */,
+				16BD138220E0C6B000615D47 /* VisitCardCell.h */,
+				16BD138320E0C6B000615D47 /* VisitCardCell.m */,
+				16BD138420E0C6B000615D47 /* VisitCardCell.xib */,
+				161CDD0620E0B1100000735B /* CollectionVC2.h */,
+				161CDD0720E0B1100000735B /* CollectionVC2.m */,
+				161CDD0820E0B1100000735B /* CollectionVC2.xib */,
+			);
+			path = "方法2";
+			sourceTree = "<group>";
+		};
+		161CDCE520E0AF740000735B /* 方法1 */ = {
+			isa = PBXGroup;
+			children = (
+				161CDCE620E0AF740000735B /* MyFamilyCell.h */,
+				161CDCE720E0AF740000735B /* MyFamilyViewController.h */,
+				161CDCE820E0AF740000735B /* MyFamilyCellModel.h */,
+				161CDCE920E0AF740000735B /* MyFamilyLastCell.m */,
+				161CDCEA20E0AF740000735B /* MyFamilyCell.xib */,
+				161CDCEB20E0AF740000735B /* MyFamilyCellModel.m */,
+				161CDCEC20E0AF740000735B /* MyFamilyViewController.m */,
+				161CDCED20E0AF740000735B /* MyFamilyCell.m */,
+				161CDCEE20E0AF740000735B /* MyFamilyLastCell.xib */,
+				161CDCEF20E0AF740000735B /* MyFamilyLastCell.h */,
+			);
+			path = "方法1";
+			sourceTree = "<group>";
+		};
 		16498F5920B95D7D00878DC5 /* TableViewToolDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,16 +334,8 @@
 		16F58FA520DC907A00031D87 /* CollectionViewToolDemo */ = {
 			isa = PBXGroup;
 			children = (
-				16F58FA620DC90DC00031D87 /* MyFamilyViewController.h */,
-				16F58FA720DC90DC00031D87 /* MyFamilyViewController.m */,
-				16F58FAE20DC9A5900031D87 /* MyFamilyCellModel.h */,
-				16F58FAF20DC9A5900031D87 /* MyFamilyCellModel.m */,
-				16F58FA920DC978700031D87 /* MyFamilyCell.h */,
-				1625BB4E20DF58DD00C2976B /* MyFamilyLastCell.h */,
-				1625BB4F20DF58DD00C2976B /* MyFamilyLastCell.m */,
-				1625BB5020DF58DD00C2976B /* MyFamilyLastCell.xib */,
-				16F58FAA20DC978700031D87 /* MyFamilyCell.m */,
-				1625BB4C20DF583300C2976B /* MyFamilyCell.xib */,
+				161CDCE520E0AF740000735B /* 方法1 */,
+				161CDCE420E0AF740000735B /* 方法2 */,
 			);
 			path = CollectionViewToolDemo;
 			sourceTree = "<group>";
@@ -461,6 +514,8 @@
 				9559984B209AED7F00163047 /* CommonCollectionViewCell.h */,
 				9559984C209AED7F00163047 /* CommonCollectionReusableView.m */,
 				9559984D209AED7F00163047 /* CommonCollectionViewCell.m */,
+				161CDCE120E097500000735B /* SimpleCollectionView.h */,
+				161CDCE220E097500000735B /* SimpleCollectionView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -585,21 +640,24 @@
 			files = (
 				1657522620DCD4EB00CB0C8F /* 2.png in Resources */,
 				1657522420DCD4EB00CB0C8F /* 7.png in Resources */,
+				161CDCFE20E0AFDC0000735B /* OnlyLabelCell.xib in Resources */,
 				1657522220DCD4EB00CB0C8F /* 4.png in Resources */,
+				161CDD0A20E0B1100000735B /* CollectionVC2.xib in Resources */,
 				1657522320DCD4EB00CB0C8F /* 5.png in Resources */,
 				1657522120DCD4EB00CB0C8F /* 阿狸.png in Resources */,
+				16BD138620E0C6B000615D47 /* VisitCardCell.xib in Resources */,
 				1657522720DCD4EB00CB0C8F /* 3.png in Resources */,
 				955997EF209AECFA00163047 /* LaunchScreen.storyboard in Resources */,
 				955997EC209AECFA00163047 /* Assets.xcassets in Resources */,
 				1657522920DCD4EB00CB0C8F /* 0.png in Resources */,
-				1625BB4D20DF583400C2976B /* MyFamilyCell.xib in Resources */,
+				161CDCF120E0AF740000735B /* MyFamilyCell.xib in Resources */,
 				1657522520DCD4EB00CB0C8F /* 6.png in Resources */,
 				1657522820DCD4EB00CB0C8F /* 1.png in Resources */,
 				95599865209AED7F00163047 /* arrow_right_black.png in Resources */,
 				95599864209AED7F00163047 /* icon_data.png in Resources */,
 				95599866209AED7F00163047 /* 通知.png in Resources */,
 				955997EA209AECF900163047 /* Main.storyboard in Resources */,
-				1625BB5220DF58DD00C2976B /* MyFamilyLastCell.xib in Resources */,
+				161CDCF520E0AF740000735B /* MyFamilyLastCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -653,6 +711,8 @@
 				16B045C320B932CF00362478 /* DemoHeader.m in Sources */,
 				16B045AE20A3346300362478 /* DemoTableVC.m in Sources */,
 				16B045C720B94E7000362478 /* DemoFooterModel.m in Sources */,
+				161CDCF320E0AF740000735B /* MyFamilyViewController.m in Sources */,
+				16BD138120E0C69500615D47 /* VisitCardModel.m in Sources */,
 				95599862209AED7F00163047 /* KJCell.m in Sources */,
 				95599877209AED7F00163047 /* BaseCollectionViewToolVC.m in Sources */,
 				95AE8789209C049F0040E1C3 /* UIView+Desingable.m in Sources */,
@@ -662,12 +722,14 @@
 				95AE8787209C049F0040E1C3 /* NSObject+KJCategory.m in Sources */,
 				95AE8788209C049F0040E1C3 /* SpaceLabel.m in Sources */,
 				16B045B720B2FB5A00362478 /* UIColor-SKJCategory.swift in Sources */,
-				16F58FAC20DC978700031D87 /* MyFamilyCell.m in Sources */,
 				95599872209AED7F00163047 /* CommonTableViewCell.m in Sources */,
 				16B045AF20A3346300362478 /* DemoCell.m in Sources */,
 				9559987C209AED7F00163047 /* CommonCollectionReusableView.m in Sources */,
 				16F5201420DE5EEE00B77972 /* SimpleTableView.m in Sources */,
+				161CDD0920E0B1100000735B /* CollectionVC2.m in Sources */,
+				161CDCFF20E0AFDC0000735B /* OnlyLabelCell.m in Sources */,
 				95599870209AED7F00163047 /* CommonTableViewHeaderFooterView.m in Sources */,
+				161CDD0220E0AFFB0000735B /* OnlyLabelModel.m in Sources */,
 				16B045C020B92F8200362478 /* DemoHeaderModel.m in Sources */,
 				95AE87C0209C099C0040E1C3 /* LightStorageManager.m in Sources */,
 				95599878209AED7F00163047 /* CommonCollectionViewTool.m in Sources */,
@@ -675,23 +737,25 @@
 				9559986E209AED7F00163047 /* CommonTableViewCellModel.m in Sources */,
 				95599879209AED7F00163047 /* CommonCollectionViewCellModel.m in Sources */,
 				95AE87BD209C099C0040E1C3 /* NSObject+GXProperties.m in Sources */,
+				161CDCF020E0AF740000735B /* MyFamilyLastCell.m in Sources */,
 				9559986D209AED7F00163047 /* CommonTableViewTool.m in Sources */,
 				16B045AD20A3346300362478 /* DemoModel.m in Sources */,
+				16BD138520E0C6B000615D47 /* VisitCardCell.m in Sources */,
 				9559987A209AED7F00163047 /* CommonCollectionReusableViewModel.m in Sources */,
 				95599871209AED7F00163047 /* TitleStyleTableViewHeaderFooterView.m in Sources */,
 				955997E4209AECF900163047 /* AppDelegate.m in Sources */,
 				9559986A209AED7F00163047 /* BaseTableViewToolVC.m in Sources */,
-				1625BB5120DF58DD00C2976B /* MyFamilyLastCell.m in Sources */,
 				9559987D209AED7F00163047 /* CommonCollectionViewCell.m in Sources */,
 				16F5200820DE4ED000B77972 /* DelegateViewController.m in Sources */,
 				95AE87BF209C099C0040E1C3 /* GXArchiver.m in Sources */,
 				95599863209AED7F00163047 /* KJCellModel.m in Sources */,
 				9559986F209AED7F00163047 /* CommonHeaderFooterModel.m in Sources */,
-				16F58FA820DC90DC00031D87 /* MyFamilyViewController.m in Sources */,
 				95AE87BB209C099C0040E1C3 /* FileManagerTool.m in Sources */,
 				9559987B209AED7F00163047 /* CommonCollectionViewSectionModel.m in Sources */,
+				161CDCF220E0AF740000735B /* MyFamilyCellModel.m in Sources */,
+				161CDCF420E0AF740000735B /* MyFamilyCell.m in Sources */,
 				16B045BD20B92D9C00362478 /* DemoFooter.m in Sources */,
-				16F58FB020DC9A5900031D87 /* MyFamilyCellModel.m in Sources */,
+				161CDCE320E097500000735B /* SimpleCollectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
