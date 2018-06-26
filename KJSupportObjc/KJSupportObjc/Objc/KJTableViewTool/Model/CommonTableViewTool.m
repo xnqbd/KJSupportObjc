@@ -10,6 +10,7 @@
 #import "CommonTableViewHeaderFooterView.h"
 #import "CommonTableViewCell.h"
 #import "CommonHeaderFooterModel.h"
+#import "SimpleTableView.h"
 
 @interface CommonTableViewTool () 
 
