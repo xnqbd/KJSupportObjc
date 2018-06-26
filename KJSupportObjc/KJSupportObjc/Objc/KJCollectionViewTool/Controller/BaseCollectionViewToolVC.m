@@ -7,6 +7,7 @@
 //
 
 #import "BaseCollectionViewToolVC.h"
+#import "SimpleCollectionView.h"
 
 @interface BaseCollectionViewToolVC ()
 
