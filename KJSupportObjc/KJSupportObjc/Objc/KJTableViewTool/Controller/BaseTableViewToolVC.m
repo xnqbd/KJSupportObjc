@@ -7,6 +7,7 @@
 //
 
 #import "BaseTableViewToolVC.h"
+#import "SimpleTableView.h"
 
 
 @interface BaseTableViewToolVC ()
