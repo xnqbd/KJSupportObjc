@@ -14,7 +14,7 @@
 
 @interface MyFamilyViewController ()
 
-@property (strong, nonatomic) UILabel *headerLab;
+//@property (strong, nonatomic) UILabel *headerLab;
 
 @end
 
@@ -23,7 +23,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.edgesForExtendedLayout = UIRectEdgeNone;
+    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+    layout.itemSize = CGSizeMake(100, 120);
+    // 一个分区内，两个cell之间的最小间隔
+    layout.minimumLineSpacing = 10;
+    // 一个分区内，两个cell之间的最小间隔
+    layout.minimumInteritemSpacing = 10;
+    self.simpleCollectionView.collectionViewLayout = layout;
+    
     
     NSMutableArray <CommonCollectionViewSectionModel *>*sections = [NSMutableArray array];
     
@@ -73,30 +80,22 @@
         model2.age = 33;
         
         MyFamilyLastCellModel *model3 = [MyFamilyLastCellModel new];
-//        model3.name = @"张飞";
-//        model3.imageUrl = @"3";
-//        model3.certifiedStatus = CertifiedStatus_noVerified;
-//        model3.identity = @"弟弟";
-//        model3.age = 32;
+        //        model3.name = @"张飞";
+        //        model3.imageUrl = @"3";
+        //        model3.certifiedStatus = CertifiedStatus_noVerified;
+        //        model3.identity = @"弟弟";
+        //        model3.age = 32;
         
         section.modelArray = @[model1, model2, model3];
         
         [sections addObject:section];
     }
     
-    self.collectionViewTool.dataArr = sections;
-    [self.collectionView reloadData];
+    self.simpleCollectionView.dataArr = sections;
+    [self.simpleCollectionView reloadData];
 }
 
-- (void)layoutCollectionViewFrame {
-    [self headerLab];
-    
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.collectionView.superview.kjMas_safeAreaBottom);
-        make.right.equalTo(self.collectionView.superview.kjMas_safeAreaRight);
-        make.left.equalTo(self.collectionView.superview.kjMas_safeAreaLeft);
-    }];
-}
+//- (void)layoutCollectionViewFrame {}
 
 - (NSDictionary<NSString *,NSDictionary<NSString *,id> *> *)returnCell_Model_keyValues {
     return @{NSStringFromClass([MyFamilyCellModel class]) : @{cellKEY : NSStringFromClass([MyFamilyCell class]), isRegisterNibKEY : @YES},
@@ -104,22 +103,21 @@
              };
 }
 
-- (UILabel *)headerLab {
-    if (_headerLab) return _headerLab;
-    _headerLab = [UILabel new];
-    _headerLab.text = @"  添加家人，帮家人使用预约挂号等医疗服务";
-    _headerLab.backgroundColor = [UIColor lightGrayColor];
-    [self.view addSubview:_headerLab];
-    [_headerLab mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.headerLab.superview.kjMas_safeAreaLeft);
-        make.top.equalTo(self.headerLab.superview.kjMas_safeAreaTop);
-        make.right.equalTo(self.headerLab.superview.kjMas_safeAreaRight);
-        make.bottom.equalTo(self.collectionView.mas_top);
-        
-        make.height.equalTo(@50);;
-    }];
-    return _headerLab;
-}
+//- (UILabel *)headerLab {
+//    if (_headerLab) return _headerLab;
+//    _headerLab = [UILabel new];
+//    _headerLab.text = @"  添加家人，帮家人使用预约挂号等医疗服务";
+//    _headerLab.backgroundColor = [UIColor lightGrayColor];
+//    [self.view addSubview:_headerLab];
+//    [_headerLab mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(self.headerLab.superview.kjMas_safeAreaLeft);
+//        make.top.equalTo(self.headerLab.superview.kjMas_safeAreaTop);
+//        make.right.equalTo(self.headerLab.superview.kjMas_safeAreaRight);
+//        make.bottom.equalTo(self.simpleCollectionView.mas_top);
+//        make.height.equalTo(@50);;
+//    }];
+//    return _headerLab;
+//}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtSection:(NSInteger)section item:(NSInteger)item selectIndexPath:(NSIndexPath *)indexPath model:(CommonCollectionViewCellModel *)model commonCollectionViewTool:(CommonCollectionViewTool *)commonCollectionViewTool {
     

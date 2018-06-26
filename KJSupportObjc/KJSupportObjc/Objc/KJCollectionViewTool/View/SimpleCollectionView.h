@@ -22,7 +22,7 @@
 #import "KJHeader.h"
 #import <Masonry/Masonry.h>
 
-IB_DESIGNABLE
+
 @interface SimpleCollectionView : UICollectionView <CommonCollectionViewToolDelegate, CommonCollectionViewToolDataSource>
 
 @property (strong, nonatomic) CommonCollectionViewTool *collectionViewTool;

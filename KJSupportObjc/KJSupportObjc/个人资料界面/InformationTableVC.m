@@ -22,7 +22,7 @@
     [super viewDidLoad];
     
     // 如果不设置行高， 那么会自适应高度
-    self.tableView.rowHeight = 50;
+    self.simpleTableView.rowHeight = 50;
     
     NSMutableArray *cellModelArray = [NSMutableArray array];
     CommonSectionModel *sectionModel = [CommonSectionModel new];
@@ -81,8 +81,8 @@
     
     sectionModel.modelArray = cellModelArray;
     
-    self.tableViewTool.dataArr = @[sectionModel];
-    [self.tableView reloadData];
+    self.simpleTableView.dataArr = @[sectionModel];
+    [self.simpleTableView reloadData];
 }
 
 

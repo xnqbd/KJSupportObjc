@@ -18,32 +18,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self tableView];
+    [self simpleTableView];
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 #pragma mark - 懒加载
-- (UITableView *)tableView {
-    if (_tableView) return _tableView;
-    _tableView = [[UITableView alloc] initWithFrame:CGRectZero style:(UITableViewStyleGrouped)];
-    _tableView.dataSource = self.tableViewTool;
-    _tableView.delegate = self.tableViewTool;
-    [self.view addSubview:_tableView];
-    
+- (SimpleTableView *)simpleTableView {
+    if (_simpleTableView) return _simpleTableView;
+    SimpleTableView *tabV = [[SimpleTableView alloc] initWithFrame:CGRectZero style:(UITableViewStylePlain)];
+    tabV.simpleTableViewDelegate = self;
+    tabV.simpleTableViewDataSource = self;
+    [self.view addSubview:tabV];
+    _simpleTableView = tabV;
     [self layoutTableViewFrame];
-    
-    
-    return _tableView;
+    return _simpleTableView;
 }
 
 - (void)layoutTableViewFrame {
-    _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.simpleTableView.translatesAutoresizingMaskIntoConstraints = NO;
     
-    UIView *subView = _tableView;
+    UIView *subView = self.simpleTableView;
     UIView *superView = subView.superview;
     
     if (superView == nil) return;
@@ -69,14 +61,6 @@
     }
 }
 
-- (CommonTableViewTool *)tableViewTool {
-    if (_tableViewTool) return _tableViewTool;
-    _tableViewTool = [CommonTableViewTool new];
-    _tableViewTool.delegate = self;
-    _tableViewTool.tablView = self.tableView;
-    _tableViewTool.dataSource = self;
-    return _tableViewTool;
-}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath model:(CommonTableViewCellModel *)model tableViewTool:(CommonTableViewTool *)tool {
     

@@ -17,55 +17,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self collectionView];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self simpleCollectionView];
 }
 
 #pragma mark - 懒加载
-- (CommonCollectionViewTool *)collectionViewTool {
-    if (_collectionViewTool) return _collectionViewTool;
-    _collectionViewTool = [CommonCollectionViewTool new];
-    _collectionViewTool.delegate = self;
-    _collectionViewTool.collectView = self.collectionView;
-    _collectionViewTool.dataSource = self;
-    return _collectionViewTool;
-}
-
 - (UICollectionViewLayout *)get_subVC_collectionViewLayout {
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
 //    CGRect rect = [UIScreen mainScreen].bounds;
 //    layout.itemSize = CGSizeMake(rect.size.width / 4.0, rect.size.width / 4.0);
     layout.itemSize = CGSizeMake(100, 120);
-    // 一个分区内，两个cell之间的垂直最小间隔
+    // 一个分区内，两个cell之间的最小间隔
     layout.minimumLineSpacing = 10;
-    // 一个分区内，两个cell之间的水平最小间隔
+    // 一个分区内，两个cell之间的最小间隔
     layout.minimumInteritemSpacing = 10;
     return layout;
 }
 
-
-- (UICollectionView *)collectionView {
-    if (_collectionView) return _collectionView;
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[self get_subVC_collectionViewLayout]];
-    _collectionView.backgroundColor = [UIColor whiteColor];
-    _collectionView.dataSource = self.collectionViewTool;
-    _collectionView.delegate = self.collectionViewTool;
-    [self.view addSubview:_collectionView];
+- (SimpleCollectionView *)simpleCollectionView {
+    if (_simpleCollectionView) return _simpleCollectionView;
+    SimpleCollectionView *collV = [[SimpleCollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[self get_subVC_collectionViewLayout]];
+    collV.backgroundColor = [UIColor whiteColor];
+    collV.simpleCollectionViewDataSource = self;
+    collV.simpleCollectionViewDelegate = self;
+    [self.view addSubview:collV];
     
     // 设置约束或者frame
     [self layoutCollectionViewFrame];
     
-    return _collectionView;
+    _simpleCollectionView = collV;
+    return _simpleCollectionView;
 }
 
 - (void)layoutCollectionViewFrame {
-    _collectionView.translatesAutoresizingMaskIntoConstraints = NO;
+    self.simpleCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
 
-    UIView *subView = _collectionView;
+    UIView *subView = self.simpleCollectionView;
     UIView *superView = subView.superview;
     
     if (superView == nil) return;

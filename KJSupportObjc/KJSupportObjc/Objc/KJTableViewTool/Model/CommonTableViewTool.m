@@ -31,6 +31,16 @@
 
 #pragma mark - UITableViewDelegate, UITableViewDataSource
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    CommonSectionModel *sectionModel = self.dataArr[section];
+    CommonHeaderFooterModel *headerModel = sectionModel.headerModel;
+    if (headerModel == nil) {
+        return sectionModel.headerHeight;
+    } else {
+        return UITableViewAutomaticDimension;
+    }
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
 
     CommonHeaderFooterModel *headerModel = self.dataArr[section].headerModel;
@@ -60,6 +70,16 @@
     } else {
         
         return self.tempHeaderFooterView;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    CommonSectionModel *sectionModel = self.dataArr[section];
+    CommonHeaderFooterModel *footerModel = sectionModel.footerModel;
+    if (footerModel == nil) {
+        return sectionModel.footerHeight;
+    } else {
+        return UITableViewAutomaticDimension;
     }
 }
 
@@ -94,27 +114,17 @@
     }
 }
 
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    CommonSectionModel *sectionModel = self.dataArr[section];
-    CommonHeaderFooterModel *headerModel = sectionModel.headerModel;
-    if (headerModel == nil) {
-        return sectionModel.headerHeight;
-    } else {
-        return UITableViewAutomaticDimension;
-    }
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    CommonSectionModel *sectionModel = self.dataArr[section];
-    CommonHeaderFooterModel *footerModel = sectionModel.footerModel;
-    if (footerModel == nil) {
-        return sectionModel.footerHeight;
-    } else {
-        return UITableViewAutomaticDimension;
-    }
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    
+    if ([tableView isKindOfClass:[SimpleTableView class]]) {
+        SimpleTableView *temp = (SimpleTableView *)tableView;
+        
+        // 如果要进行header footer自适应高度，那么一定设置这个, 如果用xib、storyboard进行拖线SimpleTableView，那么xib、storyboard面板有默认的设置，是一个坑
+        temp.estimatedSectionHeaderHeight = UITableViewAutomaticDimension;
+        temp.estimatedSectionFooterHeight = UITableViewAutomaticDimension;
+        
+        NSLog(@" \n ------------ %@  %@ \n ------------  %@     %@", tableView.dataSource, tableView.delegate, temp.simpleTableViewDataSource, temp.simpleTableViewDelegate);
+    }
     NSArray *array = self.dataArr;
     [self cell_Model_keyValues];
     return array.count;

@@ -28,6 +28,8 @@
 		1657522720DCD4EB00CB0C8F /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521E20DCD4EB00CB0C8F /* 3.png */; };
 		1657522820DCD4EB00CB0C8F /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521F20DCD4EB00CB0C8F /* 1.png */; };
 		1657522920DCD4EB00CB0C8F /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657522020DCD4EB00CB0C8F /* 0.png */; };
+		1692AD4E20E1CCC70046C522 /* DemoTableVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1692AD4D20E1CCC70046C522 /* DemoTableVC.xib */; };
+		1692AD5020E1DCEF0046C522 /* MyFamilyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1692AD4F20E1DCEF0046C522 /* MyFamilyViewController.xib */; };
 		16B045AD20A3346300362478 /* DemoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045A720A3346200362478 /* DemoModel.m */; };
 		16B045AE20A3346300362478 /* DemoTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045AA20A3346300362478 /* DemoTableVC.m */; };
 		16B045AF20A3346300362478 /* DemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16B045AB20A3346300362478 /* DemoCell.m */; };
@@ -110,6 +112,8 @@
 		1657521E20DCD4EB00CB0C8F /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		1657521F20DCD4EB00CB0C8F /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		1657522020DCD4EB00CB0C8F /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
+		1692AD4D20E1CCC70046C522 /* DemoTableVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DemoTableVC.xib; sourceTree = "<group>"; };
+		1692AD4F20E1DCEF0046C522 /* MyFamilyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyFamilyViewController.xib; sourceTree = "<group>"; };
 		16B045A720A3346200362478 /* DemoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DemoModel.m; sourceTree = "<group>"; };
 		16B045A820A3346200362478 /* DemoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoCell.h; sourceTree = "<group>"; };
 		16B045A920A3346300362478 /* DemoTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoTableVC.h; sourceTree = "<group>"; };
@@ -245,15 +249,16 @@
 			isa = PBXGroup;
 			children = (
 				161CDCE620E0AF740000735B /* MyFamilyCell.h */,
-				161CDCE720E0AF740000735B /* MyFamilyViewController.h */,
-				161CDCE820E0AF740000735B /* MyFamilyCellModel.h */,
-				161CDCE920E0AF740000735B /* MyFamilyLastCell.m */,
-				161CDCEA20E0AF740000735B /* MyFamilyCell.xib */,
-				161CDCEB20E0AF740000735B /* MyFamilyCellModel.m */,
-				161CDCEC20E0AF740000735B /* MyFamilyViewController.m */,
 				161CDCED20E0AF740000735B /* MyFamilyCell.m */,
-				161CDCEE20E0AF740000735B /* MyFamilyLastCell.xib */,
+				161CDCEA20E0AF740000735B /* MyFamilyCell.xib */,
+				161CDCE820E0AF740000735B /* MyFamilyCellModel.h */,
+				161CDCEB20E0AF740000735B /* MyFamilyCellModel.m */,
+				161CDCE720E0AF740000735B /* MyFamilyViewController.h */,
+				161CDCEC20E0AF740000735B /* MyFamilyViewController.m */,
+				1692AD4F20E1DCEF0046C522 /* MyFamilyViewController.xib */,
 				161CDCEF20E0AF740000735B /* MyFamilyLastCell.h */,
+				161CDCE920E0AF740000735B /* MyFamilyLastCell.m */,
+				161CDCEE20E0AF740000735B /* MyFamilyLastCell.xib */,
 			);
 			path = "方法1";
 			sourceTree = "<group>";
@@ -318,6 +323,7 @@
 				16B045A720A3346200362478 /* DemoModel.m */,
 				16B045A920A3346300362478 /* DemoTableVC.h */,
 				16B045AA20A3346300362478 /* DemoTableVC.m */,
+				1692AD4D20E1CCC70046C522 /* DemoTableVC.xib */,
 			);
 			path = "方法1";
 			sourceTree = "<group>";
@@ -639,6 +645,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1657522620DCD4EB00CB0C8F /* 2.png in Resources */,
+				1692AD4E20E1CCC70046C522 /* DemoTableVC.xib in Resources */,
 				1657522420DCD4EB00CB0C8F /* 7.png in Resources */,
 				161CDCFE20E0AFDC0000735B /* OnlyLabelCell.xib in Resources */,
 				1657522220DCD4EB00CB0C8F /* 4.png in Resources */,
@@ -649,6 +656,7 @@
 				1657522720DCD4EB00CB0C8F /* 3.png in Resources */,
 				955997EF209AECFA00163047 /* LaunchScreen.storyboard in Resources */,
 				955997EC209AECFA00163047 /* Assets.xcassets in Resources */,
+				1692AD5020E1DCEF0046C522 /* MyFamilyViewController.xib in Resources */,
 				1657522920DCD4EB00CB0C8F /* 0.png in Resources */,
 				161CDCF120E0AF740000735B /* MyFamilyCell.xib in Resources */,
 				1657522520DCD4EB00CB0C8F /* 6.png in Resources */,

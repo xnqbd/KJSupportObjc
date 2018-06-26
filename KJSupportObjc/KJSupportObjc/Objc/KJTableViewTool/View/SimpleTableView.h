@@ -21,7 +21,7 @@
 #import "KJHeader.h"
 #import <Masonry/Masonry.h>
 
-IB_DESIGNABLE
+
 @interface SimpleTableView : UITableView <CommonTableViewToolDelegate, CommonTableViewToolDataSource>
 
 @property (strong, nonatomic) CommonTableViewTool *tableViewTool;
