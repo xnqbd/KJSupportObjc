@@ -23,7 +23,7 @@
 /**
  自定义CollectionView的约束或者 frame
  */
-- (void)layoutCollectionViewFrame;
+- (void)layoutCollectionViewFrame:(SimpleCollectionView *)collectionView;
 
 
 @end

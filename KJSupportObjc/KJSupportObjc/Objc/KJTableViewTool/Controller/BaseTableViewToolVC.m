@@ -29,14 +29,14 @@
     tabV.simpleTableViewDataSource = self;
     [self.view addSubview:tabV];
     _simpleTableView = tabV;
-    [self layoutTableViewFrame];
+    [self layoutTableViewFrame:_simpleTableView];
     return _simpleTableView;
 }
 
-- (void)layoutTableViewFrame {
-    self.simpleTableView.translatesAutoresizingMaskIntoConstraints = NO;
+- (void)layoutTableViewFrame:(SimpleTableView *)tableV {
+    tableV.translatesAutoresizingMaskIntoConstraints = NO;
     
-    UIView *subView = self.simpleTableView;
+    UIView *subView = tableV;
     UIView *superView = subView.superview;
     
     if (superView == nil) return;

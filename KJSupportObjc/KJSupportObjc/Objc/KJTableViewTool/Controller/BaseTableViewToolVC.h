@@ -21,7 +21,7 @@
 /**
  simpleTableView的约束或者 frame
  */
-- (void)layoutTableViewFrame;
+- (void)layoutTableViewFrame:(SimpleTableView *)tableV;
 
 
 

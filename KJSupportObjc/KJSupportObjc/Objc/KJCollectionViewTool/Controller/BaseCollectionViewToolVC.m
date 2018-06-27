@@ -41,18 +41,18 @@
     collV.simpleCollectionViewDataSource = self;
     collV.simpleCollectionViewDelegate = self;
     [self.view addSubview:collV];
+    _simpleCollectionView = collV;
     
     // 设置约束或者frame
-    [self layoutCollectionViewFrame];
+    [self layoutCollectionViewFrame:_simpleCollectionView];
     
-    _simpleCollectionView = collV;
     return _simpleCollectionView;
 }
 
-- (void)layoutCollectionViewFrame {
-    self.simpleCollectionView.translatesAutoresizingMaskIntoConstraints = NO;
+- (void)layoutCollectionViewFrame:(SimpleCollectionView *)collectionView {
+    collectionView.translatesAutoresizingMaskIntoConstraints = NO;
 
-    UIView *subView = self.simpleCollectionView;
+    UIView *subView = collectionView;
     UIView *superView = subView.superview;
     
     if (superView == nil) return;
