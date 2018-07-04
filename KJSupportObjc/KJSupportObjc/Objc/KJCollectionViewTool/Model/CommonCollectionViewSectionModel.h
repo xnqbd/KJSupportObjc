@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class CommonCollectionReusableViewModel, CommonCollectionViewCellModel;
+@class CommonCollectionReusableViewModel, CommonCellModel;
 
 
 @interface CommonCollectionViewSectionModel : NSObject
@@ -18,7 +18,7 @@
 @property (strong, nonatomic, nullable) CommonCollectionReusableViewModel *footerModel;
 
 /**  这里面可能有各种类型的model */
-@property (strong, nonatomic, nullable) NSArray <CommonCollectionViewCellModel *>*modelArray;
+@property (strong, nonatomic, nullable) NSArray <CommonCellModel *>*modelArray;
 
 @property (assign, nonatomic) UIEdgeInsets edgeInsets;
 
@@ -28,11 +28,11 @@
 /**
  *  全部参数(区头，cell，区尾)
  */
-- (nonnull instancetype)initWithHeaderModel:(nullable CommonCollectionReusableViewModel *)headerModel footerModel:(nullable CommonCollectionReusableViewModel *)footerModel modelArray:(NSArray <CommonCollectionViewCellModel *>*_Nullable)modelArray edgeInsets:(UIEdgeInsets)edgeInsets headerSize:(CGSize)headerSize footerSize:(CGSize)footerSize;
+- (nonnull instancetype)initWithHeaderModel:(nullable CommonCollectionReusableViewModel *)headerModel footerModel:(nullable CommonCollectionReusableViewModel *)footerModel modelArray:(NSArray <CommonCellModel *>*_Nullable)modelArray edgeInsets:(UIEdgeInsets)edgeInsets headerSize:(CGSize)headerSize footerSize:(CGSize)footerSize;
 /**
  *  区头，cell
  */
-- (nonnull instancetype)initWithHeaderModel:(nullable CommonCollectionReusableViewModel *)headerModel  modelArray:(NSArray <CommonCollectionViewCellModel *>*_Nullable)modelArray edgeInsets:(UIEdgeInsets)edgeInsets headerSize:(CGSize)headerSize;
+- (nonnull instancetype)initWithHeaderModel:(nullable CommonCollectionReusableViewModel *)headerModel  modelArray:(NSArray <CommonCellModel *>*_Nullable)modelArray edgeInsets:(UIEdgeInsets)edgeInsets headerSize:(CGSize)headerSize;
 /**
  *  仅仅有区头
  */

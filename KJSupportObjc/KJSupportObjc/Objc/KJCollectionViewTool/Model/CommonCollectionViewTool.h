@@ -8,7 +8,7 @@
 
 
 #import <UIKit/UIKit.h>
-#import "CommonCollectionViewCellModel.h"
+#import "CommonCellModel.h"
 #import "CommonCollectionReusableViewModel.h"
 #import "CommonCollectionViewSectionModel.h"
 #import "CommonCollectionViewCell.h"
@@ -20,7 +20,7 @@
 @required;
 
 /**
- 键值对 @{NSStringFromClass([CommonTableViewCellModel class]) : @{cellKEY : NSStringFromClass([CommonTableViewCell class]), isRegisterNibKEY : @YES}};
+ 键值对 @{NSStringFromClass([CommonCellModel class]) : @{cellKEY : NSStringFromClass([CommonTableViewCell class]), isRegisterNibKEY : @YES}};
  
  @return 键值对
  */
@@ -30,9 +30,9 @@
 
 @protocol CommonCollectionViewToolDelegate <NSObject>
 @optional;
-- (void)collectionView:(UICollectionView *_Nonnull)collectionView didSelectItemAtSection:(NSInteger)section item:(NSInteger)item selectIndexPath:(NSIndexPath *)indexPath model:(CommonCollectionViewCellModel *_Nonnull)model commonCollectionViewTool:(CommonCollectionViewTool *_Nullable)commonCollectionViewTool;
+- (void)collectionView:(UICollectionView *_Nonnull)collectionView didSelectItemAtSection:(NSInteger)section item:(NSInteger)item selectIndexPath:(NSIndexPath *)indexPath model:(CommonCellModel *_Nonnull)model commonCollectionViewTool:(CommonCollectionViewTool *_Nullable)commonCollectionViewTool;
 
-//- (void)tableView:(UITableView *_Nullable)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *_Nonnull)indexPath model:(CommonTableViewCellModel *_Nullable)model tableViewTool:(CommonTableViewTool *_Nonnull)tool;
+//- (void)tableView:(UITableView *_Nullable)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *_Nonnull)indexPath model:(CommonCellModel *_Nullable)model tableViewTool:(CommonTableViewTool *_Nonnull)tool;
 
 @end
 

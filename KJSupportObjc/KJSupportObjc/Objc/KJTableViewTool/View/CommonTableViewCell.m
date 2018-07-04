@@ -11,7 +11,7 @@
 @implementation CommonTableViewCell
 
 
-- (void)setupData:(CommonTableViewCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView tableViewTool:(CommonTableViewTool *)tool {
+- (void)setupData:(CommonCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(UITableView *)tableView tableViewTool:(CommonTableViewTool *)tool {
     
 }
 

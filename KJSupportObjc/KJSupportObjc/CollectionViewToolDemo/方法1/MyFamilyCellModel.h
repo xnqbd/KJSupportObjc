@@ -6,7 +6,7 @@
 //  Copyright © 2018年 uback. All rights reserved.
 //
 
-#import "CommonCollectionViewCellModel.h"
+#import "CommonCellModel.h"
 
 typedef enum : NSUInteger {
     /*
@@ -19,7 +19,7 @@ typedef enum : NSUInteger {
     CertifiedStatus_noVerified,
 } CertifiedStatus;
 
-@interface MyFamilyCellModel : CommonCollectionViewCellModel
+@interface MyFamilyCellModel : CommonCellModel
 
 /**
  头像url

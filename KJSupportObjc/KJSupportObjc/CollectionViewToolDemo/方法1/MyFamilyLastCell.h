@@ -9,7 +9,7 @@
 #import "CommonCollectionViewCell.h"
 
 
-@interface MyFamilyLastCellModel : CommonCollectionViewCellModel
+@interface MyFamilyLastCellModel : CommonCellModel
 @end
 
 

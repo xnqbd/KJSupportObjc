@@ -11,7 +11,7 @@
 @implementation CommonCollectionViewSectionModel
 
 
-- (nonnull instancetype)initWithHeaderModel:(nullable CommonCollectionReusableViewModel *)headerModel footerModel:(nullable CommonCollectionReusableViewModel *)footerModel modelArray:(NSArray <CommonCollectionViewCellModel *>*_Nullable)modelArray edgeInsets:(UIEdgeInsets)edgeInsets headerSize:(CGSize)headerSize footerSize:(CGSize)footerSize {
+- (nonnull instancetype)initWithHeaderModel:(nullable CommonCollectionReusableViewModel *)headerModel footerModel:(nullable CommonCollectionReusableViewModel *)footerModel modelArray:(NSArray <CommonCellModel *>*_Nullable)modelArray edgeInsets:(UIEdgeInsets)edgeInsets headerSize:(CGSize)headerSize footerSize:(CGSize)footerSize {
     if (self = [super init]) {
         _headerModel = headerModel;
         _footerModel = footerModel;
@@ -23,7 +23,7 @@
     return self;
 }
 
-- (nonnull instancetype)initWithHeaderModel:(nullable CommonCollectionReusableViewModel *)headerModel  modelArray:(NSArray <CommonCollectionViewCellModel *>*_Nullable)modelArray edgeInsets:(UIEdgeInsets)edgeInsets headerSize:(CGSize)headerSize {
+- (nonnull instancetype)initWithHeaderModel:(nullable CommonCollectionReusableViewModel *)headerModel  modelArray:(NSArray <CommonCellModel *>*_Nullable)modelArray edgeInsets:(UIEdgeInsets)edgeInsets headerSize:(CGSize)headerSize {
     return [self initWithHeaderModel:headerModel footerModel:nil modelArray:modelArray edgeInsets:edgeInsets headerSize:headerSize footerSize:CGSizeZero];
 }
 

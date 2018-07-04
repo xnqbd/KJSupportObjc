@@ -19,6 +19,7 @@
 		161CDD0220E0AFFB0000735B /* OnlyLabelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 161CDD0120E0AFFB0000735B /* OnlyLabelModel.m */; };
 		161CDD0920E0B1100000735B /* CollectionVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 161CDD0720E0B1100000735B /* CollectionVC2.m */; };
 		161CDD0A20E0B1100000735B /* CollectionVC2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 161CDD0820E0B1100000735B /* CollectionVC2.xib */; };
+		1641830820EC946A005FA2AF /* CommonCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1641830720EC946A005FA2AF /* CommonCellModel.m */; };
 		1657522120DCD4EB00CB0C8F /* 阿狸.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521820DCD4EB00CB0C8F /* 阿狸.png */; };
 		1657522220DCD4EB00CB0C8F /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521920DCD4EB00CB0C8F /* 4.png */; };
 		1657522320DCD4EB00CB0C8F /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521A20DCD4EB00CB0C8F /* 5.png */; };
@@ -58,14 +59,12 @@
 		9559986A209AED7F00163047 /* BaseTableViewToolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9559981F209AED7F00163047 /* BaseTableViewToolVC.m */; };
 		9559986C209AED7F00163047 /* CommonSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95599824209AED7F00163047 /* CommonSectionModel.m */; };
 		9559986D209AED7F00163047 /* CommonTableViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 95599825209AED7F00163047 /* CommonTableViewTool.m */; };
-		9559986E209AED7F00163047 /* CommonTableViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95599827209AED7F00163047 /* CommonTableViewCellModel.m */; };
 		9559986F209AED7F00163047 /* CommonHeaderFooterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9559982B209AED7F00163047 /* CommonHeaderFooterModel.m */; };
 		95599870209AED7F00163047 /* CommonTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9559982D209AED7F00163047 /* CommonTableViewHeaderFooterView.m */; };
 		95599871209AED7F00163047 /* TitleStyleTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9559982F209AED7F00163047 /* TitleStyleTableViewHeaderFooterView.m */; };
 		95599872209AED7F00163047 /* CommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 95599830209AED7F00163047 /* CommonTableViewCell.m */; };
 		95599877209AED7F00163047 /* BaseCollectionViewToolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9559983F209AED7F00163047 /* BaseCollectionViewToolVC.m */; };
 		95599878209AED7F00163047 /* CommonCollectionViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 95599841209AED7F00163047 /* CommonCollectionViewTool.m */; };
-		95599879209AED7F00163047 /* CommonCollectionViewCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95599844209AED7F00163047 /* CommonCollectionViewCellModel.m */; };
 		9559987A209AED7F00163047 /* CommonCollectionReusableViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95599845209AED7F00163047 /* CommonCollectionReusableViewModel.m */; };
 		9559987B209AED7F00163047 /* CommonCollectionViewSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 95599848209AED7F00163047 /* CommonCollectionViewSectionModel.m */; };
 		9559987C209AED7F00163047 /* CommonCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9559984C209AED7F00163047 /* CommonCollectionReusableView.m */; };
@@ -102,6 +101,8 @@
 		161CDD0620E0B1100000735B /* CollectionVC2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionVC2.h; sourceTree = "<group>"; };
 		161CDD0720E0B1100000735B /* CollectionVC2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionVC2.m; sourceTree = "<group>"; };
 		161CDD0820E0B1100000735B /* CollectionVC2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionVC2.xib; sourceTree = "<group>"; };
+		1641830620EC946A005FA2AF /* CommonCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonCellModel.h; sourceTree = "<group>"; };
+		1641830720EC946A005FA2AF /* CommonCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommonCellModel.m; sourceTree = "<group>"; };
 		1657521120DCA3BD00CB0C8F /* KJHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KJHeader.h; sourceTree = "<group>"; };
 		1657521820DCD4EB00CB0C8F /* 阿狸.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "阿狸.png"; sourceTree = "<group>"; };
 		1657521920DCD4EB00CB0C8F /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
@@ -162,11 +163,9 @@
 		95599814209AED7F00163047 /* 通知.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "通知.png"; sourceTree = "<group>"; };
 		9559981F209AED7F00163047 /* BaseTableViewToolVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewToolVC.m; sourceTree = "<group>"; };
 		95599820209AED7F00163047 /* BaseTableViewToolVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewToolVC.h; sourceTree = "<group>"; };
-		95599822209AED7F00163047 /* CommonTableViewCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableViewCellModel.h; sourceTree = "<group>"; };
 		95599824209AED7F00163047 /* CommonSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonSectionModel.m; sourceTree = "<group>"; };
 		95599825209AED7F00163047 /* CommonTableViewTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewTool.m; sourceTree = "<group>"; };
 		95599826209AED7F00163047 /* CommonHeaderFooterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonHeaderFooterModel.h; sourceTree = "<group>"; };
-		95599827209AED7F00163047 /* CommonTableViewCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonTableViewCellModel.m; sourceTree = "<group>"; };
 		95599829209AED7F00163047 /* CommonTableViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonTableViewTool.h; sourceTree = "<group>"; };
 		9559982A209AED7F00163047 /* CommonSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonSectionModel.h; sourceTree = "<group>"; };
 		9559982B209AED7F00163047 /* CommonHeaderFooterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonHeaderFooterModel.m; sourceTree = "<group>"; };
@@ -181,10 +180,8 @@
 		95599841209AED7F00163047 /* CommonCollectionViewTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCollectionViewTool.m; sourceTree = "<group>"; };
 		95599842209AED7F00163047 /* CommonCollectionReusableViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCollectionReusableViewModel.h; sourceTree = "<group>"; };
 		95599843209AED7F00163047 /* CommonCollectionViewSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCollectionViewSectionModel.h; sourceTree = "<group>"; };
-		95599844209AED7F00163047 /* CommonCollectionViewCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCollectionViewCellModel.m; sourceTree = "<group>"; };
 		95599845209AED7F00163047 /* CommonCollectionReusableViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCollectionReusableViewModel.m; sourceTree = "<group>"; };
 		95599846209AED7F00163047 /* CommonCollectionViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCollectionViewTool.h; sourceTree = "<group>"; };
-		95599847209AED7F00163047 /* CommonCollectionViewCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCollectionViewCellModel.h; sourceTree = "<group>"; };
 		95599848209AED7F00163047 /* CommonCollectionViewSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonCollectionViewSectionModel.m; sourceTree = "<group>"; };
 		9559984A209AED7F00163047 /* CommonCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCollectionReusableView.h; sourceTree = "<group>"; };
 		9559984B209AED7F00163047 /* CommonCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCollectionViewCell.h; sourceTree = "<group>"; };
@@ -452,14 +449,14 @@
 		95599821209AED7F00163047 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				95599822209AED7F00163047 /* CommonTableViewCellModel.h */,
-				95599824209AED7F00163047 /* CommonSectionModel.m */,
+				95599829209AED7F00163047 /* CommonTableViewTool.h */,
 				95599825209AED7F00163047 /* CommonTableViewTool.m */,
 				95599826209AED7F00163047 /* CommonHeaderFooterModel.h */,
-				95599827209AED7F00163047 /* CommonTableViewCellModel.m */,
-				95599829209AED7F00163047 /* CommonTableViewTool.h */,
-				9559982A209AED7F00163047 /* CommonSectionModel.h */,
 				9559982B209AED7F00163047 /* CommonHeaderFooterModel.m */,
+				9559982A209AED7F00163047 /* CommonSectionModel.h */,
+				95599824209AED7F00163047 /* CommonSectionModel.m */,
+				1641830620EC946A005FA2AF /* CommonCellModel.h */,
+				1641830720EC946A005FA2AF /* CommonCellModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -504,10 +501,8 @@
 				95599841209AED7F00163047 /* CommonCollectionViewTool.m */,
 				95599842209AED7F00163047 /* CommonCollectionReusableViewModel.h */,
 				95599843209AED7F00163047 /* CommonCollectionViewSectionModel.h */,
-				95599844209AED7F00163047 /* CommonCollectionViewCellModel.m */,
 				95599845209AED7F00163047 /* CommonCollectionReusableViewModel.m */,
 				95599846209AED7F00163047 /* CommonCollectionViewTool.h */,
-				95599847209AED7F00163047 /* CommonCollectionViewCellModel.h */,
 				95599848209AED7F00163047 /* CommonCollectionViewSectionModel.m */,
 			);
 			path = Model;
@@ -735,6 +730,7 @@
 				9559987C209AED7F00163047 /* CommonCollectionReusableView.m in Sources */,
 				16F5201420DE5EEE00B77972 /* SimpleTableView.m in Sources */,
 				161CDD0920E0B1100000735B /* CollectionVC2.m in Sources */,
+				1641830820EC946A005FA2AF /* CommonCellModel.m in Sources */,
 				161CDCFF20E0AFDC0000735B /* OnlyLabelCell.m in Sources */,
 				95599870209AED7F00163047 /* CommonTableViewHeaderFooterView.m in Sources */,
 				161CDD0220E0AFFB0000735B /* OnlyLabelModel.m in Sources */,
@@ -742,8 +738,6 @@
 				95AE87C0209C099C0040E1C3 /* LightStorageManager.m in Sources */,
 				95599878209AED7F00163047 /* CommonCollectionViewTool.m in Sources */,
 				9559986C209AED7F00163047 /* CommonSectionModel.m in Sources */,
-				9559986E209AED7F00163047 /* CommonTableViewCellModel.m in Sources */,
-				95599879209AED7F00163047 /* CommonCollectionViewCellModel.m in Sources */,
 				95AE87BD209C099C0040E1C3 /* NSObject+GXProperties.m in Sources */,
 				161CDCF020E0AF740000735B /* MyFamilyLastCell.m in Sources */,
 				9559986D209AED7F00163047 /* CommonTableViewTool.m in Sources */,

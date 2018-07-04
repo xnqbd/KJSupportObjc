@@ -6,9 +6,9 @@
 //  Copyright © 2018年 uback. All rights reserved.
 //
 
-#import "CommonCollectionViewCellModel.h"
+#import "CommonCellModel.h"
 
-@interface OnlyLabelModel : CommonCollectionViewCellModel
+@interface OnlyLabelModel : CommonCellModel
 
 @property (copy, nonatomic) NSString *name;
 

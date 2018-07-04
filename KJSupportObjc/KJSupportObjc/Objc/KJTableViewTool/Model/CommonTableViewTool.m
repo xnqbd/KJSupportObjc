@@ -6,6 +6,8 @@
 //  Copyright © 2017年 chenkaijie. All rights reserved.
 //
 
+// 只要15个警告
+
 #import "CommonTableViewTool.h"
 #import "CommonTableViewHeaderFooterView.h"
 #import "CommonTableViewCell.h"
@@ -140,7 +142,7 @@
     NSInteger section = indexPath.section, row = indexPath.row;
     
     CommonSectionModel *sectionModel = self.dataArr[section];
-    CommonTableViewCellModel *model = sectionModel.modelArray[row];
+    CommonCellModel *model = sectionModel.modelArray[row];
     
     
     
@@ -174,7 +176,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger section = indexPath.section, row = indexPath.row;
     CommonSectionModel *sectionModel = self.dataArr[section];
-    CommonTableViewCellModel *cellModel = sectionModel.modelArray[row];
+    CommonCellModel *cellModel = sectionModel.modelArray[row];
     
     if ([self.delegate respondsToSelector:@selector(tableView:didSelectRowAtSection:row:selectIndexPath:model:tableViewTool:)]) {
         [self.delegate tableView:tableView didSelectRowAtSection:section row:row selectIndexPath:indexPath model:cellModel tableViewTool:self];
@@ -188,7 +190,7 @@
     _cell_Model_keyValues = [NSMutableDictionary dictionary];
     
     NSDictionary *dic = @{
-                          NSStringFromClass([CommonTableViewCellModel class]) : @{cellKEY : NSStringFromClass([CommonTableViewCell class]), isRegisterNibKEY : @NO},
+                          NSStringFromClass([CommonCellModel class]) : @{cellKEY : NSStringFromClass([CommonTableViewCell class]), isRegisterNibKEY : @NO},
                           
                           NSStringFromClass([KJCellModel class]) : @{cellKEY : NSStringFromClass([KJCell class]), isRegisterNibKEY : @NO}
                           

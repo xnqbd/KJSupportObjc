@@ -9,7 +9,7 @@
 //#import <KJSupportObjc/KJSupportObjc.h>
 #import "KJSupportObjc.h"
 
-@interface DemoModel : CommonTableViewCellModel
+@interface DemoModel : CommonCellModel
 
 @property (copy, nonatomic) NSString *name;
 

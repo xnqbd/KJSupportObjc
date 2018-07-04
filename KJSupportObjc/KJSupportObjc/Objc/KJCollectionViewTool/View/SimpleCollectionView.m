@@ -40,7 +40,7 @@
     self.collectionViewTool.dataArr = dataArr;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtSection:(NSInteger)section item:(NSInteger)item selectIndexPath:(NSIndexPath *)indexPath model:(CommonCollectionViewCellModel *)model commonCollectionViewTool:(CommonCollectionViewTool *)commonCollectionViewTool {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtSection:(NSInteger)section item:(NSInteger)item selectIndexPath:(NSIndexPath *)indexPath model:(CommonCellModel *)model commonCollectionViewTool:(CommonCollectionViewTool *)commonCollectionViewTool {
     if ([self.simpleCollectionViewDelegate respondsToSelector:@selector(collectionView:didSelectItemAtSection:item:selectIndexPath:model:commonCollectionViewTool:)]) {
         [self.simpleCollectionViewDelegate collectionView:collectionView didSelectItemAtSection:section item:item selectIndexPath:indexPath model:model commonCollectionViewTool:self.collectionViewTool];
     }

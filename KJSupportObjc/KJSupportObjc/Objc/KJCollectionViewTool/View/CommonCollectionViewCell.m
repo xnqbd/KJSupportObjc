@@ -7,12 +7,12 @@
 //
 
 #import "CommonCollectionViewCell.h"
-#import "CommonCollectionViewCellModel.h"
+#import "CommonCellModel.h"
 
 @implementation CommonCollectionViewCell
 
 
-- (void)setupData:(CommonCollectionViewCellModel *)model section:(NSInteger)section item:(NSInteger)item selectIndexPath:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView collectionViewTool:(CommonCollectionViewTool *)tool {
+- (void)setupData:(CommonCellModel *)model section:(NSInteger)section item:(NSInteger)item selectIndexPath:(NSIndexPath *)indexPath collectionView:(UICollectionView *)collectionView collectionViewTool:(CommonCollectionViewTool *)tool {
 }
 
 

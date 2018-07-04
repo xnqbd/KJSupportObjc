@@ -36,7 +36,7 @@
     self.tableViewTool.dataArr = dataArr;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath model:(CommonTableViewCellModel *)model tableViewTool:(CommonTableViewTool *)tool {
+- (void)tableView:(UITableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath model:(CommonCellModel *)model tableViewTool:(CommonTableViewTool *)tool {
     if ([self.simpleTableViewDelegate respondsToSelector:@selector(tableView:didSelectRowAtSection:row:selectIndexPath:model:tableViewTool:)]) {
         [self.simpleTableViewDelegate tableView:tableView didSelectRowAtSection:indexPath.section row:indexPath.row
                  selectIndexPath:indexPath model:model tableViewTool:self.tableViewTool];

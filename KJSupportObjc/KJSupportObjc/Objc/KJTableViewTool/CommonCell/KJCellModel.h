@@ -6,7 +6,7 @@
 //  Copyright © 2018年 chenkaijie. All rights reserved.
 //
 
-#import "CommonTableViewCellModel.h"
+#import "CommonCellModel.h"
 
 //struct KJItem {
 //    __unsafe_unretained NSString *str;
@@ -23,7 +23,7 @@
 
 @end
 
-@interface KJCellModel : CommonTableViewCellModel
+@interface KJCellModel : CommonCellModel
 
 @property (copy, nonatomic) NSString *left_ImageString2;
 

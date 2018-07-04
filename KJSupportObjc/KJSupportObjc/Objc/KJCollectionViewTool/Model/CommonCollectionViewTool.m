@@ -51,7 +51,7 @@
 #warning 请一定要保证 self.collectView 有值!!! 不然没法创建cell
     NSInteger section = indexPath.section, item = indexPath.item;
     CommonCollectionViewSectionModel *sectionModel = self.dataArr[indexPath.section];
-    CommonCollectionViewCellModel *model = sectionModel.modelArray[indexPath.item];
+    CommonCellModel *model = sectionModel.modelArray[indexPath.item];
     
     
     NSString *modelName = [NSString stringWithUTF8String:object_getClassName(model)];
@@ -77,7 +77,7 @@
     NSInteger section = indexPath.section, item = indexPath.item;
     
     CommonCollectionViewSectionModel *sectionModel = self.dataArr[section];
-    CommonCollectionViewCellModel *model = sectionModel.modelArray[item];
+    CommonCellModel *model = sectionModel.modelArray[item];
     
     if ([self.delegate respondsToSelector:@selector(collectionView:didSelectItemAtSection:item:selectIndexPath:model:commonCollectionViewTool:)]) {
         [self.delegate collectionView:collectionView didSelectItemAtSection:section item:item selectIndexPath:indexPath model:model commonCollectionViewTool:self];
@@ -145,12 +145,12 @@
 - (NSMutableDictionary *)cell_Model_keyValues {
     if (_cell_Model_keyValues) return _cell_Model_keyValues;
     _cell_Model_keyValues = [NSMutableDictionary dictionary];
-//    NSDictionary *dic = @{@"CommonCollectionViewCellModel" : @{cellKEY : @"CommonCollectionViewCell", isRegisterNibKEY : @NO}
+//    NSDictionary *dic = @{@"CommonCellModel" : @{cellKEY : @"CommonCollectionViewCell", isRegisterNibKEY : @NO}
 //                          // 上面这个不要删除，只需 这样的键值对添加即
 //                          };
     
     NSDictionary *dic = @{
-                          NSStringFromClass([CommonCollectionViewCellModel class]) : @{cellKEY : NSStringFromClass([CommonCollectionViewCell class]), isRegisterNibKEY : @NO}
+                          NSStringFromClass([CommonCellModel class]) : @{cellKEY : NSStringFromClass([CommonCollectionViewCell class]), isRegisterNibKEY : @NO}
                           };
     if ([self.dataSource respondsToSelector:@selector(returnCell_Model_keyValues)]) {
         NSDictionary *temp = [self.dataSource returnCell_Model_keyValues];

@@ -10,7 +10,7 @@
 
 
 #import "CommonSectionModel.h"
-#import "CommonTableViewCellModel.h"
+#import "CommonCellModel.h"
 #import "KJCell.h"
 #import "CommonTableViewHeaderFooterView.h"
 #import "CommonHeaderFooterModel.h"
@@ -39,7 +39,7 @@
 @required;
 /**
  一定要匹配匹配正确
- 键值对  @{NSStringFromClass([CommonTableViewCellModel class]) : @{cellKEY : NSStringFromClass([CommonTableViewCell class]), isRegisterNibKEY : @YES}};
+ 键值对  @{NSStringFromClass([CommonCellModel class]) : @{cellKEY : NSStringFromClass([CommonTableViewCell class]), isRegisterNibKEY : @YES}};
 
  @return 键值对
  */
@@ -52,7 +52,7 @@
 
 @optional;
 
-- (void)tableView:(UITableView *_Nullable)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *_Nonnull)indexPath model:(CommonTableViewCellModel *_Nullable)model tableViewTool:(CommonTableViewTool *_Nonnull)tool;
+- (void)tableView:(UITableView *_Nullable)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *_Nonnull)indexPath model:(CommonCellModel *_Nullable)model tableViewTool:(CommonTableViewTool *_Nonnull)tool;
 
 @end
 

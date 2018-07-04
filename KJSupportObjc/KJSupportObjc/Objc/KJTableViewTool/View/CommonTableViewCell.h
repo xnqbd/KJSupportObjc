@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class CommonTableViewCellModel, CommonTableViewTool;
+@class CommonCellModel, CommonTableViewTool;
 
-@interface CommonTableViewCell <E : CommonTableViewCellModel *> : UITableViewCell
+@interface CommonTableViewCell <E : CommonCellModel *> : UITableViewCell
 
 @property (nonatomic, strong) E cellModel;
 

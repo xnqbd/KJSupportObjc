@@ -119,7 +119,7 @@
 //    return _headerLab;
 //}
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtSection:(NSInteger)section item:(NSInteger)item selectIndexPath:(NSIndexPath *)indexPath model:(CommonCollectionViewCellModel *)model commonCollectionViewTool:(CommonCollectionViewTool *)commonCollectionViewTool {
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtSection:(NSInteger)section item:(NSInteger)item selectIndexPath:(NSIndexPath *)indexPath model:(CommonCellModel *)model commonCollectionViewTool:(CommonCollectionViewTool *)commonCollectionViewTool {
     
 }
 

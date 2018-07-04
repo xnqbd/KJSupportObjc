@@ -10,7 +10,7 @@
 
 @implementation CommonSectionModel
 
-+ (instancetype)sectionWithModelArray:(NSArray <CommonTableViewCellModel *>*)modelArray {
++ (instancetype)sectionWithModelArray:(NSArray <CommonCellModel *>*)modelArray {
     CommonSectionModel *model = [CommonSectionModel new];
     model.modelArray = modelArray;
     return model;

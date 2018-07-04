@@ -56,7 +56,7 @@
  
  @implementation InformationCell
  
- - (void)setupData:(CommonTableViewCellModel *)cellModel section:(NSInteger)section row:(NSInteger)row tableView:(UITableView *)tableView {
+ - (void)setupData:(CommonCellModel *)cellModel section:(NSInteger)section row:(NSInteger)row tableView:(UITableView *)tableView {
  #warning 下面这行代码不要删除
  [super setupData:cellModel section:section row:row tableView:tableView];
  

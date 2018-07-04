@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class CommonCollectionViewCellModel, CommonCollectionViewTool;
+@class CommonCellModel, CommonCollectionViewTool;
 
-@interface CommonCollectionViewCell <E : CommonCollectionViewCellModel *> : UICollectionViewCell
+@interface CommonCollectionViewCell <E : CommonCellModel *> : UICollectionViewCell
 
 @property (strong, nonatomic) E model;
 

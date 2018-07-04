@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class CommonHeaderFooterModel, CommonTableViewCellModel;
+@class CommonHeaderFooterModel, CommonCellModel;
 
 @interface CommonSectionModel : NSObject
 
@@ -19,9 +19,9 @@
 @property (strong, nonatomic) CommonHeaderFooterModel *footerModel;
 
 /**  这里面可能有各种类型的model */
-@property (strong, nonatomic) NSArray <CommonTableViewCellModel *>*modelArray;
+@property (strong, nonatomic) NSArray <CommonCellModel *>*modelArray;
 
 
-+ (instancetype)sectionWithModelArray:(NSArray <CommonTableViewCellModel *>*)modelArray;
++ (instancetype)sectionWithModelArray:(NSArray <CommonCellModel *>*)modelArray;
 
 @end
