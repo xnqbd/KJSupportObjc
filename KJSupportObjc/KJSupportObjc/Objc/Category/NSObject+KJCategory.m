@@ -211,6 +211,11 @@ int getRandomNumber(int from, int to) {
         return [self objectAtIndex:index];
     }
 }
+- (NSArray *)kj_reverseArray {
+    NSArray *array = [[self reverseObjectEnumerator] allObjects];
+    return array;
+}
+
 - (NSString *)arrayString {
     NSMutableString *string = [NSMutableString string];
     for (int i = 0; i < self.count; i++) {
@@ -340,7 +345,19 @@ int getRandomNumber(int from, int to) {
     }
     return returnValue;
 }
-
+- (NSArray <NSArray *>*)kj_returnKeysArrayValuesArray {
+    
+    NSMutableArray *result = [NSMutableArray array];
+    NSMutableArray *keyArr = [NSMutableArray array];
+    NSMutableArray *valueArr = [NSMutableArray array];
+    for (id objc in self.allKeys) {
+        [keyArr kj_addObject:objc];
+        [valueArr kj_addObject:self[objc]];
+    }
+    [result kj_addObject:keyArr];
+    [result kj_addObject:valueArr];
+    return result;
+}
 
 
 
@@ -536,7 +553,7 @@ int getRandomNumber(int from, int to) {
         UINavigationController *navc = self.navigationController;
         [navc popToRootViewControllerAnimated:NO];
         UIViewController *vc = [[vcClass alloc] init];
-        [navc pushViewController:vc animated:NO];
+        [navc pushViewController:vc animated:YES];
     }
 }
 
@@ -635,6 +652,7 @@ int getRandomNumber(int from, int to) {
         [btn setBackgroundImage:[UIImage imageNamed:bgImage] forState:UIControlStateNormal];
     }
     [btn setTitle:text forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor whiteColor] forState:(UIControlStateNormal)];
     // 设置尺寸
     //btn.size = btn.currentBackgroundImage.size;
     

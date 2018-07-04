@@ -47,6 +47,12 @@ int getRandomNumber(int from, int to);
 
 - (id)kj_objectAtIndex:(NSUInteger)index;
 
+
+/**
+ 反转数组，第一个元素变成最后一个元素，最后一个元素变成第一个元素，（数组里的每个元素还是同一个对象）
+ */
+- (NSArray *)kj_reverseArray;
+
 - (NSString *)arrayString;
 
 @end
@@ -83,6 +89,14 @@ int getRandomNumber(int from, int to);
  *  转成字符串（不是JSON格式）
  */
 - (NSString *)kj_returnString;
+
+
+/**
+ 返回的数组只有两个元素，第一个元素是KeysArray，第二个元素是ValuesArray，这KeysArray和ValuesArray元素个数相同，（注意：KeysArray的顺序和self想要的顺序不一定是一致的）
+
+ @return @[@[Key0, Key1], @[Value0, Value1]]
+ */
+- (NSArray <NSArray *>*)kj_returnKeysArrayValuesArray;
 
 @end
 
@@ -156,6 +170,8 @@ int getRandomNumber(int from, int to);
 @interface UINavigationController (KJCategory)
 
 - (UIViewController *)kj_rootViewController;
+
+
 
 /**
  *  将navigationBar设置为透明
