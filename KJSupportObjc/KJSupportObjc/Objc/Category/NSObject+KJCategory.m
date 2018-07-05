@@ -671,7 +671,6 @@ int getRandomNumber(int from, int to) {
         [btn sizeToFit];
     }
     
-    [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     return [[UIBarButtonItem alloc] initWithCustomView:btn];
 }
 
@@ -718,6 +717,18 @@ int getRandomNumber(int from, int to) {
 
 
 @implementation UIView (KJCategory)
+
+
+- (UIViewController *)currentViewController {
+    for (UIView *next = [self superview]; next; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
+
 
 - (id)kj_safeArea {
     if (@available(iOS 11.0, *)) {

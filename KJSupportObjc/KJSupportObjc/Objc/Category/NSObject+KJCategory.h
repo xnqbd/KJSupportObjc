@@ -155,7 +155,7 @@ int getRandomNumber(int from, int to);
  *  如果当前导航控制器不包含所想要pop到的控制器，那么先pop到RootViewController，再用当前控制器push想要指定的控制器，newAllocVC要传入创建好的控制启
  *  @param vcClass 类名 (例如[ViewController class])
  */
-- (void)popToSpecifyVC2:(Class)vcClass currentStackBlock:(void(^)(__kindof UIViewController *vc))currentStackBlock newAllocVC:(__kindof UIViewController *)newVc;
+- (void)popToSpecifyVC:(Class)vcClass currentStackBlock:(void(^)(__kindof UIViewController *vc))currentStackBlock newAllocVC:(__kindof UIViewController *)newVc;
 /**
  *  通过动画切换根视图控制器
  */
@@ -238,6 +238,11 @@ int getRandomNumber(int from, int to);
 #pragma mark - -----------------UIView-----------------
 @interface UIView (KJCategory)
 
+
+/**
+ *  返回当前视图的控制器
+ */
+- (UIViewController *)currentViewController;
 
 /**
  这个在直接使用NSLayoutConstraint代码进行布局时使用

@@ -69,6 +69,7 @@
     NSDictionary *dic = self.cell_Model_keyValues[modelName];
     NSString *cellClass = dic[cellKEY];
     
+#warning 如果崩溃在这行代码， 有时候是cell.xib文件的问题
     CommonCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellClass forIndexPath:indexPath];
     
     cell.model = model;
