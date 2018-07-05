@@ -17,6 +17,7 @@
 
 
 @protocol CommonCollectionViewToolDataSource <NSObject>
+
 @required;
 
 /**
@@ -24,7 +25,19 @@
  
  @return 键值对
  */
-- (NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues;
+- (NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)cl_returnCell_Model_keyValues;
+
+
+@optional;
+/**
+ 一定要匹配匹配正确
+ 键值对   @{NSStringFromClass([XXXModel class]) : @{cellKEY : NSStringFromClass([XXXHeader class]), isRegisterNibKEY : @YES}};
+ @return 键值对
+ */
+- (NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)cl_returnHeader_Model_keyValues;
+- (NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)cl_returnFooter_Model_keyValues;
+
+
 
 @end
 

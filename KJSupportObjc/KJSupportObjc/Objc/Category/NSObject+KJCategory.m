@@ -535,28 +535,36 @@ int getRandomNumber(int from, int to) {
 
 /**
  *  pop到指定控制器
- *  如果当前导航控制器包含所想要pop到的控制器，那么直接pop，
- *  如果当前导航控制器不包含所想要pop到的控制器，那么先pop到RootViewController，再用当前控制器push想要指定的控制器
+ *  如果当前导航控制器包含所想要pop到的控制器，会调用currentStackBlock
+ *  如果当前导航控制器不包含所想要pop到的控制器，那么先pop到RootViewController，再用当前控制器push想要指定的控制器，newAllocVC要传入创建好的控制启
  *  @param vcClass 类名 (例如[ViewController class])
  */
-- (void)popToSpecifyVC:(Class)vcClass {
+- (void)popToSpecifyVC:(Class)vcClass currentStackBlock:(void(^)(__kindof UIViewController *vc))currentStackBlock newAllocVC:(__kindof UIViewController *)newVc {
     BOOL boo = NO;
     
-    for (UIViewController *vc in self.navigationController.viewControllers) {
+    UINavigationController *navc = self.navigationController;
+    
+    NSArray *stackArray = navc.viewControllers;
+    NSArray *array = [stackArray kj_reverseArray];
+    
+    for (UIViewController *vc in array) {
         if ([vc isKindOfClass:vcClass]) {
-            [self.navigationController popToViewController:vc animated:YES];
-            boo = YES;
-            break;
+            if (currentStackBlock) {
+                currentStackBlock(vc);
+            }
+            [navc popToViewController:vc animated:YES];
+            return;
         }
     }
     if (boo == NO) {
-        UINavigationController *navc = self.navigationController;
+        if (newVc == nil) {
+            NSLog(@"想要pop push到新控制器，newVc不能为nil");
+            return;
+        }
         [navc popToRootViewControllerAnimated:NO];
-        UIViewController *vc = [[vcClass alloc] init];
-        [navc pushViewController:vc animated:YES];
+        [navc pushViewController:newVc animated:YES];
     }
 }
-
 - (void)settoRootVCWithAnimation:(BOOL)animation {
 
     id appdelegate = [UIApplication sharedApplication].delegate;

@@ -1,13 +1,13 @@
 //
-//  CollectionVC2.h
+//  KKSViewController.h
 //  KJSupportObjc
 //
-//  Created by chenkaijie on 2018/6/25.
+//  Created by chenkaijie on 2018/7/5.
 //  Copyright © 2018年 uback. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface CollectionVC2 : UIViewController
+@interface KKSViewController : UIViewController
 
 @end

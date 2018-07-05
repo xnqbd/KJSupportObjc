@@ -17,6 +17,10 @@
 
 @property (strong, nonatomic) NSMutableDictionary *cell_Model_keyValues;
 @property (strong, nonatomic) NSMutableDictionary *header_Model_keyValues;
+@property (strong, nonatomic) NSMutableDictionary *footer_Model_keyValues;
+
+
+@property (strong, nonatomic) UIView *tempHeaderFooterView;
 
 /**
  *  命名空间，为了防止Swift中没法加载正确的类名
@@ -86,40 +90,45 @@
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     
-    NSInteger section = indexPath.section;
+    NSInteger section = indexPath.section, item = indexPath.item;
     
     CommonCollectionViewSectionModel *sectionModel = self.dataArr[section];
     
     CommonCollectionReusableViewModel *header_footer = nil;
+    
     CommonCollectionReusableView *reusableview = nil;
     NSString *modelClass = nil;
     
     
     if (kind == UICollectionElementKindSectionHeader) {
-        
         header_footer = sectionModel.headerModel;
         
         modelClass = NSStringFromClass([header_footer class]);
-        NSString *headerClass = self.header_Model_keyValues[modelClass];
+        NSString *headerClass = self.header_Model_keyValues[modelClass][cellKEY];
         
         
         reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerClass forIndexPath:indexPath];
         
     } else if (kind == UICollectionElementKindSectionFooter) {
         
-        
-        header_footer = self.dataArr[indexPath.section].footerModel;
+        header_footer = sectionModel.footerModel;
         
         modelClass = NSStringFromClass([header_footer class]);
+        NSString *footerClass = self.footer_Model_keyValues[modelClass][cellKEY];
         
-        reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:modelClass forIndexPath:indexPath];
+        reusableview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerClass forIndexPath:indexPath];
     }
     
     reusableview.reusableViewModel = header_footer;
-    
+    [reusableview setupData:header_footer section:section item:item selectIndexPath:indexPath collectionView:collectionView viewForSupplementaryElementOfKind:kind reusableView:reusableview tool:self];
     return reusableview;
 }
 
+
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+//
+//    return CGSizeMake(100, 50);
+//}
 
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
@@ -145,15 +154,12 @@
 - (NSMutableDictionary *)cell_Model_keyValues {
     if (_cell_Model_keyValues) return _cell_Model_keyValues;
     _cell_Model_keyValues = [NSMutableDictionary dictionary];
-//    NSDictionary *dic = @{@"CommonCellModel" : @{cellKEY : @"CommonCollectionViewCell", isRegisterNibKEY : @NO}
-//                          // 上面这个不要删除，只需 这样的键值对添加即
-//                          };
     
     NSDictionary *dic = @{
                           NSStringFromClass([CommonCellModel class]) : @{cellKEY : NSStringFromClass([CommonCollectionViewCell class]), isRegisterNibKEY : @NO}
                           };
-    if ([self.dataSource respondsToSelector:@selector(returnCell_Model_keyValues)]) {
-        NSDictionary *temp = [self.dataSource returnCell_Model_keyValues];
+    if ([self.dataSource respondsToSelector:@selector(cl_returnCell_Model_keyValues)]) {
+        NSDictionary *temp = [self.dataSource cl_returnCell_Model_keyValues];
         [_cell_Model_keyValues addEntriesFromDictionary:temp];
     }
     
@@ -179,17 +185,85 @@
     
     return _cell_Model_keyValues;
 }
+
+
 - (NSMutableDictionary *)header_Model_keyValues {
     if (_header_Model_keyValues) return _header_Model_keyValues;
     _header_Model_keyValues = [NSMutableDictionary dictionary];
-    NSDictionary *dic = @{@"CommonCollectionReusableViewModel" : @"CommonCollectionReusableView"
-                          // 上面这个不要删除，只需以 model : cell 这样的键值对添加即可
-                          
+
+    NSDictionary *dic = @{
+                          NSStringFromClass([CommonCollectionReusableViewModel class]) : @{cellKEY : NSStringFromClass([CommonCollectionReusableView class]), isRegisterNibKEY : @NO}
                           };
+  
+    if ([self.dataSource respondsToSelector:@selector(cl_returnHeader_Model_keyValues)]) {
+        NSDictionary *temp = [self.dataSource cl_returnHeader_Model_keyValues];
+        [_header_Model_keyValues addEntriesFromDictionary:temp];
+    }
+    
     [_header_Model_keyValues addEntriesFromDictionary:dic];
+    
+    for (NSString *key in _header_Model_keyValues.allKeys) {
+        NSString *modelClass = key;
+        NSDictionary *dic = _header_Model_keyValues[modelClass];
+        
+        NSString *cellClass = dic[cellKEY];
+        BOOL isRegisterNib = [dic[isRegisterNibKEY] boolValue];
+        
+        if (cellClass == nil) {
+            continue;
+        }
+        
+        if (isRegisterNib) {
+            [self.collectView registerNib:[UINib nibWithNibName:cellClass bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:cellClass];
+        } else {
+            [self.collectView registerClass:NSClassFromString(cellClass) forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:cellClass];
+        }
+    }
     return _header_Model_keyValues;
 }
 
+- (NSMutableDictionary *)footer_Model_keyValues {
+    if (_footer_Model_keyValues) return _footer_Model_keyValues;
+    _footer_Model_keyValues = [NSMutableDictionary dictionary];
+    
+    NSDictionary *dic = @{
+                          NSStringFromClass([CommonCollectionReusableViewModel class]) : @{cellKEY : NSStringFromClass([CommonCollectionReusableView class]), isRegisterNibKEY : @NO}
+                          };
+    
+    if ([self.dataSource respondsToSelector:@selector(cl_returnFooter_Model_keyValues)]) {
+        NSDictionary *temp = [self.dataSource cl_returnFooter_Model_keyValues];
+        [_footer_Model_keyValues addEntriesFromDictionary:temp];
+    }
+    
+    [_footer_Model_keyValues addEntriesFromDictionary:dic];
+    
+    for (NSString *key in _footer_Model_keyValues.allKeys) {
+        NSString *modelClass = key;
+        NSDictionary *dic = _footer_Model_keyValues[modelClass];
+        
+        NSString *cellClass = dic[cellKEY];
+        BOOL isRegisterNib = [dic[isRegisterNibKEY] boolValue];
+        
+        if (cellClass == nil) {
+            continue;
+        }
+        
+        if (isRegisterNib) {
+            [self.collectView registerNib:[UINib nibWithNibName:cellClass bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:cellClass];
+        } else {
+            [self.collectView registerClass:NSClassFromString(cellClass) forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:cellClass];
+        }
+    }
+    return _footer_Model_keyValues;
+}
+
+
+
+- (UIView *)tempHeaderFooterView {
+    if (_tempHeaderFooterView) return _tempHeaderFooterView;
+    _tempHeaderFooterView = [UIView new];
+    return _tempHeaderFooterView;
+}
 
 #pragma mark - Swift命名空间处理
 - (NSString *)namespace {

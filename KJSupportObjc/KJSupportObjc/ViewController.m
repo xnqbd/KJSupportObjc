@@ -13,7 +13,7 @@
 #import <CoreImage/CoreImage.h>
 #import "MyFamilyViewController.h"
 #import "DelegateViewController.h"
-#import "CollectionVC2.h"
+#import "KKSViewController.h"
 
 @interface ViewController ()
 
@@ -107,7 +107,7 @@
 }
 - (IBAction)collAction2:(UIButton *)sender {
     
-      [self.navigationController pushViewController:[CollectionVC2 new] animated:YES];
+      [self.navigationController pushViewController:[KKSViewController new] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

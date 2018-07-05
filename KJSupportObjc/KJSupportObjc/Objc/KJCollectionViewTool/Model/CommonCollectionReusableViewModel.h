@@ -11,4 +11,10 @@
 @interface CommonCollectionReusableViewModel : NSObject
 
 
+/**
+ 只有两个值 1. 
+ */
+@property (copy, nonatomic) NSString *viewForSupplementaryElementOfKind;
+
+
 @end

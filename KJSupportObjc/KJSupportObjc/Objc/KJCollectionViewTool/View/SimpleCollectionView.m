@@ -46,9 +46,24 @@
     }
 }
 
-- (NSDictionary<NSString *,NSDictionary<NSString *,id> *> *)returnCell_Model_keyValues {
-    if ([self.simpleCollectionViewDataSource respondsToSelector:@selector(returnCell_Model_keyValues)]) {
-        return [self.simpleCollectionViewDataSource returnCell_Model_keyValues];
+- (NSDictionary<NSString *,NSDictionary<NSString *,id> *> *)cl_returnCell_Model_keyValues {
+    if ([self.simpleCollectionViewDataSource respondsToSelector:@selector(cl_returnCell_Model_keyValues)]) {
+        return [self.simpleCollectionViewDataSource cl_returnCell_Model_keyValues];
+    } else {
+        return [NSDictionary dictionary];
+    }
+}
+
+- (NSDictionary<NSString *,NSDictionary<NSString *,id> *> *)cl_returnHeader_Model_keyValues {
+    if ([self.simpleCollectionViewDataSource respondsToSelector:@selector(cl_returnHeader_Model_keyValues)]) {
+        return [self.simpleCollectionViewDataSource cl_returnHeader_Model_keyValues];
+    } else {
+        return [NSDictionary dictionary];
+    }
+}
+- (NSDictionary<NSString *,NSDictionary<NSString *,id> *> *)cl_returnFooter_Model_keyValues {
+    if ([self.simpleCollectionViewDataSource respondsToSelector:@selector(cl_returnFooter_Model_keyValues)]) {
+        return [self.simpleCollectionViewDataSource cl_returnFooter_Model_keyValues];
     } else {
         return [NSDictionary dictionary];
     }

@@ -25,25 +25,25 @@
 
 @protocol CommonTableViewToolDataSource <NSObject>
 
+@required;
+/**
+ 一定要匹配匹配正确
+ 键值对  @{NSStringFromClass([CommonCellModel class]) : @{cellKEY : NSStringFromClass([CommonTableViewCell class]), isRegisterNibKEY : @YES}};
+ 
+ @return 键值对
+ */
+- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues;
+
 @optional;
 
 /**
  一定要匹配匹配正确
-键值对   @{ NSStringFromClass([CommonHeaderFooterModel class]) : NSStringFromClass([CommonTableViewHeaderFooterView class])
- }
+ 键值对   @{NSStringFromClass([XXXModel class]) : @{cellKEY : NSStringFromClass([XXXHeader class]), isRegisterNibKEY : @YES}};
  @return 键值对
  */
 - (nonnull NSDictionary <NSString *, NSString *> *)returnHeader_Model_keyValues;
 - (nonnull NSDictionary <NSString *, NSString *> *)returnFooter_Model_keyValues;
 
-@required;
-/**
- 一定要匹配匹配正确
- 键值对  @{NSStringFromClass([CommonCellModel class]) : @{cellKEY : NSStringFromClass([CommonTableViewCell class]), isRegisterNibKEY : @YES}};
-
- @return 键值对
- */
-- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues;
 
 @end
 
