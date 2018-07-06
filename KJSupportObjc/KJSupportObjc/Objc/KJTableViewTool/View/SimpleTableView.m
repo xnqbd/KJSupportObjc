@@ -65,6 +65,67 @@
     }
 }
 
+
+#pragma mark - 删除添加操作
+
+/**
+ 拼接在最后一个分区的 最后一行
+ */
+- (void)appendCellModelAtLastSectionLastRow:(CommonCellModel *)model {
+    SimpleTableView *tableV = self;
+    NSArray <CommonSectionModel *>*sections = tableV.dataArr;
+    NSInteger section = sections.count - 1;
+    
+    CommonSectionModel *lastSection = sections.lastObject;
+    
+    NSInteger row = lastSection.modelArray.count;
+    
+    [self insertCellModel:model atSection:section row:row];
+}
+/**
+ 插入模型在某个分区的某一行
+ */
+- (void)insertCellModel:(CommonCellModel *)model atSection:(NSInteger)section row:(NSInteger)row {
+    SimpleTableView *tableV = self;
+    
+    NSMutableArray <CommonSectionModel *>*sections = [NSMutableArray arrayWithArray:tableV.dataArr];
+    CommonSectionModel *sectionModel = [sections kj_objectAtIndex:section];
+    NSMutableArray <CommonCellModel *>*cellModelArray = [NSMutableArray arrayWithArray:sectionModel.modelArray];
+    
+    [cellModelArray kj_insertObject:model atIndex:row];
+    sectionModel.modelArray = cellModelArray;
+    
+    tableV.dataArr = sections;
+}
+/**
+ 删除模型在某个分区的某一行
+ */
+- (void)removeCellModelAtSection:(NSInteger)section row:(NSInteger)row {
+    SimpleTableView *tableV = self;
+    
+    NSMutableArray <CommonSectionModel *>*sections = [NSMutableArray arrayWithArray:tableV.dataArr];
+    CommonSectionModel *sectionModel = [sections kj_objectAtIndex:section];
+    NSMutableArray <CommonCellModel *>*cellModelArray = [NSMutableArray arrayWithArray:sectionModel.modelArray];
+    
+    [cellModelArray kj_removeObjectAtIndex:row];
+    sectionModel.modelArray = cellModelArray;
+    
+    tableV.dataArr = sections;
+}
+/**
+ 删除某个分区
+ */
+- (void)removeSection:(NSInteger)section {
+    SimpleTableView *tableV = self;
+    
+    NSMutableArray <CommonSectionModel *>*sections = [NSMutableArray arrayWithArray:tableV.dataArr];
+    [sections kj_removeObjectAtIndex:section];
+    tableV.dataArr = sections;
+}
+
+
+
+
 - (void)dealloc {
     NSLog(@"%@ %p 销毁", [self class], self);
 }

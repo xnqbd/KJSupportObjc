@@ -492,8 +492,8 @@
 			isa = PBXGroup;
 			children = (
 				9559982D209AED7F00163047 /* CommonTableViewHeaderFooterView.m */,
-				9559982E209AED7F00163047 /* CommonTableViewCell.h */,
 				9559982F209AED7F00163047 /* TitleStyleTableViewHeaderFooterView.m */,
+				9559982E209AED7F00163047 /* CommonTableViewCell.h */,
 				16F5201220DE5EEE00B77972 /* SimpleTableView.h */,
 				16F5201320DE5EEE00B77972 /* SimpleTableView.m */,
 				95599830209AED7F00163047 /* CommonTableViewCell.m */,

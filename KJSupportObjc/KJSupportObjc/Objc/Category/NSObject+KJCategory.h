@@ -65,6 +65,10 @@ int getRandomNumber(int from, int to);
 
 - (BOOL)kj_addObjectsFromArray:(NSArray *)array;
 
+
+/**
+ 比原生的能做到，插入到最后一行
+ */
 - (BOOL)kj_insertObject:(id)object atIndex:(NSUInteger)index;
 
 - (BOOL)kj_removeObjectAtIndex:(NSUInteger)index;
@@ -119,11 +123,11 @@ int getRandomNumber(int from, int to);
 #pragma mark - -----------------UIColor-----------------
 @interface UIColor (KJCategory)
 
-+ (UIColor *)arc4Color;
++ (UIColor *)kj_arc4Color;
 
-+ (UIColor *)r:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha;
++ (UIColor *)kj_r:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha;
 
-+ (UIColor *)colorWithHexString:(NSString *)color;
++ (UIColor *)kj_colorWithHexString:(NSString *)color;
 
 @end
 

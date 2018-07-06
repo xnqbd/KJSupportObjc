@@ -30,6 +30,21 @@
 
 @property (weak, nonatomic, nullable) IBOutlet id  <CommonTableViewToolDelegate> simpleTableViewDelegate;
 @property (weak, nonatomic, nullable) IBOutlet id  <CommonTableViewToolDataSource> simpleTableViewDataSource;
-
+/**
+ 拼接在最后一个分区的 最后一行
+ */
+- (void)appendCellModelAtLastSectionLastRow:(CommonCellModel *)model;
+/**
+ 插入模型在某个分区的某一行
+ */
+- (void)insertCellModel:(CommonCellModel *)model atSection:(NSInteger)section row:(NSInteger)row;
+/**
+ 删除模型在某个分区的某一行
+ */
+- (void)removeCellModelAtSection:(NSInteger)section row:(NSInteger)row;
+/**
+ 删除某个分区
+ */
+- (void)removeSection:(NSInteger)section;
 
 @end

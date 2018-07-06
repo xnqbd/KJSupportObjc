@@ -24,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor arc4Color];
+    
 
     
 //    NSMutableArray *cellModelArray = [NSMutableArray array];

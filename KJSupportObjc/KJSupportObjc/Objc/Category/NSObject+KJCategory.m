@@ -257,7 +257,15 @@ int getRandomNumber(int from, int to) {
         NSLog(@"kj_insertObject 对象不能被插入 因为对象为空");
         return NO;
     }
-    if (index >= self.count) {
+    if (index < 0) {
+        NSLog(@"kj_insertObject 想要插入在位置 0 , 当前数组个数是 %ld", self.count);
+        return NO;
+    }
+    
+    if (index == self.count) {
+        [self kj_addObject:object];
+        return YES;
+    } else if (index > self.count) {
         NSLog(@"kj_insertObject 位置 %ld 越界, 当前数组个数是 %ld", index, self.count);
         return NO;
     } else {
@@ -453,13 +461,13 @@ int getRandomNumber(int from, int to) {
 #pragma mark - -----------------UIColor-----------------
 @implementation UIColor (KJCategory)
 
-+ (UIColor *)arc4Color {
-    return [UIColor r:arc4random_uniform(256) g:arc4random_uniform(256) b:arc4random_uniform(256) alpha:1];
++ (UIColor *)kj_arc4Color {
+    return [UIColor kj_r:arc4random_uniform(256) g:arc4random_uniform(256) b:arc4random_uniform(256) alpha:1];
 }
-+ (UIColor *)r:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha {
++ (UIColor *)kj_r:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha {
     return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:alpha];
 }
-+ (UIColor *)colorWithHexString:(NSString *)color {
++ (UIColor *)kj_colorWithHexString:(NSString *)color {
     NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     
     // String should be 6 or 8 characters
