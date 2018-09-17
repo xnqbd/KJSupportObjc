@@ -9,6 +9,7 @@ target 'KJSupportObjc' do
 
 
 pod 'Masonry'
+pod 'DZNEmptyDataSet'
 
 
 end

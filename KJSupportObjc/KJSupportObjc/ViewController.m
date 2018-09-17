@@ -8,12 +8,7 @@
 
 #import "ViewController.h"
 
-#import "DemoTableVC.h"
-#import "InformationTableVC.h"
-#import <CoreImage/CoreImage.h>
-#import "MyFamilyViewController.h"
-#import "DelegateViewController.h"
-#import "KKSViewController.h"
+
 
 @interface ViewController ()
 
@@ -95,19 +90,19 @@
 }
 
 - (IBAction)tab1Action:(UIButton *)sender {
-    [self.navigationController pushViewController:[DemoTableVC new] animated:YES];
+//    [self.navigationController pushViewController:[DemoTableVC new] animated:YES];
 }
 
 - (IBAction)tabAction:(UIButton *)sender {
-    [self.navigationController pushViewController:[DelegateViewController new] animated:YES];
+//    [self.navigationController pushViewController:[DelegateViewController new] animated:YES];
 }
 
 - (IBAction)collAction:(UIButton *)sender {
-    [self.navigationController pushViewController:[MyFamilyViewController new] animated:YES];
+//    [self.navigationController pushViewController:[MyFamilyViewController new] animated:YES];
 }
 - (IBAction)collAction2:(UIButton *)sender {
     
-      [self.navigationController pushViewController:[KKSViewController new] animated:YES];
+//      [self.navigationController pushViewController:[KKSViewController new] animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,22 +110,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
-/*
- 
- 其他卡  只能添加的是社保卡
- 
- 
- 1. 其他卡  -> 添加社保卡 返回来变成 -> 社保卡
- 
- 2. 健康卡  其他卡  -> 添加社保卡 返回来变成 -> 健康卡  社保卡
- 
- 3. 社保卡
- 
- 4. 健康卡  社保卡
- 
- */
 
 
 
