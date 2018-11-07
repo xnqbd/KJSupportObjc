@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+
+
+typedef NS_ENUM(NSUInteger, CKJCommonHeaderFooterType) {
+    /** 头 */
+    CKJCommonHeaderFooterType_HEADER,
+    /** 尾 */
+    CKJCommonHeaderFooterType_FOOTER
+};
+
+
 @interface CKJCommonHeaderFooterModel : NSObject
 
 /**
@@ -19,5 +29,8 @@
  */
 @property (copy, nonatomic) NSString *systemSubTitle;
 
+@property (assign, nonatomic) CKJCommonHeaderFooterType type;
+
+@property (assign, nonatomic) BOOL displayInTableView;
 
 @end

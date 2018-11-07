@@ -12,18 +12,19 @@
 
 @implementation CKJCommonTableViewCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier configDic:(NSDictionary *)configDic {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        [self setValue:configDic forKey:@"configDic"];
         [self setupSubViews];
     }
     return self;
 }
+
 - (void)setupSubViews {
     
 }
 
 - (void)setupData:(CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(CKJSimpleTableView *)tableView {
-    
 }
 
 - (NSArray <CKJCommonCellModel *>*)currentSectionCellModelArray {
@@ -32,4 +33,21 @@
     return modelArray;
 }
 
+//- (void)addSubview:(UIView *)view {
+////    static int a = 0;
+////    if (a == 0) {
+////        if ([view isKindOfClass:[NSClassFromString(@"_UITableViewCellSeparatorView") class]]) {
+////            NSLog(@"找到了 %@ ", view);
+////            a++;
+////            return;
+////        }
+////    }
+//
+//    [super addSubview:view];
+//}
+
+
+
 @end
+
+

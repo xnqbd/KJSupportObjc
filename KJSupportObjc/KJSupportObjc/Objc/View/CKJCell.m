@@ -9,7 +9,10 @@
 #import "CKJCell.h"
 #import <Masonry/Masonry.h>
 
+
+
 @implementation KJWDJButtonModel
+
 
 @end
 
@@ -282,17 +285,16 @@
                 rightBlock ? rightBlock(make) : nil;
             }];
         } else {
-            
-            [self.imageBtn2 setImage:[UIImage kjwd_imageNamed:imageString] forState:UIControlStateNormal];
+            [self.imageBtn2 setImage:[UIImage imageNamed:imageString] forState:UIControlStateNormal];
             
             [_imageBtn2 mas_remakeConstraints:^(MASConstraintMaker *make) {
-//                make.left.equalTo(imageBtn2SuperView).offset(0);
                 make.centerY.equalTo(imageBtn2SuperView);
                 rightBlock ? rightBlock(make) : nil;
                 // 一般图片大小设置为固定
                 if ([self.ckjCellDataSource respondsToSelector:@selector(imageBtn2_setup:section:row:cell:imageBtn2:)]) {
                     [self.ckjCellDataSource imageBtn2_setup:make section:section row:row cell:self imageBtn2:self.imageBtn2];
                 } else {
+                    make.left.equalTo(self.imageBtn2.superview).offset(15);
                     make.width.height.equalTo(@(imageBtn2_w_h));
                 }
             }];
@@ -370,16 +372,16 @@
         UIImage *selectedImage = nil;
         
         if ([self isEmptyString:btn8Model.normalBackgroundImage] == NO) {
-            normalBackgroundImage = [UIImage kjwd_imageNamed:btn8Model.normalBackgroundImage];
+            normalBackgroundImage = [UIImage imageNamed:btn8Model.normalBackgroundImage];
         }
         if ([self isEmptyString:btn8Model.selectedBackgroundImage] == NO) {
-            selectedBackgroundImage = [UIImage kjwd_imageNamed:btn8Model.selectedBackgroundImage];
+            selectedBackgroundImage = [UIImage imageNamed:btn8Model.selectedBackgroundImage];
         }
         if ([self isEmptyString:btn8Model.normalImage] == NO) {
-            normalImage = [UIImage kjwd_imageNamed:btn8Model.normalImage];
+            normalImage = [UIImage imageNamed:btn8Model.normalImage];
         }
         if ([self isEmptyString:btn8Model.selectedImage] == NO) {
-            selectedImage = [UIImage kjwd_imageNamed:btn8Model.selectedImage];
+            selectedImage = [UIImage imageNamed:btn8Model.selectedImage];
         }
         [btn8 setBackgroundImage:normalBackgroundImage forState:UIControlStateNormal];
         [btn8 setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
@@ -422,7 +424,7 @@
     } else {
         [self origin_arrowImageView9_Constraint];
         _arrowImageView9.hidden = NO;
-        self.arrowImageView9.image = [UIImage kjwd_imageNamed:model.right_arrowImageString9];
+        self.arrowImageView9.image = [UIImage imageNamed:model.right_arrowImageString9];
     }
 }
 

@@ -22,7 +22,7 @@
 /**
  *  此方法留着给子类重写，通常是拿到这几个参数 给子类的区头或区尾设置UI数据
  */
-- (void)setupData:(CKJCommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(UITableView *)tableView;
+- (void)setupData:(CKJCommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(CKJSimpleTableView *)tableView;
 
 
 

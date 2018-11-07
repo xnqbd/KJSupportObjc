@@ -71,7 +71,7 @@
 //        headerView.contentView.backgroundColor = simpleTableView.backgroundColor;
         
         headerView.headerFooterModel = headerModel;
-        [headerView setupData:headerModel section:section tableView:tableView];
+        [headerView setupData:headerModel section:section tableView:(CKJSimpleTableView *)tableView];
         return headerView;
     } else {
         return self.tempHeaderFooterView;
@@ -127,7 +127,7 @@
         footerView.simpleTableView = simpleTableView;
 //        footerView.contentView.backgroundColor = simpleTableView.backgroundColor;
         footerView.headerFooterModel = footerModel;
-        [footerView setupData:footerModel section:section tableView:tableView];
+        [footerView setupData:footerModel section:section tableView:(CKJSimpleTableView *)tableView];
         return footerView;
     } else {
         return self.tempHeaderFooterView;
@@ -144,8 +144,7 @@
     // 显示的数组
     NSArray <CKJCommonCellModel *>*displayModelArray = [self.simpleTableView displayCellModelArrayAtSection:section];
     
-    CKJCommonSectionModel *sectionModel = self.simpleTableView.dataArr[section];
-    
+    CKJCommonSectionModel *sectionModel = [self.simpleTableView.dataArr kjwd_objectAtIndex:section];
     
     CKJCommonCellModel *model = displayModelArray[row];
     if (model.cellHeight <= 0) {
@@ -164,20 +163,35 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    BOOL cancel = NO;  // 默认保留 不悬浮
-    if ([self.simpleTableView.simpleTableViewDataSource respondsToSelector:@selector(savePlainStyleSectionHeaderSuspension)]) {
-        cancel = [self.simpleTableView.simpleTableViewDataSource savePlainStyleSectionHeaderSuspension];
-    }
+//    BOOL cancel = NO;  // 默认保留 不悬浮
+//    if ([self.simpleTableView.simpleTableViewDataSource respondsToSelector:@selector(savePlainStyleSectionHeaderSuspension)]) {
+//        cancel = [self.simpleTableView.simpleTableViewDataSource savePlainStyleSectionHeaderSuspension];
+//    }
+//
+//    if (cancel) {
+//        CGFloat sectionHeaderHeight = 100;
+//        if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= 0) {
+//            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+//        } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+//            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+//        }
+//    } else {
+//    }
     
-    if (cancel) {
-        CGFloat sectionHeaderHeight = 100;
-        if (scrollView.contentOffset.y <= sectionHeaderHeight && scrollView.contentOffset.y >= 0) {
-            scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
-        } else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
-            scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
-        }
-    } else {
-    }
+
+    
+//    if ([scrollView isKindOfClass:UITableView.class]) {
+//        UITableView *tabV = (UITableView *)scrollView;
+//        
+//    }
+    
+//    CGFloat sectionHeaderHeight = 40;
+//    if (scrollView.contentOffset.y<=sectionHeaderHeight&&scrollView.contentOffset.y>=0) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-scrollView.contentOffset.y, 0, 0, 0);
+//    }
+//    else if (scrollView.contentOffset.y>=sectionHeaderHeight) {
+//        scrollView.contentInset = UIEdgeInsetsMake(-sectionHeaderHeight, 0, 0, 0);
+//    }
 }
 
 

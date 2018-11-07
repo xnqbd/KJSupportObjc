@@ -13,7 +13,7 @@
 
 
 
-@class CKJCellModel, CKJCell;
+@class CKJCellModel, CKJCell, MASConstraintMaker;
 
 @interface KJWDJButtonModel : NSObject
 
@@ -50,28 +50,28 @@
 /**
  imageBtn2 左边的图片 只能设置宽、高、距离父视图左边的距离
  */
-- (void)imageBtn2_setup:(id)make section:(NSInteger)section row:(NSInteger)row cell:(CKJCell *)cell imageBtn2:(UIButton *)imageBtn2;
+- (void)imageBtn2_setup:(MASConstraintMaker *)make section:(NSInteger)section row:(NSInteger)row cell:(CKJCell *_Nonnull)cell imageBtn2:(UIButton *_Nonnull)imageBtn2;
 
 
-- (CGFloat)title3_leftMarginAtsection:(NSInteger)section row:(NSInteger)row cell:(CKJCell *)cell;
+- (CGFloat)title3_leftMarginAtsection:(NSInteger)section row:(NSInteger)row cell:(CKJCell *_Nonnull)cell;
 
 /**
   view5 上下label 间距
  */
-- (CGFloat)view5_setup_top_title_marginTo_bottom_subTitle_Atsection:(NSInteger)section row:(NSInteger)row cell:(CKJCell *)cell;
+- (CGFloat)view5_setup_top_title_marginTo_bottom_subTitle_Atsection:(NSInteger)section row:(NSInteger)row cell:(CKJCell *_Nonnull)cell;
 
 /**
  view5 左边 间距, 需要设置在一定的范围内，不然会有约束冲突
  */
-- (CGFloat)view5_setup_leftMarginAtsection:(NSInteger)section row:(NSInteger)row cell:(CKJCell *)cell;
+- (CGFloat)view5_setup_leftMarginAtsection:(NSInteger)section row:(NSInteger)row cell:(CKJCell *_Nonnull)cell;
 
-- (UIEdgeInsets)alikePriceLabel7_edgeInsetsAtsection:(NSInteger)section row:(NSInteger)row cell:(CKJCell *)cell;
+- (UIEdgeInsets)alikePriceLabel7_edgeInsetsAtsection:(NSInteger)section row:(NSInteger)row cell:(CKJCell *_Nonnull)cell;
 
 /**
  btn8  (只能调整 centerY、width、height)  ---> make.centerY.equalTo(btn8.superview)
  @return 距离右边的间距
  */
-- (CGFloat)btn8_return_rightMargin:(id)make section:(NSInteger)section row:(NSInteger)row cell:(CKJCell *)cell btn8:(UIButton *)btn8;
+- (CGFloat)btn8_return_rightMargin:(MASConstraintMaker *)make section:(NSInteger)section row:(NSInteger)row cell:(CKJCell *_Nonnull)cell btn8:(UIButton *_Nonnull)btn8;
 
 
 

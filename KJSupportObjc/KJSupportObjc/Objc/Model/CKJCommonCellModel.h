@@ -29,7 +29,7 @@
 /**
  标识, 每一个该model的id_flag 一定不能相同
  */
-@property (assign, nonatomic) int id_flag;
+@property (assign, nonatomic) NSInteger id_flag;
 
 @property (weak, nonatomic) CKJCommonTableViewCell *cell;
 

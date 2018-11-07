@@ -7,24 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		163403AE214FECDF00C458D4 /* NSObject+WDYHFCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 16340386214FECDF00C458D4 /* NSObject+WDYHFCategory.m */; };
-		163403AF214FECDF00C458D4 /* UIView+CKJDesingable.m in Sources */ = {isa = PBXBuildFile; fileRef = 16340389214FECDF00C458D4 /* UIView+CKJDesingable.m */; };
-		163403B0214FECDF00C458D4 /* LightStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1634038C214FECDF00C458D4 /* LightStorageManager.m */; };
-		163403B1214FECDF00C458D4 /* CKJBaseTableViewToolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1634038E214FECDF00C458D4 /* CKJBaseTableViewToolVC.m */; };
-		163403B2214FECDF00C458D4 /* CKJCommonSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16340391214FECDF00C458D4 /* CKJCommonSectionModel.m */; };
-		163403B3214FECDF00C458D4 /* CKJCommonCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16340392214FECDF00C458D4 /* CKJCommonCellModel.m */; };
-		163403B4214FECDF00C458D4 /* CKJCommonHeaderFooterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16340395214FECDF00C458D4 /* CKJCommonHeaderFooterModel.m */; };
-		163403B5214FECDF00C458D4 /* CKJTableViewDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 16340399214FECDF00C458D4 /* CKJTableViewDelegateObject.m */; };
-		163403B6214FECDF00C458D4 /* CKJPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1634039A214FECDF00C458D4 /* CKJPickerView.m */; };
-		163403B7214FECDF00C458D4 /* CKJTableViewHeaderFooterEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1634039B214FECDF00C458D4 /* CKJTableViewHeaderFooterEmptyView.m */; };
-		163403B8214FECDF00C458D4 /* CKJSimpleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1634039D214FECDF00C458D4 /* CKJSimpleTableView.m */; };
-		163403B9214FECDF00C458D4 /* CKJToolPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1634039E214FECDF00C458D4 /* CKJToolPickerView.m */; };
-		163403BA214FECDF00C458D4 /* CKJDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 163403A0214FECDF00C458D4 /* CKJDatePickerView.m */; };
-		163403BB214FECDF00C458D4 /* CKJToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 163403A3214FECDF00C458D4 /* CKJToolView.m */; };
-		163403BC214FECDF00C458D4 /* CKJCommonTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 163403A6214FECDF00C458D4 /* CKJCommonTableViewHeaderFooterView.m */; };
-		163403BD214FECDF00C458D4 /* CKJCommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 163403A8214FECDF00C458D4 /* CKJCommonTableViewCell.m */; };
-		163403BE214FECDF00C458D4 /* CKJTitleStyleHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 163403AA214FECDF00C458D4 /* CKJTitleStyleHeaderFooterView.m */; };
-		163403BF214FECDF00C458D4 /* CKJCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 163403AB214FECDF00C458D4 /* CKJCell.m */; };
 		1657522120DCD4EB00CB0C8F /* 阿狸.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521820DCD4EB00CB0C8F /* 阿狸.png */; };
 		1657522220DCD4EB00CB0C8F /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521920DCD4EB00CB0C8F /* 4.png */; };
 		1657522320DCD4EB00CB0C8F /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521A20DCD4EB00CB0C8F /* 5.png */; };
@@ -34,6 +16,26 @@
 		1657522720DCD4EB00CB0C8F /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521E20DCD4EB00CB0C8F /* 3.png */; };
 		1657522820DCD4EB00CB0C8F /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521F20DCD4EB00CB0C8F /* 1.png */; };
 		1657522920DCD4EB00CB0C8F /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657522020DCD4EB00CB0C8F /* 0.png */; };
+		16F470732192E38D00C4D1B3 /* NSObject+WDYHFCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F470472192E38D00C4D1B3 /* NSObject+WDYHFCategory.m */; };
+		16F470742192E38D00C4D1B3 /* UIView+CKJDesingable.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F4704A2192E38D00C4D1B3 /* UIView+CKJDesingable.m */; };
+		16F470752192E38D00C4D1B3 /* FileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F4704C2192E38D00C4D1B3 /* FileManagerTool.m */; };
+		16F470762192E38D00C4D1B3 /* KJCommonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F4704D2192E38D00C4D1B3 /* KJCommonManager.m */; };
+		16F470772192E38D00C4D1B3 /* LightStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F470512192E38D00C4D1B3 /* LightStorageManager.m */; };
+		16F470782192E38D00C4D1B3 /* CKJBaseTableViewToolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F470532192E38D00C4D1B3 /* CKJBaseTableViewToolVC.m */; };
+		16F470792192E38D00C4D1B3 /* CKJCommonSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F470562192E38D00C4D1B3 /* CKJCommonSectionModel.m */; };
+		16F4707A2192E38D00C4D1B3 /* CKJCommonCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F470572192E38D00C4D1B3 /* CKJCommonCellModel.m */; };
+		16F4707B2192E38D00C4D1B3 /* CKJCommonHeaderFooterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F4705A2192E38D00C4D1B3 /* CKJCommonHeaderFooterModel.m */; };
+		16F4707C2192E38D00C4D1B3 /* CKJTableViewDelegateObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F4705E2192E38D00C4D1B3 /* CKJTableViewDelegateObject.m */; };
+		16F4707D2192E38D00C4D1B3 /* CKJPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F4705F2192E38D00C4D1B3 /* CKJPickerView.m */; };
+		16F4707E2192E38D00C4D1B3 /* CKJTableViewHeaderFooterEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F470602192E38D00C4D1B3 /* CKJTableViewHeaderFooterEmptyView.m */; };
+		16F4707F2192E38D00C4D1B3 /* CKJSimpleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F470622192E38D00C4D1B3 /* CKJSimpleTableView.m */; };
+		16F470802192E38D00C4D1B3 /* CKJToolPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F470632192E38D00C4D1B3 /* CKJToolPickerView.m */; };
+		16F470812192E38D00C4D1B3 /* CKJDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F470652192E38D00C4D1B3 /* CKJDatePickerView.m */; };
+		16F470822192E38D00C4D1B3 /* CKJToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F470682192E38D00C4D1B3 /* CKJToolView.m */; };
+		16F470832192E38D00C4D1B3 /* CKJCommonTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F4706B2192E38D00C4D1B3 /* CKJCommonTableViewHeaderFooterView.m */; };
+		16F470842192E38D00C4D1B3 /* CKJCommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F4706D2192E38D00C4D1B3 /* CKJCommonTableViewCell.m */; };
+		16F470852192E38D00C4D1B3 /* CKJTitleStyleHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F4706F2192E38D00C4D1B3 /* CKJTitleStyleHeaderFooterView.m */; };
+		16F470862192E38D00C4D1B3 /* CKJCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 16F470702192E38D00C4D1B3 /* CKJCell.m */; };
 		955997E4209AECF900163047 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 955997E3209AECF900163047 /* AppDelegate.m */; };
 		955997E7209AECF900163047 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955997E6209AECF900163047 /* ViewController.m */; };
 		955997EA209AECF900163047 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 955997E8209AECF900163047 /* Main.storyboard */; };
@@ -44,43 +46,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		16340384214FECDF00C458D4 /* KJSupportObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSupportObjc.h; sourceTree = "<group>"; };
-		16340386214FECDF00C458D4 /* NSObject+WDYHFCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WDYHFCategory.m"; sourceTree = "<group>"; };
-		16340387214FECDF00C458D4 /* UIView+CKJDesingable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CKJDesingable.h"; sourceTree = "<group>"; };
-		16340388214FECDF00C458D4 /* NSObject+WDYHFCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WDYHFCategory.h"; sourceTree = "<group>"; };
-		16340389214FECDF00C458D4 /* UIView+CKJDesingable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CKJDesingable.m"; sourceTree = "<group>"; };
-		1634038B214FECDF00C458D4 /* LightStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightStorageManager.h; sourceTree = "<group>"; };
-		1634038C214FECDF00C458D4 /* LightStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightStorageManager.m; sourceTree = "<group>"; };
-		1634038E214FECDF00C458D4 /* CKJBaseTableViewToolVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseTableViewToolVC.m; sourceTree = "<group>"; };
-		1634038F214FECDF00C458D4 /* CKJBaseTableViewToolVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseTableViewToolVC.h; sourceTree = "<group>"; };
-		16340391214FECDF00C458D4 /* CKJCommonSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonSectionModel.m; sourceTree = "<group>"; };
-		16340392214FECDF00C458D4 /* CKJCommonCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonCellModel.m; sourceTree = "<group>"; };
-		16340393214FECDF00C458D4 /* CKJCommonHeaderFooterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonHeaderFooterModel.h; sourceTree = "<group>"; };
-		16340394214FECDF00C458D4 /* CKJCommonSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonSectionModel.h; sourceTree = "<group>"; };
-		16340395214FECDF00C458D4 /* CKJCommonHeaderFooterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonHeaderFooterModel.m; sourceTree = "<group>"; };
-		16340396214FECDF00C458D4 /* CKJCommonCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonCellModel.h; sourceTree = "<group>"; };
-		16340398214FECDF00C458D4 /* CKJToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolView.h; sourceTree = "<group>"; };
-		16340399214FECDF00C458D4 /* CKJTableViewDelegateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewDelegateObject.m; sourceTree = "<group>"; };
-		1634039A214FECDF00C458D4 /* CKJPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJPickerView.m; sourceTree = "<group>"; };
-		1634039B214FECDF00C458D4 /* CKJTableViewHeaderFooterEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewHeaderFooterEmptyView.m; sourceTree = "<group>"; };
-		1634039C214FECDF00C458D4 /* CKJCommonTableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonTableViewHeaderFooterView.h; sourceTree = "<group>"; };
-		1634039D214FECDF00C458D4 /* CKJSimpleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSimpleTableView.m; sourceTree = "<group>"; };
-		1634039E214FECDF00C458D4 /* CKJToolPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolPickerView.m; sourceTree = "<group>"; };
-		1634039F214FECDF00C458D4 /* CKJCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCell.h; sourceTree = "<group>"; };
-		163403A0214FECDF00C458D4 /* CKJDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJDatePickerView.m; sourceTree = "<group>"; };
-		163403A1214FECDF00C458D4 /* CKJTitleStyleHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTitleStyleHeaderFooterView.h; sourceTree = "<group>"; };
-		163403A2214FECDF00C458D4 /* CKJCommonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonTableViewCell.h; sourceTree = "<group>"; };
-		163403A3214FECDF00C458D4 /* CKJToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolView.m; sourceTree = "<group>"; };
-		163403A4214FECDF00C458D4 /* CKJPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJPickerView.h; sourceTree = "<group>"; };
-		163403A5214FECDF00C458D4 /* CKJTableViewDelegateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewDelegateObject.h; sourceTree = "<group>"; };
-		163403A6214FECDF00C458D4 /* CKJCommonTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonTableViewHeaderFooterView.m; sourceTree = "<group>"; };
-		163403A7214FECDF00C458D4 /* CKJTableViewHeaderFooterEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewHeaderFooterEmptyView.h; sourceTree = "<group>"; };
-		163403A8214FECDF00C458D4 /* CKJCommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonTableViewCell.m; sourceTree = "<group>"; };
-		163403A9214FECDF00C458D4 /* CKJDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJDatePickerView.h; sourceTree = "<group>"; };
-		163403AA214FECDF00C458D4 /* CKJTitleStyleHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTitleStyleHeaderFooterView.m; sourceTree = "<group>"; };
-		163403AB214FECDF00C458D4 /* CKJCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCell.m; sourceTree = "<group>"; };
-		163403AC214FECDF00C458D4 /* CKJToolPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolPickerView.h; sourceTree = "<group>"; };
-		163403AD214FECDF00C458D4 /* CKJSimpleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableView.h; sourceTree = "<group>"; };
 		1657521820DCD4EB00CB0C8F /* 阿狸.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "阿狸.png"; sourceTree = "<group>"; };
 		1657521920DCD4EB00CB0C8F /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		1657521A20DCD4EB00CB0C8F /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
@@ -91,6 +56,47 @@
 		1657521F20DCD4EB00CB0C8F /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		1657522020DCD4EB00CB0C8F /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
 		16B045C420B9378600362478 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		16F470452192E38D00C4D1B3 /* KJSupportObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSupportObjc.h; sourceTree = "<group>"; };
+		16F470472192E38D00C4D1B3 /* NSObject+WDYHFCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WDYHFCategory.m"; sourceTree = "<group>"; };
+		16F470482192E38D00C4D1B3 /* UIView+CKJDesingable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CKJDesingable.h"; sourceTree = "<group>"; };
+		16F470492192E38D00C4D1B3 /* NSObject+WDYHFCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WDYHFCategory.h"; sourceTree = "<group>"; };
+		16F4704A2192E38D00C4D1B3 /* UIView+CKJDesingable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CKJDesingable.m"; sourceTree = "<group>"; };
+		16F4704C2192E38D00C4D1B3 /* FileManagerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManagerTool.m; sourceTree = "<group>"; };
+		16F4704D2192E38D00C4D1B3 /* KJCommonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJCommonManager.m; sourceTree = "<group>"; };
+		16F4704E2192E38D00C4D1B3 /* LightStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightStorageManager.h; sourceTree = "<group>"; };
+		16F4704F2192E38D00C4D1B3 /* FileManagerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerTool.h; sourceTree = "<group>"; };
+		16F470502192E38D00C4D1B3 /* KJCommonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJCommonManager.h; sourceTree = "<group>"; };
+		16F470512192E38D00C4D1B3 /* LightStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightStorageManager.m; sourceTree = "<group>"; };
+		16F470532192E38D00C4D1B3 /* CKJBaseTableViewToolVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseTableViewToolVC.m; sourceTree = "<group>"; };
+		16F470542192E38D00C4D1B3 /* CKJBaseTableViewToolVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseTableViewToolVC.h; sourceTree = "<group>"; };
+		16F470562192E38D00C4D1B3 /* CKJCommonSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonSectionModel.m; sourceTree = "<group>"; };
+		16F470572192E38D00C4D1B3 /* CKJCommonCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonCellModel.m; sourceTree = "<group>"; };
+		16F470582192E38D00C4D1B3 /* CKJCommonHeaderFooterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonHeaderFooterModel.h; sourceTree = "<group>"; };
+		16F470592192E38D00C4D1B3 /* CKJCommonSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonSectionModel.h; sourceTree = "<group>"; };
+		16F4705A2192E38D00C4D1B3 /* CKJCommonHeaderFooterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonHeaderFooterModel.m; sourceTree = "<group>"; };
+		16F4705B2192E38D00C4D1B3 /* CKJCommonCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonCellModel.h; sourceTree = "<group>"; };
+		16F4705D2192E38D00C4D1B3 /* CKJToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolView.h; sourceTree = "<group>"; };
+		16F4705E2192E38D00C4D1B3 /* CKJTableViewDelegateObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewDelegateObject.m; sourceTree = "<group>"; };
+		16F4705F2192E38D00C4D1B3 /* CKJPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJPickerView.m; sourceTree = "<group>"; };
+		16F470602192E38D00C4D1B3 /* CKJTableViewHeaderFooterEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewHeaderFooterEmptyView.m; sourceTree = "<group>"; };
+		16F470612192E38D00C4D1B3 /* CKJCommonTableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonTableViewHeaderFooterView.h; sourceTree = "<group>"; };
+		16F470622192E38D00C4D1B3 /* CKJSimpleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSimpleTableView.m; sourceTree = "<group>"; };
+		16F470632192E38D00C4D1B3 /* CKJToolPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolPickerView.m; sourceTree = "<group>"; };
+		16F470642192E38D00C4D1B3 /* CKJCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCell.h; sourceTree = "<group>"; };
+		16F470652192E38D00C4D1B3 /* CKJDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJDatePickerView.m; sourceTree = "<group>"; };
+		16F470662192E38D00C4D1B3 /* CKJTitleStyleHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTitleStyleHeaderFooterView.h; sourceTree = "<group>"; };
+		16F470672192E38D00C4D1B3 /* CKJCommonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonTableViewCell.h; sourceTree = "<group>"; };
+		16F470682192E38D00C4D1B3 /* CKJToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolView.m; sourceTree = "<group>"; };
+		16F470692192E38D00C4D1B3 /* CKJPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJPickerView.h; sourceTree = "<group>"; };
+		16F4706A2192E38D00C4D1B3 /* CKJTableViewDelegateObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewDelegateObject.h; sourceTree = "<group>"; };
+		16F4706B2192E38D00C4D1B3 /* CKJCommonTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonTableViewHeaderFooterView.m; sourceTree = "<group>"; };
+		16F4706C2192E38D00C4D1B3 /* CKJTableViewHeaderFooterEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewHeaderFooterEmptyView.h; sourceTree = "<group>"; };
+		16F4706D2192E38D00C4D1B3 /* CKJCommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonTableViewCell.m; sourceTree = "<group>"; };
+		16F4706E2192E38D00C4D1B3 /* CKJDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJDatePickerView.h; sourceTree = "<group>"; };
+		16F4706F2192E38D00C4D1B3 /* CKJTitleStyleHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTitleStyleHeaderFooterView.m; sourceTree = "<group>"; };
+		16F470702192E38D00C4D1B3 /* CKJCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCell.m; sourceTree = "<group>"; };
+		16F470712192E38D00C4D1B3 /* CKJToolPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolPickerView.h; sourceTree = "<group>"; };
+		16F470722192E38D00C4D1B3 /* CKJSimpleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableView.h; sourceTree = "<group>"; };
 		955997DF209AECF900163047 /* KJSupportObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KJSupportObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		955997E2209AECF900163047 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		955997E3209AECF900163047 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -118,90 +124,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		16340383214FECDF00C458D4 /* Objc */ = {
-			isa = PBXGroup;
-			children = (
-				16340384214FECDF00C458D4 /* KJSupportObjc.h */,
-				16340385214FECDF00C458D4 /* Category */,
-				1634038A214FECDF00C458D4 /* Other */,
-				1634038D214FECDF00C458D4 /* Controller */,
-				16340390214FECDF00C458D4 /* Model */,
-				16340397214FECDF00C458D4 /* View */,
-			);
-			path = Objc;
-			sourceTree = "<group>";
-		};
-		16340385214FECDF00C458D4 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				16340386214FECDF00C458D4 /* NSObject+WDYHFCategory.m */,
-				16340387214FECDF00C458D4 /* UIView+CKJDesingable.h */,
-				16340388214FECDF00C458D4 /* NSObject+WDYHFCategory.h */,
-				16340389214FECDF00C458D4 /* UIView+CKJDesingable.m */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		1634038A214FECDF00C458D4 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				1634038B214FECDF00C458D4 /* LightStorageManager.h */,
-				1634038C214FECDF00C458D4 /* LightStorageManager.m */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
-		1634038D214FECDF00C458D4 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1634038E214FECDF00C458D4 /* CKJBaseTableViewToolVC.m */,
-				1634038F214FECDF00C458D4 /* CKJBaseTableViewToolVC.h */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		16340390214FECDF00C458D4 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				16340391214FECDF00C458D4 /* CKJCommonSectionModel.m */,
-				16340392214FECDF00C458D4 /* CKJCommonCellModel.m */,
-				16340393214FECDF00C458D4 /* CKJCommonHeaderFooterModel.h */,
-				16340394214FECDF00C458D4 /* CKJCommonSectionModel.h */,
-				16340395214FECDF00C458D4 /* CKJCommonHeaderFooterModel.m */,
-				16340396214FECDF00C458D4 /* CKJCommonCellModel.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		16340397214FECDF00C458D4 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				16340398214FECDF00C458D4 /* CKJToolView.h */,
-				16340399214FECDF00C458D4 /* CKJTableViewDelegateObject.m */,
-				1634039A214FECDF00C458D4 /* CKJPickerView.m */,
-				1634039B214FECDF00C458D4 /* CKJTableViewHeaderFooterEmptyView.m */,
-				1634039C214FECDF00C458D4 /* CKJCommonTableViewHeaderFooterView.h */,
-				1634039D214FECDF00C458D4 /* CKJSimpleTableView.m */,
-				1634039E214FECDF00C458D4 /* CKJToolPickerView.m */,
-				1634039F214FECDF00C458D4 /* CKJCell.h */,
-				163403A0214FECDF00C458D4 /* CKJDatePickerView.m */,
-				163403A1214FECDF00C458D4 /* CKJTitleStyleHeaderFooterView.h */,
-				163403A2214FECDF00C458D4 /* CKJCommonTableViewCell.h */,
-				163403A3214FECDF00C458D4 /* CKJToolView.m */,
-				163403A4214FECDF00C458D4 /* CKJPickerView.h */,
-				163403A5214FECDF00C458D4 /* CKJTableViewDelegateObject.h */,
-				163403A6214FECDF00C458D4 /* CKJCommonTableViewHeaderFooterView.m */,
-				163403A7214FECDF00C458D4 /* CKJTableViewHeaderFooterEmptyView.h */,
-				163403A8214FECDF00C458D4 /* CKJCommonTableViewCell.m */,
-				163403A9214FECDF00C458D4 /* CKJDatePickerView.h */,
-				163403AA214FECDF00C458D4 /* CKJTitleStyleHeaderFooterView.m */,
-				163403AB214FECDF00C458D4 /* CKJCell.m */,
-				163403AC214FECDF00C458D4 /* CKJToolPickerView.h */,
-				163403AD214FECDF00C458D4 /* CKJSimpleTableView.h */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		1657521720DCD4EB00CB0C8F /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +138,94 @@
 				1657522020DCD4EB00CB0C8F /* 0.png */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		16F470442192E38D00C4D1B3 /* Objc */ = {
+			isa = PBXGroup;
+			children = (
+				16F470452192E38D00C4D1B3 /* KJSupportObjc.h */,
+				16F470462192E38D00C4D1B3 /* Category */,
+				16F4704B2192E38D00C4D1B3 /* Other */,
+				16F470522192E38D00C4D1B3 /* Controller */,
+				16F470552192E38D00C4D1B3 /* Model */,
+				16F4705C2192E38D00C4D1B3 /* View */,
+			);
+			path = Objc;
+			sourceTree = "<group>";
+		};
+		16F470462192E38D00C4D1B3 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				16F470472192E38D00C4D1B3 /* NSObject+WDYHFCategory.m */,
+				16F470482192E38D00C4D1B3 /* UIView+CKJDesingable.h */,
+				16F470492192E38D00C4D1B3 /* NSObject+WDYHFCategory.h */,
+				16F4704A2192E38D00C4D1B3 /* UIView+CKJDesingable.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		16F4704B2192E38D00C4D1B3 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				16F4704C2192E38D00C4D1B3 /* FileManagerTool.m */,
+				16F4704D2192E38D00C4D1B3 /* KJCommonManager.m */,
+				16F4704E2192E38D00C4D1B3 /* LightStorageManager.h */,
+				16F4704F2192E38D00C4D1B3 /* FileManagerTool.h */,
+				16F470502192E38D00C4D1B3 /* KJCommonManager.h */,
+				16F470512192E38D00C4D1B3 /* LightStorageManager.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		16F470522192E38D00C4D1B3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				16F470532192E38D00C4D1B3 /* CKJBaseTableViewToolVC.m */,
+				16F470542192E38D00C4D1B3 /* CKJBaseTableViewToolVC.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		16F470552192E38D00C4D1B3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				16F470562192E38D00C4D1B3 /* CKJCommonSectionModel.m */,
+				16F470572192E38D00C4D1B3 /* CKJCommonCellModel.m */,
+				16F470582192E38D00C4D1B3 /* CKJCommonHeaderFooterModel.h */,
+				16F470592192E38D00C4D1B3 /* CKJCommonSectionModel.h */,
+				16F4705A2192E38D00C4D1B3 /* CKJCommonHeaderFooterModel.m */,
+				16F4705B2192E38D00C4D1B3 /* CKJCommonCellModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		16F4705C2192E38D00C4D1B3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				16F4705D2192E38D00C4D1B3 /* CKJToolView.h */,
+				16F4705E2192E38D00C4D1B3 /* CKJTableViewDelegateObject.m */,
+				16F4705F2192E38D00C4D1B3 /* CKJPickerView.m */,
+				16F470602192E38D00C4D1B3 /* CKJTableViewHeaderFooterEmptyView.m */,
+				16F470612192E38D00C4D1B3 /* CKJCommonTableViewHeaderFooterView.h */,
+				16F470622192E38D00C4D1B3 /* CKJSimpleTableView.m */,
+				16F470632192E38D00C4D1B3 /* CKJToolPickerView.m */,
+				16F470642192E38D00C4D1B3 /* CKJCell.h */,
+				16F470652192E38D00C4D1B3 /* CKJDatePickerView.m */,
+				16F470662192E38D00C4D1B3 /* CKJTitleStyleHeaderFooterView.h */,
+				16F470672192E38D00C4D1B3 /* CKJCommonTableViewCell.h */,
+				16F470682192E38D00C4D1B3 /* CKJToolView.m */,
+				16F470692192E38D00C4D1B3 /* CKJPickerView.h */,
+				16F4706A2192E38D00C4D1B3 /* CKJTableViewDelegateObject.h */,
+				16F4706B2192E38D00C4D1B3 /* CKJCommonTableViewHeaderFooterView.m */,
+				16F4706C2192E38D00C4D1B3 /* CKJTableViewHeaderFooterEmptyView.h */,
+				16F4706D2192E38D00C4D1B3 /* CKJCommonTableViewCell.m */,
+				16F4706E2192E38D00C4D1B3 /* CKJDatePickerView.h */,
+				16F4706F2192E38D00C4D1B3 /* CKJTitleStyleHeaderFooterView.m */,
+				16F470702192E38D00C4D1B3 /* CKJCell.m */,
+				16F470712192E38D00C4D1B3 /* CKJToolPickerView.h */,
+				16F470722192E38D00C4D1B3 /* CKJSimpleTableView.h */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		955997D6209AECF900163047 = {
@@ -239,7 +249,7 @@
 		955997E1209AECF900163047 /* KJSupportObjc */ = {
 			isa = PBXGroup;
 			children = (
-				16340383214FECDF00C458D4 /* Objc */,
+				16F470442192E38D00C4D1B3 /* Objc */,
 				955997E2209AECF900163047 /* AppDelegate.h */,
 				955997E3209AECF900163047 /* AppDelegate.m */,
 				955997E5209AECF900163047 /* ViewController.h */,
@@ -395,27 +405,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				163403BE214FECDF00C458D4 /* CKJTitleStyleHeaderFooterView.m in Sources */,
-				163403BB214FECDF00C458D4 /* CKJToolView.m in Sources */,
+				16F4707C2192E38D00C4D1B3 /* CKJTableViewDelegateObject.m in Sources */,
+				16F470812192E38D00C4D1B3 /* CKJDatePickerView.m in Sources */,
+				16F4707A2192E38D00C4D1B3 /* CKJCommonCellModel.m in Sources */,
+				16F470772192E38D00C4D1B3 /* LightStorageManager.m in Sources */,
+				16F4707D2192E38D00C4D1B3 /* CKJPickerView.m in Sources */,
+				16F470822192E38D00C4D1B3 /* CKJToolView.m in Sources */,
+				16F470852192E38D00C4D1B3 /* CKJTitleStyleHeaderFooterView.m in Sources */,
+				16F470832192E38D00C4D1B3 /* CKJCommonTableViewHeaderFooterView.m in Sources */,
+				16F470842192E38D00C4D1B3 /* CKJCommonTableViewCell.m in Sources */,
+				16F470802192E38D00C4D1B3 /* CKJToolPickerView.m in Sources */,
+				16F4707F2192E38D00C4D1B3 /* CKJSimpleTableView.m in Sources */,
 				955997E7209AECF900163047 /* ViewController.m in Sources */,
-				163403B4214FECDF00C458D4 /* CKJCommonHeaderFooterModel.m in Sources */,
-				163403B2214FECDF00C458D4 /* CKJCommonSectionModel.m in Sources */,
 				955997F2209AECFA00163047 /* main.m in Sources */,
-				163403B1214FECDF00C458D4 /* CKJBaseTableViewToolVC.m in Sources */,
-				163403B3214FECDF00C458D4 /* CKJCommonCellModel.m in Sources */,
-				163403BF214FECDF00C458D4 /* CKJCell.m in Sources */,
-				163403B8214FECDF00C458D4 /* CKJSimpleTableView.m in Sources */,
-				163403B0214FECDF00C458D4 /* LightStorageManager.m in Sources */,
-				163403B6214FECDF00C458D4 /* CKJPickerView.m in Sources */,
-				163403B9214FECDF00C458D4 /* CKJToolPickerView.m in Sources */,
-				163403BD214FECDF00C458D4 /* CKJCommonTableViewCell.m in Sources */,
-				163403B7214FECDF00C458D4 /* CKJTableViewHeaderFooterEmptyView.m in Sources */,
-				163403B5214FECDF00C458D4 /* CKJTableViewDelegateObject.m in Sources */,
-				163403AE214FECDF00C458D4 /* NSObject+WDYHFCategory.m in Sources */,
-				163403BC214FECDF00C458D4 /* CKJCommonTableViewHeaderFooterView.m in Sources */,
-				163403BA214FECDF00C458D4 /* CKJDatePickerView.m in Sources */,
+				16F470732192E38D00C4D1B3 /* NSObject+WDYHFCategory.m in Sources */,
+				16F4707B2192E38D00C4D1B3 /* CKJCommonHeaderFooterModel.m in Sources */,
+				16F470862192E38D00C4D1B3 /* CKJCell.m in Sources */,
+				16F470762192E38D00C4D1B3 /* KJCommonManager.m in Sources */,
+				16F470752192E38D00C4D1B3 /* FileManagerTool.m in Sources */,
 				955997E4209AECF900163047 /* AppDelegate.m in Sources */,
-				163403AF214FECDF00C458D4 /* UIView+CKJDesingable.m in Sources */,
+				16F4707E2192E38D00C4D1B3 /* CKJTableViewHeaderFooterEmptyView.m in Sources */,
+				16F470742192E38D00C4D1B3 /* UIView+CKJDesingable.m in Sources */,
+				16F470782192E38D00C4D1B3 /* CKJBaseTableViewToolVC.m in Sources */,
+				16F470792192E38D00C4D1B3 /* CKJCommonSectionModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

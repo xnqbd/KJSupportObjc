@@ -8,23 +8,32 @@
 
 #import "CKJToolView.h"
 
+
+
+
 @class CKJPickerView, CKJPickerComponentModel;
 
 
 @interface CKJPickerRowModel : NSObject
 
-@property (assign, nonatomic) CGFloat rowHeight;
+//@property (assign, nonatomic) CGFloat rowHeight;
 
 @property (copy, nonatomic, nullable) NSString *title;
 
 @property (copy, nonatomic, nullable) NSAttributedString *attributedTitle;
 
-@property (strong, nonatomic) UIView *view;
+@property (strong, nonatomic, nullable) UIView *view;
+
+
+#pragma mark - 子类可以重写西面方法，不需要方法的重写返回nil即可
 
 /** 设置Title */
 - (nullable NSString *)returnTitleOfComponent:(NSInteger)component row:(NSInteger)row componentModel:(CKJPickerComponentModel *)componentModel pickerView:(UIPickerView *)pickerView;
 /** 如果设置了AttributedTitle，那么设置Title会没有作用 */
 - (nullable NSAttributedString *)returnAttributedTitleOfComponent:(NSInteger)component row:(NSInteger)row componentModel:(CKJPickerComponentModel *)componentModel pickerView:(UIPickerView *)pickerView;
+/** 如果设置了View，那么设置Title和AttributedTitle会没有作用 */
+- (__kindof UIView *)returnViewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view componentModel:(CKJPickerComponentModel *)componentModel pickerView:(UIPickerView *)pickerView;
+
 @end
 
 @interface CKJPickerComponentModel : NSObject
@@ -34,19 +43,26 @@
  */
 @property (assign, nonatomic) NSInteger defaultSelectIndex;
 
+/**
+ 宽度（直接设置宽度等于一个值，比如 width = 100）
+ */
 @property (assign, nonatomic) CGFloat width;
+/**
+ 宽度倍数（设置的当前分区的宽度占当前PickerView的宽度的倍数，比如 multipliedByPickerView = 0.3）
+ */
+@property (assign, nonatomic) CGFloat widthOf_MultipliedByPickerView;
+
+@property (assign, nonatomic) CGFloat rowHeight;
+
 /**  这里面可能有各种类型的model */
 @property (strong, nonatomic) NSArray <CKJPickerRowModel *>*modelArray;
 
 @end
 
 
-
-
-
 @interface CKJPickerView : UIPickerView
 
 @property (strong, nonatomic) NSArray <CKJPickerComponentModel *>* _Nullable dataArr;
-;
+
 
 @end

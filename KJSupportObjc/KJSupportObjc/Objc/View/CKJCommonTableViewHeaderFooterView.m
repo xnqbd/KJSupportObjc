@@ -24,7 +24,7 @@
 - (void)setupSubViews {
 }
 
-- (void)setupData:(CKJCommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(UITableView *)tableView {
+- (void)setupData:(CKJCommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(CKJSimpleTableView *)tableView {
     self.textLabel.text = headerFooterModel.systemTitle;
     self.detailTextLabel.text = headerFooterModel.systemSubTitle;
 }

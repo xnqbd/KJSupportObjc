@@ -13,15 +13,15 @@
 
 @interface CKJTitleStyleHeaderFooterModel : CKJCommonHeaderFooterModel
 
-@property (copy, nonatomic) NSString *customTitle;
+@property (copy, nonatomic) NSAttributedString *attributedTitle;
 
-+ (instancetype)modelTitle:(NSString *)title;
++ (instancetype)modelWithAttributedString:(NSAttributedString *)attributedString type:(CKJCommonHeaderFooterType)type;
 
 @end
 
 
 
-@class CKJTitleStyleHeaderFooterView;
+@class CKJTitleStyleHeaderFooterView, CKJSimpleTableView;
 
 @protocol TitleStyleHeaderFooterViewDelegate <NSObject>
 
@@ -37,7 +37,7 @@
 /**
  就像cellForRow一样调用的更新数据
  */
-- (void)setupCKJTitleStyleHeaderFooterView:(CKJTitleStyleHeaderFooterView *)titleHeaderFooterView label:(UILabel *)label bgV:(UIView *)bgv data:(CKJCommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(UITableView *)tableView;
+- (void)setupCKJTitleStyleHeaderFooterView:(CKJTitleStyleHeaderFooterView *)titleHeaderFooterView label:(UILabel *)label bgV:(UIView *)bgv data:(CKJCommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(CKJSimpleTableView *)tableView;
 
 @end
 

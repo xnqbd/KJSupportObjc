@@ -14,6 +14,7 @@
 #import "CKJBaseTableViewToolVC.h"
 #import "CKJToolView.h"
 #import "CKJDatePickerView.h"
+#import "UIView+CKJDesingable.h"
 
 
 #endif /* KJSupportObjc_h */

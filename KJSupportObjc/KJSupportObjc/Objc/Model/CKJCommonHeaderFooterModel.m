@@ -10,6 +10,15 @@
 
 @implementation CKJCommonHeaderFooterModel
 
+
+- (instancetype)init {
+    if (self = [super init]) {
+        self.displayInTableView = YES;
+    }
+    return self;
+}
+
+
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
 }

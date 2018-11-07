@@ -40,6 +40,20 @@ IB_DESIGNABLE
 @end
 
 
+#pragma mark - -------------UILabel-------------
+
+@interface UILabel (CKJDesingable)
+
+/**
+ *  行间距
+ */
+@property (assign, nonatomic) IBInspectable CGFloat kLineSpace;
+/**
+ *  间距
+ */
+@property (assign, nonatomic) IBInspectable CGFloat kWordSpace;
+
+@end
 
 
 

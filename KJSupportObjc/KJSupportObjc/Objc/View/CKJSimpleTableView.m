@@ -27,6 +27,7 @@
 }
 
 #pragma mark - UITableViewDelegate
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return [self.tableViewDelegateObject tableView:tableView heightForHeaderInSection:section];
 }
@@ -45,7 +46,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     if ([self.simpleTableViewDelegate respondsToSelector:@selector(kj_tableView:didSelectRowAtSection:row:selectIndexPath:model:cell:)]) {
         NSInteger section = indexPath.section, row = indexPath.row;
-        CKJCommonSectionModel *sectionModel = self.dataArr[section];
+//        CKJCommonSectionModel *sectionModel = self.dataArr[section];
         // 显示的数组
         NSArray <CKJCommonCellModel *>*displayModelArray = [self displayCellModelArrayAtSection:section];
         
@@ -88,6 +89,8 @@
 - (UITableViewCell *)tableView:(CKJSimpleTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger section = indexPath.section, row = indexPath.row;
     
+    
+    
     CKJCommonSectionModel *sectionModel = self.dataArr[section];
     [sectionModel setValue:@(section) forKey:@"currentSection"];
     // 显示的数组
@@ -100,8 +103,6 @@
     
     NSString *kj_nameSpace = [CKJSimpleTableView kj_nameSpace];
     
-    
-    
     if ([modelName containsString:kj_nameSpace]) { // 为了Swift处理命名空间
         NSUInteger from = [modelName rangeOfString:kj_nameSpace].length;
         modelName = [modelName substringFromIndex:from];
@@ -111,14 +112,16 @@
         NSDictionary *dic = self.cell_Model_keyValues[modelName];
         NSString *cellClass = dic[cellKEY];
         BOOL isRegisterNib = [dic[isRegisterNibKEY] boolValue];
+//        NSDictionary *configDic = dic[configDicKEY];
+        
         if (cellClass) {
             if (isRegisterNib) {
 #warning 如果没有取出cell，看看xib文件有没有加入本项目的target
                 cell = [tableView dequeueReusableCellWithIdentifier:cellClass forIndexPath:indexPath];
             } else {
-                cell = [tableView dequeueReusableCellWithIdentifier:cellClass forIndexPath:indexPath];
+                cell = [tableView dequeueReusableCellWithIdentifier:cellClass];
                 if (cell == nil) {
-                    cell = [[[CKJSimpleTableView returnClass_ClassString:cellClass] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellClass];
+                    cell = [[[CKJSimpleTableView returnClass_ClassString:cellClass] alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellClass configDic:dic];
                 }
                 if ([cell isKindOfClass:[CKJCell class]]) {
                     ((CKJCell *)cell).ckjCellDataSource = tableView.ckjCellDataSource;
@@ -134,6 +137,7 @@
     cell.cellModel = model;
     model.cell = cell;
     [cell setupData:model section:section row:row selectIndexPath:indexPath tableView:(CKJSimpleTableView *)tableView];
+    
     return cell;
 }
 
@@ -175,7 +179,6 @@
     }
 }
 
-
 - (nullable NSIndexPath *)indexPathOf_CKJCommonCellModel_Flag:(int)flag {
     __block NSIndexPath *indexPath = nil;
     [self.dataArr enumerateObjectsUsingBlock:^(CKJCommonSectionModel * _Nonnull sectionModel, NSUInteger sectionIdx, BOOL * _Nonnull stop) {
@@ -203,126 +206,301 @@
 #pragma mark - 删除添加操作
 
 /**
- 拼接在最后一个分区的 最后一行
- */
-- (void)appendCellModelAtLastSectionLastRow:(CKJCommonCellModel *)model {
-    CKJSimpleTableView *tableV = self;
-    NSArray <CKJCommonSectionModel *>*sections = tableV.dataArr;
-    NSInteger section = sections.count - 1;
-    
-    CKJCommonSectionModel *lastSection = sections.lastObject;
-    
-    NSInteger row = lastSection.modelArray.count;
-    
-    [self insertCellModel:model atSection:section row:row];
-}
-
-/**
  拼接分区
  */
 - (void)appendCKJCommonSectionModel:(CKJCommonSectionModel *)sectionModel {
     CKJSimpleTableView *tableV = self;
-    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray arrayWithArray:tableV.dataArr];
+    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray kjwd_arrayWithArray:tableV.dataArr];
     [sections kjwd_addObject:sectionModel];
     tableV.dataArr = sections;
 }
-/**
- 插入模型在某个分区的某一行
- */
-- (void)insertCellModel:(CKJCommonCellModel *)model atSection:(NSInteger)section row:(NSInteger)row {
-    CKJSimpleTableView *tableV = self;
+- (void)appendCKJCommonSectionModels:(NSArray <CKJCommonSectionModel *>*_Nonnull)sectionModels {
+    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
+    [sections kjwd_addObjectsFromArray:sectionModels];
+    self.dataArr = sections;
+}
+//- (void)appendCKJCommonSectionModels:(NSArray <CKJCommonSectionModel *>*_Nonnull)sectionModels withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
+//    [self appendCKJCommonSectionModels:sectionModels];
+//    
+//    void (^block)(void) = ^{
+//
+//        WDCKJdispatch_async_main_queue(^{
+//            [self deleteSections:indexSet withRowAnimation:rowAnimation];
+//        });
+//    };
+//    animationBlock ? animationBlock(block) : nil;
+//}
+
+- (BOOL)kjwd_insertCellModelsInAllCellModel:(nonnull NSArray<CKJCommonCellModel *>*)array section:(NSInteger)section row:(NSInteger)row {
     
-    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray arrayWithArray:tableV.dataArr];
+    if (array == nil) {
+        return NO;
+    }
+    
+    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
+    
     CKJCommonSectionModel *sectionModel = [sections kjwd_objectAtIndex:section];
-    NSMutableArray <CKJCommonCellModel *>*cellModelArray = [NSMutableArray arrayWithArray:sectionModel.modelArray];
+    NSMutableArray <CKJCommonCellModel *>*cellModelArray = [NSMutableArray kjwd_arrayWithArray:sectionModel.modelArray];
     
-    [cellModelArray kjwd_insertObject:model atIndex:row];
+    if ([cellModelArray kjwd_insertObjects:array atIndex:row] == NO) {
+        return NO;
+    }
     sectionModel.modelArray = cellModelArray;
-    
-    tableV.dataArr = sections;
+    self.dataArr = sections;
+    return YES;
 }
 
-- (void)appendCellModelArray:(NSArray <CKJCommonCellModel *>*)array atLastRowOfSection:(NSInteger)section {
+
+- (void)kjwd_insertCellModelInAllCellModel:(nonnull CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
     
-    CKJSimpleTableView *tableV = self;
-    
-    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray arrayWithArray:tableV.dataArr];
-    CKJCommonSectionModel *sectionModel = [sections kjwd_objectAtIndex:section];
-    NSMutableArray <CKJCommonCellModel *>*cellModelArray = [NSMutableArray arrayWithArray:sectionModel.modelArray];
-    
-    [cellModelArray kjwd_addObjectsFromArray:array];
-    sectionModel.modelArray = cellModelArray;
-    
-    tableV.dataArr = sections;
+    if ([self kjwd_insertCellModelsInAllCellModel:@[model] section:section row:row]) {
+        NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:section];
+        [self insertRowsAtIndexPaths:@[path] withRowAnimation:rowAnimation];
+    }
 }
+
+- (BOOL)appendCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section {
+    if (WDKJ_IsNull_Array(array)) {
+        return NO;
+    }
+    
+    if (array.count == 0) {
+        return NO;
+    }
+    
+    if (section >= self.dataArr.count) {
+        return NO;
+    }
+    
+    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
+    
+    CKJCommonSectionModel *sectionModel = [sections kjwd_objectAtIndex:section];
+    NSMutableArray <CKJCommonCellModel *>*all_cellModelArray = [NSMutableArray kjwd_arrayWithArray:sectionModel.modelArray];
+
+    
+    [all_cellModelArray kjwd_addObjectsFromArray:array];
+    sectionModel.modelArray = all_cellModelArray;
+    
+    self.dataArr = sections;
+    return YES;
+}
+
+- (void)appendCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
+    // 获取Array在拼接之前
+    NSArray <CKJCommonCellModel *>*before_displayCellModelArray = [self displayCellModelArrayAtSection:section];
+    
+    if ([self appendCellModelArray:array atLastRow_InAllCellModelArrayOfSection:section] == NO) {
+        return;
+    }
+    NSMutableArray *paths = [NSMutableArray array];
+    
+    NSUInteger count = before_displayCellModelArray.count;
+    
+    for (NSUInteger i = count; i < count + array.count; i++) {
+        NSIndexPath *path = [NSIndexPath indexPathForRow:i inSection:section];
+        [paths addObject:path];
+    }
+    if (paths.count == 0) return;
+    
+    // 注意：在这里有时候，数据没有问题，但是就是会崩溃在这里，有时候是数据不同步
+    [self insertRowsAtIndexPaths:paths withRowAnimation:rowAnimation];
+}
+
+- (BOOL)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array {
+    return [self appendCellModelArray:array atLastRow_InAllCellModelArrayOfSection:self.dataArr.count - 1];
+}
+
+- (void)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
+    [self appendCellModelArray:array atLastRow_InAllCellModelArrayOfSection:self.dataArr.count - 1 withRowAnimation:rowAnimation animationBlock:animationBlock];
+}
+
 /**
  删除模型在某个分区的某一行
  */
-- (void)removeCellModelAtSection:(NSInteger)section row:(NSInteger)row {
-    CKJSimpleTableView *tableV = self;
+- (void)removeCellModelAtSection:(NSInteger)section rows:(NSArray <NSNumber *>*_Nonnull)rows removeHiddenCellModel:(BOOL)removeHiddenCellModel {
+    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
     
-    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray arrayWithArray:tableV.dataArr];
     CKJCommonSectionModel *sectionModel = [sections kjwd_objectAtIndex:section];
-    NSMutableArray <CKJCommonCellModel *>*cellModelArray = [NSMutableArray arrayWithArray:sectionModel.modelArray];
+    NSMutableArray <CKJCommonCellModel *>*all_cellModelArray = [NSMutableArray kjwd_arrayWithArray:sectionModel.modelArray];
+    NSArray <CKJCommonCellModel *>*displayCellModelArray = [self displayCellModelArrayAtSection:section];
     
-    [cellModelArray kjwd_removeObjectAtIndex:row];
-    sectionModel.modelArray = cellModelArray;
+    // 分为两部分， 1.part1  rows在all_cellModelArray的位置  2.  隐藏的 部分
     
-    tableV.dataArr = sections;
+    
+    // 找到所有rows在all_cellModelArray的位置
+    NSArray <NSNumber *>*part1 = [self returnIdexArray_displayCellModelArray:displayCellModelArray all_cellModelArray:all_cellModelArray displayCellModelArrayRows:rows];
+    
+    if (removeHiddenCellModel) {
+        
+        // 所有删除的Index下标
+        NSMutableArray <NSNumber *>*allDeleteIndex = [NSMutableArray array];
+        
+        [allDeleteIndex kjwd_addObjectsFromArray:part1];
+        
+        // 找到隐藏的部分的下标
+        NSArray <NSNumber *>*hiddenIndex = [self returnHiddenIndex_all_cellModelArray:all_cellModelArray];
+        [allDeleteIndex kjwd_addObjectsFromArray:hiddenIndex];
+        
+        NSLog(@"所有删除的下标 %@ ", allDeleteIndex);
+        // 进行删除操作
+        [all_cellModelArray kjwd_removeAllObjects_IncludedRows:allDeleteIndex];
+        
+    } else {
+        
+        [all_cellModelArray kjwd_removeAllObjects_IncludedRows:part1];
+    }
+    
+    sectionModel.modelArray = all_cellModelArray;
+    self.dataArr = sections;
 }
-/**
- 删除模型在某个分区除了指定行的全有行（只保留指定行）
- */
-- (void)removeAllCellModelAtSection:(NSInteger)section notIncludedRow:(NSInteger)notIncludedRow {
+
+- (void)removeCellModelAtSection:(NSInteger)section rows:(NSArray <NSNumber *>*_Nonnull)rows removeHiddenCellModel:(BOOL)removeHiddenCellModel withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
     
-    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray arrayWithArray:self.dataArr];
-    CKJCommonSectionModel *sectionModel = [sections kjwd_objectAtIndex:section];
-    NSMutableArray <CKJCommonCellModel *>*cellModelArray = [NSMutableArray arrayWithArray:sectionModel.modelArray];
+    NSArray <CKJCommonCellModel *>*displayCellModelArray = [self displayCellModelArrayAtSection:section];
     
-    [cellModelArray kjwd_reverseEnumerateObjectsUsingBlock:^(CKJCommonCellModel *obj, NSUInteger idx, BOOL *stop) {
-        if (idx != notIncludedRow) {
-            [cellModelArray kjwd_safeRemoveObjectAtIndex:idx];
-        }
+    
+    // 取交集
+    NSArray <NSNumber *>*arr = [displayCellModelArray.kjwd_indexArray kjwd_intersectWithArray:rows].allObjects;
+//    NSIndexSet *indexSet = arr.kjwd_indexSetValue;
+    
+    NSMutableArray <NSIndexPath *>*paths = [NSMutableArray array];
+    [arr enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSIndexPath *path = [NSIndexPath indexPathForRow:obj.integerValue inSection:section];
+        [paths addObject:path];
     }];
-    sectionModel.modelArray = cellModelArray;
-    self.dataArr = sections;
+
+    void (^block)(void) = ^{
+        WDCKJdispatch_async_main_queue(^{
+            [self deleteRowsAtIndexPaths:paths withRowAnimation:rowAnimation];
+        });
+    };
+    
+    [self removeCellModelAtSection:section rows:rows removeHiddenCellModel:removeHiddenCellModel];
+    
+    animationBlock ? animationBlock(block) : nil;
 }
 
-
-- (void)removeAllCellModelAtSection:(NSInteger)section notIncludedRows:(NSArray <NSNumber *>*)notIncludedRows {
+- (void)removeAllCellModelAtSection:(NSInteger)section keepDisplayRows:(NSArray <NSNumber *>*)keepDisplayRows removeHiddenCellModel:(BOOL)removeHiddenCellModel {
+    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
     
-    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray arrayWithArray:self.dataArr];
     CKJCommonSectionModel *sectionModel = [sections kjwd_objectAtIndex:section];
-    NSMutableArray <CKJCommonCellModel *>*cellModelArray = [NSMutableArray arrayWithArray:sectionModel.modelArray];
-    [cellModelArray kjwd_removeAllObjects_notIncludedRows:notIncludedRows];
+    NSMutableArray <CKJCommonCellModel *>*all_cellModelArray = [NSMutableArray kjwd_arrayWithArray:sectionModel.modelArray];
+    NSArray <CKJCommonCellModel *>*displayCellModelArray = [self displayCellModelArrayAtSection:section];
     
-    sectionModel.modelArray = cellModelArray;
+    if (removeHiddenCellModel) {
+        [all_cellModelArray kjwd_removeAllObjects_notIncludedRows:keepDisplayRows];
+    } else {
+        // 分为两部分， 1.part1  保留部分notIncludedRows (应该找notIncludedRows在all_cellModelArray的位置)   2.  隐藏的 部分
+        
+        // 所有保留的Indexb下标
+        NSMutableArray <NSNumber *>*allKeepIndex = [NSMutableArray array];
+        
+        // 找到所有notIncludedRows在all_cellModelArray的位置
+        NSArray <NSNumber *>*part1 = [self returnIdexArray_displayCellModelArray:displayCellModelArray all_cellModelArray:all_cellModelArray displayCellModelArrayRows:keepDisplayRows];
+        [allKeepIndex kjwd_addObjectsFromArray:part1];
+        
+        // 找到隐藏的部分的下标
+        NSArray <NSNumber *>*hiddenIndex = [self returnHiddenIndex_all_cellModelArray:all_cellModelArray];
+        [allKeepIndex kjwd_addObjectsFromArray:hiddenIndex];
+        
+//        NSLog(@"所有保留的下标 %@ ", allKeepIndex);
+        // 进行删除操作
+        [all_cellModelArray kjwd_removeAllObjects_notIncludedRows:allKeepIndex];
+    }
+    
+    sectionModel.modelArray = all_cellModelArray;
     self.dataArr = sections;
 }
+
+- (void)removeAllCellModelAtSection:(NSInteger)section keepDisplayRows:(NSArray <NSNumber *>*)keepDisplayRows removeHiddenCellModel:(BOOL)removeHiddenCellModel withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nonnull)(void(^_Nonnull animationBlock)(void)))animationBlock {
+    
+    NSArray <CKJCommonCellModel *>*displayCellModelArray = [self displayCellModelArrayAtSection:section];
+    
+    // blockz要在删除之前取到 index
+    void (^block)(void) = [self deleteAnimation_displayCellModelArray:displayCellModelArray youWantDeleteRows:nil orYouWantKeepRows:keepDisplayRows withRowAnimation:rowAnimation section:section];
+    
+    [self removeAllCellModelAtSection:section keepDisplayRows:keepDisplayRows removeHiddenCellModel:removeHiddenCellModel];
+    animationBlock ? animationBlock(block) : nil;
+}
+
 
 /**
  删除某个分区
  */
-- (void)removeSection:(NSInteger)section {
-    CKJSimpleTableView *tableV = self;
+- (void)removeSections:(NSArray <NSNumber *>*_Nonnull)includedSections {
+    if (includedSections == nil) return;
     
-    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray arrayWithArray:tableV.dataArr];
-    [sections kjwd_removeObjectAtIndex:section];
-    tableV.dataArr = sections;
+    NSMutableArray <CKJCommonSectionModel *>*_sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
+    
+    /*
+     
+     一共下面5个分区，
+     
+     0
+     1  需要删除
+     2
+     3  需要删除
+     4
+     
+     includedSections == @[ @1,  @3 , @9,  @20 ]
+     
+     */
+    
+
+   NSSet *set1 = [self.dataArr.kjwd_indexArray kjwd_intersectWithArray:includedSections];
+    //NSLog(@"差集 %@ ", set1);
+    
+    [_sections removeObjectsAtIndexes:set1.allObjects.kjwd_indexSetValue];
+    
+    self.dataArr = _sections;
+}
+
+- (void)removeSections:(NSArray <NSNumber *>*_Nonnull)includedSections withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nonnull)(void(^_Nonnull animationBlock)(void)))animationBlock {
+    
+    if (includedSections == nil) return;
+    
+    // 不要删除这个
+    NSArray *temp = self.dataArr;
+    
+    void (^block)(void) = ^{
+        // 取交集
+        NSArray *arr = [temp.kjwd_indexArray kjwd_intersectWithArray:includedSections].allObjects;
+        NSIndexSet *indexSet = arr.kjwd_indexSetValue;
+        
+        WDCKJdispatch_async_main_queue(^{
+            [self deleteSections:indexSet withRowAnimation:rowAnimation];
+        });
+    };
+    
+    [self removeSections:includedSections];
+    
+    animationBlock ? animationBlock(block) : nil;
 }
 
 /**
  删除全部分区（只保留指定分区）
  */
-- (void)removeAllSection_notIncludedSection:(NSInteger)notIncludedSection {
+- (void)removeAllSection_notIncludedSection:(NSArray<NSNumber *> *_Nonnull)notIncludedSections {
     
-    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray arrayWithArray:self.dataArr];
-    [sections kjwd_reverseEnumerateObjectsUsingBlock:^(CKJCommonSectionModel *obj, NSUInteger idx, BOOL *stop) {
-        if (idx != notIncludedSection) {
-            [sections kjwd_safeRemoveObjectAtIndex:idx];
-        }
-    }];
+    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
+    
+    [sections kjwd_removeAllObjects_notIncludedRows:notIncludedSections];
     self.dataArr = sections;
+}
+
+- (void)removeAllSection_notIncludedSection:(NSArray <NSNumber *>*_Nonnull)notIncludedSections withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
+    
+    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
+    NSIndexSet *willDelete = [sections kjwd_returnIndexSet_notIncludedRowsOfYou:notIncludedSections];
+    
+    [self removeAllSection_notIncludedSection:notIncludedSections];
+
+    void (^block)(void) = ^{
+        WDCKJdispatch_async_main_queue(^{
+            [self deleteSections:willDelete withRowAnimation:rowAnimation];
+        });
+    };
+    animationBlock ? animationBlock(block) : nil;
 }
 
 - (CKJTableViewDelegateObject *)tableViewDelegateObject {
@@ -332,11 +510,7 @@
     return _tableViewDelegateObject;
 }
 
-
-
-
 - (NSArray <CKJCommonCellModel *>*)displayCellModelArrayAtSection:(NSInteger)section {
-    
     CKJCommonSectionModel *sectionModel = [self.dataArr kjwd_objectAtIndex:section];
     
     // 显示的数组
@@ -401,9 +575,11 @@
             continue;
         }
         if (isRegisterNib) {
+//            NSLog(@"注册Nib %@ ", cellClass);
             [self registerNib:[UINib nibWithNibName:cellClass bundle:nil] forCellReuseIdentifier:cellClass];
         } else {
-            [self registerClass:NSClassFromString(cellClass) forCellReuseIdentifier:cellClass];
+//            NSLog(@"注册Class %@ ", cellClass);
+//            [self registerClass:NSClassFromString(cellClass) forCellReuseIdentifier:cellClass];
         }
     }
     
@@ -449,9 +625,85 @@
     [_footer_Model_keyValues addEntriesFromDictionary:dic];
     return _footer_Model_keyValues;
 }
-//- (void)dealloc {
+- (void)dealloc {
 //    NSLog(@"%@ %p 销毁", [self class], self);
-//}
+}
+
+#pragma mark - 其他
+
+
+
+#pragma mark - 公用
+- (NSArray <NSNumber *>*)returnIdexArray_displayCellModelArray:(NSArray <CKJCommonCellModel *>*)displayCellModelArray all_cellModelArray:(NSArray <CKJCommonCellModel *>*)all_cellModelArray displayCellModelArrayRows:(NSArray <NSNumber *>*)displayCellModelRows {
+    
+    // 找到所有notIncludedRows在all_cellModelArray的位置
+    NSMutableArray <NSNumber *>*idexArray = [NSMutableArray array];
+    
+    [displayCellModelRows enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CKJCommonCellModel *displayCellModel = [displayCellModelArray kjwd_objectAtIndex:obj.integerValue];
+        NSNumber *idexNumber = [all_cellModelArray kjwd_indexOfObject:displayCellModel];
+        [idexArray kjwd_addObject:idexNumber];
+    }];
+    return idexArray;
+}
+
+- (void(^)(void))deleteAnimation_displayCellModelArray:(NSArray <CKJCommonCellModel *>*)displayCellModelArray youWantDeleteRows:(NSArray <NSNumber *>*)deleteRows orYouWantKeepRows:(NSArray <NSNumber *>*)keepRows  withRowAnimation:(UITableViewRowAnimation)rowAnimation section:(NSInteger)section {
+    
+    NSMutableArray *displayArray = [NSMutableArray kjwd_arrayWithArray:displayCellModelArray];
+    
+    NSIndexSet *indexSet = [NSIndexSet indexSet];
+    
+    if (deleteRows) {
+        indexSet = [displayArray kjwd_returnIndexSet_IncludedRowsOfYou:deleteRows];
+    } else if (keepRows) {
+        indexSet = [displayArray kjwd_returnIndexSet_notIncludedRowsOfYou:keepRows];
+    }
+
+    void (^block)(void) = ^{
+        NSArray *temp = @[];
+        if (deleteRows) {
+            temp = deleteRows;
+        } else if (keepRows) {
+            temp = [displayArray kjwd_returnIndexSet_notIncludedRowsOfYou:keepRows].kjwd_returnArray;
+        }
+        
+        if ([self verification_deleteIndex:temp displayModel:displayArray] == NO) {
+            return;
+        }
+        WDCKJdispatch_async_main_queue(^{
+            NSMutableArray <NSIndexPath *>*result = [NSMutableArray array];
+            [indexSet enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+                NSIndexPath *path = [NSIndexPath indexPathForRow:idx inSection:section];
+                [result addObject:path];
+            }];
+            [self deleteRowsAtIndexPaths:result withRowAnimation:rowAnimation];
+        });
+    };
+    return block;
+}
+
+- (NSArray <NSNumber *>*)returnHiddenIndex_all_cellModelArray:(NSArray <CKJCommonCellModel *>*)all_cellModelArray {
+    NSMutableArray <NSNumber *>*hiddenIndex = [NSMutableArray array];
+    [all_cellModelArray kjwd_do_conformBlock:^BOOL(CKJCommonCellModel *obj, NSUInteger idx) {
+        return obj.displayInTableView == NO;
+    } handle:^(BOOL isConform, CKJCommonCellModel *obj, NSUInteger idx) {
+        if (isConform) {
+            [hiddenIndex addObject:@(idx)];
+        }
+    }];
+    return hiddenIndex;
+}
+
+- (BOOL)verification_deleteIndex:(NSArray <NSNumber *>*)deleteIndex displayModel:(NSArray *)displayModel {
+    
+    NSNumber *max = [deleteIndex valueForKeyPath:@"@max.self"];
+    if (max.integerValue >= displayModel.count) {
+        NSLog(@"警告!  不包含的越界，不包含的行Index是 %ld, 当前数组个数是%ld 当前数组%@", (long)max.integerValue, (long)displayModel.count, displayModel);
+        [self kjwd_reloadData];
+        return NO;
+    }
+    return YES;
+}
 
 @end
 

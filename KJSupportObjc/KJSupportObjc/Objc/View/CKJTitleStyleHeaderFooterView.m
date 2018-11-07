@@ -13,9 +13,11 @@
 
 @implementation CKJTitleStyleHeaderFooterModel
 
-+ (instancetype)modelTitle:(NSString *)title {
+
++ (instancetype)modelWithAttributedString:(NSAttributedString *)attributedString type:(CKJCommonHeaderFooterType)type {
     CKJTitleStyleHeaderFooterModel *model = [[self alloc] init];
-    model.customTitle = title;
+    model.attributedTitle = attributedString;
+    model.type = type;
     return model;
 }
 
@@ -67,11 +69,11 @@
     });
 }
 
-- (void)setupData:(CKJCommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(UITableView *)tableView {
+- (void)setupData:(CKJCommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(CKJSimpleTableView *)tableView {
     self.bgV.backgroundColor = self.simpleTableView.backgroundColor;
     if ([headerFooterModel isKindOfClass:[CKJTitleStyleHeaderFooterModel class]]) {
         CKJTitleStyleHeaderFooterModel *model = (CKJTitleStyleHeaderFooterModel *)headerFooterModel;
-        self.customTitleLab.text = model.customTitle;
+        self.customTitleLab.attributedText = model.attributedTitle;
         if ([self.delegate respondsToSelector:@selector(setupCKJTitleStyleHeaderFooterView:label:bgV:data:section:tableView:)]) {
             [self.delegate setupCKJTitleStyleHeaderFooterView:self label:self.customTitleLab bgV:_bgV data:headerFooterModel section:section tableView:tableView];
         }

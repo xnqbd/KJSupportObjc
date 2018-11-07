@@ -18,6 +18,11 @@
 
 #define cellKEY  @"CellKEY"
 #define isRegisterNibKEY  @"isRegisterNibKEY"
+#define configDicKEY_Key1 @"configDicKEY_Key1"
+#define configDicKEY_Key2 @"configDicKEY_Key2"
+
+
+
 #define KJ_typeweakself __weak typeof(self) weakSelf = self;
 
 
@@ -52,11 +57,9 @@
 
 @protocol CKJSimpleTableViewDelegate <NSObject>
 
-- (void)kj_tableView:(CKJSimpleTableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath model:(__kindof CKJCommonCellModel *)model cell:(__kindof CKJCommonTableViewCell *)cell;
+- (void)kj_tableView:(nonnull CKJSimpleTableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(nonnull NSIndexPath *)indexPath model:(nonnull __kindof CKJCommonCellModel *)model cell:(nonnull __kindof CKJCommonTableViewCell *)cell;
 
 @end
-
-
 
 
 @interface CKJSimpleTableView : UITableView <UITableViewDelegate, UITableViewDataSource>
@@ -100,8 +103,6 @@
 - (nullable NSIndexPath *)indexPathOf_CKJCommonCellModel_Flag:(int)flag;
 
 
-
-
 /**
  属性是displayInTableView最后一个分区最后一行的模型
 
@@ -120,44 +121,60 @@
 
 
 /**
- 拼接在最后一个分区的 最后一行
- */
-- (void)appendCellModelAtLastSectionLastRow:(CKJCommonCellModel *)model;
-/**
  拼接分区
  */
 - (void)appendCKJCommonSectionModel:(CKJCommonSectionModel *)sectionModel;
+- (void)appendCKJCommonSectionModels:(NSArray <CKJCommonSectionModel *>*_Nonnull)sectionModels;
+
 
 /**
  插入模型在某个分区的某一行
+ **************这个插入数据之后，需要手动的刷新数据，因为在insertRowsAtIndexPaths会位置出现， insertRowsAtIndexPaths每次只能插入一个数据，同时插入多个数据会造成插入动画数据有问题**************
  */
-- (void)insertCellModel:(CKJCommonCellModel *)model atSection:(NSInteger)section row:(NSInteger)row;
+- (BOOL)kjwd_insertCellModelsInAllCellModel:(nonnull NSArray<CKJCommonCellModel *>*)array section:(NSInteger)section row:(NSInteger)row;
 /**
- 在指定分区的末尾拼接模型数组
+ 使用动画 插入模型在某个分区的某一行
+ **************调用此方法插入数据后，不要使用reloadRowsAtIndexPaths刷新，不然会崩溃，可以刷新当前所在的分区**************
  */
-- (void)appendCellModelArray:(NSArray <CKJCommonCellModel *>*)array atLastRowOfSection:(NSInteger)section;
-/**
- 删除模型在某个分区的某一行
- */
-- (void)removeCellModelAtSection:(NSInteger)section row:(NSInteger)row;
-/**
- 删除模型在某个分区除了指定行的全有行（只保留指定行）
- */
-- (void)removeAllCellModelAtSection:(NSInteger)section notIncludedRow:(NSInteger)notIncludedRow;
-/**
- 删除模型在某个分区除了指定行的全有行（只保留指定行数组）
- */
-- (void)removeAllCellModelAtSection:(NSInteger)section notIncludedRows:(NSArray <NSNumber *>*)notIncludedRows;
+- (void)kjwd_insertCellModelInAllCellModel:(nonnull CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
+
 
 /**
- 删除某个分区
+ 在指定分区的末尾拼接模型数组 (拼接在某一个分区所有CellModelArray包括隐藏的模型的 最后一行)
  */
-- (void)removeSection:(NSInteger)section;
+- (BOOL)appendCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section;
 /**
- 删除全部分区（只保留指定分区）
+ 使用动画 在指定分区的末尾拼接模型数组 (拼接在某一个分区所有CellModelArray包括隐藏的模型的 最后一行)
  */
-- (void)removeAllSection_notIncludedSection:(NSInteger)notIncludedSection;
+- (void)appendCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
 
+/** 拼接在最后一个分区最后一行 */
+- (BOOL)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array;
+/** 使用动画 拼接在最后一个分区最后一行 */
+- (void)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
+
+
+/** 删除模型在某个分区的某一行 */
+- (void)removeCellModelAtSection:(NSInteger)section rows:(NSArray <NSNumber *>*_Nonnull)rows removeHiddenCellModel:(BOOL)removeHiddenCellModel;
+/** 使用动画 删除模型在某个分区的某一行 */
+- (void)removeCellModelAtSection:(NSInteger)section rows:(NSArray <NSNumber *>*_Nonnull)rows removeHiddenCellModel:(BOOL)removeHiddenCellModel withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
+
+
+/** 删除模型在某个分区除了指定行的全有行（只保留指定行）*/
+- (void)removeAllCellModelAtSection:(NSInteger)section keepDisplayRows:(NSArray <NSNumber *>*)keepDisplayRows removeHiddenCellModel:(BOOL)removeHiddenCellModel;
+/** 使用动画  删除模型在某个分区除了指定行的全有行（只保留指定行）*/
+- (void)removeAllCellModelAtSection:(NSInteger)section keepDisplayRows:(NSArray <NSNumber *>*)keepDisplayRows removeHiddenCellModel:(BOOL)removeHiddenCellModel withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nonnull)(void(^_Nonnull animationBlock)(void)))animationBlock;
+
+
+/** 删除某个分区 */
+- (void)removeSections:(NSArray <NSNumber *>*_Nonnull)includedSections;
+/** 使用动画 删除某个分区 */
+- (void)removeSections:(NSArray <NSNumber *>*_Nonnull)includedSections withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nonnull)(void(^_Nonnull animationBlock)(void)))animationBlock;
+
+/** 删除全部分区（只保留指定分区）*/
+- (void)removeAllSection_notIncludedSection:(NSArray <NSNumber *>*_Nonnull)notIncludedSections;
+/** 使用动画 删除全部分区（只保留指定分区）*/
+- (void)removeAllSection_notIncludedSection:(NSArray <NSNumber *>*_Nonnull)notIncludedSections withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
 
 #pragma mark - Swift命名空间相关
 + (NSString *)kj_nameSpace;
@@ -168,7 +185,5 @@
 @property (strong, nonatomic) NSMutableDictionary *cell_Model_keyValues;
 @property (strong, nonatomic) NSMutableDictionary *header_Model_keyValues;
 @property (strong, nonatomic) NSMutableDictionary *footer_Model_keyValues;
-
-
 
 @end

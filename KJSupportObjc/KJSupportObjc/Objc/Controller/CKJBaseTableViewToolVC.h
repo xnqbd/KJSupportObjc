@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 #import "CKJSimpleTableView.h"
-#import <UIKit/UIKit.h>
 
 @class CKJSimpleTableView;
 
@@ -19,7 +18,7 @@
 @interface CKJBaseTableViewToolVC : UIViewController <UITableViewDelegate, CKJSimpleTableViewDataSource, CKJSimpleTableViewDelegate, TitleStyleHeaderFooterViewDelegate, CKJCellDataSource>
 
 @property (strong, nonatomic) CKJTableViewDelegateObject *tableViewDelegateObject;
-@property (weak, nonatomic) IBOutlet CKJSimpleTableView *simpleTableView;
+@property (strong, nonatomic, nonnull) IBOutlet CKJSimpleTableView *simpleTableView;
 - (UITableViewStyle)simpleTableViewStyle;
 
 /**

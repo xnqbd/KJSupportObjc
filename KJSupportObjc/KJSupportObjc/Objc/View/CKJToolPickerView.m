@@ -48,7 +48,7 @@
     self.confirmBlock(result, self);
 }
 - (void)dealloc {
-    NSLog(@"%@  dealloc", self);
+//    NSLog(@"%@  dealloc", self);
 }
 
 @end

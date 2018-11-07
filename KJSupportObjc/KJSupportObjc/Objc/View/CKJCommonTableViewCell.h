@@ -12,7 +12,13 @@
 
 @class CKJCommonCellModel, CKJCommonHeaderFooterModel, CKJCommonTableViewTool, CKJSimpleTableView;
 
+
 @interface CKJCommonTableViewCell <E : CKJCommonCellModel *> : UITableViewCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier configDic:(NSDictionary *)configDic;
+
+
+@property (copy, nonatomic, readonly) NSDictionary *configDic;
 
 @property (nonatomic, strong) E cellModel;
 @property (nonatomic, weak) CKJSimpleTableView *simpleTableView;

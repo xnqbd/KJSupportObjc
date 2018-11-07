@@ -26,13 +26,24 @@
 }
 
 - (UITableViewStyle)simpleTableViewStyle {
-    return UITableViewStylePlain;
+//    return UITableViewStylePlain;
+    return UITableViewStyleGrouped;
 }
+
 
 #pragma mark - 懒加载
 - (CKJSimpleTableView *)CKJSimpleTableView {
     if (_simpleTableView) return _simpleTableView;
     CKJSimpleTableView *tabV = [[CKJSimpleTableView alloc] initWithFrame:CGRectZero style:[self simpleTableViewStyle]];
+    {
+        // 解决tableView在deleteRowsAtIndexPaths操作时 屏幕上下跳动问题, 可以搜索 Self-Sizing  https://blog.csdn.net/SurpassBlack/article/details/78426655
+//        if (@available(iOS 11.0, *)) {
+//            tabV.estimatedRowHeight = 0;
+//            tabV.estimatedSectionHeaderHeight = 0;
+//            tabV.estimatedSectionFooterHeight = 0;
+//        }
+    }
+    
     tabV.tableFooterView = [UIView new];
     tabV.delegate = self;
     tabV.simpleTableViewDataSource = self;
@@ -51,7 +62,6 @@
     _tableViewDelegateObject.simpleTableView = self.simpleTableView;
     return _tableViewDelegateObject;
 }
-
 
 - (void)layoutTableViewFrame:(CKJSimpleTableView *)tableV {
     tableV.translatesAutoresizingMaskIntoConstraints = NO;
@@ -82,11 +92,8 @@
     }
 }
 
-//- (void)imageBtn2_setup_left_Image_width_height:(MASConstraintMaker *)make section:(NSInteger)section row:(NSInteger)row {
-//     make.width.height.equalTo(@(30));
-//}
-
 #pragma mark - UITableViewDelegate
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return [self.tableViewDelegateObject tableView:tableView heightForHeaderInSection:section];
 }
@@ -104,11 +111,11 @@
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     NSInteger section = indexPath.section, row = indexPath.row;
-    CKJCommonSectionModel *sectionModel = self.simpleTableView.dataArr[section];
+//    CKJCommonSectionModel *sectionModel = self.simpleTableView.dataArr[section];
     // 显示的数组
     NSArray <CKJCommonCellModel *>*displayModelArray = [self.simpleTableView displayCellModelArrayAtSection:section];
     
-    CKJCommonCellModel *model = displayModelArray[row];
+    CKJCommonCellModel *model = [displayModelArray kjwd_objectAtIndex:row];
     
     CKJCommonTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
@@ -125,6 +132,7 @@
 - (void)kj_tableView:(CKJSimpleTableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath model:(__kindof CKJCommonCellModel *)model cell:(__kindof CKJCommonTableViewCell *)cell {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
+
 
 
 @end

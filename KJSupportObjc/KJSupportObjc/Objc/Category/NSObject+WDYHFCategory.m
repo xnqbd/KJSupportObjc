@@ -11,12 +11,8 @@
 #import <objc/message.h>
 #import <Masonry/Masonry.h>
 
-int getRandomNumber(int from, int to) {
-    int temp = to - from + 1;
-    int num = (arc4random() % temp);
-    return from + num;
-}
 
+#pragma mark - -----------------异常处理-----------------
 
 BOOL WDKJ_IsNull(id obj) {
     if (obj == nil) {
@@ -166,9 +162,59 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 }
 
 
+
+
+
+#pragma mark - -----------------其他-----------------
+
+
+NSAttributedString *_Nonnull WDCKJAttributed(NSString *_Nonnull name, NSDictionary *_Nullable dic) {
+    NSAttributedString *str = [[NSAttributedString alloc] initWithString:WDKJ_ConfirmString(name) attributes:(dic)];
+    return str;
+}
+
+NSAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nonnull text, UIColor *_Nullable color, CGFloat fontSize) {
+    UIColor *_color = WDKJ_IsNull(color) ? [UIColor blackColor] : color;
+    
+    NSAttributedString *str = [[NSAttributedString alloc] initWithString:WDKJ_ConfirmString(text) attributes:@{NSForegroundColorAttributeName : _color, NSFontAttributeName : [UIFont systemFontOfSize:fontSize]}];
+
+    return str;
+}
+
+int getRandomNumber(int from, int to) {
+    int temp = to - from + 1;
+    int num = (arc4random() % temp);
+    return from + num;
+}
+
+void WDCKJdispatch_async_main_queue(void(^block)(void)) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        block ? block() : nil;
+    });
+}
+
+void WDCKJ_ifDEBUG(void(^_Nullable debugBlock)(void), void(^_Nullable releaseBlock)(void)) {
+#ifdef DEBUG
+    debugBlock ? debugBlock() : nil;
+#else
+    releaseBlock ? releaseBlock() : nil;
+#endif
+}
+
+CGFloat WDAPP_ScreenWidth(void) {
+    return [UIScreen mainScreen].bounds.size.width;
+}
+CGFloat WDAPP_ScreenHeight(void) {
+    return [UIScreen mainScreen].bounds.size.height;
+}
+
+
+
+
+
 @implementation UIWindow (WDYHFCategory)
 
-+ (UIWindow *)kjwd_appdelegateWindow {
++ (nonnull UIWindow *)kjwd_appdelegateWindow {
     id appdelegate = [UIApplication sharedApplication].delegate;
     id (*kj_sengMsg)(id, SEL) = (id (*)(id, SEL))objc_msgSend;
     UIWindow *window = kj_sengMsg(appdelegate, sel_registerName("window"));
@@ -332,7 +378,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 
 #pragma mark - -----------------NSTimer-----------------
 @implementation NSTimer (Category)
-+ (NSTimer *)kjwd_scheduledTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats nowPerform:(BOOL)boo handleBlockOnMainQueue:(void(^)(NSTimer *currentTimer))block {
++ (nonnull NSTimer *)kjwd_scheduledTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats nowPerform:(BOOL)boo handleBlockOnMainQueue:(void(^)(NSTimer *_Nonnull currentTimer))block {
     NSTimer *timer = [self scheduledTimerWithTimeInterval:interval
                                                    target:self
                                                  selector:@selector(kj_blockInvoke:)
@@ -430,6 +476,15 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
         return [self objectAtIndex:index];
     }
 }
+- (nullable NSNumber *)kjwd_indexOfObject:(nonnull id)anObject {
+    if (anObject == nil) {
+        return nil;
+    }
+    NSUInteger idex = [self indexOfObject:anObject];
+    return @(idex);
+}
+
+
 - (NSArray *)kjwd_reverseArray {
     NSArray *array = [[self reverseObjectEnumerator] allObjects];
     return array;
@@ -461,6 +516,42 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
     }
     return string;
 }
+
+- (nonnull NSIndexSet *)kjwd_indexSetValue {
+    NSMutableIndexSet *set = [NSMutableIndexSet indexSet];
+    for (int i = 0; i < self.count; i++) {
+        NSNumber *num = [self kjwd_objectAtIndex:i];
+        if ([num isKindOfClass:NSNumber.class] == NO) {
+            return set;
+        }
+        [set addIndex:num.integerValue];
+    }
+    return set;
+}
+- (nonnull NSArray <NSNumber *>*)kjwd_indexArray {
+    NSMutableArray *arr = [NSMutableArray array];
+    for (int i = 0; i < self.count; i++) {
+        [arr addObject:@(i)];
+    }
+    return arr;
+}
+
+- (nonnull NSSet *)kjwd_intersectWithArray:(nonnull NSArray *)array {
+    if (array == nil) {
+        return [NSSet set];
+    }
+#warning 注意：这里self 元素类型应该是NSNumber类型,  你可以调用 self.kjwd_indexArray
+    
+    
+    
+    NSMutableSet *set1 = [NSMutableSet setWithArray:self];
+    NSMutableSet *set2 = [NSMutableSet setWithArray:array];
+    
+    [set1 intersectSet:set2];
+    return set1;
+}
+
+
 - (void)kjwd_lookValuesDataType {
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSLog(@"数组下标 %lu", idx);
@@ -482,6 +573,16 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 
 #pragma mark - -----------------NSMutableArray-----------------
 @implementation NSMutableArray (WDYHFCategory)
+
++ (instancetype)kjwd_arrayWithArray:(nonnull NSArray *)array {
+    if (array == nil) {
+        return [NSMutableArray array];
+    }
+    if ([array isKindOfClass:NSArray.class] == NO) {
+        return [NSMutableArray array];
+    }
+    return [NSMutableArray arrayWithArray:array];
+}
 
 - (BOOL)kjwd_addObject:(id)object {
     if (object == nil || [object isKindOfClass:[NSNull class]]) {
@@ -507,7 +608,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
         return NO;
     }
     if (index < 0) {
-        NSLog(@"kj_insertObject 想要插入在位置 0 , 当前数组个数是 %ld", self.count);
+        NSLog(@"kj_insertObject 不能插入在小于0的位置 , 当前数组个数是 %ld", self.count);
         return NO;
     }
     
@@ -522,6 +623,33 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
         return YES;
     }
 }
+
+- (BOOL)kjwd_insertObjects:(nonnull NSArray *)objects atIndex:(NSUInteger)index {
+    if (objects == nil || [objects isKindOfClass:[NSNull class]]) {
+        NSLog(@"kjwd_insertObjects 对象不能被插入 因为对象为空");
+        return NO;
+    }
+    if (index < 0) {
+        NSLog(@"kjwd_insertObjects 不能插入在小于0的位置 , 当前数组个数是 %ld", self.count);
+        return NO;
+    }
+    
+    if (index == self.count) {
+        [self addObjectsFromArray:objects];
+        return YES;
+    } else if (index > self.count) {
+        NSLog(@"kjwd_insertObjects 位置 %ld 越界, 当前数组个数是 %ld", index, self.count);
+        return NO;
+    } else {
+        NSRange range = NSMakeRange(index, [objects count]);
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+        
+        [self insertObjects:objects atIndexes:indexSet];
+        return YES;
+    }
+}
+
+
 - (BOOL)kjwd_removeObjectAtIndex:(NSUInteger)index {
     if (index >= self.count) {
         NSLog(@"kj_removeObjectAtIndex 位置 %ld 越界, 当前数组个数是 %ld", index, self.count);
@@ -557,15 +685,24 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 
 - (void)kjwd_removeAllObjects_notIncludedRows:(NSArray <NSNumber *>*)notIncludedRows {
    
+    NSIndexSet *indexSet = [self kjwd_returnIndexSet_notIncludedRowsOfYou:notIncludedRows];
+    
+    [self removeObjectsAtIndexes:indexSet];
+}
+
+- (nonnull NSIndexSet *)kjwd_returnIndexSet_notIncludedRowsOfYou:(NSArray <NSNumber *>*)notIncludedRows {
+    
+    if (notIncludedRows == nil) {
+        return [NSIndexSet indexSet];
+    }
+    
     NSMutableArray *selfIndexs = [NSMutableArray array];
     for (int i = 0 ; i < self.count; i++) {
         [selfIndexs addObject:@(i)];
     }
-
+    
     NSMutableSet *selfSet = [NSMutableSet setWithArray:selfIndexs];
-    
     NSMutableSet *targetSet = [NSMutableSet setWithArray:notIncludedRows];
-    
     
     [selfSet minusSet:targetSet];      //取差集后 set1中为
     
@@ -577,11 +714,21 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
     
     [minusArr enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [indexSet addIndex:obj.intValue];
-        
     }];
-    [self removeObjectsAtIndexes:indexSet];
-
+    
+    return indexSet;
 }
+- (NSIndexSet *)kjwd_returnIndexSet_IncludedRowsOfYou:(NSArray <NSNumber *>*)includedRows {
+    
+    NSMutableIndexSet *indexSet = [NSMutableIndexSet indexSet];
+    
+    [includedRows enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [indexSet addIndex:obj.intValue];
+    }];
+    
+    return indexSet;
+}
+
 
 - (BOOL)kjwd_insertAt_FirstIndex_Of_Object:(id)object {
     if (object == nil || [object isKindOfClass:[NSNull class]]) {
@@ -687,7 +834,21 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
     return result;
 }
 
+@end
 
+
+
+#pragma mark - -----------------NSIndexSet-----------------
+
+@implementation NSIndexSet (WDYHFCategory)
+
+- (NSArray *)kjwd_returnArray {
+    NSMutableArray *array = [NSMutableArray array];
+    [self enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL * _Nonnull stop) {
+        [array addObject:@(idx)];
+    }];
+    return array;
+}
 
 @end
 
@@ -781,13 +942,13 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 #pragma mark - -----------------UIColor-----------------
 @implementation UIColor (WDYHFCategory)
 
-+ (UIColor *)kjwd_arc4Color {
++ (nonnull UIColor *)kjwd_arc4Color {
     return [UIColor colorWithRed:arc4random_uniform(256) / 255.0 green:arc4random_uniform(256) / 255.0 blue:arc4random_uniform(256) / 255.0 alpha:1];
 }
-+ (UIColor *)kjwd_r:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha {
++ (nonnull UIColor *)kjwd_r:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha {
     return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:alpha];
 }
-+ (UIColor *)kjwd_colorWithHexString:(NSString *)color {
++ (nonnull UIColor *)kjwd_colorWithHexString:(NSString *)color {
     NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     
     // String should be 6 or 8 characters
@@ -842,7 +1003,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 #pragma mark - -----------------UIViewController-----------------
 @implementation UIViewController (WDYHFCategory)
 /** 得到当前控制器 被 哪一个控制器 推过来的 控制器 */
-- (UIViewController *)kjwd_previous_PushedVC {
+- (nullable UIViewController *)kjwd_previous_PushedVC {
     UINavigationController *navc = self.navigationController;
     if (navc.viewControllers.count == 1) return nil;
     UIViewController *vc = [navc.viewControllers objectAtIndex:navc.viewControllers.count - 2];
@@ -931,7 +1092,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 
 @implementation UINavigationController (WDYHFCategory)
 
-- (UIViewController *)kjwd_rootViewController {
+- (nullable UIViewController *)kjwd_rootViewController {
     NSArray *vcArray = self.viewControllers;
     NSUInteger count = vcArray.count;
     if (count == 0) return nil;
@@ -949,61 +1110,6 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 
 - (void)kjwd_setLeftRightBarButtonItemColor:(UIColor *)color {
     self.navigationBar.tintColor = color;
-}
-
-- (void)hideNavigationBarBottomLine:(BOOL)hidden {
-    //iOS10及以上的隐藏方法
-    if ([UIDevice currentDevice].systemVersion.floatValue >= 10.0) {
-        if ([self.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]) {
-            NSArray *list = self.navigationBar.subviews;
-            for (id obj in list) {
-                //10.0的系统字段不一样
-                UIView *view =   (UIView*)obj;
-                for (id obj2 in view.subviews) {
-                    if ([obj2 isKindOfClass:[UIImageView class]]) {
-                        UIImageView *image =  (UIImageView*)obj2;
-                        if (image.frame.size.height <= 1) {
-                            image.hidden = hidden;
-                        }
-                    }
-                    
-                    if ([obj2 isKindOfClass:[UIView class]]) {
-                        UIView *view2 = (UIView *)obj2;
-                        if (view2.frame.size.height <= 1) {
-                            view2.hidden = hidden;
-                        }
-                    }
-                }
-            }
-            
-        }
-        
-        return;
-    }
-    //iOS10以下的隐藏方法
-    if ([self.navigationBar respondsToSelector:@selector(setBackgroundImage:forBarMetrics:)]){
-        NSArray *list = self.navigationBar.subviews;
-        for (id obj in list) {
-            if ([obj isKindOfClass:[UIImageView class]]) {
-                UIImageView *imageView = (UIImageView *)obj;
-                NSArray *list2 = imageView.subviews;
-                for (id obj2 in list2) {
-                    if ([obj2 isKindOfClass:[UIImageView class]]) {
-                        UIImageView *imageView2 = (UIImageView *)obj2;
-                        if (imageView2.frame.size.height <= 1) {
-                            imageView2.hidden = hidden;
-                        }
-                    }
-                    if ([obj2 isKindOfClass:[UIView class]]) {
-                        UIView *view2 = (UIView *)obj2;
-                        if (view2.frame.size.height <= 1) {
-                            view2.hidden = hidden;
-                        }
-                    }
-                }
-            }
-        }
-    }
 }
 
 @end
@@ -1121,7 +1227,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 @implementation UIView (WDYHFCategory)
 
 
-- (__kindof UIViewController *)kjwd_currentViewController {
+- (nullable __kindof UIViewController *)kjwd_currentViewController {
     for (UIView *next = [self superview]; next; next = next.superview) {
         UIResponder *nextResponder = [next nextResponder];
         if ([nextResponder isKindOfClass:[UIViewController class]]) {
@@ -1173,6 +1279,25 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
     }
     UIView *superV = self.superview;
     return [self mas_makeConstraints:^(MASConstraintMaker *make) {
+        block(make, superV);
+    }];
+}
+
+- (NSArray *)kjwd_mas_updateConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block {
+    if (block == nil) {
+        return nil;
+    }
+    UIView *superV = self.superview;
+    return [self mas_updateConstraints:^(MASConstraintMaker *make) {
+        block(make, superV);
+    }];
+}
+- (NSArray *)kjwd_mas_remakeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block {
+    if (block == nil) {
+        return nil;
+    }
+    UIView *superV = self.superview;
+    return [self mas_remakeConstraints:^(MASConstraintMaker *make) {
         block(make, superV);
     }];
 }
@@ -1279,7 +1404,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 }
 
 #pragma mark - 从底部向上钻动画效果
-- (void)masonryWithAnimateFromScreenButtomWithDuration:(NSTimeInterval)duration superView:(UIView *)superView selfMasonryHeight:(CGFloat)height coverViewColor:(UIColor *)coverViewColor animationCompletion:(void (^)(BOOL))completionBlock triggerTapGestureRecognizerBlock:(void(^)(void(^_Nonnull disappearBlock)(void)))triggerTapGestureRecognizerBlock {
+- (void)masonryWithAnimateFromScreenButtomWithDuration:(NSTimeInterval)duration superView:(UIView *_Nullable)superView selfMasonryHeight:(CGFloat)height coverViewColor:(UIColor *_Nullable)coverViewColor animationCompletion:(void (^_Nullable)(BOOL))completionBlock triggerTapGestureRecognizerBlock:(void(^)(void(^_Nonnull disappearBlock)(void)))triggerTapGestureRecognizerBlock {
     
     self.triggerTapGestureRecognizerBlock = triggerTapGestureRecognizerBlock;
     
@@ -1353,7 +1478,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 }
 
 
-- (void)kjwd_addGestureRecognizer:(UIGestureRecognizer *)ges handleBlock:(void(^)(UIGestureRecognizer *gestureRecognizer, UIView *currentView))handleBlock {
+- (void)kjwd_addGestureRecognizer:(UIGestureRecognizer *_Nonnull)ges handleBlock:(void(^)(UIGestureRecognizer *_Nonnull gestureRecognizer, UIView *_Nonnull currentView))handleBlock {
     [ges addTarget:self action:@selector(kjwd_gestureRecognizerAction:)];
     [self addGestureRecognizer:ges];
     self.gestureRecognizerBlock = handleBlock;
@@ -1425,7 +1550,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 
 @end
 
-
+#pragma mark - -----------------UIButton-----------------
 @implementation UIButton (WDYHFCategory)
 
 - (void)kjwd_layoutButtonWithEdgeInsetsStyle:(GLButtonEdgeInsetsStyle)style
@@ -1499,7 +1624,8 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 #pragma mark - -----------------NSDate-----------------
 @implementation NSDate (WDYHFCategory)
 
-+ (NSDate *)kjwd_returnDate:(NSString *)dateString withDateFormat:(NSString *)format {
+
++ (nonnull NSDate *)kjwd_returnDate:(NSString *_Nonnull)dateString withDateFormat:(NSString *_Nonnull)format {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:format];
     NSDate *date = [dateFormatter dateFromString:dateString];
@@ -1512,100 +1638,100 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
     NSString *dateStr = [formatter stringFromDate:date];
     return dateStr;
 }
-+ (NSString *)kjwd_currentYearMonthDayString; {
++ (nonnull NSString *)kjwd_currentYearMonthDayString; {
     NSString *str = [NSString stringWithFormat:@"%@-%@-%@", [NSDate kjwd_currentYear], [NSDate kjwd_currentMonth], [NSDate kjwd_currentDay]];
     return str;
 }
 
-+ (NSString *)kjwd_currentYear {
++ (nonnull NSString *)kjwd_currentYear {
     NSString *dateString = [NSDate kjwd_currentDateString];
     return [dateString substringToIndex:4];
 }
-+ (NSString *)kjwd_currentMonth {
++ (nonnull NSString *)kjwd_currentMonth {
     NSString *dateString = [NSDate kjwd_currentDateString];
     return [NSString stringWithFormat:@"%@", [dateString substringWithRange:NSMakeRange(5, 2)]];
 }
-+ (NSString *)kjwd_currentDay {
++ (nonnull NSString *)kjwd_currentDay {
     NSString *dateString = [NSDate kjwd_currentDateString];
     return [NSString stringWithFormat:@"%@", [dateString substringWithRange:NSMakeRange(8, 2)]];
 }
-+ (NSString *)kjwd_currentHour {
++ (nonnull NSString *)kjwd_currentHour {
     NSString *dateString = [NSDate kjwd_currentDateString];
     return [NSString stringWithFormat:@"%@", [dateString substringWithRange:NSMakeRange(11, 2)]];
 }
-+ (NSString *)kjwd_currentMinute {
++ (nonnull NSString *)kjwd_currentMinute {
     NSString *dateString = [NSDate kjwd_currentDateString];
     return [NSString stringWithFormat:@"%@", [dateString substringWithRange:NSMakeRange(14, 2)]];
 }
-+ (NSString *)kjwd_currentSecond {
++ (nonnull NSString *)kjwd_currentSecond {
     NSString *dateString = [NSDate kjwd_currentDateString];
     return [NSString stringWithFormat:@"%@", [dateString substringWithRange:NSMakeRange(17, 2)]];
 }
-- (NSString *)kjwd_dateString {
+- (nonnull NSString *)kjwd_dateString {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = [NSString stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSString *dateStr = [formatter stringFromDate:self];
     return dateStr;
 }
-- (NSString *)kjwd_YearMonthDayString {
+- (nonnull NSString *)kjwd_YearMonthDayString {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = [NSString stringWithFormat:@"yyyy-MM-dd"];
     NSString *dateStr = [formatter stringFromDate:self];
     return dateStr;
 }
-- (NSString *)kjwd_dateYear {
+- (nonnull NSString *)kjwd_dateYear {
     return [[self kjwd_dateString] substringToIndex:4];
 }
-- (NSString *)kjwd_dateMonth {
+- (nonnull NSString *)kjwd_dateMonth {
     NSString *str = [self kjwd_dateString];
     return [NSString stringWithFormat:@"%@", [str substringWithRange:NSMakeRange(5, 2)]];
 }
-- (NSString *)kjwd_dateDay {
+- (nonnull NSString *)kjwd_dateDay {
     NSString *str = [self kjwd_dateString];
     return [NSString stringWithFormat:@"%@", [str substringWithRange:NSMakeRange(8, 2)]];
 }
-- (NSString *)kjwd_dateHour {
+- (nonnull NSString *)kjwd_dateHour {
     NSString *str = [self kjwd_dateString];
     return [NSString stringWithFormat:@"%@", [str substringWithRange:NSMakeRange(11, 2)]];
 }
-- (NSString *)kjwd_dateMinute {
+- (nonnull NSString *)kjwd_dateMinute {
     NSString *str = [self kjwd_dateString];
     return [NSString stringWithFormat:@"%@", [str substringWithRange:NSMakeRange(14, 2)]];
 }
-- (NSString *)kjwd_dateSecond {
+- (nonnull NSString *)kjwd_dateSecond {
     NSString *str = [self kjwd_dateString];
     return [NSString stringWithFormat:@"%@", [str substringWithRange:NSMakeRange(17, 2)]];
 }
-+ (NSString *)kjwd_currentDateStringWithFormatter:(NSString *)yyyyMMddHHmmss {
++ (nonnull NSString *)kjwd_currentDateStringWithFormatter:(nonnull NSString *)yyyyMMddHHmmss {
     return [[NSDate date] kjwd_dateStringWithFormatter:yyyyMMddHHmmss];
 }
-+ (NSString *)kjwd_dateStringFrom1970second:(double)second withFormatter:(NSString *)formatterStr {
++ (nonnull NSString *)kjwd_dateStringFrom1970second:(double)second withFormatter:(NSString *)formatterStr {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = formatterStr;
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:second];
     return [formatter stringFromDate:date];
 }
-+ (NSString *)kjwd_dateStringFrom1970second:(double)second {
++ (nonnull NSString *)kjwd_dateStringFrom1970second:(double)second {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = [NSString stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:second];
     return [date kjwd_dateString];
 }
-- (NSString *)kjwd_dateStringWithFormatter:(NSString *)formatterStr {
+- (nonnull NSString *)kjwd_dateStringWithFormatter:(NSString *)formatterStr {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = formatterStr;
     NSString *dateStr = [formatter stringFromDate:self];
     return dateStr;
 }
 
-+ (NSString *)kjwd_currentDateUnsignedString {
++ (nonnull NSString *)kjwd_currentDateUnsignedString {
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = [NSString stringWithFormat:@"yyyyMMddHHmmss"];
     NSString *dateStr = [formatter stringFromDate:date];
     return dateStr;
 }
-+ (NSString *)kjwd_currentDateUnsigned_Milliseconds {
++ (nonnull NSString *)kjwd_currentDateUnsigned_Milliseconds {
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = [NSString stringWithFormat:@"yyyyMMddHHmmssSSS"];
@@ -1918,7 +2044,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 /**
  *  这个在时间很短时， 得到多个随机数， 可能得到的随机数是相同的
  */
-+ (NSString *)kjwd_returnGetArc4randomWithNum:(NSUInteger)num type:(KJWDArc4randomType)type {
++ (nonnull NSString *)kjwd_returnGetArc4randomWithNum:(NSUInteger)num type:(KJWDArc4randomType)type {
     NSString *sourceStr = nil;
     switch (type) {
         case KJWDArc4randomType_Number:
@@ -1954,7 +2080,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
     return resultStr;
 }
 
-+ (NSString *)kjwd_returnArc4randomWithNum:(NSUInteger)num type:(KJWDArc4randomType)type {
++ (nonnull NSString *)kjwd_returnArc4randomWithNum:(NSUInteger)num type:(KJWDArc4randomType)type {
     
     NSString *sourceStr = nil;
     switch (type) {
@@ -2058,10 +2184,36 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
     return [self stringByAppendingString:aString];
 }
 
+@end
+
+
+@implementation NSAttributedString (WDYHFCategory)
+
+- (void)kjwd_setLineSpace:(CGFloat)kLineSpace {
+    NSString *labelText = self.string;
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:kLineSpace];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
+//    self.attributedText = attributedString;
+    
+    
+    
+//    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.string];
+//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+//    [paragraphStyle setLineSpacing:kLineSpace];
+//    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
+//    self.attributedText = attributedString;
+}
+- (void)kjwd_setWordSpace:(CGFloat)kWordSpace {
+    
+}
+- (void)kjwd_setLineSpace:(CGFloat)kLineSpace wordSpace:(CGFloat)kWordSpace {
+    
+}
 
 
 @end
-
 
 @implementation CALayer (WDYHFCategory)
 
@@ -2220,6 +2372,13 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 + (NSString *)currentVersion {
     NSString *appVersion = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"];
     return appVersion;
+}
+
++ (CGFloat)screenWidth {
+    return [UIScreen mainScreen].bounds.size.width;
+}
++ (CGFloat)screenHeight {
+    return [UIScreen mainScreen].bounds.size.height;
 }
 
 

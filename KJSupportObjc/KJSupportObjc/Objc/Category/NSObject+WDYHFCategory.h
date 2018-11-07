@@ -10,14 +10,6 @@
 
 @class MASViewAttribute, MASConstraintMaker;
 
-int getRandomNumber(int from, int to);
-
-
-#define WDCKJAttributed(name, dic) ([[NSAttributedString alloc] initWithString:WDKJ_ConfirmString(name) attributes:(dic)])
-
-#define WDCKJAttributed2(text, color, fontSize) [[NSAttributedString alloc] initWithString:WDKJ_ConfirmString(text) attributes:@{NSForegroundColorAttributeName : color, NSFontAttributeName : [UIFont systemFontOfSize:fontSize]}]
-
-
 #pragma mark - -----------------异常处理-----------------
 BOOL WDKJ_IsNull(id obj);
 BOOL WDKJ_IsEmpty_Str(NSString *str);
@@ -43,11 +35,35 @@ BOOL WDKJ_IsNull_NumberOrString(id numberOrString);
  */
 BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 
+
+
+#pragma mark - -----------------其他-----------------
+
+
+NSAttributedString *_Nonnull WDCKJAttributed(NSString *_Nonnull name, NSDictionary *_Nullable dic);
+NSAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nonnull text, UIColor *_Nullable color, CGFloat fontSize);
+
+
+
+int getRandomNumber(int from, int to);
+
+
+void WDCKJdispatch_async_main_queue(void(^block)(void));
+
+void WDCKJ_ifDEBUG(void(^_Nullable debugBlock)(void), void(^_Nullable releaseBlock)(void));
+
+
+CGFloat WDAPP_ScreenWidth(void);
+CGFloat WDAPP_ScreenHeight(void);
+
+
+
+
 #import <Foundation/Foundation.h>
 
 @interface UIWindow (WDYHFCategory)
 
-+ (UIWindow *)kjwd_appdelegateWindow;
++ (nonnull UIWindow *)kjwd_appdelegateWindow;
 
 @end
 
@@ -76,7 +92,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 /**
  进入后台会停止, 进入前台会重新启动
  */
-+ (NSTimer *)kjwd_scheduledTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats nowPerform:(BOOL)boo handleBlockOnMainQueue:(void(^)(NSTimer *currentTimer))block;
++ (nonnull NSTimer *)kjwd_scheduledTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats nowPerform:(BOOL)boo handleBlockOnMainQueue:(void(^)(NSTimer *_Nonnull currentTimer))block;
 
 @end
 
@@ -118,6 +134,10 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 
 - (ObjectType)kjwd_objectAtIndex:(NSUInteger)index;
 
+- (nullable NSNumber *)kjwd_indexOfObject:(nonnull ObjectType)anObject;
+
+
+
 
 /**
  反转数组，第一个元素变成最后一个元素，最后一个元素变成第一个元素，（数组里的每个元素还是同一个对象）
@@ -131,6 +151,29 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 
 - (NSString *)kjwd_arrayString;
 
+
+/**
+ 必须保证元素的NSNumber类型
+
+ @return 返回NSIndexSet的值
+ */
+- (nonnull NSIndexSet *)kjwd_indexSetValue;
+
+/**
+ 从0到数组个数 的数组
+
+ @return 下标数组
+ */
+- (nonnull NSArray <NSNumber *>*)kjwd_indexArray;
+
+/**
+ 交集
+
+ @param array 另外一个数组
+ @return 返回集合，无序的
+ */
+- (nonnull NSSet *)kjwd_intersectWithArray:(nonnull NSArray<ObjectType> *)array;
+
 /**
  查看值的数据类型
  */
@@ -140,17 +183,21 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 
 #pragma mark - -----------------NSMutableArray-----------------
 // 关于NSMutableArray线程安全的思考和实现 http://blog.csdn.net/kongdeqin/article/details/53171189
-@interface NSMutableArray (WDYHFCategory)
+@interface NSMutableArray <ObjectType> (WDYHFCategory)
 
-- (BOOL)kjwd_addObject:(id)object;
++ (instancetype)kjwd_arrayWithArray:(nonnull NSArray<ObjectType> *)array;
 
-- (BOOL)kjwd_addObjectsFromArray:(NSArray *)array;
+- (BOOL)kjwd_addObject:(ObjectType)object;
+
+- (BOOL)kjwd_addObjectsFromArray:(NSArray<ObjectType> *)array;
 
 
 /**
  比原生的能做到，插入到最后一行
  */
-- (BOOL)kjwd_insertObject:(id)object atIndex:(NSUInteger)index;
+- (BOOL)kjwd_insertObject:(ObjectType)object atIndex:(NSUInteger)index;
+
+- (BOOL)kjwd_insertObjects:(nonnull NSArray<ObjectType> *)objects atIndex:(NSUInteger)index;
 
 - (BOOL)kjwd_removeObjectAtIndex:(NSUInteger)index;
 
@@ -158,6 +205,8 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
  安全删除某一行，尤其用于一边遍历，一遍删除数组的元素，这个很安全,  (但是要注意：想要删除一定要逆序遍历)
  */
 - (void)kjwd_safeRemoveObjectAtIndex:(NSUInteger)index;
+
+
 
 
 
@@ -170,6 +219,22 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
  删除除了 指定下标数组 以外的全部元素
  */
 - (void)kjwd_removeAllObjects_notIncludedRows:(NSArray <NSNumber *>*)notIncludedRows;
+
+
+/**
+ 返回你不想删除的Rows下标数组 以外的IndexSet
+
+ @param notIncludedRows 你不想删除的Rows下标数组
+ @return 返回你不想删除的Rows下标 以外的IndexSet
+ */
+- (nonnull NSIndexSet *)kjwd_returnIndexSet_notIncludedRowsOfYou:(NSArray <NSNumber *>*)notIncludedRows;
+/**
+ 返回你想删除的Rows下标数组 的IndexSet
+ 
+ @param includedRows 你想删除的Rows下标数组
+ @return 返回你想删除的Rows下标 的IndexSet
+ */
+- (NSIndexSet *)kjwd_returnIndexSet_IncludedRowsOfYou:(NSArray <NSNumber *>*)includedRows;
 
 /**
  *  当向数组里的第一个位置插入数据时， 建议用这个
@@ -206,6 +271,13 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 
 @end
 
+#pragma mark - -----------------NSIndexSet-----------------
+@interface NSIndexSet (WDYHFCategory)
+
+- (NSArray *)kjwd_returnArray;
+
+@end
+
 #pragma mark - -----------------UIAlertController-----------------
 @interface UIAlertController (WDYHFCategory)
 
@@ -225,11 +297,11 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 #pragma mark - -----------------UIColor-----------------
 @interface UIColor (WDYHFCategory)
 
-+ (UIColor *)kjwd_arc4Color;
++ (nonnull UIColor *)kjwd_arc4Color;
 
-+ (UIColor *)kjwd_r:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha;
++ (nonnull UIColor *)kjwd_r:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha;
 
-+ (UIColor *)kjwd_colorWithHexString:(NSString *)color;
++ (nonnull UIColor *)kjwd_colorWithHexString:(NSString *)color;
 
 @end
 
@@ -247,7 +319,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 @interface UIViewController (WDYHFCategory)
 
 /** 得到当前控制器 被 哪一个控制器 推过来的 控制器 */
-- (UIViewController *)kjwd_previous_PushedVC;
+- (nullable UIViewController *)kjwd_previous_PushedVC;
 
 /** 从MainStoryBoard加载同名的控制器 */
 + (instancetype)kjwd_instanceInMain;
@@ -275,7 +347,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 #pragma mark - -----------------UINavigationController-----------------
 @interface UINavigationController (WDYHFCategory)
 
-- (UIViewController *)kjwd_rootViewController;
+- (nullable UIViewController *)kjwd_rootViewController;
 
 
 
@@ -292,10 +364,6 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
  *  设置左右item颜色
  */
 - (void)kjwd_setLeftRightBarButtonItemColor:(UIColor *)color;
-/**
- 隐藏下面的线
- */
-- (void)hideNavigationBarBottomLine:(BOOL)hidden;
 
 @end
 
@@ -356,7 +424,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 /**
  *  返回当前视图的控制器
  */
-- (__kindof UIViewController *)kjwd_currentViewController;
+- (nullable __kindof UIViewController *)kjwd_currentViewController;
 
 /**
  这个在直接使用NSLayoutConstraint代码进行布局时使用
@@ -373,6 +441,8 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 @property (nonatomic, strong, readonly) MASViewAttribute * kjwdMas_safeAreaRight;
 
 - (NSArray *)kjwd_mas_makeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
+- (NSArray *)kjwd_mas_updateConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
+- (NSArray *)kjwd_mas_remakeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
 
 
 
@@ -413,7 +483,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 /**
  想要从底部向上钻处理的视图, 只需要创建对象， 不需要设置frame和约束
  */
-- (void)masonryWithAnimateFromScreenButtomWithDuration:(NSTimeInterval)duration superView:(UIView *)superView selfMasonryHeight:(CGFloat)height coverViewColor:(UIColor *)coverViewColor animationCompletion:(void (^)(BOOL))completionBlock triggerTapGestureRecognizerBlock:(void(^)(void(^_Nonnull disappearBlock)(void)))triggerTapGestureRecognizerBlock;
+- (void)masonryWithAnimateFromScreenButtomWithDuration:(NSTimeInterval)duration superView:(UIView *_Nullable)superView selfMasonryHeight:(CGFloat)height coverViewColor:(UIColor *_Nullable)coverViewColor animationCompletion:(void (^_Nullable)(BOOL))completionBlock triggerTapGestureRecognizerBlock:(void(^)(void(^_Nonnull disappearBlock)(void)))triggerTapGestureRecognizerBlock;
 /** 这个和上面的向上钻的效果是配合使用 */
 - (void)masonryWithAnimateFromScreenButtom_hiddenBackGroundView;
 
@@ -427,7 +497,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
  @param ges 手势
  @param handleBlock 手势触发的回调
  */
-- (void)kjwd_addGestureRecognizer:(UIGestureRecognizer *)ges handleBlock:(void(^)(UIGestureRecognizer *gestureRecognizer, UIView *currentView))handleBlock;
+- (void)kjwd_addGestureRecognizer:(UIGestureRecognizer *_Nonnull)ges handleBlock:(void(^)(UIGestureRecognizer *_Nonnull gestureRecognizer, UIView *_Nonnull currentView))handleBlock;
 
 @end
 
@@ -463,52 +533,52 @@ imageTitleSpace:(CGFloat)space;
 
 #pragma mark - -----------------NSDate-----------------
 @interface NSDate (WDYHFCategory)
-+ (NSDate *)kjwd_returnDate:(NSString *)dateString withDateFormat:(NSString *)format;
++ (nonnull NSDate *)kjwd_returnDate:(NSString *_Nonnull)dateString withDateFormat:(NSString *_Nonnull)format;
 
 /**
  返回 yyyy-MM-dd HH:mm:ss 的字符串
  */
-+ (NSString *)kjwd_currentDateString;
++ (nonnull NSString *)kjwd_currentDateString;
 /**
  返回 yyyy-MM-dd 的字符串
  */
-+ (NSString *)kjwd_currentYearMonthDayString;
-+ (NSString *)kjwd_currentYear;        // 2016
-+ (NSString *)kjwd_currentMonth;       // 03
-+ (NSString *)kjwd_currentDay;         // 04
-+ (NSString *)kjwd_currentHour;        // 16
-+ (NSString *)kjwd_currentMinute;      // 15
-+ (NSString *)kjwd_currentSecond;      // 50
++ (nonnull NSString *)kjwd_currentYearMonthDayString;
++ (nonnull NSString *)kjwd_currentYear;        // 2016
++ (nonnull NSString *)kjwd_currentMonth;       // 03
++ (nonnull NSString *)kjwd_currentDay;         // 04
++ (nonnull NSString *)kjwd_currentHour;        // 16
++ (nonnull NSString *)kjwd_currentMinute;      // 15
++ (nonnull NSString *)kjwd_currentSecond;      // 50
 
 /**
  返回 yyyy-MM-dd HH:mm:ss 的字符串
  */
-- (NSString *)kjwd_dateString;
+- (nonnull NSString *)kjwd_dateString;
 /**
  返回 yyyy-MM-dd 的字符串
  */
-- (NSString *)kjwd_YearMonthDayString;
-- (NSString *)kjwd_dateYear;
-- (NSString *)kjwd_dateMonth;
-- (NSString *)kjwd_dateDay;
-- (NSString *)kjwd_dateHour;
-- (NSString *)kjwd_dateMinute;
-- (NSString *)kjwd_dateSecond;
+- (nonnull NSString *)kjwd_YearMonthDayString;
+- (nonnull NSString *)kjwd_dateYear;
+- (nonnull NSString *)kjwd_dateMonth;
+- (nonnull NSString *)kjwd_dateDay;
+- (nonnull NSString *)kjwd_dateHour;
+- (nonnull NSString *)kjwd_dateMinute;
+- (nonnull NSString *)kjwd_dateSecond;
 /**
  *  通过 格式 返回当前时间
  */
-+ (NSString *)kjwd_currentDateStringWithFormatter:(NSString *)formatterStr;
-+ (NSString *)kjwd_dateStringFrom1970second:(double)second withFormatter:(NSString *)formatterStr;
-+ (NSString *)kjwd_dateStringFrom1970second:(double)second;
-- (NSString *)kjwd_dateStringWithFormatter:(NSString *)formatterStr;
++ (nonnull NSString *)kjwd_currentDateStringWithFormatter:(nonnull NSString *)formatterStr;
++ (nonnull NSString *)kjwd_dateStringFrom1970second:(double)second withFormatter:(NSString *)formatterStr;
++ (nonnull NSString *)kjwd_dateStringFrom1970second:(double)second;
+- (nonnull NSString *)kjwd_dateStringWithFormatter:(NSString *)formatterStr;
 
 
-+ (NSString *)kjwd_currentDateUnsignedString;
++ (nonnull NSString *)kjwd_currentDateUnsignedString;
 
 /**
  *  20160621111325124 精确到毫秒
  */
-+ (NSString *)kjwd_currentDateUnsigned_Milliseconds;
++ (nonnull NSString *)kjwd_currentDateUnsigned_Milliseconds;
 
 /**
  *  判断是否是同一天
@@ -673,9 +743,9 @@ typedef NS_ENUM(NSInteger, KJWDArc4randomType) {
 /**
  *  这个在时间很短时， 得到多个随机数， 可能得到的随机数是相同的
  */
-+ (NSString *)kjwd_returnGetArc4randomWithNum:(NSUInteger)num type:(KJWDArc4randomType)type;
++ (nonnull NSString *)kjwd_returnGetArc4randomWithNum:(NSUInteger)num type:(KJWDArc4randomType)type;
 
-+ (NSString *)kjwd_returnArc4randomWithNum:(NSUInteger)num type:(KJWDArc4randomType)type;
++ (nonnull NSString *)kjwd_returnArc4randomWithNum:(NSUInteger)num type:(KJWDArc4randomType)type;
 
 
 + (NSString *)kjwd_arrayStringWithStringArray:(NSArray *)array;
@@ -685,6 +755,16 @@ typedef NS_ENUM(NSInteger, KJWDArc4randomType) {
 - (NSString *)kjwd_substringToIndex:(NSUInteger)to;
 - (NSString *)kjwd_substringWithRange:(NSRange)range;
 - (NSString *)kjwd_stringByAppendingString:(NSString *)aString;
+
+@end
+
+
+#pragma mark - -----------------CALayer-----------------
+@interface NSAttributedString (WDYHFCategory)
+
+- (void)kjwd_setLineSpace:(CGFloat)kLineSpace;
+- (void)kjwd_setWordSpace:(CGFloat)kWordSpace;
+- (void)kjwd_setLineSpace:(CGFloat)kLineSpace wordSpace:(CGFloat)kWordSpace;
 
 @end
 
@@ -742,6 +822,8 @@ typedef void (^TouchedCountDownButtonHandler)(CKJCountDownButton *countDownButto
 @interface CKJAPPHelper : NSObject
 
 + (NSString *)currentVersion;
++ (CGFloat)screenWidth;
++ (CGFloat)screenHeight;
 
 @end
 
