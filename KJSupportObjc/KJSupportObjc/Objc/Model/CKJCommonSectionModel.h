@@ -14,6 +14,12 @@
 
 
 /**
+ 标识, 每一个SectionModel的id_flag 一定不能相同
+ */
+@property (assign, nonatomic) NSInteger id_flag;
+
+
+/**
  当前分区
  */
 @property (assign, nonatomic, readonly) NSInteger currentSection;
@@ -31,5 +37,7 @@
 
 
 + (instancetype)sectionWithModelArray:(NSArray <CKJCommonCellModel *>*)modelArray;
+
+
 
 @end

@@ -12,17 +12,17 @@
 
 #pragma mark - -----------------异常处理-----------------
 BOOL WDKJ_IsNull(id obj);
-BOOL WDKJ_IsEmpty_Str(NSString *str);
+BOOL WDKJ_IsEmpty_Str(NSString *_Nullable str);
 
-BOOL WDKJ_IsNull_Num(NSNumber *number);
-BOOL WDKJ_IsNull_Array(NSArray *array);
+BOOL WDKJ_IsNull_Num(NSNumber *_Nullable number);
+BOOL WDKJ_IsNull_Array(NSArray *_Nullable array);
 
 id WDKJ_ConfirmObject(id object);
-NSString * WDKJ_SpaceString(NSString *str);
-NSString * WDKJ_ConfirmString(NSString *str);
-NSNumber * WDKJ_ConfirmNumber(NSNumber *number);
-NSDictionary *WDKJ_ConfirmDic(NSDictionary *dic);
-NSArray *WDKJ_ConfirmArray(NSArray *array);
+NSString *_Nonnull WDKJ_SpaceString(NSString *_Nullable str);
+NSString *_Nonnull WDKJ_ConfirmString(NSString *_Nullable str);
+NSNumber *_Nonnull WDKJ_ConfirmNumber(NSNumber *_Nullable number);
+NSDictionary *_Nonnull WDKJ_ConfirmDic(NSDictionary *_Nullable dic);
+NSArray *_Nonnull WDKJ_ConfirmArray(NSArray *_Nullable array);
 
 
 BOOL WDKJ_IsNull_NumberOrString(id numberOrString);
@@ -40,15 +40,17 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 #pragma mark - -----------------其他-----------------
 
 
-NSAttributedString *_Nonnull WDCKJAttributed(NSString *_Nonnull name, NSDictionary *_Nullable dic);
-NSAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nonnull text, UIColor *_Nullable color, CGFloat fontSize);
+NSMutableAttributedString *_Nonnull WDCKJAttributed(NSString *_Nullable name, NSDictionary *_Nullable dic);
+NSMutableAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nullable text, UIColor *_Nullable color, CGFloat fontSize);
 
-
+NSMutableAttributedString *_Nonnull WDCKJAttributed3(NSString *_Nullable text, CGFloat horizontalSpace, CGFloat lineSpace, UIColor *_Nullable color, CGFloat fontSize);
 
 int getRandomNumber(int from, int to);
 
 
 void WDCKJdispatch_async_main_queue(void(^block)(void));
+
+void WDCKJBGColor_Arc4Color(UIView *view);
 
 void WDCKJ_ifDEBUG(void(^_Nullable debugBlock)(void), void(^_Nullable releaseBlock)(void));
 
@@ -249,9 +251,20 @@ CGFloat WDAPP_ScreenHeight(void);
 @interface NSDictionary (WDYHFCategory)
 
 /**
- *  转成JSON格式的字符串
+ *  转成JSON格式的字符串， 有空格和换行    类似这样子  {"return_msg" : "响应成功"}
  */
 - (NSString *)kjwd_returnJsonString;
+/**
+ *  转成JSON格式的字符串， 没有空格和换行,  类似这样子  {"return_msg":"响应成功"}
+ */
+- (NSString *)kjwd_convertToJsonStringWithoutLineAndbreak;
+
+/**
+ *  转成没有空格和换行,  类似这样子  {\"return_msg\":\"响应成功\"}
+ */
+- (NSString *)kjwd_myConvertToJsonStringAsData;
+
+
 /**
  *  转成字符串（不是JSON格式）
  */
@@ -303,6 +316,10 @@ CGFloat WDAPP_ScreenHeight(void);
 
 + (nonnull UIColor *)kjwd_colorWithHexString:(NSString *)color;
 
+
++ (nonnull UIColor *)kjwd_titleColor333333;
++ (nonnull UIColor *)kjwd_subTitleColor969696;
+
 @end
 
 
@@ -333,7 +350,7 @@ CGFloat WDAPP_ScreenHeight(void);
  *  如果当前导航控制器不包含所想要pop到的控制器，那么先pop到RootViewController，再用当前控制器push想要指定的控制器，newAllocVC要传入创建好的控制启
  *  @param vcClass 类名 (例如[ViewController class])
  */
-- (void)kjwd_popToSpecifyVC:(Class)vcClass currentStackBlock:(void(^)(__kindof UIViewController *findZheVC))currentStackBlock newAllocVC:(__kindof UIViewController *)newVc;
+- (void)kjwd_popToSpecifyVC:(Class)vcClass currentStackBlock:(void(^)(__kindof UIViewController *findZheVC))currentStackBlock newAllocVC:(__kindof UIViewController *_Nullable)newVc;
 /**
  *  通过动画切换根视图控制器
  */
@@ -425,11 +442,6 @@ CGFloat WDAPP_ScreenHeight(void);
  *  返回当前视图的控制器
  */
 - (nullable __kindof UIViewController *)kjwd_currentViewController;
-
-/**
- 这个在直接使用NSLayoutConstraint代码进行布局时使用
- */
-@property (nonatomic, strong, readonly,) id kjwd_safeArea;
 
 
 /**
@@ -528,17 +540,34 @@ typedef NS_ENUM(NSUInteger, GLButtonEdgeInsetsStyle) {
 - (void)kjwd_layoutButtonWithEdgeInsetsStyle:(GLButtonEdgeInsetsStyle)style
 imageTitleSpace:(CGFloat)space;
 
+
+
+
+/**
+ 最常用的 点击按钮 回调
+
+ @param callBack 回调block
+ */
+- (void)kjwd_addTouchUpInsideForCallBack:(void(^_Nonnull)(UIButton * _Nonnull sender))callBack;
+- (void)kjwd_addControlEvents:(UIControlEvents)controlEvents forCallBack:(void(^_Nonnull)(UIButton * _Nonnull sender))callBack;
+
+
 @end
 
 
 #pragma mark - -----------------NSDate-----------------
 @interface NSDate (WDYHFCategory)
-+ (nonnull NSDate *)kjwd_returnDate:(NSString *_Nonnull)dateString withDateFormat:(NSString *_Nonnull)format;
+
+#define WDKJDefaultDateFormat (@"yyyy-MM-dd HH:mm:ss")
+
++ (nullable NSDate *)kjwd_returnDate:(NSString *_Nonnull)dateString withDateFormat:(NSString *_Nonnull)format;
+
++ (nullable NSString *)kjwd_currentDateString;
 
 /**
- 返回 yyyy-MM-dd HH:mm:ss 的字符串
+  输入 HH:mm:ss 这样的字符串-----> 返回 yyyy-MM-dd 的字符串
  */
-+ (nonnull NSString *)kjwd_currentDateString;
++ (nonnull NSString *)kjwd_returnYearMonthDayWithDateString:(NSString *_Nonnull)dateString withDateFormat:(NSString *_Nonnull)format;
 /**
  返回 yyyy-MM-dd 的字符串
  */
@@ -615,6 +644,14 @@ imageTitleSpace:(CGFloat)space;
 // 通过给定颜色和大小生成图片
 + (UIImage *)kjwd_imageWithColor:(UIColor *)color size:(CGSize)size;
 
+
+/**
+ 生成二维码
+ */
++ (UIImage *)kjwd_QRCodeWithContent:(nonnull NSString *)content size:(CGSize)size;
+
+
+
 @end
 
 #pragma mark - -----------------NSString-----------------
@@ -677,6 +714,15 @@ imageTitleSpace:(CGFloat)space;
 - (BOOL)kjwd_containsLowercase;
 /** 是否包含数字 */
 - (BOOL)kjwd_containsNumber;
+
+
+
+/**
+ 身份证号 出生年月转为*号
+
+ @return 新的字符串
+ */
+- (nullable NSString *)kjwd_idCardToAsterisk;
 
 /**
  * MD5加密
@@ -749,6 +795,15 @@ typedef NS_ENUM(NSInteger, KJWDArc4randomType) {
 
 
 + (NSString *)kjwd_arrayStringWithStringArray:(NSArray *)array;
+
+
+/**
+ 当前是Json字符串，转成字典  jsonString -> NSDictionary
+
+ @return 字典
+ */
+- (nonnull NSDictionary *)kjwd_convertToDic;
+
 
 #pragma mark - 字符串操作
 - (NSString *)kjwd_substringFromIndex:(NSUInteger)from;

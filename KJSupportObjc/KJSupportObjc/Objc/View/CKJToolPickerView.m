@@ -43,7 +43,7 @@
     [pickerV.dataArr enumerateObjectsUsingBlock:^(CKJPickerComponentModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSInteger row = [pickerV selectedRowInComponent:idx];
         __kindof  CKJPickerRowModel *rowModel = [obj.modelArray kjwd_objectAtIndex:row];
-        [result addObject:rowModel];
+        [result kjwd_addObject:rowModel];
     }];
     self.confirmBlock(result, self);
 }

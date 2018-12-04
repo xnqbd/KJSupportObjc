@@ -13,6 +13,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.displayInTableView = YES;
+        self.selectionStyle = UITableViewCellSelectionStyleDefault;
     }
     return self;
 }

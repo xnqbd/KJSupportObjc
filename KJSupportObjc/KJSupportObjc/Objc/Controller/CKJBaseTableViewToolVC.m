@@ -12,6 +12,8 @@
 
 @interface CKJBaseTableViewToolVC ()
 
+@property (strong, nonatomic) CKJTableViewDelegateObject *tableViewDelegateObject;
+
 @end
 
 @implementation CKJBaseTableViewToolVC
@@ -131,6 +133,7 @@
  */
 - (void)kj_tableView:(CKJSimpleTableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath model:(__kindof CKJCommonCellModel *)model cell:(__kindof CKJCommonTableViewCell *)cell {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    model.didSelectRowBlock ? model.didSelectRowBlock(model) : nil;
 }
 
 

@@ -11,6 +11,8 @@
 
 @interface CKJCommonCellModel : NSObject
 
+@property (assign, nonatomic) UITableViewCellSelectionStyle selectionStyle;
+
 /**
  行高
  */
@@ -27,13 +29,13 @@
 @property (assign, nonatomic) BOOL displayInTableView;
 
 /**
- 标识, 每一个该model的id_flag 一定不能相同
+ 标识, 每一个CellModel的id_flag 一定不能相同
  */
 @property (assign, nonatomic) NSInteger id_flag;
 
-@property (weak, nonatomic) CKJCommonTableViewCell *cell;
+@property (weak, nonatomic) __kindof CKJCommonTableViewCell *cell;
 
 
-//@property (copy, nonatomic) NSString *sectionProperty_XXX;
+@property (copy, nonatomic, nullable) void (^didSelectRowBlock)(__kindof CKJCommonCellModel *currentModel);
 
 @end

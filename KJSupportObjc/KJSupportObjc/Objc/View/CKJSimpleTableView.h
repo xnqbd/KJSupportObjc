@@ -31,8 +31,13 @@
 @required;
 /**
  一定要匹配匹配正确
- 键值对 return @{NSStringFromClass([CKJCommonCellModel class]) : @{cellKEY : NSStringFromClass([CKJCommonTableViewCell class]), isRegisterNibKEY : @YES}};
+ 键值对
+ OC版本
+ return @{NSStringFromClass([CKJCommonCellModel class]) : @{cellKEY : NSStringFromClass([CKJCommonTableViewCell class]), isRegisterNibKEY : @YES}};
  
+ Swift版本
+ return [NSStringFromClass(HZYHFWDYHFPayNotesCell2CellModel.self) : [cellKEY : NSStringFromClass(HZYHFWDYHFPayNotesCell2Cell.self), isRegisterNibKEY : false]]
+
  @return 键值对
  */
 - (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues;
@@ -74,13 +79,19 @@
 
 
 
+- (void)kjwd_setCellModels:(NSArray <CKJCommonCellModel *>*)cellModels atSection:(NSInteger)section;
+
+
 /**
  取到对应flag的模型
 
  @param flag 唯一标识
  @return 对应的模型
  */
-- (nullable __kindof CKJCommonCellModel *)cellModelOfFlag:(int)flag;
+- (nullable __kindof CKJCommonCellModel *)cellModelOfFlag:(NSInteger)flag;
+- (nullable __kindof CKJCommonSectionModel *)sectionModelOfFlag:(NSInteger)flag;
+
+
 
 /**
  在某个分区过滤模型

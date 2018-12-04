@@ -22,6 +22,16 @@
         self.dataSource = self;
         self.delegate = self;
         self.tableFooterView = [UIView new];
+        
+        self.estimatedRowHeight = 44;
+        self.rowHeight = UITableViewAutomaticDimension;
+        
+        self.estimatedSectionHeaderHeight = 20;
+        self.sectionHeaderHeight = UITableViewAutomaticDimension;
+        
+        self.estimatedSectionFooterHeight = 20;
+        self.estimatedSectionFooterHeight = UITableViewAutomaticDimension;
+        
     }
     return self;
 }
@@ -79,6 +89,9 @@
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    CKJCommonSectionModel *sectionModel = [self.dataArr kjwd_objectAtIndex:section];
+    [sectionModel setValue:@(section) forKey:@"currentSection"];
+    
     // 显示的数组
     NSArray <CKJCommonCellModel *>*displayModelArray = [self displayCellModelArrayAtSection:section];
     
@@ -88,17 +101,15 @@
 
 - (UITableViewCell *)tableView:(CKJSimpleTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger section = indexPath.section, row = indexPath.row;
-    
-    
-    
+
     CKJCommonSectionModel *sectionModel = self.dataArr[section];
-    [sectionModel setValue:@(section) forKey:@"currentSection"];
     // 显示的数组
     NSArray <CKJCommonCellModel *>*displayModelArray = [self displayCellModelArrayAtSection:section];
     
     CKJCommonCellModel *model = displayModelArray[row];
     
     NSString *modelName = [NSString stringWithUTF8String:object_getClassName(model)];
+    NSString *key = [modelName copy];
     modelName = [CKJSimpleTableView return_ModelName:modelName];
     
     NSString *kj_nameSpace = [CKJSimpleTableView kj_nameSpace];
@@ -109,10 +120,9 @@
     }
     CKJCommonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:modelName];
     if (cell == nil) {
-        NSDictionary *dic = self.cell_Model_keyValues[modelName];
+        NSDictionary *dic = self.cell_Model_keyValues[key];
         NSString *cellClass = dic[cellKEY];
         BOOL isRegisterNib = [dic[isRegisterNibKEY] boolValue];
-//        NSDictionary *configDic = dic[configDicKEY];
         
         if (cellClass) {
             if (isRegisterNib) {
@@ -131,6 +141,7 @@
             cell = [[CKJCommonTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:NSStringFromClass([CKJCommonTableViewCell class])];
         }
     }
+    cell.selectionStyle = model.selectionStyle;
     cell.section = section;
     cell.row = row;
     cell.simpleTableView = self;
@@ -141,7 +152,21 @@
     return cell;
 }
 
-- (nullable __kindof CKJCommonCellModel *)cellModelOfFlag:(int)flag {
+
+- (void)kjwd_setCellModels:(NSArray <CKJCommonCellModel *>*)cellModels atSection:(NSInteger)section {
+    if (cellModels == nil) return;
+//    NSMutableArray <CKJCommonSectionModel *>*_sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
+//    CKJCommonSectionModel *sectionModel = [_sections kjwd_objectAtIndex:section];
+//    sectionModel.modelArray = cellModels;
+//    self.dataArr = _sections;
+    
+    CKJCommonSectionModel *sectionModel = [self.dataArr kjwd_objectAtIndex:section];
+    sectionModel.modelArray = cellModels;
+}
+
+
+
+- (nullable __kindof CKJCommonCellModel *)cellModelOfFlag:(NSInteger)flag {
     for (CKJCommonSectionModel *section in self.dataArr) {
         for (CKJCommonCellModel *model in section.modelArray) {
             if (model.id_flag == flag) {
@@ -151,6 +176,15 @@
     }
     return nil;
 }
+- (nullable __kindof CKJCommonSectionModel *)sectionModelOfFlag:(NSInteger)flag {
+    for (CKJCommonSectionModel *section in self.dataArr) {
+        if (section.id_flag == flag) {
+            return section;
+        }
+    }
+    return nil;
+}
+
 
 - (nullable __kindof CKJCommonCellModel *)cellModelOfFilter:(BOOL (^)(__kindof CKJCommonCellModel *cellModel))filterBlock inSection:(NSUInteger)section {
     if (filterBlock == nil) {

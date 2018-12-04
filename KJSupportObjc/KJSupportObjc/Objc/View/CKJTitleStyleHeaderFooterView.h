@@ -29,10 +29,9 @@
 /**
  处理区头区尾UI，(字体大小，颜色等等)
 
- @param lab 传入的Label
  @return 区头区尾的UIEdgeInsets
  */
-//- (UIEdgeInsets)layout_customTitleLab:(UILabel *)lab bgV:(UIView *)bgv;
+- (UIEdgeInsets)return_TitleLabEdge;
 
 /**
  就像cellForRow一样调用的更新数据

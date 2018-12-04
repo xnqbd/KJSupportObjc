@@ -61,15 +61,8 @@
         CKJCommonTableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerClass];
         
         if (headerView == nil) {
-            headerView = [[[CKJSimpleTableView returnClass_ClassString:headerClass] alloc] initWithReuseIdentifier:headerClass];
-            if ([headerView isKindOfClass:[CKJTitleStyleHeaderFooterView class]]) {
-                ((CKJTitleStyleHeaderFooterView *)headerView).delegate = simpleTableView.titleStyleHeaderFooterViewDelegate;
-            }
+            headerView = [[[CKJSimpleTableView returnClass_ClassString:headerClass] alloc] initWithReuseIdentifier:headerClass tableView:simpleTableView];
         }
-        
-        headerView.simpleTableView = simpleTableView;
-//        headerView.contentView.backgroundColor = simpleTableView.backgroundColor;
-        
         headerView.headerFooterModel = headerModel;
         [headerView setupData:headerModel section:section tableView:(CKJSimpleTableView *)tableView];
         return headerView;
@@ -119,13 +112,9 @@
         CKJCommonTableViewHeaderFooterView *footerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:footerClass];
         
         if (footerView == nil) {
-            footerView = [[[CKJSimpleTableView returnClass_ClassString:footerClass] alloc] initWithReuseIdentifier:footerClass];
-            if ([footerView isKindOfClass:[CKJTitleStyleHeaderFooterView class]]) {
-                ((CKJTitleStyleHeaderFooterView *)footerView).delegate = simpleTableView.titleStyleHeaderFooterViewDelegate;
-            }
+            footerView = [[[CKJSimpleTableView returnClass_ClassString:footerClass] alloc] initWithReuseIdentifier:footerClass tableView:simpleTableView];
         }
-        footerView.simpleTableView = simpleTableView;
-//        footerView.contentView.backgroundColor = simpleTableView.backgroundColor;
+        
         footerView.headerFooterModel = footerModel;
         [footerView setupData:footerModel section:section tableView:(CKJSimpleTableView *)tableView];
         return footerView;

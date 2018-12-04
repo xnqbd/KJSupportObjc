@@ -10,12 +10,16 @@
 
 @class CKJToolView;
 
+typedef void(^CKJConfirmBlock)(id data, __kindof CKJToolView *currentView);
+
+
+
 @interface CKJToolView  <E : UIView *> : UIView
 
 
 @property (copy, nonatomic) NSString *title;
 @property (copy, nonatomic) void (^cancelBlock)(__kindof CKJToolView *currentView);
-@property (copy, nonatomic) void (^confirmBlock)(id data, __kindof CKJToolView *currentView);
+@property (copy, nonatomic) CKJConfirmBlock confirmBlock;
 
 
 /**

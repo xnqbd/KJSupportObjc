@@ -13,7 +13,13 @@
 @interface CKJCommonTableViewHeaderFooterView : UITableViewHeaderFooterView
 
 
-@property (weak, nonatomic) CKJSimpleTableView *simpleTableView;
+- (instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier tableView:(CKJSimpleTableView *)tableView;
+
+
+/**
+ 名字不要改
+ */
+@property (weak, nonatomic, readonly) CKJSimpleTableView *simpleTableView;
 @property (strong, nonatomic) CKJCommonHeaderFooterModel *headerFooterModel;
 
 - (void)setupSubViews;

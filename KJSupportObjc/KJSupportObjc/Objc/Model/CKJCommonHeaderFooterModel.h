@@ -31,6 +31,6 @@ typedef NS_ENUM(NSUInteger, CKJCommonHeaderFooterType) {
 
 @property (assign, nonatomic) CKJCommonHeaderFooterType type;
 
-@property (assign, nonatomic) BOOL displayInTableView;
+//@property (assign, nonatomic) BOOL displayInTableView;
 
 @end

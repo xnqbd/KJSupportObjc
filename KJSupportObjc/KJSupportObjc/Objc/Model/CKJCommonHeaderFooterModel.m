@@ -13,7 +13,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.displayInTableView = YES;
+//        self.displayInTableView = YES;
     }
     return self;
 }

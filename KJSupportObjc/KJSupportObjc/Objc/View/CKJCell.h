@@ -68,7 +68,11 @@
 - (UIEdgeInsets)alikePriceLabel7_edgeInsetsAtsection:(NSInteger)section row:(NSInteger)row cell:(CKJCell *_Nonnull)cell;
 
 /**
- btn8  (只能调整 centerY、width、height)  ---> make.centerY.equalTo(btn8.superview)
+ btn8  (只能调整 centerY、width、height)
+ 
+ make.centerY.equalTo(btn8.superview);
+ make.width.height.equalTo(@20);
+ 
  @return 距离右边的间距
  */
 - (CGFloat)btn8_return_rightMargin:(MASConstraintMaker *)make section:(NSInteger)section row:(NSInteger)row cell:(CKJCell *_Nonnull)cell btn8:(UIButton *_Nonnull)btn8;
@@ -103,8 +107,6 @@
 
 
 @property (copy, nonatomic) void (^swicthBlock)(BOOL switchOn, CKJCell *cell, UISwitch *senderSwitch);
-
-@property (copy, nonatomic) void (^cellBlock)(CKJCellModel *model, NSInteger section, NSInteger row, NSIndexPath *indexPath);
 
 
 @end

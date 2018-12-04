@@ -9,12 +9,23 @@
 #import "CKJCommonTableViewCell.h"
 #import "CKJSimpleTableView.h"
 #import "NSObject+WDYHFCategory.h"
+#import <Masonry/Masonry.h>
 
 @implementation CKJCommonTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier configDic:(NSDictionary *)configDic {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setValue:configDic forKey:@"configDic"];
+        self.bgV = ({
+            UIView *bgV = [[UIView alloc] init];
+            [self.contentView addSubview:bgV];
+            [bgV mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.center.mas_equalTo(self.contentView);
+                make.width.equalTo(self.contentView).priority(800);
+                make.height.equalTo(self.contentView).priority(800);
+            }];
+            bgV;
+        });
         [self setupSubViews];
     }
     return self;
@@ -32,20 +43,6 @@
     NSArray <CKJCommonCellModel *>*modelArray = [dataArr kjwd_objectAtIndex:self.section].modelArray;
     return modelArray;
 }
-
-//- (void)addSubview:(UIView *)view {
-////    static int a = 0;
-////    if (a == 0) {
-////        if ([view isKindOfClass:[NSClassFromString(@"_UITableViewCellSeparatorView") class]]) {
-////            NSLog(@"找到了 %@ ", view);
-////            a++;
-////            return;
-////        }
-////    }
-//
-//    [super addSubview:view];
-//}
-
 
 
 @end

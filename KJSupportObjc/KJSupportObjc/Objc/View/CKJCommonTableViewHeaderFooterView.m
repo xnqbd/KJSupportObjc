@@ -9,13 +9,16 @@
 #import "CKJCommonTableViewHeaderFooterView.h"
 #import "CKJCommonHeaderFooterModel.h"
 #import "CKJSimpleTableView.h"
+#import "CKJTitleStyleHeaderFooterView.h"
 
 @implementation CKJCommonTableViewHeaderFooterView
 
-
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier tableView:(CKJSimpleTableView *)tableView {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        // 我没有在这进行 setupSubViews， 而是在 initWithReuseIdentifier 返回之后 setupSubViews，达到一样布局的效果
+        [self setValue:tableView forKey:@"simpleTableView"];
+        if ([self isKindOfClass:CKJTitleStyleHeaderFooterView.class]) {
+            ((CKJTitleStyleHeaderFooterView *)self).delegate = tableView.titleStyleHeaderFooterViewDelegate;
+        }
         [self setupSubViews];
     }
     return self;

@@ -22,7 +22,7 @@ BOOL WDKJ_IsNull(id obj) {
     }
     return NO;
 }
-BOOL WDKJ_IsEmpty_Str(NSString *str) {
+BOOL WDKJ_IsEmpty_Str(NSString *_Nullable str) {
     if (str == nil) {
         return YES;
     } else if ([str isKindOfClass:[NSNull class]]) {
@@ -35,7 +35,7 @@ BOOL WDKJ_IsEmpty_Str(NSString *str) {
         return NO;
     }
 }
-BOOL WDKJ_IsNull_Num(NSNumber *number) {
+BOOL WDKJ_IsNull_Num(NSNumber *_Nullable number) {
     if (number == nil) {
         return YES;
     } else if ([number isKindOfClass:[NSNull class]]) {
@@ -46,7 +46,7 @@ BOOL WDKJ_IsNull_Num(NSNumber *number) {
         return NO;
     }
 }
-BOOL WDKJ_IsNull_Array(NSArray *array) {
+BOOL WDKJ_IsNull_Array(NSArray *_Nullable array) {
     if (array == nil) {
         return YES;
     } else if ([array isKindOfClass:[NSNull class]]) {
@@ -61,16 +61,16 @@ BOOL WDKJ_IsNull_Array(NSArray *array) {
 id WDKJ_ConfirmObject(id object) {
     return WDKJ_IsNull(object) ? [NSObject new] : object;
 }
-NSString * WDKJ_ConfirmString(NSString *str) {
+NSString *_Nonnull WDKJ_ConfirmString(NSString *_Nullable str) {
     return WDKJ_IsEmpty_Str(str) ? @"" : str;
 }
-NSString * WDKJ_SpaceString(NSString *str) {
+NSString *_Nonnull WDKJ_SpaceString(NSString *_Nullable str) {
     return (WDKJ_IsEmpty_Str(str) ? @" " : str);
 }
-NSNumber * WDKJ_ConfirmNumber(NSNumber *number) {
+NSNumber *_Nonnull WDKJ_ConfirmNumber(NSNumber *_Nullable number) {
     return (WDKJ_IsNull_Num(number) ? @0 : number);
 }
-NSDictionary *WDKJ_ConfirmDic(NSDictionary *dic) {
+NSDictionary *_Nonnull WDKJ_ConfirmDic(NSDictionary *_Nullable dic) {
     if (WDKJ_IsNull(dic)) {
         return @{};
     } else if ([dic isKindOfClass:[NSDictionary class]] == NO) {
@@ -79,7 +79,7 @@ NSDictionary *WDKJ_ConfirmDic(NSDictionary *dic) {
         return dic;
     }
 }
-NSArray *WDKJ_ConfirmArray(NSArray *array) {
+NSArray *_Nonnull WDKJ_ConfirmArray(NSArray *_Nullable array) {
     if (WDKJ_IsNull(array)) {
         return @[];
     } else if ([array isKindOfClass:[NSArray class]] == NO) {
@@ -109,6 +109,10 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
     // 传入的myStr只能传入字符串, 而且不能为空
     
     // 如果初始值是 字符串类型的话
+    
+    if (myStr == nil) {
+        return NO;
+    }
     
     if (numberOrString == nil) {
         
@@ -168,18 +172,36 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 #pragma mark - -----------------其他-----------------
 
 
-NSAttributedString *_Nonnull WDCKJAttributed(NSString *_Nonnull name, NSDictionary *_Nullable dic) {
-    NSAttributedString *str = [[NSAttributedString alloc] initWithString:WDKJ_ConfirmString(name) attributes:(dic)];
+NSMutableAttributedString *_Nonnull WDCKJAttributed(NSString *_Nullable name, NSDictionary *_Nullable dic) {
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:WDKJ_ConfirmString(name) attributes:(dic)];
     return str;
 }
 
-NSAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nonnull text, UIColor *_Nullable color, CGFloat fontSize) {
+NSMutableAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nullable text, UIColor *_Nullable color, CGFloat fontSize) {
     UIColor *_color = WDKJ_IsNull(color) ? [UIColor blackColor] : color;
     
-    NSAttributedString *str = [[NSAttributedString alloc] initWithString:WDKJ_ConfirmString(text) attributes:@{NSForegroundColorAttributeName : _color, NSFontAttributeName : [UIFont systemFontOfSize:fontSize]}];
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:WDKJ_ConfirmString(text) attributes:@{NSForegroundColorAttributeName : _color, NSFontAttributeName : [UIFont systemFontOfSize:fontSize]}];
 
     return str;
 }
+
+NSMutableAttributedString *_Nonnull WDCKJAttributed3(NSString *_Nullable text, CGFloat horizontalSpace, CGFloat lineSpace, UIColor *_Nullable color, CGFloat fontSize) {
+    if (WDKJ_IsEmpty_Str(text)) {
+        return [[NSMutableAttributedString alloc] init];
+    }
+    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:text attributes:@{NSKernAttributeName:@(horizontalSpace)}];
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragraphStyle setLineSpacing:lineSpace];
+    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
+    
+    
+    UIColor *_color = WDKJ_IsNull(color) ? [UIColor blackColor] : color;
+    
+    [attributedString addAttributes:@{NSForegroundColorAttributeName : _color, NSFontAttributeName : [UIFont systemFontOfSize:fontSize]} range:NSMakeRange(0, [text length])];
+//    [attributedString  addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, [text length])];
+    return attributedString;
+}
+
 
 int getRandomNumber(int from, int to) {
     int temp = to - from + 1;
@@ -192,6 +214,12 @@ void WDCKJdispatch_async_main_queue(void(^block)(void)) {
         block ? block() : nil;
     });
 }
+void WDCKJBGColor_Arc4Color(UIView *view) {
+    if ([view isKindOfClass:[UIView class]] == NO) return;
+    void (*kj_sengMsg)(id, SEL, UIColor *) = (void (*)(id, SEL, UIColor *))objc_msgSend;
+    kj_sengMsg(view, @selector(setBackgroundColor:), [UIColor kjwd_arc4Color]);
+}
+
 
 void WDCKJ_ifDEBUG(void(^_Nullable debugBlock)(void), void(^_Nullable releaseBlock)(void)) {
 #ifdef DEBUG
@@ -763,8 +791,8 @@ CGFloat WDAPP_ScreenHeight(void) {
 #pragma mark - -----------------NSDictionary-----------------
 @implementation NSDictionary (WDYHFCategory)
 
-- (NSString *)kjwd_returnJsonString {
-    NSString *jsonString = nil;
+- (nonnull NSString *)kjwd_returnJsonString {
+    NSString *jsonString = @"";
     NSError *error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:self
                                                        options:NSJSONWritingPrettyPrinted // Pass 0 if you don't care about the readability of the generated string
@@ -776,6 +804,27 @@ CGFloat WDAPP_ScreenHeight(void) {
     }
     return jsonString;
 }
+
+- (nonnull NSString *)kjwd_convertToJsonStringWithoutLineAndbreak {
+    
+    NSString *origin = [self kjwd_returnJsonString];
+    if (WDKJ_IsEmpty_Str(origin)) return @"";
+    NSMutableString *mutStr = [NSMutableString stringWithString:origin];
+    NSRange range = NSMakeRange(0, mutStr.length);
+    [mutStr replaceOccurrencesOfString:@" " withString:@"" options:NSLiteralSearch range:range];
+    NSRange range2 = NSMakeRange(0, mutStr.length);
+    [mutStr replaceOccurrencesOfString:@"\n" withString:@"" options:NSLiteralSearch range:range2];
+    return mutStr;
+}
+- (nonnull NSString *)kjwd_myConvertToJsonStringAsData {
+    NSMutableString *mutStr = [NSMutableString stringWithString:[self kjwd_convertToJsonStringWithoutLineAndbreak]];
+    NSRange range = NSMakeRange(0, mutStr.length);
+    [mutStr replaceOccurrencesOfString:@"\"" withString:@"\\\"" options:NSLiteralSearch range:range];
+    return mutStr;
+}
+
+
+
 - (NSString *)kjwd_returnString {
     NSMutableString *returnValue = [[NSMutableString alloc]initWithCapacity:0];
     
@@ -980,6 +1029,18 @@ CGFloat WDAPP_ScreenHeight(void) {
     
     return [UIColor colorWithRed:((float) r / 255.0f) green:((float) g / 255.0f) blue:((float) b / 255.0f) alpha:1.0f];
 }
+
+
++ (nonnull UIColor *)kjwd_titleColor333333 {
+    return [UIColor kjwd_colorWithHexString:@"333333"];
+}
+
++ (nonnull UIColor *)kjwd_subTitleColor969696 {
+    return [UIColor kjwd_colorWithHexString:@"969696"];
+}
+
+
+
 @end
 
 
@@ -1028,7 +1089,7 @@ CGFloat WDAPP_ScreenHeight(void) {
  *  如果当前导航控制器不包含所想要pop到的控制器，那么先pop到RootViewController，再用当前控制器push想要指定的控制器，newAllocVC要传入创建好的控制启
  *  @param vcClass 类名 (例如[ViewController class])
  */
-- (void)kjwd_popToSpecifyVC:(Class)vcClass currentStackBlock:(void(^)(__kindof UIViewController *findZheVC))currentStackBlock newAllocVC:(__kindof UIViewController *)newVc {
+- (void)kjwd_popToSpecifyVC:(Class)vcClass currentStackBlock:(void(^)(__kindof UIViewController *findZheVC))currentStackBlock newAllocVC:(__kindof UIViewController *_Nullable)newVc {
     BOOL boo = NO;
     
     UINavigationController *navc = self.navigationController;
@@ -1237,14 +1298,6 @@ CGFloat WDAPP_ScreenHeight(void) {
     return nil;
 }
 
-
-- (id)kjwd_safeArea {
-    if (@available(iOS 11.0, *)) {
-        return self.safeAreaLayoutGuide;
-    } else {
-        return self;
-    }
-}
 - (MASViewAttribute *)kjwdMas_safeAreaTop {
     if (@available(iOS 11.0, *)) {
         return self.mas_safeAreaLayoutGuideTop;
@@ -1273,6 +1326,17 @@ CGFloat WDAPP_ScreenHeight(void) {
         return self.mas_right;
     }
 }
+
+/*
+ 
+ make.left.equalTo(superview.kjwdMas_safeAreaLeft);
+ make.right.equalTo(superview.kjwdMas_safeAreaRight);
+ make.top.equalTo(superview.kjwdMas_safeAreaTop);
+ make.bottom.equalTo(superview.kjwdMas_safeAreaBottom);
+ 
+ */
+
+
 - (NSArray *)kjwd_mas_makeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block {
     if (block == nil) {
         return nil;
@@ -1551,6 +1615,15 @@ CGFloat WDAPP_ScreenHeight(void) {
 @end
 
 #pragma mark - -----------------UIButton-----------------
+
+
+@interface UIButton (Property)
+
+@property (copy, nonatomic, nullable) void (^kjCallBackBlock)(UIButton *sender);
+
+@end
+
+
 @implementation UIButton (WDYHFCategory)
 
 - (void)kjwd_layoutButtonWithEdgeInsetsStyle:(GLButtonEdgeInsetsStyle)style
@@ -1616,6 +1689,30 @@ CGFloat WDAPP_ScreenHeight(void) {
     self.imageEdgeInsets = imageEdgeInsets;
 }
 
+
+- (void)kjwd_addTouchUpInsideForCallBack:(void(^_Nonnull)(UIButton * _Nonnull sender))callBack {
+    [self kjwd_addControlEvents:UIControlEventTouchUpInside forCallBack:callBack];
+}
+- (void)kjwd_addControlEvents:(UIControlEvents)controlEvents forCallBack:(void (^)(UIButton * _Nonnull))callBack {
+    if (callBack == nil) return;
+    self.kjCallBackBlock = callBack;
+    [self addTarget:self action:@selector(btnCallBack:) forControlEvents:controlEvents];
+}
+- (void)btnCallBack:(UIButton *)sender {
+    self.kjCallBackBlock ? self.kjCallBackBlock(self) : nil;
+}
+
+
+
+- (void)setKjCallBackBlock:(void (^)(UIButton *))kjCallBackBlock {
+    objc_setAssociatedObject(self, @"kjCallBackBlock", kjCallBackBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+- (void (^)(UIButton *))kjCallBackBlock {
+    void (^block)(UIButton *) = objc_getAssociatedObject(self, @"kjCallBackBlock");
+    return block;
+}
+
+
 @end
 
 
@@ -1624,8 +1721,10 @@ CGFloat WDAPP_ScreenHeight(void) {
 #pragma mark - -----------------NSDate-----------------
 @implementation NSDate (WDYHFCategory)
 
-
-+ (nonnull NSDate *)kjwd_returnDate:(NSString *_Nonnull)dateString withDateFormat:(NSString *_Nonnull)format {
++ (nullable NSDate *)kjwd_returnDate:(NSString *_Nonnull)dateString withDateFormat:(NSString *_Nonnull)format {
+    if (dateString == nil) {
+        return nil;
+    }
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:format];
     NSDate *date = [dateFormatter dateFromString:dateString];
@@ -1634,10 +1733,19 @@ CGFloat WDAPP_ScreenHeight(void) {
 + (NSString *)kjwd_currentDateString {
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = [NSString stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+    formatter.dateFormat = [NSString stringWithFormat:WDKJDefaultDateFormat];
     NSString *dateStr = [formatter stringFromDate:date];
     return dateStr;
 }
+
++ (nonnull NSString *)kjwd_returnYearMonthDayWithDateString:(NSString *_Nonnull)dateString withDateFormat:(NSString *_Nonnull)format {
+    NSDate *date = [self kjwd_returnDate:dateString withDateFormat:format];
+    NSString *str = [NSString stringWithFormat:@"%@-%@-%@", [date kjwd_dateYear], [date kjwd_dateMonth], [date kjwd_dateDay]];
+    return str;
+}
+
+
+
 + (nonnull NSString *)kjwd_currentYearMonthDayString; {
     NSString *str = [NSString stringWithFormat:@"%@-%@-%@", [NSDate kjwd_currentYear], [NSDate kjwd_currentMonth], [NSDate kjwd_currentDay]];
     return str;
@@ -1669,7 +1777,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 - (nonnull NSString *)kjwd_dateString {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = [NSString stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+    formatter.dateFormat = [NSString stringWithFormat:WDKJDefaultDateFormat];
     NSString *dateStr = [formatter stringFromDate:self];
     return dateStr;
 }
@@ -1713,7 +1821,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 + (nonnull NSString *)kjwd_dateStringFrom1970second:(double)second {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = [NSString stringWithFormat:@"yyyy-MM-dd HH:mm:ss"];
+    formatter.dateFormat = [NSString stringWithFormat:WDKJDefaultDateFormat];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:second];
     return [date kjwd_dateString];
 }
@@ -1829,6 +1937,45 @@ CGFloat WDAPP_ScreenHeight(void) {
     //上下文栈pop出创建的context
     UIGraphicsEndImageContext();
     return image;
+}
++ (UIImage *)kjwd_QRCodeWithContent:(NSString *)content size:(CGSize)size {
+    if (content == nil) {
+        return [[UIImage alloc] init];
+    }
+    
+    UIImage *codeImage = nil;
+    
+    NSData *stringData = [content dataUsingEncoding: NSUTF8StringEncoding];
+    
+    //生成
+    CIFilter *qrFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    [qrFilter setValue:stringData forKey:@"inputMessage"];
+    [qrFilter setValue:@"M" forKey:@"inputCorrectionLevel"];
+    
+    UIColor *onColor = [UIColor blackColor];
+    UIColor *offColor = [UIColor whiteColor];
+    
+    //上色
+    CIFilter *colorFilter = [CIFilter filterWithName:@"CIFalseColor"
+                                       keysAndValues:
+                             @"inputImage",qrFilter.outputImage,
+                             @"inputColor0",[CIColor colorWithCGColor:onColor.CGColor],
+                             @"inputColor1",[CIColor colorWithCGColor:offColor.CGColor],
+                             nil];
+    
+    CIImage *qrImage = colorFilter.outputImage;
+    CGImageRef cgImage = [[CIContext contextWithOptions:nil] createCGImage:qrImage fromRect:qrImage.extent];
+    UIGraphicsBeginImageContext(size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetInterpolationQuality(context, kCGInterpolationNone);
+    CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextDrawImage(context, CGContextGetClipBoundingBox(context), cgImage);
+    codeImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    CGImageRelease(cgImage);
+    
+    return codeImage;
 }
 
 @end
@@ -1992,6 +2139,14 @@ CGFloat WDAPP_ScreenHeight(void) {
     return basicTest;
 }
 
+- (nullable NSString *)kjwd_idCardToAsterisk {
+    if (self.length != 18) {
+//        NSLog(@"身份证号必须是18位!");
+        return nil;
+    }
+    return [self stringByReplacingCharactersInRange:NSMakeRange(10, 4) withString:@"****"];
+}
+
 
 
 /**
@@ -2127,6 +2282,19 @@ CGFloat WDAPP_ScreenHeight(void) {
         }
     }
     return string;
+}
+
+- (nonnull NSDictionary *)kjwd_convertToDic {
+    NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    if (jsonData == nil) return @{};
+    
+    NSError *err = nil;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return @{};
+    }
+    return dic;
 }
 
 

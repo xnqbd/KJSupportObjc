@@ -10,6 +10,7 @@
 
 #import "CKJSimpleTableView.h"
 
+
 @class CKJSimpleTableView;
 
 
@@ -17,7 +18,7 @@
 #warning  注意: 继承于本来的子类， 需实现 CKJSimpleTableViewDataSource 协议
 @interface CKJBaseTableViewToolVC : UIViewController <UITableViewDelegate, CKJSimpleTableViewDataSource, CKJSimpleTableViewDelegate, TitleStyleHeaderFooterViewDelegate, CKJCellDataSource>
 
-@property (strong, nonatomic) CKJTableViewDelegateObject *tableViewDelegateObject;
+
 @property (strong, nonatomic, nonnull) IBOutlet CKJSimpleTableView *simpleTableView;
 - (UITableViewStyle)simpleTableViewStyle;
 

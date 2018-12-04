@@ -10,7 +10,6 @@
 #import <Masonry/Masonry.h>
 
 
-
 @implementation KJWDJButtonModel
 
 
@@ -129,19 +128,19 @@
     [self create_left_right];
     [self create_center_additional];
     
-    __weak UIView *contentView = self.contentView;
+    __weak UIView *bgV = self.bgV;
     __weak typeof(self) weakSelf = self;
     
-    [contentView addSubview:_leftWrapView];
-    [contentView addSubview:_rightWrapView];
+    [bgV addSubview:_leftWrapView];
+    [bgV addSubview:_rightWrapView];
     
     
     //默认只有 left 和 right,  没有 view1、view10
     BOOL add_view1 = NO;
     BOOL add_view10 = NO;
     
-    UIView *left_of_leftWrapView = contentView;
-    UIView *right_of_rightWrapView = contentView;
+    UIView *left_of_leftWrapView = bgV;
+    UIView *right_of_rightWrapView = bgV;
     
     
     if (add_view1) {
@@ -154,27 +153,27 @@
     [self create_topLabel_bottomLabel:_view5];
     
     if (add_view1) {
-        [contentView addSubview:_view1];
+        [bgV addSubview:_view1];
         [_view1 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.top.bottom.equalTo(contentView);
+            make.left.top.bottom.equalTo(bgV);
             // 一般图片大小设置为固定
             make.width.equalTo(@(15));
         }];
     }
     
     // 中
-    [contentView addSubview:_view5];
+    [bgV addSubview:_view5];
     [_view5 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(contentView);
+        make.top.bottom.equalTo(bgV);
         make.right.equalTo(weakSelf.rightWrapView.mas_left);
     }];
     
     
     //附加
     if (add_view10) {
-        [contentView addSubview:_view10];
+        [bgV addSubview:_view10];
         [_view10 mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.bottom.right.equalTo(contentView);
+            make.top.bottom.right.equalTo(bgV);
             // 给一个初始宽度
             make.width.equalTo(@(15));
         }];
@@ -194,7 +193,7 @@
         } else {
             make.left.equalTo(left_of_leftWrapView.mas_left);
         }
-        make.top.bottom.equalTo(contentView);
+        make.top.bottom.equalTo(bgV);
         make.right.equalTo(weakSelf.view5.mas_left);
     }];
     
@@ -225,7 +224,7 @@
     self.arrowImageView9.layer.contentsGravity = kCAGravityResizeAspectFill;
     
     [_rightWrapView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(contentView);
+        make.top.bottom.equalTo(bgV);
         if (add_view10) {
             make.right.equalTo(right_of_rightWrapView.mas_left);
         } else {

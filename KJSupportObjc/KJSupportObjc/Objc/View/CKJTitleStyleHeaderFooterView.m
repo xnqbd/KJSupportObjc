@@ -58,6 +58,9 @@
         view.font = [UIFont systemFontOfSize:14];
         [bgV addSubview:view];
         UIEdgeInsets edge = UIEdgeInsetsMake(8, 10, 8, 10);
+        if ([self.delegate respondsToSelector:@selector(return_TitleLabEdge)]) {
+            edge = [self.delegate return_TitleLabEdge];
+        }
         UIView *superV = view.superview;
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(superV.kjwdMas_safeAreaLeft).offset(edge.left);
@@ -69,6 +72,9 @@
     });
 }
 
+
+
+
 - (void)setupData:(CKJCommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(CKJSimpleTableView *)tableView {
     self.bgV.backgroundColor = self.simpleTableView.backgroundColor;
     if ([headerFooterModel isKindOfClass:[CKJTitleStyleHeaderFooterModel class]]) {
@@ -79,5 +85,7 @@
         }
     }
 }
+
+
 
 @end

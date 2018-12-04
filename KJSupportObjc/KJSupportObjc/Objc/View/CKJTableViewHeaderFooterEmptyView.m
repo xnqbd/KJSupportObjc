@@ -19,7 +19,6 @@
 
 - (void)setupData:(CKJTableViewHeaderFooterEmptyModel *)headerFooterModel section:(NSInteger)section tableView:(UITableView *)tableView {
     self.contentView.backgroundColor = self.simpleTableView.backgroundColor;
-//    self.contentView.backgroundColor = [UIColor redColor];
 }
 
 @end
