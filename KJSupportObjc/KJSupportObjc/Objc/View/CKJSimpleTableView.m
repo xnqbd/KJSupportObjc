@@ -22,19 +22,27 @@
         self.dataSource = self;
         self.delegate = self;
         self.tableFooterView = [UIView new];
-        
-        self.estimatedRowHeight = 44;
-        self.rowHeight = UITableViewAutomaticDimension;
-        
-        self.estimatedSectionHeaderHeight = 20;
+
+        self.rowHeight           = UITableViewAutomaticDimension;
         self.sectionHeaderHeight = UITableViewAutomaticDimension;
+        self.sectionFooterHeight = UITableViewAutomaticDimension;
         
+        self.estimatedRowHeight           = 44;
+        self.estimatedSectionHeaderHeight = 20;
         self.estimatedSectionFooterHeight = 20;
-        self.estimatedSectionFooterHeight = UITableViewAutomaticDimension;
         
     }
     return self;
 }
+
+- (void)disableEstimated {
+    if (@available(iOS 11.0, *)) {
+        self.estimatedRowHeight = 0;
+        self.estimatedSectionHeaderHeight = 0;
+        self.estimatedSectionFooterHeight = 0;
+    }
+}
+
 
 #pragma mark - UITableViewDelegate
 
@@ -78,8 +86,8 @@
     CKJSimpleTableView *temp = (CKJSimpleTableView *)tableView;
     
     // 如果要进行header footer自适应高度，那么一定设置这个, 如果用xib、storyboard进行拖线SimpleTableView，那么xib、storyboard面板有默认的设置，是一个坑
-    temp.estimatedSectionHeaderHeight = UITableViewAutomaticDimension;
-    temp.estimatedSectionFooterHeight = UITableViewAutomaticDimension;
+//    temp.estimatedSectionHeaderHeight = UITableViewAutomaticDimension;
+//    temp.estimatedSectionFooterHeight = UITableViewAutomaticDimension;
     
     //        NSLog(@" \n ------------ %@  %@ \n ------------  %@     %@", tableView.dataSource, tableView.delegate, temp.simpleTableViewDataSource, temp.simpleTableViewDelegate);
     
@@ -153,13 +161,7 @@
 }
 
 
-- (void)kjwd_setCellModels:(NSArray <CKJCommonCellModel *>*)cellModels atSection:(NSInteger)section {
-    if (cellModels == nil) return;
-//    NSMutableArray <CKJCommonSectionModel *>*_sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
-//    CKJCommonSectionModel *sectionModel = [_sections kjwd_objectAtIndex:section];
-//    sectionModel.modelArray = cellModels;
-//    self.dataArr = _sections;
-    
+- (void)kjwd_setCellModels:(nullable NSArray <CKJCommonCellModel *>*)cellModels atSection:(NSInteger)section {
     CKJCommonSectionModel *sectionModel = [self.dataArr kjwd_objectAtIndex:section];
     sectionModel.modelArray = cellModels;
 }
@@ -248,7 +250,10 @@
     [sections kjwd_addObject:sectionModel];
     tableV.dataArr = sections;
 }
-- (void)appendCKJCommonSectionModels:(NSArray <CKJCommonSectionModel *>*_Nonnull)sectionModels {
+- (void)appendCKJCommonSectionModels:(NSArray <CKJCommonSectionModel *>*_Nullable)sectionModels {
+    if (sectionModels == nil) {
+        return;
+    }
     NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
     [sections kjwd_addObjectsFromArray:sectionModels];
     self.dataArr = sections;
@@ -265,7 +270,7 @@
 //    animationBlock ? animationBlock(block) : nil;
 //}
 
-- (BOOL)kjwd_insertCellModelsInAllCellModel:(nonnull NSArray<CKJCommonCellModel *>*)array section:(NSInteger)section row:(NSInteger)row {
+- (BOOL)kjwd_insertCellModelsInAllCellModel:(nullable NSArray<CKJCommonCellModel *>*)array section:(NSInteger)section row:(NSInteger)row {
     
     if (array == nil) {
         return NO;
@@ -285,7 +290,10 @@
 }
 
 
-- (void)kjwd_insertCellModelInAllCellModel:(nonnull CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
+- (void)kjwd_insertCellModelInAllCellModel:(nullable CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
+    if (model == nil) {
+        return;
+    }
     
     if ([self kjwd_insertCellModelsInAllCellModel:@[model] section:section row:row]) {
         NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:section];
@@ -293,7 +301,7 @@
     }
 }
 
-- (BOOL)appendCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section {
+- (BOOL)appendCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section {
     if (WDKJ_IsNull_Array(array)) {
         return NO;
     }
@@ -319,7 +327,10 @@
     return YES;
 }
 
-- (void)appendCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
+- (void)appendCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
+    if (WDKJ_IsNull_Array(array)) {
+        return;
+    }
     // 获取Array在拼接之前
     NSArray <CKJCommonCellModel *>*before_displayCellModelArray = [self displayCellModelArrayAtSection:section];
     
@@ -340,11 +351,11 @@
     [self insertRowsAtIndexPaths:paths withRowAnimation:rowAnimation];
 }
 
-- (BOOL)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array {
+- (BOOL)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)array {
     return [self appendCellModelArray:array atLastRow_InAllCellModelArrayOfSection:self.dataArr.count - 1];
 }
 
-- (void)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
+- (void)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)array withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
     [self appendCellModelArray:array atLastRow_InAllCellModelArrayOfSection:self.dataArr.count - 1 withRowAnimation:rowAnimation animationBlock:animationBlock];
 }
 
@@ -352,6 +363,8 @@
  删除模型在某个分区的某一行
  */
 - (void)removeCellModelAtSection:(NSInteger)section rows:(NSArray <NSNumber *>*_Nonnull)rows removeHiddenCellModel:(BOOL)removeHiddenCellModel {
+    
+    
     NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
     
     CKJCommonSectionModel *sectionModel = [sections kjwd_objectAtIndex:section];

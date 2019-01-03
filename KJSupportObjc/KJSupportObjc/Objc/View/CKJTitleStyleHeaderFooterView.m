@@ -17,6 +17,7 @@
 + (instancetype)modelWithAttributedString:(NSAttributedString *)attributedString type:(CKJCommonHeaderFooterType)type {
     CKJTitleStyleHeaderFooterModel *model = [[self alloc] init];
     model.attributedTitle = attributedString;
+    model.textAlignment = NSTextAlignmentLeft;
     model.type = type;
     return model;
 }
@@ -41,7 +42,7 @@
 @implementation CKJTitleStyleHeaderFooterView
 
 - (void)setupSubViews {
-    
+
     CKJTitleStyleBGView *bgV = ({
         CKJTitleStyleBGView *view = [CKJTitleStyleBGView new];
         [self.contentView addSubview:view];
@@ -50,7 +51,7 @@
         }];
         self.bgV = view;
     });
-    
+
     self.customTitleLab = ({
         UILabel *view = [UILabel new];
         view.numberOfLines = 0;
@@ -80,12 +81,12 @@
     if ([headerFooterModel isKindOfClass:[CKJTitleStyleHeaderFooterModel class]]) {
         CKJTitleStyleHeaderFooterModel *model = (CKJTitleStyleHeaderFooterModel *)headerFooterModel;
         self.customTitleLab.attributedText = model.attributedTitle;
+        self.customTitleLab.textAlignment = model.textAlignment;
         if ([self.delegate respondsToSelector:@selector(setupCKJTitleStyleHeaderFooterView:label:bgV:data:section:tableView:)]) {
             [self.delegate setupCKJTitleStyleHeaderFooterView:self label:self.customTitleLab bgV:_bgV data:headerFooterModel section:section tableView:tableView];
         }
     }
 }
-
 
 
 @end

@@ -34,7 +34,8 @@
  键值对
  OC版本
  return @{NSStringFromClass([CKJCommonCellModel class]) : @{cellKEY : NSStringFromClass([CKJCommonTableViewCell class]), isRegisterNibKEY : @YES}};
- 
+ return @{NSStringFromClass([WDYHFCompleteOrderCellModel class]) : @{cellKEY : NSStringFromClass([WDYHFOrderDetailsQRCodeCell class]), isRegisterNibKEY : @NO, configDicKEY_CKJPayStyleCellInstall : @3}}
+
  Swift版本
  return [NSStringFromClass(HZYHFWDYHFPayNotesCell2CellModel.self) : [cellKEY : NSStringFromClass(HZYHFWDYHFPayNotesCell2Cell.self), isRegisterNibKEY : false]]
 
@@ -79,7 +80,12 @@
 
 
 
-- (void)kjwd_setCellModels:(NSArray <CKJCommonCellModel *>*)cellModels atSection:(NSInteger)section;
+/**
+ 禁止估算高度(防止屏幕乱跳动)
+ */
+- (void)disableEstimated;
+
+- (void)kjwd_setCellModels:(nullable NSArray <CKJCommonCellModel *>*)cellModels atSection:(NSInteger)section;
 
 
 /**
@@ -135,34 +141,34 @@
  拼接分区
  */
 - (void)appendCKJCommonSectionModel:(CKJCommonSectionModel *)sectionModel;
-- (void)appendCKJCommonSectionModels:(NSArray <CKJCommonSectionModel *>*_Nonnull)sectionModels;
+- (void)appendCKJCommonSectionModels:(NSArray <CKJCommonSectionModel *>*_Nullable)sectionModels;
 
 
 /**
  插入模型在某个分区的某一行
  **************这个插入数据之后，需要手动的刷新数据，因为在insertRowsAtIndexPaths会位置出现， insertRowsAtIndexPaths每次只能插入一个数据，同时插入多个数据会造成插入动画数据有问题**************
  */
-- (BOOL)kjwd_insertCellModelsInAllCellModel:(nonnull NSArray<CKJCommonCellModel *>*)array section:(NSInteger)section row:(NSInteger)row;
+- (BOOL)kjwd_insertCellModelsInAllCellModel:(nullable NSArray<CKJCommonCellModel *>*)array section:(NSInteger)section row:(NSInteger)row;
 /**
  使用动画 插入模型在某个分区的某一行
  **************调用此方法插入数据后，不要使用reloadRowsAtIndexPaths刷新，不然会崩溃，可以刷新当前所在的分区**************
  */
-- (void)kjwd_insertCellModelInAllCellModel:(nonnull CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
+- (void)kjwd_insertCellModelInAllCellModel:(nullable CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
 
 
 /**
  在指定分区的末尾拼接模型数组 (拼接在某一个分区所有CellModelArray包括隐藏的模型的 最后一行)
  */
-- (BOOL)appendCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section;
+- (BOOL)appendCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section;
 /**
  使用动画 在指定分区的末尾拼接模型数组 (拼接在某一个分区所有CellModelArray包括隐藏的模型的 最后一行)
  */
-- (void)appendCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
+- (void)appendCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
 
 /** 拼接在最后一个分区最后一行 */
-- (BOOL)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array;
+- (BOOL)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)array;
 /** 使用动画 拼接在最后一个分区最后一行 */
-- (void)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nonnull NSArray <CKJCommonCellModel *>*)array withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
+- (void)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)array withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
 
 
 /** 删除模型在某个分区的某一行 */

@@ -15,6 +15,8 @@
 
 @property (copy, nonatomic) NSAttributedString *attributedTitle;
 
+@property(assign, nonatomic) NSTextAlignment textAlignment;
+
 + (instancetype)modelWithAttributedString:(NSAttributedString *)attributedString type:(CKJCommonHeaderFooterType)type;
 
 @end

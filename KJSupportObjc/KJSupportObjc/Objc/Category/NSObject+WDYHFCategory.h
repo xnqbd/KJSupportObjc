@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @class MASViewAttribute, MASConstraintMaker;
 
 #pragma mark - -----------------异常处理-----------------
@@ -25,6 +27,10 @@ NSDictionary *_Nonnull WDKJ_ConfirmDic(NSDictionary *_Nullable dic);
 NSArray *_Nonnull WDKJ_ConfirmArray(NSArray *_Nullable array);
 
 
+
+//NSDecimalNumber *_Nonnull WDKJ_ConfirmNumber(NSNumber *_Nullable number);
+
+
 BOOL WDKJ_IsNull_NumberOrString(id numberOrString);
 /**
  比较字符串 是否相同 (网络上取到的数据)
@@ -34,6 +40,9 @@ BOOL WDKJ_IsNull_NumberOrString(id numberOrString);
  @return 是否相同
  */
 BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
+
+
+
 
 
 
@@ -347,7 +356,7 @@ CGFloat WDAPP_ScreenHeight(void);
 /**
  *  pop到指定控制器
  *  如果当前导航控制器包含所想要pop到的控制器，会调用currentStackBlock
- *  如果当前导航控制器不包含所想要pop到的控制器，那么先pop到RootViewController，再用当前控制器push想要指定的控制器，newAllocVC要传入创建好的控制启
+ *  如果当前导航控制器不包含所想要pop到的控制器，那么把newVc插入到导航控制器的viewControllers数组里
  *  @param vcClass 类名 (例如[ViewController class])
  */
 - (void)kjwd_popToSpecifyVC:(Class)vcClass currentStackBlock:(void(^)(__kindof UIViewController *findZheVC))currentStackBlock newAllocVC:(__kindof UIViewController *_Nullable)newVc;
@@ -702,6 +711,10 @@ imageTitleSpace:(CGFloat)space;
 - (BOOL)kjwd_validateVerifyCodeWithSize:(unsigned int)size;
 
 
+
+/** 是否全是数字 */
+- (BOOL)kjwd_isNumber;
+
 /** 是否全是大写或数字 */
 - (BOOL)kjwd_inputShouldUpperAndNumber;
 
@@ -722,7 +735,7 @@ imageTitleSpace:(CGFloat)space;
 
  @return 新的字符串
  */
-- (nullable NSString *)kjwd_idCardToAsterisk;
+- (nonnull NSString *)kjwd_idCardToAsterisk;
 
 /**
  * MD5加密
@@ -814,12 +827,14 @@ typedef NS_ENUM(NSInteger, KJWDArc4randomType) {
 @end
 
 
-#pragma mark - -----------------CALayer-----------------
-@interface NSAttributedString (WDYHFCategory)
+#pragma mark - -----------------NSAttributedString-----------------
+@interface NSDecimalNumber (WDYHFCategory)
 
-- (void)kjwd_setLineSpace:(CGFloat)kLineSpace;
-- (void)kjwd_setWordSpace:(CGFloat)kWordSpace;
-- (void)kjwd_setLineSpace:(CGFloat)kLineSpace wordSpace:(CGFloat)kWordSpace;
+
+/**
+ 如果能转成确定的十进制，那就转成本身的十进制，否则转成十进制0 (即使传入汉字或者字母等等，也会返回一个确定的十进制数，比如0)
+ */
++ (instancetype)kjwd_confirmDecimalNumberWithString:(nullable NSString *)string;
 
 @end
 

@@ -127,6 +127,9 @@
     [self.tableViewDelegateObject scrollViewDidScroll:scrollView];
 }
 
+- (void)installSimpleTableViewData {
+    
+}
 
 /**
  点击某一行使用这个

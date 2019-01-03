@@ -14,6 +14,9 @@
 @class CKJSimpleTableView;
 
 
+#define  WDSuperDidSelectRow   [super kj_tableView:tableView didSelectRowAtSection:section row:row selectIndexPath:indexPath model:model cell:cell];
+
+
 
 #warning  注意: 继承于本来的子类， 需实现 CKJSimpleTableViewDataSource 协议
 @interface CKJBaseTableViewToolVC : UIViewController <UITableViewDelegate, CKJSimpleTableViewDataSource, CKJSimpleTableViewDelegate, TitleStyleHeaderFooterViewDelegate, CKJCellDataSource>
@@ -27,6 +30,7 @@
  */
 - (void)layoutTableViewFrame:(CKJSimpleTableView *)tableV;
 
+- (void)installSimpleTableViewData;
 
 
 @end

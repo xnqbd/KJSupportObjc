@@ -10,6 +10,7 @@
 
 @implementation CKJCommonCellModel
 
+
 - (instancetype)init {
     if (self = [super init]) {
         self.displayInTableView = YES;
@@ -21,5 +22,14 @@
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
 }
+
+
++ (instancetype)modelWithCellHeight:(CGFloat)cellHeight didSelectRowBlock:(nullable WDDidSelectRowBlock)didSelectRowBlock {
+    CKJCommonCellModel *model = [[self alloc] init];
+    model.cellHeight = cellHeight;
+    model.didSelectRowBlock = didSelectRowBlock;
+    return model;
+}
+
 
 @end

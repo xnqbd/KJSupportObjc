@@ -7,14 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-@class CKJCommonTableViewCell;
+#import "CKJBaseModel.h"
 
-@interface CKJCommonCellModel : NSObject
+@class CKJCommonTableViewCell, CKJCommonCellModel;
+
+
+typedef void(^WDDidSelectRowBlock)(__kindof CKJCommonCellModel *currentModel);
+
+@interface CKJCommonCellModel : CKJBaseModel
 
 @property (assign, nonatomic) UITableViewCellSelectionStyle selectionStyle;
 
 /**
- 行高
+ 行高, 如果等于0，那么会根据约束自适应高度
  */
 @property (assign, nonatomic) CGFloat cellHeight;
 
@@ -35,6 +40,9 @@
 
 @property (weak, nonatomic) __kindof CKJCommonTableViewCell *cell;
 
+
+
++ (instancetype)modelWithCellHeight:(CGFloat)cellHeight didSelectRowBlock:(nullable WDDidSelectRowBlock)didSelectRowBlock;
 
 @property (copy, nonatomic, nullable) void (^didSelectRowBlock)(__kindof CKJCommonCellModel *currentModel);
 

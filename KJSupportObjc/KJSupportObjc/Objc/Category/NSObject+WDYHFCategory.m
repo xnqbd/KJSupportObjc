@@ -1086,7 +1086,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 /**
  *  pop到指定控制器
  *  如果当前导航控制器包含所想要pop到的控制器，会调用currentStackBlock
- *  如果当前导航控制器不包含所想要pop到的控制器，那么先pop到RootViewController，再用当前控制器push想要指定的控制器，newAllocVC要传入创建好的控制启
+ *  如果当前导航控制器不包含所想要pop到的控制器，那么把newVc插入到导航控制器的viewControllers数组里
  *  @param vcClass 类名 (例如[ViewController class])
  */
 - (void)kjwd_popToSpecifyVC:(Class)vcClass currentStackBlock:(void(^)(__kindof UIViewController *findZheVC))currentStackBlock newAllocVC:(__kindof UIViewController *_Nullable)newVc {
@@ -1108,11 +1108,17 @@ CGFloat WDAPP_ScreenHeight(void) {
     }
     if (boo == NO) {
         if (newVc == nil) {
-            NSLog(@"想要pop push到新控制器，newVc不能为nil");
+            NSLog(@"想要pop 到新控制器，newVc不能为nil");
             return;
         }
-        [navc popToRootViewControllerAnimated:NO];
-        [navc pushViewController:newVc animated:YES];
+        if ([newVc isKindOfClass:[UIViewController class]] == NO) {
+            NSLog(@"想要pop 到新控制器，newVc要为UIViewController类型");
+            return;
+        }
+        NSMutableArray <__kindof UIViewController *>*array = [NSMutableArray arrayWithArray:WDKJ_ConfirmArray(self.navigationController.viewControllers)];
+        [array kjwd_insertObject:newVc atIndex:[array indexOfObject:self]];
+        [self.navigationController setViewControllers:array animated:NO];
+        [navc popViewControllerAnimated:YES];
     }
 }
 - (void)kjwd_settoRootVCWithAnimation:(BOOL)animation {
@@ -2080,6 +2086,14 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 
+/** 是否全是数字 */
+- (BOOL)kjwd_isNumber {
+    if (self.length == 0) return NO;
+    NSString *regex =@"[0-9]*";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    return [pred evaluateWithObject:self];
+}
+
 /** 是否全是大写或数字 */
 - (BOOL)kjwd_inputShouldUpperAndNumber {
     if (self.length == 0) return NO;
@@ -2139,10 +2153,10 @@ CGFloat WDAPP_ScreenHeight(void) {
     return basicTest;
 }
 
-- (nullable NSString *)kjwd_idCardToAsterisk {
+- (nonnull NSString *)kjwd_idCardToAsterisk {
     if (self.length != 18) {
 //        NSLog(@"身份证号必须是18位!");
-        return nil;
+        return @"";
     }
     return [self stringByReplacingCharactersInRange:NSMakeRange(10, 4) withString:@"****"];
 }
@@ -2354,32 +2368,17 @@ CGFloat WDAPP_ScreenHeight(void) {
 
 @end
 
+#pragma mark - -----------------NSDecimalNumber-----------------
+@implementation NSDecimalNumber (WDYHFCategory)
 
-@implementation NSAttributedString (WDYHFCategory)
-
-- (void)kjwd_setLineSpace:(CGFloat)kLineSpace {
-    NSString *labelText = self.string;
-    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:labelText];
-    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragraphStyle setLineSpacing:kLineSpace];
-    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
-//    self.attributedText = attributedString;
-    
-    
-    
-//    NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:self.string];
-//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-//    [paragraphStyle setLineSpacing:kLineSpace];
-//    [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [labelText length])];
-//    self.attributedText = attributedString;
++ (instancetype)kjwd_confirmDecimalNumberWithString:(nullable NSString *)string {
+    NSDecimalNumber *tempNumber = [[NSDecimalNumber alloc] initWithString:string];
+    if ([tempNumber isEqualToNumber:[NSDecimalNumber notANumber]]) {
+        return [NSDecimalNumber zero];
+    } else {
+        return tempNumber;
+    }
 }
-- (void)kjwd_setWordSpace:(CGFloat)kWordSpace {
-    
-}
-- (void)kjwd_setLineSpace:(CGFloat)kLineSpace wordSpace:(CGFloat)kWordSpace {
-    
-}
-
 
 @end
 
