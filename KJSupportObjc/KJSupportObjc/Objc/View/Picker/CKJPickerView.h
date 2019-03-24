@@ -7,16 +7,18 @@
 //
 
 #import "CKJToolView.h"
-
+#import "CKJBaseModel.h"
 
 
 
 @class CKJPickerView, CKJPickerComponentModel;
 
 
-@interface CKJPickerRowModel : NSObject
+@interface CKJPickerRowModel : CKJBaseModel
 
-//@property (assign, nonatomic) CGFloat rowHeight;
+// 这个row 和 component 不要轻易换名字
+@property (assign, nonatomic, readonly) NSInteger *row;
+@property (assign, nonatomic, readonly) NSInteger *component;
 
 @property (copy, nonatomic, nullable) NSString *title;
 
@@ -36,7 +38,11 @@
 
 @end
 
-@interface CKJPickerComponentModel : NSObject
+@interface CKJPickerComponentModel : CKJBaseModel
+
+
+// 这个row 和 component 不要轻易换名字
+@property (assign, nonatomic, readonly) NSInteger *component;
 
 /**
  默认选中的索引，默认选中第0行，一般是设置初始化的时候默认的索引
@@ -60,7 +66,7 @@
 @end
 
 
-@interface CKJPickerView : UIPickerView
+@interface CKJPickerView : UIPickerView<UIPickerViewDataSource, UIPickerViewDelegate>
 
 @property (strong, nonatomic) NSArray <CKJPickerComponentModel *>* _Nullable dataArr;
 

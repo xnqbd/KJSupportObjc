@@ -2,8 +2,8 @@
 Pod::Spec.new do |s|
 
 s.name         = "KJSupportObjc"
-s.version      = "1.9.7"
-s.summary      = "包含常见的分类、工具，UITableView、UICollectionView的工具等等"
+s.version      = "2.0.0"
+s.summary      = "包含常见的分类、工具，UITableView的工具等等"
 
 s.homepage     = "https://github.com/xnqbd/KJSupportObjc"
 

@@ -41,7 +41,7 @@
 @end
 
 
-@interface CKJPickerView ()<UIPickerViewDataSource, UIPickerViewDelegate>
+@interface CKJPickerView ()
 
 @property (strong, nonatomic) UIBarButtonItem *titleItem;
 
@@ -73,6 +73,9 @@
 }
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     CKJPickerComponentModel *componentModel = [self.dataArr kjwd_objectAtIndex:component];
+    
+    [self installComponent:component withComponentModel:componentModel];
+    
     NSArray <CKJPickerRowModel *>*array = componentModel.modelArray;
     return array.count;
 }
@@ -81,6 +84,10 @@
     CKJPickerComponentModel *componentModel = [self.dataArr kjwd_objectAtIndex:component];
     NSArray <CKJPickerRowModel *>*array = componentModel.modelArray;
     CKJPickerRowModel *model = [array kjwd_objectAtIndex:row];
+    
+    [self installRow:row withRowModel:model];
+    [self installComponent:component withRowModel:model];
+    
     NSString *title = [model returnTitleOfComponent:component row:row componentModel:componentModel pickerView:pickerView];
     return title;
 }
@@ -89,14 +96,24 @@
     CKJPickerComponentModel *componentModel = [self.dataArr kjwd_objectAtIndex:component];
     NSArray <CKJPickerRowModel *>*array = componentModel.modelArray;
     CKJPickerRowModel *model = [array kjwd_objectAtIndex:row];
+    
+    [self installRow:row withRowModel:model];
+    [self installComponent:component withRowModel:model];
+    
     NSAttributedString *attributedTitle = [model returnAttributedTitleOfComponent:component row:row componentModel:componentModel pickerView:pickerView];
     return attributedTitle;
 }
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view {
     CKJPickerComponentModel *componentModel = [self.dataArr kjwd_objectAtIndex:component];
-    CKJPickerRowModel *rowModel = [componentModel.modelArray kjwd_objectAtIndex:row];
-    return [rowModel returnViewForRow:row forComponent:component reusingView:view componentModel:componentModel pickerView:self];
+    CKJPickerRowModel *model = [componentModel.modelArray kjwd_objectAtIndex:row];
+    
+    
+    [self installRow:row withRowModel:model];
+    [self installComponent:component withRowModel:model];
+    
+
+    return [model returnViewForRow:row forComponent:component reusingView:view componentModel:componentModel pickerView:self];
 }
 
 // 这个方法 如果屏幕旋转就会调用，重新计算宽度
@@ -144,6 +161,17 @@
 //    NSLog(@"%@  dealloc", self);
 }
 
+
+
+- (void)installRow:(NSInteger)row withRowModel:(CKJPickerRowModel *)rowModel {
+    [rowModel setValue:@(row) forKey:@"row"];
+}
+- (void)installComponent:(NSInteger)component withRowModel:(CKJPickerRowModel *)rowModel {
+    [rowModel setValue:@(component) forKey:@"component"];
+}
+- (void)installComponent:(NSInteger)component withComponentModel:(CKJPickerComponentModel *)componentModel {
+    [componentModel setValue:@(component) forKey:@"component"];
+}
 
 
 @end

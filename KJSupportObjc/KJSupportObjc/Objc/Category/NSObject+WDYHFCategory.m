@@ -35,6 +35,16 @@ BOOL WDKJ_IsEmpty_Str(NSString *_Nullable str) {
         return NO;
     }
 }
+BOOL WDKJ_IsEmpty_AttributedStr(NSAttributedString *_Nullable attStr) {
+    if (attStr == nil) {
+        return YES;
+    } else if ([attStr isKindOfClass:[NSAttributedString class]]) {
+        return WDKJ_IsEmpty_Str(attStr.string);
+    } else {
+        return YES;
+    }
+}
+
 BOOL WDKJ_IsNull_Num(NSNumber *_Nullable number) {
     if (number == nil) {
         return YES;
@@ -64,6 +74,10 @@ id WDKJ_ConfirmObject(id object) {
 NSString *_Nonnull WDKJ_ConfirmString(NSString *_Nullable str) {
     return WDKJ_IsEmpty_Str(str) ? @"" : str;
 }
+NSAttributedString *_Nonnull WDKJ_ConfirmAttString(NSAttributedString *_Nullable attStr) {
+    return WDKJ_IsEmpty_AttributedStr(attStr) ? [[NSAttributedString alloc] init] : attStr;
+}
+
 NSString *_Nonnull WDKJ_SpaceString(NSString *_Nullable str) {
     return (WDKJ_IsEmpty_Str(str) ? @" " : str);
 }
@@ -93,7 +107,7 @@ NSArray *_Nonnull WDKJ_ConfirmArray(NSArray *_Nullable array) {
 BOOL WDKJ_IsNull_NumberOrString(id numberOrString) {
     BOOL isNSNumberClass = [numberOrString isKindOfClass:NSNumber.class];
     BOOL isNSStringClass = [numberOrString isKindOfClass:NSString.class];
-        
+    
     if (numberOrString == nil) {
         return YES;
     } else if ([numberOrString isKindOfClass:[NSNull class]]) {
@@ -150,7 +164,7 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
             NSNumber *my = [NSNumber numberWithInteger:myStr.integerValue];
             BOOL result = [temp isEqualToNumber:my];
             return result;
-
+            
         } else if ([myStr isKindOfClass:NSNumber.class]) {
             BOOL result = [temp isEqualToNumber:(NSNumber *)myStr];
             return result;
@@ -177,15 +191,16 @@ NSMutableAttributedString *_Nonnull WDCKJAttributed(NSString *_Nullable name, NS
     return str;
 }
 
-NSMutableAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nullable text, UIColor *_Nullable color, CGFloat fontSize) {
+NSMutableAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize) {
     UIColor *_color = WDKJ_IsNull(color) ? [UIColor blackColor] : color;
+    CGFloat _fontSize = WDKJ_IsNull_Num(fontSize) ? 17 : fontSize.integerValue;
     
-    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:WDKJ_ConfirmString(text) attributes:@{NSForegroundColorAttributeName : _color, NSFontAttributeName : [UIFont systemFontOfSize:fontSize]}];
-
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:WDKJ_ConfirmString(text) attributes:@{NSForegroundColorAttributeName : _color, NSFontAttributeName : [UIFont systemFontOfSize:_fontSize]}];
+    
     return str;
 }
 
-NSMutableAttributedString *_Nonnull WDCKJAttributed3(NSString *_Nullable text, CGFloat horizontalSpace, CGFloat lineSpace, UIColor *_Nullable color, CGFloat fontSize) {
+NSMutableAttributedString *_Nonnull WDCKJAttributed3(NSString *_Nullable text, CGFloat horizontalSpace, CGFloat lineSpace, UIColor *_Nullable color, NSNumber *_Nullable fontSize) {
     if (WDKJ_IsEmpty_Str(text)) {
         return [[NSMutableAttributedString alloc] init];
     }
@@ -196,9 +211,10 @@ NSMutableAttributedString *_Nonnull WDCKJAttributed3(NSString *_Nullable text, C
     
     
     UIColor *_color = WDKJ_IsNull(color) ? [UIColor blackColor] : color;
+    CGFloat _fontSize = WDKJ_IsNull_Num(fontSize) ? 17 : fontSize.integerValue;
     
-    [attributedString addAttributes:@{NSForegroundColorAttributeName : _color, NSFontAttributeName : [UIFont systemFontOfSize:fontSize]} range:NSMakeRange(0, [text length])];
-//    [attributedString  addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, [text length])];
+    [attributedString addAttributes:@{NSForegroundColorAttributeName : _color, NSFontAttributeName : [UIFont systemFontOfSize:_fontSize]} range:NSMakeRange(0, [text length])];
+    //    [attributedString  addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, [text length])];
     return attributedString;
 }
 
@@ -504,7 +520,7 @@ CGFloat WDAPP_ScreenHeight(void) {
         return [self objectAtIndex:index];
     }
 }
-- (nullable NSNumber *)kjwd_indexOfObject:(nonnull id)anObject {
+- (nullable NSNumber *)kjwd_indexOfObject:(nullable id)anObject {
     if (anObject == nil) {
         return nil;
     }
@@ -520,7 +536,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 
 - (void)kjwd_reverseEnumerateObjectsUsingBlock:(void (NS_NOESCAPE ^)(id obj, NSUInteger idx, BOOL *stop))block {
     if (block == nil) return;
-
+    
     BOOL stop = NO;
     
     for (NSInteger i = self.count - 1 ; i >= 0; i--) {
@@ -602,7 +618,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 #pragma mark - -----------------NSMutableArray-----------------
 @implementation NSMutableArray (WDYHFCategory)
 
-+ (instancetype)kjwd_arrayWithArray:(nonnull NSArray *)array {
++ (instancetype)kjwd_arrayWithArray:(nullable NSArray *)array {
     if (array == nil) {
         return [NSMutableArray array];
     }
@@ -652,7 +668,7 @@ CGFloat WDAPP_ScreenHeight(void) {
     }
 }
 
-- (BOOL)kjwd_insertObjects:(nonnull NSArray *)objects atIndex:(NSUInteger)index {
+- (BOOL)kjwd_insertObjects:(nullable NSArray *)objects atIndex:(NSUInteger)index {
     if (objects == nil || [objects isKindOfClass:[NSNull class]]) {
         NSLog(@"kjwd_insertObjects 对象不能被插入 因为对象为空");
         return NO;
@@ -712,7 +728,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 - (void)kjwd_removeAllObjects_notIncludedRows:(NSArray <NSNumber *>*)notIncludedRows {
-   
+    
     NSIndexSet *indexSet = [self kjwd_returnIndexSet_notIncludedRowsOfYou:notIncludedRows];
     
     [self removeObjectsAtIndexes:indexSet];
@@ -782,6 +798,24 @@ CGFloat WDAPP_ScreenHeight(void) {
     }
     [self replaceObjectAtIndex:index withObject:object];
     return YES;
+}
+
+
++ (instancetype)kjwd_arrayWithKeyValuesArray:(NSArray <NSDictionary *>* _Nullable)keyValuesArray modelClass:(Class)ModelClass callBack:(void(^_Nullable )(id currentModel))callBack {
+    
+    keyValuesArray = WDKJ_ConfirmArray(keyValuesArray);
+    
+    NSMutableArray *result = [NSMutableArray array];
+    
+    [keyValuesArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSObject *model = [[ModelClass alloc] init];
+        [model setValuesForKeysWithDictionary:WDKJ_ConfirmDic(obj)];
+        if (callBack) {
+            callBack(model);
+        }
+        [result addObject:model];
+    }];
+    return result;
 }
 
 
@@ -882,6 +916,23 @@ CGFloat WDAPP_ScreenHeight(void) {
     [result kjwd_addObject:valueArr];
     return result;
 }
+
+- (nonnull NSMutableArray *)kjwd_returnDicArrayWithSort:(NSComparator NS_NOESCAPE)cmptr {
+    if (cmptr == nil) {
+        return [NSMutableArray array];
+    }
+    
+    NSArray *keys = [self.allKeys sortedArrayUsingComparator:cmptr];
+    
+    NSMutableArray *result = [NSMutableArray array];
+    
+    for (NSString *key in keys) {
+        id value = self[key];
+        [result addObject:@{key : value}];
+    }
+    return result;
+}
+
 
 @end
 
@@ -1047,7 +1098,10 @@ CGFloat WDAPP_ScreenHeight(void) {
 
 @implementation NSURL (KJ_Category)
 
-+ (NSURL *)kjwd_URLWithString:(NSString *)urlString {
++ (nonnull NSURL *)kjwd_URLWithString:(nullable NSString *)urlString {
+    if (WDKJ_IsEmpty_Str(urlString)) {
+        return [[NSURL alloc] init];
+    }
     NSURL *url = [NSURL URLWithString:urlString];
     if (url) {
         return url;
@@ -1057,6 +1111,18 @@ CGFloat WDAPP_ScreenHeight(void) {
     NSString *urlString_encode = [urlString stringByAddingPercentEncodingWithAllowedCharacters:encode_set];
     url = [NSURL URLWithString:urlString_encode];
     return url;
+}
+
++ (void)kjwd_openURLWithString:(nullable NSString *)urlString options:(NSDictionary<UIApplicationOpenExternalURLOptionsKey, id> *)options completionHandler:(void (^ __nullable)(BOOL success))completion {
+    NSURL *url = [self kjwd_URLWithString:urlString];
+    
+    if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        if(@available(iOS 10.0, *)) {
+            [[UIApplication sharedApplication] openURL:url options:options completionHandler:completion];
+        } else {
+            [[UIApplication sharedApplication] openURL:url];
+        }
+    }
 }
 
 @end
@@ -1122,11 +1188,11 @@ CGFloat WDAPP_ScreenHeight(void) {
     }
 }
 - (void)kjwd_settoRootVCWithAnimation:(BOOL)animation {
-
+    
     id appdelegate = [UIApplication sharedApplication].delegate;
     
     id (*kj_sengMsg)(id, SEL) = (id (*)(id, SEL))objc_msgSend;
-
+    
     UIWindow *window = kj_sengMsg(appdelegate, sel_registerName("window"));
     
     if (animation == NO) {
@@ -1183,70 +1249,40 @@ CGFloat WDAPP_ScreenHeight(void) {
 
 #pragma mark - -----------------UIBarButtonItem-----------------
 
+
+
+@interface UIBarButtonItem (Property)
+
+@property (copy, nonatomic, nullable) void (^kjCallBackBlock)(UIBarButtonItem *sender);
+
+@end
+
+
 @implementation UIBarButtonItem (WDYHFCategory)
 
-
-+ (UIBarButtonItem *)kjwd_itemWithTarget:(id)target action:(SEL)action image:(NSString *)image highImage:(NSString *)highImage
-{
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    // 设置图片
-    if (image) {
-        [btn setBackgroundImage:[UIImage imageNamed:image] forState:UIControlStateNormal];
-    }
-    if (highImage) {
-        [btn setBackgroundImage:[UIImage imageNamed:highImage] forState:UIControlStateHighlighted];
-    }
-    // 设置尺寸
-    //btn.size = btn.currentBackgroundImage.size;
-    
-    CGRect rect = btn.frame;
-    rect.size = btn.currentBackgroundImage.size;
-    btn.frame = rect;
-    
-    return [[UIBarButtonItem alloc] initWithCustomView:btn];
++ (instancetype)kjwd_itemWithTitle:(nullable NSString *)title style:(UIBarButtonItemStyle)style callBack:(void(^)(UIBarButtonItem *sender))callBack {
+    UIBarButtonItem *temp = [[self alloc] initWithTitle:title style:style target:nil action:nil];
+    temp.kjCallBackBlock = callBack;
+    temp.target = temp;
+    temp.action = @selector(handleCallBack:);
+    return temp;
 }
 
 
-//+ (UIBarButtonItem *)kjwd_itemWithTarget:(id)target action:(SEL)action bgImage:(NSString *)bgImage text:(NSString *)text textColor:(UIColor *)textColor {
-//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-//    // 设置图片
-//    if (bgImage) {
-//        [btn setBackgroundImage:[UIImage imageNamed:bgImage] forState:UIControlStateNormal];
-//    }
-//    [btn setTitle:text forState:UIControlStateNormal];
-//    if (textColor == nil) {
-//        textColor = [UIColor whiteColor];
-//    }
-//    [btn setTitleColor:textColor forState:(UIControlStateNormal)];
-//    // 设置尺寸
-//    //btn.size = btn.currentBackgroundImage.size;
-//
-//    CGRect rect = btn.frame;
-//    rect.size = btn.currentBackgroundImage.size;
-//    btn.frame = rect;
-//    if (bgImage == nil || btn.currentBackgroundImage == nil) {
-//        [btn sizeToFit];
-//    }
-//
-//    return [[UIBarButtonItem alloc] initWithCustomView:btn];
-//}
-
-
-+ (UIBarButtonItem *)kjwd_itemWithTarget:(id)target action:(SEL)action callBack:(void(^)(UIButton *customViewOfBtn))callBack {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    
-//    UIView *contentV = [[UIView alloc] init];
-//
-//    [contentV addSubview:btn];
-
-    callBack ? callBack(btn) : nil;
-    
-    
-    return [[UIBarButtonItem alloc] initWithCustomView:btn];
+- (void)handleCallBack:(UIBarButtonItem *)sender {
+    self.kjCallBackBlock ? self.kjCallBackBlock(self) : nil;
 }
+
+//--------- runtime
+- (void)setKjCallBackBlock:(void (^)(UIBarButtonItem *))kjCallBackBlock {
+    objc_setAssociatedObject(self, @"kjCallBackBlock", kjCallBackBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+- (void (^)(UIBarButtonItem *))kjCallBackBlock {
+    void (^block)(UIBarButtonItem *) = objc_getAssociatedObject(self, @"kjCallBackBlock");
+    return block;
+}
+
 
 @end
 
@@ -1260,6 +1296,25 @@ CGFloat WDAPP_ScreenHeight(void) {
         [self reloadData];
     });
 }
+
+- (void)kjwd_reloadSection:(NSInteger)section withRowAnimation:(UITableViewRowAnimation)animation {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self numberOfSections] - 1 >= section) {
+            // 10个分区， 0_9
+            NSIndexSet *set = [NSIndexSet indexSetWithIndex:section];
+            [self reloadSections:set withRowAnimation:animation];
+        }
+    });
+}
+
+- (void)kjwd_selectRow:(NSInteger)row section:(NSInteger)section animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)scrollPosition {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if ([self numberOfSections] > section && [self numberOfRowsInSection:section] > row) {
+            [self selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section] animated:animated scrollPosition:scrollPosition];
+        }
+    });
+}
+
 
 @end
 
@@ -1340,6 +1395,8 @@ CGFloat WDAPP_ScreenHeight(void) {
  make.top.equalTo(superview.kjwdMas_safeAreaTop);
  make.bottom.equalTo(superview.kjwdMas_safeAreaBottom);
  
+ make.height.equalTo(@60);
+ 
  */
 
 
@@ -1372,6 +1429,25 @@ CGFloat WDAPP_ScreenHeight(void) {
     }];
 }
 
+- (void)kjwd_addToSuperView:(nullable UIView *)superview constraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block {
+    if (superview == nil) return;
+    if ([superview isKindOfClass:[UIView class]] == NO) return;
+    
+    [superview addSubview:self];
+    [self kjwd_mas_makeConstraints:block];
+}
+
+- (void)kjwd_setHidden:(BOOL)hidden {
+    if (hidden) { // 想要隐藏
+        if (self.hidden == NO) {
+            self.hidden = YES;
+        }
+    } else {  // 想要显示
+        if (self.hidden) {
+            self.hidden = NO;
+        }
+    }
+}
 
 - (void)setKjwd_x:(CGFloat)kjwd_x {
     CGRect frame = self.frame;
@@ -1633,7 +1709,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 @implementation UIButton (WDYHFCategory)
 
 - (void)kjwd_layoutButtonWithEdgeInsetsStyle:(GLButtonEdgeInsetsStyle)style
-                        imageTitleSpace:(CGFloat)space {
+                             imageTitleSpace:(CGFloat)space {
     /**
      *  知识点：titleEdgeInsets是title相对于其上下左右的inset，跟tableView的contentInset是类似的，
      *  如果只有title，那它上下左右都是相对于button的，image也是一样；
@@ -1708,8 +1784,7 @@ CGFloat WDAPP_ScreenHeight(void) {
     self.kjCallBackBlock ? self.kjCallBackBlock(self) : nil;
 }
 
-
-
+// runtime
 - (void)setKjCallBackBlock:(void (^)(UIButton *))kjCallBackBlock {
     objc_setAssociatedObject(self, @"kjCallBackBlock", kjCallBackBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
 }
@@ -1722,32 +1797,59 @@ CGFloat WDAPP_ScreenHeight(void) {
 @end
 
 
+@implementation UILabel (WDYHFCategory)
 
+
++ (instancetype)kjwd_labelWithText:(nullable NSString *)text fontSize:(nullable NSNumber *)fontSize color:(nullable UIColor *)color {
+    
+    UILabel *label = [[self alloc] init];
+    
+    if (WDKJ_IsEmpty_Str(text) == NO) {
+        label.text = text;
+    }
+    if (WDKJ_IsNull_Num(fontSize) == NO) {
+        label.font = [UIFont systemFontOfSize:fontSize.floatValue];
+    }
+    if (color != nil) {
+        if ([color isKindOfClass:[UIColor class]]) {
+            label.textColor = color;
+        }
+    }
+    return label;
+}
+
+@end
 
 #pragma mark - -----------------NSDate-----------------
 @implementation NSDate (WDYHFCategory)
 
-+ (nullable NSDate *)kjwd_returnDate:(NSString *_Nonnull)dateString withDateFormat:(NSString *_Nonnull)format {
++ (nullable NSDate *)kjwd_returnDate:(NSString *_Nullable)dateString withDateFormat:(NSString *_Nullable)format {
     if (dateString == nil) {
         return nil;
     }
+    if (WDKJ_IsEmpty_Str(format)) {
+        format = WDKJDefaultDateFormat;
+    }
+    
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:format];
     NSDate *date = [dateFormatter dateFromString:dateString];
     return date;
 }
+
++ (nonnull NSString *)kjwd_return_yMdWithDate:(NSString *_Nullable)dateString {
+    NSDate *date = [NSDate kjwd_returnDate:dateString withDateFormat:nil];
+    NSString *dateStr = [NSString stringWithFormat:@"%@-%@-%@", date.kjwd_dateYear, date.kjwd_dateMonth, date.kjwd_dateDay];
+    return dateStr;
+}
+
+
 + (NSString *)kjwd_currentDateString {
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = [NSString stringWithFormat:WDKJDefaultDateFormat];
     NSString *dateStr = [formatter stringFromDate:date];
     return dateStr;
-}
-
-+ (nonnull NSString *)kjwd_returnYearMonthDayWithDateString:(NSString *_Nonnull)dateString withDateFormat:(NSString *_Nonnull)format {
-    NSDate *date = [self kjwd_returnDate:dateString withDateFormat:format];
-    NSString *str = [NSString stringWithFormat:@"%@-%@-%@", [date kjwd_dateYear], [date kjwd_dateMonth], [date kjwd_dateDay]];
-    return str;
 }
 
 
@@ -1781,6 +1883,22 @@ CGFloat WDAPP_ScreenHeight(void) {
     NSString *dateString = [NSDate kjwd_currentDateString];
     return [NSString stringWithFormat:@"%@", [dateString substringWithRange:NSMakeRange(17, 2)]];
 }
+
+
+- (nonnull NSDate *)kjwd_set_HmsEqualZero_Date {
+    NSString *str = [NSString stringWithFormat:@"%@-%@-%@ 00:00:00", self.kjwd_dateYear, self.kjwd_dateMonth, self.kjwd_dateDay];
+    NSDate *date = [NSDate kjwd_returnDate:str withDateFormat:nil];
+    return date;
+}
++ (nullable NSDate *)kjwd_set_HmsEqualZero_withYMDString:(NSString *)YMDString {
+    if (WDKJ_IsEmpty_Str(YMDString)) {
+        return nil;
+    }
+    NSString *str = [NSString stringWithFormat:@"%@ 00:00:00", YMDString];
+    NSDate *date = [NSDate kjwd_returnDate:str withDateFormat:nil];
+    return date;
+}
+
 - (nonnull NSString *)kjwd_dateString {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     formatter.dateFormat = [NSString stringWithFormat:WDKJDefaultDateFormat];
@@ -1865,15 +1983,13 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 
-+ (NSDate *)kjwd_tomorrowDate {
-    NSDate *date = [NSDate date];//当前时间
-    NSDate *nextDay = [NSDate dateWithTimeInterval:24 * 60 * 60 sinceDate:date];//后一天
-    return nextDay;
+- (nonnull NSDate *)kjwd_tomorrowDate {
+    NSDate *date = [self dateByAddingTimeInterval:60 * 60 * 24];//后一天
+    return date;
 }
-+ (NSDate *)kjwd_yesterdayDate {
-    NSDate *date = [NSDate date];//当前时间
-    NSDate *lastDay = [NSDate dateWithTimeInterval:-24 * 60 * 60 sinceDate:date];//前一天
-    return lastDay;
+- (nonnull NSDate *)kjwd_yesterdayDate {
+    NSDate *date = [self dateByAddingTimeInterval:- 60 * 60 * 24];//前一天
+    return date;
 }
 + (NSString *)kjwd_returnWordsForTime:(NSString *)str {
     //把字符串转为NSdate
@@ -1922,11 +2038,25 @@ CGFloat WDAPP_ScreenHeight(void) {
 @implementation UIImage (WDYHFCategory)
 
 + (nullable UIImage *)kjwd_imageNamed:(nonnull NSString *)name {
-    if (name == nil || [name isEqualToString:@""]) {
-        NSLog(@"kj_imageNamed 传入为nil 或为 空字符串 ---> (%@)", name);
+    if (WDKJ_IsEmpty_Str(name)) {
+//        NSLog(@"kj_imageNamed 传入为nil 或为 空字符串 ---> (%@)", name);
         return nil;
     }
     return [self imageNamed:name];
+}
+//改变图片的大小
+- (UIImage *)kjwd_scaleToSize:(CGSize)size {
+    // 创建一个bitmap的context
+    // 并把它设置成为当前正在使用的context
+    UIGraphicsBeginImageContext(size);
+    // 绘制改变大小的图片
+    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    // 返回新的改变大小后的图片
+    return scaledImage;
 }
 
 // 通过给定颜色和大小生成图片
@@ -1987,6 +2117,20 @@ CGFloat WDAPP_ScreenHeight(void) {
 @end
 
 
+#pragma mark - -----------------NSPredicate-----------------
+
+@implementation NSPredicate (WDYHFCategory)
+
++ (BOOL)kjwd_validateRegexStr:(nullable NSString *)regexStr targetStr:(nullable NSString *)targetStr {
+    if (WDKJ_IsEmpty_Str(regexStr)) return NO;
+    if (WDKJ_IsEmpty_Str(targetStr)) return NO;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regexStr];
+    return [predicate evaluateWithObject:targetStr];
+}
+
+@end
+
 #pragma mark - -----------------NSString-----------------
 
 @implementation NSString (WDYHFCategory)
@@ -1999,7 +2143,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 //手机号码验证
-- (BOOL)kjwd_validateMobile {
+- (BOOL)kjwd_validatePhone {
     NSString *phone = @"^(1)\\d{10}$";
     NSPredicate *regextestcm = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", phone];
     return [regextestcm evaluateWithObject:self] == YES;
@@ -2155,7 +2299,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 
 - (nonnull NSString *)kjwd_idCardToAsterisk {
     if (self.length != 18) {
-//        NSLog(@"身份证号必须是18位!");
+        //        NSLog(@"身份证号必须是18位!");
         return @"";
     }
     return [self stringByReplacingCharactersInRange:NSMakeRange(10, 4) withString:@"****"];
@@ -2366,6 +2510,17 @@ CGFloat WDAPP_ScreenHeight(void) {
     return [self stringByAppendingString:aString];
 }
 
+
+//--------- runtime
+- (void)setKjwd_helperNumber:(CGFloat)kjwd_helperNumber {
+    objc_setAssociatedObject(self, @"kjwd_helperNumber", @(kjwd_helperNumber), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+- (CGFloat)kjwd_helperNumber {
+    NSNumber *number = objc_getAssociatedObject(self, @"kjwd_helperNumber");
+    return number.floatValue;
+}
+
+
 @end
 
 #pragma mark - -----------------NSDecimalNumber-----------------
@@ -2452,7 +2607,7 @@ CGFloat WDAPP_ScreenHeight(void) {
     double deltaTime = [[NSDate date] timeIntervalSinceDate:_startDate];
     
     _second = _totalSecond - (NSInteger)(deltaTime+0.5) ;
-
+    
     if (_second < 0.0)
     {
         [self stopCountDown];

@@ -18,21 +18,17 @@
 
 @implementation CKJToolPickerView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
-        self.targetView = ({
-            CKJPickerView *pick = [[CKJPickerView alloc] init];
-            pick.backgroundColor = [UIColor whiteColor];
-            [self.bottomContentView addSubview:pick];
-            [pick kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superView) {
+    - (instancetype)initWithFrame:(CGRect)frame pickerView:(CKJPickerView *)pickerView {
+        if (self = [super initWithFrame:frame]) {
+            [self.bottomContentView addSubview:pickerView];
+            [pickerView kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superView) {
                 make.edges.equalTo(superView);
             }];
-            pick;
-        });
+            self.targetView = pickerView;
+        }
+        return self;
     }
-    return self;
-}
-
+    
 - (void)doneAction:(UIBarButtonItem *)sender {
     if (self.confirmBlock == nil) {
         return;

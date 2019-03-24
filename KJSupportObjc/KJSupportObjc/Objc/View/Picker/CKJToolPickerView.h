@@ -11,4 +11,6 @@
 
 @interface CKJToolPickerView : CKJToolView <CKJPickerView *>
 
+- (instancetype)initWithFrame:(CGRect)frame pickerView:(CKJPickerView *)pickerView;
+
 @end

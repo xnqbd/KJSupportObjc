@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VcV-BL-YMG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="VcV-BL-YMG">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,44 +22,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ie7-tq-PPE">
-                                <rect key="frame" x="132.5" y="318.5" width="109" height="30"/>
-                                <state key="normal" title="TableView方法2"/>
+                                <rect key="frame" x="141.5" y="318.5" width="92" height="30"/>
+                                <state key="normal" title="进入设置界面"/>
                                 <connections>
-                                    <action selector="tabAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YdC-pi-s1B"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A8g-VA-UEn">
-                                <rect key="frame" x="116" y="398.5" width="142" height="30"/>
-                                <state key="normal" title="CollectionViewDemo"/>
-                                <connections>
-                                    <action selector="collAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wbt-yg-pOR"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oRJ-Pv-Z5D">
-                                <rect key="frame" x="133.5" y="260" width="107" height="30"/>
-                                <state key="normal" title="TableView方法1"/>
-                                <connections>
-                                    <action selector="tab1Action:" destination="BYZ-38-t0r" eventType="touchUpInside" id="c9d-Uj-fqT"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xNP-vw-DXz">
-                                <rect key="frame" x="97" y="436" width="181" height="30"/>
-                                <state key="normal" title="CollectionViewDemo方法2"/>
-                                <connections>
-                                    <action selector="collAction2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PGp-Qn-lxX"/>
+                                    <action selector="enterSettingAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="goB-xU-AgL"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ie7-tq-PPE" firstAttribute="top" secondItem="oRJ-Pv-Z5D" secondAttribute="bottom" constant="28.5" id="E5R-0l-05U"/>
-                            <constraint firstItem="oRJ-Pv-Z5D" firstAttribute="centerX" secondItem="ie7-tq-PPE" secondAttribute="centerX" id="H84-sD-iUz"/>
                             <constraint firstItem="ie7-tq-PPE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OgN-nN-OJv"/>
-                            <constraint firstItem="xNP-vw-DXz" firstAttribute="centerX" secondItem="A8g-VA-UEn" secondAttribute="centerX" id="QiB-bh-fJv"/>
-                            <constraint firstItem="A8g-VA-UEn" firstAttribute="top" secondItem="ie7-tq-PPE" secondAttribute="bottom" constant="50" id="eP1-Kz-qr2"/>
-                            <constraint firstItem="xNP-vw-DXz" firstAttribute="top" secondItem="A8g-VA-UEn" secondAttribute="bottom" constant="7.5" id="imG-bh-9hU"/>
                             <constraint firstItem="ie7-tq-PPE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sHJ-05-qfk"/>
-                            <constraint firstItem="A8g-VA-UEn" firstAttribute="centerX" secondItem="ie7-tq-PPE" secondAttribute="centerX" id="xBU-hD-lVz"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FoA-up-erD"/>
