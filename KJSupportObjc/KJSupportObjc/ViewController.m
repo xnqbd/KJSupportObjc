@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "RJSettingViewController.h"
+#import "RJTestListVC.h"
 
 
 @interface ViewController ()
@@ -28,7 +28,7 @@
 }
 
 - (IBAction)enterSettingAction:(UIButton *)sender {
-    [self.navigationController pushViewController:[RJSettingViewController new] animated:YES];
+    [self.navigationController pushViewController:[RJTestListVC new] animated:YES];
 }
 
 

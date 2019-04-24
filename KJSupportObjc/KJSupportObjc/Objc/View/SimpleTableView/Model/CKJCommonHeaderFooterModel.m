@@ -11,16 +11,18 @@
 @implementation CKJCommonHeaderFooterModel
 
 
-- (instancetype)init {
-    if (self = [super init]) {
-//        self.displayInTableView = YES;
-    }
-    return self;
-}
-
-
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
 }
+
++ (nonnull instancetype)modelWithDetailSettingBlock:(void(^_Nullable)(__kindof CKJCommonHeaderFooterModel *m))detailSettingBlock {
+    CKJCommonHeaderFooterModel *model = [[self alloc] init];
+    if (detailSettingBlock) {
+        detailSettingBlock(model);
+    }
+    return model;
+}
+
+
 
 @end

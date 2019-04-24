@@ -92,6 +92,10 @@
     
 }
 
+- (void)initSimpleTableViewData {
+    
+}
+
 /**
  点击某一行使用这个
  */

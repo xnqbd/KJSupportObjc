@@ -6,14 +6,14 @@
 //  Copyright © 2019年 Lyc. All rights reserved.
 //
 
-#import "CKJPayCell.h"
+#import "CKJRadioCell.h"
 
-@interface CustomCell3Model : CKJPayCellModel
+@interface CustomCell3Model : CKJRadioCellModel
 
 @end
 
 
-@interface CustomCell3 : CKJPayCell
+@interface CustomCell3 : CKJRadioCell
 
 @end
 

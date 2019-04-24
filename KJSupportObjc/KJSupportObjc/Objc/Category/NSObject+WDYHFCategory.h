@@ -12,25 +12,20 @@
 @class MASViewAttribute, MASConstraintMaker;
 
 #pragma mark - -----------------异常处理-----------------
-BOOL WDKJ_IsNull(id obj);
+BOOL WDKJ_IsNullObj(id obj, Class cla);
 BOOL WDKJ_IsEmpty_Str(NSString *_Nullable str);
 BOOL WDKJ_IsEmpty_AttributedStr(NSAttributedString *_Nullable attStr);
 
 BOOL WDKJ_IsNull_Num(NSNumber *_Nullable number);
 BOOL WDKJ_IsNull_Array(NSArray *_Nullable array);
 
-id WDKJ_ConfirmObject(id object);
 NSString *_Nonnull WDKJ_SpaceString(NSString *_Nullable str);
 NSString *_Nonnull WDKJ_ConfirmString(NSString *_Nullable str);
+NSAttributedString *_Nonnull WDKJ_SpaceAttString(NSAttributedString *_Nullable attStr);
 NSAttributedString *_Nonnull WDKJ_ConfirmAttString(NSAttributedString *_Nullable attStr);
 NSNumber *_Nonnull WDKJ_ConfirmNumber(NSNumber *_Nullable number);
 NSDictionary *_Nonnull WDKJ_ConfirmDic(NSDictionary *_Nullable dic);
 NSArray *_Nonnull WDKJ_ConfirmArray(NSArray *_Nullable array);
-
-
-
-//NSDecimalNumber *_Nonnull WDKJ_ConfirmNumber(NSNumber *_Nullable number);
-
 
 BOOL WDKJ_IsNull_NumberOrString(id numberOrString);
 /**
@@ -65,6 +60,8 @@ NSMutableAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nullable text, U
  */
 NSMutableAttributedString *_Nonnull WDCKJAttributed3(NSString *_Nullable text, CGFloat horizontalSpace, CGFloat lineSpace, UIColor *_Nullable color, NSNumber *_Nullable fontSize);
 
+NSMutableAttributedString *_Nonnull WDCKJAttributed4(NSString *_Nullable text1, UIColor *_Nullable color1, NSNumber *_Nullable fontSize1, NSString *_Nullable text2, UIColor *_Nullable color2, NSNumber *_Nullable fontSize2);
+
 int getRandomNumber(int from, int to);
 
 
@@ -79,10 +76,6 @@ CGFloat WDAPP_ScreenWidth(void);
 CGFloat WDAPP_ScreenHeight(void);
 
 
-
-
-#import <Foundation/Foundation.h>
-
 @interface UIWindow (WDYHFCategory)
 
 + (nonnull UIWindow *)kjwd_appdelegateWindow;
@@ -95,8 +88,7 @@ CGFloat WDAPP_ScreenHeight(void);
  让一段代码在一段时间内只能执行一次， 这个方法就算很频繁执行， 但在指定时间内block中的代码也只会执行一次
  */
 - (void)kjwd_executedOnceInTimeInterval:(NSTimeInterval)timeInterval block:(void(^)(void))block;
-
-
+- (void)kjwd_setValuesForKeysWithDictionary:(nullable NSDictionary<NSString *, id> *)keyedValues;
 
 @end
 
@@ -263,9 +255,9 @@ CGFloat WDAPP_ScreenHeight(void);
 /**
  *  当向数组里的第一个位置插入数据时， 建议用这个
  */
-- (BOOL)kjwd_insertAt_FirstIndex_Of_Object:(id)object;
+- (BOOL)kjwd_insertAt_FirstIndex_Of_Object:(ObjectType)object;
 
-- (BOOL)kjwd_replaceObjectAtIndex:(NSUInteger)index withObject:(id)object;
+- (BOOL)kjwd_replaceObjectAtIndex:(NSUInteger)index withObject:(ObjectType)object;
 
     
 + (instancetype)kjwd_arrayWithKeyValuesArray:(NSArray <NSDictionary *>* _Nullable)keyValuesArray modelClass:(Class)ModelClass callBack:(void(^_Nullable )(id currentModel))callBack;
@@ -346,6 +338,17 @@ CGFloat WDAPP_ScreenHeight(void);
  @return 排好序的字典数组
  */
 - (nonnull NSMutableArray *)kjwd_returnDicArrayWithSort:(NSComparator NS_NOESCAPE)cmptr;
+
+
+
+/**
+ 从本地读取数据
+
+ @param name 文件名
+ @param type 类型
+ */
++ (nullable NSDictionary *)kjwd_readJsonDataFromLocalWithName:(nullable NSString *)name type:(nullable NSString *)type;
+
 
 @end
 
@@ -466,26 +469,6 @@ CGFloat WDAPP_ScreenHeight(void);
 + (instancetype)kjwd_itemWithTitle:(nullable NSString *)title style:(UIBarButtonItemStyle)style callBack:(void(^)(UIBarButtonItem *sender))callBack;
 
 @end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -637,8 +620,12 @@ imageTitleSpace:(CGFloat)space;
 #pragma mark - -----------------NSDate-----------------
 @interface NSDate (WDYHFCategory)
 
-#define WDKJDefaultDateFormat (@"yyyy-MM-dd HH:mm:ss")
-#define WDKJDefaultDateFormat_yMd (@"yyyy-MM-dd")
+#define CKJDateFormat1 (@"yyyy-MM-dd HH:mm:ss")
+#define CKJDateFormat2 (@"yyyy-MM-dd")
+
+#define CKJDateFormat3 (@"yyyyMMddHHmmss")
+#define CKJDateFormat4 (@"yyyyMMdd")
+
 
 + (nullable NSDate *)kjwd_returnDate:(NSString *_Nullable)dateString withDateFormat:(NSString *_Nullable)format;
 
@@ -669,7 +656,7 @@ imageTitleSpace:(CGFloat)space;
 
 
 /** 把 “2017-12-21”  时分秒设置为0 返回时间  */
-+ (nullable NSDate *)kjwd_set_HmsEqualZero_withYMDString:(NSString *)YMDString;
++ (nullable NSDate *)kjwd_set_HmsEqualZero_withYMDString:(nullable NSString *)YMDString;
 
 /**
  返回 yyyy-MM-dd HH:mm:ss 的字符串
@@ -711,15 +698,6 @@ imageTitleSpace:(CGFloat)space;
  * 返回 1小时前 这样的字符 (传入2017-12-21 20:53:00.0  这样的字符串)
  */
 + (NSString *)kjwd_returnWordsForTime:(NSString *)str;
-//
-///**
-// 返回距离指定时间（originDate）相距timeInterval 的Date（比如，距离当前时间之前1000000秒的时间）
-//
-// @param originDate 指定的一个时间
-// @param timeInterval 距离指定时间的 间隔 (向未来时间传正数，想以前时间传负数)
-// @return 新的时间
-// */
-//+ (NSDate *)kjwd_originDate:(NSDate *)originDate timeInterval:(NSTimeInterval)timeInterval;
 
 
 @end
@@ -732,15 +710,18 @@ imageTitleSpace:(CGFloat)space;
 /** 加载图片过滤空字符串 */
 + (nullable UIImage *)kjwd_imageNamed:(nonnull NSString *)name;
 
-/** 生成指定大小的图片 */
-- (UIImage *)kjwd_scaleToSize:(CGSize)size;
-
 /** 通过给定颜色和大小生成图片 */
 + (UIImage *)kjwd_imageWithColor:(UIColor *)color size:(CGSize)size;
++ (UIImage *)kjwd_imageWithColor:(UIColor *)color size:(CGSize)size radius:(CGFloat)radius;
 
 /** 生成二维码 */
 + (UIImage *)kjwd_QRCodeWithContent:(nonnull NSString *)content size:(CGSize)size;
 
+/** 生成指定大小的图片 */
+- (UIImage *)kjwd_scaleToSize:(CGSize)size;
+
+/** 设置圆角并生成新图片 */
+- (nonnull UIImage *)kjwd_setCornerRadius:(CGFloat)radius;
 
 @end
 
@@ -822,12 +803,10 @@ imageTitleSpace:(CGFloat)space;
 
 
 
-/**
- 身份证号 出生年月转为*号
-
- @return 新的字符串
- */
+/** 身份证号 出生年月转为*号 */
 - (nonnull NSString *)kjwd_idCardToAsterisk;
+/** 身份证号 左右各保留几位， 比如左右各保留3位， 452************026 */
+- (nonnull NSString *)kjwd_idCardLeftMargin:(NSInteger)left rightMargin:(NSInteger)right;
 
 /**
  * MD5加密
@@ -988,6 +967,13 @@ typedef void (^TouchedCountDownButtonHandler)(CKJCountDownButton *countDownButto
 + (NSString *)currentVersion;
 + (CGFloat)screenWidth;
 + (CGFloat)screenHeight;
+
+
+#pragma mark - Swift命名空间相关
++ (nonnull NSString *)kj_nameSpace;
++ (nonnull NSString *)return_ModelName:(NSString *)modelName;
++ (Class)returnClass_ClassString:(NSString *)classString;
+
 
 @end
 

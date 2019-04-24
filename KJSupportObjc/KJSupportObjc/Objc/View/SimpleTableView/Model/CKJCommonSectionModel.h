@@ -22,25 +22,20 @@
  */
 @property (assign, nonatomic) NSInteger sectionModel_id;
 
-
-/**
- 当前分区
- */
-@property (assign, nonatomic, readonly) NSInteger currentSection;
-
 @property (assign, nonatomic) CGFloat rowHeight;
 
 @property (assign, nonatomic) CGFloat headerHeight;
 @property (assign, nonatomic) CGFloat footerHeight;
 
-@property (strong, nonatomic) __kindof CKJCommonHeaderFooterModel *headerModel;
-@property (strong, nonatomic) __kindof CKJCommonHeaderFooterModel *footerModel;
+@property (strong, nonatomic, nonnull) __kindof CKJCommonHeaderFooterModel *headerModel;
+@property (strong, nonatomic, nonnull) __kindof CKJCommonHeaderFooterModel *footerModel;
 
-/**  这里面可能有各种类型的model */
-@property (strong, nonatomic) NSArray <__kindof CKJCommonCellModel *>*modelArray;
+/**  所有的CellModel */
+@property (strong, nonatomic, nonnull) NSArray <__kindof CKJCommonCellModel *>*modelArray;
+/**  显示的CellModel */
+@property (strong, nonatomic, nonnull) NSArray <__kindof CKJCommonCellModel *>*displayModels;
 
-
-+ (instancetype)sectionWithCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)modelArray;
++ (nonnull instancetype)sectionWithCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)modelArray;
 
 
 

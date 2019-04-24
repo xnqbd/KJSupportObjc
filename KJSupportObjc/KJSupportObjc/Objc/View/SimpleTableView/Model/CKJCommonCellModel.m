@@ -8,13 +8,19 @@
 
 #import "CKJCommonCellModel.h"
 
-@implementation CKJCommonCellModel
+@interface CKJCommonCellModel ()
 
+@property (weak, nonatomic) __kindof CKJCommonTableViewCell *cell;
+
+@end
+
+@implementation CKJCommonCellModel
 
 - (instancetype)init {
     if (self = [super init]) {
         self.displayInTableView = YES;
         self.selectionStyle = UITableViewCellSelectionStyleDefault;
+        self.showLine = YES;
     }
     return self;
 }
@@ -35,6 +41,15 @@
     }
     model.didSelectRowBlock = didSelectRowBlock;
     return model;
+}
+
+- (void)_privateMethodWithCell:(nonnull CKJCommonTableViewCell *)cell {
+    self.cell = cell;
+}
+
+
+- (__kindof CKJCommonTableViewCell *)cell {
+    return _cell;
 }
 
 

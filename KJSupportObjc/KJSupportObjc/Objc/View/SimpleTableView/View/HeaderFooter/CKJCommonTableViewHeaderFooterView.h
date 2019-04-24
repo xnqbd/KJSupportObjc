@@ -13,23 +13,24 @@
 @interface CKJCommonTableViewHeaderFooterView : UITableViewHeaderFooterView
 
 
-- (instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier tableView:(CKJSimpleTableView *)tableView;
+- (nonnull instancetype)initWithReuseIdentifier:(nonnull NSString *)reuseIdentifier tableView:(nonnull CKJSimpleTableView *)tableView;
 
 
 /**
  名字不要改
  */
-@property (weak, nonatomic, readonly) CKJSimpleTableView *simpleTableView;
-@property (strong, nonatomic) CKJCommonHeaderFooterModel *headerFooterModel;
+@property (nonatomic, readonly, nonnull) CKJSimpleTableView *simpleTableView;
 
-- (void)setupSubViews;
+@property (strong, nonatomic, nonnull) __kindof CKJCommonHeaderFooterModel *headerFooterModel;
+
+
 
 
 /**
  *  此方法留着给子类重写，通常是拿到这几个参数 给子类的区头或区尾设置UI数据
  */
-- (void)setupData:(CKJCommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(CKJSimpleTableView *)tableView;
+- (void)setupData:(nonnull CKJCommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(nonnull CKJSimpleTableView *)tableView;
 
-
+- (void)setupSubViews;
 
 @end

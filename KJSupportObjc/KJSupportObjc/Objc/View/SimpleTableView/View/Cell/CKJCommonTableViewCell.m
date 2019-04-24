@@ -12,6 +12,19 @@
 #import <Masonry/Masonry.h>
 
 
+@implementation CKJCommonCellConfig
+
++ (nonnull instancetype)configWithDetailSettingBlock:(nullable CKJCommonCellConfigBlock)detailSettingBlock {
+    CKJCommonCellConfig *config = [[self alloc] init];
+    if (detailSettingBlock) {
+        detailSettingBlock(config);
+    }
+    return config;
+}
+
+@end
+
+
 @interface CKJCommonTableViewCell ()
 
 @property (assign, nonatomic) NSInteger section;
@@ -26,30 +39,45 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier configDic:(NSDictionary *)configDic {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self setValue:configDic forKey:@"configDic"];
-        self.bgV = ({
-            UIView *bgV = [[UIView alloc] init];
-            [self.contentView addSubview:bgV];
-            [bgV mas_makeConstraints:^(MASConstraintMaker *make) {
-                make.center.mas_equalTo(self.contentView);
-                make.width.equalTo(self.contentView).priority(800);
-                make.height.equalTo(self.contentView).priority(800);
-            }];
-            bgV;
-        });
+        self.configDic = configDic;
+        [self kjInit];
+
         [self setupSubViews];
     }
     return self;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self = [super initWithCoder:aDecoder]) {
+        [self kjInit];
+    }
+    return self;
+}
+
+- (void)kjInit {
+    UIView *bgV = [[UIView alloc] init];
+    [self.contentView insertSubview:bgV atIndex:0];
+    [bgV kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
+        make.center.mas_equalTo(superview);
+        make.width.equalTo(superview).priority(900);
+        make.height.equalTo(superview).priority(900);
+    }];
+    self.bgV = bgV;
 }
 
 - (void)setupSubViews {
     
 }
 
+- (CKJCommonCellConfig *)configModel {
+    return self.configDic[configDicKEY_ConfigModel];
+}
+
+
 - (void)setupData:(CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(CKJSimpleTableView *)tableView {
 }
 
-- (void)_privateMethodWithSimpleTableView:(CKJSimpleTableView *)tabV sectionModel:(CKJCommonSectionModel *)sectionModel section:(NSInteger)section row:(NSInteger)row {
+- (void)_privateMethodWithSimpleTableView:(nonnull CKJSimpleTableView *)tabV sectionModel:(CKJCommonSectionModel *)sectionModel section:(NSInteger)section row:(NSInteger)row {
     self.simpleTableView = tabV;
     self.sectionModel = sectionModel;
     self.section = section;
@@ -66,5 +94,4 @@
 
 
 @end
-
 

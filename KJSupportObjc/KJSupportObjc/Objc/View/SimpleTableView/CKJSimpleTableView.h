@@ -16,28 +16,18 @@
 #import "CKJTableViewHeaderFooterEmptyView.h"
 #import "CKJCell.h"
 #import "CKJSimpleTableViewDelegate.h"
-#import "CKJPayCell.h"
+#import "CKJRadioCell.h"
 
 #define cellKEY  @"CellKEY"
 #define isRegisterNibKEY  @"isRegisterNibKEY"
-#define configDicKEY_Key1 @"configDicKEY_Key1"
-#define configDicKEY_Key2 @"configDicKEY_Key2"
+#define registerNibNameKEY  @"registerNibNameKEY"
+
+#define headerFooterKey @"HeaderFooterKey"
+
 
 
 
 #define KJ_typeweakself __weak typeof(self) weakSelf = self;
-
-
-
-//typedef void(^CKJFilterSelectPayWayBlock)(NSArray <__kindof CKJPayCellModel *>*models, __kindof CKJPayCellModel *_Nullable sender);
-
-/*
- 
- 
- 
- */
-
-
 
 
 @protocol CKJSimpleTableViewDataSource <NSObject>
@@ -62,8 +52,8 @@
  键值对     return @{ NSStringFromClass([DemoHeaderModel class]) : NSStringFromClass([DemoHeader class])};
  @return 键值对
  */
-- (nonnull NSDictionary <NSString *, NSString *> *)returnHeader_Model_keyValues;
-- (nonnull NSDictionary <NSString *, NSString *> *)returnFooter_Model_keyValues;
+- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnHeader_Model_keyValues;
+- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnFooter_Model_keyValues;
 
 /**
  保留Plain样式 区头悬浮
@@ -89,10 +79,13 @@
  */
 - (void)disableEstimated;
 
-- (void)kjwd_setCellModels:(nullable NSArray <CKJCommonCellModel *>*)cellModels atSection:(NSInteger)section;
+- (void)kjwd_setCellModels:(nullable NSArray <__kindof CKJCommonCellModel *>*)cellModels atSection:(NSInteger)section;
 
 /** 遍历所有的cellModel */
 - (void)kjwd_enumAllCellModelWithBlock:(nullable CKJCommonCellModelRowBlock)block;
+
+/** 遍历所有的cellModel 找对应的模型 */
+- (void)kjwd_filterCellModelForID:(NSInteger)cellModelID finishBlock:(nullable CKJCommonCellModelRowBlock)block;
 
 
 /**
@@ -141,41 +134,41 @@
  @param section 想查询的对应的分区
  @return 对应分区cellModel模型数组
  */
-- (NSArray <CKJCommonCellModel *>*)displayCellModelArrayAtSection:(NSInteger)section;
+- (NSArray <__kindof CKJCommonCellModel *>*)displayCellModelArrayAtSection:(NSInteger)section;
 
 
 /**
  拼接分区
  */
-- (void)appendCKJCommonSectionModel:(CKJCommonSectionModel *)sectionModel;
-- (void)appendCKJCommonSectionModels:(NSArray <CKJCommonSectionModel *>*_Nullable)sectionModels;
+- (void)appendCKJCommonSectionModel:(nullable __kindof CKJCommonSectionModel *)sectionModel;
+- (void)appendCKJCommonSectionModels:(nullable NSArray <__kindof CKJCommonSectionModel *>*_Nullable)sectionModels;
 
 
 /**
  插入模型在某个分区的某一行
  **************这个插入数据之后，需要手动的刷新数据，因为在insertRowsAtIndexPaths会位置出现， insertRowsAtIndexPaths每次只能插入一个数据，同时插入多个数据会造成插入动画数据有问题**************
  */
-- (BOOL)kjwd_insertCellModelsInAllCellModel:(nullable NSArray<CKJCommonCellModel *>*)array section:(NSInteger)section row:(NSInteger)row;
+- (BOOL)kjwd_insertCellModelsInAllCellModel:(nullable NSArray<__kindof CKJCommonCellModel *>*)array section:(NSInteger)section row:(NSInteger)row;
 /**
  使用动画 插入模型在某个分区的某一行
  **************调用此方法插入数据后，不要使用reloadRowsAtIndexPaths刷新，不然会崩溃，可以刷新当前所在的分区**************
  */
-- (void)kjwd_insertCellModelInAllCellModel:(nullable CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
+- (void)kjwd_insertCellModelInAllCellModel:(nullable __kindof CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
 
 
 /**
  在指定分区的末尾拼接模型数组 (拼接在某一个分区所有CellModelArray包括隐藏的模型的 最后一行)
  */
-- (BOOL)appendCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section;
+- (BOOL)appendCellModelArray:(nullable NSArray <__kindof CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section;
 /**
  使用动画 在指定分区的末尾拼接模型数组 (拼接在某一个分区所有CellModelArray包括隐藏的模型的 最后一行)
  */
-- (void)appendCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
+- (void)appendCellModelArray:(nullable NSArray <__kindof CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
 
 /** 拼接在最后一个分区最后一行 */
-- (BOOL)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)array;
+- (BOOL)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nullable NSArray <__kindof CKJCommonCellModel *>*)array;
 /** 使用动画 拼接在最后一个分区最后一行 */
-- (void)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)array withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
+- (void)appendCellModelArray_atLastRow_InAllCellModelArrayOfLastSection_WithCellModelArray:(nullable NSArray <__kindof CKJCommonCellModel *>*)array withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
 
 
 /** 删除模型在某个分区的某一行 */
@@ -205,13 +198,8 @@
 
 
 #pragma mark - CKJPayCell相关
-@property (strong, nonatomic) NSArray <__kindof CKJPayCellModel *>*payCellModels;
-@property (strong, nonatomic, nullable, readonly) __kindof CKJPayCellModel *currentSelectPayCellModel;
-
-#pragma mark - Swift命名空间相关
-+ (NSString *)kj_nameSpace;
-+ (NSString *)return_ModelName:(NSString *)modelName;
-+ (Class)returnClass_ClassString:(NSString *)classString;
+@property (strong, nonatomic, nullable) NSArray <__kindof CKJRadioCellModel *>*radioCellModels;
+@property (strong, nonatomic, nullable, readonly) __kindof CKJRadioCellModel *currentSelectRadioCellModel;
 
 #pragma mark - 键值对
 @property (strong, nonatomic) NSMutableDictionary *cell_Model_keyValues;

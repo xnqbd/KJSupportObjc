@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "CKJBaseModel.h"
 
 
 typedef NS_ENUM(NSUInteger, CKJCommonHeaderFooterType) {
@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, CKJCommonHeaderFooterType) {
 };
 
 
-@interface CKJCommonHeaderFooterModel : NSObject
+@interface CKJCommonHeaderFooterModel : CKJBaseModel
 
 /**
  系统的区头区尾
@@ -31,6 +31,8 @@ typedef NS_ENUM(NSUInteger, CKJCommonHeaderFooterType) {
 
 @property (assign, nonatomic) CKJCommonHeaderFooterType type;
 
-//@property (assign, nonatomic) BOOL displayInTableView;
+
++ (nonnull instancetype)modelWithDetailSettingBlock:(void(^_Nullable)(__kindof CKJCommonHeaderFooterModel *m))detailSettingBlock;
+
 
 @end

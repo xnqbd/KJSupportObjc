@@ -8,12 +8,51 @@
 
 #import "CKJFiveCell.h"
 #import <Masonry/Masonry.h>
-#import "NSObject+WDYHFCategory.h"
+#import <objc/message.h>
+
+
+@implementation CKJFiveCellConfig
+
++ (nonnull instancetype)fiveCellConfigWithImageSize:(CGSize)imageSize image_margin_title:(CGFloat)image_margin_title topBottomMargin:(CGFloat)topBottomMargin centerMargin:(CGFloat)centerMargin {
+    CKJFiveCellConfig *config = [[self alloc] init];
+    config.leftImageSize = imageSize;
+    config.image_margin_title = image_margin_title;
+    
+    config.superview_margin_title = topBottomMargin;
+    config.fifthLab_margin_SuperView = topBottomMargin;
+    
+    config.title_margin_subTitle = centerMargin;
+    config.subTitle_margin_thirdLab = centerMargin;
+    config.thirdLab_margin_fourthLab = centerMargin;
+    config.fourthLab_margin_fifthLab = centerMargin;
+    
+    return config;
+}
++ (nonnull instancetype)configWithDetailSettingBlock:(nullable CKJFiveCellConfigBlock)detailSettingBlock {
+    return [super configWithDetailSettingBlock:detailSettingBlock];
+}
+
+- (instancetype)init {
+    if (self = [super init]) {
+        self.leftImageSize = CGSizeZero;
+        self.leftImageView_MarginToSuperViewLeft = 0;
+        
+        CGFloat superview_margin_title = 10;
+        
+        self.superview_margin_title = superview_margin_title;
+        self.fifthLab_margin_SuperView = superview_margin_title;
+        
+        self.title_margin_subTitle = 5;
+    }
+    return self;
+}
+
+@end
 
 @implementation CKJFiveCellModel
 
-- (NSString *)image_Name {
-   return WDKJ_ConfirmString(_image_Name);
++ (nonnull instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJFiveCellModelRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJFiveCellModelRowBlock)didSelectRowBlock {
+    return [super modelWithCellHeight:cellHeight cellModel_id:cellModel_id detailSettingBlock:detailSettingBlock didSelectRowBlock:didSelectRowBlock];
 }
 
 @end
@@ -21,25 +60,60 @@
 @implementation CKJFiveCell
 
 - (void)setupData:(CKJFiveCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(CKJSimpleTableView *)tableView {
-    self.titleLab.text = WDKJ_ConfirmString(model.title);
-    self.subTitleLab.text = WDKJ_ConfirmString(model.subTitle);
-    self.thirdLab.text = WDKJ_ConfirmString(model.thirdTitle);
-    self.fourthLab.text = WDKJ_ConfirmString(model.fourthTitle);
-    self.fifthLab.text = WDKJ_ConfirmString(model.fifthTitle);
-    [self installData:model section:section row:row selectIndexPath:indexPath tableView:tableView];
+    if ([model isKindOfClass:[CKJFiveCellModel class]] == NO) return;
+    
+    self.titleLab.attributedText = WDKJ_ConfirmAttString(model.title);
+    self.subTitleLab.attributedText = WDKJ_ConfirmAttString(model.subTitle);
+    self.threeLab.attributedText = WDKJ_ConfirmAttString(model.thirdTitle);
+    self.fourLab.attributedText = WDKJ_ConfirmAttString(model.fourthTitle);
+    self.fiveLab.attributedText = WDKJ_ConfirmAttString(model.fifthTitle);
+
+    self.radioBtn.selected = model.radio_Selected;
+    
+    UIImage *imageName = model.left_ImageName;
+    NSString *image_URL = model.left_Image_URL;
+    
+    if (WDKJ_IsNullObj(imageName, [UIImage class])) {
+        if (WDKJ_IsEmpty_Str(image_URL) ) {
+        } else {
+            NSURL *url = [NSURL kjwd_URLWithString:image_URL];
+            UIImage *placeholderImage = nil;
+            if (WDKJ_IsNullObj(model.placeholderImage, [UIImage class])) {
+                placeholderImage = nil;
+            } else {
+                placeholderImage = model.placeholderImage;
+            }
+            NSString *temp1 = @"sd_setImageWithURL:placeholderImage:";
+            
+            SEL sel = NSSelectorFromString(temp1);
+            if ([self.imageV respondsToSelector:sel]) {
+                
+                void (*kj_sengMsg)(id, SEL, NSURL *, UIImage *) = (void (*)(id, SEL, NSURL *, UIImage *))objc_msgSend;
+                
+                kj_sengMsg(self.imageV, sel_registerName([temp1 UTF8String]), url, placeholderImage);
+//                [self.imageV sd_setImageWithURL:[NSURL URLWithString:@"https://ps.ssl.qhmsg.com/sdr/400__/t01c8515616311ff6b9.jpg"] placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+            }
+        }
+    } else {
+        self.imageV.image = imageName;
+    }
 }
 
-- (void)installData:(CKJFiveCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(CKJSimpleTableView *)tableView {
-    // 子类需要重写此方法，完成左边图片的设置
-    // self.imageV.image = [UIImage kjwd_imageNamed:model.image_Name];
-}
-
-- (void)chooseBtnAction {
+- (void)radioBtnAction {
     
 }
 
 
 - (void)setupSubViews {
+    
+    
+    CKJFiveCellConfig *config  = self.configDic[configDicKEY_ConfigModel];
+    
+    if (WDKJ_IsNullObj(config, [CKJFiveCellConfig class])) {
+        config = [CKJFiveCellConfig configWithDetailSettingBlock:^(CKJFiveCellConfig * _Nonnull m) { 
+        }];
+    }
+    
     
     UIView *bgV = self.bgV;
     
@@ -48,12 +122,10 @@
     self.imageV = imageV;
     
     UILabel *title = [UILabel new];
-    title.text = @"";  // 支付宝
     [bgV addSubview:title];
     self.titleLab = title;
     
     UILabel *subTitle = [UILabel new];
-    subTitle.text = @""; // 推荐有支付宝账户的用户使用
     subTitle.textColor = [UIColor lightGrayColor];
     subTitle.font = [UIFont systemFontOfSize:14];
     [bgV addSubview:subTitle];
@@ -68,22 +140,22 @@
         return lab;
     };
     
-    self.thirdLab = createLab();
-    self.fourthLab = createLab();
-    self.fifthLab = createLab();
+    self.threeLab = createLab();
+    self.fourLab = createLab();
+    self.fiveLab = createLab();
     
     [title          setContentHuggingPriority:251 forAxis:UILayoutConstraintAxisVertical];
     [subTitle       setContentHuggingPriority:250 forAxis:UILayoutConstraintAxisVertical];
-    [self.thirdLab  setContentHuggingPriority:249 forAxis:UILayoutConstraintAxisVertical];
-    [self.fourthLab setContentHuggingPriority:248 forAxis:UILayoutConstraintAxisVertical];
-    [self.fifthLab  setContentHuggingPriority:247 forAxis:UILayoutConstraintAxisVertical];
+    [self.threeLab  setContentHuggingPriority:249 forAxis:UILayoutConstraintAxisVertical];
+    [self.fourLab setContentHuggingPriority:248 forAxis:UILayoutConstraintAxisVertical];
+    [self.fiveLab  setContentHuggingPriority:247 forAxis:UILayoutConstraintAxisVertical];
     
     
     [title          setContentCompressionResistancePriority:750 forAxis:UILayoutConstraintAxisVertical];
     [subTitle       setContentCompressionResistancePriority:749 forAxis:UILayoutConstraintAxisVertical];
-    [self.thirdLab  setContentCompressionResistancePriority:748 forAxis:UILayoutConstraintAxisVertical];
-    [self.fourthLab setContentCompressionResistancePriority:747 forAxis:UILayoutConstraintAxisVertical];
-    [self.fifthLab  setContentCompressionResistancePriority:746 forAxis:UILayoutConstraintAxisVertical];
+    [self.threeLab  setContentCompressionResistancePriority:748 forAxis:UILayoutConstraintAxisVertical];
+    [self.fourLab setContentCompressionResistancePriority:747 forAxis:UILayoutConstraintAxisVertical];
+    [self.fiveLab  setContentCompressionResistancePriority:746 forAxis:UILayoutConstraintAxisVertical];
     
     
     
@@ -92,123 +164,89 @@
     [bgV addSubview:rightWrapperLabel];
     self.rightWrapperLabel = rightWrapperLabel;
     
-    CGFloat margin = 15;
     
-    CGSize size = self.imageSize;
+    CGSize imageSize = config.leftImageSize;
+    CGFloat imageVleftMargin = config.leftImageView_MarginToSuperViewLeft;
     
     [imageV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(bgV);
-        make.left.equalTo(bgV).offset(margin);
-        make.width.equalTo(@(size.width));
-        make.height.equalTo(@(size.height));
+        make.left.equalTo(bgV).offset(imageVleftMargin);
+        make.width.equalTo(@(imageSize.width));
+        make.height.equalTo(@(imageSize.height));
     }];
     
     
-    CGFloat superview_margin_title = self.superview_margin_title;
+    
+    
+    CGFloat superview_margin_title = config.superview_margin_title;
+    CGFloat image_margin_title = config.image_margin_title;
+    
+    CGFloat title_RightMargin = config.title_RightMargin;
+    CGFloat title_margin_subTitle = config.title_margin_subTitle;
+    
+    CGFloat subTitle_RightMargin = config.subTitle_RightMargin;
+    CGFloat subTitle_margin_thirdLab = config.subTitle_margin_thirdLab;
+    
+    CGFloat thirdLab_RightMargin = config.thirdLab_RightMargin;
+    CGFloat thirdLab_margin_fourthLab = config.thirdLab_margin_fourthLab;
+    
+    CGFloat fourthLab_margin_fifthLab = config.fourthLab_margin_fifthLab;
+    CGFloat fourthLab_RightMargin = config.fourthLab_RightMargin;
+    
+    CGFloat fifthLab_margin_SuperView = config.fifthLab_margin_SuperView;
+    CGFloat fifthLab_RightMargin = config.fifthLab_RightMargin;
+    
     
     id temp = rightWrapperLabel.mas_left;
     
     [title kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
-        make.left.equalTo(imageV.mas_right).offset(self.image_margin_title);
+        make.left.equalTo(imageV.mas_right).offset(image_margin_title);
         make.top.equalTo(superview).offset(superview_margin_title);
-        make.right.equalTo(temp).offset(-(self.title_RightMargin));
-        make.bottom.equalTo(subTitle.mas_top).offset(-(self.title_margin_subTitle));
+        make.right.equalTo(temp).offset(-(title_RightMargin));
+        make.bottom.equalTo(subTitle.mas_top).offset(-(title_margin_subTitle));
     }];
     [subTitle kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.left.equalTo(title.mas_left);
-        make.right.equalTo(temp).offset(-(self.subTitle_RightMargin));
-        make.bottom.equalTo(self.thirdLab.mas_top).offset(-(self.subTitle_margin_thirdLab));
+        make.right.equalTo(temp).offset(-(subTitle_RightMargin));
+        make.bottom.equalTo(self.threeLab.mas_top).offset(-(subTitle_margin_thirdLab));
     }];
-    [self.thirdLab kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
+    [self.threeLab kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.left.equalTo(self.titleLab);
-        make.right.equalTo(temp).offset(-(self.thirdLab_RightMargin));
-        make.bottom.equalTo(self.fourthLab.mas_top).offset(-(self.thirdLab_margin_fourthLab));
+        make.right.equalTo(temp).offset(-(thirdLab_RightMargin));
+        make.bottom.equalTo(self.fourLab.mas_top).offset(-(thirdLab_margin_fourthLab));
     }];
-    [self.fourthLab kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
+    [self.fourLab kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.left.equalTo(self.titleLab);
-        make.bottom.equalTo(self.fifthLab.mas_top).offset(-(self.fourthLab_margin_fifthLab));
-        make.right.equalTo(temp).offset(-(self.fourthLab_RightMargin));
+        make.bottom.equalTo(self.fiveLab.mas_top).offset(-(fourthLab_margin_fifthLab));
+        make.right.equalTo(temp).offset(-(fourthLab_RightMargin));
     }];
-    [self.fifthLab kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
+    [self.fiveLab kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.left.equalTo(self.titleLab);
-        make.bottom.equalTo(superview).offset(-(superview_margin_title));
-        make.right.equalTo(temp).offset(-(self.fifthLab_RightMargin));
+        make.bottom.equalTo(superview).offset(-(fifthLab_margin_SuperView));
+        make.right.equalTo(temp).offset(-(fifthLab_RightMargin));
     }];
-    
-    
     
     [rightWrapperLabel kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.top.right.bottom.equalTo(superview);
     }];
     
-    
-    
-    UIButton *chooseBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [chooseBtn addTarget:self action:@selector(chooseBtnAction) forControlEvents:UIControlEventTouchUpInside];
-    [rightWrapperLabel addSubview:chooseBtn];
-    self.chooseBtn = chooseBtn;
-    
+    UIButton *radioBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [radioBtn addTarget:self action:@selector(radioBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [rightWrapperLabel addSubview:radioBtn];
+    self.radioBtn = radioBtn;
     
     BOOL debug = NO;
     if (debug) {
+        self.imageV.backgroundColor = [UIColor redColor];
         self.titleLab.backgroundColor = [UIColor purpleColor];
         self.subTitleLab.backgroundColor = [UIColor yellowColor];
-        self.thirdLab.backgroundColor = [UIColor greenColor];
-        self.fourthLab.backgroundColor = [UIColor blueColor];
-        self.fifthLab.backgroundColor = [UIColor redColor];
-//        self.rightWrapperLabel.backgroundColor = [UIColor brownColor];
-        self.chooseBtn.backgroundColor = [UIColor brownColor];
+        self.threeLab.backgroundColor = [UIColor greenColor];
+        self.fourLab.backgroundColor = [UIColor blueColor];
+        self.fiveLab.backgroundColor = [UIColor redColor];
+        self.rightWrapperLabel.backgroundColor = [UIColor magentaColor];
+        self.radioBtn.backgroundColor = [UIColor brownColor];
     }
 }
-
-- (CGFloat)superview_margin_title {
-    return 10;
-}
-- (CGFloat)title_margin_subTitle {
-    return 5;
-}
-- (CGFloat)subTitle_margin_thirdLab {
-    return 0;
-}
-- (CGFloat)thirdLab_margin_fourthLab {
-    return 0;
-}
-- (CGFloat)fourthLab_margin_fifthLab {
-    return 0;
-}
-- (CGFloat)fifthLab_margin_SuperView {
-    return 0;
-}
-
-
-
-- (CGFloat)title_RightMargin {
-    return 8;
-}
-- (CGFloat)subTitle_RightMargin {
-    return self.title_RightMargin;
-}
-- (CGFloat)thirdLab_RightMargin {
-    return self.title_RightMargin;
-}
-- (CGFloat)fourthLab_RightMargin {
-    return self.title_RightMargin;
-}
-- (CGFloat)fifthLab_RightMargin {
-    return self.title_RightMargin;
-}
-
-
-
-
-
-- (CGFloat)image_margin_title {
-    return 10;
-}
-- (CGSize)imageSize {
-    return CGSizeMake(40, 40);
-}
-
 
 
 @end

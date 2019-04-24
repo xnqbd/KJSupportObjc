@@ -19,20 +19,20 @@
 
 #pragma mark - ScrollView相关
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView;
-- (void)scrollViewDidZoom:(UIScrollView *)scrollView;
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset;
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
-- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView;
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView;
-- (nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView;
-- (void)scrollViewWillBeginZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view;
-- (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale;
-- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView;
-- (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView;
-- (void)scrollViewDidChangeAdjustedContentInset:(UIScrollView *)scrollView;
+- (void)scrollViewDidScroll:(nonnull UIScrollView *)scrollView;
+- (void)scrollViewDidZoom:(nonnull UIScrollView *)scrollView;
+- (void)scrollViewWillBeginDragging:(nonnull UIScrollView *)scrollView;
+- (void)scrollViewWillEndDragging:(nonnull UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset;
+- (void)scrollViewDidEndDragging:(nonnull UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
+- (void)scrollViewWillBeginDecelerating:(nonnull UIScrollView *)scrollView;
+- (void)scrollViewDidEndDecelerating:(nonnull UIScrollView *)scrollView;
+- (void)scrollViewDidEndScrollingAnimation:(nonnull UIScrollView *)scrollView;
+- (nullable UIView *)viewForZoomingInScrollView:(nonnull UIScrollView *)scrollView;
+- (void)scrollViewWillBeginZooming:(nonnull UIScrollView *)scrollView withView:(nullable UIView *)view;
+- (void)scrollViewDidEndZooming:(nonnull UIScrollView *)scrollView withView:(nullable UIView *)view atScale:(CGFloat)scale;
+- (BOOL)scrollViewShouldScrollToTop:(nonnull UIScrollView *)scrollView;
+- (void)scrollViewDidScrollToTop:(nonnull UIScrollView *)scrollView;
+- (void)scrollViewDidChangeAdjustedContentInset:(nonnull UIScrollView *)scrollView;
 
 
 @end

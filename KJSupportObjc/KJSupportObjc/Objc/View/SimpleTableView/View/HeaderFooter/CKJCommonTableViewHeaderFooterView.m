@@ -11,9 +11,11 @@
 #import "CKJSimpleTableView.h"
 #import "CKJTitleStyleHeaderFooterView.h"
 
+
+
 @implementation CKJCommonTableViewHeaderFooterView
 
-- (instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier tableView:(CKJSimpleTableView *)tableView {
+- (nonnull instancetype)initWithReuseIdentifier:(nonnull NSString *)reuseIdentifier tableView:(nonnull CKJSimpleTableView *)tableView {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         [self setValue:tableView forKey:@"simpleTableView"];
         if ([self isKindOfClass:CKJTitleStyleHeaderFooterView.class]) {

@@ -26,9 +26,6 @@
 
 - (void)setupData:(CustomCell1Model *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(CKJSimpleTableView *)tableView {
     
-    self.separatorInset = UIEdgeInsetsMake(0, self.bounds.size.width + 1000, 0, 0);
-    
-    
     self.timeLab.textColor = [UIColor kjwd_subTitleColor969696];
     self.projectLab.textColor = self.timeLab.textColor;
     self.countLab.textColor = self.timeLab.textColor;

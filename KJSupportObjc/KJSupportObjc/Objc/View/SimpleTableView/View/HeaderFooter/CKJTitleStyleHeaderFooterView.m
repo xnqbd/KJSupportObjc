@@ -8,11 +8,9 @@
 
 #import "CKJTitleStyleHeaderFooterView.h"
 #import "NSObject+WDYHFCategory.h"
-#import <Masonry/Masonry.h>
 #import "CKJSimpleTableView.h"
 
 @implementation CKJTitleStyleHeaderFooterModel
-
 
 + (instancetype)modelWithAttributedString:(nullable NSAttributedString *)attributedString type:(CKJCommonHeaderFooterType)type {
     CKJTitleStyleHeaderFooterModel *model = [[self alloc] init];
@@ -20,13 +18,6 @@
     model.textAlignment = NSTextAlignmentLeft;
     model.type = type;
     return model;
-}
-
-- (NSAttributedString *)attributedTitle {
-    if (WDKJ_IsEmpty_AttributedStr(_attributedTitle)) {
-        return [[NSAttributedString alloc] init];
-    }
-    return _attributedTitle;
 }
 
 @end
@@ -60,7 +51,7 @@
     });
 
     self.customTitleLab = ({
-        UILabel *view = [UILabel new];
+        UILabel *view = [[UILabel alloc] init];
         view.numberOfLines = 0;
         view.textColor = [UIColor lightGrayColor];
         view.font = [UIFont systemFontOfSize:14];
@@ -81,13 +72,11 @@
 }
 
 
-
-
 - (void)setupData:(CKJCommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(CKJSimpleTableView *)tableView {
     self.bgV.backgroundColor = self.simpleTableView.backgroundColor;
     if ([headerFooterModel isKindOfClass:[CKJTitleStyleHeaderFooterModel class]]) {
         CKJTitleStyleHeaderFooterModel *model = (CKJTitleStyleHeaderFooterModel *)headerFooterModel;
-        self.customTitleLab.attributedText = model.attributedTitle;
+        self.customTitleLab.attributedText = WDKJ_ConfirmAttString(model.attributedTitle);
         self.customTitleLab.textAlignment = model.textAlignment;
         if ([self.delegate respondsToSelector:@selector(setupCKJTitleStyleHeaderFooterView:label:bgV:data:section:tableView:)]) {
             [self.delegate setupCKJTitleStyleHeaderFooterView:self label:self.customTitleLab bgV:_bgV data:headerFooterModel section:section tableView:tableView];

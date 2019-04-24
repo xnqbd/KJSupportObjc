@@ -9,15 +9,15 @@
 #import "NSObject+WDYHFCategory.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <objc/message.h>
-#import <Masonry/Masonry.h>
+
 
 
 #pragma mark - -----------------异常处理-----------------
 
-BOOL WDKJ_IsNull(id obj) {
+BOOL WDKJ_IsNullObj(id obj, Class cla) {
     if (obj == nil) {
         return YES;
-    } else if ([obj isKindOfClass:[NSNull class]]) {
+    } else if ([obj isKindOfClass:cla] == NO) {
         return YES;
     }
     return NO;
@@ -68,35 +68,32 @@ BOOL WDKJ_IsNull_Array(NSArray *_Nullable array) {
     }
 }
 
-id WDKJ_ConfirmObject(id object) {
-    return WDKJ_IsNull(object) ? [NSObject new] : object;
-}
 NSString *_Nonnull WDKJ_ConfirmString(NSString *_Nullable str) {
     return WDKJ_IsEmpty_Str(str) ? @"" : str;
+}
+NSString *_Nonnull WDKJ_SpaceString(NSString *_Nullable str) {
+    return (WDKJ_IsEmpty_Str(str) ? @" " : str);
+}
+
+NSAttributedString *_Nonnull WDKJ_SpaceAttString(NSAttributedString *_Nullable attStr) {
+    return WDKJ_IsEmpty_AttributedStr(attStr) ? [[NSAttributedString alloc] initWithString:@" "] : attStr;
 }
 NSAttributedString *_Nonnull WDKJ_ConfirmAttString(NSAttributedString *_Nullable attStr) {
     return WDKJ_IsEmpty_AttributedStr(attStr) ? [[NSAttributedString alloc] init] : attStr;
 }
 
-NSString *_Nonnull WDKJ_SpaceString(NSString *_Nullable str) {
-    return (WDKJ_IsEmpty_Str(str) ? @" " : str);
-}
 NSNumber *_Nonnull WDKJ_ConfirmNumber(NSNumber *_Nullable number) {
     return (WDKJ_IsNull_Num(number) ? @0 : number);
 }
 NSDictionary *_Nonnull WDKJ_ConfirmDic(NSDictionary *_Nullable dic) {
-    if (WDKJ_IsNull(dic)) {
-        return @{};
-    } else if ([dic isKindOfClass:[NSDictionary class]] == NO) {
+    if (WDKJ_IsNullObj(dic, [NSDictionary class])) {
         return @{};
     } else {
         return dic;
     }
 }
 NSArray *_Nonnull WDKJ_ConfirmArray(NSArray *_Nullable array) {
-    if (WDKJ_IsNull(array)) {
-        return @[];
-    } else if ([array isKindOfClass:[NSArray class]] == NO) {
+    if (WDKJ_IsNullObj(array, [NSArray class])) {
         return @[];
     } else {
         return array;
@@ -192,8 +189,8 @@ NSMutableAttributedString *_Nonnull WDCKJAttributed(NSString *_Nullable name, NS
 }
 
 NSMutableAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize) {
-    UIColor *_color = WDKJ_IsNull(color) ? [UIColor blackColor] : color;
-    CGFloat _fontSize = WDKJ_IsNull_Num(fontSize) ? 17 : fontSize.integerValue;
+    UIColor *_color = WDKJ_IsNullObj(color, [UIColor class]) ? [UIColor blackColor] : color;
+    CGFloat _fontSize = WDKJ_IsNull_Num(fontSize) ? 15.5 : fontSize.integerValue;
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:WDKJ_ConfirmString(text) attributes:@{NSForegroundColorAttributeName : _color, NSFontAttributeName : [UIFont systemFontOfSize:_fontSize]}];
     
@@ -209,14 +206,19 @@ NSMutableAttributedString *_Nonnull WDCKJAttributed3(NSString *_Nullable text, C
     [paragraphStyle setLineSpacing:lineSpace];
     [attributedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, [text length])];
     
-    
-    UIColor *_color = WDKJ_IsNull(color) ? [UIColor blackColor] : color;
-    CGFloat _fontSize = WDKJ_IsNull_Num(fontSize) ? 17 : fontSize.integerValue;
+    UIColor *_color = WDKJ_IsNullObj(color, [UIColor class]) ? [UIColor blackColor] : color;
+    CGFloat _fontSize = WDKJ_IsNull_Num(fontSize) ? 15.5 : fontSize.integerValue;
     
     [attributedString addAttributes:@{NSForegroundColorAttributeName : _color, NSFontAttributeName : [UIFont systemFontOfSize:_fontSize]} range:NSMakeRange(0, [text length])];
     //    [attributedString  addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(0, [text length])];
     return attributedString;
 }
+NSMutableAttributedString *_Nonnull WDCKJAttributed4(NSString *_Nullable text1, UIColor *_Nullable color1, NSNumber *_Nullable fontSize1, NSString *_Nullable text2, UIColor *_Nullable color2, NSNumber *_Nullable fontSize2) {
+    NSMutableAttributedString *att = WDCKJAttributed2(text1, color1, fontSize1);
+    [att appendAttributedString:WDCKJAttributed2(text2, color2, fontSize2)];
+    return att;
+}
+
 
 
 int getRandomNumber(int from, int to) {
@@ -301,6 +303,12 @@ CGFloat WDAPP_ScreenHeight(void) {
     NSDate *date = objc_getAssociatedObject(self, @"markDate");
     return date;
 }
+
+- (void)kjwd_setValuesForKeysWithDictionary:(nullable NSDictionary<NSString *, id> *)keyedValues {
+    if (WDKJ_IsNullObj(keyedValues, [NSDictionary class])) return;
+    [self setValuesForKeysWithDictionary:keyedValues];
+}
+
 
 
 @end
@@ -889,8 +897,14 @@ CGFloat WDAPP_ScreenHeight(void) {
     [self enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSString class]]) {
             NSLog(@"NSString *%@ = %@", key, obj);
+            
+//            NSLog(@"@property (copy, nonatomic) NSString *%@;", key);
+            
         } else if ([obj isKindOfClass:[NSNumber class]]) {
             NSLog(@"NSNumber *%@ = %@", key, obj);
+            
+//            NSLog(@"@property (copy, nonatomic) NSNumber *%@;", key);
+            
         } else if ([obj isKindOfClass:[NSDictionary class]]) {
             [self kjwd_lookValuesDataType];
         } else if ([obj isKindOfClass:[NSArray class]]) {
@@ -933,6 +947,23 @@ CGFloat WDAPP_ScreenHeight(void) {
     return result;
 }
 
++ (nullable NSDictionary *)kjwd_readJsonDataFromLocalWithName:(nullable NSString *)name type:(nullable NSString *)type {
+    if (WDKJ_IsEmpty_Str(name)) {
+        return nil;
+    }
+    if (WDKJ_IsEmpty_Str(type)) {
+        type = nil;
+    }
+    
+    // 获取文件路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:type];
+    // 将文件数据化
+    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+    
+    return [NSJSONSerialization JSONObjectWithData:data
+                                           options:kNilOptions
+                                             error:nil];
+}
 
 @end
 
@@ -1828,7 +1859,7 @@ CGFloat WDAPP_ScreenHeight(void) {
         return nil;
     }
     if (WDKJ_IsEmpty_Str(format)) {
-        format = WDKJDefaultDateFormat;
+        format = CKJDateFormat1;
     }
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -1847,7 +1878,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 + (NSString *)kjwd_currentDateString {
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = [NSString stringWithFormat:WDKJDefaultDateFormat];
+    formatter.dateFormat = [NSString stringWithFormat:CKJDateFormat1];
     NSString *dateStr = [formatter stringFromDate:date];
     return dateStr;
 }
@@ -1890,7 +1921,7 @@ CGFloat WDAPP_ScreenHeight(void) {
     NSDate *date = [NSDate kjwd_returnDate:str withDateFormat:nil];
     return date;
 }
-+ (nullable NSDate *)kjwd_set_HmsEqualZero_withYMDString:(NSString *)YMDString {
++ (nullable NSDate *)kjwd_set_HmsEqualZero_withYMDString:(nullable NSString *)YMDString {
     if (WDKJ_IsEmpty_Str(YMDString)) {
         return nil;
     }
@@ -1901,7 +1932,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 
 - (nonnull NSString *)kjwd_dateString {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = [NSString stringWithFormat:WDKJDefaultDateFormat];
+    formatter.dateFormat = [NSString stringWithFormat:CKJDateFormat1];
     NSString *dateStr = [formatter stringFromDate:self];
     return dateStr;
 }
@@ -1945,7 +1976,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 + (nonnull NSString *)kjwd_dateStringFrom1970second:(double)second {
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = [NSString stringWithFormat:WDKJDefaultDateFormat];
+    formatter.dateFormat = [NSString stringWithFormat:CKJDateFormat1];
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:second];
     return [date kjwd_dateString];
 }
@@ -2044,21 +2075,6 @@ CGFloat WDAPP_ScreenHeight(void) {
     }
     return [self imageNamed:name];
 }
-//改变图片的大小
-- (UIImage *)kjwd_scaleToSize:(CGSize)size {
-    // 创建一个bitmap的context
-    // 并把它设置成为当前正在使用的context
-    UIGraphicsBeginImageContext(size);
-    // 绘制改变大小的图片
-    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    // 从当前context中创建一个改变大小后的图片
-    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    // 使当前的context出堆栈
-    UIGraphicsEndImageContext();
-    // 返回新的改变大小后的图片
-    return scaledImage;
-}
-
 // 通过给定颜色和大小生成图片
 + (UIImage *)kjwd_imageWithColor:(UIColor *)color size:(CGSize)size {
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
@@ -2074,6 +2090,11 @@ CGFloat WDAPP_ScreenHeight(void) {
     UIGraphicsEndImageContext();
     return image;
 }
+
++ (UIImage *)kjwd_imageWithColor:(UIColor *)color size:(CGSize)size radius:(CGFloat)radius {
+    return [[self kjwd_imageWithColor:color size:size] kjwd_setCornerRadius:radius];
+}
+
 + (UIImage *)kjwd_QRCodeWithContent:(NSString *)content size:(CGSize)size {
     if (content == nil) {
         return [[UIImage alloc] init];
@@ -2114,6 +2135,40 @@ CGFloat WDAPP_ScreenHeight(void) {
     return codeImage;
 }
 
+
+
+//改变图片的大小
+- (UIImage *)kjwd_scaleToSize:(CGSize)size {
+    // 创建一个bitmap的context
+    // 并把它设置成为当前正在使用的context
+    UIGraphicsBeginImageContext(size);
+    // 绘制改变大小的图片
+    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    // 从当前context中创建一个改变大小后的图片
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    // 使当前的context出堆栈
+    UIGraphicsEndImageContext();
+    // 返回新的改变大小后的图片
+    return scaledImage;
+}
+
+- (nonnull UIImage *)kjwd_setCornerRadius:(CGFloat)radius {
+    UIImage *original = self;
+    CGRect frame = CGRectMake(0, 0, original.size.width, original.size.height);
+    // 开始一个Image的上下文
+    UIGraphicsBeginImageContextWithOptions(original.size, NO, 1.0);
+    // 添加圆角
+    [[UIBezierPath bezierPathWithRoundedRect:frame
+                                cornerRadius:radius] addClip];
+    // 绘制图片
+    [original drawInRect:frame];
+    // 接受绘制成功的图片
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+
 @end
 
 
@@ -2153,7 +2208,6 @@ CGFloat WDAPP_ScreenHeight(void) {
 - (BOOL)kjwd_validateCarNo {
     NSString *carRegex = @"^[\u4e00-\u9fa5]{1}[a-zA-Z]{1}[a-zA-Z_0-9]{4}[a-zA-Z_0-9_\u4e00-\u9fa5]$";
     NSPredicate *carTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",carRegex];
-    NSLog(@"carTest is %@",carTest);
     return [carTest evaluateWithObject:self];
 }
 
@@ -2303,6 +2357,32 @@ CGFloat WDAPP_ScreenHeight(void) {
         return @"";
     }
     return [self stringByReplacingCharactersInRange:NSMakeRange(10, 4) withString:@"****"];
+}
+
+- (nonnull NSString *)kjwd_idCardLeftMargin:(NSInteger)left rightMargin:(NSInteger)right {
+    NSInteger idLength = 18;
+    
+    if (self.length != idLength) {
+        //        NSLog(@"身份证号必须是18位!");
+        return @"";
+    }
+    if (left < 0 || right < 0) {
+        return @"";
+    }
+    if (left + right > idLength) {
+        return @"";
+    }
+    
+    NSMutableString *chars = [NSMutableString string];
+    for (int i = 0; i < idLength - right - left; i++) {
+        [chars appendString:@"*"];
+    }
+    
+    NSMutableString *str = [NSMutableString stringWithString:self];
+    
+    NSString *temp = [str stringByReplacingCharactersInRange:NSMakeRange(left, idLength - right - left) withString:chars];
+    
+    return temp;
 }
 
 
@@ -2701,6 +2781,26 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 + (CGFloat)screenHeight {
     return [UIScreen mainScreen].bounds.size.height;
+}
+
+#pragma mark - Swift命名空间相关
++ (nonnull NSString *)kj_nameSpace {
+    NSString *namespace = [NSBundle mainBundle].infoDictionary[@"CFBundleExecutable"];
+    namespace = [NSString stringWithFormat:@"%@.", namespace];
+    return namespace;
+}
++ (nonnull NSString *)return_ModelName:(NSString *)modelName {
+    if ([modelName containsString:[self kj_nameSpace]]) { // 为了Swift处理命名空间
+        NSUInteger from = [modelName rangeOfString:[self kj_nameSpace]].length;
+        modelName = [modelName substringFromIndex:from];
+    }
+    return modelName;
+}
++ (Class)returnClass_ClassString:(NSString *)classString {
+    // 为了Swift处理命名空间
+    Class ocClass = NSClassFromString(classString);
+    Class swiftClass = NSClassFromString([NSString stringWithFormat:@"%@%@", [self kj_nameSpace], classString]);
+    return ocClass ? ocClass : swiftClass;
 }
 
 

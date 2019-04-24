@@ -18,7 +18,7 @@
 @implementation CustomCell2
 
 - (void)installData:(CKJFiveCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(CKJSimpleTableView *)tableView {
-    self.imageV.image = [UIImage kjwd_imageNamed:model.image_Name];
+//    self.imageV.image = [UIImage kjwd_imageNamed:model.image_Name];
 }
 
 

@@ -13,11 +13,11 @@
 
 @interface CKJTitleStyleHeaderFooterModel : CKJCommonHeaderFooterModel
 
-@property (copy, nonatomic) NSAttributedString *attributedTitle;
+@property (copy, nonatomic, nullable) NSAttributedString *attributedTitle;
 
-@property(assign, nonatomic) NSTextAlignment textAlignment;
+@property (assign, nonatomic) NSTextAlignment textAlignment;
 
-+ (instancetype)modelWithAttributedString:(nullable NSAttributedString *)attributedString type:(CKJCommonHeaderFooterType)type;
++ (nonnull instancetype)modelWithAttributedString:(nullable NSAttributedString *)attributedString type:(CKJCommonHeaderFooterType)type;
 
 @end
 

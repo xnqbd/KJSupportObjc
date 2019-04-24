@@ -31,9 +31,7 @@
 }
 
 - (void)changeText:(nullable NSString *)text {
-    NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithAttributedString:WDKJ_ConfirmAttString(self.attributedText)];
-    [att replaceCharactersInRange:NSMakeRange(0, att.length) withString:WDKJ_ConfirmString(text)];
-    self.attributedText = att;
+    self.attributedText = [CKJWorker changeOriginAtt:self.attributedText text:text];
 }
 
 @end
@@ -49,6 +47,11 @@
     model.bottomMargin = bottom;
     return model;
 }
+
+- (void)changeText:(nullable NSString *)text {
+    self.attributedText = [CKJWorker changeOriginAtt:self.attributedText text:text];
+}
+
 @end
 
 @implementation CKJView5Model
@@ -80,6 +83,14 @@
     return model;
 }
 
+- (void)changeTopText:(nullable NSString *)text {
+    self.topText = [CKJWorker changeOriginAtt:self.topText text:text];
+}
+
+- (void)changeBottomText:(nullable NSString *)text {
+    self.bottomText = [CKJWorker changeOriginAtt:self.bottomText text:text];
+}
+
 @end
 
 @implementation CKJSwitch6Model
@@ -107,10 +118,17 @@
     model.bottomMargin = bottom;
     return model;
 }
+
+- (void)changeText:(nullable NSString *)text {
+    self.attributedText = [CKJWorker changeOriginAtt:self.attributedText text:text];
+}
 @end
 
 @implementation CKJBtn8Model
-+ (instancetype)btn8ModelWithNormalImage:(NSString *)normalImage size:(CGSize)size rightMargin:(CGFloat)rightMargin detailSettingBlock:(void(^)(CKJBtn8Model *sender))detailSettingBlock didClickBtn8Handle:(CKJDidClickBtn8Handle)didClickBtn8Handle {
+
+
+
++ (instancetype)btn8ModelWithSize:(CGSize)size normalImage:(UIImage *)normalImage rightMargin:(CGFloat)rightMargin detailSettingBlock:(void(^)(CKJBtn8Model *sender))detailSettingBlock didClickBtn8Handle:(CKJDidClickBtn8Handle)didClickBtn8Handle {
     CKJBtn8Model *model = [[self alloc] init];
     model.normalImage = normalImage;
     model.rightMargin = rightMargin;
@@ -121,6 +139,15 @@
     model.didClickBtn8Handle = didClickBtn8Handle;
     return model;
 }
+
+- (void)changeNormalText:(nullable NSString *)text {
+    self.normalAttributedTitle = [CKJWorker changeOriginAtt:self.normalAttributedTitle text:text];
+}
+- (void)changeSelectedText:(nullable NSString *)text {
+    self.selectedAttributedTitle = [CKJWorker changeOriginAtt:self.selectedAttributedTitle text:text];
+}
+
+
 - (instancetype)init {
     if (self = [super init]) {
         self.userInteractionEnabled = YES;
@@ -353,7 +380,7 @@
     }];
     
     
-   
+    
     [self origin_btn8_Constraint];
     [self origin_arrowImageView9_Constraint];
     
@@ -361,7 +388,7 @@
     
     [_rightWrapView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(bgV);
-            make.right.equalTo(right_of_rightWrapView.mas_right);
+        make.right.equalTo(right_of_rightWrapView.mas_right);
     }];
     
     BOOL debug = NO;
@@ -386,16 +413,7 @@
 }
 
 - (void)setupData:(CKJCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(CKJSimpleTableView *)tableView {
-    
-    if ([model isKindOfClass:[CKJCellModel class]] == NO) {
-        return;
-    }
-    
-    if (model.showLine) {
-        self.separatorInset = UIEdgeInsetsMake(0, 15, 0, 0);
-    } else {
-        self.separatorInset = UIEdgeInsetsMake(0, self.bounds.size.width + 1000, 0, 0);
-    }
+    if ([model isKindOfClass:[CKJCellModel class]] == NO) return;
     {
         UIImage *image = [UIImage kjwd_imageNamed:model.image2Model.imageString2];
         CGFloat leftMargin = model.image2Model.leftMargin;
@@ -422,10 +440,11 @@
         }
     }
     
+    NSAttributedString *titleAtt = model.title3Model.attributedText;
     
-    self.title3.attributedText = model.title3Model.attributedText;
+    self.title3.attributedText = WDKJ_ConfirmAttString(titleAtt);
     CGFloat subTitle4LeftMarign = model.subTitle4Model.leftMargin;
-    if ([self isEmptyString:self.title3.attributedText.string]) {
+    if (WDKJ_IsEmpty_AttributedStr(titleAtt)) {
         [_title3 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.equalTo(self.leftWrapView);
             make.right.equalTo(self.subTitle4.mas_left).offset(-(subTitle4LeftMarign));
@@ -439,8 +458,8 @@
     
     
     NSAttributedString *subTitle4 = model.subTitle4Model.attributedText;
-    self.subTitle4.attributedText = subTitle4;
-    if ([self isEmptyString:subTitle4.string]) {
+    self.subTitle4.attributedText = WDKJ_ConfirmAttString(subTitle4);
+    if (WDKJ_IsEmpty_AttributedStr(subTitle4)) {
         [_subTitle4 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.equalTo(self.leftWrapView);
             make.right.equalTo(self.leftWrapView);
@@ -488,7 +507,7 @@
         }
     }
     {
-        self.alikePriceLabel7.attributedText = model.likePrice7Model.attributedText;
+        self.alikePriceLabel7.attributedText = WDKJ_ConfirmAttString(model.likePrice7Model.attributedText);
         
         CGFloat topMargin = model.likePrice7Model.topMargin;
         CGFloat bottomMargin = model.likePrice7Model.bottomMargin;
@@ -509,29 +528,23 @@
         [btn8 setAttributedTitle:btn8Model.normalAttributedTitle forState:UIControlStateNormal];
         [btn8 setAttributedTitle:btn8Model.selectedAttributedTitle forState:UIControlStateSelected];
         
-        UIImage *normalBackgroundImage = nil;
-        UIImage *selectedBackgroundImage = nil;
-        UIImage *normalImage = nil;
-        UIImage *selectedImage = nil;
+        UIImage *normalBackgroundImage =  btn8Model.normalBackgroundImage;
+        UIImage *selectedBackgroundImage = btn8Model.selectedBackgroundImage;
+        UIImage *normalImage = btn8Model.normalImage;
+        UIImage *selectedImage = btn8Model.selectedImage;
         
-        if ([self isEmptyString:btn8Model.normalBackgroundImage] == NO) {
-            normalBackgroundImage = [UIImage kjwd_imageNamed:btn8Model.normalBackgroundImage];
-        }
-        if ([self isEmptyString:btn8Model.selectedBackgroundImage] == NO) {
-            selectedBackgroundImage = [UIImage kjwd_imageNamed:btn8Model.selectedBackgroundImage];
-        }
-        if ([self isEmptyString:btn8Model.normalImage] == NO) {
-            normalImage = [UIImage kjwd_imageNamed:btn8Model.normalImage];
-        }
-        if ([self isEmptyString:btn8Model.selectedImage] == NO) {
-            selectedImage = [UIImage kjwd_imageNamed:btn8Model.selectedImage];
-        }
+        normalBackgroundImage = WDKJ_IsNullObj(normalBackgroundImage, [UIImage class]) ? nil : normalBackgroundImage;
+        selectedBackgroundImage = WDKJ_IsNullObj(selectedBackgroundImage, [UIImage class]) ? nil : selectedBackgroundImage;
+        normalImage = WDKJ_IsNullObj(normalImage, [UIImage class]) ? nil : normalImage;
+        selectedImage =  WDKJ_IsNullObj(selectedImage, [UIImage class]) ? nil : selectedImage;
+        
+        
         [btn8 setBackgroundImage:normalBackgroundImage forState:UIControlStateNormal];
         [btn8 setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
         [btn8 setImage:normalImage forState:UIControlStateNormal];
         [btn8 setImage:selectedImage forState:UIControlStateSelected];
         
-        BOOL emptyAttributedTitle = [self isEmptyString:btn8.currentAttributedTitle.string];
+        BOOL emptyAttributedTitle = WDKJ_IsEmpty_Str(btn8.currentAttributedTitle.string);
         BOOL emptyImage = btn8.currentImage == nil;
         BOOL emptyBackgroundImage = btn8.currentBackgroundImage == nil;
         // 如果什么都没有， 那么就width = 0
@@ -566,35 +579,8 @@
         btn8.selected = btn8Model.selected;
         btn8.userInteractionEnabled = btn8Model.userInteractionEnabled;
     }
-
+    
     [self origin_arrowImageView9_Constraint];
-//    if ([self isEmptyString:model.right_arrowImageString9]) {
-//        __weak typeof(self) weakSelf = self;
-//        // 布局 arrow箭头图片
-//        [_arrowImageView9 mas_remakeConstraints:^(MASConstraintMaker *make) {
-//            make.centerY.right.equalTo(weakSelf.rightWrapView);
-//            make.width.height.equalTo(@0);
-//        }];
-//        _arrowImageView9.hidden = YES;
-//    } else {
-//        [self origin_arrowImageView9_Constraint];
-//        _arrowImageView9.hidden = NO;
-//        self.arrowImageView9.image = [UIImage kjwd_imageNamed:model.right_arrowImageString9];
-//    }
-}
-
-- (BOOL)isEmptyString:(NSString *)string {
-    if (string == nil) {
-        return YES;
-    } else if ([string isKindOfClass:NSString.class]) {
-        if ([string isEqualToString:@""]) {
-            return YES;
-        } else {
-            return NO;
-        }
-    } else {
-        return YES;
-    }
 }
 
 - (void)create_left_right {
@@ -607,18 +593,12 @@
     
     
     UILabel *title3 = [CKJTitle3Label new];
-    title3.textColor = [UIColor colorWithRed:63 / 255.0 green:63 / 255.0 blue:63 / 255.0 alpha:1.0];
-    title3.font = [UIFont systemFontOfSize:16];
-    title3.textAlignment = NSTextAlignmentLeft;
     [leftWrapView addSubview:title3];
     [title3 setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     [title3 setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     
     UILabel *subTitle4 = [CKJSubTitle4Label new];
     subTitle4.numberOfLines = 0;
-    subTitle4.textColor = [UIColor lightGrayColor];
-    subTitle4.font = [UIFont systemFontOfSize:14];
-    subTitle4.textAlignment = NSTextAlignmentLeft;
     [leftWrapView addSubview:subTitle4];
     
     
@@ -633,10 +613,8 @@
     
     
     UILabel *alikePriceLabel7 = [CKJLikePriceLabel7 new];
-    alikePriceLabel7.textColor = [UIColor lightGrayColor];
-    alikePriceLabel7.font = [UIFont systemFontOfSize:14];
-    [alikePriceLabel7 setContentHuggingPriority:UILayoutPriorityRequired - 1 forAxis:UILayoutConstraintAxisHorizontal];
-    [alikePriceLabel7 setContentCompressionResistancePriority:UILayoutPriorityRequired - 1 forAxis:UILayoutConstraintAxisHorizontal];
+    [alikePriceLabel7 setContentHuggingPriority:850 forAxis:UILayoutConstraintAxisHorizontal];
+    [alikePriceLabel7 setContentCompressionResistancePriority:850 forAxis:UILayoutConstraintAxisHorizontal];
     [rightWrapView addSubview:alikePriceLabel7];
     
     
@@ -680,6 +658,7 @@
     CGFloat right = arrow9.right;
     UIImage *image = arrow9.image;
     
+    
     _arrowImageView9.image = image;
     _arrowImageView9.hidden = image ? NO : YES;
     
@@ -704,10 +683,6 @@
     }
 }
 
-- (UIColor *)arc4Color {
-    return [UIColor colorWithRed:arc4random_uniform(256) / 255.0 green:arc4random_uniform(256) / 255.0 blue:arc4random_uniform(256) / 255.0 alpha:1];
-}
-
 - (void)create_topLabel_bottomLabel:(UIView *)superView {
     
     UILabel *title = [CKJView5TopLabel new];
@@ -715,8 +690,6 @@
     self.view5_topLabel = title;
     
     UILabel *subTitle = [CKJView5BottomLabel new];
-    subTitle.textColor = [UIColor lightGrayColor];
-    subTitle.font = [UIFont systemFontOfSize:14];
     [superView addSubview:subTitle];
     self.view5_bottomLabel = subTitle;
     
@@ -745,9 +718,9 @@
     
     UIEdgeInsets topEdge = model.view5Model.topLabelEdge;
     UIEdgeInsets bottomEdge = model.view5Model.bottomLabelEdge;
-
-    title.attributedText = model.view5Model.topText;
-    subTitle.attributedText = model.view5Model.bottomText;
+    
+    title.attributedText = WDKJ_ConfirmAttString(model.view5Model.topText);
+    subTitle.attributedText = WDKJ_ConfirmAttString(model.view5Model.bottomText);
     
     [title kjwd_mas_remakeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.top.equalTo(superview).offset(topEdge.top);
