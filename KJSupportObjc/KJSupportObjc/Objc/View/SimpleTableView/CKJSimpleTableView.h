@@ -10,21 +10,13 @@
 #import "CKJCommonSectionModel.h"
 #import "CKJCommonTableViewHeaderFooterView.h"
 #import "CKJTitleStyleHeaderFooterView.h"
-#import "CKJSimpleTableView.h"
 #import "CKJCommonTableViewCell.h"
 
 #import "CKJTableViewHeaderFooterEmptyView.h"
 #import "CKJCell.h"
 #import "CKJSimpleTableViewDelegate.h"
 #import "CKJRadioCell.h"
-
-#define cellKEY  @"CellKEY"
-#define isRegisterNibKEY  @"isRegisterNibKEY"
-#define registerNibNameKEY  @"registerNibNameKEY"
-
-#define headerFooterKey @"HeaderFooterKey"
-
-
+#import "CKJInputCell.h"
 
 
 #define KJ_typeweakself __weak typeof(self) weakSelf = self;

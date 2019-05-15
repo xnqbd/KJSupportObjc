@@ -8,6 +8,7 @@
 
 #import "CKJCell.h"
 #import <Masonry/Masonry.h>
+#import "CKJExtraView.h"
 
 
 @implementation CKJImage2Model
@@ -27,6 +28,14 @@
     CKJTitle3Model *model = [[self alloc] init];
     model.attributedText = text;
     model.leftMargin = left;
+    return model;
+}
+
++ (nonnull instancetype)title3ModelWithAttributedText:(nullable NSAttributedString *)text left:(CGFloat)left width:(CGFloat)width {
+    CKJTitle3Model *model = [[self alloc] init];
+    model.attributedText = text;
+    model.leftMargin = left;
+    model.width = width;
     return model;
 }
 
@@ -295,6 +304,13 @@
 @property (strong, nonatomic) UILabel *view5_topLabel;
 @property (strong, nonatomic) UILabel *view5_bottomLabel;
 
+
+/**
+ 中间的附加View
+ */
+@property (strong, nonatomic) CKJExtraView *centerExtraView;
+
+
 @property (strong, nonatomic) CKJRightView *rightWrapView;
 @property (strong, nonatomic) UIView *kjSwitch6;
 @property (strong, nonatomic) UILabel *alikePriceLabel7;
@@ -342,10 +358,17 @@
     
     // 中
     [bgV addSubview:_view5];
+    [bgV addSubview:_centerExtraView];
+    
     [_view5 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.equalTo(bgV);
+        make.right.equalTo(weakSelf.centerExtraView.mas_left);
+    }];
+    [_centerExtraView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(bgV);
         make.right.equalTo(weakSelf.rightWrapView.mas_left);
     }];
+    
     
     
     [_title3 mas_remakeConstraints:^(MASConstraintMaker *make) {
@@ -379,8 +402,6 @@
         make.right.equalTo(weakSelf.btn8.mas_left).offset(Right_Margin);
     }];
     
-    
-    
     [self origin_btn8_Constraint];
     [self origin_arrowImageView9_Constraint];
     
@@ -402,6 +423,8 @@
         self.view5.backgroundColor = [UIColor cyanColor];
         self.view5_topLabel.backgroundColor = [UIColor purpleColor];
         self.view5_bottomLabel.backgroundColor = [UIColor magentaColor];
+        
+        self.centerExtraView.backgroundColor = [UIColor redColor];
         
         self.kjSwitch6.backgroundColor = [UIColor blueColor];
         //        self.rightWrapView.backgroundColor = [UIColor darkGrayColor];
@@ -441,6 +464,7 @@
     }
     
     NSAttributedString *titleAtt = model.title3Model.attributedText;
+    CGFloat width = model.title3Model.width;
     
     self.title3.attributedText = WDKJ_ConfirmAttString(titleAtt);
     CGFloat subTitle4LeftMarign = model.subTitle4Model.leftMargin;
@@ -448,11 +472,15 @@
         [_title3 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.equalTo(self.leftWrapView);
             make.right.equalTo(self.subTitle4.mas_left).offset(-(subTitle4LeftMarign));
+            make.width.equalTo(@0);
         }];
     } else {
         [_title3 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.equalTo(self.leftWrapView);
             make.right.equalTo(self.subTitle4.mas_left).offset(-(subTitle4LeftMarign));
+            if (width) {
+                make.width.equalTo(@(width));
+            }
         }];
     }
     
@@ -618,7 +646,7 @@
     [rightWrapView addSubview:alikePriceLabel7];
     
     
-    CKJButton8 *btn8 = [CKJButton8 buttonWithType:(UIButtonTypeCustom)];
+    CKJButton8 *btn8 = [self __privateMethodOfCreateBtn8];
     [btn8 addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     [rightWrapView addSubview:btn8];
     
@@ -643,6 +671,11 @@
     // 中
     CKJTopBottomView *view5 = [CKJTopBottomView new];
     self.view5 = view5;
+    
+    
+    // 中
+    CKJExtraView *centerExtraView = [CKJExtraView new];
+    self.centerExtraView = centerExtraView;
 }
 
 
@@ -745,6 +778,9 @@
     }
 }
 
+- (__kindof UIButton *)__privateMethodOfCreateBtn8 {
+    return [CKJButton8 buttonWithType:(UIButtonTypeCustom)];
+}
 
 @end
 

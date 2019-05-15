@@ -35,6 +35,11 @@
 /**  显示的CellModel */
 @property (strong, nonatomic, nonnull) NSArray <__kindof CKJCommonCellModel *>*displayModels;
 
+/**
+ 这个extensionData可以作为一个延展数据
+ */
+@property (strong, nonatomic, nullable) id extensionData;
+
 + (nonnull instancetype)sectionWithCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)modelArray;
 
 

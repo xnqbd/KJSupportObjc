@@ -10,7 +10,6 @@
 #import <Masonry/Masonry.h>
 #import <objc/message.h>
 
-
 @implementation CKJFiveCellConfig
 
 + (nonnull instancetype)fiveCellConfigWithImageSize:(CGSize)imageSize image_margin_title:(CGFloat)image_margin_title topBottomMargin:(CGFloat)topBottomMargin centerMargin:(CGFloat)centerMargin {
@@ -97,7 +96,13 @@
     } else {
         self.imageV.image = imageName;
     }
+    
+    [self installData:model section:section row:row selectIndexPath:indexPath tableView:tableView];
 }
+- (void)installData:(__kindof CKJFiveCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(CKJSimpleTableView *)tableView {
+    
+}
+
 
 - (void)radioBtnAction {
     

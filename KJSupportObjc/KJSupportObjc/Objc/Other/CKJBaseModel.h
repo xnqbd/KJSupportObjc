@@ -19,4 +19,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+
+
+@class CKJCommonConfig;
+
+@interface CKJCommonConfig : CKJBaseModel
+
++ (nonnull instancetype)configWithDetailSettingBlock:(nullable void(^)(__kindof CKJCommonConfig *m))detailSettingBlock;
+
+@end
+
+
+
+
+
 NS_ASSUME_NONNULL_END

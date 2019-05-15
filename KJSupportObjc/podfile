@@ -10,6 +10,6 @@ target 'KJSupportObjc' do
 
 pod 'Masonry'
 pod 'DZNEmptyDataSet'
-
+pod 'IQKeyboardManager', '~> 6.0.2'
 
 end

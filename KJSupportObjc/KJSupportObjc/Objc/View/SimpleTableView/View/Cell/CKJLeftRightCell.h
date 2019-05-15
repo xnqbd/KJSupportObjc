@@ -9,28 +9,36 @@
 #import "CKJTableViewCell.h"
 #import "CKJEmptyCell.h"
 
+
 /*
+ 
  
  #pragma mark - CKJSimpleTableView 数据源 和 代理
  - (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues {
+ CKJLeftRightCellCenterEqualConfig *centerEqual = [CKJLeftRightCellCenterEqualConfig configWithDetailSettingBlock:^(CKJLeftRightCellCenterEqualConfig * _Nonnull m) {
+ }];
  return @{
- NSStringFromClass([CKJLeftRightCellModel class]) : @{cellKEY : NSStringFromClass([CKJLeftRightCell class]), isRegisterNibKEY : @NO}
+ NSStringFromClass([CKJLeftRightCellModel class]) : @{cellKEY : NSStringFromClass([CKJLeftRightCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : centerEqual}
  };
  }
+
  
  
  例子1
  
+ - (void)initSimpleTableViewData {
+ 
  NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray array];
  
  {
+ RJOrderUser *user = [RJOrderSingle shareOrderSingle].user;
  
  NSArray <NSDictionary <NSString *, NSString *>*> *leftRightData = @[
- @{@"药品名称" : WDKJ_ConfirmString(@"1")},
- @{@"药品通用名" : WDKJ_ConfirmString(@"2")},
- @{@"药品剂型" : WDKJ_ConfirmString(@"3")},
- @{@"药品类别" : WDKJ_ConfirmString(@"4")}
- ];
+ @{@"患者姓名：" : WDKJ_ConfirmString(user.PatientName)},
+ @{@"身份证号：" : WDKJ_ConfirmString(user.PatientId)},
+ @{@"联系方式：" : WDKJ_ConfirmString(user.PhoneNumber)},
+ @{@"联系方式：" : WDKJ_ConfirmString(user.PhoneNumber)},
+ @{@"饮食医嘱：" : WDKJ_ConfirmString(user.OrdersName)}];
  
  CGFloat margin = 20;
  CKJCommonSectionModel *section = [CKJCommonSectionModel new];
@@ -40,13 +48,12 @@
  for (int i = 0; i < leftRightData.count; i++) {
  NSDictionary *item = leftRightData[i];
  NSString *key = item.allKeys.firstObject;
+ NSString *value = item[key];
  CKJLeftRightCellModel *model1 = [CKJLeftRightCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightCellModel * _Nonnull m) {
- m.leftAttStr = key;
- m.rightAttStr = item[key];
+ m.leftAttStr = WDCKJAttributed2(key, [UIColor kjwd_titleColor333333], nil);
+ m.rightAttStr = WDCKJAttributed2(value, [UIColor kjwd_subTitleColor969696], nil);
  m.leftLab_MarginTo_SuperViewLeft = margin;
  m.rightLab_MarginTo_SuperViewRight = margin;
- m.rightLab_textAlignment = NSTextAlignmentRight;
- //                m.showLine = YES;
  } didSelectRowBlock:nil];
  [modelArray addObject:model1];
  }
@@ -56,7 +63,8 @@
  }
  self.simpleTableView.dataArr = sections;
  [self.simpleTableView kjwd_reloadData];
- 
+ }
+
  
  // ------------------------------------
  
@@ -124,7 +132,6 @@
 /** rightLab 距离底部的距离，如果不设置此值，默认是5  */
 @property (assign, nonatomic) CGFloat rightLabel_BottomMarginToSuperView;
 
-
 @end
 
 
@@ -151,7 +158,7 @@ typedef void(^CKJLeftRightCellModelRowBlock)(__kindof CKJLeftRightCellModel *_No
 @interface CKJLeftRightCellCenterEqualConfig : CKJLeftRightCellBaseConfig
 
 
-+ (nonnull instancetype)configWithSettingBlock:(nullable CKJLeftRightCellCenterEqualConfigBlock)detailSettingBlock;
++ (nonnull instancetype)configWithDetailSettingBlock:(nullable CKJLeftRightCellCenterEqualConfigBlock)detailSettingBlock;
 
 @end
 

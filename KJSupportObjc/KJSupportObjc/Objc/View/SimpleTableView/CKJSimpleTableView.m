@@ -12,6 +12,7 @@
 #import "CKJTableViewCell2.h"
 #import "CKJEmptyCell.h"
 
+
 @interface CKJSimpleTableView ()
 
 @property (strong, nonatomic) UIView *tempHeaderFooterView;
@@ -46,9 +47,9 @@
     self.sectionHeaderHeight = UITableViewAutomaticDimension;
     self.sectionFooterHeight = UITableViewAutomaticDimension;
     
-    self.estimatedRowHeight           = 44;
-    self.estimatedSectionHeaderHeight = 20;
-    self.estimatedSectionFooterHeight = 20;
+    self.estimatedRowHeight           = 60;
+    self.estimatedSectionHeaderHeight = 25;
+    self.estimatedSectionFooterHeight = 25;
     
     self.nameSpace = [CKJAPPHelper kj_nameSpace];
 }
@@ -853,6 +854,7 @@
     NSDictionary *dic = @{
                           NSStringFromClass([CKJCommonCellModel class]) : @{cellKEY : NSStringFromClass([CKJCommonTableViewCell class]), isRegisterNibKEY : @NO},
                           NSStringFromClass([CKJCellModel class]) : @{cellKEY : NSStringFromClass([CKJCell class]), isRegisterNibKEY : @NO},
+                          NSStringFromClass([CKJInputCellModel class]) : @{cellKEY : NSStringFromClass([CKJInputCell class]), isRegisterNibKEY : @NO},
                            NSStringFromClass([CKJTableViewCellModel class]) : @{cellKEY : NSStringFromClass([CKJTableViewCell class]), isRegisterNibKEY : @NO},
                           NSStringFromClass([CKJTableViewCell2Model class]) : @{cellKEY : NSStringFromClass([CKJTableViewCell2 class]), isRegisterNibKEY : @NO},
                           NSStringFromClass([CKJEmptyCellModel class]) : @{cellKEY : NSStringFromClass([CKJEmptyCell class]), isRegisterNibKEY : @NO}

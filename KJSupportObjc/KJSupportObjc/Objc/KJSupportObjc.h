@@ -18,6 +18,8 @@
 #import "CKJTableViewCell.h"
 #import "CKJTableViewCell2.h"
 #import "CKJEmptyCell.h"
+#import "CKJInputCell.h"
+#import "CKJStackCell.h"
 #import "UIView+CKJDesingable.h"
 #import "CKJToolbar.h"
 

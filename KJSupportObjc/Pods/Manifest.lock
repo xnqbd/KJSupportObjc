@@ -1,20 +1,24 @@
 PODS:
   - DZNEmptyDataSet (1.8.1)
+  - IQKeyboardManager (6.0.6)
   - Masonry (1.1.0)
 
 DEPENDENCIES:
   - DZNEmptyDataSet
+  - IQKeyboardManager (~> 6.0.2)
   - Masonry
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - DZNEmptyDataSet
+    - IQKeyboardManager
     - Masonry
 
 SPEC CHECKSUMS:
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  IQKeyboardManager: 6b4ecd3e59cf55a26133d802d4678721d7f88499
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: 608e311946eae3227dac1fa0efcf550fbe303247
+PODFILE CHECKSUM: 61f4134cf7564efc636fd9fc77899b070ae8fd1a
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.6.1

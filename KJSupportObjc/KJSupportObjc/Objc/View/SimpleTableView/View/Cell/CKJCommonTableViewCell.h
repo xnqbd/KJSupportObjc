@@ -11,7 +11,8 @@
 #import "NSObject+WDYHFCategory.h"
 #import "CKJCombineCellProtocol.h"
 #import "CKJWorker.h"
-
+#import "CKJBaseModel.h"
+#import "CKJSimpleTableViewDelegate.h"
 
 
 @class CKJCommonCellModel, CKJCommonHeaderFooterModel, CKJCommonTableViewTool, CKJSimpleTableView, CKJCommonSectionModel, CKJEmptyCellModel, CKJCommonCellConfig;
@@ -19,10 +20,8 @@
 typedef void(^CKJCommonCellConfigBlock)(__kindof CKJCommonCellConfig *_Nonnull m);
 
 
-#define configDicKEY_ConfigModel @"configDicKEY_ConfigModel"
 
-
-@interface CKJCommonCellConfig : CKJBaseModel
+@interface CKJCommonCellConfig : CKJCommonConfig
 
 + (nonnull instancetype)configWithDetailSettingBlock:(nullable CKJCommonCellConfigBlock)detailSettingBlock;
 
@@ -69,6 +68,13 @@ typedef void(^CKJCommonCellConfigBlock)(__kindof CKJCommonCellConfig *_Nonnull m
  */
 - (void)setupSubViews;
 
+
+
+
+
+/**
+ 这是私有方法，不要私自调用
+ */
 - (void)_privateMethodWithSimpleTableView:(nonnull CKJSimpleTableView *)tabV sectionModel:(nonnull CKJCommonSectionModel *)sectionModel section:(NSInteger)section row:(NSInteger)row;
 
 

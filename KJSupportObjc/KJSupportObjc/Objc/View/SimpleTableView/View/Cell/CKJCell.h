@@ -10,7 +10,7 @@
 #import "CKJCommonTableViewCell.h"
 #import "NSObject+WDYHFCategory.h"
 #import "CKJBaseModel.h"
-
+#import "CKJExtraView.h"
 
 @interface CKJImage2Model : CKJBaseModel
 
@@ -24,11 +24,20 @@
 
 @interface CKJTitle3Model : CKJBaseModel
 
-
 @property (copy, nonatomic, nullable) NSAttributedString *attributedText;
 @property (assign, nonatomic) CGFloat leftMargin;
 
+/**
+ 宽度，默认为0，自适应宽度
+ */
+@property (assign, nonatomic) CGFloat width;
+
+/**
+ 默认自适应宽度
+ */
 + (nonnull instancetype)title3ModelWithAttributedText:(nullable NSAttributedString *)text left:(CGFloat)left;
+
++ (nonnull instancetype)title3ModelWithAttributedText:(nullable NSAttributedString *)text left:(CGFloat)left width:(CGFloat)width;
 
 /** 改变文字 */
 - (void)changeText:(nullable NSString *)text;
@@ -214,7 +223,7 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 
 @end
 
-@class CKJLeftView, CKJTopBottomView, CKJRightView;
+@class CKJLeftView, CKJTopBottomView, CKJExtraView, CKJRightView;
 
 
 @interface CKJCell : CKJCommonTableViewCell <CKJCellModel *>
@@ -228,6 +237,11 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 @property (nonnull, strong, nonatomic, readonly) UILabel *view5_topLabel;
 @property (nonnull, strong, nonatomic, readonly) UILabel *view5_bottomLabel;
 
+/**
+ 中间的附加View
+ */
+@property (nonnull, strong, nonatomic, readonly) CKJExtraView *centerExtraView;
+
 @property (nonnull, strong, nonatomic, readonly) CKJRightView *rightWrapView;
 @property (nonnull, strong, nonatomic, readonly) UIView *kjSwitch6;
 @property (nonnull, strong, nonatomic, readonly) UILabel *alikePriceLabel7;
@@ -235,6 +249,8 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 
 @property (nonnull, strong, nonatomic, readonly) UIImageView *arrowImageView9;
 
+
+- (__kindof UIButton *)__privateMethodOfCreateBtn8;
 
 @end
 

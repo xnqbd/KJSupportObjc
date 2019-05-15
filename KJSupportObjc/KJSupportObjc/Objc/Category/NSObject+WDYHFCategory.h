@@ -41,7 +41,6 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 
 
 
-
 #pragma mark - -----------------其他-----------------
 
 
@@ -92,6 +91,10 @@ CGFloat WDAPP_ScreenHeight(void);
 
 @end
 
+@interface NSNull (WDYHFCategory)
+
+@end
+
 #pragma mark - -----------------NSData-----------------
 @interface NSData (WDYHFCategory)
 
@@ -109,6 +112,8 @@ CGFloat WDAPP_ScreenHeight(void);
 + (nonnull NSTimer *)kjwd_scheduledTimerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats nowPerform:(BOOL)boo handleBlockOnMainQueue:(void(^)(NSTimer *_Nonnull currentTimer))block;
 
 @end
+
+
 
 
 #pragma mark - -----------------NSArray-----------------
@@ -349,6 +354,11 @@ CGFloat WDAPP_ScreenHeight(void);
  */
 + (nullable NSDictionary *)kjwd_readJsonDataFromLocalWithName:(nullable NSString *)name type:(nullable NSString *)type;
 
+/**
+ Json字符串转成字典
+ */
++ (nonnull NSDictionary *)kjwd_readFromJsonString:(nullable NSString *)jsonStr;
+
 
 @end
 
@@ -387,6 +397,8 @@ CGFloat WDAPP_ScreenHeight(void);
 
 + (nonnull UIColor *)kjwd_titleColor333333;
 + (nonnull UIColor *)kjwd_subTitleColor969696;
+
+
 
 @end
 
@@ -609,13 +621,53 @@ imageTitleSpace:(CGFloat)space;
 - (void)kjwd_addTouchUpInsideForCallBack:(void(^_Nonnull)(UIButton * _Nonnull sender))callBack;
 - (void)kjwd_addControlEvents:(UIControlEvents)controlEvents forCallBack:(void(^_Nonnull)(UIButton * _Nonnull sender))callBack;
 
+//+ (nonnull instancetype)kjwd_tableFooterStyleWithBGColor:(nullable UIColor *)bgColor attText:(nullable NSAttributedString *)attText borderColor:(nullable UIColor *)borderColor radius:(CGFloat)radius;
+
+
 @end
 
 @interface UILabel (WDYHFCategory)
 
-+ (instancetype)kjwd_labelWithText:(nullable NSString *)text fontSize:(nullable NSNumber *)fontSize color:(nullable UIColor *)color;
++ (nonnull instancetype)kjwd_labelWithText:(nullable NSString *)text fontSize:(nullable NSNumber *)fontSize color:(nullable UIColor *)color;
 
 @end
+
+@interface UIScrollView (WDYHFCategory)
+
+/**
+ 垂直方向添加Views
+ 
+ @param views views数组
+ @param viewHeight 每一个View的高度
+ @param itemSpacing 每一个View之间的间距
+ @param topSpacing 顶部间距
+ @param bottomSpacing 底部间距
+ @param horizontalConstraints 水平方向的约束
+ 
+ 比如
+ make.left.equalTo(@10);
+ make.width.equalTo(@100);
+ 
+ */
+- (void)kjwd_viewsOfVertical:(NSArray <UIView *>* _Nonnull)views viewHeight:(CGFloat)viewHeight itemSpacing:(CGFloat)itemSpacing topSpacing:(CGFloat)topSpacing bottomSpacing:(CGFloat)bottomSpacing horizontalConstraints:(void(NS_NOESCAPE ^_Nonnull)(MASConstraintMaker *make, UIView *superview))horizontalConstraints;
+
+
+/**
+ 水平方向添加Views
+
+ @param views views数组
+ @param width 每一个View的宽度
+ @param itemSpacing 每一个View之间的间距
+ @param leftSpacing 左边距离
+ @param rightSpacing 右边距离
+ @param verticalConstraints 垂直方向的约束
+ */
+- (void)kjwd_viewsOfHorizontal:(NSArray <UIView *>*_Nonnull)views viewWidth:(CGFloat)width itemSpacing:(CGFloat)itemSpacing leftSpacing:(CGFloat)leftSpacing rightSpacing:(CGFloat)rightSpacing vorizontalConstraints:(void(NS_NOESCAPE ^_Nonnull)(MASConstraintMaker *make, UIView *superview))verticalConstraints;
+
+@end
+
+
+
 
 #pragma mark - -----------------NSDate-----------------
 @interface NSDate (WDYHFCategory)
@@ -722,6 +774,18 @@ imageTitleSpace:(CGFloat)space;
 
 /** 设置圆角并生成新图片 */
 - (nonnull UIImage *)kjwd_setCornerRadius:(CGFloat)radius;
+
+
+
+/**
+ 根据文字和颜色 生成图片
+ @param isCircular 是否画圆
+ */
++ (nullable UIImage *)kjwd_imageWithColor:(nullable UIColor *)color
+                                     size:(CGSize)size
+                                     text:(nullable NSString *)text
+                           textAttributes:(nullable NSDictionary *)textAttributes
+                                 circular:(BOOL)isCircular;
 
 @end
 
@@ -879,15 +943,6 @@ typedef NS_ENUM(NSInteger, KJWDArc4randomType) {
 
 
 + (NSString *)kjwd_arrayStringWithStringArray:(NSArray *)array;
-
-
-/**
- 当前是Json字符串，转成字典  jsonString -> NSDictionary
-
- @return 字典
- */
-- (nonnull NSDictionary *)kjwd_convertToDic;
-
 
 @property (assign, nonatomic) CGFloat kjwd_helperNumber;
 

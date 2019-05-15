@@ -32,7 +32,6 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
     TestPayStyle_YinLian
 };
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"自定义Cell、配置Cell、聚合Cell";
@@ -40,7 +39,6 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
     [self initSimpleTableViewData];
     [self firstNetwork];
 }
-
 
 #pragma mark - CKJSimpleTableView 数据源 和 代理
 - (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues {
@@ -63,7 +61,7 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
     CKJLeftRightCellTopEqualConfig *config3 = [CKJLeftRightCellTopEqualConfig configWithLeftLabelTopMargin:2 detailSettingBlock:nil];
     
     CKJRadioCellConfig *radioConfig = [CKJRadioCellConfig configWithDetailSettingBlock:^(CKJRadioCellConfig * _Nonnull m) {
-        // 下面这注释的设置了默认值， 修改修改的话可以自己设置
+        // 下面这注释的设置了默认值， 需要修改的话可以自己设置
 //        m.leftImageView_MarginToSuperViewLeft = 15;
 //        m.leftImageSize = CGSizeMake(30, 30);
 //        m.image_margin_title = 12;

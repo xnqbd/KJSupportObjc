@@ -134,6 +134,10 @@ NS_ASSUME_NONNULL_BEGIN
 /** 右边选择的按钮 */
 @property (weak, nonatomic) UIButton *radioBtn;
 
+
+- (void)installData:(__kindof CKJFiveCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(CKJSimpleTableView *)tableView;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

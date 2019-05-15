@@ -37,12 +37,8 @@
 
 @implementation CKJLeftRightCellCenterEqualConfig
 
-+ (nonnull instancetype)configWithSettingBlock:(nullable CKJLeftRightCellCenterEqualConfigBlock)detailSettingBlock {
-    CKJLeftRightCellCenterEqualConfig *config = [[CKJLeftRightCellCenterEqualConfig alloc] init];
-    if (detailSettingBlock) {
-        detailSettingBlock(config);
-    }
-    return config;
++ (nonnull instancetype)configWithDetailSettingBlock:(nullable CKJLeftRightCellCenterEqualConfigBlock)detailSettingBlock {
+    return [super configWithDetailSettingBlock:detailSettingBlock];
 }
 
 @end
@@ -69,7 +65,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.showLine = NO;
         self.leftLab_textAlignment = NSTextAlignmentLeft;
-        self.rightLab_textAlignment = NSTextAlignmentLeft;
+        self.rightLab_textAlignment = NSTextAlignmentRight;
     }
     return self;
 }
@@ -126,12 +122,20 @@
     self.rightLab = subTitle;
     
     
-    [subTitle setContentHuggingPriority:250 forAxis:UILayoutConstraintAxisHorizontal];
-    [subTitle setContentCompressionResistancePriority:749 forAxis:UILayoutConstraintAxisHorizontal];
+    [subTitle setContentHuggingPriority:240 forAxis:UILayoutConstraintAxisHorizontal];
+    [subTitle setContentCompressionResistancePriority:740 forAxis:UILayoutConstraintAxisHorizontal];
 
     
     CKJLeftRightCellBaseConfig *config = self.configDic[configDicKEY_ConfigModel];
    
+    WDCKJ_ifDEBUG(^{
+        if (config == nil || ([config isKindOfClass:[CKJLeftRightCellBaseConfig class]] == NO)) {
+            NSException *exception = [NSException exceptionWithName:@"未配置Config对象" reason:[NSString stringWithFormat:@"%@必须配置一个继承于CKJLeftRightCellBaseConfig的对象，推荐使用CKJLeftRightCellTopEqualConfig或者CKJLeftRightCellCenterEqualConfig", self] userInfo:nil];
+            [exception raise];
+        }
+    }, nil);
+  
+    
 
     CGFloat width = config.leftLab_width;
     

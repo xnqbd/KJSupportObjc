@@ -15,11 +15,7 @@
 @implementation CKJCommonCellConfig
 
 + (nonnull instancetype)configWithDetailSettingBlock:(nullable CKJCommonCellConfigBlock)detailSettingBlock {
-    CKJCommonCellConfig *config = [[self alloc] init];
-    if (detailSettingBlock) {
-        detailSettingBlock(config);
-    }
-    return config;
+    return [super configWithDetailSettingBlock:detailSettingBlock];
 }
 
 @end

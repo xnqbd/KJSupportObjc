@@ -38,6 +38,8 @@
     CGFloat leftMarign = 15;
     {
         CKJCommonSectionModel *section = [CKJCommonSectionModel new];
+        section.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"注意：如果是代码布局的Cell，请把子控件加入到CKJCommonTableViewCell.bgV上，这是比较好的做法", [UIColor redColor], nil) type:CKJCommonHeaderFooterType_HEADER];
+        
         
         CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
             m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"CKJCell的用法Demo", leftDic) left:leftMarign];
@@ -51,9 +53,14 @@
         } didSelectRowBlock:^(__kindof CKJCellModel * _Nonnull m) {
             block(@"RJConfigVC");
         }];
-      
-        
-        section.modelArray = @[model1, model2];
+        CKJCellModel *model3 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
+            m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"输入Cell", leftDic) left:leftMarign];
+            m.arrow9Model = arrow;
+        } didSelectRowBlock:^(__kindof CKJCellModel * _Nonnull m) {
+            block(@"RJBindCardVC");
+        }];
+
+        section.modelArray = @[model1, model2, model3];
         [sections addObject:section];
     }
     

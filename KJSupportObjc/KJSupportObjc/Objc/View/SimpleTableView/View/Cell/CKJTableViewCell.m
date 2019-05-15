@@ -35,6 +35,7 @@
     self.textLabel.attributedText = WDKJ_ConfirmAttString(textLabelAttStr);
     self.detailTextLabel.attributedText = WDKJ_ConfirmAttString(detailTextAttStr);
     
+    self.textLabel.numberOfLines = 0;
 }
 
 

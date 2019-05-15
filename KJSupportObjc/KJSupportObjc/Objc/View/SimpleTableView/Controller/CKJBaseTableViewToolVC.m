@@ -60,32 +60,39 @@
 
 
 - (void)layoutTableViewFrame:(CKJSimpleTableView *)tableV {
-    tableV.translatesAutoresizingMaskIntoConstraints = NO;
+    [tableV kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
+        make.left.equalTo(superview.kjwdMas_safeAreaLeft);
+        make.right.equalTo(superview.kjwdMas_safeAreaRight);
+        make.top.equalTo(superview.kjwdMas_safeAreaTop);
+        make.bottom.equalTo(superview.kjwdMas_safeAreaBottom);
+    }];
     
-    UIView *subView = tableV;
-    UIView *superView = subView.superview;
-    
-    if (superView == nil) return;
-    
-    UIEdgeInsets edge = UIEdgeInsetsZero;
-    
-    subView.translatesAutoresizingMaskIntoConstraints = NO;
-    if (@available(iOS 11.0, *)) {
-        
-        id item = superView.safeAreaLayoutGuide;
-        
-        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:item attribute:NSLayoutAttributeLeft multiplier:1 constant:edge.left];
-        NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:item attribute:NSLayoutAttributeTop multiplier:1 constant:edge.top];
-        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:item attribute:NSLayoutAttributeRight multiplier:1 constant:edge.right];
-        NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:item attribute:NSLayoutAttributeBottom multiplier:1 constant:edge.bottom];
-        [superView addConstraints:@[left, top, right, bottom]];
-    } else {
-        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:superView attribute:NSLayoutAttributeLeft multiplier:1 constant:edge.left];
-        NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:superView attribute:NSLayoutAttributeTop multiplier:1 constant:edge.top];
-        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:superView attribute:NSLayoutAttributeRight multiplier:1 constant:edge.right];
-        NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:superView attribute:NSLayoutAttributeBottom multiplier:1 constant:edge.bottom];
-        [superView addConstraints:@[left, top, right, bottom]];
-    }
+//    tableV.translatesAutoresizingMaskIntoConstraints = NO;
+//
+//    UIView *subView = tableV;
+//    UIView *superView = subView.superview;
+//
+//    if (superView == nil) return;
+//
+//    UIEdgeInsets edge = UIEdgeInsetsZero;
+//
+//    subView.translatesAutoresizingMaskIntoConstraints = NO;
+//    if (@available(iOS 11.0, *)) {
+//
+//        id item = superView.safeAreaLayoutGuide;
+//
+//        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:item attribute:NSLayoutAttributeLeft multiplier:1 constant:edge.left];
+//        NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:item attribute:NSLayoutAttributeTop multiplier:1 constant:edge.top];
+//        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:item attribute:NSLayoutAttributeRight multiplier:1 constant:edge.right];
+//        NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:item attribute:NSLayoutAttributeBottom multiplier:1 constant:edge.bottom];
+//        [superView addConstraints:@[left, top, right, bottom]];
+//    } else {
+//        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:superView attribute:NSLayoutAttributeLeft multiplier:1 constant:edge.left];
+//        NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:superView attribute:NSLayoutAttributeTop multiplier:1 constant:edge.top];
+//        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:superView attribute:NSLayoutAttributeRight multiplier:1 constant:edge.right];
+//        NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:subView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:superView attribute:NSLayoutAttributeBottom multiplier:1 constant:edge.bottom];
+//        [superView addConstraints:@[left, top, right, bottom]];
+//    }
 }
 
 - (void)installSimpleTableViewData {

@@ -27,3 +27,17 @@
 }
 
 @end
+
+
+
+@implementation CKJCommonConfig
+
++ (nonnull instancetype)configWithDetailSettingBlock:(nullable void(^)(__kindof CKJCommonConfig *m))detailSettingBlock {
+    CKJCommonConfig *config = [[self alloc] init];
+    if (detailSettingBlock) {
+        detailSettingBlock(config);
+    }
+    return config;
+}
+
+@end

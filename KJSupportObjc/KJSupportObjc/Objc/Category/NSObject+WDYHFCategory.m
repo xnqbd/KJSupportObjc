@@ -9,8 +9,7 @@
 #import "NSObject+WDYHFCategory.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <objc/message.h>
-
-
+#import "UIView+CKJDesingable.h"
 
 #pragma mark - -----------------异常处理-----------------
 
@@ -177,9 +176,6 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr) {
 }
 
 
-
-
-
 #pragma mark - -----------------其他-----------------
 
 
@@ -309,7 +305,18 @@ CGFloat WDAPP_ScreenHeight(void) {
     [self setValuesForKeysWithDictionary:keyedValues];
 }
 
+@end
 
+@implementation NSNull (WDYHFCategory)
+
+- (id)forwardingTargetForSelector:(SEL)aSelector {
+    NSLog(@"请修复NSNull空的情况 %@ ", NSStringFromSelector(aSelector));
+    __block NSString *string = @"";
+    WDCKJ_ifDEBUG(^{
+        string = @"此处错误，请修复NSNull为空的情况";
+    }, nil);
+    return string;
+}
 
 @end
 
@@ -964,6 +971,24 @@ CGFloat WDAPP_ScreenHeight(void) {
                                            options:kNilOptions
                                              error:nil];
 }
++ (nonnull NSDictionary *)kjwd_readFromJsonString:(nullable NSString *)jsonStr {
+    
+    if (WDKJ_IsEmpty_Str(jsonStr)) {
+        return @{};
+    }
+    
+    NSData *jsonData = [jsonStr dataUsingEncoding:NSUTF8StringEncoding];
+    if (jsonData == nil) return @{};
+    
+    NSError *err = nil;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
+    if(err) {
+        NSLog(@"json解析失败：%@",err);
+        return @{};
+    }
+    return dic;
+    
+}
 
 @end
 
@@ -1120,7 +1145,6 @@ CGFloat WDAPP_ScreenHeight(void) {
 + (nonnull UIColor *)kjwd_subTitleColor969696 {
     return [UIColor kjwd_colorWithHexString:@"969696"];
 }
-
 
 
 @end
@@ -1815,6 +1839,21 @@ CGFloat WDAPP_ScreenHeight(void) {
     self.kjCallBackBlock ? self.kjCallBackBlock(self) : nil;
 }
 
+
+//+ (nonnull instancetype)kjwd_tableFooterStyleWithBGColor:(nullable UIColor *)bgColor attText:(nullable NSAttributedString *)attText borderColor:(nullable UIColor *)borderColor radius:(CGFloat)radius  {
+//    
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn setAttributedTitle:WDKJ_ConfirmAttString(attText) forState:UIControlStateNormal];
+//    [btn setBackgroundColor:bgColor];
+//    
+//    btn.kCornerRadius = radius;
+//    btn.kBorderColor = borderColor;
+//    
+//    return btn;
+//}
+
+
+
 // runtime
 - (void)setKjCallBackBlock:(void (^)(UIButton *))kjCallBackBlock {
     objc_setAssociatedObject(self, @"kjCallBackBlock", kjCallBackBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
@@ -1850,6 +1889,103 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 @end
+
+@implementation UIScrollView (WDYHFCategory)
+
+/**
+ 垂直方向添加Views
+ 
+ @param views views数组
+ @param viewHeight 每一个View的高度
+ @param itemSpacing 每一个View之间的间距
+ @param topSpacing 顶部间距
+ @param bottomSpacing 底部间距
+ @param horizontalConstraints 水平方向的约束
+ 
+ 比如
+ make.left.equalTo(@10);
+ make.width.equalTo(@100);
+ 
+ */
+- (void)kjwd_viewsOfVertical:(NSArray <UIView *>*_Nonnull)views viewHeight:(CGFloat)height itemSpacing:(CGFloat)itemSpacing topSpacing:(CGFloat)topSpacing bottomSpacing:(CGFloat)bottomSpacing horizontalConstraints:(void(NS_NOESCAPE ^_Nonnull)(MASConstraintMaker *make, UIView *superview))horizontalConstraints {
+    
+    if (horizontalConstraints == nil) {
+        return;
+    }
+    
+    UIView *contentView = [[UIView alloc] init];
+    [self addSubview:contentView];
+    
+    [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+        make.width.equalTo(self);
+    }];
+    
+    UIView *lastView = nil;
+    
+    
+    for (int i = 0; i < views.count; i++) {
+        UIView *view = views[i];
+//        WDCKJBGColor_Arc4Color(view);
+        [contentView addSubview:view];
+        
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            if (i == 0) {
+                make.top.equalTo(@(topSpacing));
+            } else {
+                make.top.equalTo(lastView.mas_bottom).offset(itemSpacing);
+            }
+            make.height.equalTo(@(height));
+            
+            horizontalConstraints(make, view.superview);
+        }];
+        
+        lastView = view;
+    }
+    
+    [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(lastView.mas_bottom).offset(bottomSpacing);
+    }];
+}
+
+- (void)kjwd_viewsOfHorizontal:(NSArray <UIView *>*_Nonnull)views viewWidth:(CGFloat)width itemSpacing:(CGFloat)itemSpacing leftSpacing:(CGFloat)leftSpacing rightSpacing:(CGFloat)rightSpacing vorizontalConstraints:(void(NS_NOESCAPE ^_Nonnull)(MASConstraintMaker *make, UIView *superview))verticalConstraints {
+    if (verticalConstraints == nil) return;
+    
+    UIView *contentView = [[UIView alloc] init];
+    [self addSubview:contentView];
+    
+    [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self);
+        make.height.equalTo(self);
+    }];
+    
+    UIView *lastView = nil;
+
+    for (int i = 0; i < views.count; i++) {
+        UIView *view = views[i];
+        WDCKJBGColor_Arc4Color(view);
+        [contentView addSubview:view];
+        
+        [view mas_makeConstraints:^(MASConstraintMaker *make) {
+            if (i == 0) {
+                make.left.equalTo(@(leftSpacing));
+            } else {
+                make.left.equalTo(lastView.mas_right).offset(itemSpacing);
+            }
+            make.width.equalTo(@(width));
+            verticalConstraints(make, view.superview);
+        }];
+        
+        lastView = view;
+    }
+    
+    [contentView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(lastView.mas_right).offset(rightSpacing);
+    }];
+}
+
+@end
+
 
 #pragma mark - -----------------NSDate-----------------
 @implementation NSDate (WDYHFCategory)
@@ -2167,6 +2303,48 @@ CGFloat WDAPP_ScreenHeight(void) {
     UIGraphicsEndImageContext();
     return image;
 }
+
+
+/**
+ 根据文字和颜色 生成图片
+ @param isCircular 是否画圆
+ */
++ (nullable UIImage *)kjwd_imageWithColor:(nullable UIColor *)color
+                                    size:(CGSize)size
+                                    text:(nullable NSString *)text
+                          textAttributes:(nullable NSDictionary *)textAttributes
+                                 circular:(BOOL)isCircular {
+    if (size.width <= 0 || size.height <= 0) return nil;
+    
+    if (WDKJ_IsNullObj(color, [UIColor class])) {
+        color = [UIColor blackColor];
+    }
+    
+    CGRect rect = CGRectMake(0, 0, size.width, size.height);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    // circular
+    if (isCircular) {
+        CGPathRef path = CGPathCreateWithEllipseInRect(rect, NULL);
+        CGContextAddPath(context, path);
+        CGContextClip(context);
+        CGPathRelease(path);
+    }
+    
+    // color
+    CGContextSetFillColorWithColor(context, color.CGColor);
+    CGContextFillRect(context, rect);
+    
+    // text
+    CGSize textSize = [text sizeWithAttributes:textAttributes];
+    [text drawInRect:CGRectMake((size.width - textSize.width) / 2, (size.height - textSize.height) / 2, textSize.width, textSize.height) withAttributes:textAttributes];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
 
 
 @end
@@ -2521,20 +2699,6 @@ CGFloat WDAPP_ScreenHeight(void) {
     }
     return string;
 }
-
-- (nonnull NSDictionary *)kjwd_convertToDic {
-    NSData *jsonData = [self dataUsingEncoding:NSUTF8StringEncoding];
-    if (jsonData == nil) return @{};
-    
-    NSError *err = nil;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&err];
-    if(err) {
-        NSLog(@"json解析失败：%@",err);
-        return @{};
-    }
-    return dic;
-}
-
 
 #pragma mark - 字符串操作
 - (NSString *)kjwd_substringFromIndex:(NSUInteger)from {

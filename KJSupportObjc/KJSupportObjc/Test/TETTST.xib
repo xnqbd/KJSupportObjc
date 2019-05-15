@@ -16,17 +16,36 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OiR-v6-9M3">
-                    <rect key="frame" x="0.0" y="155" width="375" height="102"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OiR-v6-9M3">
+                    <rect key="frame" x="0.0" y="155" width="375" height="28"/>
                     <color key="backgroundColor" red="0.078431372549019607" green="0.50980392156862742" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <state key="normal" title="Button" image="person_date"/>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="说" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wc-xZ-cCD">
+                    <rect key="frame" x="20" y="283" width="17.5" height="21"/>
+                    <color key="backgroundColor" red="0.98431372549999996" green="0.42352941179999998" blue="0.1647058824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TK9-F0-PJY">
+                    <rect key="frame" x="57.5" y="283" width="297.5" height="21"/>
+                    <color key="backgroundColor" red="0.078431372550000003" green="0.50980392159999999" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="TK9-F0-PJY" secondAttribute="trailing" constant="20" id="GJP-NB-Ejc"/>
+                <constraint firstItem="6Wc-xZ-cCD" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="Kf4-Hp-HG8"/>
+                <constraint firstItem="TK9-F0-PJY" firstAttribute="leading" secondItem="6Wc-xZ-cCD" secondAttribute="trailing" constant="20" id="LCV-WC-Ux4"/>
+                <constraint firstItem="TK9-F0-PJY" firstAttribute="top" secondItem="6Wc-xZ-cCD" secondAttribute="top" id="Lr7-4f-IiU"/>
                 <constraint firstItem="OiR-v6-9M3" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="135" id="aIB-tt-3ph"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="OiR-v6-9M3" secondAttribute="trailing" id="f01-bt-Ymx"/>
                 <constraint firstItem="OiR-v6-9M3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="wg7-8r-p2H"/>
+                <constraint firstItem="6Wc-xZ-cCD" firstAttribute="top" secondItem="OiR-v6-9M3" secondAttribute="bottom" constant="100" id="xOu-UZ-1Ae"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="138.40000000000001" y="152.47376311844079"/>

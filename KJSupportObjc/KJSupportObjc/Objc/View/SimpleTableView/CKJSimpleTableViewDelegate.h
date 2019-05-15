@@ -10,6 +10,17 @@
 
 
 
+#define cellKEY  @"CellKEY"
+#define isRegisterNibKEY  @"isRegisterNibKEY"
+#define registerNibNameKEY  @"registerNibNameKEY"
+#define configDicKEY_ConfigModel @"configDicKEY_ConfigModel"
+#define headerFooterKey @"HeaderFooterKey"
+
+
+
+@class CKJSimpleTableView;
+
+
 @protocol CKJSimpleTableViewDelegate <NSObject>
 
 @optional

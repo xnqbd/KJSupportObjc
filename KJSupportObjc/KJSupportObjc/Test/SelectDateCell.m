@@ -122,7 +122,18 @@
 - (void)searchAction:(UIButton *)sender {
     NSString *startDate = self.beginDateBtn.titleLabel.text;
     NSString *endDate   = self.endDateBtn.titleLabel.text;
-    
+    if (!startDate.length) {
+//        [MBProgressHUD showError:@"请输入开始日期"];
+        return;
+    }
+    if (!endDate.length) {
+//        [MBProgressHUD showError:@"请输入结束日期"];
+        return;
+    }
+    if (startDate.longLongValue > endDate.longLongValue) {
+//        [MBProgressHUD showError:@"开始时间不能大于结束时间"];
+        return;
+    }
    NSLog(@"得到日期");
 }
 

@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "RJTestListVC.h"
-
+#import <IQKeyboardManager/IQKeyboardManager.h>
 
 @interface ViewController ()
 
@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
+    [IQKeyboardManager sharedManager].enable = YES;
 
     
 }
