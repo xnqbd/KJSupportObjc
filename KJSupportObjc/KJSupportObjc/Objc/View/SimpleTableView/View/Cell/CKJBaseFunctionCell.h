@@ -11,19 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface CKJFuncModel : CKJBaseModel
 
-@property (copy, nonatomic) NSString *title;
-@property (strong, nonatomic) UIImage *image;
-
-/**
- 点击的时候调用
- */
-@property (copy, nonatomic)  void (^func)(UIButton *sender);
-
-+ (nonnull instancetype)modelWithTitle:(NSString *)title image:(UIImage *)image func:(void (^)(UIButton *sender))func;
-
-@end
+@class CKJStackCellConfig, CKJStackCell;
 
 
 
@@ -32,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CKJBaseFunctionCellConfig : CKJCommonCellConfig
 
-@property (copy, nonatomic) NSArray <CKJFuncModel *>*data;
+//@property (copy, nonatomic) NSArray <CKJFuncModel *>*data;
 
 
 /**

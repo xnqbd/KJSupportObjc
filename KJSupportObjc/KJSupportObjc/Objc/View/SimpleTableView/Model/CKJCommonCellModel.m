@@ -21,6 +21,7 @@
         self.displayInTableView = YES;
         self.selectionStyle = UITableViewCellSelectionStyleDefault;
         self.showLine = YES;
+        self.bgVColor = [UIColor whiteColor];
     }
     return self;
 }

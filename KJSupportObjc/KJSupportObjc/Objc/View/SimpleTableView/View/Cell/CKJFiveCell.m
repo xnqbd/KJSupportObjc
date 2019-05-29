@@ -104,7 +104,7 @@
 }
 
 
-- (void)radioBtnAction {
+- (void)click_RadioBtn {
     
 }
 
@@ -114,10 +114,13 @@
     
     CKJFiveCellConfig *config  = self.configDic[configDicKEY_ConfigModel];
     
-    if (WDKJ_IsNullObj(config, [CKJFiveCellConfig class])) {
-        config = [CKJFiveCellConfig configWithDetailSettingBlock:^(CKJFiveCellConfig * _Nonnull m) { 
-        }];
-    }
+    
+    WDCKJ_ifDEBUG(^{
+        if (config == nil || ([config isKindOfClass:[CKJFiveCellConfig class]] == NO)) {
+            NSException *exception = [NSException exceptionWithName:@"未配置Config对象" reason:[NSString stringWithFormat:@"%@警告！请配置一个 CKJFiveCellConfig或它的子类", self] userInfo:nil];
+            [exception raise];
+        }
+    }, nil);
     
     
     UIView *bgV = self.bgV;
@@ -236,7 +239,7 @@
     }];
     
     UIButton *radioBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [radioBtn addTarget:self action:@selector(radioBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [radioBtn addTarget:self action:@selector(click_RadioBtn) forControlEvents:UIControlEventTouchUpInside];
     [rightWrapperLabel addSubview:radioBtn];
     self.radioBtn = radioBtn;
     

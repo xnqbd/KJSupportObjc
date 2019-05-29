@@ -76,6 +76,8 @@
 /** 遍历所有的cellModel */
 - (void)kjwd_enumAllCellModelWithBlock:(nullable CKJCommonCellModelRowBlock)block;
 
+
+
 /** 遍历所有的cellModel 找对应的模型 */
 - (void)kjwd_filterCellModelForID:(NSInteger)cellModelID finishBlock:(nullable CKJCommonCellModelRowBlock)block;
 
@@ -95,6 +97,12 @@
  在某个分区过滤模型
  */
 - (nullable __kindof CKJCommonCellModel *)cellModelOfFilter:(BOOL (^)(__kindof CKJCommonCellModel *cellModel))filterBlock inSection:(NSUInteger)section;
+
+/**
+ 在全部CellModel里过滤
+ */
+- (NSArray <__kindof CKJCommonCellModel *>*)kjwd_filterCellModelsAtAllCellModelWithBlock:(BOOL (^_Nonnull)(__kindof CKJCommonCellModel *_Nonnull cellModel))filterBlock;
+
 
 
 /**

@@ -10,6 +10,8 @@
 #import "UIView+CKJDesingable.h"
 #import "CKJSimpleTableView.h"
 
+
+
 @implementation CKJTFModel
 
 
@@ -227,7 +229,8 @@
     BOOL empty2 = WDKJ_IsEmpty_Str(attPhone);
     
     if (empty1 && empty2) {
-//        [MBProgressHUD showError:@"手机号为空或有误"];
+        NSLog(@"%@ ", @"手机号为空或有误");
+//        [MBProgressHUD showMessage:@"手机号为空或有误"];
         return;
     }   
     CKJTriggerCodeBlock succ = ^(NSUInteger seconds) {

@@ -19,7 +19,7 @@
 /**
  名字不要改
  */
-@property (nonatomic, readonly, nonnull) CKJSimpleTableView *simpleTableView;
+- (nonnull CKJSimpleTableView *)simpleTableView;
 
 @property (strong, nonatomic, nonnull) __kindof CKJCommonHeaderFooterModel *headerFooterModel;
 

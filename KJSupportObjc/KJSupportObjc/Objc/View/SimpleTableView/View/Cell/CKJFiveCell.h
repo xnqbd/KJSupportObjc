@@ -10,14 +10,10 @@
 #import "CKJExtraView.h"
 
 
-
-//CGFloat image_margin_title = 15;
-//CGFloat centerMargin = 7;
-//
-//CKJFiveCellConfig *config1 = [CKJFiveCellConfig fiveCellConfigWithSettingBlock:^(CKJFiveCellConfig * _Nonnull m) {
-//    m.image_margin_title = image_margin_title;
-//    m.title_margin_subTitle = centerMargin;
-//    m.subTitle_margin_thirdLab = centerMargin;
+//CKJFiveCellConfig *config = [CKJFiveCellConfig configWithDetailSettingBlock:^(CKJFiveCellConfig * _Nonnull m) {
+//    m.leftImageSize = CGSizeMake(40, 40);
+//    m.leftImageView_MarginToSuperViewLeft = 15;
+//    m.image_margin_title = 10;
 //}];
 
 @class CKJFiveCellConfig;
@@ -63,7 +59,7 @@ typedef void(^CKJFiveCellConfigBlock)(__kindof CKJFiveCellConfig *_Nonnull m);
 
 
 #pragma mark - 配置图片
-/** 左边图片大小 */
+/** 左边图片大小, 默认CGSizeZero */
 @property (assign, nonatomic) CGSize leftImageSize;
 
 /** imageV的左边距离的父视图左边距离  */
@@ -115,7 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CKJFiveCell : CKJCommonTableViewCell<CKJFiveCellModel *>
 
 /** 点击 右边选择按钮 */
-- (void)radioBtnAction;
+- (void)click_RadioBtn;
 
 
 #pragma mark - 左边图片

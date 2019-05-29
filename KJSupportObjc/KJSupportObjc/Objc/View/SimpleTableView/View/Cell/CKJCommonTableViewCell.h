@@ -50,7 +50,7 @@ typedef void(^CKJCommonCellConfigBlock)(__kindof CKJCommonCellConfig *_Nonnull m
 @property (assign, nonatomic, readonly) NSInteger section;
 @property (assign, nonatomic, readonly) NSInteger row;
 
-@property (weak, nonatomic, readonly, nullable) CKJSimpleTableView *simpleTableView;
+- (nonnull CKJSimpleTableView *)simpleTableView;
 @property (nonatomic, readonly, nonnull) __kindof CKJCommonSectionModel *sectionModel;
 
 /**

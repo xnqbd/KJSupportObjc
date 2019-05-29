@@ -65,6 +65,10 @@
     
 }
 
+-(nonnull CKJSimpleTableView *)simpleTableView {
+    return _simpleTableView;
+}
+
 - (CKJCommonCellConfig *)configModel {
     return self.configDic[configDicKEY_ConfigModel];
 }

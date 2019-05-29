@@ -31,6 +31,15 @@
 
 @implementation CKJEmptyCell
 
+- (void)setupData:(__kindof CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(CKJSimpleTableView *)tableView {
+#ifdef DEBUG
+//    self.textLabel.text = [NSString stringWithFormat:@"CKJEmptyCell   分区%ld 行%ld", section, row];
+#endif
+}
 
+- (void)setupSubViews {
+    self.textLabel.font = [UIFont systemFontOfSize:10];
+    self.bgV.backgroundColor = [UIColor colorWithRed:247 / 255.0 green:247 / 255.0 blue:247 / 255.0 alpha:1];
+}
 
 @end

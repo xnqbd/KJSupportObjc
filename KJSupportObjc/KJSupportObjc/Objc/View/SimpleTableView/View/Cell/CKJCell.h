@@ -52,6 +52,7 @@
 @property (assign, nonatomic) CGFloat leftMargin;
 @property (assign, nonatomic) CGFloat bottomMargin;
 @property (assign, nonatomic) CGFloat rightMargin;
+
 + (nonnull instancetype)subTitle4ModelWithAttributedText:(nullable NSAttributedString *)text top:(CGFloat)top left:(CGFloat)left bottom:(CGFloat)bottom right:(CGFloat)right;
 
 
@@ -173,6 +174,8 @@ typedef void(^CKJDidClickBtn8Handle)(CKJCell *_Nonnull cell, CKJBtn8Model *_Nonn
 
 @property (assign, nonatomic) CGSize size;
 @property (assign, nonatomic) CGFloat cornerRadius;
+@property (strong, nonatomic, nullable) UIColor *borderColor;
+@property (assign, nonatomic) CGFloat borderWidth;
 
 @property (assign, nonatomic) CGFloat rightMargin;
 @property (assign, nonatomic) CGFloat centerYOffset;
@@ -202,6 +205,7 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 
 @interface CKJCellModel : CKJCommonCellModel
 
+
 @property (strong, nonatomic, nullable) CKJImage2Model *image2Model;
 @property (strong, nonatomic, nullable) CKJTitle3Model *title3Model;
 @property (strong, nonatomic, nullable) CKJSubTitle4Model *subTitle4Model;
@@ -227,6 +231,8 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 
 
 @interface CKJCell : CKJCommonTableViewCell <CKJCellModel *>
+
+
 
 @property (nonnull, strong, nonatomic, readonly) CKJLeftView *leftWrapView;
 @property (nonnull, strong, nonatomic, readonly) UIButton *imageBtn2;

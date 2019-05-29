@@ -9,6 +9,12 @@
 #import "CKJCommonSectionModel.h"
 #import "CKJTableViewHeaderFooterEmptyView.h"
 
+@interface CKJCommonSectionModel ()
+
+@property (assign, nonatomic) NSInteger currentSection;
+
+@end
+
 @implementation CKJCommonSectionModel
 
 + (instancetype)sectionWithCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)modelArray {
@@ -24,5 +30,10 @@
     }
     return self;
 }
+
+- (void)_privateMethodWithSection:(NSInteger)section {
+    self.currentSection = section;
+}
+
 
 @end

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		161E6F99229EDB5A00B1CA1A /* billList.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 161E6F96229EDB5A00B1CA1A /* billList.geojson */; };
+		161E6F9A229EDB5A00B1CA1A /* NewList.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 161E6F97229EDB5A00B1CA1A /* NewList.geojson */; };
+		161E6F9B229EDB5A00B1CA1A /* billDetail.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 161E6F98229EDB5A00B1CA1A /* billDetail.geojson */; };
 		1657522120DCD4EB00CB0C8F /* 阿狸.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521820DCD4EB00CB0C8F /* 阿狸.png */; };
 		1657522220DCD4EB00CB0C8F /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521920DCD4EB00CB0C8F /* 4.png */; };
 		1657522320DCD4EB00CB0C8F /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521A20DCD4EB00CB0C8F /* 5.png */; };
@@ -16,92 +19,82 @@
 		1657522720DCD4EB00CB0C8F /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521E20DCD4EB00CB0C8F /* 3.png */; };
 		1657522820DCD4EB00CB0C8F /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657521F20DCD4EB00CB0C8F /* 1.png */; };
 		1657522920DCD4EB00CB0C8F /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 1657522020DCD4EB00CB0C8F /* 0.png */; };
-		1688C3DA228C526B001594EF /* CKJPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C369228C526A001594EF /* CKJPickerView.m */; };
-		1688C3DB228C526B001594EF /* CKJToolPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C36A228C526A001594EF /* CKJToolPickerView.m */; };
-		1688C3DC228C526B001594EF /* CKJDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C36B228C526A001594EF /* CKJDatePickerView.m */; };
-		1688C3DD228C526B001594EF /* CKJToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C36C228C526A001594EF /* CKJToolView.m */; };
-		1688C3DE228C526B001594EF /* CKJToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C372228C526A001594EF /* CKJToolbar.m */; };
-		1688C3DF228C526C001594EF /* CKJPayBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C373228C526A001594EF /* CKJPayBottomView.m */; };
-		1688C3E0228C526C001594EF /* CKJExtraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C374228C526A001594EF /* CKJExtraView.m */; };
-		1688C3E1228C526C001594EF /* CKJWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C377228C526A001594EF /* CKJWorker.m */; };
-		1688C3E2228C526C001594EF /* CKJSimpleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C378228C526A001594EF /* CKJSimpleTableView.m */; };
-		1688C3E3228C526C001594EF /* CKJBaseTableViewToolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C37A228C526A001594EF /* CKJBaseTableViewToolVC.m */; };
-		1688C3E4228C526C001594EF /* CKJCommonSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C37E228C526A001594EF /* CKJCommonSectionModel.m */; };
-		1688C3E5228C526C001594EF /* CKJCommonCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C37F228C526A001594EF /* CKJCommonCellModel.m */; };
-		1688C3E6228C526C001594EF /* CKJCommonHeaderFooterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C382228C526A001594EF /* CKJCommonHeaderFooterModel.m */; };
-		1688C3E7228C526C001594EF /* CKJDemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C386228C526A001594EF /* CKJDemoCell.m */; };
-		1688C3E8228C526C001594EF /* CKJDemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1688C387228C526A001594EF /* CKJDemoCell.xib */; };
-		1688C3E9228C526C001594EF /* CKJStackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C38A228C526A001594EF /* CKJStackCell.m */; };
-		1688C3EA228C526C001594EF /* CKJFunctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C38D228C526A001594EF /* CKJFunctionCell.m */; };
-		1688C3EB228C526C001594EF /* CKJTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C38F228C526A001594EF /* CKJTableViewCell2.m */; };
-		1688C3EC228C526C001594EF /* CKJFiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C390228C526A001594EF /* CKJFiveCell.m */; };
-		1688C3ED228C526C001594EF /* CKJEmptyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C391228C526A001594EF /* CKJEmptyCell.m */; };
-		1688C3EE228C526C001594EF /* CKJBaseFunctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C396228C526A001594EF /* CKJBaseFunctionCell.m */; };
-		1688C3EF228C526C001594EF /* CKJInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C398228C526A001594EF /* CKJInputCell.m */; };
-		1688C3F0228C526C001594EF /* CKJTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C39B228C526A001594EF /* CKJTableViewCell.m */; };
-		1688C3F1228C526C001594EF /* CKJCommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C39D228C526A001594EF /* CKJCommonTableViewCell.m */; };
-		1688C3F2228C526C001594EF /* CKJCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C39E228C526A001594EF /* CKJCell.m */; };
-		1688C3F3228C526C001594EF /* CKJLeftRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C39F228C526A001594EF /* CKJLeftRightCell.m */; };
-		1688C3F4228C526C001594EF /* CKJRadioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3A0228C526A001594EF /* CKJRadioCell.m */; };
-		1688C3F5228C526C001594EF /* CKJTableViewHeaderFooterEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3A3228C526A001594EF /* CKJTableViewHeaderFooterEmptyView.m */; };
-		1688C3F6228C526C001594EF /* CKJCommonTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3A6228C526A001594EF /* CKJCommonTableViewHeaderFooterView.m */; };
-		1688C3F7228C526C001594EF /* CKJTitleStyleHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3A8228C526A001594EF /* CKJTitleStyleHeaderFooterView.m */; };
-		1688C3F8228C526C001594EF /* CKJTableEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3AB228C526A001594EF /* CKJTableEmptyView.m */; };
-		1688C3F9228C526C001594EF /* FileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3B0228C526B001594EF /* FileManagerTool.m */; };
-		1688C3FA228C526C001594EF /* CKJBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3B1228C526B001594EF /* CKJBaseViewController.m */; };
-		1688C3FB228C526C001594EF /* KJCommonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3B2228C526B001594EF /* KJCommonManager.m */; };
-		1688C3FC228C526C001594EF /* LightStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3B8228C526B001594EF /* LightStorageManager.m */; };
-		1688C3FD228C526C001594EF /* LBXPermissionMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3BA228C526B001594EF /* LBXPermissionMicrophone.m */; };
-		1688C3FE228C526C001594EF /* LBXPermissionCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3BB228C526B001594EF /* LBXPermissionCalendar.m */; };
-		1688C3FF228C526C001594EF /* LBXPermissionNet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3BF228C526B001594EF /* LBXPermissionNet.m */; };
-		1688C400228C526C001594EF /* NetReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3C0228C526B001594EF /* NetReachability.m */; };
-		1688C401228C526C001594EF /* LBXPermissionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3C2228C526B001594EF /* LBXPermissionData.m */; };
-		1688C402228C526C001594EF /* LBXPermissionReminders.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3C3228C526B001594EF /* LBXPermissionReminders.m */; };
-		1688C403228C526C001594EF /* LBXPermissionHealth.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3C4228C526B001594EF /* LBXPermissionHealth.m */; };
-		1688C404228C526C001594EF /* LBXPermissionSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3C5228C526B001594EF /* LBXPermissionSetting.m */; };
-		1688C405228C526C001594EF /* LBXPermissionPhotos.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3C6228C526B001594EF /* LBXPermissionPhotos.m */; };
-		1688C406228C526C001594EF /* LBXPermissionLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3C9228C526B001594EF /* LBXPermissionLocation.m */; };
-		1688C407228C526C001594EF /* LBXPermissionContacts.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3CB228C526B001594EF /* LBXPermissionContacts.m */; };
-		1688C408228C526C001594EF /* LBXPermissionCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3CC228C526B001594EF /* LBXPermissionCamera.m */; };
-		1688C409228C526C001594EF /* LBXPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3CF228C526B001594EF /* LBXPermission.m */; };
-		1688C40A228C526C001594EF /* CKJBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3D4228C526B001594EF /* CKJBaseModel.m */; };
-		1688C40B228C526C001594EF /* NSObject+WDYHFCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3D6228C526B001594EF /* NSObject+WDYHFCategory.m */; };
-		1688C40C228C526C001594EF /* UIView+CKJDesingable.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C3D9228C526B001594EF /* UIView+CKJDesingable.m */; };
-		1688C43B228C5286001594EF /* zhuyuan出院结算@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C40F228C5286001594EF /* zhuyuan出院结算@2x.png */; };
-		1688C43C228C5286001594EF /* billList.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 1688C412228C5286001594EF /* billList.geojson */; };
-		1688C43D228C5286001594EF /* billDetail.geojson in Resources */ = {isa = PBXBuildFile; fileRef = 1688C413228C5286001594EF /* billDetail.geojson */; };
-		1688C43E228C5286001594EF /* zhuyuan充值记录@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C414228C5286001594EF /* zhuyuan充值记录@2x.png */; };
-		1688C43F228C5286001594EF /* zhuyuan预交金充值@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C415228C5286001594EF /* zhuyuan预交金充值@2x.png */; };
-		1688C440228C5286001594EF /* zhuyuan预交金充值@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C416228C5286001594EF /* zhuyuan预交金充值@3x.png */; };
-		1688C441228C5286001594EF /* zhuyuan充值记录@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C418228C5286001594EF /* zhuyuan充值记录@3x.png */; };
-		1688C442228C5286001594EF /* wdyhfsdk支付宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C419228C5286001594EF /* wdyhfsdk支付宝.png */; };
-		1688C443228C5286001594EF /* wdyhfsdkright arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C41A228C5286001594EF /* wdyhfsdkright arrow.png */; };
-		1688C444228C5286001594EF /* zhuyuan出院结算@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C41B228C5286001594EF /* zhuyuan出院结算@3x.png */; };
-		1688C445228C5286001594EF /* wdyhfsdk勾选空.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C41D228C5286001594EF /* wdyhfsdk勾选空.png */; };
-		1688C446228C5286001594EF /* zhuyuan日清单查询@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C41E228C5286001594EF /* zhuyuan日清单查询@2x.png */; };
-		1688C447228C5286001594EF /* wdyhfsdk银联.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C422228C5286001594EF /* wdyhfsdk银联.png */; };
-		1688C448228C5286001594EF /* zhuyuan历史住院记录@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C423228C5286001594EF /* zhuyuan历史住院记录@2x.png */; };
-		1688C449228C5286001594EF /* zhuyuan历史住院记录@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C425228C5286001594EF /* zhuyuan历史住院记录@3x.png */; };
-		1688C44A228C5286001594EF /* wdyhfsdkhospital.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C427228C5286001594EF /* wdyhfsdkhospital.png */; };
-		1688C44B228C5286001594EF /* yhf通知.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C428228C5286001594EF /* yhf通知.png */; };
-		1688C44C228C5286001594EF /* wdyhfsdkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C429228C5286001594EF /* wdyhfsdkmark.png */; };
-		1688C44D228C5286001594EF /* zhuyuan日清单查询@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C42A228C5286001594EF /* zhuyuan日清单查询@3x.png */; };
-		1688C44E228C5286001594EF /* RJTestListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C42B228C5286001594EF /* RJTestListVC.m */; };
-		1688C44F228C5286001594EF /* wdyhfsdk编辑.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C42C228C5286001594EF /* wdyhfsdk编辑.png */; };
-		1688C450228C5286001594EF /* RJBillCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1688C42D228C5286001594EF /* RJBillCell.xib */; };
-		1688C451228C5286001594EF /* WDYHFHospitalItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C42E228C5286001594EF /* WDYHFHospitalItem.m */; };
-		1688C452228C5286001594EF /* RJKJBS.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C42F228C5286001594EF /* RJKJBS.m */; };
-		1688C453228C5286001594EF /* TETTST.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1688C430228C5286001594EF /* TETTST.xib */; };
-		1688C454228C5286001594EF /* wdyhfsdk勾选.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C431228C5286001594EF /* wdyhfsdk勾选.png */; };
-		1688C455228C5286001594EF /* RJBillDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C432228C5286001594EF /* RJBillDetailModel.m */; };
-		1688C456228C5286001594EF /* RJConfigVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C433228C5286001594EF /* RJConfigVC.m */; };
-		1688C457228C5286001594EF /* yhf下箭头.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C434228C5286001594EF /* yhf下箭头.png */; };
-		1688C458228C5286001594EF /* touxiang.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1688C435228C5286001594EF /* touxiang.jpg */; };
-		1688C459228C5286001594EF /* RJSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C436228C5286001594EF /* RJSettingViewController.m */; };
-		1688C45A228C5286001594EF /* RJBillCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C437228C5286001594EF /* RJBillCell.m */; };
-		1688C45B228C5286001594EF /* RJBindCardVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C438228C5286001594EF /* RJBindCardVC.m */; };
-		1688C45C228C5286001594EF /* wdyhfsdkechat.png in Resources */ = {isa = PBXBuildFile; fileRef = 1688C439228C5286001594EF /* wdyhfsdkechat.png */; };
-		1688C45D228C5286001594EF /* SelectDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1688C43A228C5286001594EF /* SelectDateCell.m */; };
+		168AF901229ED28D00619C79 /* NSObject+WDYHFCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8A1229ED28C00619C79 /* NSObject+WDYHFCategory.m */; };
+		168AF902229ED28D00619C79 /* UIView+CKJDesingable.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8A4229ED28C00619C79 /* UIView+CKJDesingable.m */; };
+		168AF903229ED28D00619C79 /* FileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8A7229ED28D00619C79 /* FileManagerTool.m */; };
+		168AF904229ED28D00619C79 /* CKJBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8A8229ED28D00619C79 /* CKJBaseViewController.m */; };
+		168AF905229ED28D00619C79 /* KJCommonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8A9229ED28D00619C79 /* KJCommonManager.m */; };
+		168AF906229ED28D00619C79 /* CKJRSA.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8AB229ED28D00619C79 /* CKJRSA.m */; };
+		168AF907229ED28D00619C79 /* LightStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8B0229ED28D00619C79 /* LightStorageManager.m */; };
+		168AF908229ED28D00619C79 /* CKJBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8B2229ED28D00619C79 /* CKJBaseModel.m */; };
+		168AF909229ED28D00619C79 /* CKJPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8B6229ED28D00619C79 /* CKJPickerView.m */; };
+		168AF90A229ED28D00619C79 /* CKJToolPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8B7229ED28D00619C79 /* CKJToolPickerView.m */; };
+		168AF90B229ED28D00619C79 /* CKJDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8B8229ED28D00619C79 /* CKJDatePickerView.m */; };
+		168AF90C229ED28D00619C79 /* CKJToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8B9229ED28D00619C79 /* CKJToolView.m */; };
+		168AF90D229ED28D00619C79 /* CKJToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8BF229ED28D00619C79 /* CKJToolbar.m */; };
+		168AF90E229ED28D00619C79 /* CKJPayBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8C0229ED28D00619C79 /* CKJPayBottomView.m */; };
+		168AF90F229ED28D00619C79 /* CKJExtraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8C1229ED28D00619C79 /* CKJExtraView.m */; };
+		168AF910229ED28D00619C79 /* CKJWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8C4229ED28D00619C79 /* CKJWorker.m */; };
+		168AF911229ED28D00619C79 /* CKJSimpleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8C5229ED28D00619C79 /* CKJSimpleTableView.m */; };
+		168AF912229ED28D00619C79 /* CKJBaseTableViewToolVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8C7229ED28D00619C79 /* CKJBaseTableViewToolVC.m */; };
+		168AF913229ED28D00619C79 /* CKJCommonSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8CB229ED28D00619C79 /* CKJCommonSectionModel.m */; };
+		168AF914229ED28D00619C79 /* CKJCommonCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8CC229ED28D00619C79 /* CKJCommonCellModel.m */; };
+		168AF915229ED28D00619C79 /* CKJCommonHeaderFooterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8CF229ED28D00619C79 /* CKJCommonHeaderFooterModel.m */; };
+		168AF916229ED28D00619C79 /* CKJDemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8D3229ED28D00619C79 /* CKJDemoCell.m */; };
+		168AF917229ED28D00619C79 /* CKJDemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 168AF8D4229ED28D00619C79 /* CKJDemoCell.xib */; };
+		168AF918229ED28D00619C79 /* CKJTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8D7229ED28D00619C79 /* CKJTableViewCell1.m */; };
+		168AF919229ED28D00619C79 /* CKJStackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8D8229ED28D00619C79 /* CKJStackCell.m */; };
+		168AF91A229ED28D00619C79 /* CKJBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8DC229ED28D00619C79 /* CKJBaseTableViewCell.m */; };
+		168AF91B229ED28D00619C79 /* CKJFunctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8DD229ED28D00619C79 /* CKJFunctionCell.m */; };
+		168AF91C229ED28D00619C79 /* CKJTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8DE229ED28D00619C79 /* CKJTableViewCell2.m */; };
+		168AF91D229ED28D00619C79 /* CKJFiveCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8DF229ED28D00619C79 /* CKJFiveCell.m */; };
+		168AF91E229ED28D00619C79 /* CKJEmptyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8E0229ED28D00619C79 /* CKJEmptyCell.m */; };
+		168AF91F229ED28D00619C79 /* CKJBaseFunctionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8E6229ED28D00619C79 /* CKJBaseFunctionCell.m */; };
+		168AF920229ED28D00619C79 /* CKJSquareCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8EA229ED28D00619C79 /* CKJSquareCell1.m */; };
+		168AF921229ED28D00619C79 /* CKJInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8EB229ED28D00619C79 /* CKJInputCell.m */; };
+		168AF922229ED28D00619C79 /* CKJCommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8EF229ED28D00619C79 /* CKJCommonTableViewCell.m */; };
+		168AF923229ED28D00619C79 /* CKJCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8F0229ED28D00619C79 /* CKJCell.m */; };
+		168AF924229ED28D00619C79 /* CKJLeftRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8F1229ED28D00619C79 /* CKJLeftRightCell.m */; };
+		168AF925229ED28D00619C79 /* CKJRadioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8F2229ED28D00619C79 /* CKJRadioCell.m */; };
+		168AF926229ED28D00619C79 /* CKJSquareCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8F3229ED28D00619C79 /* CKJSquareCell2.m */; };
+		168AF927229ED28D00619C79 /* CKJTableViewHeaderFooterEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8F6229ED28D00619C79 /* CKJTableViewHeaderFooterEmptyView.m */; };
+		168AF928229ED28D00619C79 /* CKJCommonTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8F9229ED28D00619C79 /* CKJCommonTableViewHeaderFooterView.m */; };
+		168AF929229ED28D00619C79 /* CKJTitleStyleHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8FB229ED28D00619C79 /* CKJTitleStyleHeaderFooterView.m */; };
+		168AF92A229ED28D00619C79 /* CKJTableEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF8FE229ED28D00619C79 /* CKJTableEmptyView.m */; };
+		168AF95D229ED43400619C79 /* zhuyuan出院结算@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF930229ED43400619C79 /* zhuyuan出院结算@2x.png */; };
+		168AF95E229ED43400619C79 /* zhuyuan充值记录@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF931229ED43400619C79 /* zhuyuan充值记录@2x.png */; };
+		168AF95F229ED43400619C79 /* zhuyuan预交金充值@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF932229ED43400619C79 /* zhuyuan预交金充值@2x.png */; };
+		168AF960229ED43400619C79 /* zhuyuan预交金充值@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF933229ED43400619C79 /* zhuyuan预交金充值@3x.png */; };
+		168AF961229ED43400619C79 /* zhuyuan充值记录@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF934229ED43400619C79 /* zhuyuan充值记录@3x.png */; };
+		168AF962229ED43400619C79 /* wdyhfsdk支付宝.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF935229ED43400619C79 /* wdyhfsdk支付宝.png */; };
+		168AF963229ED43400619C79 /* wdyhfsdkright arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF936229ED43400619C79 /* wdyhfsdkright arrow.png */; };
+		168AF964229ED43400619C79 /* zhuyuan出院结算@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF937229ED43400619C79 /* zhuyuan出院结算@3x.png */; };
+		168AF965229ED43400619C79 /* wdyhfsdk勾选空.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF938229ED43400619C79 /* wdyhfsdk勾选空.png */; };
+		168AF966229ED43400619C79 /* zhuyuan日清单查询@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF939229ED43400619C79 /* zhuyuan日清单查询@2x.png */; };
+		168AF967229ED43400619C79 /* wdyhfsdk银联.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF93A229ED43400619C79 /* wdyhfsdk银联.png */; };
+		168AF968229ED43400619C79 /* zhuyuan历史住院记录@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF93B229ED43400619C79 /* zhuyuan历史住院记录@2x.png */; };
+		168AF969229ED43400619C79 /* zhuyuan历史住院记录@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF93C229ED43400619C79 /* zhuyuan历史住院记录@3x.png */; };
+		168AF96A229ED43400619C79 /* wdyhfsdkhospital.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF93D229ED43400619C79 /* wdyhfsdkhospital.png */; };
+		168AF96B229ED43400619C79 /* yhf通知.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF93E229ED43400619C79 /* yhf通知.png */; };
+		168AF96C229ED43400619C79 /* wdyhfsdkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF93F229ED43400619C79 /* wdyhfsdkmark.png */; };
+		168AF96D229ED43400619C79 /* zhuyuan日清单查询@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF940229ED43400619C79 /* zhuyuan日清单查询@3x.png */; };
+		168AF96E229ED43400619C79 /* wdyhfsdk编辑.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF941229ED43400619C79 /* wdyhfsdk编辑.png */; };
+		168AF96F229ED43400619C79 /* TETTST.xib in Resources */ = {isa = PBXBuildFile; fileRef = 168AF942229ED43400619C79 /* TETTST.xib */; };
+		168AF970229ED43400619C79 /* wdyhfsdk勾选.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF943229ED43400619C79 /* wdyhfsdk勾选.png */; };
+		168AF971229ED43400619C79 /* yhf下箭头.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF944229ED43400619C79 /* yhf下箭头.png */; };
+		168AF972229ED43400619C79 /* touxiang.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 168AF945229ED43400619C79 /* touxiang.jpg */; };
+		168AF973229ED43400619C79 /* wdyhfsdkechat.png in Resources */ = {isa = PBXBuildFile; fileRef = 168AF946229ED43400619C79 /* wdyhfsdkechat.png */; };
+		168AF974229ED43400619C79 /* WDYHFHospitalItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF94A229ED43400619C79 /* WDYHFHospitalItem.m */; };
+		168AF975229ED43400619C79 /* RJBillDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF94B229ED43400619C79 /* RJBillDetailModel.m */; };
+		168AF976229ED43400619C79 /* RJTestListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF952229ED43400619C79 /* RJTestListVC.m */; };
+		168AF977229ED43400619C79 /* RJInputVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF953229ED43400619C79 /* RJInputVC.m */; };
+		168AF978229ED43400619C79 /* RJConfigVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF954229ED43400619C79 /* RJConfigVC.m */; };
+		168AF979229ED43400619C79 /* RJSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF955229ED43400619C79 /* RJSettingViewController.m */; };
+		168AF97A229ED43400619C79 /* RJStackVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF956229ED43400619C79 /* RJStackVC.m */; };
+		168AF97B229ED43400619C79 /* RJBillCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 168AF95A229ED43400619C79 /* RJBillCell.xib */; };
+		168AF97C229ED43400619C79 /* RJBillCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF95B229ED43400619C79 /* RJBillCell.m */; };
+		168AF97D229ED43400619C79 /* SelectDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF95C229ED43400619C79 /* SelectDateCell.m */; };
+		168AF981229ED5B600619C79 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 168AF980229ED5B600619C79 /* MBProgressHUD.m */; };
 		955997E4209AECF900163047 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 955997E3209AECF900163047 /* AppDelegate.m */; };
 		955997E7209AECF900163047 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 955997E6209AECF900163047 /* ViewController.m */; };
 		955997EA209AECF900163047 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 955997E8209AECF900163047 /* Main.storyboard */; };
@@ -112,6 +105,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		161E6F96229EDB5A00B1CA1A /* billList.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = billList.geojson; sourceTree = "<group>"; };
+		161E6F97229EDB5A00B1CA1A /* NewList.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NewList.geojson; sourceTree = "<group>"; };
+		161E6F98229EDB5A00B1CA1A /* billDetail.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = billDetail.geojson; sourceTree = "<group>"; };
 		1657521820DCD4EB00CB0C8F /* 阿狸.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "阿狸.png"; sourceTree = "<group>"; };
 		1657521920DCD4EB00CB0C8F /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		1657521A20DCD4EB00CB0C8F /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
@@ -121,154 +117,136 @@
 		1657521E20DCD4EB00CB0C8F /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		1657521F20DCD4EB00CB0C8F /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
 		1657522020DCD4EB00CB0C8F /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
-		1688C368228C526A001594EF /* CKJToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolView.h; sourceTree = "<group>"; };
-		1688C369228C526A001594EF /* CKJPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJPickerView.m; sourceTree = "<group>"; };
-		1688C36A228C526A001594EF /* CKJToolPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolPickerView.m; sourceTree = "<group>"; };
-		1688C36B228C526A001594EF /* CKJDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJDatePickerView.m; sourceTree = "<group>"; };
-		1688C36C228C526A001594EF /* CKJToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolView.m; sourceTree = "<group>"; };
-		1688C36D228C526A001594EF /* CKJPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJPickerView.h; sourceTree = "<group>"; };
-		1688C36E228C526A001594EF /* CKJDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJDatePickerView.h; sourceTree = "<group>"; };
-		1688C36F228C526A001594EF /* CKJToolPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolPickerView.h; sourceTree = "<group>"; };
-		1688C370228C526A001594EF /* CKJExtraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJExtraView.h; sourceTree = "<group>"; };
-		1688C371228C526A001594EF /* CKJTableEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableEmptyView.h; sourceTree = "<group>"; };
-		1688C372228C526A001594EF /* CKJToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolbar.m; sourceTree = "<group>"; };
-		1688C373228C526A001594EF /* CKJPayBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJPayBottomView.m; sourceTree = "<group>"; };
-		1688C374228C526A001594EF /* CKJExtraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJExtraView.m; sourceTree = "<group>"; };
-		1688C376228C526A001594EF /* CKJSimpleTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableViewDelegate.h; sourceTree = "<group>"; };
-		1688C377228C526A001594EF /* CKJWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJWorker.m; sourceTree = "<group>"; };
-		1688C378228C526A001594EF /* CKJSimpleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSimpleTableView.m; sourceTree = "<group>"; };
-		1688C37A228C526A001594EF /* CKJBaseTableViewToolVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseTableViewToolVC.m; sourceTree = "<group>"; };
-		1688C37B228C526A001594EF /* CKJBaseTableViewToolVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseTableViewToolVC.h; sourceTree = "<group>"; };
-		1688C37C228C526A001594EF /* CKJCombineCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCombineCellProtocol.h; sourceTree = "<group>"; };
-		1688C37E228C526A001594EF /* CKJCommonSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonSectionModel.m; sourceTree = "<group>"; };
-		1688C37F228C526A001594EF /* CKJCommonCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonCellModel.m; sourceTree = "<group>"; };
-		1688C380228C526A001594EF /* CKJCommonHeaderFooterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonHeaderFooterModel.h; sourceTree = "<group>"; };
-		1688C381228C526A001594EF /* CKJCommonSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonSectionModel.h; sourceTree = "<group>"; };
-		1688C382228C526A001594EF /* CKJCommonHeaderFooterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonHeaderFooterModel.m; sourceTree = "<group>"; };
-		1688C383228C526A001594EF /* CKJCommonCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonCellModel.h; sourceTree = "<group>"; };
-		1688C386228C526A001594EF /* CKJDemoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJDemoCell.m; sourceTree = "<group>"; };
-		1688C387228C526A001594EF /* CKJDemoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKJDemoCell.xib; sourceTree = "<group>"; };
-		1688C388228C526A001594EF /* CKJDemoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJDemoCell.h; sourceTree = "<group>"; };
-		1688C38A228C526A001594EF /* CKJStackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJStackCell.m; sourceTree = "<group>"; };
-		1688C38B228C526A001594EF /* CKJBaseFunctionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseFunctionCell.h; sourceTree = "<group>"; };
-		1688C38C228C526A001594EF /* CKJInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJInputCell.h; sourceTree = "<group>"; };
-		1688C38D228C526A001594EF /* CKJFunctionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJFunctionCell.m; sourceTree = "<group>"; };
-		1688C38E228C526A001594EF /* CKJTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewCell.h; sourceTree = "<group>"; };
-		1688C38F228C526A001594EF /* CKJTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewCell2.m; sourceTree = "<group>"; };
-		1688C390228C526A001594EF /* CKJFiveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJFiveCell.m; sourceTree = "<group>"; };
-		1688C391228C526A001594EF /* CKJEmptyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJEmptyCell.m; sourceTree = "<group>"; };
-		1688C392228C526A001594EF /* CKJLeftRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJLeftRightCell.h; sourceTree = "<group>"; };
-		1688C393228C526A001594EF /* CKJCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCell.h; sourceTree = "<group>"; };
-		1688C394228C526A001594EF /* CKJRadioCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJRadioCell.h; sourceTree = "<group>"; };
-		1688C395228C526A001594EF /* CKJCommonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonTableViewCell.h; sourceTree = "<group>"; };
-		1688C396228C526A001594EF /* CKJBaseFunctionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseFunctionCell.m; sourceTree = "<group>"; };
-		1688C397228C526A001594EF /* CKJStackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJStackCell.h; sourceTree = "<group>"; };
-		1688C398228C526A001594EF /* CKJInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJInputCell.m; sourceTree = "<group>"; };
-		1688C399228C526A001594EF /* CKJFiveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJFiveCell.h; sourceTree = "<group>"; };
-		1688C39A228C526A001594EF /* CKJTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewCell2.h; sourceTree = "<group>"; };
-		1688C39B228C526A001594EF /* CKJTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewCell.m; sourceTree = "<group>"; };
-		1688C39C228C526A001594EF /* CKJFunctionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJFunctionCell.h; sourceTree = "<group>"; };
-		1688C39D228C526A001594EF /* CKJCommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonTableViewCell.m; sourceTree = "<group>"; };
-		1688C39E228C526A001594EF /* CKJCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCell.m; sourceTree = "<group>"; };
-		1688C39F228C526A001594EF /* CKJLeftRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJLeftRightCell.m; sourceTree = "<group>"; };
-		1688C3A0228C526A001594EF /* CKJRadioCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJRadioCell.m; sourceTree = "<group>"; };
-		1688C3A1228C526A001594EF /* CKJEmptyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJEmptyCell.h; sourceTree = "<group>"; };
-		1688C3A3228C526A001594EF /* CKJTableViewHeaderFooterEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewHeaderFooterEmptyView.m; sourceTree = "<group>"; };
-		1688C3A4228C526A001594EF /* CKJCommonTableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonTableViewHeaderFooterView.h; sourceTree = "<group>"; };
-		1688C3A5228C526A001594EF /* CKJTitleStyleHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTitleStyleHeaderFooterView.h; sourceTree = "<group>"; };
-		1688C3A6228C526A001594EF /* CKJCommonTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonTableViewHeaderFooterView.m; sourceTree = "<group>"; };
-		1688C3A7228C526A001594EF /* CKJTableViewHeaderFooterEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewHeaderFooterEmptyView.h; sourceTree = "<group>"; };
-		1688C3A8228C526A001594EF /* CKJTitleStyleHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTitleStyleHeaderFooterView.m; sourceTree = "<group>"; };
-		1688C3A9228C526A001594EF /* CKJSimpleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableView.h; sourceTree = "<group>"; };
-		1688C3AA228C526A001594EF /* CKJWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJWorker.h; sourceTree = "<group>"; };
-		1688C3AB228C526A001594EF /* CKJTableEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableEmptyView.m; sourceTree = "<group>"; };
-		1688C3AC228C526A001594EF /* CKJPayBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJPayBottomView.h; sourceTree = "<group>"; };
-		1688C3AD228C526A001594EF /* CKJToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolbar.h; sourceTree = "<group>"; };
-		1688C3AE228C526B001594EF /* KJSupportObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSupportObjc.h; sourceTree = "<group>"; };
-		1688C3B0228C526B001594EF /* FileManagerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManagerTool.m; sourceTree = "<group>"; };
-		1688C3B1228C526B001594EF /* CKJBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseViewController.m; sourceTree = "<group>"; };
-		1688C3B2228C526B001594EF /* KJCommonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJCommonManager.m; sourceTree = "<group>"; };
-		1688C3B3228C526B001594EF /* CKJBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseModel.h; sourceTree = "<group>"; };
-		1688C3B4228C526B001594EF /* LightStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightStorageManager.h; sourceTree = "<group>"; };
-		1688C3B5228C526B001594EF /* FileManagerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerTool.h; sourceTree = "<group>"; };
-		1688C3B6228C526B001594EF /* KJCommonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJCommonManager.h; sourceTree = "<group>"; };
-		1688C3B7228C526B001594EF /* CKJBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseViewController.h; sourceTree = "<group>"; };
-		1688C3B8228C526B001594EF /* LightStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightStorageManager.m; sourceTree = "<group>"; };
-		1688C3BA228C526B001594EF /* LBXPermissionMicrophone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXPermissionMicrophone.m; sourceTree = "<group>"; };
-		1688C3BB228C526B001594EF /* LBXPermissionCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXPermissionCalendar.m; sourceTree = "<group>"; };
-		1688C3BC228C526B001594EF /* LBXPermissionLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXPermissionLocation.h; sourceTree = "<group>"; };
-		1688C3BD228C526B001594EF /* LBXPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXPermission.h; sourceTree = "<group>"; };
-		1688C3BE228C526B001594EF /* LBXPermissionCamera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXPermissionCamera.h; sourceTree = "<group>"; };
-		1688C3BF228C526B001594EF /* LBXPermissionNet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXPermissionNet.m; sourceTree = "<group>"; };
-		1688C3C0228C526B001594EF /* NetReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetReachability.m; sourceTree = "<group>"; };
-		1688C3C1228C526B001594EF /* LBXPermissionContacts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXPermissionContacts.h; sourceTree = "<group>"; };
-		1688C3C2228C526B001594EF /* LBXPermissionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXPermissionData.m; sourceTree = "<group>"; };
-		1688C3C3228C526B001594EF /* LBXPermissionReminders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXPermissionReminders.m; sourceTree = "<group>"; };
-		1688C3C4228C526B001594EF /* LBXPermissionHealth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXPermissionHealth.m; sourceTree = "<group>"; };
-		1688C3C5228C526B001594EF /* LBXPermissionSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXPermissionSetting.m; sourceTree = "<group>"; };
-		1688C3C6228C526B001594EF /* LBXPermissionPhotos.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXPermissionPhotos.m; sourceTree = "<group>"; };
-		1688C3C7228C526B001594EF /* LBXPermissionCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXPermissionCalendar.h; sourceTree = "<group>"; };
-		1688C3C8228C526B001594EF /* LBXPermissionMicrophone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXPermissionMicrophone.h; sourceTree = "<group>"; };
-		1688C3C9228C526B001594EF /* LBXPermissionLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXPermissionLocation.m; sourceTree = "<group>"; };
-		1688C3CA228C526B001594EF /* LBXPermissionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXPermissionData.h; sourceTree = "<group>"; };
-		1688C3CB228C526B001594EF /* LBXPermissionContacts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXPermissionContacts.m; sourceTree = "<group>"; };
-		1688C3CC228C526B001594EF /* LBXPermissionCamera.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXPermissionCamera.m; sourceTree = "<group>"; };
-		1688C3CD228C526B001594EF /* LBXPermissionNet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXPermissionNet.h; sourceTree = "<group>"; };
-		1688C3CE228C526B001594EF /* NetReachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetReachability.h; sourceTree = "<group>"; };
-		1688C3CF228C526B001594EF /* LBXPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBXPermission.m; sourceTree = "<group>"; };
-		1688C3D0228C526B001594EF /* LBXPermissionPhotos.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXPermissionPhotos.h; sourceTree = "<group>"; };
-		1688C3D1228C526B001594EF /* LBXPermissionSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXPermissionSetting.h; sourceTree = "<group>"; };
-		1688C3D2228C526B001594EF /* LBXPermissionHealth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXPermissionHealth.h; sourceTree = "<group>"; };
-		1688C3D3228C526B001594EF /* LBXPermissionReminders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBXPermissionReminders.h; sourceTree = "<group>"; };
-		1688C3D4228C526B001594EF /* CKJBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseModel.m; sourceTree = "<group>"; };
-		1688C3D6228C526B001594EF /* NSObject+WDYHFCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WDYHFCategory.m"; sourceTree = "<group>"; };
-		1688C3D7228C526B001594EF /* UIView+CKJDesingable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CKJDesingable.h"; sourceTree = "<group>"; };
-		1688C3D8228C526B001594EF /* NSObject+WDYHFCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WDYHFCategory.h"; sourceTree = "<group>"; };
-		1688C3D9228C526B001594EF /* UIView+CKJDesingable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CKJDesingable.m"; sourceTree = "<group>"; };
-		1688C40E228C5286001594EF /* WDYHFHospitalItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDYHFHospitalItem.h; sourceTree = "<group>"; };
-		1688C40F228C5286001594EF /* zhuyuan出院结算@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan出院结算@2x.png"; sourceTree = "<group>"; };
-		1688C410228C5286001594EF /* RJTestListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTestListVC.h; sourceTree = "<group>"; };
-		1688C412228C5286001594EF /* billList.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = billList.geojson; sourceTree = "<group>"; };
-		1688C413228C5286001594EF /* billDetail.geojson */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = billDetail.geojson; sourceTree = "<group>"; };
-		1688C414228C5286001594EF /* zhuyuan充值记录@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan充值记录@2x.png"; sourceTree = "<group>"; };
-		1688C415228C5286001594EF /* zhuyuan预交金充值@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan预交金充值@2x.png"; sourceTree = "<group>"; };
-		1688C416228C5286001594EF /* zhuyuan预交金充值@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan预交金充值@3x.png"; sourceTree = "<group>"; };
-		1688C417228C5286001594EF /* RJBillDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJBillDetailModel.h; sourceTree = "<group>"; };
-		1688C418228C5286001594EF /* zhuyuan充值记录@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan充值记录@3x.png"; sourceTree = "<group>"; };
-		1688C419228C5286001594EF /* wdyhfsdk支付宝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdyhfsdk支付宝.png"; sourceTree = "<group>"; };
-		1688C41A228C5286001594EF /* wdyhfsdkright arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdyhfsdkright arrow.png"; sourceTree = "<group>"; };
-		1688C41B228C5286001594EF /* zhuyuan出院结算@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan出院结算@3x.png"; sourceTree = "<group>"; };
-		1688C41C228C5286001594EF /* RJKJBS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJKJBS.h; sourceTree = "<group>"; };
-		1688C41D228C5286001594EF /* wdyhfsdk勾选空.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdyhfsdk勾选空.png"; sourceTree = "<group>"; };
-		1688C41E228C5286001594EF /* zhuyuan日清单查询@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan日清单查询@2x.png"; sourceTree = "<group>"; };
-		1688C41F228C5286001594EF /* RJBillCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJBillCell.h; sourceTree = "<group>"; };
-		1688C420228C5286001594EF /* RJSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJSettingViewController.h; sourceTree = "<group>"; };
-		1688C421228C5286001594EF /* RJConfigVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJConfigVC.h; sourceTree = "<group>"; };
-		1688C422228C5286001594EF /* wdyhfsdk银联.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdyhfsdk银联.png"; sourceTree = "<group>"; };
-		1688C423228C5286001594EF /* zhuyuan历史住院记录@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan历史住院记录@2x.png"; sourceTree = "<group>"; };
-		1688C424228C5286001594EF /* SelectDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectDateCell.h; sourceTree = "<group>"; };
-		1688C425228C5286001594EF /* zhuyuan历史住院记录@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan历史住院记录@3x.png"; sourceTree = "<group>"; };
-		1688C426228C5286001594EF /* RJBindCardVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJBindCardVC.h; sourceTree = "<group>"; };
-		1688C427228C5286001594EF /* wdyhfsdkhospital.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wdyhfsdkhospital.png; sourceTree = "<group>"; };
-		1688C428228C5286001594EF /* yhf通知.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yhf通知.png"; sourceTree = "<group>"; };
-		1688C429228C5286001594EF /* wdyhfsdkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wdyhfsdkmark.png; sourceTree = "<group>"; };
-		1688C42A228C5286001594EF /* zhuyuan日清单查询@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan日清单查询@3x.png"; sourceTree = "<group>"; };
-		1688C42B228C5286001594EF /* RJTestListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTestListVC.m; sourceTree = "<group>"; };
-		1688C42C228C5286001594EF /* wdyhfsdk编辑.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdyhfsdk编辑.png"; sourceTree = "<group>"; };
-		1688C42D228C5286001594EF /* RJBillCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RJBillCell.xib; sourceTree = "<group>"; };
-		1688C42E228C5286001594EF /* WDYHFHospitalItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDYHFHospitalItem.m; sourceTree = "<group>"; };
-		1688C42F228C5286001594EF /* RJKJBS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJKJBS.m; sourceTree = "<group>"; };
-		1688C430228C5286001594EF /* TETTST.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TETTST.xib; sourceTree = "<group>"; };
-		1688C431228C5286001594EF /* wdyhfsdk勾选.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdyhfsdk勾选.png"; sourceTree = "<group>"; };
-		1688C432228C5286001594EF /* RJBillDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJBillDetailModel.m; sourceTree = "<group>"; };
-		1688C433228C5286001594EF /* RJConfigVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJConfigVC.m; sourceTree = "<group>"; };
-		1688C434228C5286001594EF /* yhf下箭头.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yhf下箭头.png"; sourceTree = "<group>"; };
-		1688C435228C5286001594EF /* touxiang.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = touxiang.jpg; sourceTree = "<group>"; };
-		1688C436228C5286001594EF /* RJSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJSettingViewController.m; sourceTree = "<group>"; };
-		1688C437228C5286001594EF /* RJBillCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJBillCell.m; sourceTree = "<group>"; };
-		1688C438228C5286001594EF /* RJBindCardVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJBindCardVC.m; sourceTree = "<group>"; };
-		1688C439228C5286001594EF /* wdyhfsdkechat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wdyhfsdkechat.png; sourceTree = "<group>"; };
-		1688C43A228C5286001594EF /* SelectDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectDateCell.m; sourceTree = "<group>"; };
+		168AF8A1229ED28C00619C79 /* NSObject+WDYHFCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WDYHFCategory.m"; sourceTree = "<group>"; };
+		168AF8A2229ED28C00619C79 /* UIView+CKJDesingable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CKJDesingable.h"; sourceTree = "<group>"; };
+		168AF8A3229ED28C00619C79 /* NSObject+WDYHFCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WDYHFCategory.h"; sourceTree = "<group>"; };
+		168AF8A4229ED28C00619C79 /* UIView+CKJDesingable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CKJDesingable.m"; sourceTree = "<group>"; };
+		168AF8A5229ED28C00619C79 /* KJSupportObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSupportObjc.h; sourceTree = "<group>"; };
+		168AF8A7229ED28D00619C79 /* FileManagerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManagerTool.m; sourceTree = "<group>"; };
+		168AF8A8229ED28D00619C79 /* CKJBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseViewController.m; sourceTree = "<group>"; };
+		168AF8A9229ED28D00619C79 /* KJCommonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJCommonManager.m; sourceTree = "<group>"; };
+		168AF8AA229ED28D00619C79 /* CKJBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseModel.h; sourceTree = "<group>"; };
+		168AF8AB229ED28D00619C79 /* CKJRSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJRSA.m; sourceTree = "<group>"; };
+		168AF8AC229ED28D00619C79 /* LightStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightStorageManager.h; sourceTree = "<group>"; };
+		168AF8AD229ED28D00619C79 /* FileManagerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerTool.h; sourceTree = "<group>"; };
+		168AF8AE229ED28D00619C79 /* KJCommonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJCommonManager.h; sourceTree = "<group>"; };
+		168AF8AF229ED28D00619C79 /* CKJBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseViewController.h; sourceTree = "<group>"; };
+		168AF8B0229ED28D00619C79 /* LightStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightStorageManager.m; sourceTree = "<group>"; };
+		168AF8B1229ED28D00619C79 /* CKJRSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJRSA.h; sourceTree = "<group>"; };
+		168AF8B2229ED28D00619C79 /* CKJBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseModel.m; sourceTree = "<group>"; };
+		168AF8B5229ED28D00619C79 /* CKJToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolView.h; sourceTree = "<group>"; };
+		168AF8B6229ED28D00619C79 /* CKJPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJPickerView.m; sourceTree = "<group>"; };
+		168AF8B7229ED28D00619C79 /* CKJToolPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolPickerView.m; sourceTree = "<group>"; };
+		168AF8B8229ED28D00619C79 /* CKJDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJDatePickerView.m; sourceTree = "<group>"; };
+		168AF8B9229ED28D00619C79 /* CKJToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolView.m; sourceTree = "<group>"; };
+		168AF8BA229ED28D00619C79 /* CKJPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJPickerView.h; sourceTree = "<group>"; };
+		168AF8BB229ED28D00619C79 /* CKJDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJDatePickerView.h; sourceTree = "<group>"; };
+		168AF8BC229ED28D00619C79 /* CKJToolPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolPickerView.h; sourceTree = "<group>"; };
+		168AF8BD229ED28D00619C79 /* CKJExtraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJExtraView.h; sourceTree = "<group>"; };
+		168AF8BE229ED28D00619C79 /* CKJTableEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableEmptyView.h; sourceTree = "<group>"; };
+		168AF8BF229ED28D00619C79 /* CKJToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolbar.m; sourceTree = "<group>"; };
+		168AF8C0229ED28D00619C79 /* CKJPayBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJPayBottomView.m; sourceTree = "<group>"; };
+		168AF8C1229ED28D00619C79 /* CKJExtraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJExtraView.m; sourceTree = "<group>"; };
+		168AF8C3229ED28D00619C79 /* CKJSimpleTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableViewDelegate.h; sourceTree = "<group>"; };
+		168AF8C4229ED28D00619C79 /* CKJWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJWorker.m; sourceTree = "<group>"; };
+		168AF8C5229ED28D00619C79 /* CKJSimpleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSimpleTableView.m; sourceTree = "<group>"; };
+		168AF8C7229ED28D00619C79 /* CKJBaseTableViewToolVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseTableViewToolVC.m; sourceTree = "<group>"; };
+		168AF8C8229ED28D00619C79 /* CKJBaseTableViewToolVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseTableViewToolVC.h; sourceTree = "<group>"; };
+		168AF8C9229ED28D00619C79 /* CKJCombineCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCombineCellProtocol.h; sourceTree = "<group>"; };
+		168AF8CB229ED28D00619C79 /* CKJCommonSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonSectionModel.m; sourceTree = "<group>"; };
+		168AF8CC229ED28D00619C79 /* CKJCommonCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonCellModel.m; sourceTree = "<group>"; };
+		168AF8CD229ED28D00619C79 /* CKJCommonHeaderFooterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonHeaderFooterModel.h; sourceTree = "<group>"; };
+		168AF8CE229ED28D00619C79 /* CKJCommonSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonSectionModel.h; sourceTree = "<group>"; };
+		168AF8CF229ED28D00619C79 /* CKJCommonHeaderFooterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonHeaderFooterModel.m; sourceTree = "<group>"; };
+		168AF8D0229ED28D00619C79 /* CKJCommonCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonCellModel.h; sourceTree = "<group>"; };
+		168AF8D3229ED28D00619C79 /* CKJDemoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJDemoCell.m; sourceTree = "<group>"; };
+		168AF8D4229ED28D00619C79 /* CKJDemoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKJDemoCell.xib; sourceTree = "<group>"; };
+		168AF8D5229ED28D00619C79 /* CKJDemoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJDemoCell.h; sourceTree = "<group>"; };
+		168AF8D7229ED28D00619C79 /* CKJTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewCell1.m; sourceTree = "<group>"; };
+		168AF8D8229ED28D00619C79 /* CKJStackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJStackCell.m; sourceTree = "<group>"; };
+		168AF8D9229ED28D00619C79 /* CKJBaseFunctionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseFunctionCell.h; sourceTree = "<group>"; };
+		168AF8DA229ED28D00619C79 /* CKJInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJInputCell.h; sourceTree = "<group>"; };
+		168AF8DB229ED28D00619C79 /* CKJSquareCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSquareCell1.h; sourceTree = "<group>"; };
+		168AF8DC229ED28D00619C79 /* CKJBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseTableViewCell.m; sourceTree = "<group>"; };
+		168AF8DD229ED28D00619C79 /* CKJFunctionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJFunctionCell.m; sourceTree = "<group>"; };
+		168AF8DE229ED28D00619C79 /* CKJTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewCell2.m; sourceTree = "<group>"; };
+		168AF8DF229ED28D00619C79 /* CKJFiveCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJFiveCell.m; sourceTree = "<group>"; };
+		168AF8E0229ED28D00619C79 /* CKJEmptyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJEmptyCell.m; sourceTree = "<group>"; };
+		168AF8E1229ED28D00619C79 /* CKJSquareCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSquareCell2.h; sourceTree = "<group>"; };
+		168AF8E2229ED28D00619C79 /* CKJLeftRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJLeftRightCell.h; sourceTree = "<group>"; };
+		168AF8E3229ED28D00619C79 /* CKJCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCell.h; sourceTree = "<group>"; };
+		168AF8E4229ED28D00619C79 /* CKJRadioCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJRadioCell.h; sourceTree = "<group>"; };
+		168AF8E5229ED28D00619C79 /* CKJCommonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonTableViewCell.h; sourceTree = "<group>"; };
+		168AF8E6229ED28D00619C79 /* CKJBaseFunctionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseFunctionCell.m; sourceTree = "<group>"; };
+		168AF8E7229ED28D00619C79 /* CKJStackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJStackCell.h; sourceTree = "<group>"; };
+		168AF8E8229ED28D00619C79 /* CKJTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewCell1.h; sourceTree = "<group>"; };
+		168AF8E9229ED28D00619C79 /* CKJBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseTableViewCell.h; sourceTree = "<group>"; };
+		168AF8EA229ED28D00619C79 /* CKJSquareCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSquareCell1.m; sourceTree = "<group>"; };
+		168AF8EB229ED28D00619C79 /* CKJInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJInputCell.m; sourceTree = "<group>"; };
+		168AF8EC229ED28D00619C79 /* CKJFiveCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJFiveCell.h; sourceTree = "<group>"; };
+		168AF8ED229ED28D00619C79 /* CKJTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewCell2.h; sourceTree = "<group>"; };
+		168AF8EE229ED28D00619C79 /* CKJFunctionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJFunctionCell.h; sourceTree = "<group>"; };
+		168AF8EF229ED28D00619C79 /* CKJCommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonTableViewCell.m; sourceTree = "<group>"; };
+		168AF8F0229ED28D00619C79 /* CKJCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCell.m; sourceTree = "<group>"; };
+		168AF8F1229ED28D00619C79 /* CKJLeftRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJLeftRightCell.m; sourceTree = "<group>"; };
+		168AF8F2229ED28D00619C79 /* CKJRadioCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJRadioCell.m; sourceTree = "<group>"; };
+		168AF8F3229ED28D00619C79 /* CKJSquareCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSquareCell2.m; sourceTree = "<group>"; };
+		168AF8F4229ED28D00619C79 /* CKJEmptyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJEmptyCell.h; sourceTree = "<group>"; };
+		168AF8F6229ED28D00619C79 /* CKJTableViewHeaderFooterEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewHeaderFooterEmptyView.m; sourceTree = "<group>"; };
+		168AF8F7229ED28D00619C79 /* CKJCommonTableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonTableViewHeaderFooterView.h; sourceTree = "<group>"; };
+		168AF8F8229ED28D00619C79 /* CKJTitleStyleHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTitleStyleHeaderFooterView.h; sourceTree = "<group>"; };
+		168AF8F9229ED28D00619C79 /* CKJCommonTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonTableViewHeaderFooterView.m; sourceTree = "<group>"; };
+		168AF8FA229ED28D00619C79 /* CKJTableViewHeaderFooterEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewHeaderFooterEmptyView.h; sourceTree = "<group>"; };
+		168AF8FB229ED28D00619C79 /* CKJTitleStyleHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTitleStyleHeaderFooterView.m; sourceTree = "<group>"; };
+		168AF8FC229ED28D00619C79 /* CKJSimpleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableView.h; sourceTree = "<group>"; };
+		168AF8FD229ED28D00619C79 /* CKJWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJWorker.h; sourceTree = "<group>"; };
+		168AF8FE229ED28D00619C79 /* CKJTableEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableEmptyView.m; sourceTree = "<group>"; };
+		168AF8FF229ED28D00619C79 /* CKJPayBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJPayBottomView.h; sourceTree = "<group>"; };
+		168AF900229ED28D00619C79 /* CKJToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolbar.h; sourceTree = "<group>"; };
+		168AF930229ED43400619C79 /* zhuyuan出院结算@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan出院结算@2x.png"; sourceTree = "<group>"; };
+		168AF931229ED43400619C79 /* zhuyuan充值记录@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan充值记录@2x.png"; sourceTree = "<group>"; };
+		168AF932229ED43400619C79 /* zhuyuan预交金充值@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan预交金充值@2x.png"; sourceTree = "<group>"; };
+		168AF933229ED43400619C79 /* zhuyuan预交金充值@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan预交金充值@3x.png"; sourceTree = "<group>"; };
+		168AF934229ED43400619C79 /* zhuyuan充值记录@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan充值记录@3x.png"; sourceTree = "<group>"; };
+		168AF935229ED43400619C79 /* wdyhfsdk支付宝.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdyhfsdk支付宝.png"; sourceTree = "<group>"; };
+		168AF936229ED43400619C79 /* wdyhfsdkright arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdyhfsdkright arrow.png"; sourceTree = "<group>"; };
+		168AF937229ED43400619C79 /* zhuyuan出院结算@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan出院结算@3x.png"; sourceTree = "<group>"; };
+		168AF938229ED43400619C79 /* wdyhfsdk勾选空.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdyhfsdk勾选空.png"; sourceTree = "<group>"; };
+		168AF939229ED43400619C79 /* zhuyuan日清单查询@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan日清单查询@2x.png"; sourceTree = "<group>"; };
+		168AF93A229ED43400619C79 /* wdyhfsdk银联.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdyhfsdk银联.png"; sourceTree = "<group>"; };
+		168AF93B229ED43400619C79 /* zhuyuan历史住院记录@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan历史住院记录@2x.png"; sourceTree = "<group>"; };
+		168AF93C229ED43400619C79 /* zhuyuan历史住院记录@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan历史住院记录@3x.png"; sourceTree = "<group>"; };
+		168AF93D229ED43400619C79 /* wdyhfsdkhospital.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wdyhfsdkhospital.png; sourceTree = "<group>"; };
+		168AF93E229ED43400619C79 /* yhf通知.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yhf通知.png"; sourceTree = "<group>"; };
+		168AF93F229ED43400619C79 /* wdyhfsdkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wdyhfsdkmark.png; sourceTree = "<group>"; };
+		168AF940229ED43400619C79 /* zhuyuan日清单查询@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan日清单查询@3x.png"; sourceTree = "<group>"; };
+		168AF941229ED43400619C79 /* wdyhfsdk编辑.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdyhfsdk编辑.png"; sourceTree = "<group>"; };
+		168AF942229ED43400619C79 /* TETTST.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TETTST.xib; sourceTree = "<group>"; };
+		168AF943229ED43400619C79 /* wdyhfsdk勾选.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "wdyhfsdk勾选.png"; sourceTree = "<group>"; };
+		168AF944229ED43400619C79 /* yhf下箭头.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yhf下箭头.png"; sourceTree = "<group>"; };
+		168AF945229ED43400619C79 /* touxiang.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = touxiang.jpg; sourceTree = "<group>"; };
+		168AF946229ED43400619C79 /* wdyhfsdkechat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wdyhfsdkechat.png; sourceTree = "<group>"; };
+		168AF948229ED43400619C79 /* WDYHFHospitalItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDYHFHospitalItem.h; sourceTree = "<group>"; };
+		168AF949229ED43400619C79 /* RJBillDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJBillDetailModel.h; sourceTree = "<group>"; };
+		168AF94A229ED43400619C79 /* WDYHFHospitalItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDYHFHospitalItem.m; sourceTree = "<group>"; };
+		168AF94B229ED43400619C79 /* RJBillDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJBillDetailModel.m; sourceTree = "<group>"; };
+		168AF94D229ED43400619C79 /* RJTestListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJTestListVC.h; sourceTree = "<group>"; };
+		168AF94E229ED43400619C79 /* RJInputVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJInputVC.h; sourceTree = "<group>"; };
+		168AF94F229ED43400619C79 /* RJSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJSettingViewController.h; sourceTree = "<group>"; };
+		168AF950229ED43400619C79 /* RJConfigVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJConfigVC.h; sourceTree = "<group>"; };
+		168AF951229ED43400619C79 /* RJStackVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJStackVC.h; sourceTree = "<group>"; };
+		168AF952229ED43400619C79 /* RJTestListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJTestListVC.m; sourceTree = "<group>"; };
+		168AF953229ED43400619C79 /* RJInputVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJInputVC.m; sourceTree = "<group>"; };
+		168AF954229ED43400619C79 /* RJConfigVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJConfigVC.m; sourceTree = "<group>"; };
+		168AF955229ED43400619C79 /* RJSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJSettingViewController.m; sourceTree = "<group>"; };
+		168AF956229ED43400619C79 /* RJStackVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJStackVC.m; sourceTree = "<group>"; };
+		168AF958229ED43400619C79 /* RJBillCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RJBillCell.h; sourceTree = "<group>"; };
+		168AF959229ED43400619C79 /* SelectDateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectDateCell.h; sourceTree = "<group>"; };
+		168AF95A229ED43400619C79 /* RJBillCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RJBillCell.xib; sourceTree = "<group>"; };
+		168AF95B229ED43400619C79 /* RJBillCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RJBillCell.m; sourceTree = "<group>"; };
+		168AF95C229ED43400619C79 /* SelectDateCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectDateCell.m; sourceTree = "<group>"; };
+		168AF97F229ED5B500619C79 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		168AF980229ED5B600619C79 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		16B045C420B9378600362478 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		955997DF209AECF900163047 /* KJSupportObjc.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KJSupportObjc.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		955997E2209AECF900163047 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -313,268 +291,276 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
-		1688C366228C526A001594EF /* View */ = {
+		168AF8A0229ED28C00619C79 /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				1688C367228C526A001594EF /* Picker */,
-				1688C370228C526A001594EF /* CKJExtraView.h */,
-				1688C371228C526A001594EF /* CKJTableEmptyView.h */,
-				1688C372228C526A001594EF /* CKJToolbar.m */,
-				1688C373228C526A001594EF /* CKJPayBottomView.m */,
-				1688C374228C526A001594EF /* CKJExtraView.m */,
-				1688C375228C526A001594EF /* SimpleTableView */,
-				1688C3AB228C526A001594EF /* CKJTableEmptyView.m */,
-				1688C3AC228C526A001594EF /* CKJPayBottomView.h */,
-				1688C3AD228C526A001594EF /* CKJToolbar.h */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1688C367228C526A001594EF /* Picker */ = {
-			isa = PBXGroup;
-			children = (
-				1688C368228C526A001594EF /* CKJToolView.h */,
-				1688C369228C526A001594EF /* CKJPickerView.m */,
-				1688C36A228C526A001594EF /* CKJToolPickerView.m */,
-				1688C36B228C526A001594EF /* CKJDatePickerView.m */,
-				1688C36C228C526A001594EF /* CKJToolView.m */,
-				1688C36D228C526A001594EF /* CKJPickerView.h */,
-				1688C36E228C526A001594EF /* CKJDatePickerView.h */,
-				1688C36F228C526A001594EF /* CKJToolPickerView.h */,
-			);
-			path = Picker;
-			sourceTree = "<group>";
-		};
-		1688C375228C526A001594EF /* SimpleTableView */ = {
-			isa = PBXGroup;
-			children = (
-				1688C376228C526A001594EF /* CKJSimpleTableViewDelegate.h */,
-				1688C377228C526A001594EF /* CKJWorker.m */,
-				1688C378228C526A001594EF /* CKJSimpleTableView.m */,
-				1688C379228C526A001594EF /* Controller */,
-				1688C37C228C526A001594EF /* CKJCombineCellProtocol.h */,
-				1688C37D228C526A001594EF /* Model */,
-				1688C384228C526A001594EF /* View */,
-				1688C3A9228C526A001594EF /* CKJSimpleTableView.h */,
-				1688C3AA228C526A001594EF /* CKJWorker.h */,
-			);
-			path = SimpleTableView;
-			sourceTree = "<group>";
-		};
-		1688C379228C526A001594EF /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				1688C37A228C526A001594EF /* CKJBaseTableViewToolVC.m */,
-				1688C37B228C526A001594EF /* CKJBaseTableViewToolVC.h */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		1688C37D228C526A001594EF /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1688C37E228C526A001594EF /* CKJCommonSectionModel.m */,
-				1688C37F228C526A001594EF /* CKJCommonCellModel.m */,
-				1688C380228C526A001594EF /* CKJCommonHeaderFooterModel.h */,
-				1688C381228C526A001594EF /* CKJCommonSectionModel.h */,
-				1688C382228C526A001594EF /* CKJCommonHeaderFooterModel.m */,
-				1688C383228C526A001594EF /* CKJCommonCellModel.h */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		1688C384228C526A001594EF /* View */ = {
-			isa = PBXGroup;
-			children = (
-				1688C385228C526A001594EF /* Demo */,
-				1688C389228C526A001594EF /* Cell */,
-				1688C3A2228C526A001594EF /* HeaderFooter */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		1688C385228C526A001594EF /* Demo */ = {
-			isa = PBXGroup;
-			children = (
-				1688C386228C526A001594EF /* CKJDemoCell.m */,
-				1688C387228C526A001594EF /* CKJDemoCell.xib */,
-				1688C388228C526A001594EF /* CKJDemoCell.h */,
-			);
-			path = Demo;
-			sourceTree = "<group>";
-		};
-		1688C389228C526A001594EF /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				1688C38A228C526A001594EF /* CKJStackCell.m */,
-				1688C38B228C526A001594EF /* CKJBaseFunctionCell.h */,
-				1688C38C228C526A001594EF /* CKJInputCell.h */,
-				1688C38D228C526A001594EF /* CKJFunctionCell.m */,
-				1688C38E228C526A001594EF /* CKJTableViewCell.h */,
-				1688C38F228C526A001594EF /* CKJTableViewCell2.m */,
-				1688C390228C526A001594EF /* CKJFiveCell.m */,
-				1688C391228C526A001594EF /* CKJEmptyCell.m */,
-				1688C392228C526A001594EF /* CKJLeftRightCell.h */,
-				1688C393228C526A001594EF /* CKJCell.h */,
-				1688C394228C526A001594EF /* CKJRadioCell.h */,
-				1688C395228C526A001594EF /* CKJCommonTableViewCell.h */,
-				1688C396228C526A001594EF /* CKJBaseFunctionCell.m */,
-				1688C397228C526A001594EF /* CKJStackCell.h */,
-				1688C398228C526A001594EF /* CKJInputCell.m */,
-				1688C399228C526A001594EF /* CKJFiveCell.h */,
-				1688C39A228C526A001594EF /* CKJTableViewCell2.h */,
-				1688C39B228C526A001594EF /* CKJTableViewCell.m */,
-				1688C39C228C526A001594EF /* CKJFunctionCell.h */,
-				1688C39D228C526A001594EF /* CKJCommonTableViewCell.m */,
-				1688C39E228C526A001594EF /* CKJCell.m */,
-				1688C39F228C526A001594EF /* CKJLeftRightCell.m */,
-				1688C3A0228C526A001594EF /* CKJRadioCell.m */,
-				1688C3A1228C526A001594EF /* CKJEmptyCell.h */,
-			);
-			path = Cell;
-			sourceTree = "<group>";
-		};
-		1688C3A2228C526A001594EF /* HeaderFooter */ = {
-			isa = PBXGroup;
-			children = (
-				1688C3A3228C526A001594EF /* CKJTableViewHeaderFooterEmptyView.m */,
-				1688C3A4228C526A001594EF /* CKJCommonTableViewHeaderFooterView.h */,
-				1688C3A5228C526A001594EF /* CKJTitleStyleHeaderFooterView.h */,
-				1688C3A6228C526A001594EF /* CKJCommonTableViewHeaderFooterView.m */,
-				1688C3A7228C526A001594EF /* CKJTableViewHeaderFooterEmptyView.h */,
-				1688C3A8228C526A001594EF /* CKJTitleStyleHeaderFooterView.m */,
-			);
-			path = HeaderFooter;
-			sourceTree = "<group>";
-		};
-		1688C3AF228C526B001594EF /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				1688C3B0228C526B001594EF /* FileManagerTool.m */,
-				1688C3B1228C526B001594EF /* CKJBaseViewController.m */,
-				1688C3B2228C526B001594EF /* KJCommonManager.m */,
-				1688C3B3228C526B001594EF /* CKJBaseModel.h */,
-				1688C3B4228C526B001594EF /* LightStorageManager.h */,
-				1688C3B5228C526B001594EF /* FileManagerTool.h */,
-				1688C3B6228C526B001594EF /* KJCommonManager.h */,
-				1688C3B7228C526B001594EF /* CKJBaseViewController.h */,
-				1688C3B8228C526B001594EF /* LightStorageManager.m */,
-				1688C3B9228C526B001594EF /* LBXPermissions */,
-				1688C3D4228C526B001594EF /* CKJBaseModel.m */,
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
-		1688C3B9228C526B001594EF /* LBXPermissions */ = {
-			isa = PBXGroup;
-			children = (
-				1688C3BA228C526B001594EF /* LBXPermissionMicrophone.m */,
-				1688C3BB228C526B001594EF /* LBXPermissionCalendar.m */,
-				1688C3BC228C526B001594EF /* LBXPermissionLocation.h */,
-				1688C3BD228C526B001594EF /* LBXPermission.h */,
-				1688C3BE228C526B001594EF /* LBXPermissionCamera.h */,
-				1688C3BF228C526B001594EF /* LBXPermissionNet.m */,
-				1688C3C0228C526B001594EF /* NetReachability.m */,
-				1688C3C1228C526B001594EF /* LBXPermissionContacts.h */,
-				1688C3C2228C526B001594EF /* LBXPermissionData.m */,
-				1688C3C3228C526B001594EF /* LBXPermissionReminders.m */,
-				1688C3C4228C526B001594EF /* LBXPermissionHealth.m */,
-				1688C3C5228C526B001594EF /* LBXPermissionSetting.m */,
-				1688C3C6228C526B001594EF /* LBXPermissionPhotos.m */,
-				1688C3C7228C526B001594EF /* LBXPermissionCalendar.h */,
-				1688C3C8228C526B001594EF /* LBXPermissionMicrophone.h */,
-				1688C3C9228C526B001594EF /* LBXPermissionLocation.m */,
-				1688C3CA228C526B001594EF /* LBXPermissionData.h */,
-				1688C3CB228C526B001594EF /* LBXPermissionContacts.m */,
-				1688C3CC228C526B001594EF /* LBXPermissionCamera.m */,
-				1688C3CD228C526B001594EF /* LBXPermissionNet.h */,
-				1688C3CE228C526B001594EF /* NetReachability.h */,
-				1688C3CF228C526B001594EF /* LBXPermission.m */,
-				1688C3D0228C526B001594EF /* LBXPermissionPhotos.h */,
-				1688C3D1228C526B001594EF /* LBXPermissionSetting.h */,
-				1688C3D2228C526B001594EF /* LBXPermissionHealth.h */,
-				1688C3D3228C526B001594EF /* LBXPermissionReminders.h */,
-			);
-			path = LBXPermissions;
-			sourceTree = "<group>";
-		};
-		1688C3D5228C526B001594EF /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				1688C3D6228C526B001594EF /* NSObject+WDYHFCategory.m */,
-				1688C3D7228C526B001594EF /* UIView+CKJDesingable.h */,
-				1688C3D8228C526B001594EF /* NSObject+WDYHFCategory.h */,
-				1688C3D9228C526B001594EF /* UIView+CKJDesingable.m */,
+				168AF8A1229ED28C00619C79 /* NSObject+WDYHFCategory.m */,
+				168AF8A2229ED28C00619C79 /* UIView+CKJDesingable.h */,
+				168AF8A3229ED28C00619C79 /* NSObject+WDYHFCategory.h */,
+				168AF8A4229ED28C00619C79 /* UIView+CKJDesingable.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
 		};
-		1688C40D228C5286001594EF /* Test */ = {
+		168AF8A6229ED28D00619C79 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				1688C40E228C5286001594EF /* WDYHFHospitalItem.h */,
-				1688C40F228C5286001594EF /* zhuyuan出院结算@2x.png */,
-				1688C410228C5286001594EF /* RJTestListVC.h */,
-				1688C411228C5286001594EF /* res */,
-				1688C414228C5286001594EF /* zhuyuan充值记录@2x.png */,
-				1688C415228C5286001594EF /* zhuyuan预交金充值@2x.png */,
-				1688C416228C5286001594EF /* zhuyuan预交金充值@3x.png */,
-				1688C417228C5286001594EF /* RJBillDetailModel.h */,
-				1688C418228C5286001594EF /* zhuyuan充值记录@3x.png */,
-				1688C419228C5286001594EF /* wdyhfsdk支付宝.png */,
-				1688C41A228C5286001594EF /* wdyhfsdkright arrow.png */,
-				1688C41B228C5286001594EF /* zhuyuan出院结算@3x.png */,
-				1688C41C228C5286001594EF /* RJKJBS.h */,
-				1688C41D228C5286001594EF /* wdyhfsdk勾选空.png */,
-				1688C41E228C5286001594EF /* zhuyuan日清单查询@2x.png */,
-				1688C41F228C5286001594EF /* RJBillCell.h */,
-				1688C420228C5286001594EF /* RJSettingViewController.h */,
-				1688C421228C5286001594EF /* RJConfigVC.h */,
-				1688C422228C5286001594EF /* wdyhfsdk银联.png */,
-				1688C423228C5286001594EF /* zhuyuan历史住院记录@2x.png */,
-				1688C424228C5286001594EF /* SelectDateCell.h */,
-				1688C425228C5286001594EF /* zhuyuan历史住院记录@3x.png */,
-				1688C426228C5286001594EF /* RJBindCardVC.h */,
-				1688C427228C5286001594EF /* wdyhfsdkhospital.png */,
-				1688C428228C5286001594EF /* yhf通知.png */,
-				1688C429228C5286001594EF /* wdyhfsdkmark.png */,
-				1688C42A228C5286001594EF /* zhuyuan日清单查询@3x.png */,
-				1688C42B228C5286001594EF /* RJTestListVC.m */,
-				1688C42C228C5286001594EF /* wdyhfsdk编辑.png */,
-				1688C42D228C5286001594EF /* RJBillCell.xib */,
-				1688C42E228C5286001594EF /* WDYHFHospitalItem.m */,
-				1688C42F228C5286001594EF /* RJKJBS.m */,
-				1688C430228C5286001594EF /* TETTST.xib */,
-				1688C431228C5286001594EF /* wdyhfsdk勾选.png */,
-				1688C432228C5286001594EF /* RJBillDetailModel.m */,
-				1688C433228C5286001594EF /* RJConfigVC.m */,
-				1688C434228C5286001594EF /* yhf下箭头.png */,
-				1688C435228C5286001594EF /* touxiang.jpg */,
-				1688C436228C5286001594EF /* RJSettingViewController.m */,
-				1688C437228C5286001594EF /* RJBillCell.m */,
-				1688C438228C5286001594EF /* RJBindCardVC.m */,
-				1688C439228C5286001594EF /* wdyhfsdkechat.png */,
-				1688C43A228C5286001594EF /* SelectDateCell.m */,
+				168AF8A7229ED28D00619C79 /* FileManagerTool.m */,
+				168AF8A8229ED28D00619C79 /* CKJBaseViewController.m */,
+				168AF8A9229ED28D00619C79 /* KJCommonManager.m */,
+				168AF8AA229ED28D00619C79 /* CKJBaseModel.h */,
+				168AF8AB229ED28D00619C79 /* CKJRSA.m */,
+				168AF8AC229ED28D00619C79 /* LightStorageManager.h */,
+				168AF8AD229ED28D00619C79 /* FileManagerTool.h */,
+				168AF8AE229ED28D00619C79 /* KJCommonManager.h */,
+				168AF8AF229ED28D00619C79 /* CKJBaseViewController.h */,
+				168AF8B0229ED28D00619C79 /* LightStorageManager.m */,
+				168AF8B1229ED28D00619C79 /* CKJRSA.h */,
+				168AF8B2229ED28D00619C79 /* CKJBaseModel.m */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		168AF8B3229ED28D00619C79 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				168AF8B4229ED28D00619C79 /* Picker */,
+				168AF8BD229ED28D00619C79 /* CKJExtraView.h */,
+				168AF8BE229ED28D00619C79 /* CKJTableEmptyView.h */,
+				168AF8BF229ED28D00619C79 /* CKJToolbar.m */,
+				168AF8C0229ED28D00619C79 /* CKJPayBottomView.m */,
+				168AF8C1229ED28D00619C79 /* CKJExtraView.m */,
+				168AF8C2229ED28D00619C79 /* SimpleTableView */,
+				168AF8FE229ED28D00619C79 /* CKJTableEmptyView.m */,
+				168AF8FF229ED28D00619C79 /* CKJPayBottomView.h */,
+				168AF900229ED28D00619C79 /* CKJToolbar.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		168AF8B4229ED28D00619C79 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				168AF8B5229ED28D00619C79 /* CKJToolView.h */,
+				168AF8B6229ED28D00619C79 /* CKJPickerView.m */,
+				168AF8B7229ED28D00619C79 /* CKJToolPickerView.m */,
+				168AF8B8229ED28D00619C79 /* CKJDatePickerView.m */,
+				168AF8B9229ED28D00619C79 /* CKJToolView.m */,
+				168AF8BA229ED28D00619C79 /* CKJPickerView.h */,
+				168AF8BB229ED28D00619C79 /* CKJDatePickerView.h */,
+				168AF8BC229ED28D00619C79 /* CKJToolPickerView.h */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
+		168AF8C2229ED28D00619C79 /* SimpleTableView */ = {
+			isa = PBXGroup;
+			children = (
+				168AF8C3229ED28D00619C79 /* CKJSimpleTableViewDelegate.h */,
+				168AF8C4229ED28D00619C79 /* CKJWorker.m */,
+				168AF8C5229ED28D00619C79 /* CKJSimpleTableView.m */,
+				168AF8C6229ED28D00619C79 /* Controller */,
+				168AF8C9229ED28D00619C79 /* CKJCombineCellProtocol.h */,
+				168AF8CA229ED28D00619C79 /* Model */,
+				168AF8D1229ED28D00619C79 /* View */,
+				168AF8FC229ED28D00619C79 /* CKJSimpleTableView.h */,
+				168AF8FD229ED28D00619C79 /* CKJWorker.h */,
+			);
+			path = SimpleTableView;
+			sourceTree = "<group>";
+		};
+		168AF8C6229ED28D00619C79 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				168AF8C7229ED28D00619C79 /* CKJBaseTableViewToolVC.m */,
+				168AF8C8229ED28D00619C79 /* CKJBaseTableViewToolVC.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		168AF8CA229ED28D00619C79 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				168AF8CB229ED28D00619C79 /* CKJCommonSectionModel.m */,
+				168AF8CC229ED28D00619C79 /* CKJCommonCellModel.m */,
+				168AF8CD229ED28D00619C79 /* CKJCommonHeaderFooterModel.h */,
+				168AF8CE229ED28D00619C79 /* CKJCommonSectionModel.h */,
+				168AF8CF229ED28D00619C79 /* CKJCommonHeaderFooterModel.m */,
+				168AF8D0229ED28D00619C79 /* CKJCommonCellModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		168AF8D1229ED28D00619C79 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				168AF8D2229ED28D00619C79 /* Demo */,
+				168AF8D6229ED28D00619C79 /* Cell */,
+				168AF8F5229ED28D00619C79 /* HeaderFooter */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		168AF8D2229ED28D00619C79 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				168AF8D3229ED28D00619C79 /* CKJDemoCell.m */,
+				168AF8D4229ED28D00619C79 /* CKJDemoCell.xib */,
+				168AF8D5229ED28D00619C79 /* CKJDemoCell.h */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		168AF8D6229ED28D00619C79 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				168AF8D7229ED28D00619C79 /* CKJTableViewCell1.m */,
+				168AF8D8229ED28D00619C79 /* CKJStackCell.m */,
+				168AF8D9229ED28D00619C79 /* CKJBaseFunctionCell.h */,
+				168AF8DA229ED28D00619C79 /* CKJInputCell.h */,
+				168AF8DB229ED28D00619C79 /* CKJSquareCell1.h */,
+				168AF8DC229ED28D00619C79 /* CKJBaseTableViewCell.m */,
+				168AF8DD229ED28D00619C79 /* CKJFunctionCell.m */,
+				168AF8DE229ED28D00619C79 /* CKJTableViewCell2.m */,
+				168AF8DF229ED28D00619C79 /* CKJFiveCell.m */,
+				168AF8E0229ED28D00619C79 /* CKJEmptyCell.m */,
+				168AF8E1229ED28D00619C79 /* CKJSquareCell2.h */,
+				168AF8E2229ED28D00619C79 /* CKJLeftRightCell.h */,
+				168AF8E3229ED28D00619C79 /* CKJCell.h */,
+				168AF8E4229ED28D00619C79 /* CKJRadioCell.h */,
+				168AF8E5229ED28D00619C79 /* CKJCommonTableViewCell.h */,
+				168AF8E6229ED28D00619C79 /* CKJBaseFunctionCell.m */,
+				168AF8E7229ED28D00619C79 /* CKJStackCell.h */,
+				168AF8E8229ED28D00619C79 /* CKJTableViewCell1.h */,
+				168AF8E9229ED28D00619C79 /* CKJBaseTableViewCell.h */,
+				168AF8EA229ED28D00619C79 /* CKJSquareCell1.m */,
+				168AF8EB229ED28D00619C79 /* CKJInputCell.m */,
+				168AF8EC229ED28D00619C79 /* CKJFiveCell.h */,
+				168AF8ED229ED28D00619C79 /* CKJTableViewCell2.h */,
+				168AF8EE229ED28D00619C79 /* CKJFunctionCell.h */,
+				168AF8EF229ED28D00619C79 /* CKJCommonTableViewCell.m */,
+				168AF8F0229ED28D00619C79 /* CKJCell.m */,
+				168AF8F1229ED28D00619C79 /* CKJLeftRightCell.m */,
+				168AF8F2229ED28D00619C79 /* CKJRadioCell.m */,
+				168AF8F3229ED28D00619C79 /* CKJSquareCell2.m */,
+				168AF8F4229ED28D00619C79 /* CKJEmptyCell.h */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		168AF8F5229ED28D00619C79 /* HeaderFooter */ = {
+			isa = PBXGroup;
+			children = (
+				168AF8F6229ED28D00619C79 /* CKJTableViewHeaderFooterEmptyView.m */,
+				168AF8F7229ED28D00619C79 /* CKJCommonTableViewHeaderFooterView.h */,
+				168AF8F8229ED28D00619C79 /* CKJTitleStyleHeaderFooterView.h */,
+				168AF8F9229ED28D00619C79 /* CKJCommonTableViewHeaderFooterView.m */,
+				168AF8FA229ED28D00619C79 /* CKJTableViewHeaderFooterEmptyView.h */,
+				168AF8FB229ED28D00619C79 /* CKJTitleStyleHeaderFooterView.m */,
+			);
+			path = HeaderFooter;
+			sourceTree = "<group>";
+		};
+		168AF92E229ED43400619C79 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				168AF92F229ED43400619C79 /* res */,
+				168AF947229ED43400619C79 /* M */,
+				168AF94C229ED43400619C79 /* C */,
+				168AF957229ED43400619C79 /* V */,
 			);
 			path = Test;
 			sourceTree = "<group>";
 		};
-		1688C411228C5286001594EF /* res */ = {
+		168AF92F229ED43400619C79 /* res */ = {
 			isa = PBXGroup;
 			children = (
-				1688C412228C5286001594EF /* billList.geojson */,
-				1688C413228C5286001594EF /* billDetail.geojson */,
+				168AF930229ED43400619C79 /* zhuyuan出院结算@2x.png */,
+				168AF931229ED43400619C79 /* zhuyuan充值记录@2x.png */,
+				161E6F98229EDB5A00B1CA1A /* billDetail.geojson */,
+				161E6F96229EDB5A00B1CA1A /* billList.geojson */,
+				161E6F97229EDB5A00B1CA1A /* NewList.geojson */,
+				168AF932229ED43400619C79 /* zhuyuan预交金充值@2x.png */,
+				168AF933229ED43400619C79 /* zhuyuan预交金充值@3x.png */,
+				168AF934229ED43400619C79 /* zhuyuan充值记录@3x.png */,
+				168AF935229ED43400619C79 /* wdyhfsdk支付宝.png */,
+				168AF936229ED43400619C79 /* wdyhfsdkright arrow.png */,
+				168AF937229ED43400619C79 /* zhuyuan出院结算@3x.png */,
+				168AF938229ED43400619C79 /* wdyhfsdk勾选空.png */,
+				168AF939229ED43400619C79 /* zhuyuan日清单查询@2x.png */,
+				168AF93A229ED43400619C79 /* wdyhfsdk银联.png */,
+				168AF93B229ED43400619C79 /* zhuyuan历史住院记录@2x.png */,
+				168AF93C229ED43400619C79 /* zhuyuan历史住院记录@3x.png */,
+				168AF93D229ED43400619C79 /* wdyhfsdkhospital.png */,
+				168AF93E229ED43400619C79 /* yhf通知.png */,
+				168AF93F229ED43400619C79 /* wdyhfsdkmark.png */,
+				168AF940229ED43400619C79 /* zhuyuan日清单查询@3x.png */,
+				168AF941229ED43400619C79 /* wdyhfsdk编辑.png */,
+				168AF942229ED43400619C79 /* TETTST.xib */,
+				168AF943229ED43400619C79 /* wdyhfsdk勾选.png */,
+				168AF944229ED43400619C79 /* yhf下箭头.png */,
+				168AF945229ED43400619C79 /* touxiang.jpg */,
+				168AF946229ED43400619C79 /* wdyhfsdkechat.png */,
 			);
 			path = res;
+			sourceTree = "<group>";
+		};
+		168AF947229ED43400619C79 /* M */ = {
+			isa = PBXGroup;
+			children = (
+				168AF948229ED43400619C79 /* WDYHFHospitalItem.h */,
+				168AF949229ED43400619C79 /* RJBillDetailModel.h */,
+				168AF94A229ED43400619C79 /* WDYHFHospitalItem.m */,
+				168AF94B229ED43400619C79 /* RJBillDetailModel.m */,
+			);
+			path = M;
+			sourceTree = "<group>";
+		};
+		168AF94C229ED43400619C79 /* C */ = {
+			isa = PBXGroup;
+			children = (
+				168AF94D229ED43400619C79 /* RJTestListVC.h */,
+				168AF94E229ED43400619C79 /* RJInputVC.h */,
+				168AF94F229ED43400619C79 /* RJSettingViewController.h */,
+				168AF950229ED43400619C79 /* RJConfigVC.h */,
+				168AF951229ED43400619C79 /* RJStackVC.h */,
+				168AF952229ED43400619C79 /* RJTestListVC.m */,
+				168AF953229ED43400619C79 /* RJInputVC.m */,
+				168AF954229ED43400619C79 /* RJConfigVC.m */,
+				168AF955229ED43400619C79 /* RJSettingViewController.m */,
+				168AF956229ED43400619C79 /* RJStackVC.m */,
+			);
+			path = C;
+			sourceTree = "<group>";
+		};
+		168AF957229ED43400619C79 /* V */ = {
+			isa = PBXGroup;
+			children = (
+				168AF958229ED43400619C79 /* RJBillCell.h */,
+				168AF959229ED43400619C79 /* SelectDateCell.h */,
+				168AF95A229ED43400619C79 /* RJBillCell.xib */,
+				168AF95B229ED43400619C79 /* RJBillCell.m */,
+				168AF95C229ED43400619C79 /* SelectDateCell.m */,
+			);
+			path = V;
+			sourceTree = "<group>";
+		};
+		168AF97E229ED5AD00619C79 /* 3 */ = {
+			isa = PBXGroup;
+			children = (
+				168AF97F229ED5B500619C79 /* MBProgressHUD.h */,
+				168AF980229ED5B600619C79 /* MBProgressHUD.m */,
+			);
+			path = 3;
 			sourceTree = "<group>";
 		};
 		16F470442192E38D00C4D1B3 /* Objc */ = {
 			isa = PBXGroup;
 			children = (
-				1688C3D5228C526B001594EF /* Category */,
-				1688C3AE228C526B001594EF /* KJSupportObjc.h */,
-				1688C3AF228C526B001594EF /* Other */,
-				1688C366228C526A001594EF /* View */,
+				168AF8A0229ED28C00619C79 /* Category */,
+				168AF8A5229ED28C00619C79 /* KJSupportObjc.h */,
+				168AF8A6229ED28D00619C79 /* Other */,
+				168AF8B3229ED28D00619C79 /* View */,
 			);
 			path = Objc;
 			sourceTree = "<group>";
@@ -600,10 +586,11 @@
 		955997E1209AECF900163047 /* KJSupportObjc */ = {
 			isa = PBXGroup;
 			children = (
+				168AF97E229ED5AD00619C79 /* 3 */,
 				16F470442192E38D00C4D1B3 /* Objc */,
 				955997E2209AECF900163047 /* AppDelegate.h */,
-				1688C40D228C5286001594EF /* Test */,
 				955997E3209AECF900163047 /* AppDelegate.m */,
+				168AF92E229ED43400619C79 /* Test */,
 				955997E5209AECF900163047 /* ViewController.h */,
 				955997E6209AECF900163047 /* ViewController.m */,
 				16B045C420B9378600362478 /* PrefixHeader.pch */,
@@ -694,45 +681,46 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				161E6F99229EDB5A00B1CA1A /* billList.geojson in Resources */,
+				168AF970229ED43400619C79 /* wdyhfsdk勾选.png in Resources */,
 				1657522620DCD4EB00CB0C8F /* 2.png in Resources */,
-				1688C44A228C5286001594EF /* wdyhfsdkhospital.png in Resources */,
-				1688C443228C5286001594EF /* wdyhfsdkright arrow.png in Resources */,
-				1688C44F228C5286001594EF /* wdyhfsdk编辑.png in Resources */,
+				168AF964229ED43400619C79 /* zhuyuan出院结算@3x.png in Resources */,
+				168AF917229ED28D00619C79 /* CKJDemoCell.xib in Resources */,
+				168AF96F229ED43400619C79 /* TETTST.xib in Resources */,
+				168AF973229ED43400619C79 /* wdyhfsdkechat.png in Resources */,
+				168AF97B229ED43400619C79 /* RJBillCell.xib in Resources */,
 				1657522420DCD4EB00CB0C8F /* 7.png in Resources */,
 				1657522220DCD4EB00CB0C8F /* 4.png in Resources */,
+				168AF96A229ED43400619C79 /* wdyhfsdkhospital.png in Resources */,
+				168AF968229ED43400619C79 /* zhuyuan历史住院记录@2x.png in Resources */,
+				161E6F9A229EDB5A00B1CA1A /* NewList.geojson in Resources */,
 				1657522320DCD4EB00CB0C8F /* 5.png in Resources */,
-				1688C43E228C5286001594EF /* zhuyuan充值记录@2x.png in Resources */,
-				1688C3E8228C526C001594EF /* CKJDemoCell.xib in Resources */,
-				1688C44C228C5286001594EF /* wdyhfsdkmark.png in Resources */,
-				1688C444228C5286001594EF /* zhuyuan出院结算@3x.png in Resources */,
-				1688C441228C5286001594EF /* zhuyuan充值记录@3x.png in Resources */,
-				1688C454228C5286001594EF /* wdyhfsdk勾选.png in Resources */,
-				1688C44D228C5286001594EF /* zhuyuan日清单查询@3x.png in Resources */,
 				1657522120DCD4EB00CB0C8F /* 阿狸.png in Resources */,
+				168AF967229ED43400619C79 /* wdyhfsdk银联.png in Resources */,
+				168AF95E229ED43400619C79 /* zhuyuan充值记录@2x.png in Resources */,
 				1657522720DCD4EB00CB0C8F /* 3.png in Resources */,
-				1688C457228C5286001594EF /* yhf下箭头.png in Resources */,
-				1688C447228C5286001594EF /* wdyhfsdk银联.png in Resources */,
-				1688C440228C5286001594EF /* zhuyuan预交金充值@3x.png in Resources */,
-				1688C43C228C5286001594EF /* billList.geojson in Resources */,
-				1688C45C228C5286001594EF /* wdyhfsdkechat.png in Resources */,
 				955997EF209AECFA00163047 /* LaunchScreen.storyboard in Resources */,
+				168AF962229ED43400619C79 /* wdyhfsdk支付宝.png in Resources */,
 				955997EC209AECFA00163047 /* Assets.xcassets in Resources */,
-				1688C442228C5286001594EF /* wdyhfsdk支付宝.png in Resources */,
-				1688C44B228C5286001594EF /* yhf通知.png in Resources */,
-				1688C453228C5286001594EF /* TETTST.xib in Resources */,
-				1688C43B228C5286001594EF /* zhuyuan出院结算@2x.png in Resources */,
-				1688C448228C5286001594EF /* zhuyuan历史住院记录@2x.png in Resources */,
-				1688C446228C5286001594EF /* zhuyuan日清单查询@2x.png in Resources */,
-				1688C458228C5286001594EF /* touxiang.jpg in Resources */,
-				1688C43F228C5286001594EF /* zhuyuan预交金充值@2x.png in Resources */,
-				1688C450228C5286001594EF /* RJBillCell.xib in Resources */,
-				1688C43D228C5286001594EF /* billDetail.geojson in Resources */,
+				168AF96D229ED43400619C79 /* zhuyuan日清单查询@3x.png in Resources */,
+				168AF971229ED43400619C79 /* yhf下箭头.png in Resources */,
+				168AF969229ED43400619C79 /* zhuyuan历史住院记录@3x.png in Resources */,
+				168AF95D229ED43400619C79 /* zhuyuan出院结算@2x.png in Resources */,
 				1657522920DCD4EB00CB0C8F /* 0.png in Resources */,
+				168AF96B229ED43400619C79 /* yhf通知.png in Resources */,
 				1657522520DCD4EB00CB0C8F /* 6.png in Resources */,
-				1688C449228C5286001594EF /* zhuyuan历史住院记录@3x.png in Resources */,
+				168AF972229ED43400619C79 /* touxiang.jpg in Resources */,
 				1657522820DCD4EB00CB0C8F /* 1.png in Resources */,
+				168AF963229ED43400619C79 /* wdyhfsdkright arrow.png in Resources */,
+				168AF960229ED43400619C79 /* zhuyuan预交金充值@3x.png in Resources */,
+				168AF95F229ED43400619C79 /* zhuyuan预交金充值@2x.png in Resources */,
+				168AF966229ED43400619C79 /* zhuyuan日清单查询@2x.png in Resources */,
+				168AF965229ED43400619C79 /* wdyhfsdk勾选空.png in Resources */,
+				161E6F9B229EDB5A00B1CA1A /* billDetail.geojson in Resources */,
+				168AF96E229ED43400619C79 /* wdyhfsdk编辑.png in Resources */,
+				168AF96C229ED43400619C79 /* wdyhfsdkmark.png in Resources */,
+				168AF961229ED43400619C79 /* zhuyuan充值记录@3x.png in Resources */,
 				955997EA209AECF900163047 /* Main.storyboard in Resources */,
-				1688C445228C5286001594EF /* wdyhfsdk勾选空.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -786,68 +774,60 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1688C3E3228C526C001594EF /* CKJBaseTableViewToolVC.m in Sources */,
-				1688C451228C5286001594EF /* WDYHFHospitalItem.m in Sources */,
-				1688C3E5228C526C001594EF /* CKJCommonCellModel.m in Sources */,
-				1688C404228C526C001594EF /* LBXPermissionSetting.m in Sources */,
-				1688C3F3228C526C001594EF /* CKJLeftRightCell.m in Sources */,
-				1688C405228C526C001594EF /* LBXPermissionPhotos.m in Sources */,
-				1688C456228C5286001594EF /* RJConfigVC.m in Sources */,
-				1688C3DE228C526B001594EF /* CKJToolbar.m in Sources */,
-				1688C3DD228C526B001594EF /* CKJToolView.m in Sources */,
-				1688C3EA228C526C001594EF /* CKJFunctionCell.m in Sources */,
-				1688C3FD228C526C001594EF /* LBXPermissionMicrophone.m in Sources */,
+				168AF925229ED28D00619C79 /* CKJRadioCell.m in Sources */,
+				168AF910229ED28D00619C79 /* CKJWorker.m in Sources */,
+				168AF91F229ED28D00619C79 /* CKJBaseFunctionCell.m in Sources */,
+				168AF914229ED28D00619C79 /* CKJCommonCellModel.m in Sources */,
+				168AF915229ED28D00619C79 /* CKJCommonHeaderFooterModel.m in Sources */,
+				168AF920229ED28D00619C79 /* CKJSquareCell1.m in Sources */,
+				168AF974229ED43400619C79 /* WDYHFHospitalItem.m in Sources */,
+				168AF903229ED28D00619C79 /* FileManagerTool.m in Sources */,
+				168AF905229ED28D00619C79 /* KJCommonManager.m in Sources */,
+				168AF918229ED28D00619C79 /* CKJTableViewCell1.m in Sources */,
+				168AF902229ED28D00619C79 /* UIView+CKJDesingable.m in Sources */,
+				168AF908229ED28D00619C79 /* CKJBaseModel.m in Sources */,
+				168AF904229ED28D00619C79 /* CKJBaseViewController.m in Sources */,
+				168AF981229ED5B600619C79 /* MBProgressHUD.m in Sources */,
+				168AF97D229ED43400619C79 /* SelectDateCell.m in Sources */,
+				168AF921229ED28D00619C79 /* CKJInputCell.m in Sources */,
+				168AF91A229ED28D00619C79 /* CKJBaseTableViewCell.m in Sources */,
+				168AF979229ED43400619C79 /* RJSettingViewController.m in Sources */,
+				168AF90A229ED28D00619C79 /* CKJToolPickerView.m in Sources */,
+				168AF90F229ED28D00619C79 /* CKJExtraView.m in Sources */,
 				955997E7209AECF900163047 /* ViewController.m in Sources */,
-				1688C455228C5286001594EF /* RJBillDetailModel.m in Sources */,
-				1688C3F1228C526C001594EF /* CKJCommonTableViewCell.m in Sources */,
-				1688C3F0228C526C001594EF /* CKJTableViewCell.m in Sources */,
-				1688C44E228C5286001594EF /* RJTestListVC.m in Sources */,
-				1688C409228C526C001594EF /* LBXPermission.m in Sources */,
-				1688C3FE228C526C001594EF /* LBXPermissionCalendar.m in Sources */,
-				1688C3EB228C526C001594EF /* CKJTableViewCell2.m in Sources */,
-				1688C403228C526C001594EF /* LBXPermissionHealth.m in Sources */,
-				1688C459228C5286001594EF /* RJSettingViewController.m in Sources */,
-				1688C3F5228C526C001594EF /* CKJTableViewHeaderFooterEmptyView.m in Sources */,
-				1688C3E6228C526C001594EF /* CKJCommonHeaderFooterModel.m in Sources */,
-				1688C3FA228C526C001594EF /* CKJBaseViewController.m in Sources */,
-				1688C3DA228C526B001594EF /* CKJPickerView.m in Sources */,
-				1688C406228C526C001594EF /* LBXPermissionLocation.m in Sources */,
-				1688C3FB228C526C001594EF /* KJCommonManager.m in Sources */,
-				1688C3F7228C526C001594EF /* CKJTitleStyleHeaderFooterView.m in Sources */,
-				1688C452228C5286001594EF /* RJKJBS.m in Sources */,
+				168AF90E229ED28D00619C79 /* CKJPayBottomView.m in Sources */,
+				168AF91E229ED28D00619C79 /* CKJEmptyCell.m in Sources */,
+				168AF907229ED28D00619C79 /* LightStorageManager.m in Sources */,
+				168AF912229ED28D00619C79 /* CKJBaseTableViewToolVC.m in Sources */,
+				168AF929229ED28D00619C79 /* CKJTitleStyleHeaderFooterView.m in Sources */,
+				168AF909229ED28D00619C79 /* CKJPickerView.m in Sources */,
+				168AF924229ED28D00619C79 /* CKJLeftRightCell.m in Sources */,
+				168AF97C229ED43400619C79 /* RJBillCell.m in Sources */,
+				168AF91B229ED28D00619C79 /* CKJFunctionCell.m in Sources */,
+				168AF913229ED28D00619C79 /* CKJCommonSectionModel.m in Sources */,
+				168AF927229ED28D00619C79 /* CKJTableViewHeaderFooterEmptyView.m in Sources */,
+				168AF91C229ED28D00619C79 /* CKJTableViewCell2.m in Sources */,
+				168AF976229ED43400619C79 /* RJTestListVC.m in Sources */,
+				168AF906229ED28D00619C79 /* CKJRSA.m in Sources */,
+				168AF916229ED28D00619C79 /* CKJDemoCell.m in Sources */,
+				168AF975229ED43400619C79 /* RJBillDetailModel.m in Sources */,
+				168AF901229ED28D00619C79 /* NSObject+WDYHFCategory.m in Sources */,
+				168AF978229ED43400619C79 /* RJConfigVC.m in Sources */,
+				168AF911229ED28D00619C79 /* CKJSimpleTableView.m in Sources */,
+				168AF90C229ED28D00619C79 /* CKJToolView.m in Sources */,
+				168AF92A229ED28D00619C79 /* CKJTableEmptyView.m in Sources */,
+				168AF97A229ED43400619C79 /* RJStackVC.m in Sources */,
 				955997F2209AECFA00163047 /* main.m in Sources */,
-				1688C3EE228C526C001594EF /* CKJBaseFunctionCell.m in Sources */,
-				1688C401228C526C001594EF /* LBXPermissionData.m in Sources */,
-				1688C400228C526C001594EF /* NetReachability.m in Sources */,
-				1688C3FF228C526C001594EF /* LBXPermissionNet.m in Sources */,
+				168AF90D229ED28D00619C79 /* CKJToolbar.m in Sources */,
 				955997E4209AECF900163047 /* AppDelegate.m in Sources */,
-				1688C408228C526C001594EF /* LBXPermissionCamera.m in Sources */,
-				1688C40B228C526C001594EF /* NSObject+WDYHFCategory.m in Sources */,
-				1688C45D228C5286001594EF /* SelectDateCell.m in Sources */,
-				1688C402228C526C001594EF /* LBXPermissionReminders.m in Sources */,
-				1688C3F9228C526C001594EF /* FileManagerTool.m in Sources */,
-				1688C3E2228C526C001594EF /* CKJSimpleTableView.m in Sources */,
-				1688C3ED228C526C001594EF /* CKJEmptyCell.m in Sources */,
-				1688C3DB228C526B001594EF /* CKJToolPickerView.m in Sources */,
-				1688C407228C526C001594EF /* LBXPermissionContacts.m in Sources */,
-				1688C3DF228C526C001594EF /* CKJPayBottomView.m in Sources */,
-				1688C3EC228C526C001594EF /* CKJFiveCell.m in Sources */,
-				1688C45B228C5286001594EF /* RJBindCardVC.m in Sources */,
-				1688C3E1228C526C001594EF /* CKJWorker.m in Sources */,
-				1688C40A228C526C001594EF /* CKJBaseModel.m in Sources */,
-				1688C3E4228C526C001594EF /* CKJCommonSectionModel.m in Sources */,
-				1688C3E7228C526C001594EF /* CKJDemoCell.m in Sources */,
-				1688C3E0228C526C001594EF /* CKJExtraView.m in Sources */,
-				1688C45A228C5286001594EF /* RJBillCell.m in Sources */,
-				1688C3F6228C526C001594EF /* CKJCommonTableViewHeaderFooterView.m in Sources */,
-				1688C3DC228C526B001594EF /* CKJDatePickerView.m in Sources */,
-				1688C3FC228C526C001594EF /* LightStorageManager.m in Sources */,
-				1688C40C228C526C001594EF /* UIView+CKJDesingable.m in Sources */,
-				1688C3F8228C526C001594EF /* CKJTableEmptyView.m in Sources */,
-				1688C3F2228C526C001594EF /* CKJCell.m in Sources */,
-				1688C3F4228C526C001594EF /* CKJRadioCell.m in Sources */,
-				1688C3E9228C526C001594EF /* CKJStackCell.m in Sources */,
-				1688C3EF228C526C001594EF /* CKJInputCell.m in Sources */,
+				168AF926229ED28D00619C79 /* CKJSquareCell2.m in Sources */,
+				168AF923229ED28D00619C79 /* CKJCell.m in Sources */,
+				168AF91D229ED28D00619C79 /* CKJFiveCell.m in Sources */,
+				168AF977229ED43400619C79 /* RJInputVC.m in Sources */,
+				168AF919229ED28D00619C79 /* CKJStackCell.m in Sources */,
+				168AF90B229ED28D00619C79 /* CKJDatePickerView.m in Sources */,
+				168AF928229ED28D00619C79 /* CKJCommonTableViewHeaderFooterView.m in Sources */,
+				168AF922229ED28D00619C79 /* CKJCommonTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -989,8 +969,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WVQHB48696;
+				CODE_SIGN_IDENTITY = "iPhone Developer: changhao qian (W7EMP5GASH)";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = TFEY5JV6HS;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KJSupportObjc/PrefixHeader.pch";
 				INFOPLIST_FILE = KJSupportObjc/Info.plist;
@@ -999,8 +980,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ckj;
+				PRODUCT_BUNDLE_IDENTIFIER = mobi.wonders.apps.ios.healthycity.deqing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "healthycitydeqing Development";
 				SWIFT_OBJC_BRIDGING_HEADER = "KJSupportObjc/Swift/KJSupportObjc-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -1014,8 +996,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WVQHB48696;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = PL87SFZR2N;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/KJSupportObjc/PrefixHeader.pch";
 				INFOPLIST_FILE = KJSupportObjc/Info.plist;
@@ -1024,8 +1007,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ckj;
+				PRODUCT_BUNDLE_IDENTIFIER = mobi.wonders.apps.ios.healthycity.deqing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = dis_deqing_profile;
 				SWIFT_OBJC_BRIDGING_HEADER = "KJSupportObjc/Swift/KJSupportObjc-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

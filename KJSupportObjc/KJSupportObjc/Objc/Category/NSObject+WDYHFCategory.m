@@ -216,6 +216,13 @@ NSMutableAttributedString *_Nonnull WDCKJAttributed4(NSString *_Nullable text1, 
 }
 
 
+NSMutableAttributedString *_Nonnull WDCKJAttributed5(NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize) {
+    UIColor *_color = WDKJ_IsNullObj(color, [UIColor class]) ? [UIColor blackColor] : color;
+    CGFloat _fontSize = WDKJ_IsNull_Num(fontSize) ? 15.5 : fontSize.integerValue;
+    
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:WDKJ_ConfirmString(text) attributes:@{NSForegroundColorAttributeName : _color, NSFontAttributeName : [UIFont boldSystemFontOfSize:_fontSize]}];
+    return str;
+}
 
 int getRandomNumber(int from, int to) {
     int temp = to - from + 1;
@@ -966,6 +973,9 @@ CGFloat WDAPP_ScreenHeight(void) {
     NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:type];
     // 将文件数据化
     NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+    if (data == nil) {
+        return nil;
+    }
     
     return [NSJSONSerialization JSONObjectWithData:data
                                            options:kNilOptions
@@ -1827,10 +1837,10 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 
-- (void)kjwd_addTouchUpInsideForCallBack:(void(^_Nonnull)(UIButton * _Nonnull sender))callBack {
+- (void)kjwd_addTouchUpInsideForCallBack:(void(^_Nullable)(UIButton * _Nonnull sender))callBack {
     [self kjwd_addControlEvents:UIControlEventTouchUpInside forCallBack:callBack];
 }
-- (void)kjwd_addControlEvents:(UIControlEvents)controlEvents forCallBack:(void (^)(UIButton * _Nonnull))callBack {
+- (void)kjwd_addControlEvents:(UIControlEvents)controlEvents forCallBack:(void (^_Nullable)(UIButton * _Nonnull))callBack {
     if (callBack == nil) return;
     self.kjCallBackBlock = callBack;
     [self addTarget:self action:@selector(btnCallBack:) forControlEvents:controlEvents];

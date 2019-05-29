@@ -67,6 +67,9 @@
 
 #pragma mark - 设置
 + (void)setObject:(nullable id)value forKey:(NSString *)defaultName {
+    
+#warning kjtodo  Attempt to set a non-property-list 
+    
     [UserDefaults setObject:value forKey:defaultName];
     [UserDefaults synchronize];
 }

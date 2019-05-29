@@ -61,6 +61,12 @@ NSMutableAttributedString *_Nonnull WDCKJAttributed3(NSString *_Nullable text, C
 
 NSMutableAttributedString *_Nonnull WDCKJAttributed4(NSString *_Nullable text1, UIColor *_Nullable color1, NSNumber *_Nullable fontSize1, NSString *_Nullable text2, UIColor *_Nullable color2, NSNumber *_Nullable fontSize2);
 
+
+/**
+ 加粗
+ */
+NSMutableAttributedString *_Nonnull WDCKJAttributed5(NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize);
+
 int getRandomNumber(int from, int to);
 
 
@@ -618,8 +624,8 @@ imageTitleSpace:(CGFloat)space;
 
  @param callBack 回调block
  */
-- (void)kjwd_addTouchUpInsideForCallBack:(void(^_Nonnull)(UIButton * _Nonnull sender))callBack;
-- (void)kjwd_addControlEvents:(UIControlEvents)controlEvents forCallBack:(void(^_Nonnull)(UIButton * _Nonnull sender))callBack;
+- (void)kjwd_addTouchUpInsideForCallBack:(void(^_Nullable)(UIButton * _Nonnull sender))callBack;
+- (void)kjwd_addControlEvents:(UIControlEvents)controlEvents forCallBack:(void(^_Nullable)(UIButton * _Nonnull sender))callBack;
 
 //+ (nonnull instancetype)kjwd_tableFooterStyleWithBGColor:(nullable UIColor *)bgColor attText:(nullable NSAttributedString *)attText borderColor:(nullable UIColor *)borderColor radius:(CGFloat)radius;
 

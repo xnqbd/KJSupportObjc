@@ -8,7 +8,7 @@
 
 #import "CKJSimpleTableView.h"
 #import "NSObject+WDYHFCategory.h"
-#import "CKJTableViewCell.h"
+#import "CKJTableViewCell1.h"
 #import "CKJTableViewCell2.h"
 #import "CKJEmptyCell.h"
 
@@ -79,6 +79,7 @@
     // 显示的数组
     NSArray <CKJCommonCellModel *>*displayModelArray = [self displayCellModelArrayAtSection:section];
     CKJCommonSectionModel *sectionModel = self.dataArr[section];
+    [sectionModel _privateMethodWithSection:section];
     sectionModel.displayModels = displayModelArray;
     return displayModelArray.count;
 }
@@ -129,6 +130,9 @@
     
     [model _privateMethodWithCell:cell];
     [cell _privateMethodWithSimpleTableView:tableView sectionModel:sectionModel section:section row:row];
+    if (cell.bgV.backgroundColor != model.bgVColor) {
+        cell.bgV.backgroundColor = model.bgVColor;
+    }
     
     [cell setupData:model section:section row:row selectIndexPath:indexPath tableView:tableView];
     
@@ -461,6 +465,21 @@
         }
     }
     return nil;
+}
+
+- (NSArray <__kindof CKJCommonCellModel *>*)kjwd_filterCellModelsAtAllCellModelWithBlock:(BOOL (^_Nonnull)(__kindof CKJCommonCellModel *_Nonnull cellModel))filterBlock {
+    if (filterBlock == nil) {
+        return nil;
+    }
+    NSMutableArray *result = [NSMutableArray array];
+    for (CKJCommonSectionModel *sectionModel in self.dataArr) {
+        for (CKJCommonCellModel *cellModel in sectionModel.modelArray) {
+            if (filterBlock(cellModel)) {
+                [result addObject:cellModel];
+            }
+        }
+    }
+    return result;
 }
 
 - (void)do_InSection:(NSUInteger)section conformBlock:(BOOL (^ _Nonnull)(__kindof CKJCommonCellModel *cellModel))conformBlock handle:(void(^ _Nonnull)(BOOL isConform, __kindof CKJCommonCellModel *cellModel))handle {
@@ -855,7 +874,7 @@
                           NSStringFromClass([CKJCommonCellModel class]) : @{cellKEY : NSStringFromClass([CKJCommonTableViewCell class]), isRegisterNibKEY : @NO},
                           NSStringFromClass([CKJCellModel class]) : @{cellKEY : NSStringFromClass([CKJCell class]), isRegisterNibKEY : @NO},
                           NSStringFromClass([CKJInputCellModel class]) : @{cellKEY : NSStringFromClass([CKJInputCell class]), isRegisterNibKEY : @NO},
-                           NSStringFromClass([CKJTableViewCellModel class]) : @{cellKEY : NSStringFromClass([CKJTableViewCell class]), isRegisterNibKEY : @NO},
+                           NSStringFromClass([CKJTableViewCell1Model class]) : @{cellKEY : NSStringFromClass([CKJTableViewCell1 class]), isRegisterNibKEY : @NO},
                           NSStringFromClass([CKJTableViewCell2Model class]) : @{cellKEY : NSStringFromClass([CKJTableViewCell2 class]), isRegisterNibKEY : @NO},
                           NSStringFromClass([CKJEmptyCellModel class]) : @{cellKEY : NSStringFromClass([CKJEmptyCell class]), isRegisterNibKEY : @NO}
                           // 上面这几个不要删除，只需 这样的键值对添加即可

@@ -89,14 +89,6 @@ typedef void(^CKJInputCellModelRowBlock)(__kindof CKJInputCellModel *_Nonnull m)
 
 @interface CKJInputCellModel : CKJCellModel
 
-
-
-/**
- 推荐设置外面自定义的枚举
- */
-@property (assign, nonatomic) NSInteger kj_enumValue;
-
-
 @property (strong, nonatomic) CKJTFModel *tfModel;
 
 @property (strong, nonatomic, nullable) CKJGetCodeModel *getCodeModel;

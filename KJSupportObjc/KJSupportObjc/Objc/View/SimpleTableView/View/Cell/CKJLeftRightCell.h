@@ -6,7 +6,7 @@
 //
 
 #import "CKJCommonTableViewCell.h"
-#import "CKJTableViewCell.h"
+#import "CKJTableViewCell1.h"
 #import "CKJEmptyCell.h"
 
 
@@ -72,49 +72,26 @@
  
  NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray array];
  
- {
  
+ CKJLeftRightCellModel *(^createModel)(NSString *left, NSString *right) = ^CKJLeftRightCellModel *(NSString *left, NSString *right) {
  CGFloat margin = 20;
- CKJLeftRightCellModelRowBlock block = ^(CKJLeftRightCellModel *model) {
- // model.showLine = YES;
- // model.rightLab_textAlignment = NSTextAlignmentRight;
- model.leftLab_MarginTo_SuperViewLeft = margin;
- model.rightLab_MarginTo_SuperViewRight = margin;
+ CKJLeftRightCellModel *model1 = [CKJLeftRightCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightCellModel * _Nonnull m) {
+ m.leftAttStr = WDCKJAttributed2(left, [UIColor kjwd_titleColor333333], nil);
+ m.rightAttStr = WDCKJAttributed2(right, [UIColor kjwd_subTitleColor969696], nil);
+ m.showLine = NO;
+ m.leftLab_MarginTo_SuperViewLeft = margin;
+ m.rightLab_MarginTo_SuperViewRight = margin;
+ } didSelectRowBlock:nil];
+ return model1;
  };
  
- CKJCommonSectionModel *section = [CKJCommonSectionModel new];
- section.rowHeight = 40;
+ CKJLeftRightCellModel *model1 = createModel(@"就诊人：", [WDYHFCommonCode getUser].name);
+ CKJLeftRightCellModel *model2 = createModel(@"社保卡号：", [WDYHFCommonCode getUser].card_no);
+ CKJLeftRightCellModel *model3 = createModel(@"就诊医院：", self.hospitalItem.org_name;);
+ CKJLeftRightCellModel *model4 = createModel(@"订单时间：", self.lockOrderModel.lock_start_time);
+ CKJLeftRightCellModel *model5 = createModel(@"订单编号：", self.lockOrderModel.payplat_tradno);
  
- CKJLeftRightCellModel *model1 = [CKJLeftRightCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightCellModel * _Nonnull m) {
- m.leftAttStr = @"患者姓名：";
- m.rightAttStr = [RJOrderSingle shareOrderSingle].getUserInfoModel.Name;
- block(m);
- } didSelectRowBlock:nil];
  
- CKJLeftRightCellModel *model2 = [CKJLeftRightCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightCellModel * _Nonnull m) {
- m.leftAttStr = @"身份证号：";
- m.rightAttStr = [RJOrderSingle shareOrderSingle].getUserInfoModel.IdentificationCard;
- block(m);
- } didSelectRowBlock:nil];
- 
- CKJLeftRightCellModel *model3 = [CKJLeftRightCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightCellModel * _Nonnull m) {
- m.leftAttStr = @"联系方式：";
- m.rightAttStr = [RJOrderSingle shareOrderSingle].getUserInfoModel.PhoneNumber;
- block(m);
- } didSelectRowBlock:nil];
- 
- CKJLeftRightCellModel *model4 = [CKJLeftRightCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightCellModel * _Nonnull m) {
- m.leftAttStr = @"饮食医嘱：";
- m.rightAttStr = [RJOrderSingle shareOrderSingle].homeUserModel.OrdersName;
- block(m);
- } didSelectRowBlock:nil];
- 
- section.modelArray = @[model1, model2, model3, model4];
- 
- [sections addObject:section];
- }
- self.simpleTableView.dataArr = sections;
- [self.simpleTableView kjwd_reloadData];
  
  
 */

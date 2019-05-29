@@ -9,6 +9,7 @@
 #import "CKJCell.h"
 #import <Masonry/Masonry.h>
 #import "CKJExtraView.h"
+#import "UIView+CKJDesingable.h"
 
 
 @implementation CKJImage2Model
@@ -57,10 +58,10 @@
     return model;
 }
 
+
 - (void)changeText:(nullable NSString *)text {
     self.attributedText = [CKJWorker changeOriginAtt:self.attributedText text:text];
 }
-
 @end
 
 @implementation CKJView5Model
@@ -437,8 +438,9 @@
 
 - (void)setupData:(CKJCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(CKJSimpleTableView *)tableView {
     if ([model isKindOfClass:[CKJCellModel class]] == NO) return;
+    
     {
-        UIImage *image = [UIImage kjwd_imageNamed:model.image2Model.imageString2];
+        UIImage *image = [UIImage imageNamed:model.image2Model.imageString2];
         CGFloat leftMargin = model.image2Model.leftMargin;
         
         CGFloat title3LeftMargin = model.title3Model.leftMargin;
@@ -487,6 +489,7 @@
     
     NSAttributedString *subTitle4 = model.subTitle4Model.attributedText;
     self.subTitle4.attributedText = WDKJ_ConfirmAttString(subTitle4);
+   
     if (WDKJ_IsEmpty_AttributedStr(subTitle4)) {
         [_subTitle4 mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.bottom.equalTo(self.leftWrapView);
@@ -604,6 +607,8 @@
             btn8.layer.cornerRadius = 0;
             btn8.clipsToBounds = NO;
         }
+        btn8.kBorderColor = btn8Model.borderColor;
+        btn8.kBorderWidth = btn8Model.borderWidth;
         btn8.selected = btn8Model.selected;
         btn8.userInteractionEnabled = btn8Model.userInteractionEnabled;
     }

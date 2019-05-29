@@ -11,13 +11,18 @@
 #import "CKJSimpleTableView.h"
 #import "CKJTitleStyleHeaderFooterView.h"
 
+@interface CKJCommonTableViewHeaderFooterView()
+
+@property (nonatomic, weak) CKJSimpleTableView *simpleTableView;
+
+@end
 
 
 @implementation CKJCommonTableViewHeaderFooterView
 
 - (nonnull instancetype)initWithReuseIdentifier:(nonnull NSString *)reuseIdentifier tableView:(nonnull CKJSimpleTableView *)tableView {
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
-        [self setValue:tableView forKey:@"simpleTableView"];
+        self.simpleTableView = tableView;
         if ([self isKindOfClass:CKJTitleStyleHeaderFooterView.class]) {
             ((CKJTitleStyleHeaderFooterView *)self).delegate = tableView.titleStyleHeaderFooterViewDelegate;
         }
@@ -32,6 +37,10 @@
 - (void)setupData:(CKJCommonHeaderFooterModel *)headerFooterModel section:(NSInteger)section tableView:(CKJSimpleTableView *)tableView {
     self.textLabel.text = headerFooterModel.systemTitle;
     self.detailTextLabel.text = headerFooterModel.systemSubTitle;
+}
+
+- (CKJSimpleTableView *)simpleTableView {
+    return _simpleTableView;
 }
 
 

@@ -10,6 +10,7 @@
 #import "NSObject+WDYHFCategory.h"
 #import "CKJSimpleTableView.h"
 
+
 @implementation CKJRadioCellConfig
 
 + (nonnull instancetype)configWithDetailSettingBlock:(nullable CKJRadioCellConfigBlock)detailSettingBlock {
@@ -24,10 +25,32 @@
         self.image_margin_title = 10;
         self.title_margin_subTitle = 7;
         self.radioBtn_leftMargin = 5;
-        self.radioBtn_rightMargin = 15;
+        self.radioBtn_rightMargin = 12;
     }
     return self;
 }
+
++ (nonnull instancetype)appearanceForProject {
+    CKJRadioCellConfig *radioConfig = [CKJRadioCellConfig configWithDetailSettingBlock:^(CKJRadioCellConfig * _Nonnull m) {
+        // 下面这注释的设置了默认值， 需要修改的话可以自己设置
+        //        m.leftImageView_MarginToSuperViewLeft = 15;
+        //        m.leftImageSize = CGSizeMake(30, 30);
+        //        m.image_margin_title = 12;
+        //        m.title_margin_subTitle = 7;
+        
+        //        m.radioBtn_leftMargin = 5;
+        //        m.radioBtn_rightMargin = 15;
+        
+        CGSize size = CGSizeMake(22, 22);
+        
+        m.normal_Image = [[UIImage imageNamed:@"wdyhfsdk勾选空"] kjwd_scaleToSize:size];
+        m.selected_Image = [[UIImage imageNamed:@"wdyhfsdk勾选"] kjwd_scaleToSize:size];
+        m.radioBtnSize = CGSizeMake(50, 44);
+    }];
+    return radioConfig;
+}
+
+
 
 @end
 
@@ -36,7 +59,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        self.kj_enumValue = 216372;
+        self.extension_Interger = 216372;
     }
     return self;
 }
@@ -50,13 +73,18 @@
     
     
     CKJRadioCellConfig *config = self.configDic[configDicKEY_ConfigModel];
-    if ([config isKindOfClass:[CKJRadioCellConfig class]] == NO) {
-        NSLog(@"警告！请使用CKJRadioCellConfig或它的子类");
-        return;
-    }
+    
+    WDCKJ_ifDEBUG(^{
+        if (config == nil || ([config isKindOfClass:[CKJRadioCellConfig class]] == NO)) {
+            NSException *exception = [NSException exceptionWithName:@"未配置Config对象" reason:[NSString stringWithFormat:@"%@警告！请配置一个 CKJRadioCellConfig或它的子类", self] userInfo:nil];
+            [exception raise];
+        }
+    }, nil);
+    
+    
     
     UIButton *wrapperBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [wrapperBtn addTarget:self action:@selector(radioBtnAction) forControlEvents:UIControlEventTouchUpInside];
+    [wrapperBtn addTarget:self action:@selector(click_RadioBtn) forControlEvents:UIControlEventTouchUpInside];
     wrapperBtn.backgroundColor = [UIColor clearColor];
     [self.bgV addSubview:wrapperBtn];
     [wrapperBtn kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
@@ -75,7 +103,6 @@
             self.radioBtn.userInteractionEnabled = YES;
             break;
     }
-    
     
     UIImage *normal_Image = config.normal_Image;
     if (WDKJ_IsNullObj(normal_Image, [UIImage class])) {
@@ -107,7 +134,7 @@
     [self.radioBtn setImage:selected_Image forState:UIControlStateSelected];
 }
 
-- (void)radioBtnAction {
+- (void)click_RadioBtn {
     NSMutableArray <NSIndexPath *>*array = [NSMutableArray array];
     
     [self.simpleTableView.radioCellModels enumerateObjectsUsingBlock:^(__kindof CKJRadioCellModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {

@@ -9,17 +9,6 @@
 #import "CKJBaseFunctionCell.h"
 
 
-@implementation CKJFuncModel
-
-+ (nonnull instancetype)modelWithTitle:(NSString *)title image:(UIImage *)image func:(void (^)(UIButton *sender))func {
-    CKJFuncModel *model = [[self alloc] init];
-    model.title = title;
-    model.image = image;
-    model.func = func;
-    return model;
-}
-
-@end
 
 @implementation CKJBaseFunctionCellConfig
 
@@ -36,8 +25,9 @@
 @implementation CKJBaseFunctionCell
 
 - (void)setupSubViews {
+
     
-    CKJBaseFunctionCellConfig *config = self.configDic[configDicKEY_ConfigModel];
+   __weak CKJBaseFunctionCellConfig *config = self.configDic[configDicKEY_ConfigModel];
     
     WDCKJ_ifDEBUG(^{
         if (config == nil || ([config isKindOfClass:[CKJBaseFunctionCellConfig class]] == NO)) {
@@ -53,32 +43,35 @@
         make.edges.equalTo(superview);
     }];
     
-    NSArray *data = config.data;
+//    NSArray *data = config.data;
     
     NSMutableArray *viewArrs = [[NSMutableArray alloc]init];
-    for (int i = 0; i < data.count; i++) {
-        CKJFuncModel *model = data[i];
-        
-        UIButton *btn = [[UIButton alloc]init];
-//        WDCKJBGColor_Arc4Color(btn);
-
-        btn.titleLabel.font = [UIFont systemFontOfSize:15.5];
-        [btn setTitleColor:[UIColor kjwd_titleColor333333] forState:UIControlStateNormal];
-        
-        [btn kjwd_addTouchUpInsideForCallBack:model.func];
-        
-        NSString *title = WDKJ_ConfirmString(model.title);
-        UIImage *image = model.image;
-        
-        [btn setTitle:title forState:UIControlStateNormal];
-        
-        if (WDKJ_IsNullObj(image, [UIImage class]) == NO) {
-            [btn setImage:image forState:UIControlStateNormal];
-        }
-        [btn kjwd_layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleTop imageTitleSpace:10];
-        
-        [viewArrs addObject:btn];
-    }
+//    for (int i = 0; i < data.count; i++) {
+////        __weak CKJFuncModel *model = data[i];
+//        
+//        UIButton *btn = [[UIButton alloc]init];
+////        WDCKJBGColor_Arc4Color(btn);
+//
+//        btn.titleLabel.font = [UIFont systemFontOfSize:15.5];
+//        [btn setTitleColor:[UIColor kjwd_titleColor333333] forState:UIControlStateNormal];
+//        
+//        
+////        [btn kjwd_addTouchUpInsideForCallBack:^(UIButton * _Nonnull sender) {
+////            model.func ? model.func(sender, config) : nil;
+////        }];
+////
+////        NSString *title = WDKJ_ConfirmString(model.title);
+////        UIImage *image = model.image;
+//        
+////        [btn setTitle:title forState:UIControlStateNormal];
+////
+////        if (WDKJ_IsNullObj(image, [UIImage class]) == NO) {
+////            [btn setImage:image forState:UIControlStateNormal];
+////        }
+//        [btn kjwd_layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleTop imageTitleSpace:10];
+//        
+//        [viewArrs addObject:btn];
+//    }
     
     UIEdgeInsets edge = config.edge;
     
