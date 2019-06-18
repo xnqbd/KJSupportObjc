@@ -44,8 +44,12 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 #pragma mark - -----------------其他-----------------
 
 
+
+
 NSMutableAttributedString *_Nonnull WDCKJAttributed(NSString *_Nullable name, NSDictionary *_Nullable dic);
 NSMutableAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize);
+NSMutableAttributedString *_Nonnull WDAtt1(NSString *_Nullable name);
+
 
 /**
  设置间距AttributedString
@@ -66,6 +70,13 @@ NSMutableAttributedString *_Nonnull WDCKJAttributed4(NSString *_Nullable text1, 
  加粗
  */
 NSMutableAttributedString *_Nonnull WDCKJAttributed5(NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize);
+
+/**
+ 添加附件 (图片在前，文字在后)
+ */
+NSMutableAttributedString *_Nonnull WDCKJAttributed6(CGRect bounds, UIImage *_Nullable image, NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize);
+
+
 
 int getRandomNumber(int from, int to);
 
@@ -127,6 +138,16 @@ CGFloat WDAPP_ScreenHeight(void);
 
 
 /**
+ 根据 数组元素 属性值相同 重组数组
+
+ 
+ @param propertyName 属性名
+ @param handle 回调  (data 和 propertyValueSortedSet 个数是相等的)
+ */
+- (void)kjwd_DoElementPropertyValueEqualWithPropertyName:(NSString *_Nullable)propertyName handle:(void(^_Nullable)(NSMutableArray <NSArray <ObjectType>*>*_Nonnull data, NSArray <NSString *>*_Nonnull propertyValueSortedSet))handle;
+
+
+/**
  根据一个过滤条件，遍历数组元素
 
  @param conformBlock 过滤条件
@@ -174,7 +195,11 @@ CGFloat WDAPP_ScreenHeight(void);
  */
 - (void)kjwd_reverseEnumerateObjectsUsingBlock:(void (NS_NOESCAPE ^)(ObjectType obj, NSUInteger idx, BOOL *stop))block;
 
-- (NSString *)kjwd_arrayString;
+
+/**
+ 返回c, k, j  这样的字符串
+ */
+- (nonnull NSString *)kjwd_arrayString;
 
 
 /**
@@ -358,7 +383,7 @@ CGFloat WDAPP_ScreenHeight(void);
  @param name 文件名
  @param type 类型
  */
-+ (nullable NSDictionary *)kjwd_readJsonDataFromLocalWithName:(nullable NSString *)name type:(nullable NSString *)type;
++ (nonnull NSDictionary *)kjwd_readJsonDataFromLocalWithName:(nullable NSString *)name type:(nullable NSString *)type;
 
 /**
  Json字符串转成字典
@@ -484,7 +509,37 @@ CGFloat WDAPP_ScreenHeight(void);
 #pragma mark - -----------------UIBarButtonItem-----------------
 @interface UIBarButtonItem (WDYHFCategory)
 
-+ (instancetype)kjwd_itemWithTitle:(nullable NSString *)title style:(UIBarButtonItemStyle)style callBack:(void(^)(UIBarButtonItem *sender))callBack;
++ (nonnull instancetype)kjwd_itemWithTitle:(nullable NSString *)title style:(UIBarButtonItemStyle)style callBack:(void(^)(UIBarButtonItem *sender))callBack;
+
+
+/**
+ 用UIButton包装CustomView
+ 如果想要在superview上加子视图，只能使用frame，不能使用约束
+ 
+ self.navigationItem.rightBarButtonItem = [UIBarButtonItem kjwd_itemWithNormalImage:[UIImage kjwd_imageNamed:@"信息"] detailSetting:^(UIButton *btn, UIView *superview) {
+ btn.center = superview.center;
+ } wrapperSize:CGSizeMake(30, 30) btnFrame:CGRectMake(0, 0, 30, 30) style:UIBarButtonItemStyleDone callBack:^(UIBarButtonItem *sender) {
+ NSLog(@"%@ ", @"点击信息");
+ }];
+ 
+ */
++ (nonnull instancetype)kjwd_itemWithNormalImage:(nullable UIImage *)normalImage detailSetting:(void(^_Nullable)(UIButton *_Nonnull btn, UIView *_Nonnull superview))detailSetting wrapperSize:(CGSize)wrapperSize btnFrame:(CGRect)btnFrame  style:(UIBarButtonItemStyle)style callBack:(void(^_Nullable)(UIBarButtonItem *_Nonnull sender))callBack;
+
+
+@end
+
+#pragma mark - -----------------UINavigationItem-----------------
+@interface UINavigationItem (WDYHFCategory)
+
+/**
+ titleView 仅仅是一张图片 （默认居中）
+ 
+ 
+ CGFloat mutil = 315 / 90.0;
+ self.navigationItem.titleView = [UINavigationItem kjwd_returnTitleViewWithImage:[UIImage kjwd_imageNamed:@"logo-字"] imageViewSize:CGSizeMake(mutil * 35, 35) detailSetting:nil];
+ 
+ */
++ (nonnull UIView *)kjwd_returnTitleViewWithImage:(nullable UIImage *)image imageViewSize:(CGSize)imageViewSize detailSetting:(void(^_Nullable)(UIImageView *_Nonnull imageView, UIView *_Nonnull superview))detailSetting;
 
 @end
 
@@ -496,6 +551,7 @@ CGFloat WDAPP_ScreenHeight(void);
 - (void)kjwd_reloadData;
 - (void)kjwd_reloadSection:(NSInteger)section withRowAnimation:(UITableViewRowAnimation)animation;
 - (void)kjwd_selectRow:(NSInteger)row section:(NSInteger)section animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)scrollPosition;
+- (void)kjwd_scrollToRow:(NSInteger)row section:(NSInteger)section atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated;
 
 
 @end
@@ -562,7 +618,6 @@ CGFloat WDAPP_ScreenHeight(void);
  * 视图转化成图片
  */
 - (UIImage *)kjwd_shotImage;
-
 
 
 
@@ -766,17 +821,17 @@ imageTitleSpace:(CGFloat)space;
 @interface UIImage (WDYHFCategory)
 
 /** 加载图片过滤空字符串 */
-+ (nullable UIImage *)kjwd_imageNamed:(nonnull NSString *)name;
++ (nonnull UIImage *)kjwd_imageNamed:(nonnull NSString *)name;
 
 /** 通过给定颜色和大小生成图片 */
-+ (UIImage *)kjwd_imageWithColor:(UIColor *)color size:(CGSize)size;
-+ (UIImage *)kjwd_imageWithColor:(UIColor *)color size:(CGSize)size radius:(CGFloat)radius;
++ (nonnull UIImage *)kjwd_imageWithColor:(UIColor *)color size:(CGSize)size;
++ (nonnull UIImage *)kjwd_imageWithColor:(UIColor *)color size:(CGSize)size radius:(CGFloat)radius;
 
 /** 生成二维码 */
-+ (UIImage *)kjwd_QRCodeWithContent:(nonnull NSString *)content size:(CGSize)size;
++ (nonnull UIImage *)kjwd_QRCodeWithContent:(nonnull NSString *)content size:(CGSize)size;
 
 /** 生成指定大小的图片 */
-- (UIImage *)kjwd_scaleToSize:(CGSize)size;
+- (nonnull UIImage *)kjwd_scaleToSize:(CGSize)size;
 
 /** 设置圆角并生成新图片 */
 - (nonnull UIImage *)kjwd_setCornerRadius:(CGFloat)radius;
@@ -957,6 +1012,16 @@ typedef NS_ENUM(NSInteger, KJWDArc4randomType) {
 - (NSString *)kjwd_substringToIndex:(NSUInteger)to;
 - (NSString *)kjwd_substringWithRange:(NSRange)range;
 - (NSString *)kjwd_stringByAppendingString:(NSString *)aString;
+
+
+/**
+ 使用toStr 替换掉beiReplace
+
+ @param beiReplace 被替换的字符
+ @param toStr 用这个区替换
+ */
+- (nonnull NSString *)kjwd_BeiReplace:(NSArray <NSString *>*)beiReplace toStr:(nonnull NSString *)toStr;
+
 
 @end
 

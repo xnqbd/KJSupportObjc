@@ -148,10 +148,12 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
         
         
         section.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:header type:CKJCommonHeaderFooterType_HEADER];
+//        section.headerHeight = 100;
         
         section.footerHeight = 15;
         
         SelectDateCellModel *model1 = [SelectDateCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(SelectDateCellModel *m) {
+            m.bgVColor = [UIColor groupTableViewBackgroundColor];
         } didSelectRowBlock:nil];
         
         CKJFiveCellModel *model2 = [CKJFiveCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJFiveCellModel * _Nonnull m) {
@@ -268,8 +270,6 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
     [weakSelf.simpleTableView kjwd_reloadData];
     
 }
-
-
 
 
 

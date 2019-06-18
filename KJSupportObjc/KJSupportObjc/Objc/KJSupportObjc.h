@@ -20,6 +20,8 @@
 #import "CKJEmptyCell.h"
 #import "CKJInputCell.h"
 #import "CKJStackCell.h"
+#import "CKJBtnsCell.h"
+#import "CKJScrollViewCell.h"
 #import "UIView+CKJDesingable.h"
 #import "CKJToolbar.h"
 

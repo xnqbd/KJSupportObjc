@@ -8,7 +8,7 @@
 
 #import "UIView+CKJDesingable.h"
 #import <objc/runtime.h>
-
+#import "NSObject+WDYHFCategory.h"
 
 #pragma mark - -------------UIView-------------
 
@@ -46,8 +46,41 @@
 - (void)setKCornerRadius:(CGFloat)kCornerRadius {
     objc_setAssociatedObject(self, @selector(kCornerRadius), @(kCornerRadius), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     self.layer.cornerRadius = kCornerRadius;
-    self.clipsToBounds = YES;
+    self.clipsToBounds = YES; // 子视图 超出父视图 会被剪切
 }
+
+
+- (void)kjwd_cornerRadius:(CGFloat)cornerRadius shadowColor:(nullable UIColor *)shadowColor shadowOffset:(CGSize)shadowOffset shadowOpacity:(nullable NSNumber *)shadowOpacity shadowRadius:(nullable NSNumber *)shadowRadius {
+    
+    if (self.backgroundColor == nil) {
+        NSLog(@"没有背景颜色，可能会没有阴影效果");
+    }
+    
+    
+    UIColor *color = WDKJ_IsNullObj(shadowColor, [UIColor class]) ? [UIColor lightGrayColor] : shadowColor;
+    
+    
+    self.layer.cornerRadius  = cornerRadius;
+    self.layer.masksToBounds = NO;
+    
+    self.layer.shadowColor   =  color.CGColor;
+    self.layer.shadowOffset  = shadowOffset;
+    
+    self.layer.shadowOpacity = WDKJ_IsNull_Num(shadowOpacity) ? 0.5 : shadowOpacity.floatValue; // 阴影透明度
+    self.layer.shadowRadius  = WDKJ_IsNull_Num(shadowRadius) ? 8 : shadowRadius.floatValue;
+    
+    
+    
+//    sv.layer.cornerRadius  = 20;
+//    sv.layer.masksToBounds = NO;
+//    
+//    sv.layer.shadowColor   = [UIColor lightGrayColor].CGColor;
+//    sv.layer.shadowOffset  = CGSizeMake(0, 0);
+//    sv.layer.shadowOpacity = 0.6; // 阴影透明度
+//    sv.layer.shadowRadius  = 10;
+    
+}
+
 
 @end
 

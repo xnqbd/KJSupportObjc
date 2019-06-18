@@ -19,6 +19,11 @@ IB_DESIGNABLE
 /** 圆角*/
 @property (assign, nonatomic) IBInspectable CGFloat kCornerRadius;
 
+/**
+ 同时设置阴影和圆角  (但是UILabel圆角设置无效果，亲测)
+ */
+- (void)kjwd_cornerRadius:(CGFloat)cornerRadius shadowColor:(nullable UIColor *)shadowColor shadowOffset:(CGSize)shadowOffset shadowOpacity:(nullable NSNumber *)shadowOpacity shadowRadius:(nullable NSNumber *)shadowRadius;
+
 @end
 
 #pragma mark - -------------UIButton-------------

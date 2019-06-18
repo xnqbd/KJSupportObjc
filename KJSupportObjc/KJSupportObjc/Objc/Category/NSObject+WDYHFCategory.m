@@ -193,6 +193,11 @@ NSMutableAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nullable text, U
     return str;
 }
 
+NSMutableAttributedString *_Nonnull WDAtt1(NSString *_Nullable name) {
+    return WDCKJAttributed2(name, nil, nil);
+}
+
+
 NSMutableAttributedString *_Nonnull WDCKJAttributed3(NSString *_Nullable text, CGFloat horizontalSpace, CGFloat lineSpace, UIColor *_Nullable color, NSNumber *_Nullable fontSize) {
     if (WDKJ_IsEmpty_Str(text)) {
         return [[NSMutableAttributedString alloc] init];
@@ -223,6 +228,20 @@ NSMutableAttributedString *_Nonnull WDCKJAttributed5(NSString *_Nullable text, U
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:WDKJ_ConfirmString(text) attributes:@{NSForegroundColorAttributeName : _color, NSFontAttributeName : [UIFont boldSystemFontOfSize:_fontSize]}];
     return str;
 }
+
+NSMutableAttributedString *_Nonnull WDCKJAttributed6(CGRect bounds, UIImage *_Nullable image, NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize) {
+    //3.初始化NSTextAttachment对象
+    NSTextAttachment *attchment = [[NSTextAttachment alloc]init];
+    attchment.bounds = bounds;//设置frame
+    attchment.image = WDKJ_IsNullObj(image, [UIImage class]) ? nil : image;//设置图片
+    
+    NSAttributedString *imageAtt = [NSAttributedString attributedStringWithAttachment:(NSTextAttachment *)(attchment)];
+    NSMutableAttributedString *result = [[NSMutableAttributedString alloc] initWithAttributedString:imageAtt];
+    
+    [result appendAttributedString:WDCKJAttributed2(text, color, fontSize)];
+    return result;
+}
+
 
 int getRandomNumber(int from, int to) {
     int temp = to - from + 1;
@@ -474,6 +493,52 @@ CGFloat WDAPP_ScreenHeight(void) {
 #pragma mark - -----------------NSArray-----------------
 @implementation NSArray (WDYHFCategory)
 
+
+- (void)kjwd_DoElementPropertyValueEqualWithPropertyName:(NSString *_Nullable)propertyName handle:(void(^_Nullable)(NSMutableArray <NSArray *>*_Nonnull data, NSArray <NSString *>*_Nonnull propertyValueSortedSet))handle {
+    NSMutableArray *result = [NSMutableArray array];
+    
+    if (handle == nil) {
+        return;
+    }
+    
+    if (WDKJ_IsEmpty_Str(propertyName)) {
+        handle(result, @[]);
+        return;
+    }
+    
+    NSArray *propertyValueArray =  [self valueForKeyPath:propertyName]; // 这个和self.count个数一样， 和self的顺序也一样
+    
+    NSArray *temp = [NSSet setWithArray:propertyValueArray].allObjects; // 无序的
+    NSMutableArray *sort = [NSMutableArray array];
+    
+    for (int i = 0; i < self.count; i++) {
+        id objc = [self objectAtIndex:i];
+        id propertyValue = [objc valueForKeyPath:propertyName];
+
+        for (id value in temp) {
+            if (propertyValue == value) {
+                if ([sort containsObject:propertyValue] == NO) {
+                    [sort addObject:propertyValue];
+                }
+            }
+        }
+    }
+    
+    
+    for (id value in sort) {
+        NSMutableArray *elementArray = [NSMutableArray array];
+        for (int i = 0; i < self.count; i++) {
+            id objc = [self objectAtIndex:i];
+            id propertyValue = [objc valueForKeyPath:propertyName];
+            if (propertyValue == value) {
+                [elementArray addObject:objc];
+            }
+        }
+        [result addObject:elementArray];
+    }
+    handle(result, sort);
+}
+
 - (void)kjwd_do_conformBlock:(BOOL(^_Nonnull)(id obj, NSUInteger idx))conformBlock handle:(void(^ _Nonnull)(BOOL isConform, id obj, NSUInteger idx))handle {
     if (conformBlock == nil) return;
     if (handle == nil) return;
@@ -570,7 +635,7 @@ CGFloat WDAPP_ScreenHeight(void) {
     }
 }
 
-- (NSString *)kjwd_arrayString {
+- (nonnull NSString *)kjwd_arrayString {
     NSMutableString *string = [NSMutableString string];
     for (int i = 0; i < self.count; i++) {
         NSString *str = self[i];
@@ -641,10 +706,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 @implementation NSMutableArray (WDYHFCategory)
 
 + (instancetype)kjwd_arrayWithArray:(nullable NSArray *)array {
-    if (array == nil) {
-        return [NSMutableArray array];
-    }
-    if ([array isKindOfClass:NSArray.class] == NO) {
+    if (WDKJ_IsNull_Array(array)) {
         return [NSMutableArray array];
     }
     return [NSMutableArray arrayWithArray:array];
@@ -660,7 +722,7 @@ CGFloat WDAPP_ScreenHeight(void) {
     }
 }
 - (BOOL)kjwd_addObjectsFromArray:(NSArray *)array {
-    if (array == nil || [array isKindOfClass:[NSNull class]]) {
+    if (WDKJ_IsNull_Array(array)) {
         NSLog(@"kj_addObjectsFromArray 数组不能被加入 因为对象为空");
         return NO;
     } else {
@@ -691,7 +753,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 - (BOOL)kjwd_insertObjects:(nullable NSArray *)objects atIndex:(NSUInteger)index {
-    if (objects == nil || [objects isKindOfClass:[NSNull class]]) {
+    if (WDKJ_IsNull_Array(objects)) {
         NSLog(@"kjwd_insertObjects 对象不能被插入 因为对象为空");
         return NO;
     }
@@ -879,8 +941,6 @@ CGFloat WDAPP_ScreenHeight(void) {
     return mutStr;
 }
 
-
-
 - (NSString *)kjwd_returnString {
     NSMutableString *returnValue = [[NSMutableString alloc]initWithCapacity:0];
     
@@ -961,9 +1021,9 @@ CGFloat WDAPP_ScreenHeight(void) {
     return result;
 }
 
-+ (nullable NSDictionary *)kjwd_readJsonDataFromLocalWithName:(nullable NSString *)name type:(nullable NSString *)type {
++ (nonnull NSDictionary *)kjwd_readJsonDataFromLocalWithName:(nullable NSString *)name type:(nullable NSString *)type {
     if (WDKJ_IsEmpty_Str(name)) {
-        return nil;
+        return @{};
     }
     if (WDKJ_IsEmpty_Str(type)) {
         type = nil;
@@ -974,7 +1034,7 @@ CGFloat WDAPP_ScreenHeight(void) {
     // 将文件数据化
     NSData *data = [[NSData alloc] initWithContentsOfFile:path];
     if (data == nil) {
-        return nil;
+        return @{};
     }
     
     return [NSJSONSerialization JSONObjectWithData:data
@@ -1325,8 +1385,8 @@ CGFloat WDAPP_ScreenHeight(void) {
 
 @implementation UIBarButtonItem (WDYHFCategory)
 
-+ (instancetype)kjwd_itemWithTitle:(nullable NSString *)title style:(UIBarButtonItemStyle)style callBack:(void(^)(UIBarButtonItem *sender))callBack {
-    UIBarButtonItem *temp = [[self alloc] initWithTitle:title style:style target:nil action:nil];
++ (nonnull instancetype)kjwd_itemWithTitle:(nullable NSString *)title style:(UIBarButtonItemStyle)style callBack:(void(^)(UIBarButtonItem *sender))callBack {
+    UIBarButtonItem *temp = [[self alloc] initWithTitle:title style:style target:nil action:NULL];
     temp.kjCallBackBlock = callBack;
     temp.target = temp;
     temp.action = @selector(handleCallBack:);
@@ -1334,9 +1394,43 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 
++ (nonnull instancetype)kjwd_itemWithNormalImage:(nullable UIImage *)normalImage detailSetting:(void(^_Nullable)(UIButton *_Nonnull btn, UIView *_Nonnull superview))detailSetting wrapperSize:(CGSize)wrapperSize btnFrame:(CGRect)btnFrame  style:(UIBarButtonItemStyle)style callBack:(void(^_Nullable)(UIBarButtonItem *_Nonnull sender))callBack {
+    
+    
+    UIView *wrapper = [[UIView alloc] init];
+    // 只能设置size大小，origin始终会是0,0 原点，
+    // 如果是leftBarButtonItem， 那么始终会距离左边一定距离
+    // 如果是rightBarButtonItem，那么始终会距离右边一定距离
+    wrapper.frame = CGRectMake(0, 0, wrapperSize.width, wrapperSize.height);
+    
+//    WDCKJBGColor_Arc4Color(wrapper);
+    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+   
+    
+//    WDCKJBGColor_Arc4Color(btn);
+    [btn setImage:normalImage forState:UIControlStateNormal];
+    btn.frame = btnFrame;
+    [wrapper addSubview:btn];
+    detailSetting ? detailSetting(btn, wrapper) : nil;
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:wrapper];
+    
+    item.kjCallBackBlock = callBack;
+    __weak UIBarButtonItem *weakItem = item;
+    [btn kjwd_addTouchUpInsideForCallBack:^(UIButton * _Nonnull sender) {
+        [weakItem handleCallBack:weakItem];
+    }];
+    
+    return item;
+}
+
+
 - (void)handleCallBack:(UIBarButtonItem *)sender {
     self.kjCallBackBlock ? self.kjCallBackBlock(self) : nil;
 }
+
+
 
 //--------- runtime
 - (void)setKjCallBackBlock:(void (^)(UIBarButtonItem *))kjCallBackBlock {
@@ -1351,6 +1445,38 @@ CGFloat WDAPP_ScreenHeight(void) {
 
 @end
 
+#pragma mark - -----------------UINavigationItem-----------------
+@implementation UINavigationItem (WDYHFCategory)
+
+
+/**
+ titleView 仅仅是一张图片 （默认居中）
+ */
++ (nonnull UIView *)kjwd_returnTitleViewWithImage:(nullable UIImage *)image imageViewSize:(CGSize)imageViewSize detailSetting:(void(^_Nullable)(UIImageView *_Nonnull imageView, UIView *_Nonnull superview))detailSetting {
+    if (WDKJ_IsNullObj(image, [UIImage class])) {
+        return [[UIView alloc] init];
+    }
+    
+    CGRect rect = CGRectMake(0, 0, imageViewSize.width, imageViewSize.height);
+    
+    // 只能设置size大小，设置origin没有效果
+    // width最大距离就是左边挨着leftBarButtonItem， 右边挨着rightBarButtonItem
+    // height在一定的数值内设置有效
+    UIView *wrapper = [[UIView alloc] init];
+    wrapper.frame = rect;
+//    WDCKJBGColor_Arc4Color(wrapper);
+    
+    UIImageView *imageV = [[UIImageView alloc] initWithImage:image];
+    imageV.frame = rect;
+    imageV.center = wrapper.center;
+    [wrapper addSubview:imageV];
+    if (detailSetting) {
+        detailSetting(imageV, wrapper);
+    }
+    return wrapper;
+}
+
+@end
 
 
 
@@ -1363,22 +1489,24 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 - (void)kjwd_reloadSection:(NSInteger)section withRowAnimation:(UITableViewRowAnimation)animation {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self numberOfSections] - 1 >= section) {
-            // 10个分区， 0_9
-            NSIndexSet *set = [NSIndexSet indexSetWithIndex:section];
-            [self reloadSections:set withRowAnimation:animation];
-        }
-    });
+    if ([self numberOfSections] - 1 >= section) {
+        // 10个分区， 0_9
+        NSIndexSet *set = [NSIndexSet indexSetWithIndex:section];
+        [self reloadSections:set withRowAnimation:animation];
+    }
 }
 
 - (void)kjwd_selectRow:(NSInteger)row section:(NSInteger)section animated:(BOOL)animated scrollPosition:(UITableViewScrollPosition)scrollPosition {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([self numberOfSections] > section && [self numberOfRowsInSection:section] > row) {
-            [self selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section] animated:animated scrollPosition:scrollPosition];
-        }
-    });
+    if ([self numberOfSections] > section && [self numberOfRowsInSection:section] > row) {
+        [self selectRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section] animated:animated scrollPosition:scrollPosition];
+    }
 }
+- (void)kjwd_scrollToRow:(NSInteger)row section:(NSInteger)section atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated {
+    if ([self numberOfSections] > section && [self numberOfRowsInSection:section] > row) {
+        [self scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row inSection:section] atScrollPosition:scrollPosition animated:animated];
+    }
+}
+
 
 
 @end
@@ -1466,6 +1594,10 @@ CGFloat WDAPP_ScreenHeight(void) {
 
 
 - (NSArray *)kjwd_mas_makeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block {
+    if (self.superview == nil) {
+        NSLog(@"%@的父视图为空", self);
+        return nil;
+    }
     if (block == nil) {
         return nil;
     }
@@ -1476,6 +1608,10 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 - (NSArray *)kjwd_mas_updateConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block {
+    if (self.superview == nil) {
+        NSLog(@"%@的父视图为空", self);
+        return nil;
+    }
     if (block == nil) {
         return nil;
     }
@@ -1485,6 +1621,10 @@ CGFloat WDAPP_ScreenHeight(void) {
     }];
 }
 - (NSArray *)kjwd_mas_remakeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block {
+    if (self.superview == nil) {
+        NSLog(@"%@的父视图为空", self);
+        return nil;
+    }
     if (block == nil) {
         return nil;
     }
@@ -1973,7 +2113,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 
     for (int i = 0; i < views.count; i++) {
         UIView *view = views[i];
-        WDCKJBGColor_Arc4Color(view);
+//        WDCKJBGColor_Arc4Color(view);
         [contentView addSubview:view];
         
         [view mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -2214,15 +2354,19 @@ CGFloat WDAPP_ScreenHeight(void) {
 
 @implementation UIImage (WDYHFCategory)
 
-+ (nullable UIImage *)kjwd_imageNamed:(nonnull NSString *)name {
++ (nonnull UIImage *)kjwd_imageNamed:(nonnull NSString *)name {
     if (WDKJ_IsEmpty_Str(name)) {
 //        NSLog(@"kj_imageNamed 传入为nil 或为 空字符串 ---> (%@)", name);
-        return nil;
+        return [[UIImage alloc] init];
     }
-    return [self imageNamed:name];
+    UIImage *image = [self imageNamed:name];
+    if (image == nil) {
+        image = [[UIImage alloc] init];
+    }
+    return image;
 }
 // 通过给定颜色和大小生成图片
-+ (UIImage *)kjwd_imageWithColor:(UIColor *)color size:(CGSize)size {
++ (nonnull UIImage *)kjwd_imageWithColor:(UIColor *)color size:(CGSize)size {
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextAddRect(context, CGRectMake(0, 0, size.width, size.height));
@@ -2234,14 +2378,20 @@ CGFloat WDAPP_ScreenHeight(void) {
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     //上下文栈pop出创建的context
     UIGraphicsEndImageContext();
+    
+    if (image == nil) {
+        return [[UIImage alloc] init];
+    }
+    
+    
     return image;
 }
 
-+ (UIImage *)kjwd_imageWithColor:(UIColor *)color size:(CGSize)size radius:(CGFloat)radius {
++ (nonnull UIImage *)kjwd_imageWithColor:(UIColor *)color size:(CGSize)size radius:(CGFloat)radius {
     return [[self kjwd_imageWithColor:color size:size] kjwd_setCornerRadius:radius];
 }
 
-+ (UIImage *)kjwd_QRCodeWithContent:(NSString *)content size:(CGSize)size {
++ (nonnull UIImage *)kjwd_QRCodeWithContent:(NSString *)content size:(CGSize)size {
     if (content == nil) {
         return [[UIImage alloc] init];
     }
@@ -2278,24 +2428,45 @@ CGFloat WDAPP_ScreenHeight(void) {
     
     CGImageRelease(cgImage);
     
+    
+    if (cgImage == nil) {
+        return [[UIImage alloc] init];
+    }
+    
+    
     return codeImage;
 }
 
 
 
 //改变图片的大小
-- (UIImage *)kjwd_scaleToSize:(CGSize)size {
-    // 创建一个bitmap的context
-    // 并把它设置成为当前正在使用的context
-    UIGraphicsBeginImageContext(size);
-    // 绘制改变大小的图片
+- (nonnull UIImage *)kjwd_scaleToSize:(CGSize)size {
+//     这个失真
+//    // 创建一个bitmap的context
+//    // 并把它设置成为当前正在使用的context
+//    UIGraphicsBeginImageContext(size);
+//    // 绘制改变大小的图片
+//    [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
+//    // 从当前context中创建一个改变大小后的图片
+//    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+//    // 使当前的context出堆栈
+//    UIGraphicsEndImageContext();
+//    // 返回新的改变大小后的图片
+//    return scaledImage;
+    
+    
+    // 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。
+    // 如果需要显示半透明效果，需要传NO，否则传YES。第三个参数就是屏幕密度了
+    UIGraphicsBeginImageContextWithOptions(size, NO, [UIScreen mainScreen].scale);
     [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    // 从当前context中创建一个改变大小后的图片
-    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
-    // 使当前的context出堆栈
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    // 返回新的改变大小后的图片
-    return scaledImage;
+    
+    if (scaledImage == nil) {
+        return [[UIImage alloc] init];
+    }
+    
+    return scaledImage;   //返回的就是已经改变的图片
 }
 
 - (nonnull UIImage *)kjwd_setCornerRadius:(CGFloat)radius {
@@ -2311,6 +2482,12 @@ CGFloat WDAPP_ScreenHeight(void) {
     // 接受绘制成功的图片
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    
+    if (image == nil) {
+        return [[UIImage alloc] init];
+    }
+    
+    
     return image;
 }
 
@@ -2762,6 +2939,14 @@ CGFloat WDAPP_ScreenHeight(void) {
         return self;
     }
     return [self stringByAppendingString:aString];
+}
+
+- (nonnull NSString *)kjwd_BeiReplace:(nonnull NSArray <NSString *>*)beiReplace toStr:(nonnull NSString *)toStr {
+    NSString *result = self;
+    for (NSString *bei in beiReplace) {
+        result = [result stringByReplacingOccurrencesOfString:bei withString:toStr];
+    }
+    return result;
 }
 
 

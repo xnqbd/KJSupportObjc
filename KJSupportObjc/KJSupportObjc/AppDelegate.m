@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "RJTestListVC.h"
 
 @interface AppDelegate ()
 
@@ -16,7 +17,17 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // 设置UIWindow的背景颜色
+    self.window.backgroundColor = [UIColor redColor];
+    
+    // 让UIWindow显示出来(让窗口成为主窗口 并且显示出来)
+    // 一个应用程序只能有一个主窗口
+    [self.window makeKeyAndVisible];
+    UINavigationController *rootvc = [[UINavigationController alloc] initWithRootViewController:[[RJTestListVC alloc] init]];
+    
+    self.window.rootViewController = rootvc;
+    
     return YES;
 }
 

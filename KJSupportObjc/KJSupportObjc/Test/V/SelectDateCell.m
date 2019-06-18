@@ -8,6 +8,7 @@
 
 #import "SelectDateCell.h"
 #import "NSObject+WDYHFCategory.h"
+#import "MBProgressHUD.h"
 
 @implementation SelectDateCellConfig
 
@@ -119,7 +120,6 @@
 - (void)dateAction:(UIButton *)sender {
     NSLog(@"弹框选择日期");
 }
-
 - (void)searchAction:(UIButton *)sender {
     NSString *startDate = self.beginDateBtn.titleLabel.text;
     NSString *endDate   = self.endDateBtn.titleLabel.text;
@@ -138,7 +138,7 @@
 //        [MBProgressHUD showError:@"开始时间不能大于结束时间"];
         return;
     }
-    NSLog(@"得到日期");
+   NSLog(@"得到日期");
 }
 
 

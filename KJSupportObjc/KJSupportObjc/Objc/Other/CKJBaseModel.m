@@ -18,6 +18,14 @@
     return model;
 }
 
++ (nonnull instancetype)detailSettingBlock:(nullable void(^)(__kindof CKJBaseModel *m))detailSettingBlock {
+    CKJBaseModel *model = [[self alloc] init];
+    if (detailSettingBlock) {
+        detailSettingBlock(model);
+    }
+    return model;
+}
+
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
     
 }

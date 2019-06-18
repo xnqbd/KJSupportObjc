@@ -1,0 +1,87 @@
+//
+//  CKJStackCell.h
+//  MobileHospital_Renji
+//
+//  Created by chenkaijie on 2019/5/14.
+//  Copyright © 2019 Lyc. All rights reserved.
+//
+
+#import "CKJCommonTableViewCell.h"
+
+
+NS_ASSUME_NONNULL_BEGIN
+
+@class CKJStackCell, CKJBtnsCellSystemDelegate, CKJStackCellModel, CKJStackCellItemData;
+
+typedef void(^CKJStackCellModelRowBlock)(__kindof CKJStackCellModel *_Nonnull m);
+
+
+@protocol CKJStackCellDelegate <NSObject>
+
+@required;
+
+/** 在CKJStackCell 创建ItemView视图 */
+- (NSArray <__kindof UIView *>*)createItemViewForCKJStackCell:(__kindof CKJStackCell *_Nonnull __weak)cell;
+/** 更新ItemView视图 数据 */
+- (void)updateItemView:(__kindof UIView *_Nonnull)view itemData:(__kindof CKJStackCellItemData *_Nonnull)itemData index:(NSInteger)index;
+
+@end
+
+
+
+
+/**
+ 这个类子视图 是UIView，任意视图
+ */
+@interface CKJStackCellItemData : CKJCommonItemData
+
+@end
+
+
+
+
+@interface CKJStackCellConfig : CKJCommonCellConfig
+
+/**
+ 水平StackView，Item之间的间距
+ */
+@property (assign, nonatomic) CGFloat h_itemSpacing;
+
+
+/**
+ 唯一的UIStackView的edge
+ */
+@property (assign, nonatomic) UIEdgeInsets stackView_Edge_SuperView;
+
+/**
+ 如果使用的是CKJBtnsCell
+ 请给这个数据源设置为CKJBtnsCellSystemDelegate对象，弱指针请注意
+ */
+@property (weak, nonatomic) id <CKJStackCellDelegate>delegate;
+
+
+
+@end
+
+
+@interface CKJStackCellModel : CKJCommonCellModel
+
+
+
+
+@property (strong, nonatomic) NSArray <__kindof CKJStackCellItemData *>*data;
+
+- (void)addItem:(__kindof CKJStackCellItemData *)item;
+
++ (nonnull instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJStackCellModelRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJStackCellModelRowBlock)didSelectRowBlock;
+
+
+@end
+
+
+@interface CKJStackCell : CKJCommonTableViewCell<CKJStackCellModel *>
+
+@end
+
+
+NS_ASSUME_NONNULL_END

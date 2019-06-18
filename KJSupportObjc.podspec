@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "KJSupportObjc"
-s.version      = "3.0.0"
+s.version      = "5.0.0"
 s.summary      = "包含常见的分类、工具，UITableView的工具等等"
 
 s.homepage     = "https://github.com/xnqbd/KJSupportObjc"
@@ -13,7 +13,7 @@ s.license      = "MIT"
 s.author             = { "xnqbd" => "2537511854@qq.com" }
 
 s.platform     = :ios
-s.platform     = :ios, "8.0"
+s.platform     = :ios, "9.0"
 
 s.source       = { :git => "https://github.com/xnqbd/KJSupportObjc.git", :tag => "#{s.version}"}
 
