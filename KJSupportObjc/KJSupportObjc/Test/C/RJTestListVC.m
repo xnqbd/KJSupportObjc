@@ -49,9 +49,9 @@
         CKJCellModel *model2 = block(@"自定义Cell、配置Cell、聚合Cell", @"RJConfigVC");
         
         CKJCellModel *model3 = block(@"输入Cell", @"RJInputVC");
-        CKJCellModel *model4 = block(@"StackCell、ScrollViewCell示例1", @"RJStackVC");
+        CKJCellModel *model4 = block(@"StackCell、ScrollViewCell示例1", @"RJSquareDemo1VC");
         
-        CKJCellModel *model5 = block(@"StackCell、ScrollViewCell示例2", @"RJScrollViewCellVC");
+        CKJCellModel *model5 = block(@"StackCell、ScrollViewCell示例2", @"RJSquareDemo2VC");
         
         section.modelArray = @[model1, model2, model3, model4, model5];
         [sections addObject:section];
@@ -59,6 +59,8 @@
     
     self.simpleTableView.dataArr = sections;
     [self.simpleTableView kjwd_reloadData];
+    
+    //    [self.simpleTableView removeLastSection];
 }
 
 

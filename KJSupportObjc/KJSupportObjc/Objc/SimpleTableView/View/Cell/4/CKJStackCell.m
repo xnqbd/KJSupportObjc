@@ -8,7 +8,7 @@
 
 #import "CKJStackCell.h"
 #import "CKJSimpleTableView.h"
-#import "CKJBtnsCell.h"
+#import "CKJBaseBtnsCell.h"
 
 @implementation CKJStackCellItemData
 
@@ -16,6 +16,12 @@
 
 @implementation CKJStackCellConfig
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.separatorViewColor = [UIColor kjwd_230Color];
+    }
+    return self;
+}
 
 @end
 
@@ -46,6 +52,8 @@
 
 @property (strong, nonatomic) UIStackView *stackView;
 
+@property (strong, nonatomic) NSArray *views;
+
 @end
 
 @implementation CKJStackCell
@@ -56,13 +64,13 @@
  
     NSArray <__kindof CKJStackCellItemData *>*data = model.data;
 
-    NSArray<__kindof UIView *> *arrangedSubviews = self.stackView.arrangedSubviews;
+    NSArray<__kindof UIView *> *views = self.views;
 
     __weak CKJStackCellConfig *config = self.configModel;
     __weak id <CKJStackCellDelegate>delegate = config.delegate;
     
-    for (int i = 0; i < arrangedSubviews.count; i++) {
-        UIView *view = arrangedSubviews[i];
+    for (int i = 0; i < views.count; i++) {
+        UIView *view = views[i];
         CKJStackCellItemData *itemData = [data kjwd_objectAtIndex:i];
         if ([delegate respondsToSelector:@selector(updateItemView:itemData:index:)]) {
             [delegate updateItemView:view itemData:itemData index:i];
@@ -95,6 +103,7 @@
     
     
     NSArray <__kindof UIView *>*items = [delegate createItemViewForCKJStackCell:self];
+    self.views = items;
 
     for (UIView *temp in items) {
         if ([temp isKindOfClass:[UIView class]] == NO) {
@@ -103,6 +112,19 @@
         }
     }
     
+    
+    UIView *stackView_superView = [[UIView alloc] init];
+    stackView_superView.backgroundColor = [UIColor whiteColor];
+    [self.bgV addSubview:stackView_superView];
+    [stackView_superView kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
+        make.edges.equalTo(superview).insets(edge);
+    }];
+    
+    
+    UIView *separatorView = [[UIView alloc] init];
+    [stackView_superView addSubview:separatorView];
+    
+    
     CGFloat h_itemSpacing = config.h_itemSpacing;
     
     UIStackView *stackV = [[UIStackView alloc] init];
@@ -110,14 +132,37 @@
     stackV.axis = UILayoutConstraintAxisHorizontal;
     stackV.distribution = UIStackViewDistributionFillEqually;
     stackV.alignment = UIStackViewAlignmentFill;
-    [self.bgV addSubview:stackV];
+    [stackView_superView addSubview:stackV];
     self.stackView = stackV;
     [stackV kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
-        make.edges.equalTo(superview).insets(edge);
+        make.edges.equalTo(superview);
     }];
-    
     for (UIView *temp in items) {
         [stackV addArrangedSubview:temp];
+    }
+    
+    
+    NSNumber *separatorViewHeight = WDKJ_ConfirmNumber(config.separatorViewHeight);
+    NSNumber *multiHeightByStackView = WDKJ_ConfirmNumber(config.multiHeightByStackView);
+
+    UIColor *separatorViewColor = config.separatorViewColor;
+    if (WDKJ_IsNullObj(separatorViewColor, [UIColor class]) == NO) {
+        separatorView.backgroundColor = separatorViewColor;
+    }
+    
+    [separatorView kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
+        make.center.width.equalTo(stackV);
+        
+        if (separatorViewHeight.floatValue > 0) {
+            make.height.equalTo(separatorViewHeight);
+        } else if (multiHeightByStackView.floatValue > 0) { make.height.equalTo(stackV).multipliedBy(multiHeightByStackView.floatValue);
+        } else {
+            make.height.equalTo(@0);
+        }
+    }];
+    
+    if (config.detailSetting) {
+        config.detailSetting(stackView_superView);
     }
 }
 

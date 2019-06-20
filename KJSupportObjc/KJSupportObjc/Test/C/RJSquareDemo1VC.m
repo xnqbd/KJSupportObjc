@@ -6,16 +6,17 @@
 //  Copyright © 2019 Lyc. All rights reserved.
 //
 
-#import "RJStackVC.h"
+#import "RJSquareDemo1VC.h"
 #import "CKJStackCell.h"
-#import "CKJBtnsCell.h"
+#import "CKJBaseBtnsCell.h"
 #import "RJDemoExpertItemView.h"
+#import "CKJBtnsCell1.h"
 
-@interface RJStackVC () <CKJScrollViewCellDelegate>
+@interface RJSquareDemo1VC () <CKJScrollViewCellDelegate>
 
 @end
 
-@implementation RJStackVC
+@implementation RJSquareDemo1VC
 
 #define kHidCellId 128
 
@@ -27,7 +28,7 @@
 
 
 - (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues {
-    CKJBtnsCellConfig *config1 = [CKJBtnsCellConfig configWithDetailSettingBlock:^(CKJBtnsCellConfig * _Nonnull m) {
+    CKJBtnsCell1Config *config1 = [CKJBtnsCell1Config configWithDetailSettingBlock:^(CKJBtnsCell1Config * _Nonnull m) {
         m.stackView_Edge_SuperView = UIEdgeInsetsMake(5, 10, 5, 10);
         m.delegate = [m squareWithNumberOfItemsInSingleLine:3];
         m.h_itemSpacing = 20;
@@ -39,7 +40,7 @@
         m.delegate = self;
     }];
     return @{
-             NSStringFromClass([CKJBtnsCellModel class]) : @{cellKEY : NSStringFromClass([CKJBtnsCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : config1},
+             NSStringFromClass([CKJBtnsCell1Model class]) : @{cellKEY : NSStringFromClass([CKJBtnsCell1 class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : config1},
              NSStringFromClass([CKJScrollViewCellModel class]) : @{cellKEY : NSStringFromClass([CKJScrollViewCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : scrollViewCellConfig},
 
              };
@@ -154,15 +155,15 @@
         [data addObject:@{cNormalAttTitle : WDAtt1(title), cNormalBgImage : image, cCornerRadius : @(5)}];
     }
     
-    NSArray <__kindof CKJBtnsCellItemData *>*items = [CKJBtnsCellItemData returnItemsWithDics:data detailSetting:^(__kindof CKJBtnsCellItemData * _Nonnull __weak itemData, NSUInteger index) {
-        itemData.callBack_Block = ^(__kindof CKJBtnsCellItemData * _Nonnull itemData, __kindof CKJBtnsCell * _Nonnull __weak cell) {
+    NSArray <CKJBaseBtnsCellItemData *>*items = [CKJBaseBtnsCellItemData returnItemsWithDics:data detailSetting:^(CKJBaseBtnsCellItemData * _Nonnull __weak itemData, NSUInteger index) {
+        itemData.callBack_Block = ^(CKJBaseBtnsCellItemData * _Nonnull itemData, __kindof CKJBaseBtnsCell * _Nonnull __weak cell) {
             NSLog(@"点击了  %@ ", itemData.normalAttTitle.string);
             [weakSelf.simpleTableView removeCellModelsByGroupId:dateGroupId inSection:cell.section removeHiddenCellModel:NO withRowAnimation:UITableViewRowAnimationTop animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
                 animationBlock();
             }];
         };
     }];
-    NSArray <CKJCommonCellModel *>*models = [CKJBtnsCellModel modelWithItems:items numberOfItemsInSingleLine:3 cellHeight:44 topMargin:0 centerMargin:0 bottomMargin:0 groupId:dateGroupId detailSetting:^(CKJBtnsCellModel * _Nonnull m, NSUInteger cellModel_index) {
+    NSArray <CKJCommonCellModel *>*models = [CKJBtnsCell1Model modelWithItems:items numberOfItemsInSingleLine:3 cellHeight:44 topMargin:0 centerMargin:0 bottomMargin:0 groupId:dateGroupId detailSetting:^(CKJBtnsCell1Model * _Nonnull m, NSUInteger cellModel_index) {
     }];
     [cellModels addObjectsFromArray:models];
     

@@ -32,6 +32,14 @@ UIKIT_EXTERN NSString *_Nonnull const cSelectedImage;
 UIKIT_EXTERN NSString *_Nonnull const cNormalBgImage;
 UIKIT_EXTERN NSString *_Nonnull const cSelectedBgImage;
 
+
+UIKIT_EXTERN NSString *_Nonnull const cHighlightedAttTitle;
+/** 高亮时候的image */
+UIKIT_EXTERN NSString *_Nonnull const cHighlightedImage;
+/** 高亮时候的bgImage */
+UIKIT_EXTERN NSString *_Nonnull const cHighlightedBgImage;
+
+
 UIKIT_EXTERN NSString *_Nonnull const cBorderWidth;
 UIKIT_EXTERN NSString *_Nonnull const cBorderColor;
 UIKIT_EXTERN NSString *_Nonnull const cCornerRadius;
@@ -59,7 +67,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
- 这个类和 CKJBtnsCellItemData 属性什么的都是一样的， 如果修改，记得把另外一个类也同步修改一下
+ 这个类和 CKJBaseBtnsCellItemData 属性什么的都是一样的， 如果修改，记得把另外一个类也同步修改一下
  */
 @interface CKJBtnItemData : CKJCommonItemData
 
@@ -68,12 +76,20 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,getter=isSelected) BOOL selected;
 @property(nonatomic,getter=isHighlighted) BOOL highlighted;
 
+
+
 @property (copy, nonatomic, nullable) NSAttributedString *normalAttTitle;
-@property (copy, nonatomic, nullable) NSAttributedString *selectedAttTitle;
 @property (strong, nonatomic, nullable) UIImage *normalImage;
-@property (strong, nonatomic, nullable) UIImage *selectedImage;
 @property (strong, nonatomic, nullable) UIImage *normalBgImage;
+
+@property (copy, nonatomic, nullable) NSAttributedString *selectedAttTitle;
+@property (strong, nonatomic, nullable) UIImage *selectedImage;
 @property (strong, nonatomic, nullable) UIImage *selectedBgImage;
+
+@property (copy, nonatomic, nullable) NSAttributedString *highlightedAttTitle;
+@property (strong, nonatomic, nullable) UIImage *highlightedImage;
+@property (strong, nonatomic, nullable) UIImage *highlightedBgImage;
+
 
 /** 边框宽度 */
 @property (assign, nonatomic) CGFloat borderWidth;

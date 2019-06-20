@@ -429,6 +429,7 @@ CGFloat WDAPP_ScreenHeight(void);
 + (nonnull UIColor *)kjwd_titleColor333333;
 + (nonnull UIColor *)kjwd_subTitleColor969696;
 
++ (nonnull UIColor *)kjwd_230Color;
 
 
 @end

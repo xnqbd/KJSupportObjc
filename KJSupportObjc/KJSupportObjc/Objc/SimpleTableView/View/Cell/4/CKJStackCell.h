@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class CKJStackCell, CKJBtnsCellSystemDelegate, CKJStackCellModel, CKJStackCellItemData;
+@class CKJStackCell, CKJBaseBtnsCellSystemDelegate, CKJStackCellModel, CKJStackCellItemData;
 
 typedef void(^CKJStackCellModelRowBlock)(__kindof CKJStackCellModel *_Nonnull m);
 
@@ -59,6 +59,22 @@ typedef void(^CKJStackCellModelRowBlock)(__kindof CKJStackCellModel *_Nonnull m)
  */
 @property (weak, nonatomic) id <CKJStackCellDelegate>delegate;
 
+
+/**
+ 分割View的高度
+ */
+@property (copy, nonatomic, nullable) NSNumber *separatorViewHeight;
+
+/**
+ 分割View 高度相对于StackView的倍数，默认0（0~1）
+ */
+@property (copy, nonatomic, nullable) NSNumber *multiHeightByStackView;
+/**
+ 分割View颜色，有默认值，[UIColor kjwd_r:230 g:230 b:230 alpha:1]
+ */
+@property (strong, nonatomic, nullable) UIColor *separatorViewColor;
+
+@property (copy, nonatomic, nullable) void (^detailSetting)(UIView *_Nonnull stackView_superView);
 
 
 @end

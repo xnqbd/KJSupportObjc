@@ -8,7 +8,7 @@
 
 #import "SelectDateCell.h"
 #import "NSObject+WDYHFCategory.h"
-#import "MBProgressHUD.h"
+
 
 @implementation SelectDateCellConfig
 

@@ -17,12 +17,20 @@ NSString *_Nonnull const configDicKEY_ConfigModel = @"configDicKEY_ConfigModel";
 NSString *_Nonnull const headerFooterKey = @"headerFooterKey";
 
 NSString *_Nonnull const cNormalAttTitle = @"cNormalAttTitle";
-NSString *_Nonnull const cSelectedAttTitle = @"cSelectedAttTitle";
-
 NSString *_Nonnull const cNormalImage = @"cNormalImage";
-NSString *_Nonnull const cSelectedImage = @"cSelectedImage";
 NSString *_Nonnull const cNormalBgImage = @"cNormalBgImage";
+
+NSString *_Nonnull const cSelectedAttTitle = @"cSelectedAttTitle";
+NSString *_Nonnull const cSelectedImage = @"cSelectedImage";
 NSString *_Nonnull const cSelectedBgImage = @"cSelectedBgImage";
+
+
+NSString *_Nonnull const cHighlightedAttTitle = @"cHighlightedAttTitle";
+/** 高亮时候的image */
+NSString *_Nonnull const cHighlightedImage = @"cHighlightedImage";
+/** 高亮时候的bgImage */
+NSString *_Nonnull const cHighlightedBgImage = @"cHighlightedBgImage";
+
 
 NSString *_Nonnull const cBorderWidth = @"cBorderWidth";
 NSString *_Nonnull const cBorderColor = @"cBorderColor";
@@ -62,22 +70,25 @@ NSString *_Nonnull const cCornerRadius = @"cCornerRadius";
     return self;
 }
 
+
 + (NSArray <__kindof CKJBtnItemData *>*_Nonnull)returnItemsWithDics:(NSArray <NSDictionary *>*_Nullable)dics detailSetting:(void(^_Nullable)(__kindof CKJBtnItemData *__weak _Nonnull itemData, NSUInteger index))detailSetting {
     
     NSMutableArray *result = [NSMutableArray array];
     for (int i = 0; i < dics.count; i++) {
         NSDictionary *dic = dics[i];
         CKJBtnItemData *m = [[self alloc] init];
+        
         m.normalAttTitle = dic[cNormalAttTitle];
-        m.selectedAttTitle = dic[cSelectedAttTitle];
         m.normalImage = dic[cNormalImage];
-        m.selectedImage = dic[cSelectedImage];
         m.normalBgImage = dic[cNormalBgImage];
+        
+        m.selectedAttTitle = dic[cSelectedAttTitle];
+        m.selectedImage = dic[cSelectedImage];
         m.selectedBgImage = dic[cSelectedBgImage];
         
-        m.selectedImage = dic[cSelectedImage];
-        m.normalBgImage = dic[cNormalBgImage];
-        m.selectedBgImage = dic[cSelectedBgImage];
+        m.highlightedAttTitle = dic[cHighlightedAttTitle];
+        m.highlightedImage = dic[cHighlightedImage];
+        m.highlightedBgImage = dic[cHighlightedBgImage];
         
         m.borderWidth = WDKJ_ConfirmNumber(dic[cBorderWidth]).floatValue;
         m.borderColor = dic[cBorderColor];
@@ -90,6 +101,17 @@ NSString *_Nonnull const cCornerRadius = @"cCornerRadius";
     }
     return result;
 }
+
+- (void)setNormalAttTitle:(NSAttributedString *)normalAttTitle {
+    _normalAttTitle = WDKJ_ConfirmAttString(normalAttTitle);
+}
+- (void)setSelectedAttTitle:(NSAttributedString *)selectedAttTitle {
+    _selectedAttTitle = WDKJ_ConfirmAttString(selectedAttTitle);
+}
+- (void)setHighlightedAttTitle:(NSAttributedString *)highlightedAttTitle {
+    _highlightedAttTitle = WDKJ_ConfirmAttString(highlightedAttTitle);
+}
+
 
 
 @end

@@ -19,9 +19,13 @@
 #import "CKJTableViewCell2.h"
 #import "CKJEmptyCell.h"
 #import "CKJInputCell.h"
+
+
 #import "CKJStackCell.h"
-#import "CKJBtnsCell.h"
+#import "CKJBtnsCell1.h"
+#import "CKJBtnsCell2.h"
 #import "CKJScrollViewCell.h"
+
 #import "UIView+CKJDesingable.h"
 #import "CKJToolbar.h"
 

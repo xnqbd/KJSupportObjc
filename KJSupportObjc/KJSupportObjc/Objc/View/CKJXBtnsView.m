@@ -7,6 +7,8 @@
 //
 
 #import "CKJXBtnsView.h"
+#import "UIView+CKJDesingable.h"
+#import "CKJEmptyCell.h"
 
 @implementation CKJXBtnsViewConfig
 @end
@@ -60,7 +62,7 @@
         [btn kjwd_addTouchUpInsideForCallBack:^(UIButton * _Nonnull sender) {
             
 //            NSArray <__kindof CKJStackCellItemData *>*data = cell.cellModel.data;
-//            CKJBtnsCellItemData *itemData = [data kjwd_objectAtIndex:i];
+//            CKJBaseBtnsCellItemData *itemData = [data kjwd_objectAtIndex:i];
 //            CKJSquare1ItemBlock block = itemData.callBack_Block;
 //            
 //            block ? block(itemData, i) : nil;

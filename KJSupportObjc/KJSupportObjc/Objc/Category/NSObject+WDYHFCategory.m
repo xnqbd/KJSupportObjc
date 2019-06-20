@@ -1215,6 +1215,9 @@ CGFloat WDAPP_ScreenHeight(void) {
 + (nonnull UIColor *)kjwd_subTitleColor969696 {
     return [UIColor kjwd_colorWithHexString:@"969696"];
 }
++ (nonnull UIColor *)kjwd_230Color {
+    return [UIColor kjwd_r:230 g:230 b:230 alpha:1];
+}
 
 
 @end
@@ -2356,7 +2359,7 @@ CGFloat WDAPP_ScreenHeight(void) {
 
 + (nonnull UIImage *)kjwd_imageNamed:(nonnull NSString *)name {
     if (WDKJ_IsEmpty_Str(name)) {
-//        NSLog(@"kj_imageNamed 传入为nil 或为 空字符串 ---> (%@)", name);
+        //        NSLog(@"kj_imageNamed 传入为nil 或为 空字符串 ---> (%@)", name);
         return [[UIImage alloc] init];
     }
     UIImage *image = [self imageNamed:name];
@@ -2382,7 +2385,6 @@ CGFloat WDAPP_ScreenHeight(void) {
     if (image == nil) {
         return [[UIImage alloc] init];
     }
-    
     
     return image;
 }
@@ -2428,11 +2430,9 @@ CGFloat WDAPP_ScreenHeight(void) {
     
     CGImageRelease(cgImage);
     
-    
     if (cgImage == nil) {
         return [[UIImage alloc] init];
     }
-    
     
     return codeImage;
 }
@@ -2486,7 +2486,6 @@ CGFloat WDAPP_ScreenHeight(void) {
     if (image == nil) {
         return [[UIImage alloc] init];
     }
-    
     
     return image;
 }

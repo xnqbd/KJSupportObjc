@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RJStackVC : CKJBaseTableViewToolVC
+@interface RJSquareDemo1VC : CKJBaseTableViewToolVC
 
 @end
 

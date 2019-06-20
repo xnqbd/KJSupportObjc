@@ -6,16 +6,19 @@
 //  Copyright © 2019 Lyc. All rights reserved.
 //
 
-#import "RJScrollViewCellVC.h"
-#import "CKJBtnsCell.h"
+#import "RJSquareDemo2VC.h"
+#import "CKJBaseBtnsCell.h"
 #import "CKJScrollViewCell.h"
 #import "RJDemoScrollItemView.h"
+#import "UIView+CKJDesingable.h"
+#import "CKJBtnsCell1.h"
+#import "CKJBtnsCell2.h"
 
-@interface RJScrollViewCellVC ()<CKJScrollViewCellDelegate>
+@interface RJSquareDemo2VC ()<CKJScrollViewCellDelegate>
 
 @end
 
-@implementation RJScrollViewCellVC
+@implementation RJSquareDemo2VC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,12 +28,28 @@
 
 #define kHiddenCellId 17
 
+#define kHeight 100
+
 #pragma mark - CKJSimpleTableView 数据源 和 代理
 - (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues {
     
-    CKJBtnsCellConfig *config1 = [CKJBtnsCellConfig configWithDetailSettingBlock:^(CKJBtnsCellConfig * _Nonnull m) {
+    CKJBtnsCell1Config *config1 = [CKJBtnsCell1Config configWithDetailSettingBlock:^(CKJBtnsCell1Config * _Nonnull m) {
         m.stackView_Edge_SuperView = UIEdgeInsetsMake(0, 15, 0, 15);
         m.delegate = [m squareWithNumberOfItemsInSingleLine:4];
+    }];
+    CKJBtnsCell2Config *config2 = [CKJBtnsCell2Config configWithDetailSettingBlock:^(CKJBtnsCell2Config * _Nonnull m) {
+        CGFloat topBottom = 10;
+        
+        m.stackView_Edge_SuperView = UIEdgeInsetsMake(topBottom, 15, topBottom, 15);
+        m.delegate = [m squareWithNumberOfItemsInSingleLine:3];
+        m.multiHeightByStackView = @0.6;
+        m.separatorViewColor = [UIColor kjwd_r:230 g:230 b:230 alpha:1];
+        m.h_itemSpacing = 1;
+        m.detailSetting = ^(UIView * _Nonnull stackView_superView) {
+            stackView_superView.kCornerRadius = (kHeight - 2 * topBottom) / 2.0;
+            stackView_superView.kBorderColor = [UIColor kjwd_230Color];
+            stackView_superView.kBorderWidth = 1;
+        };
     }];
     CKJScrollViewCellConfig *scrollViewCellConfig = [CKJScrollViewCellConfig configWithDetailSettingBlock:^(__kindof CKJScrollViewCellConfig * _Nonnull m) {
         m.itemWidth = 120;
@@ -39,7 +58,8 @@
         m.delegate = self;
     }];
     return @{
-             NSStringFromClass([CKJBtnsCellModel class]) : @{cellKEY : NSStringFromClass([CKJBtnsCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : config1},
+             NSStringFromClass([CKJBtnsCell1Model class]) : @{cellKEY : NSStringFromClass([CKJBtnsCell1 class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : config1},
+             NSStringFromClass([CKJBtnsCell2Model class]) : @{cellKEY : NSStringFromClass([CKJBtnsCell2 class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : config2},
              NSStringFromClass([CKJScrollViewCellModel class]) : @{cellKEY : NSStringFromClass([CKJScrollViewCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : scrollViewCellConfig}
              };
 }
@@ -55,9 +75,7 @@
         CKJCommonSectionModel *section = [CKJCommonSectionModel new];
 
         UIImage *(^b_image)(NSString *imageName) = ^UIImage *(NSString *imageName) {
-            UIImage *image = [UIImage kjwd_imageNamed:imageName];
-            UIImage *newImage = [image kjwd_scaleToSize:CGSizeMake(30, 30)];
-            return newImage;
+            return [[UIImage kjwd_imageNamed:imageName] kjwd_scaleToSize:CGSizeMake(30, 30)];
         };
         NSArray <NSDictionary *>*data = @[
                                           @{cNormalAttTitle : WDAtt1(@"报告查询"), cNormalImage : b_image(@"newhome_报告")},
@@ -70,14 +88,13 @@
                                           @{cNormalAttTitle : WDAtt1(@"更多"), cNormalImage : b_image(@"newhome_更多"),  cSelectedAttTitle : WDAtt1(@"日间手术"), cSelectedImage : b_image(@"日间手术")},
                                           
                                           @{cNormalAttTitle : WDAtt1(@"预约检查"), cNormalImage : b_image(@"预约检查")},
-
                                           ];
-        NSArray <__kindof CKJBtnsCellItemData *>*items = [CKJBtnsCellItemData returnItemsWithDics:data detailSetting:^(__kindof CKJBtnsCellItemData * _Nonnull __weak itemData, NSUInteger index) {
+        NSArray <CKJBaseBtnsCellItemData *>*items = [CKJBaseBtnsCellItemData returnItemsWithDics:data detailSetting:^(CKJBaseBtnsCellItemData * _Nonnull __weak itemData, NSUInteger index) {
+            
             itemData.layoutButton = ^(UIButton * _Nonnull btn) {
                 [btn kjwd_layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleTop imageTitleSpace:10];
             };
-            itemData.callBack_Block = ^(__kindof CKJBtnsCellItemData * _Nonnull itemData, __kindof CKJBtnsCell * _Nonnull __weak cell) {
-                
+            itemData.callBack_Block = ^(CKJBaseBtnsCellItemData * _Nonnull itemData, __kindof CKJBaseBtnsCell * _Nonnull __weak cell) {
                 if (index == 7) {
                     if (itemData.selected) {
                     } else {
@@ -91,7 +108,7 @@
             };
         }];
         
-        NSArray <CKJCommonCellModel *>*arr = [CKJBtnsCellModel modelWithItems:items numberOfItemsInSingleLine:4 cellHeight:80 topMargin:0 centerMargin:0 bottomMargin:0 groupId:nil detailSetting:^(CKJBtnsCellModel * _Nonnull m, NSUInteger cellModel_index) {
+        NSArray <CKJCommonCellModel *>*arr = [CKJBtnsCell1Model modelWithItems:items numberOfItemsInSingleLine:4 cellHeight:80 topMargin:0 centerMargin:0 bottomMargin:0 groupId:nil detailSetting:^(CKJBtnsCell1Model * _Nonnull m, NSUInteger cellModel_index) {
             if (cellModel_index == 2) {
                 m.cellModel_id = kHiddenCellId;
                 m.displayInTableView = NO;
@@ -102,7 +119,35 @@
         section.modelArray = cellModels;
         [sections addObject:section];
     }
-    
+    {
+        NSMutableArray *cellModels = [NSMutableArray array];
+        CKJCommonSectionModel *section = [CKJCommonSectionModel new];
+        section.headerHeight = 10;
+        
+        
+        UIImage *(^b_image)(NSString *imageName) = ^UIImage *(NSString *imageName) {
+            return [[UIImage kjwd_imageNamed:imageName] kjwd_scaleToSize:CGSizeMake(30, 30)];
+        };
+        
+        NSArray <NSDictionary *>*data = @[
+                                          @{cNormalAttTitle : WDAtt1(@"报告查询"), cNormalImage : b_image(@"newhome_报告")},
+                                          @{cNormalAttTitle : WDAtt1(@"药费查询"), cNormalImage : b_image(@"newhome_药费查询")},
+                                          @{cNormalAttTitle : WDAtt1(@"处方查询"), cNormalImage : b_image(@"newhome_处方")}
+                                          ];
+        NSArray <CKJBaseBtnsCellItemData *>*items = [CKJBaseBtnsCellItemData returnItemsWithDics:data detailSetting:^(CKJBaseBtnsCellItemData * _Nonnull __weak itemData, NSUInteger index) {
+            itemData.layoutButton = ^(UIButton * _Nonnull btn) {
+                [btn kjwd_layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleTop imageTitleSpace:10];
+            };
+            itemData.callBack_Block = ^(CKJBaseBtnsCellItemData * _Nonnull itemData, __kindof CKJBaseBtnsCell * _Nonnull __weak cell) {
+            };
+        }];
+        
+        NSArray <CKJCommonCellModel *>*arr = [CKJBtnsCell2Model modelWithItems:items numberOfItemsInSingleLine:3 cellHeight:kHeight topMargin:0 centerMargin:0 bottomMargin:0 groupId:nil detailSetting:nil];
+        [cellModels addObjectsFromArray:arr];
+        
+        section.modelArray = cellModels;
+        [sections addObject:section];
+    }
     {
         CKJCommonSectionModel *section = [CKJCommonSectionModel new];
         section.headerHeight = 10;

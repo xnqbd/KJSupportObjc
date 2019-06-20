@@ -6,14 +6,14 @@
 //  Copyright © 2019 Lyc. All rights reserved.
 //
 
-#import "CKJBtnsCell.h"
+#import "CKJBaseBtnsCell.h"
 #import "UIView+CKJDesingable.h"
 
-@implementation CKJBtnsCellSystemDelegate
+@implementation CKJBaseBtnsCellSystemDelegate
 
 
 + (nonnull instancetype)esayWithNumberOfItemsInSingleLine:(NSUInteger)number {
-    CKJBtnsCellSystemDelegate *model = [[self alloc] init];
+    CKJBaseBtnsCellSystemDelegate *model = [[self alloc] init];
     model.numberOfItemsInSingleLine = number;
     return model;
 }
@@ -27,6 +27,8 @@
     for (int i = 0; i < self.numberOfItemsInSingleLine; i++) {
         
         UIButton *btn = [[UIButton alloc] init];
+        btn.backgroundColor = [UIColor whiteColor];
+        
 //        WDCKJBGColor_Arc4Color(btn);
         
         btn.titleLabel.font = [UIFont systemFontOfSize:15.5];
@@ -35,7 +37,7 @@
         [btn kjwd_addTouchUpInsideForCallBack:^(UIButton * _Nonnull sender) {
             
             NSArray <__kindof CKJStackCellItemData *>*data = cell.cellModel.data;
-            CKJBtnsCellItemData *itemData = [data kjwd_objectAtIndex:i];
+            CKJBaseBtnsCellItemData *itemData = [data kjwd_objectAtIndex:i];
             CKJBtnsCellItemBlock block = itemData.callBack_Block;
 
             block ? block(itemData, cell) : nil;
@@ -46,29 +48,40 @@
     return result;
 }
 
-- (void)updateItemView:(__kindof UIButton *)btn itemData:(__kindof CKJBtnsCellItemData *)itemData index:(NSInteger)index {
+- (void)updateItemView:(__kindof UIButton *)btn itemData:(__kindof CKJBaseBtnsCellItemData *)itemData index:(NSInteger)index {
     
     btn.selected = itemData.selected;
     btn.highlighted = itemData.highlighted;
     btn.enabled = itemData.enabled;
     
     NSAttributedString *normalAttTitle = itemData.normalAttTitle;
-    NSAttributedString *selectedAttTitle = itemData.selectedAttTitle;
-    
     UIImage *normalImage = itemData.normalImage;
-    UIImage *selectedImage = itemData.selectedImage;
-    
     UIImage *normalBgImage = itemData.normalBgImage;
+    
+    NSAttributedString *selectedAttTitle = itemData.selectedAttTitle;
+    UIImage *selectedImage = itemData.selectedImage;
     UIImage *selectedBgImage = itemData.selectedBgImage;
     
+    NSAttributedString *highlightedAttTitle = itemData.highlightedAttTitle;
+    UIImage *highlightedImage = itemData.highlightedImage;
+    UIImage *highlightedBgImage = itemData.highlightedBgImage;
+    
+    // 请确保 title 是 NSAttributedString 类型的，不然会崩溃
+    
+    // normal
     [btn setAttributedTitle:normalAttTitle forState:UIControlStateNormal];
-    [btn setAttributedTitle:selectedAttTitle forState:UIControlStateSelected];
-    
     [self btn:btn image:normalImage forState:UIControlStateNormal];
-    [self btn:btn image:selectedImage forState:UIControlStateSelected];
-    
     [self btn:btn bgImage:normalBgImage forState:UIControlStateNormal];
+
+    // select
+    [btn setAttributedTitle:selectedAttTitle forState:UIControlStateSelected];
+    [self btn:btn image:selectedImage forState:UIControlStateSelected];
     [self btn:btn bgImage:selectedBgImage forState:UIControlStateSelected];
+    
+    // highlighted
+    [btn setAttributedTitle:highlightedAttTitle forState:UIControlStateHighlighted];
+    [self btn:btn image:highlightedImage forState:UIControlStateHighlighted];
+    [self btn:btn bgImage:highlightedBgImage forState:UIControlStateHighlighted];
     
     if (btn.kBorderWidth != itemData.borderWidth) {
         btn.kBorderWidth = itemData.borderWidth;
@@ -106,7 +119,7 @@
 @end
 
 
-@implementation CKJBtnsCellItemData
+@implementation CKJBaseBtnsCellItemData
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -115,18 +128,25 @@
     return self;
 }
 
-+ (NSArray <__kindof CKJBtnsCellItemData *>*_Nonnull)returnItemsWithDics:(NSArray <NSDictionary *>*_Nullable)dics detailSetting:(void(^_Nullable)(__kindof CKJBtnsCellItemData *__weak _Nonnull itemData, NSUInteger index))detailSetting {
-    
++ (NSArray <CKJBaseBtnsCellItemData *>*_Nonnull)returnItemsWithDics:(NSArray <NSDictionary *>*_Nullable)dics detailSetting:(void(^_Nullable)(CKJBaseBtnsCellItemData *__weak _Nonnull itemData, NSUInteger index))detailSetting {
+
     NSMutableArray *result = [NSMutableArray array];
     for (int i = 0; i < dics.count; i++) {
         NSDictionary *dic = dics[i];
-        CKJBtnsCellItemData *m = [[self alloc] init];
+        CKJBaseBtnsCellItemData *m = [[CKJBaseBtnsCellItemData alloc] init];
+        
+        
         m.normalAttTitle = dic[cNormalAttTitle];
-        m.selectedAttTitle = dic[cSelectedAttTitle];
         m.normalImage = dic[cNormalImage];
-        m.selectedImage = dic[cSelectedImage];
         m.normalBgImage = dic[cNormalBgImage];
+        
+        m.selectedAttTitle = dic[cSelectedAttTitle];
+        m.selectedImage = dic[cSelectedImage];
         m.selectedBgImage = dic[cSelectedBgImage];
+        
+        m.highlightedAttTitle = dic[cHighlightedAttTitle];
+        m.highlightedImage = dic[cHighlightedImage];
+        m.highlightedBgImage = dic[cHighlightedBgImage];
         
         m.borderWidth = WDKJ_ConfirmNumber(dic[cBorderWidth]).floatValue;
         m.borderColor = dic[cBorderColor];
@@ -140,50 +160,49 @@
     return result;
 }
 
-
 @end
 
-@implementation CKJBtnsCellConfig
+@implementation CKJBaseBtnsCellConfig
 
 
-- (__kindof CKJBtnsCellSystemDelegate *)squareWithNumberOfItemsInSingleLine:(NSUInteger)number {
-    self.esaySystemModel = [CKJBtnsCellSystemDelegate esayWithNumberOfItemsInSingleLine:number];
+- (__kindof CKJBaseBtnsCellSystemDelegate *)squareWithNumberOfItemsInSingleLine:(NSUInteger)number {
+    self.esaySystemModel = [CKJBaseBtnsCellSystemDelegate esayWithNumberOfItemsInSingleLine:number];
     return self.esaySystemModel;
 }
 
 @end
 
 
-@implementation CKJBtnsCellModel
+@implementation CKJBaseBtnsCellModel
 
 
-+ (nonnull instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJBtnsCellRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJBtnsCellRowBlock)didSelectRowBlock {
++ (nonnull instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJBaseBtnsCellRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJBaseBtnsCellRowBlock)didSelectRowBlock {
     return [super modelWithCellHeight:cellHeight cellModel_id:cellModel_id detailSettingBlock:detailSettingBlock didSelectRowBlock:didSelectRowBlock];
 }
 
-+ (nonnull NSMutableArray <CKJCommonCellModel *>*)modelWithItems:(NSArray <__kindof CKJBtnsCellItemData *>*_Nullable)items numberOfItemsInSingleLine:(NSUInteger)number cellHeight:(CGFloat)cellHeight topMargin:(CGFloat)topMargin centerMargin:(CGFloat)centerMargin bottomMargin:(CGFloat)bottomMargin groupId:(NSString *_Nullable)groupId detailSetting:(void(^_Nullable)(CKJBtnsCellModel *_Nonnull m, NSUInteger cellModel_index))detailSetting {
++ (nonnull NSMutableArray <CKJCommonCellModel *>*)modelWithItems:(NSArray <__kindof CKJBaseBtnsCellItemData *>*_Nullable)items numberOfItemsInSingleLine:(NSUInteger)number cellHeight:(CGFloat)cellHeight topMargin:(CGFloat)topMargin centerMargin:(CGFloat)centerMargin bottomMargin:(CGFloat)bottomMargin groupId:(NSString *_Nullable)groupId detailSetting:(void(^_Nullable)(__kindof CKJBaseBtnsCellModel *_Nonnull m, NSUInteger cellModel_index))detailSetting {
     NSMutableArray *cellModels = [NSMutableArray array];
     
-    CKJBtnsCellModel *model = nil;
+    CKJBaseBtnsCellModel *model = nil;
     
     NSUInteger cellModel_index = 0;
     
     NSUInteger count = items.count;
     
     
-    NSMutableArray <CKJBtnsCellModel *>*btnsCellModel = [NSMutableArray array];
+    NSMutableArray <CKJBaseBtnsCellModel *>*btnsCellModel = [NSMutableArray array];
     
     for (int i = 0; i < count; i++) {
         
-        CKJBtnsCellItemData *item = [items kjwd_objectAtIndex:i];
+        CKJBaseBtnsCellItemData *item = [items kjwd_objectAtIndex:i];
         
-        if ([item isKindOfClass:[CKJBtnsCellItemData class]] == NO) {
-            NSLog(@"当前的item是%@  其实应该是CKJBtnsCellItemData类型的", item.class);
+        if ([item isKindOfClass:[CKJBaseBtnsCellItemData class]] == NO) {
+            NSLog(@"当前的item是%@  其实应该是CKJBaseBtnsCellItemData类型的", item.class);
         }
         
         
         if (i % number == 0) {
-            model = [CKJBtnsCellModel modelWithCellHeight:cellHeight cellModel_id:nil detailSettingBlock:^(__kindof CKJBtnsCellModel * _Nonnull m) {
+            model = [self modelWithCellHeight:cellHeight cellModel_id:nil detailSettingBlock:^(__kindof CKJBaseBtnsCellModel * _Nonnull m) {
                 m.showLine = NO;
                 [m addGroupId:groupId];
             } didSelectRowBlock:nil];
@@ -195,10 +214,12 @@
             [btnsCellModel addObject:model];
             
             if ((i + number) < count) { // 最后创建CellModel的时候
-                CKJEmptyCellModel *squareCellSpaceEmpty = [CKJEmptyCellModel emptyCellModelWithHeight:centerMargin showLine:NO];
-                [squareCellSpaceEmpty addGroupId:groupId];
-                
-                [cellModels addObject:squareCellSpaceEmpty];
+                if (centerMargin > 0) {
+                    CKJEmptyCellModel *squareCellSpaceEmpty = [CKJEmptyCellModel emptyCellModelWithHeight:centerMargin showLine:NO];
+                    [squareCellSpaceEmpty addGroupId:groupId];
+                    
+                    [cellModels addObject:squareCellSpaceEmpty];
+                }
             }
             
             cellModel_index++;
@@ -227,7 +248,7 @@
 @end
 
 
-@implementation CKJBtnsCell
+@implementation CKJBaseBtnsCell
 
 
 @end
