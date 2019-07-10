@@ -1,0 +1,244 @@
+//
+//  CKJImageLeftRightCellVC.m
+//  MobileHospital_Renji
+//
+//  Created by chenkaijie on 2019/7/9.
+//  Copyright © 2019 Lyc. All rights reserved.
+//
+
+#import "CKJImageLeftRightCellVC.h"
+
+@interface CKJImageLeftRightCellVC ()
+
+@end
+
+@implementation CKJImageLeftRightCellVC
+
+typedef NS_ENUM(NSUInteger, TestPayStyle) {
+    TestPayStyle_AliPay,
+    TestPayStyle_WeiXin,
+    TestPayStyle_YinLian
+};
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationItem.title = @"CKJBaseImageLeftRightCell及其子类";
+    
+
+    [self initSimpleTableViewData];
+
+}
+
+#pragma mark - CKJSimpleTableView 数据源 和 代理
+- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
+
+    CKJImageLeftCellConfig *leftConfig = [CKJImageLeftCellConfig configWithDetailSettingBlock:^(__kindof CKJImageLeftCellConfig * _Nonnull m) {
+        m.imageSize = CGSizeMake(40, 40);
+        m.fiveConfig = [CKJFiveLabelViewConfig configWithDetailSettingBlock:^(__kindof CKJFiveLabelViewConfig * _Nonnull m) {
+        }];
+    }];
+    CKJImageRightCellConfig *rightConfig = [CKJImageRightCellConfig configWithDetailSettingBlock:^(__kindof CKJImageRightCellConfig * _Nonnull m) {
+        m.imageSize = CGSizeMake(60, 60);
+        m.fiveConfig = [CKJFiveLabelViewConfig configWithDetailSettingBlock:^(__kindof CKJFiveLabelViewConfig * _Nonnull m) {
+        }];
+    }];
+    
+    
+    CKJPayCellConfig *payConfig = [CKJPayCellConfig appearanceForProject];
+    
+    return @{
+             NSStringFromClass([CKJPayCellModel class]) : @{cellKEY : NSStringFromClass([CKJPayCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : payConfig},
+             
+             NSStringFromClass([CKJImageLeftCellModel class]) : @{cellKEY : NSStringFromClass([CKJImageLeftCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : leftConfig},
+             NSStringFromClass([CKJImageRightCellModel class]) : @{cellKEY : NSStringFromClass([CKJImageRightCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : rightConfig},
+             
+             };
+}
+
+
+
+- (void)initSimpleTableViewData {
+    NSMutableArray <__kindof CKJCommonSectionModel *>*sections = [NSMutableArray array];
+    
+    
+    
+    {
+        CKJCommonSectionModel *section = [CKJCommonSectionModel new];
+        
+        CKJPayCellModel *model1 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
+            
+            m.b_ImageName = [UIImage kjwd_imageWithColor:[UIColor redColor] size:CGSizeMake(40, 40)];
+            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
+                fm.title = WDCKJAttributed2(@"标题", [UIColor kjwd_titleColor333333], nil);
+                fm.subTitle = WDCKJAttributed2(@"少时诵诗书", [UIColor kjwd_subTitleColor969696], nil);
+                fm.threeTitle = WDCKJAttributed2(@"额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1", [UIColor kjwd_subTitleColor969696], nil);
+            }];
+        } didSelectRowBlock:nil];
+        
+        __weak CKJPayCellModel *weakModel1 = model1;
+        
+        CKJTableViewCell1Model *model2 = [CKJTableViewCell1Model modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+            m.textLabelAttStr = WDAtt15_5(@"点击展开");
+        } didSelectRowBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+            weakModel1.displayInTableView = YES;
+            [m.cell.simpleTableView reloadData];
+        }];
+        
+        
+        CKJTableViewCell1Model *model3 = [CKJTableViewCell1Model modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+            m.textLabelAttStr = WDAtt15_5(@"点击隐藏");
+        } didSelectRowBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+            weakModel1.displayInTableView = NO;
+            [m.cell.simpleTableView reloadData];
+        }];
+        
+        [self.simpleTableView addRadioCellModels:@[model1]];
+        
+        
+        section.modelArray = @[model1, model2, model3];
+        [sections addObject:section];
+        
+    }
+    
+    
+    {
+        CKJCommonSectionModel *section = [CKJCommonSectionModel new];
+    
+        
+        section.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"下面的图片可以在左也可以在右", [UIColor kjwd_subTitleColor969696], @14) type:(CKJCommonHeaderFooterType_HEADER)];
+        
+        
+        CKJImageRightCellModel *model1 = [CKJImageRightCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageRightCellModel * _Nonnull m) {
+            m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
+            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
+                fm.title = WDCKJAttributed2(@"银联", [UIColor kjwd_titleColor333333], nil);
+                fm.subTitle = WDCKJAttributed2(@"推荐有银联账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
+                fm.threeTitle = WDCKJAttributed2(@"订单号：1c9f4d1cbe214ab6a948a1ab3ef5f1", [UIColor kjwd_subTitleColor969696], nil);
+                fm.fourTitle = WDCKJAttributed2(@"总金额：29.30元", [UIColor kjwd_subTitleColor969696], nil);
+                fm.fiveTitle = WDCKJAttributed2(@"订单简介：门诊检查费", [UIColor kjwd_subTitleColor969696], nil);
+            }];
+        } didSelectRowBlock:nil];
+        
+        
+        CKJImageLeftCellModel *model2 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
+            m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
+            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
+                fm.title = WDCKJAttributed2(@"银联", [UIColor kjwd_titleColor333333], nil);
+                fm.subTitle = WDCKJAttributed2(@"推荐有银联账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
+                fm.threeTitle = WDCKJAttributed2(@"订单号：1c9f4d1cbe214ab6a948a1ab3ef5f1", [UIColor kjwd_subTitleColor969696], nil);
+                fm.fourTitle = WDCKJAttributed2(@"总金额：29.30元", [UIColor kjwd_subTitleColor969696], nil);
+                fm.fiveTitle = WDCKJAttributed2(@"订单简介：门诊检查费", [UIColor kjwd_subTitleColor969696], nil);
+            }];
+        } didSelectRowBlock:nil];
+        
+        
+        
+        
+        CKJImageLeftCellModel *model3 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
+            m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
+            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
+                fm.title = WDCKJAttributed2(@"银联", [UIColor kjwd_titleColor333333], nil);
+                fm.subTitle = WDCKJAttributed2(@"推荐有银联账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
+                fm.threeTitle = WDCKJAttributed2(@"订单号：1c9f4d1cbe214ab6a948a1ab3ef5f1", [UIColor kjwd_subTitleColor969696], nil);
+                fm.fourTitle = WDCKJAttributed2(@"总金额：29.30元", [UIColor kjwd_subTitleColor969696], nil);
+            }];
+        } didSelectRowBlock:nil];
+        
+        
+        CKJImageLeftCellModel *model4 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
+            m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
+            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
+                fm.title = WDCKJAttributed2(@"银联", [UIColor kjwd_titleColor333333], nil);
+                fm.subTitle = WDCKJAttributed2(@"推荐有银联账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
+                fm.threeTitle = WDCKJAttributed2(@"订单号：1c9f4d1cbe214ab6a948a1ab3ef5f1", [UIColor kjwd_subTitleColor969696], nil);
+            }];
+        } didSelectRowBlock:nil];
+        
+        
+        CKJImageLeftCellModel *model5 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
+            m.b_Image_URL = @"https://ps.ssl.qhmsg.com/sdr/400__/t01c8515616311ff6b9.jpg";
+            m.b_placeholderImage = [UIImage kjwd_imageWithColor:[UIColor blueColor] size:CGSizeMake(100, 100)];
+            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
+                fm.title = WDCKJAttributed2(@"银联", [UIColor kjwd_titleColor333333], nil);
+                fm.subTitle = WDCKJAttributed2(@"推荐有银联账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
+            }];
+        } didSelectRowBlock:nil];
+        
+        section.modelArray = @[model1, model2, model3, model4, model5];
+        [sections addObject:section];
+    }
+    
+    {
+        CKJCommonSectionModel *section = [CKJCommonSectionModel new];
+        
+        section.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"下面是单选", [UIColor kjwd_subTitleColor969696], @14) type:(CKJCommonHeaderFooterType_HEADER)];
+        
+        CKJPayCellModel *model6 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
+            m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk支付宝"];
+            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
+                fm.title = WDCKJAttributed2(@"支付宝", [UIColor kjwd_titleColor333333], nil);
+                fm.subTitle = WDCKJAttributed2(@"推荐有支付宝账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
+            }];
+            m.extension_Interger = TestPayStyle_AliPay;
+        } didSelectRowBlock:nil];
+        
+        
+        CKJPayCellModel *model7 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
+            
+            m.b_ImageName = [UIImage imageNamed:@"wdyhfsdkechat"];
+            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
+                fm.title = WDCKJAttributed2(@"微信", [UIColor kjwd_titleColor333333], nil);
+                fm.subTitle = WDCKJAttributed2(@"推荐有微信账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
+                fm.threeTitle = WDCKJAttributed2(@"额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1", [UIColor kjwd_subTitleColor969696], nil);
+            }];
+            m.extension_Interger = TestPayStyle_WeiXin;
+        } didSelectRowBlock:nil];
+        
+        
+        CKJPayCellModel *model8 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
+            m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
+            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
+                fm.title = WDCKJAttributed2(@"银联", [UIColor kjwd_titleColor333333], nil);
+                fm.subTitle = WDCKJAttributed2(@"推荐有银联账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
+                fm.threeTitle = WDCKJAttributed2(@"额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1", [UIColor kjwd_subTitleColor969696], nil);
+                fm.fourTitle = WDCKJAttributed2(@"额外信息22额外信息22额外信息22额外信息22额外信息22额外信息22额外信息22额外信息22额外信息22", [UIColor kjwd_subTitleColor969696], nil);
+            }];
+            m.extension_Interger = TestPayStyle_YinLian;
+        } didSelectRowBlock:nil];
+        
+        CKJGeneralCellModel *model9 = [CKJGeneralCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(CKJGeneralCellModel *m) {
+            m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"获取当前支付方式", [UIColor kjwd_titleColor333333], nil) left:15];
+        } didSelectRowBlock:^(__kindof CKJGeneralCellModel * _Nonnull m) {
+            CKJCommonCellModel *radio = m.cell.simpleTableView.currentSelectRadioCellModel;
+            // 需要判断空的情况
+            if (radio != nil) {
+                switch (radio.extension_Interger) {
+                    case TestPayStyle_AliPay:
+                        NSLog(@"支付宝");
+                        break;
+                    case TestPayStyle_WeiXin:
+                        NSLog(@"微信");
+                        break;
+                    case TestPayStyle_YinLian:
+                        NSLog(@"银联");
+                        break;
+                    default:
+                        NSLog(@"未知");
+                        break;
+                }
+            }
+        }];
+        [self.simpleTableView addRadioCellModels:@[model6, model7, model8]];
+    
+        section.modelArray = @[model6, model7, model8, model9];
+        [sections addObject:section];
+    }
+    
+    
+    self.simpleTableView.dataArr = sections;
+    [self.simpleTableView kjwd_reloadData];
+}
+
+
+@end

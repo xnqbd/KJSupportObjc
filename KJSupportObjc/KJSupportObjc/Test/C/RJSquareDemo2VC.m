@@ -31,7 +31,7 @@
 #define kHeight 100
 
 #pragma mark - CKJSimpleTableView 数据源 和 代理
-- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues {
+- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
     
     CKJBtnsCell1Config *config1 = [CKJBtnsCell1Config configWithDetailSettingBlock:^(CKJBtnsCell1Config * _Nonnull m) {
         m.stackView_Edge_SuperView = UIEdgeInsetsMake(0, 15, 0, 15);
@@ -78,16 +78,16 @@
             return [[UIImage kjwd_imageNamed:imageName] kjwd_scaleToSize:CGSizeMake(30, 30)];
         };
         NSArray <NSDictionary *>*data = @[
-                                          @{cNormalAttTitle : WDAtt1(@"报告查询"), cNormalImage : b_image(@"newhome_报告")},
-                                          @{cNormalAttTitle : WDAtt1(@"药费查询"), cNormalImage : b_image(@"newhome_药费查询")},
-                                          @{cNormalAttTitle : WDAtt1(@"处方查询"), cNormalImage : b_image(@"newhome_处方")},
-                                          @{cNormalAttTitle : WDAtt1(@"药品查询"), cNormalImage : b_image(@"newhome_药品")},
-                                          @{cNormalAttTitle : WDAtt1(@"精准预约"), cNormalImage : b_image(@"newhome_预约")},
-                                          @{cNormalAttTitle : WDAtt1(@"日间手术"), cNormalImage : b_image(@"newhome_手术")},
-                                          @{cNormalAttTitle : WDAtt1(@"小i机器人"), cNormalImage : b_image(@"newhome_机器人")},
-                                          @{cNormalAttTitle : WDAtt1(@"更多"), cNormalImage : b_image(@"newhome_更多"),  cSelectedAttTitle : WDAtt1(@"日间手术"), cSelectedImage : b_image(@"日间手术")},
+                                          @{cNormalAttTitle : WDAtt13(@"报告查询"), cNormalImage : b_image(@"newhome_报告")},
+                                          @{cNormalAttTitle : WDAtt13(@"药费查询"), cNormalImage : b_image(@"newhome_药费查询")},
+                                          @{cNormalAttTitle : WDAtt13(@"处方查询"), cNormalImage : b_image(@"newhome_处方")},
+                                          @{cNormalAttTitle : WDAtt13(@"药品查询"), cNormalImage : b_image(@"newhome_药品")},
+                                          @{cNormalAttTitle : WDAtt13(@"精准预约"), cNormalImage : b_image(@"newhome_预约")},
+                                          @{cNormalAttTitle : WDAtt13(@"日间手术"), cNormalImage : b_image(@"newhome_手术")},
+                                          @{cNormalAttTitle : WDAtt13(@"小i机器人"), cNormalImage : b_image(@"newhome_机器人")},
+                                          @{cNormalAttTitle : WDAtt13(@"更多"), cNormalImage : b_image(@"newhome_更多"),  cSelectedAttTitle : WDAtt13(@"日间手术"), cSelectedImage : b_image(@"日间手术")},
                                           
-                                          @{cNormalAttTitle : WDAtt1(@"预约检查"), cNormalImage : b_image(@"预约检查")},
+                                          @{cNormalAttTitle : WDAtt13(@"预约检查"), cNormalImage : b_image(@"预约检查")},
                                           ];
         NSArray <CKJBaseBtnsCellItemData *>*items = [CKJBaseBtnsCellItemData returnItemsWithDics:data detailSetting:^(CKJBaseBtnsCellItemData * _Nonnull __weak itemData, NSUInteger index) {
             
@@ -108,7 +108,7 @@
             };
         }];
         
-        NSArray <CKJCommonCellModel *>*arr = [CKJBtnsCell1Model modelWithItems:items numberOfItemsInSingleLine:4 cellHeight:80 topMargin:0 centerMargin:0 bottomMargin:0 groupId:nil detailSetting:^(CKJBtnsCell1Model * _Nonnull m, NSUInteger cellModel_index) {
+        NSArray <CKJCommonCellModel *>*arr = [CKJBtnsCell1Model btnsCellModelWithItems:items numberOfItemsInSingleLine:4 cellHeight:80 topMargin:0 centerMargin:0 bottomMargin:0 groupId:nil detailSetting:^(CKJBtnsCell1Model * _Nonnull __weak m, NSUInteger cellModel_index) {
             if (cellModel_index == 2) {
                 m.cellModel_id = kHiddenCellId;
                 m.displayInTableView = NO;
@@ -130,9 +130,9 @@
         };
         
         NSArray <NSDictionary *>*data = @[
-                                          @{cNormalAttTitle : WDAtt1(@"报告查询"), cNormalImage : b_image(@"newhome_报告")},
-                                          @{cNormalAttTitle : WDAtt1(@"药费查询"), cNormalImage : b_image(@"newhome_药费查询")},
-                                          @{cNormalAttTitle : WDAtt1(@"处方查询"), cNormalImage : b_image(@"newhome_处方")}
+                                          @{cNormalAttTitle : WDAtt13(@"报告查询"), cNormalImage : b_image(@"newhome_报告")},
+                                          @{cNormalAttTitle : WDAtt13(@"药费查询"), cNormalImage : b_image(@"newhome_药费查询")},
+                                          @{cNormalAttTitle : WDAtt13(@"处方查询"), cNormalImage : b_image(@"newhome_处方")}
                                           ];
         NSArray <CKJBaseBtnsCellItemData *>*items = [CKJBaseBtnsCellItemData returnItemsWithDics:data detailSetting:^(CKJBaseBtnsCellItemData * _Nonnull __weak itemData, NSUInteger index) {
             itemData.layoutButton = ^(UIButton * _Nonnull btn) {
@@ -142,7 +142,7 @@
             };
         }];
         
-        NSArray <CKJCommonCellModel *>*arr = [CKJBtnsCell2Model modelWithItems:items numberOfItemsInSingleLine:3 cellHeight:kHeight topMargin:0 centerMargin:0 bottomMargin:0 groupId:nil detailSetting:nil];
+        NSArray <CKJCommonCellModel *>*arr = [CKJBtnsCell2Model btnsCellModelWithItems:items numberOfItemsInSingleLine:3 cellHeight:kHeight topMargin:0 centerMargin:0 bottomMargin:0 groupId:nil detailSetting:nil];
         [cellModels addObjectsFromArray:arr];
         
         section.modelArray = cellModels;

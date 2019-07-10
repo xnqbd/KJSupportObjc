@@ -8,7 +8,7 @@
 
 #import "SelectDateCell.h"
 #import "NSObject+WDYHFCategory.h"
-
+#import "MBProgressHUD+WJ.h"
 
 @implementation SelectDateCellConfig
 
@@ -52,7 +52,7 @@
 - (void)setupSubViews {
     [super setupSubViews];
     
-    self.bgV.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    self.subviews_SuperView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
     SelectDateCellConfig *config = self.configDic[configDicKEY_ConfigModel];
     
@@ -67,7 +67,7 @@
         btn.backgroundColor = [UIColor whiteColor];
         [btn setTitle:date forState:UIControlStateNormal];
         [btn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
-        [self.bgV addSubview:btn];
+        [self.subviews_SuperView addSubview:btn];
         return btn;
     };
     
@@ -75,13 +75,13 @@
     UILabel *lab = [[UILabel alloc] init];
     lab.textAlignment = NSTextAlignmentCenter;
     lab.text = @"-";
-    [self.bgV addSubview:lab];
+    [self.subviews_SuperView addSubview:lab];
     
     UIButton *search = [UIButton buttonWithType:UIButtonTypeCustom];
     [search addTarget:self action:@selector(searchAction:) forControlEvents:UIControlEventTouchUpInside];
     [search setImage:[UIImage imageNamed:@"搜索"] forState:UIControlStateNormal];
     
-    [self.bgV addSubview:search];
+    [self.subviews_SuperView addSubview:search];
     
     
     self.beginDateBtn = block(config.beginDate);
@@ -125,17 +125,17 @@
     NSString *endDate   = self.endDateBtn.titleLabel.text;
     if (!startDate.length) {
         NSLog(@"请输入开始日期");
-//        [MBProgressHUD showError:@"请输入开始日期"];
+        [MBProgressHUD showError:@"请输入开始日期"];
         return;
     }
     if (!endDate.length) {
         NSLog(@"请输入结束日期");
-//        [MBProgressHUD showError:@"请输入结束日期"];
+        [MBProgressHUD showError:@"请输入结束日期"];
         return;
     }
     if (startDate.longLongValue > endDate.longLongValue) {
         NSLog(@"开始时间不能大于结束时间");
-//        [MBProgressHUD showError:@"开始时间不能大于结束时间"];
+        [MBProgressHUD showError:@"开始时间不能大于结束时间"];
         return;
     }
    NSLog(@"得到日期");

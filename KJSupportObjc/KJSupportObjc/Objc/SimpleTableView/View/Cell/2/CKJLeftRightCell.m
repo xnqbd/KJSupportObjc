@@ -110,7 +110,7 @@
     title.textColor = [UIColor kjwd_titleColor333333];
     title.font = [UIFont systemFontOfSize:15];
     
-    [self.bgV addSubview:title];
+    [self.subviews_SuperView addSubview:title];
     self.leftLab = title;
     
     UILabel *subTitle = [UILabel new];
@@ -118,7 +118,7 @@
     //    WDCKJBGColor_Arc4Color(subTitle);
     subTitle.textColor = [UIColor kjwd_subTitleColor969696];
     subTitle.font = [UIFont systemFontOfSize:15];
-    [self.bgV addSubview:subTitle];
+    [self.subviews_SuperView addSubview:subTitle];
     self.rightLab = subTitle;
     
     

@@ -71,7 +71,7 @@
     title.textColor = [UIColor kjwd_titleColor333333];
     title.font = [UIFont systemFontOfSize:15];
     
-    [self.bgV addSubview:title];
+    [self.subviews_SuperView addSubview:title];
     self.titleLab = title;
 }
 

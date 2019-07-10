@@ -57,6 +57,15 @@ typedef void(^CKJBtnsCellItemBlock)(CKJBaseBtnsCellItemData *_Nonnull itemData, 
 
 
 
+///** 比如 控制器类名 */
+//@property (copy, nonatomic) NSString *extenStr;
+//@property (copy, nonatomic) NSString *extenObj;
+//
+//@property (copy, nonatomic) void(^extenBlock)(UIViewController *vc);
+//@property (weak, nonatomic) Class extenClass;
+//@property (copy, nonatomic) void (^cCustomBlock)(void);
+
+
 
 /** 边框宽度 */
 @property (assign, nonatomic) CGFloat borderWidth;
@@ -97,7 +106,7 @@ typedef void(^CKJBtnsCellItemBlock)(CKJBaseBtnsCellItemData *_Nonnull itemData, 
 
 + (nonnull instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJBaseBtnsCellRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJBaseBtnsCellRowBlock)didSelectRowBlock;
 
-+ (nonnull NSMutableArray <CKJCommonCellModel *>*)modelWithItems:(NSArray <__kindof CKJBaseBtnsCellItemData *>*_Nullable)items numberOfItemsInSingleLine:(NSUInteger)number cellHeight:(CGFloat)cellHeight topMargin:(CGFloat)topMargin centerMargin:(CGFloat)centerMargin bottomMargin:(CGFloat)bottomMargin groupId:(NSString *_Nullable)groupId detailSetting:(void(^_Nullable)(__kindof CKJBaseBtnsCellModel *_Nonnull m, NSUInteger cellModel_index))detailSetting;
++ (nonnull NSMutableArray <CKJCommonCellModel *>*)btnsCellModelWithItems:(NSArray <__kindof CKJBaseBtnsCellItemData *>*_Nullable)items numberOfItemsInSingleLine:(NSUInteger)number cellHeight:(CGFloat)cellHeight topMargin:(CGFloat)topMargin centerMargin:(CGFloat)centerMargin bottomMargin:(CGFloat)bottomMargin groupId:(NSString *_Nullable)groupId detailSetting:(void(^_Nullable)(__kindof CKJBaseBtnsCellModel *__weak _Nonnull m, NSUInteger cellModel_index))detailSetting;
 
 @end
 

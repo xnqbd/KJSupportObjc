@@ -15,10 +15,14 @@
 #import "CKJTableViewHeaderFooterEmptyView.h"
 #import "CKJCell.h"
 #import "CKJSimpleTableViewDelegate.h"
-#import "CKJRadioCell.h"
+
 #import "CKJInputCell.h"
 #import "CKJTableViewCell1.h"
 #import "CKJTableViewCell2.h"
+#import "CKJGeneralCell.h"
+#import "CKJImageLeftCell.h"
+#import "CKJImageRightCell.h"
+#import "CKJPayCell.h"
 
 
 #define KJ_typeweakself __weak typeof(self) weakSelf = self;
@@ -37,7 +41,7 @@
 
  @return 键值对
  */
-- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues;
+- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s;
 
 @optional;
 
@@ -46,8 +50,8 @@
  键值对     return @{ NSStringFromClass([DemoHeaderModel class]) : NSStringFromClass([DemoHeader class])};
  @return 键值对
  */
-- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnHeader_Model_keyValues;
-- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnFooter_Model_keyValues;
+- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnHeader_Model_keyValues:(CKJSimpleTableView *_Nonnull)s;
+- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnFooter_Model_keyValues:(CKJSimpleTableView *_Nonnull)s;
 
 /**
  保留Plain样式 区头悬浮
@@ -218,8 +222,34 @@
  */
 - (nullable NSArray <NSNumber *>*)returnRowsInSection:(NSInteger)section  handle:(BOOL(^_Nullable)(__kindof CKJCommonCellModel *_Nonnull m))handle;
 
-#pragma mark - CKJPayCell相关
-@property (strong, nonatomic, nullable) NSArray <__kindof CKJRadioCellModel *>*radioCellModels;
-@property (strong, nonatomic, nullable, readonly) __kindof CKJRadioCellModel *currentSelectRadioCellModel;
+
+
+
+#pragma mark - 选中样式 相关
+
+/**
+ 整个TableView只有一行是选中的 样式
+ 
+ self.leftTableView.selectStyleBlock = ^(__kindof CKJTableViewCell1Model * _Nonnull m, BOOL isCurrentCellModel) {
+ m.cell_bgColor = isCurrentCellModel ? [UIColor whiteColor] : [UIColor kjwd_r:246 g:246 b:246 alpha:1];
+ };
+ */
+@property (copy, nonatomic, nullable) void (^selectStyleBlock)(__kindof CKJCommonCellModel *_Nonnull m, BOOL isCurrentCellModel);
+
+- (void)enumAllCellModelsAndSet_SelectedStyleWithCellModel:(__kindof CKJCommonCellModel *_Nullable)cellModel;
+
+#pragma mark - 单选相关
+
+- (void)addRadioCellModels:(NSArray <__kindof CKJCommonCellModel *>*_Nullable)radioCellModels;
+@property (strong, nonatomic, nullable) NSArray <__kindof CKJCommonCellModel *>*radioCellModels;
+@property (strong, nonatomic, nullable, readonly) __kindof CKJCommonCellModel *currentSelectRadioCellModel;
+
+/**
+ 触发了单选事件
+
+ @param m 触发事件Cell的模型
+ */
+- (void)triggerRadioActionWithCellModel:(__kindof CKJCommonCellModel *_Nonnull)m;
+
 
 @end

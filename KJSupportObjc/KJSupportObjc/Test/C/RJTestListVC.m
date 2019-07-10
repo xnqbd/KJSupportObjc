@@ -7,6 +7,9 @@
 //
 
 #import "RJTestListVC.h"
+#import "CKJImageLeftCell.h"
+#import "CKJImageRightCell.h"
+#import "CKJPayCell.h"
 
 @interface RJTestListVC ()
 
@@ -20,21 +23,22 @@
     [self initSimpleTableViewData];
 }
 
+- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
+    return @{};
+}
+
 - (void)initSimpleTableViewData {
     
-    CKJArrow9Model *arrow = [CKJArrow9Model arrow9ModelWithImage:[[UIImage kjwd_imageNamed:@"wdyhfsdkright arrow"] kjwd_scaleToSize:CGSizeMake(15, 18)] right:nil];
-    
     NSMutableArray <__kindof CKJCommonSectionModel *>*sections = [NSMutableArray array];
-    NSDictionary *leftDic = @{NSForegroundColorAttributeName : [UIColor kjwd_titleColor333333]};
     
     KJ_typeweakself
     
-    CKJCellModel *(^block)(NSString *title, NSString *vcClass) = ^CKJCellModel *(NSString *title, NSString *vcClass) {
+    CKJGeneralCellModel *(^block)(NSString *title, NSString *vcClass) = ^CKJGeneralCellModel *(NSString *title, NSString *vcClass) {
         
-        CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
-            m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(title, leftDic) left:15];
-            m.arrow9Model = arrow;
-        } didSelectRowBlock:^(__kindof CKJCellModel * _Nonnull m) {
+        CKJGeneralCellModel *model1 = [CKJGeneralCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJGeneralCellModel * _Nonnull m) {
+            m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(title, [UIColor kjwd_titleColor333333], @16) left:15];
+            m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
+        } didSelectRowBlock:^(__kindof CKJGeneralCellModel * _Nonnull m) {
             UIViewController *vc = [[NSClassFromString(vcClass) alloc] init];
             [weakSelf.navigationController pushViewController:vc animated:YES];
         }];
@@ -43,24 +47,27 @@
     
     {
         CKJCommonSectionModel *section = [CKJCommonSectionModel new];
-        section.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"注意：如果是代码布局的Cell，请把子控件加入到CKJCommonTableViewCell.bgV上，这是比较好的做法", [UIColor redColor], nil) type:CKJCommonHeaderFooterType_HEADER];
+        section.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"注意：如果是代码布局的Cell，请把子控件加入到CKJCommonTableViewCell.subviews_SuperView上", [UIColor redColor], nil) type:CKJCommonHeaderFooterType_HEADER];
 
-        CKJCellModel *model1 = block(@"CKJCell的用法Demo", @"RJSettingViewController");
-        CKJCellModel *model2 = block(@"自定义Cell、配置Cell、聚合Cell", @"RJConfigVC");
+        CKJCommonCellModel *model0 = block(@"CKJGeneralCell的用法Demo", @"CKJGeneralCellVC");
+
+        CKJCommonCellModel *model1 = block(@"CKJCell的用法Demo", @"CKJCellVC");
+        CKJCommonCellModel *model2 = block(@"自定义Cell、配置Cell、聚合Cell", @"RJConfigVC");
         
-        CKJCellModel *model3 = block(@"输入Cell", @"RJInputVC");
-        CKJCellModel *model4 = block(@"StackCell、ScrollViewCell示例1", @"RJSquareDemo1VC");
+        CKJCommonCellModel *model3 = block(@"CKJBaseImageLeftRightCell及其子类", @"CKJImageLeftRightCellVC");
+
+        CKJCommonCellModel *model4 = block(@"输入Cell", @"RJInputVC");
+        CKJCommonCellModel *model5 = block(@"StackCell、ScrollViewCell示例1", @"RJSquareDemo1VC");
         
-        CKJCellModel *model5 = block(@"StackCell、ScrollViewCell示例2", @"RJSquareDemo2VC");
+        CKJCommonCellModel *model6 = block(@"StackCell、ScrollViewCell示例2", @"RJSquareDemo2VC");
         
-        section.modelArray = @[model1, model2, model3, model4, model5];
+        section.modelArray = @[model0, model1, model2, model3, model4, model5, model6];
         [sections addObject:section];
     }
     
     self.simpleTableView.dataArr = sections;
     [self.simpleTableView kjwd_reloadData];
     
-    //    [self.simpleTableView removeLastSection];
 }
 
 

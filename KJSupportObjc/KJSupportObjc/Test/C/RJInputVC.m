@@ -160,9 +160,9 @@ typedef NS_ENUM(NSUInteger, RJInputStyle) {
         }];
         
         if (style == RJInputStyle_Choose) {
-            m.btn8Model = [CKJBtn8Model btn8ModelWithSize:size normalImage:[UIImage kjwd_imageNamed:@"hs_gh_arrowDown"] rightMargin:0 detailSettingBlock:^(CKJBtn8Model * _Nonnull sender) {
+            m.btn7Model = [CKJBtn7Model btn7ModelWithSize:size normalImage:[UIImage kjwd_imageNamed:@"hs_gh_arrowDown"] rightMargin:0 detailSettingBlock:^(CKJBtn7Model * _Nonnull sender) {
                 sender.userInteractionEnabled = NO;
-            } didClickBtn8Handle:nil];
+            } didClickBtn7Handle:nil];
         }
         if (haveStar) {
             m.arrow9Model = [CKJArrow9Model arrow9ModelWithImage:[UIImage kjwd_imageWithColor:[UIColor whiteColor] size:CGSizeMake(30, 30) text:@"*" textAttributes:@{NSForegroundColorAttributeName : [UIColor redColor], NSFontAttributeName : [UIFont systemFontOfSize:16]} circular:NO] right:@5];

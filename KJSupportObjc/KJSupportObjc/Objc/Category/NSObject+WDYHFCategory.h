@@ -48,7 +48,8 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_Nonnull myStr);
 
 NSMutableAttributedString *_Nonnull WDCKJAttributed(NSString *_Nullable name, NSDictionary *_Nullable dic);
 NSMutableAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize);
-NSMutableAttributedString *_Nonnull WDAtt1(NSString *_Nullable name);
+NSMutableAttributedString *_Nonnull WDAtt13(NSString *_Nullable name);
+NSMutableAttributedString *_Nonnull WDAtt15_5(NSString *_Nullable name);
 
 
 /**
@@ -69,7 +70,7 @@ NSMutableAttributedString *_Nonnull WDCKJAttributed4(NSString *_Nullable text1, 
 /**
  加粗
  */
-NSMutableAttributedString *_Nonnull WDCKJAttributed5(NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize);
+NSMutableAttributedString *_Nonnull WDCKJAttBold(NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize);
 
 /**
  添加附件 (图片在前，文字在后)
@@ -104,6 +105,8 @@ CGFloat WDAPP_ScreenHeight(void);
  让一段代码在一段时间内只能执行一次， 这个方法就算很频繁执行， 但在指定时间内block中的代码也只会执行一次
  */
 - (void)kjwd_executedOnceInTimeInterval:(NSTimeInterval)timeInterval block:(void(^)(void))block;
+
+
 - (void)kjwd_setValuesForKeysWithDictionary:(nullable NSDictionary<NSString *, id> *)keyedValues;
 
 @end
@@ -583,6 +586,9 @@ CGFloat WDAPP_ScreenHeight(void);
 @property (nonatomic, strong, readonly) MASViewAttribute * kjwdMas_safeAreaLeft;
 @property (nonatomic, strong, readonly) MASViewAttribute * kjwdMas_safeAreaRight;
 
+- (NSArray *)kjwd_masWithSuperView:(UIView *_Nonnull)superView makeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
+
+
 - (NSArray *)kjwd_mas_makeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
 - (NSArray *)kjwd_mas_updateConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
 - (NSArray *)kjwd_mas_remakeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
@@ -1004,6 +1010,8 @@ typedef NS_ENUM(NSInteger, KJWDArc4randomType) {
 + (nonnull NSString *)kjwd_returnArc4randomWithNum:(NSUInteger)num type:(KJWDArc4randomType)type;
 
 
++ (nonnull NSString *)kjwd_returnJsonStrFromDic:(NSDictionary *_Nullable)dic;
+
 + (NSString *)kjwd_arrayStringWithStringArray:(NSArray *)array;
 
 @property (assign, nonatomic) CGFloat kjwd_helperNumber;
@@ -1019,7 +1027,7 @@ typedef NS_ENUM(NSInteger, KJWDArc4randomType) {
  使用toStr 替换掉beiReplace
 
  @param beiReplace 被替换的字符
- @param toStr 用这个区替换
+ @param toStr 用这个去替换
  */
 - (nonnull NSString *)kjwd_BeiReplace:(NSArray <NSString *>*)beiReplace toStr:(nonnull NSString *)toStr;
 

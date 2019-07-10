@@ -14,7 +14,7 @@
  
  
  #pragma mark - CKJSimpleTableView 数据源 和 代理
- - (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues {
+ - (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
  CKJLeftRightCellCenterEqualConfig *centerEqual = [CKJLeftRightCellCenterEqualConfig configWithDetailSettingBlock:^(CKJLeftRightCellCenterEqualConfig * _Nonnull m) {
  }];
  return @{

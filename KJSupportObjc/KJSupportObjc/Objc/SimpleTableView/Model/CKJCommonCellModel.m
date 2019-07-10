@@ -9,6 +9,23 @@
 #import "CKJCommonCellModel.h"
 #import "NSObject+WDYHFCategory.h"
 
+
+
+
+
+@implementation CKJCommonCellArrowModel
+
+- (instancetype)init {
+    if (self = [super init]) {
+        self.rightMargin = 10;
+    }
+    return self;
+}
+
+@end
+
+
+
 @interface CKJCommonCellModel ()
 
 @property (weak, nonatomic) __kindof CKJCommonTableViewCell *cell;
@@ -24,13 +41,12 @@
         self.displayInTableView = YES;
         self.selectionStyle = UITableViewCellSelectionStyleDefault;
         self.showLine = YES;
-        self.bgVColor = [UIColor whiteColor];
+        self.cell_bgColor = [UIColor whiteColor];
     }
     return self;
 }
 
 - (void)setValue:(id)value forUndefinedKey:(NSString *)key {
-    
 }
 
 

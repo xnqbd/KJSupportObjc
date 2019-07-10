@@ -27,7 +27,7 @@
 }
 
 
-- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues {
+- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
     CKJBtnsCell1Config *config1 = [CKJBtnsCell1Config configWithDetailSettingBlock:^(CKJBtnsCell1Config * _Nonnull m) {
         m.stackView_Edge_SuperView = UIEdgeInsetsMake(5, 10, 5, 10);
         m.delegate = [m squareWithNumberOfItemsInSingleLine:3];
@@ -56,17 +56,17 @@
         
         CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:120 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
             m.selectionStyle = UITableViewCellSelectionStyleNone;
-            m.bgVColor = [UIColor kjwd_r:25 g:130 b:197 alpha:1];
+            m.cell_bgColor = [UIColor kjwd_r:25 g:130 b:197 alpha:1];
             m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:nil left:15];
             
-            m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"预交金余额(元)", [UIColor whiteColor], @15) bottomAttributedText:WDCKJAttributed5(@"2000.00", [UIColor whiteColor], @42) topEdge:UIEdgeInsetsMake(15, 0, 0, 0) bottomEdge:UIEdgeInsetsMake(0, 0, 25, 0)];
+            m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"预交金余额(元)", [UIColor whiteColor], @15) bottomAttributedText:WDCKJAttBold(@"2000.00", [UIColor whiteColor], @42) topEdge:UIEdgeInsetsMake(15, 0, 0, 0) bottomEdge:UIEdgeInsetsMake(0, 0, 25, 0)];
             
-            m.btn8Model = [CKJBtn8Model btn8ModelWithSize:CGSizeMake(60, 30) normalImage:nil rightMargin:20 detailSettingBlock:^(CKJBtn8Model * _Nonnull sender) {
+            m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(60, 30) normalImage:nil rightMargin:20 detailSettingBlock:^(CKJBtn7Model * _Nonnull sender) {
                 sender.normalAttributedTitle = WDCKJAttributed2(@"充值", [UIColor whiteColor], @15);
                 sender.cornerRadius = 15;
                 sender.borderColor = [UIColor kjwd_r:169 g:218 b:255 alpha:1];
                 sender.borderWidth = 2;
-            } didClickBtn8Handle:^(CKJCell * _Nonnull cell, CKJBtn8Model * _Nonnull btn8Model) {
+            } didClickBtn7Handle:^(CKJCell * _Nonnull cell, CKJBtn7Model * _Nonnull btn7Model) {
                 NSLog(@"点击充值");
             }];
         } didSelectRowBlock:nil];
@@ -81,9 +81,9 @@
             m.selectionStyle = UITableViewCellSelectionStyleNone;
             m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"预交金明细", [UIColor kjwd_titleColor333333], nil) left:15];
             
-            m.btn8Model = [CKJBtn8Model btn8ModelWithSize:CGSizeMake(60, 30) normalImage:nil rightMargin:12 detailSettingBlock:^(CKJBtn8Model * _Nonnull sender) {
+            m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(60, 30) normalImage:nil rightMargin:12 detailSettingBlock:^(CKJBtn7Model * _Nonnull sender) {
                 sender.normalAttributedTitle = WDCKJAttributed2(@"筛选", [UIColor kjwd_r:25 g:130 b:197 alpha:1], nil);
-            } didClickBtn8Handle:^(CKJCell * _Nonnull cell, CKJBtn8Model * _Nonnull btn8Model) {
+            } didClickBtn7Handle:^(CKJCell * _Nonnull cell, CKJBtn7Model * _Nonnull btn7Model) {
                 NSLog(@"点击筛选");
                 if (cell.currentSectionAllCellModelArray.count > 1) return;
                 [cell.simpleTableView appendCellModelArray:[weakSelf extensionCellModels] atLastRow_InAllCellModelArrayOfSection:cell.section withRowAnimation:UITableViewRowAnimationTop animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
@@ -141,7 +141,7 @@
         [m addGroupId:dateGroupId];
         m.showLine = NO;
         m.selectionStyle = UITableViewCellSelectionStyleNone;
-        m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed5(@"月份筛选", [UIColor blackColor], @17) left:15];
+        m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttBold(@"月份筛选", [UIColor blackColor], @17) left:15];
     } didSelectRowBlock:nil];
     
     [cellModels addObject:model1];
@@ -152,7 +152,7 @@
     NSMutableArray *data = [NSMutableArray array];
     
     for (NSString *title in titles) {
-        [data addObject:@{cNormalAttTitle : WDAtt1(title), cNormalBgImage : image, cCornerRadius : @(5)}];
+        [data addObject:@{cNormalAttTitle : WDAtt13(title), cNormalBgImage : image, cCornerRadius : @(5)}];
     }
     
     NSArray <CKJBaseBtnsCellItemData *>*items = [CKJBaseBtnsCellItemData returnItemsWithDics:data detailSetting:^(CKJBaseBtnsCellItemData * _Nonnull __weak itemData, NSUInteger index) {
@@ -163,7 +163,7 @@
             }];
         };
     }];
-    NSArray <CKJCommonCellModel *>*models = [CKJBtnsCell1Model modelWithItems:items numberOfItemsInSingleLine:3 cellHeight:44 topMargin:0 centerMargin:0 bottomMargin:0 groupId:dateGroupId detailSetting:^(CKJBtnsCell1Model * _Nonnull m, NSUInteger cellModel_index) {
+    NSArray <CKJCommonCellModel *>*models = [CKJBtnsCell1Model btnsCellModelWithItems:items numberOfItemsInSingleLine:3 cellHeight:44 topMargin:0 centerMargin:0 bottomMargin:0 groupId:dateGroupId detailSetting:^(CKJBtnsCell1Model * _Nonnull __weak m, NSUInteger cellModel_index) { 
     }];
     [cellModels addObjectsFromArray:models];
     

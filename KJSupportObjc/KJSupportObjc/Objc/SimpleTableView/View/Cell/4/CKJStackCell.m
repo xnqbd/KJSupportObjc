@@ -115,7 +115,7 @@
     
     UIView *stackView_superView = [[UIView alloc] init];
     stackView_superView.backgroundColor = [UIColor whiteColor];
-    [self.bgV addSubview:stackView_superView];
+    [self.subviews_SuperView addSubview:stackView_superView];
     [stackView_superView kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.edges.equalTo(superview).insets(edge);
     }];

@@ -16,6 +16,17 @@ NSString *_Nonnull const registerNibNameKEY = @"registerNibNameKEY";
 NSString *_Nonnull const configDicKEY_ConfigModel = @"configDicKEY_ConfigModel";
 NSString *_Nonnull const headerFooterKey = @"headerFooterKey";
 
+
+
+//NSString *_Nonnull const cExtenStr = @"cExtenStr";
+//NSString *_Nonnull const cExtenBlock = @"cExtenBlock";
+//NSString *_Nonnull const cExtenObj = @"cExtenObj";
+//NSString *_Nonnull const cExtenClass = @"cExtenClass";
+//
+///** 完全自定义block， 无参数 */
+//NSString *_Nonnull const cCustomBlock = @"cCustomBlock";
+
+
 NSString *_Nonnull const cNormalAttTitle = @"cNormalAttTitle";
 NSString *_Nonnull const cNormalImage = @"cNormalImage";
 NSString *_Nonnull const cNormalBgImage = @"cNormalBgImage";
@@ -45,6 +56,18 @@ NSString *_Nonnull const cCornerRadius = @"cCornerRadius";
     [att replaceCharactersInRange:NSMakeRange(0, att.length) withString:WDKJ_ConfirmString(text)];
     return att;
 }
+
++ (NSBundle *_Nonnull)kjbundle {
+    NSBundle *mainBundle = [NSBundle bundleForClass:[CKJCommonTableViewCell class]];
+    
+    NSBundle *resourcesBundle = [NSBundle bundleWithPath:[mainBundle pathForResource:@"KJSupportObjc" ofType:@"bundle"]];
+    
+    if (resourcesBundle == nil) {
+        resourcesBundle = mainBundle;
+    }
+    return resourcesBundle;
+}
+
 
 @end
 
@@ -78,6 +101,7 @@ NSString *_Nonnull const cCornerRadius = @"cCornerRadius";
         NSDictionary *dic = dics[i];
         CKJBtnItemData *m = [[self alloc] init];
         
+        
         m.normalAttTitle = dic[cNormalAttTitle];
         m.normalImage = dic[cNormalImage];
         m.normalBgImage = dic[cNormalBgImage];
@@ -97,19 +121,39 @@ NSString *_Nonnull const cCornerRadius = @"cCornerRadius";
         if (detailSetting) {
             detailSetting(m, i);
         }
+        
+//        m.extenStr = dic[cExtenStr];
+//        m.extenBlock = dic[cExtenBlock];
+//        m.extenObj = dic[cExtenObj];
+//        m.extenClass = dic[cExtenClass];
+//        m.cCustomBlock = dic[cCustomBlock];
+//
+        
         [result addObject:m];
     }
     return result;
 }
 
 - (void)setNormalAttTitle:(NSAttributedString *)normalAttTitle {
-    _normalAttTitle = WDKJ_ConfirmAttString(normalAttTitle);
+    if (WDKJ_IsEmpty_AttributedStr(normalAttTitle)) {
+        _normalAttTitle = nil;
+    } else {
+        _normalAttTitle = normalAttTitle;
+    }
 }
 - (void)setSelectedAttTitle:(NSAttributedString *)selectedAttTitle {
-    _selectedAttTitle = WDKJ_ConfirmAttString(selectedAttTitle);
+    if (WDKJ_IsEmpty_AttributedStr(selectedAttTitle)) {
+        _selectedAttTitle = nil;
+    } else {
+        _selectedAttTitle = selectedAttTitle;
+    }
 }
 - (void)setHighlightedAttTitle:(NSAttributedString *)highlightedAttTitle {
-    _highlightedAttTitle = WDKJ_ConfirmAttString(highlightedAttTitle);
+    if (WDKJ_IsEmpty_AttributedStr(highlightedAttTitle)) {
+        _highlightedAttTitle = nil;
+    } else {
+        _highlightedAttTitle = highlightedAttTitle;
+    }
 }
 
 

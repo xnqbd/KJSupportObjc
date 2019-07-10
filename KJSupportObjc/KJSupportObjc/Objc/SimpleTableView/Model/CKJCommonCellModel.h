@@ -9,12 +9,46 @@
 #import <UIKit/UIKit.h>
 #import "CKJBaseModel.h"
 
+
+//- (instancetype)init {
+//    if (self = [super init]) {
+//        self.showLine = NO;
+//    }
+//    return self;
+//}
+
+
+
+
+
 typedef void(^CKJBlockType1)(void);
 
 @class CKJCommonTableViewCell, CKJCommonCellModel;
 
 
 typedef void(^CKJCommonCellModelRowBlock)(__kindof CKJCommonCellModel *_Nonnull m);
+
+
+
+
+
+
+@interface CKJCommonCellArrowModel : CKJBaseModel
+
+
+/**
+ 右边距离
+ */
+@property (assign, nonatomic) CGFloat rightMargin;
+
+
+@end
+
+
+
+
+
+
 
 
 // sectionProperty_
@@ -25,8 +59,7 @@ typedef void(^CKJCommonCellModelRowBlock)(__kindof CKJCommonCellModel *_Nonnull 
 /**
  默认白色
  */
-@property (strong, nonatomic, nonnull) UIColor *bgVColor;
-
+@property (strong, nonatomic, nonnull) UIColor *cell_bgColor;
 
 /**
  选中Cell的效果
@@ -45,10 +78,15 @@ typedef void(^CKJCommonCellModelRowBlock)(__kindof CKJCommonCellModel *_Nonnull 
 
 /**
  是否选中
- 注意：1.如果是用CKJCellModel.CKJBtn8Model，请使用CKJBtn8Model自身的selected
+ 注意：1.如果是用CKJCellModel.CKJBtn7Model，请使用CKJBtn7Model自身的selected
  2.如果是CKJFiveCell，请使用CKJFiveCellModel.chooseBtn_Selected
  */
 @property (assign, nonatomic) BOOL selected;
+
+/**
+ 这个只用在单选的时候
+ */
+@property (assign, nonatomic) BOOL radio_Selected;
 
 /**
  是否在UITableView里面显示

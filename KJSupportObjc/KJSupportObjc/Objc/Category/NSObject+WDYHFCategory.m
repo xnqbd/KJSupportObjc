@@ -193,8 +193,13 @@ NSMutableAttributedString *_Nonnull WDCKJAttributed2(NSString *_Nullable text, U
     return str;
 }
 
-NSMutableAttributedString *_Nonnull WDAtt1(NSString *_Nullable name) {
-    return WDCKJAttributed2(name, nil, nil);
+NSMutableAttributedString *_Nonnull WDAtt13(NSString *_Nullable name) {
+    return WDCKJAttributed2(name, nil, @12);
+}
+
+
+NSMutableAttributedString *_Nonnull WDAtt15_5(NSString *_Nullable name) {
+    return WDCKJAttributed2(name, [UIColor kjwd_titleColor333333], @15.5);
 }
 
 
@@ -221,7 +226,7 @@ NSMutableAttributedString *_Nonnull WDCKJAttributed4(NSString *_Nullable text1, 
 }
 
 
-NSMutableAttributedString *_Nonnull WDCKJAttributed5(NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize) {
+NSMutableAttributedString *_Nonnull WDCKJAttBold(NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize) {
     UIColor *_color = WDKJ_IsNullObj(color, [UIColor class]) ? [UIColor blackColor] : color;
     CGFloat _fontSize = WDKJ_IsNull_Num(fontSize) ? 15.5 : fontSize.integerValue;
     
@@ -299,7 +304,7 @@ CGFloat WDAPP_ScreenHeight(void) {
  让一段代码在一段时间内只能执行一次， 这个方法就算很频繁执行， 但在指定时间内block中的代码也只会执行一次
  */
 - (void)kjwd_executedOnceInTimeInterval:(NSTimeInterval)timeInterval block:(void(^)(void))block {
-    NSLog(@"进来比较");
+    
     NSDate *currentDate = [NSDate date];
     NSTimeInterval interval = [currentDate timeIntervalSinceDate:self.markDate];
     
@@ -313,6 +318,34 @@ CGFloat WDAPP_ScreenHeight(void) {
         block();
     }
 }
+// 让一段代码在一段时间内只能执行一次， 只会执行最后的 最新的，比如输入框里的延迟1秒后搜索
+//- (void)kjwd_executedNewestHandle:(void(^_Nullable)(void))handle InTimeInterval:(NSTimeInterval)timeInterval {
+//    
+//    NSDate *currentDate = [NSDate date];
+//    NSTimeInterval interval = [currentDate timeIntervalSinceDate:self.markDate];
+//    
+//    // 当已经停止输入字符  2秒内，只搜索最新的关键字
+//    //              2秒
+//    if (interval < timeInterval) {
+//        
+//        // 增加block
+//        NSMutableArray *arr = [NSMutableArray kjwd_arrayWithArray:self.markBlockArray];
+//        [arr addObject:handle];
+//        self.markBlockArray = arr;
+//        return;
+//    }
+//    
+//    
+//    self.markDate = [NSDate date];
+//    
+//    void (^block)(void) = self.markBlockArray.lastObject;
+//    
+//    if (block) {
+//        block();
+//    }
+//}
+
+
 
 - (void)setMarkDate:(NSDate *)markDate {
     if (markDate == nil) {
@@ -325,6 +358,15 @@ CGFloat WDAPP_ScreenHeight(void) {
     NSDate *date = objc_getAssociatedObject(self, @"markDate");
     return date;
 }
+
+//- (void)setMarkBlockArray:(NSArray *)markBlockArray {
+//    objc_setAssociatedObject(self, @"markBlockArray", markBlockArray, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+//}
+//- (NSArray *)markBlockArray {
+//    NSArray *markBlockArray = objc_getAssociatedObject(self, @"markBlockArray");
+//    return markBlockArray;
+//}
+
 
 - (void)kjwd_setValuesForKeysWithDictionary:(nullable NSDictionary<NSString *, id> *)keyedValues {
     if (WDKJ_IsNullObj(keyedValues, [NSDictionary class])) return;
@@ -1169,7 +1211,12 @@ CGFloat WDAPP_ScreenHeight(void) {
 @implementation UIColor (WDYHFCategory)
 
 + (nonnull UIColor *)kjwd_arc4Color {
-    return [UIColor colorWithRed:arc4random_uniform(256) / 255.0 green:arc4random_uniform(256) / 255.0 blue:arc4random_uniform(256) / 255.0 alpha:1];
+    uint32_t r = arc4random_uniform(256);
+    uint32_t g = arc4random_uniform(256);
+    uint32_t b = arc4random_uniform(256);
+    
+    NSLog(@"随机生成颜色 r:%d  g:%d  b:%d", r, g, b);
+    return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:1];
 }
 + (nonnull UIColor *)kjwd_r:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha {
     return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:alpha];
@@ -1595,6 +1642,10 @@ CGFloat WDAPP_ScreenHeight(void) {
  
  */
 
+- (NSArray *)kjwd_masWithSuperView:(UIView *_Nonnull)superView makeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block {
+    [superView addSubview:self];
+    return [self kjwd_mas_makeConstraints:block];
+}
 
 - (NSArray *)kjwd_mas_makeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block {
     if (self.superview == nil) {
@@ -2683,7 +2734,7 @@ CGFloat WDAPP_ScreenHeight(void) {
     
     NSString *filtered = [[self componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
     
-    BOOL basicTest = [self isEqualToString:filtered];
+    BOOL basicTest = [self containsString:filtered];
     return basicTest;
 }
 /** 是否包含小写字母 */
@@ -2697,7 +2748,7 @@ CGFloat WDAPP_ScreenHeight(void) {
     
     NSString *filtered = [[self componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
     
-    BOOL basicTest = [self isEqualToString:filtered];
+    BOOL basicTest = [self containsString:filtered];
     return basicTest;
 }
 /** 是否包含数字 */
@@ -2711,7 +2762,7 @@ CGFloat WDAPP_ScreenHeight(void) {
     
     NSString *filtered = [[self componentsSeparatedByCharactersInSet:cs] componentsJoinedByString:@""];
     
-    BOOL basicTest = [self isEqualToString:filtered];
+    BOOL basicTest = [self containsString:filtered];
     return basicTest;
 }
 
@@ -2871,6 +2922,24 @@ CGFloat WDAPP_ScreenHeight(void) {
     }
     return resultStr;
 }
+
++ (nonnull NSString *)kjwd_returnJsonStrFromDic:(NSDictionary *_Nullable)dic {
+    if (WDKJ_IsNullObj(dic, [NSDictionary class])) {
+        return @"";
+    }
+    
+    NSError *parseError = nil;
+    
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&parseError];
+    
+    if (jsonData == nil) {
+        return @"";
+    }
+    
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+}
+
 
 
 + (NSString *)kjwd_arrayStringWithStringArray:(NSArray *)array {

@@ -8,7 +8,7 @@
 
 #import "CKJBaseModel.h"
 #import <UIKit/UIKit.h>
-
+#import "KJSupportHeader.h"
 
 @class CKJBtnItemData;
 
@@ -22,6 +22,15 @@ UIKIT_EXTERN NSString *_Nonnull const isRegisterNibKEY;
 UIKIT_EXTERN NSString *_Nonnull const registerNibNameKEY;
 UIKIT_EXTERN NSString *_Nonnull const configDicKEY_ConfigModel;
 UIKIT_EXTERN NSString *_Nonnull const headerFooterKey;
+
+UIKIT_EXTERN NSString *_Nonnull const cExtenStr;
+UIKIT_EXTERN NSString *_Nonnull const cExtenBlock;
+UIKIT_EXTERN NSString *_Nonnull const cExtenObj;
+UIKIT_EXTERN NSString *_Nonnull const cExtenClass;
+
+
+/** 完全自定义block */
+UIKIT_EXTERN NSString *_Nonnull const cCustomBlock;
 
 
 UIKIT_EXTERN NSString *_Nonnull const cNormalAttTitle;
@@ -52,6 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSAttributedString *_Nonnull)changeOriginAtt:(nullable NSAttributedString *)origin text:(nullable NSString *)text;
 
++ (NSBundle *_Nonnull)kjbundle;
+
 @end
 
 
@@ -77,6 +88,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,getter=isHighlighted) BOOL highlighted;
 
 
+///** 比如 控制器类名 */
+//@property (copy, nonatomic) NSString *extenStr;
+//@property (copy, nonatomic) NSString *extenObj;
+//
+//@property (copy, nonatomic) void(^extenBlock)(UIViewController *vc);
+//@property (weak, nonatomic) Class extenClass;
+//@property (copy, nonatomic) void (^cCustomBlock)(void);
+
 
 @property (copy, nonatomic, nullable) NSAttributedString *normalAttTitle;
 @property (strong, nonatomic, nullable) UIImage *normalImage;
@@ -100,7 +119,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@property (copy, nonatomic, nullable) CKJBtnItemBlock callBack_Block;
+@property (copy, nonatomic, nullable) CKJBtnItemBlock callBack;
+/**
+ 对UIButton的图片和文字 进行排布回调
+ */
+@property (copy, nonatomic, nullable) void (^layout_Button)(UIButton *btn);
 
 /**
  创建多个items对象

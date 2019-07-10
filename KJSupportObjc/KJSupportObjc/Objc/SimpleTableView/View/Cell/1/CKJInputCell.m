@@ -9,7 +9,7 @@
 #import "CKJInputCell.h"
 #import "UIView+CKJDesingable.h"
 #import "CKJSimpleTableView.h"
-
+#import "MBProgressHUD+WJ.h"
 
 @implementation CKJTFModel
 
@@ -172,7 +172,7 @@
     
     [tf addTarget:self action:@selector(textChange:) forControlEvents:UIControlEventAllEditingEvents];
     tf.font = [UIFont systemFontOfSize:15];
-    [self.centerExtraView addSubview:tf];
+    [self.tfWrapperView addSubview:tf];
     self.tf = tf;
     
     [tf kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
@@ -197,7 +197,7 @@
     
     [btn setBackgroundImage:[UIImage kjwd_imageWithColor:[UIColor kjwd_r:14 g:128 b:200 alpha:1] size:CGSizeMake(100, 30)] forState:UIControlStateNormal];
     [btn addTarget:self action:@selector(countDownTouched:) forControlEvents:(UIControlEventTouchUpInside)];
-    [self.centerExtraView addSubview:btn];
+    [self.tfWrapperView addSubview:btn];
     [btn kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.left.equalTo(tf.mas_right);
         make.centerY.equalTo(tf);
@@ -229,7 +229,7 @@
     
     if (empty1 && empty2) {
         NSLog(@"%@ ", @"手机号为空或有误");
-//        [MBProgressHUD showMessage:@"手机号为空或有误"];
+        [MBProgressHUD showMessage:@"手机号为空或有误"];
         return;
     }   
     CKJTriggerCodeBlock succ = ^(NSUInteger seconds) {

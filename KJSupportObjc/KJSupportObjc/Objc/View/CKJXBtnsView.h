@@ -15,6 +15,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+typedef NS_ENUM(NSUInteger, CKJBtnsViewUpdateStyle) {
+    /** 仅仅更新视图 */
+    CKJBtnsViewUpdateStyle_OnlyUpdateView,
+    /** 移除旧View，重新根据数据添加新View，更新视图 */
+    CKJBtnsViewUpdateStyle_RemoveViewsAndUpdateView,
+};
+
+
+
+
 @interface CKJXBtnsViewConfig :  CKJCommonConfig
 
 @property (assign, nonatomic) UIEdgeInsets scrollView_Edge_SuperView;
@@ -38,7 +48,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nonnull instancetype)squareViewWithConfig:(CKJXBtnsViewConfig *_Nonnull)config itemData:(NSArray <__kindof CKJXBtnItemData *>*_Nullable)data;
 
-- (void)updateItemViewsWithItemData:(NSArray <__kindof CKJXBtnItemData *>*_Nullable)data;
+- (void)updateItemViewsWithItemData:(NSArray <__kindof CKJXBtnItemData *>*_Nullable)data updateStyle:(CKJBtnsViewUpdateStyle)updateStyle;
 
 
 @end

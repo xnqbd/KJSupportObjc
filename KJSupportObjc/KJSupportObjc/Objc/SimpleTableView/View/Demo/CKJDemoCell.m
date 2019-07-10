@@ -52,7 +52,7 @@
 
 - (void)setupSubViews {
 
-    UIView *bgV = self.bgV;
+    UIView *bgV = self.subviews_SuperView;
 
     UIImageView *imageV = [[UIImageView alloc] init];
     [bgV addSubview:imageV];
@@ -131,7 +131,7 @@
     CGFloat fiveLab_margin_SuperView = superview_margin_title;
 
 
-    id temp = self.bgV.mas_right;
+    id temp = self.subviews_SuperView.mas_right;
 
     [title kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.left.equalTo(imageV.mas_right).offset(image_margin_title);

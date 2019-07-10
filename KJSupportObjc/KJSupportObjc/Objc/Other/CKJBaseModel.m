@@ -18,7 +18,7 @@
     return model;
 }
 
-+ (nonnull instancetype)detailSettingBlock:(nullable void(^)(__kindof CKJBaseModel *m))detailSettingBlock {
++ (nonnull instancetype)detailSettingBlock:(void(^_Nullable )(__kindof CKJBaseModel *_Nonnull __weak m))detailSettingBlock {
     CKJBaseModel *model = [[self alloc] init];
     if (detailSettingBlock) {
         detailSettingBlock(model);

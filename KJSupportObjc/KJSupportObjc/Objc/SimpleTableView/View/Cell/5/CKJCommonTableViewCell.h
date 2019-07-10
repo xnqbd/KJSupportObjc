@@ -30,12 +30,25 @@ typedef void(^CKJCommonCellConfigBlock)(__kindof CKJCommonCellConfig *_Nonnull m
 
 
 
+
+
 @interface CKJCommonTableViewCell <E : CKJCommonCellModel *> : UITableViewCell
 
 - (nonnull instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(nonnull NSString *)reuseIdentifier configDic:(nonnull NSDictionary *)configDic;
 
 
-@property (strong, nonatomic, nonnull) UIView *bgV;
+
+
+/**
+ 和Cell一样大的唯一视图
+ */
+@property (strong, nonatomic, nonnull) UIView *onlyView;
+
+
+/**
+ 如果是用xib、storyboard描述的，不需要把子视图加到这个bgV上，这个subviews_SuperView只是用纯代码的时候把子视图添加到这个上面
+ */
+@property (strong, nonatomic, nonnull) UIView *subviews_SuperView;
 
 
 /**
@@ -51,7 +64,10 @@ typedef void(^CKJCommonCellConfigBlock)(__kindof CKJCommonCellConfig *_Nonnull m
 @property (assign, nonatomic, readonly) NSInteger row;
 
 - (nonnull CKJSimpleTableView *)simpleTableView;
-@property (nonatomic, readonly, nonnull) __kindof CKJCommonSectionModel *sectionModel;
+- (nonnull __kindof CKJCommonSectionModel *)sectionModel;
+
+
+
 
 /**
  当前分区所有Cell模型数组(包括隐藏的)

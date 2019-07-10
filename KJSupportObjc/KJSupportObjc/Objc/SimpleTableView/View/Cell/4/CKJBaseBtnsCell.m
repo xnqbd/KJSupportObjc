@@ -8,6 +8,7 @@
 
 #import "CKJBaseBtnsCell.h"
 #import "UIView+CKJDesingable.h"
+#import "CKJEmptyCell.h"
 
 @implementation CKJBaseBtnsCellSystemDelegate
 
@@ -38,9 +39,10 @@
             
             NSArray <__kindof CKJStackCellItemData *>*data = cell.cellModel.data;
             CKJBaseBtnsCellItemData *itemData = [data kjwd_objectAtIndex:i];
+            
             CKJBtnsCellItemBlock block = itemData.callBack_Block;
-
             block ? block(itemData, cell) : nil;
+            
         }];
         
         [result addObject:btn];
@@ -155,10 +157,43 @@
         if (detailSetting) {
             detailSetting(m, i);
         }
+        
+        
+//        m.extenStr = dic[cExtenStr];
+//        m.extenBlock = dic[cExtenBlock];
+//        m.extenObj = dic[cExtenObj];
+//        m.extenClass = dic[cExtenClass];
+//        m.cCustomBlock = dic[cCustomBlock];
+//        
+        
         [result addObject:m];
     }
     return result;
 }
+
+
+- (void)setNormalAttTitle:(NSAttributedString *)normalAttTitle {
+    if (WDKJ_IsEmpty_AttributedStr(normalAttTitle)) {
+        _normalAttTitle = nil;
+    } else {
+        _normalAttTitle = normalAttTitle;
+    }
+}
+- (void)setSelectedAttTitle:(NSAttributedString *)selectedAttTitle {
+    if (WDKJ_IsEmpty_AttributedStr(selectedAttTitle)) {
+        _selectedAttTitle = nil;
+    } else {
+        _selectedAttTitle = selectedAttTitle;
+    }
+}
+- (void)setHighlightedAttTitle:(NSAttributedString *)highlightedAttTitle {
+    if (WDKJ_IsEmpty_AttributedStr(highlightedAttTitle)) {
+        _highlightedAttTitle = nil;
+    } else {
+        _highlightedAttTitle = highlightedAttTitle;
+    }
+}
+
 
 @end
 
@@ -180,7 +215,7 @@
     return [super modelWithCellHeight:cellHeight cellModel_id:cellModel_id detailSettingBlock:detailSettingBlock didSelectRowBlock:didSelectRowBlock];
 }
 
-+ (nonnull NSMutableArray <CKJCommonCellModel *>*)modelWithItems:(NSArray <__kindof CKJBaseBtnsCellItemData *>*_Nullable)items numberOfItemsInSingleLine:(NSUInteger)number cellHeight:(CGFloat)cellHeight topMargin:(CGFloat)topMargin centerMargin:(CGFloat)centerMargin bottomMargin:(CGFloat)bottomMargin groupId:(NSString *_Nullable)groupId detailSetting:(void(^_Nullable)(__kindof CKJBaseBtnsCellModel *_Nonnull m, NSUInteger cellModel_index))detailSetting {
++ (nonnull NSMutableArray <CKJCommonCellModel *>*)btnsCellModelWithItems:(NSArray <__kindof CKJBaseBtnsCellItemData *>*_Nullable)items numberOfItemsInSingleLine:(NSUInteger)number cellHeight:(CGFloat)cellHeight topMargin:(CGFloat)topMargin centerMargin:(CGFloat)centerMargin bottomMargin:(CGFloat)bottomMargin groupId:(NSString *_Nullable)groupId detailSetting:(void(^_Nullable)(__kindof CKJBaseBtnsCellModel *__weak _Nonnull m, NSUInteger cellModel_index))detailSetting {
     NSMutableArray *cellModels = [NSMutableArray array];
     
     CKJBaseBtnsCellModel *model = nil;
@@ -221,9 +256,7 @@
                     [cellModels addObject:squareCellSpaceEmpty];
                 }
             }
-            
             cellModel_index++;
-            
         } else {
             [model addItem:item];
         }

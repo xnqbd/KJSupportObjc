@@ -1,19 +1,19 @@
 //
-//  RJSettingViewController.m
+//  CKJCellVC.m
 //  MobileHospital_Renji
 //
 //  Created by chenkaijie on 2019/3/14.
 //  Copyright © 2019年 Lyc. All rights reserved.
 //
 
-#import "RJSettingViewController.h"
+#import "CKJCellVC.h"
 #import "UIView+CKJDesingable.h"
 #import "WDYHFHospitalItem.h"
 #import "CKJToolPickerView.h"
 #import "CKJLeftRightCell.h"
 #import "RJTestListVC.h"
 
-@interface RJSettingViewController ()
+@interface CKJCellVC ()
 
 /** 当前选中的区域 */
 @property (strong, nonatomic, nullable) WDYHFAreaItem *selectAreaItem;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation RJSettingViewController
+@implementation CKJCellVC
 
 #define kkkk_YHFStatusCellID 20
 
@@ -87,12 +87,12 @@
                 m.subTitle4Model = [CKJSubTitle4Model subTitle4ModelWithAttributedText:WDCKJAttributed2(@"subTitle4", [UIColor kjwd_subTitleColor969696], @14) top:0 left:0 bottom:0 right:0];
                 m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"topText5", [UIColor kjwd_titleColor333333], @14) bottomAttributedText:WDCKJAttributed2(@"bottomTex5", [UIColor kjwd_subTitleColor969696], @14) centerMarign:5 topBottomMargin:3 leftMargin:0 rightMargin:0];
                 m.switch6Model = [CKJSwitch6Model switch6ModelWithSwitchOn:YES left:0 top:0 right:0 bottom:0 callBack:^(BOOL switchOn, CKJCellModel * _Nonnull cellModel, UISwitch * _Nonnull senderSwitch) {
-                    
                 }];
-                m.likePrice7Model = [CKJLikePriceLabel7Model likePriceLabel7ModelWithAttributedText:WDCKJAttributed2(@"likePrice7", [UIColor kjwd_subTitleColor969696], @14) top:0 bottom:0 right:0];
-                m.btn8Model = [CKJBtn8Model btn8ModelWithSize:CGSizeMake(30, 30) normalImage:[UIImage kjwd_imageNamed:@"touxiang.jpg"] rightMargin:0 detailSettingBlock:nil didClickBtn8Handle:^(CKJCell * _Nonnull cell, CKJBtn8Model * _Nonnull btn8Model) {
-                    NSLog(@"%@ ", @"点击了btn8");
+                m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(30, 30) normalImage:[UIImage kjwd_imageNamed:@"touxiang.jpg"] rightMargin:0 detailSettingBlock:nil didClickBtn7Handle:^(CKJCell * _Nonnull cell, CKJBtn7Model * _Nonnull btn7Model) {
+                    NSLog(@"%@ ", @"点击了btn7");
                 }];
+                m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"likePrice8", [UIColor kjwd_subTitleColor969696], @14) left:0 right:0];
+                
                 m.arrow9Model = [CKJArrow9Model arrow9ModelWithImage:image right:nil];
             } didSelectRowBlock:nil];
             
@@ -103,53 +103,54 @@
         {
             CKJCommonSectionModel *section = [CKJCommonSectionModel new];
             section.rowHeight = rowHeight;
-            
-            
+
+
             CKJCellModel *model0 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(CKJCellModel *m) {
                 m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"头像", leftDic) left:leftMarign];
-                m.btn8Model = [CKJBtn8Model btn8ModelWithSize:CGSizeMake(30, 30) normalImage:[UIImage kjwd_imageNamed:@"touxiang.jpg"] rightMargin:10 detailSettingBlock:^(CKJBtn8Model *sender) {
+                m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(30, 30) normalImage:[UIImage kjwd_imageNamed:@"touxiang.jpg"] rightMargin:10 detailSettingBlock:^(CKJBtn7Model *sender) {
                     sender.cornerRadius = 15;
-                } didClickBtn8Handle:^(CKJCell * _Nonnull cell, CKJBtn8Model * _Nonnull btn8Model) {
+                } didClickBtn7Handle:^(CKJCell * _Nonnull cell, CKJBtn7Model * _Nonnull btn7Model) {
                     NSLog(@"%@ ", @"点击头像");
                 }];
                 m.arrow9Model = [CKJArrow9Model arrow9ModelWithImage:image right:nil];
             } didSelectRowBlock:nil];
-            
-            
+
+
             CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(CKJCellModel *m) {
                 m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"名字", leftDic) left:leftMarign];
                 m.subTitle4Model = [CKJSubTitle4Model subTitle4ModelWithAttributedText:WDCKJAttributed2(@"姓名务必和身份证上一致", [UIColor kjwd_subTitleColor969696], @15) top:10 left:10 bottom:10 right:10];
-                m.likePrice7Model = [CKJLikePriceLabel7Model likePriceLabel7ModelWithAttributedText:WDCKJAttributed(@"吴振强", rightDic) top:0 bottom:0 right:rightMarign];
+
+                m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed(@"吴振强", rightDic) left:0 right:rightMarign];
             } didSelectRowBlock:nil];
-            
+
             CKJCellModel *model2 = [CKJCellModel modelWithCellHeight:65 cellModel_id:nil detailSettingBlock:^(CKJCellModel *m) {
                 m.showLine = NO;
                 m.image2Model = [CKJImage2Model image2ModelWithImageString:@"wdyhfsdkmark" size:CGSizeMake(30, 30) left:leftMarign];
                 m.subTitle4Model = [CKJSubTitle4Model subTitle4ModelWithAttributedText:WDCKJAttributed2(@"结算失败。现金支付部分将在30分钟内，原路退回，请留意查看！", [UIColor kjwd_r:24 g:167 b:99 alpha:1], @16) top:10 left:10 bottom:10 right:10];
             } didSelectRowBlock:nil];
-            
-            
+
+
             CKJCellModel *model3 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
                 m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"操作1", leftDic) left:25];
-                m.btn8Model = [CKJBtn8Model btn8ModelWithSize:CGSizeMake(100, 30) normalImage:nil rightMargin:25 detailSettingBlock:^(CKJBtn8Model *sender) {
+                m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(100, 30) normalImage:nil rightMargin:25 detailSettingBlock:^(CKJBtn7Model *sender) {
                     sender.cornerRadius = 15;
                     sender.normalBackgroundImage = [UIImage kjwd_imageWithColor:[UIColor redColor] size:CGSizeMake(100, 30)];
                     sender.normalAttributedTitle = WDCKJAttributed2(@"删除此行", [UIColor whiteColor], nil);
-                } didClickBtn8Handle:^(CKJCell *cell, CKJBtn8Model *btn8Model) {
+                } didClickBtn7Handle:^(CKJCell *cell, CKJBtn7Model *btn7Model) {
                     [cell.simpleTableView removeCellModelAtSection:cell.section rows:@[@(cell.row)] removeHiddenCellModel:NO withRowAnimation:UITableViewRowAnimationRight animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
                         animationBlock();
                     }];
                 }];
             } didSelectRowBlock:nil];
-            
-            
+
+
             CKJCellModel *model4 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
                 m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"操作2", leftDic) left:25];
-                m.btn8Model = [CKJBtn8Model btn8ModelWithSize:CGSizeMake(100, 30) normalImage:nil rightMargin:25 detailSettingBlock:^(CKJBtn8Model *sender) {
+                m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(100, 30) normalImage:nil rightMargin:25 detailSettingBlock:^(CKJBtn7Model *sender) {
                     sender.cornerRadius = 15;
                     sender.normalBackgroundImage = [UIImage kjwd_imageWithColor:[UIColor brownColor] size:CGSizeMake(100, 30)];
                     sender.normalAttributedTitle = WDCKJAttributed2(@"增加2行", [UIColor whiteColor], nil);
-                } didClickBtn8Handle:^(CKJCell *cell, CKJBtn8Model *btn8Model) {
+                } didClickBtn7Handle:^(CKJCell *cell, CKJBtn7Model *btn7Model) {
                     CKJCellModel *temp1 = [CKJCellModel modelWithCellHeight:44 cellModel_id:@(kkkk_HospitalCellID) detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
                         m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed([NSString kjwd_returnArc4randomWithNum:5 type:KJWDArc4randomType_Number_Up_Char], leftDic) left:5];
                         m.arrow9Model = [CKJArrow9Model arrow9ModelWithImage:image right:nil];
@@ -158,39 +159,39 @@
                         m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed([NSString kjwd_returnArc4randomWithNum:5 type:KJWDArc4randomType_Number_Up_Char], leftDic) left:5];
                         m.arrow9Model = [CKJArrow9Model arrow9ModelWithImage:image right:nil];
                     } didSelectRowBlock:nil];
-                    
+
                     [cell.simpleTableView appendCellModelArray:@[temp1, temp2] atLastRow_InAllCellModelArrayOfSection:cell.section withRowAnimation:UITableViewRowAnimationRight animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
                         animationBlock();
                     }];
-                    
+
                 }];
             } didSelectRowBlock:nil];
-            
+
             section.modelArray = @[model0, model1, model2, model3, model4];
             [sections addObject:section];
         }
-    
+
         {
             CKJCommonSectionModel *section = [CKJCommonSectionModel new];
-            
+
 //            section.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"高德地图", [UIColor grayColor], @15) type:CKJCommonHeaderFooterType_HEADER];
 //            section.footerHeight = 15;
-            
+
             CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
                 m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"开启常用地点入口", [UIColor kjwd_titleColor333333], @15) bottomAttributedText:WDCKJAttributed2(@"关闭后，将隐藏首页的常用地点入口", [UIColor kjwd_subTitleColor969696], @13) centerMarign:5 topBottomMargin:8 leftMargin:leftMarign rightMargin:0];
                 m.switch6Model = [CKJSwitch6Model switch6ModelWithSwitchOn:YES left:0 top:0 right:leftMarign bottom:0 callBack:^(BOOL switchOn, CKJCellModel *cellModel, UISwitch *senderSwitch) {
                     NSLog(@"%@ %@", cellModel.view5Model.topText.string, switchOn ? @"开启" : @"关闭");
                 }];
             } didSelectRowBlock:nil];
-            
+
             section.modelArray = @[model1];
             [sections addObject:section];
         }
-    
+
         {
             CKJCommonSectionModel *section = [CKJCommonSectionModel new];
-            
-            
+
+
             CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
                 m.image2Model = [CKJImage2Model image2ModelWithImageString:@"yhf通知" size:CGSizeMake(30, 30) left:leftMarign];
                 m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"推送通知", leftDic) left:5];
@@ -198,7 +199,7 @@
                     NSLog(@"%@ %@", cellModel.title3Model.attributedText.string, switchOn ? @"开启" : @"关闭");
                 }];
             } didSelectRowBlock:nil];
-            
+
             CKJCellModel *model2 = [CKJCellModel modelWithCellHeight:44 cellModel_id:@(kkkk_HospitalCellID) detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
                 m.image2Model = [CKJImage2Model image2ModelWithImageString:@"wdyhfsdkhospital" size:CGSizeMake(30, 30) left:leftMarign];
                 m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"请选择医院", leftDic) left:5];
@@ -206,86 +207,86 @@
             } didSelectRowBlock:^(__kindof CKJCellModel * _Nonnull m) {
                 [weakSelf succShow];
             }];
-            
+
             section.modelArray = @[model1, model2];
-            
+
             [sections addObject:section];
         }
-    
+
     {
         {
             {
                 CKJCommonSectionModel *section = [CKJCommonSectionModel new];
-                
+
                 CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:84 cellModel_id:@(kkkk_YHFStatusCellID) detailSettingBlock:^(CKJCellModel *m) {
                     m.image2Model = [CKJImage2Model image2ModelWithImageString:@"touxiang.jpg" size:CGSizeMake(25, 25) left:0];
                     m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"title3", leftDic) left:0];
                     m.subTitle4Model = [CKJSubTitle4Model subTitle4ModelWithAttributedText:WDCKJAttributed2(@"subTitle4", [UIColor kjwd_subTitleColor969696], @14) top:0 left:0 bottom:0 right:0];
                     m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"topText5", [UIColor kjwd_titleColor333333], @14) bottomAttributedText:WDCKJAttributed2(@"bottomTex5", [UIColor kjwd_subTitleColor969696], @14) centerMarign:5 topBottomMargin:3 leftMargin:0 rightMargin:0];
                     m.switch6Model = [CKJSwitch6Model switch6ModelWithSwitchOn:YES left:0 top:0 right:0 bottom:0 callBack:^(BOOL switchOn, CKJCellModel * _Nonnull cellModel, UISwitch * _Nonnull senderSwitch) {
-                        
+
                     }];
-                    m.likePrice7Model = [CKJLikePriceLabel7Model likePriceLabel7ModelWithAttributedText:WDCKJAttributed2(@"likePrice7", [UIColor kjwd_subTitleColor969696], @14) top:0 bottom:0 right:0];
-                    m.btn8Model = [CKJBtn8Model btn8ModelWithSize:CGSizeMake(30, 30) normalImage:[UIImage kjwd_imageNamed:@"touxiang.jpg"] rightMargin:0 detailSettingBlock:nil didClickBtn8Handle:^(CKJCell * _Nonnull cell, CKJBtn8Model * _Nonnull btn8Model) {
-                        NSLog(@"%@ ", @"点击了btn8");
+                    m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(30, 30) normalImage:[UIImage kjwd_imageNamed:@"touxiang.jpg"] rightMargin:0 detailSettingBlock:nil didClickBtn7Handle:^(CKJCell * _Nonnull cell, CKJBtn7Model * _Nonnull btn7Model) {
+                        NSLog(@"%@ ", @"点击了btn7");
                     }];
+                    m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"likePrice7", [UIColor kjwd_subTitleColor969696], @14) left:0 right:rightMarign];
                     m.arrow9Model = [CKJArrow9Model arrow9ModelWithImage:image right:nil];
                 } didSelectRowBlock:nil];
-                
+
                 section.modelArray = @[model1];
-                
+
                 [sections addObject:section];
             }
             {
                 CKJCommonSectionModel *section = [CKJCommonSectionModel new];
                 section.rowHeight = rowHeight;
-                
-                
+
+
                 CKJCellModel *model0 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(CKJCellModel *m) {
                     m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"头像", leftDic) left:leftMarign];
-                    m.btn8Model = [CKJBtn8Model btn8ModelWithSize:CGSizeMake(30, 30) normalImage:[UIImage kjwd_imageNamed:@"touxiang.jpg"] rightMargin:10 detailSettingBlock:^(CKJBtn8Model *sender) {
+                    m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(30, 30) normalImage:[UIImage kjwd_imageNamed:@"touxiang.jpg"] rightMargin:10 detailSettingBlock:^(CKJBtn7Model *sender) {
                         sender.cornerRadius = 15;
-                    } didClickBtn8Handle:^(CKJCell * _Nonnull cell, CKJBtn8Model * _Nonnull btn8Model) {
+                    } didClickBtn7Handle:^(CKJCell * _Nonnull cell, CKJBtn7Model * _Nonnull btn7Model) {
                         NSLog(@"%@ ", @"点击头像");
                     }];
                     m.arrow9Model = [CKJArrow9Model arrow9ModelWithImage:image right:nil];
                 } didSelectRowBlock:nil];
-                
-                
+
+
                 CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(CKJCellModel *m) {
                     m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"名字", leftDic) left:leftMarign];
                     m.subTitle4Model = [CKJSubTitle4Model subTitle4ModelWithAttributedText:WDCKJAttributed2(@"姓名务必和身份证上一致", [UIColor kjwd_subTitleColor969696], @15) top:10 left:10 bottom:10 right:10];
-                    m.likePrice7Model = [CKJLikePriceLabel7Model likePriceLabel7ModelWithAttributedText:WDCKJAttributed(@"吴振强", rightDic) top:0 bottom:0 right:rightMarign];
+                    m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed(@"吴振强", rightDic) left:0 right:rightMarign];
                 } didSelectRowBlock:nil];
-                
+
                 CKJCellModel *model2 = [CKJCellModel modelWithCellHeight:65 cellModel_id:nil detailSettingBlock:^(CKJCellModel *m) {
                     m.showLine = NO;
                     m.image2Model = [CKJImage2Model image2ModelWithImageString:@"wdyhfsdkmark" size:CGSizeMake(30, 30) left:leftMarign];
                     m.subTitle4Model = [CKJSubTitle4Model subTitle4ModelWithAttributedText:WDCKJAttributed2(@"结算失败。现金支付部分将在30分钟内，原路退回，请留意查看！", [UIColor kjwd_r:24 g:167 b:99 alpha:1], @16) top:10 left:10 bottom:10 right:10];
                 } didSelectRowBlock:nil];
-                
-                
+
+
                 CKJCellModel *model3 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
                     m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"操作1", leftDic) left:25];
-                    m.btn8Model = [CKJBtn8Model btn8ModelWithSize:CGSizeMake(100, 30) normalImage:nil rightMargin:25 detailSettingBlock:^(CKJBtn8Model *sender) {
+                    m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(100, 30) normalImage:nil rightMargin:25 detailSettingBlock:^(CKJBtn7Model *sender) {
                         sender.cornerRadius = 15;
                         sender.normalBackgroundImage = [UIImage kjwd_imageWithColor:[UIColor redColor] size:CGSizeMake(100, 30)];
                         sender.normalAttributedTitle = WDCKJAttributed2(@"删除此行", [UIColor whiteColor], nil);
-                    } didClickBtn8Handle:^(CKJCell *cell, CKJBtn8Model *btn8Model) {
+                    } didClickBtn7Handle:^(CKJCell *cell, CKJBtn7Model *btn7Model) {
                         [cell.simpleTableView removeCellModelAtSection:cell.section rows:@[@(cell.row)] removeHiddenCellModel:NO withRowAnimation:UITableViewRowAnimationRight animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
                             animationBlock();
                         }];
                     }];
                 } didSelectRowBlock:nil];
-                
-                
+
+
                 CKJCellModel *model4 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
                     m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"操作2", leftDic) left:25];
-                    m.btn8Model = [CKJBtn8Model btn8ModelWithSize:CGSizeMake(100, 30) normalImage:nil rightMargin:25 detailSettingBlock:^(CKJBtn8Model *sender) {
+                    m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(100, 30) normalImage:nil rightMargin:25 detailSettingBlock:^(CKJBtn7Model *sender) {
                         sender.cornerRadius = 15;
                         sender.normalBackgroundImage = [UIImage kjwd_imageWithColor:[UIColor brownColor] size:CGSizeMake(100, 30)];
                         sender.normalAttributedTitle = WDCKJAttributed2(@"增加2行", [UIColor whiteColor], nil);
-                    } didClickBtn8Handle:^(CKJCell *cell, CKJBtn8Model *btn8Model) {
+                    } didClickBtn7Handle:^(CKJCell *cell, CKJBtn7Model *btn7Model) {
                         CKJCellModel *temp1 = [CKJCellModel modelWithCellHeight:44 cellModel_id:@(kkkk_HospitalCellID) detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
                             m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed([NSString kjwd_returnArc4randomWithNum:5 type:KJWDArc4randomType_Number_Up_Char], leftDic) left:5];
                             m.arrow9Model = [CKJArrow9Model arrow9ModelWithImage:image right:nil];
@@ -294,39 +295,39 @@
                             m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed([NSString kjwd_returnArc4randomWithNum:5 type:KJWDArc4randomType_Number_Up_Char], leftDic) left:5];
                             m.arrow9Model = [CKJArrow9Model arrow9ModelWithImage:image right:nil];
                         } didSelectRowBlock:nil];
-                        
+
                         [cell.simpleTableView appendCellModelArray:@[temp1, temp2] atLastRow_InAllCellModelArrayOfSection:cell.section withRowAnimation:UITableViewRowAnimationRight animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
                             animationBlock();
                         }];
-                        
+
                     }];
                 } didSelectRowBlock:nil];
-                
+
                 section.modelArray = @[model0, model1, model2, model3, model4];
                 [sections addObject:section];
             }
-            
+
             {
                 CKJCommonSectionModel *section = [CKJCommonSectionModel new];
-                
+
 //                section.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"高德地图", [UIColor grayColor], @15) type:CKJCommonHeaderFooterType_HEADER];
 //                section.footerHeight = 15;
-                
+
                 CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
                     m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"开启常用地点入口", [UIColor kjwd_titleColor333333], @15) bottomAttributedText:WDCKJAttributed2(@"关闭后，将隐藏首页的常用地点入口", [UIColor kjwd_subTitleColor969696], @13) centerMarign:5 topBottomMargin:8 leftMargin:leftMarign rightMargin:0];
                     m.switch6Model = [CKJSwitch6Model switch6ModelWithSwitchOn:YES left:0 top:0 right:leftMarign bottom:0 callBack:^(BOOL switchOn, CKJCellModel *cellModel, UISwitch *senderSwitch) {
                         NSLog(@"%@ %@", cellModel.view5Model.topText.string, switchOn ? @"开启" : @"关闭");
                     }];
                 } didSelectRowBlock:nil];
-                
+
                 section.modelArray = @[model1];
                 [sections addObject:section];
             }
-            
+
             {
                 CKJCommonSectionModel *section = [CKJCommonSectionModel new];
-                
-                
+
+
                 CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
                     m.image2Model = [CKJImage2Model image2ModelWithImageString:@"yhf通知" size:CGSizeMake(30, 30) left:leftMarign];
                     m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"推送通知", leftDic) left:5];
@@ -334,7 +335,7 @@
                         NSLog(@"%@ %@", cellModel.title3Model.attributedText.string, switchOn ? @"开启" : @"关闭");
                     }];
                 } didSelectRowBlock:nil];
-                
+
                 CKJCellModel *model2 = [CKJCellModel modelWithCellHeight:44 cellModel_id:@(kkkk_HospitalCellID) detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
                     m.image2Model = [CKJImage2Model image2ModelWithImageString:@"wdyhfsdkhospital" size:CGSizeMake(30, 30) left:leftMarign];
                     m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"请选择医院", leftDic) left:5];
@@ -342,15 +343,15 @@
                 } didSelectRowBlock:^(__kindof CKJCellModel * _Nonnull m) {
                     [weakSelf succShow];
                 }];
-                
+
                 section.modelArray = @[model1, model2];
-                
+
                 [sections addObject:section];
             }
 
         }
     }
-    
+//
     
     self.simpleTableView.dataArr = sections;
     [self.simpleTableView kjwd_reloadData];

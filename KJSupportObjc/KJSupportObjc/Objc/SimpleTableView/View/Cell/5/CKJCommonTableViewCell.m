@@ -12,10 +12,14 @@
 #import <Masonry/Masonry.h>
 
 
-@interface CKJCommonCellWrapperView : UIView
+
+@interface CKJCommonCellOnlyView : UIView
 @end
-@implementation CKJCommonCellWrapperView
+@implementation CKJCommonCellOnlyView
 @end
+
+
+
 
 
 
@@ -29,6 +33,9 @@
 
 
 @interface CKJCommonTableViewCell ()
+
+
+
 
 @property (assign, nonatomic) NSInteger section;
 @property (assign, nonatomic) NSInteger row;
@@ -58,24 +65,28 @@
 }
 
 - (void)kjInit {
-    UIView *bgV = [[CKJCommonCellWrapperView alloc] init];
-    [self.contentView insertSubview:bgV atIndex:0];
-    [bgV kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
-        make.center.mas_equalTo(superview);
+    UIView *onlyView = [[CKJCommonCellOnlyView alloc] init];
+    [self.contentView insertSubview:onlyView atIndex:0];
+    [onlyView kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
+        make.center.equalTo(superview);
         make.width.equalTo(superview).priority(900);
         make.height.equalTo(superview).priority(900);
     }];
-    self.bgV = bgV;
+    self.onlyView = onlyView;
+    self.subviews_SuperView = onlyView;
 }
 
 - (void)setupSubViews {
-    
+//    NSLog(@"父类的 setupSubViews，   真实 %@ ", self);
 }
 
 -(nonnull CKJSimpleTableView *)simpleTableView {
     return _simpleTableView;
 }
 
+- (nonnull __kindof CKJCommonSectionModel *)sectionModel {
+    return _sectionModel;
+}
 - (CKJCommonCellConfig *)configModel {
     return self.configDic[configDicKEY_ConfigModel];
 }

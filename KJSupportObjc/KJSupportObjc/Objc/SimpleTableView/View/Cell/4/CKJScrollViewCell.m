@@ -122,7 +122,7 @@
     UIScrollView *scrollV = [[UIScrollView alloc] init];
     scrollV.showsHorizontalScrollIndicator = config.showIndicator;
 //    WDCKJBGColor_Arc4Color(scrollV);
-    [self.bgV addSubview:scrollV];
+    [self.subviews_SuperView addSubview:scrollV];
     [scrollV kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.edges.equalTo(superview).insets(config.scrollView_Edge_SuperView);
     }];

@@ -79,8 +79,8 @@
 //    temp.estimatedSectionFooterHeight = UITableViewAutomaticDimension;
     
     //        NSLog(@" \n ------------ %@  %@ \n ------------  %@     %@", tableView.dataSource, tableView.delegate, temp.simpleTableViewDataSource, temp.simpleTableViewDelegate);
-    
-    return self.dataArr.count;
+    NSArray *dataArr = self.dataArr;
+    return dataArr.count;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // 显示的数组
@@ -141,19 +141,19 @@
     
     [model _privateMethodWithCell:cell];
     [cell _privateMethodWithSimpleTableView:tableView sectionModel:sectionModel section:section row:row];
-    if (cell.bgV.backgroundColor != model.bgVColor) {
-        cell.bgV.backgroundColor = model.bgVColor;
+    if (cell.onlyView.backgroundColor != model.cell_bgColor) {
+        cell.onlyView.backgroundColor = model.cell_bgColor;
     }
+//    [self updateRightWithModel:model cell:cell];
     
     [cell setupData:model section:section row:row selectIndexPath:indexPath tableView:tableView];
-    
     
     if (model.showLine) {
         cell.separatorInset = UIEdgeInsetsMake(0, 15, 0, 0);
     } else {
         cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width + 1000, 0, 0);
     }
-//    cell.bgV.backgroundColor = [UIColor blueColor];
+    
     return cell;
 }
 
@@ -296,7 +296,7 @@
     if ([model isKindOfClass:[CKJEmptyCellModel class]]) {
         return;
     }
-    
+    [self enumAllCellModelsAndSet_SelectedStyleWithCellModel:model];
     
     model.didSelectRowBlock ? model.didSelectRowBlock(model) : nil;
     
@@ -936,15 +936,64 @@
     return displayModelArray;
 }
 
+#pragma mark - 选中样式 相关
+- (void)enumAllCellModelsAndSet_SelectedStyleWithCellModel:(__kindof CKJCommonCellModel *_Nullable)cellModel {
+    
+    if (self.selectStyleBlock) {
+        __weak typeof(self) weakSelf = self;
+        [self kjwd_enumAllCellModelWithBlock:^(__kindof CKJCommonCellModel * _Nonnull m) {
+            if (weakSelf.selectStyleBlock) {
+                weakSelf.selectStyleBlock(m, m == cellModel);
+            }
+        }];
+        [self reloadData];
+    }
+}
+
 #pragma mark - CKJPayCell相关
-- (__kindof CKJRadioCellModel *)currentSelectRadioCellModel {
+
+- (void)addRadioCellModels:(NSArray <__kindof CKJCommonCellModel *>*_Nullable)radioCellModels {
+    NSMutableArray *arr = [NSMutableArray kjwd_arrayWithArray:self.radioCellModels];
+    [arr kjwd_addObjectsFromArray:radioCellModels];
+    self.radioCellModels = arr;
+}
+
+- (__kindof CKJCommonCellModel *)currentSelectRadioCellModel {
     for (int i = 0; i < self.radioCellModels.count; i++) {
-        CKJRadioCellModel *model = self.radioCellModels[i];
+        CKJCommonCellModel *model = self.radioCellModels[i];
         if (model.radio_Selected) {
             return model;
         }
     }
     return nil;
+}
+
+- (void)triggerRadioActionWithCellModel:(__kindof CKJCommonCellModel *_Nonnull)cellModel {
+    NSMutableArray <NSIndexPath *>*array = [NSMutableArray array];
+    
+    [self.dataArr enumerateObjectsUsingBlock:^(__kindof CKJCommonSectionModel * _Nonnull obj, NSUInteger section, BOOL * _Nonnull stop) {
+        [obj.modelArray enumerateObjectsUsingBlock:^(__kindof CKJCommonCellModel * _Nonnull cellModel, NSUInteger row, BOOL * _Nonnull stop) {
+            for (CKJCommonCellModel *curr in self.radioCellModels) {
+                if (curr == cellModel) {
+                    // 这里要考虑 处于隐藏的Cell  indexPath 问题
+                    cellModel.radio_Selected = NO;
+                    if (cellModel.displayInTableView) { //显示的数组
+                        [array addObject:[NSIndexPath indexPathForRow:row inSection:section]];
+                    }
+                }
+            }
+            
+        }];
+    }];
+    
+    cellModel.radio_Selected = YES;
+    
+    WDCKJdispatch_async_main_queue(^{
+        [UIView performWithoutAnimation:^{
+            // 这个 reloadRowsAtIndexPaths 刷新 没有显示在屏幕上的indexPath也没问题，亲测
+            [self reloadRowsAtIndexPaths:array withRowAnimation:UITableViewRowAnimationNone];
+        }];
+    });
 }
 
 #pragma mark - 键值对
@@ -954,6 +1003,7 @@
     
     NSDictionary *dic = @{
                           NSStringFromClass([CKJCommonCellModel class]) : @{cellKEY : NSStringFromClass([CKJCommonTableViewCell class]), isRegisterNibKEY : @NO},
+                          NSStringFromClass([CKJGeneralCellModel class]) : @{cellKEY : NSStringFromClass([CKJGeneralCell class]), isRegisterNibKEY : @NO},
                           NSStringFromClass([CKJCellModel class]) : @{cellKEY : NSStringFromClass([CKJCell class]), isRegisterNibKEY : @NO},
                           NSStringFromClass([CKJInputCellModel class]) : @{cellKEY : NSStringFromClass([CKJInputCell class]), isRegisterNibKEY : @NO},
                            NSStringFromClass([CKJTableViewCell1Model class]) : @{cellKEY : NSStringFromClass([CKJTableViewCell1 class]), isRegisterNibKEY : @NO},
@@ -961,8 +1011,8 @@
                           NSStringFromClass([CKJEmptyCellModel class]) : @{cellKEY : NSStringFromClass([CKJEmptyCell class]), isRegisterNibKEY : @NO}
                           // 上面这几个不要删除，只需 这样的键值对添加即可
                           };
-    if ([self.simpleTableViewDataSource respondsToSelector:@selector(returnCell_Model_keyValues)]) {
-        NSDictionary *temp = [self.simpleTableViewDataSource returnCell_Model_keyValues];
+    if ([self.simpleTableViewDataSource respondsToSelector:@selector(returnCell_Model_keyValues:)]) {
+        NSDictionary *temp = [self.simpleTableViewDataSource returnCell_Model_keyValues:self];
         [_cell_Model_keyValues addEntriesFromDictionary:temp];
     }
     
@@ -991,7 +1041,6 @@
 //            [self registerClass:NSClassFromString(cellClass) forCellReuseIdentifier:cellClass];
         }
     }
-    
     return _cell_Model_keyValues;
 }
 
@@ -999,8 +1048,8 @@
     if (_header_Model_keyValues) return _header_Model_keyValues;
     _header_Model_keyValues = [NSMutableDictionary dictionary];
     
-    if ([self.simpleTableViewDataSource respondsToSelector:@selector(returnHeader_Model_keyValues)]) {
-        NSDictionary *temp = [self.simpleTableViewDataSource returnHeader_Model_keyValues];
+    if ([self.simpleTableViewDataSource respondsToSelector:@selector(returnHeader_Model_keyValues:)]) {
+        NSDictionary *temp = [self.simpleTableViewDataSource returnHeader_Model_keyValues:self];
         [_header_Model_keyValues addEntriesFromDictionary:temp];
     }
     NSDictionary *dic = @{
@@ -1019,8 +1068,8 @@
     if (_footer_Model_keyValues) return _footer_Model_keyValues;
     _footer_Model_keyValues = [NSMutableDictionary dictionary];
     
-    if ([self.simpleTableViewDataSource respondsToSelector:@selector(returnFooter_Model_keyValues)]) {
-        NSDictionary *temp = [self.simpleTableViewDataSource returnFooter_Model_keyValues];
+    if ([self.simpleTableViewDataSource respondsToSelector:@selector(returnFooter_Model_keyValues:)]) {
+        NSDictionary *temp = [self.simpleTableViewDataSource returnFooter_Model_keyValues:self];
         [_footer_Model_keyValues addEntriesFromDictionary:temp];
     }
     NSDictionary *dic = @{
@@ -1054,7 +1103,6 @@
 }
 
 #pragma mark - 其他
-
 
 
 #pragma mark - 公用

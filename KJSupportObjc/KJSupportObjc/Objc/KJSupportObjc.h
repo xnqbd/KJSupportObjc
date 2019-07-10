@@ -26,6 +26,12 @@
 #import "CKJBtnsCell2.h"
 #import "CKJScrollViewCell.h"
 
+
+#import "CKJGeneralCell.h"
+#import "CKJImageLeftCell.h"
+#import "CKJImageRightCell.h"
+#import "CKJPayCell.h"
+
 #import "UIView+CKJDesingable.h"
 #import "CKJToolbar.h"
 

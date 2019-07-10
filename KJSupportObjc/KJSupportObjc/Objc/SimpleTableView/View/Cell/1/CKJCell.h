@@ -10,59 +10,19 @@
 #import "CKJCommonTableViewCell.h"
 #import "NSObject+WDYHFCategory.h"
 #import "CKJBaseModel.h"
-#import "CKJExtraView.h"
 
-@interface CKJImage2Model : CKJBaseModel
+#import "CKJGeneralCell.h"
 
-@property (strong, nonatomic, nullable) UIImage *normalImage;
+@class CKJLeftView, CKJTopBottomView, CKJExtraView, CKJRightView;
+@class CKJCellModel, CKJCell, MASConstraintMaker, CKJBtn7Model;
 
-@property (assign, nonatomic) CGSize size;
-@property (assign, nonatomic) CGFloat leftMargin;
-+ (nonnull instancetype)image2ModelWithNormalImage:(nullable UIImage *)normalImage size:(CGSize)size left:(CGFloat)leftMargin;
-+ (nonnull instancetype)image2ModelWithImageString:(NSString *)imageString size:(CGSize)size left:(CGFloat)leftMargin;
+typedef void(^CKJDidClickbtn7Handle)(CKJCell *_Nonnull cell, CKJBtn7Model *_Nonnull btn7Model);
 
+typedef void(^CKJSwitch6Block)(BOOL switchOn, CKJCellModel *_Nonnull cellModel,  UISwitch *_Nonnull senderSwitch);
 
-@end
+typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 
 
-@interface CKJTitle3Model : CKJBaseModel
-
-@property (copy, nonatomic, nullable) NSAttributedString *attributedText;
-@property (assign, nonatomic) CGFloat leftMargin;
-
-/**
- 宽度，默认为0，自适应宽度
- */
-@property (assign, nonatomic) CGFloat width;
-
-/**
- 默认自适应宽度
- */
-+ (nonnull instancetype)title3ModelWithAttributedText:(nullable NSAttributedString *)text left:(CGFloat)left;
-
-+ (nonnull instancetype)title3ModelWithAttributedText:(nullable NSAttributedString *)text left:(CGFloat)left width:(CGFloat)width;
-
-/** 改变文字 */
-- (void)changeText:(nullable NSString *)text;
-
-
-@end
-
-@interface CKJSubTitle4Model : CKJBaseModel
-
-@property (copy, nonatomic, nullable) NSAttributedString *attributedText;
-@property (assign, nonatomic) CGFloat topMargin;
-@property (assign, nonatomic) CGFloat leftMargin;
-@property (assign, nonatomic) CGFloat bottomMargin;
-@property (assign, nonatomic) CGFloat rightMargin;
-
-+ (nonnull instancetype)subTitle4ModelWithAttributedText:(nullable NSAttributedString *)text top:(CGFloat)top left:(CGFloat)left bottom:(CGFloat)bottom right:(CGFloat)right;
-
-
-/** 改变文字 */
-- (void)changeText:(nullable NSString *)text;
-
-@end
 
 
 @interface CKJView5Model : CKJBaseModel
@@ -105,10 +65,9 @@
 
 @end
 
-@class CKJCellModel, CKJCell, MASConstraintMaker, CKJBtn8Model;
 
 
-typedef void(^CKJSwitch6Block)(BOOL switchOn, CKJCellModel *_Nonnull cellModel,  UISwitch *_Nonnull senderSwitch);
+
 
 @interface CKJSwitch6Model : CKJBaseModel
 
@@ -126,30 +85,15 @@ typedef void(^CKJSwitch6Block)(BOOL switchOn, CKJCellModel *_Nonnull cellModel, 
 
 
 
-@interface CKJLikePriceLabel7Model : CKJBaseModel
-
-@property (copy, nonatomic, nullable) NSAttributedString *attributedText;
-@property (assign, nonatomic) CGFloat topMargin;
-@property (assign, nonatomic) CGFloat bottomMargin;
-@property (assign, nonatomic) CGFloat rightMargin;
-+ (nonnull instancetype)likePriceLabel7ModelWithAttributedText:(nullable NSAttributedString *)text top:(CGFloat)top bottom:(CGFloat)bottom right:(CGFloat)right;
-
-/** 改变文字 */
-- (void)changeText:(nullable NSString *)text;
-
-@end
-
-
-typedef void(^CKJDidClickBtn8Handle)(CKJCell *_Nonnull cell, CKJBtn8Model *_Nonnull btn8Model);
 
 
 
-@interface CKJBtn8Model : CKJBaseModel
+@interface CKJBtn7Model : CKJBaseModel
 
 /**
  暂时按钮的所有状态size都一样
  */
-+ (nonnull instancetype)btn8ModelWithSize:(CGSize)size normalImage:(nullable UIImage *)normalImage rightMargin:(CGFloat)rightMargin detailSettingBlock:(void(^_Nullable)(CKJBtn8Model *_Nonnull sender))detailSettingBlock didClickBtn8Handle:(nullable CKJDidClickBtn8Handle)didClickBtn8Handle;
++ (nonnull instancetype)btn7ModelWithSize:(CGSize)size normalImage:(nullable UIImage *)normalImage rightMargin:(CGFloat)rightMargin detailSettingBlock:(void(^_Nullable)(CKJBtn7Model *_Nonnull sender))detailSettingBlock didClickBtn7Handle:(nullable CKJDidClickbtn7Handle)didClickBtn7Handle;
 
 @property (copy, nonatomic, nullable) NSAttributedString *normalAttributedTitle;
 @property (copy, nonatomic, nullable) NSAttributedString *selectedAttributedTitle;
@@ -183,34 +127,20 @@ typedef void(^CKJDidClickBtn8Handle)(CKJCell *_Nonnull cell, CKJBtn8Model *_Nonn
 @property (assign, nonatomic) CGFloat rightMargin;
 @property (assign, nonatomic) CGFloat centerYOffset;
 
-@property (copy, nonatomic, nullable) CKJDidClickBtn8Handle didClickBtn8Handle;
-
-@end
-
-@interface CKJArrow9Model : CKJBaseModel
 
 /**
- 默认距右边15
+ 对UIButton的图片和文字 进行排布回调
  */
-@property (assign, nonatomic) CGFloat right;
-@property (strong, nonatomic, nullable) UIImage *image;
+@property (copy, nonatomic, nullable) void (^layoutButton)(UIButton *btn);
 
-/**
- right默认为15
- */
-+ (nonnull instancetype)arrow9ModelWithImage:(nullable UIImage *)image right:(nullable NSNumber *)right;
+@property (copy, nonatomic, nullable) CKJDidClickbtn7Handle didClickBtn7Handle;
+
 
 @end
 
 
-typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
+@interface CKJCellModel : CKJGeneralCellModel
 
-
-@interface CKJCellModel : CKJCommonCellModel
-
-
-@property (strong, nonatomic, nullable) CKJImage2Model *image2Model;
-@property (strong, nonatomic, nullable) CKJTitle3Model *title3Model;
 @property (strong, nonatomic, nullable) CKJSubTitle4Model *subTitle4Model;
 
 @property (strong, nonatomic, nullable) CKJView5Model *view5Model;
@@ -218,11 +148,9 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 /** 如果不设置此值，那么就是隐藏Switch */
 @property (strong, nonatomic, nullable) CKJSwitch6Model *switch6Model;
 
-@property (strong, nonatomic, nullable) CKJLikePriceLabel7Model *likePrice7Model;
 
-@property (strong, nonatomic, nullable) CKJBtn8Model *btn8Model;
+@property (strong, nonatomic, nullable) CKJBtn7Model *btn7Model;
 
-@property (strong, nonatomic, nullable) CKJArrow9Model *arrow9Model;
 
 
 + (nonnull instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJCellModelRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJCellModelRowBlock)didSelectRowBlock;
@@ -230,36 +158,22 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 
 @end
 
-@class CKJLeftView, CKJTopBottomView, CKJExtraView, CKJRightView;
-
-
-@interface CKJCell : CKJCommonTableViewCell <CKJCellModel *>
 
 
 
-@property (nonnull, strong, nonatomic, readonly) CKJLeftView *leftWrapView;
-@property (nonnull, strong, nonatomic, readonly) UIButton *imageBtn2;
-@property (nonnull, strong, nonatomic, readonly) UILabel *title3;
+@interface CKJCell : CKJGeneralCell
+
 @property (nonnull, strong, nonatomic, readonly) UILabel *subTitle4;
 
 @property (nonnull, strong, nonatomic, readonly) CKJTopBottomView *view5;
 @property (nonnull, strong, nonatomic, readonly) UILabel *view5_topLabel;
 @property (nonnull, strong, nonatomic, readonly) UILabel *view5_bottomLabel;
 
-/**
- 中间的附加View
- */
-@property (nonnull, strong, nonatomic, readonly) CKJExtraView *centerExtraView;
-
-@property (nonnull, strong, nonatomic, readonly) CKJRightView *rightWrapView;
 @property (nonnull, strong, nonatomic, readonly) UIView *kjSwitch6;
-@property (nonnull, strong, nonatomic, readonly) UILabel *alikePriceLabel7;
-@property (nonnull, strong, nonatomic, readonly) UIButton *btn8;
-
-@property (nonnull, strong, nonatomic, readonly) UIImageView *arrowImageView9;
+@property (nonnull, strong, nonatomic, readonly) UIButton *btn7;
 
 
-- (__kindof UIButton *)__privateMethodOfCreateBtn8;
+- (UIView *_Nonnull)tfWrapperView;
 
 @end
 

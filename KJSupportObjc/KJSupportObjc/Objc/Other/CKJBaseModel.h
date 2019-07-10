@@ -12,6 +12,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 
+//- (instancetype)init {
+//    if (self = [super init]) {
+//        
+//    }
+//    return self;
+//}
+
 
 @interface CKJBaseModel : NSObject
 
@@ -34,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)modelWithDic:(nullable NSDictionary *)dic;
 
-+ (nonnull instancetype)detailSettingBlock:(nullable void(^)(__kindof CKJBaseModel *m))detailSettingBlock;
++ (nonnull instancetype)detailSettingBlock:(void(^_Nullable )(__kindof CKJBaseModel *_Nonnull __weak m))detailSettingBlock;
 
 
 

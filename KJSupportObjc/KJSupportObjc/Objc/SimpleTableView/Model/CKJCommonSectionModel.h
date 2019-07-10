@@ -38,15 +38,15 @@
 /**  显示的CellModel */
 @property (strong, nonatomic, nonnull) NSArray <__kindof CKJCommonCellModel *>*displayModels;
 
-+ (nonnull instancetype)sectionWithCellModelArray:(nullable NSArray <CKJCommonCellModel *>*)modelArray;
++ (nonnull instancetype)sectionWithCellModelArray:(NSArray <CKJCommonCellModel *>*_Nullable)modelArray;
 
 
-- (void)addCellModel:(__kindof CKJCommonCellModel *)cellModel;
+- (void)addCellModel:(__kindof CKJCommonCellModel *_Nullable)cellModel;
 
 /**
  带_private开头的是私有的方法，开发者不要私自调用使用
  */
-- (void)_privateMethodWithSimpleTableView:(CKJSimpleTableView *)simpleTableView;
+- (void)_privateMethodWithSimpleTableView:(CKJSimpleTableView *_Nonnull)simpleTableView;
 
 
 @end

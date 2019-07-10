@@ -1,5 +1,5 @@
 //
-//  RJSettingViewController.h
+//  CKJCellVC.h
 //  MobileHospital_Renji
 //
 //  Created by chenkaijie on 2019/3/14.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface RJSettingViewController : CKJBaseTableViewToolVC
+@interface CKJCellVC : CKJBaseTableViewToolVC
 
 @end
 

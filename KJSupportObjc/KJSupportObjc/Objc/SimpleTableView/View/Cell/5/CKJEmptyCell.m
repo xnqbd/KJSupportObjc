@@ -49,7 +49,7 @@
 
 - (void)setupSubViews {
     //    self.textLabel.font = [UIFont systemFontOfSize:10];
-    self.bgV.backgroundColor = [UIColor colorWithRed:247 / 255.0 green:247 / 255.0 blue:247 / 255.0 alpha:1];
+    self.subviews_SuperView.backgroundColor = [UIColor colorWithRed:247 / 255.0 green:247 / 255.0 blue:247 / 255.0 alpha:1];
     
     
     UILabel *title = [UILabel new];
@@ -57,7 +57,7 @@
     title.textColor = [UIColor kjwd_titleColor333333];
     title.font = [UIFont systemFontOfSize:9];
     
-    [self.bgV addSubview:title];
+    [self.subviews_SuperView addSubview:title];
     
     [title kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.edges.equalTo(superview);
