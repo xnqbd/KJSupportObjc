@@ -25,14 +25,14 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
     [super viewDidLoad];
     self.navigationItem.title = @"CKJBaseImageLeftRightCell及其子类";
     
-
+    
     [self initSimpleTableViewData];
-
+    
 }
 
 #pragma mark - CKJSimpleTableView 数据源 和 代理
 - (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
-
+    
     CKJImageLeftCellConfig *leftConfig = [CKJImageLeftCellConfig configWithDetailSettingBlock:^(__kindof CKJImageLeftCellConfig * _Nonnull m) {
         m.imageSize = CGSizeMake(40, 40);
         m.fiveConfig = [CKJFiveLabelViewConfig configWithDetailSettingBlock:^(__kindof CKJFiveLabelViewConfig * _Nonnull m) {
@@ -48,23 +48,17 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
     CKJPayCellConfig *payConfig = [CKJPayCellConfig appearanceForProject];
     
     return @{
-             NSStringFromClass([CKJPayCellModel class]) : @{cellKEY : NSStringFromClass([CKJPayCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : payConfig},
-             
-             NSStringFromClass([CKJImageLeftCellModel class]) : @{cellKEY : NSStringFromClass([CKJImageLeftCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : leftConfig},
-             NSStringFromClass([CKJImageRightCellModel class]) : @{cellKEY : NSStringFromClass([CKJImageRightCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : rightConfig},
-             
-             };
+        NSStringFromClass([CKJPayCellModel class]) : @{cellKEY : NSStringFromClass([CKJPayCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : payConfig},
+        
+        NSStringFromClass([CKJImageLeftCellModel class]) : @{cellKEY : NSStringFromClass([CKJImageLeftCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : leftConfig},
+        NSStringFromClass([CKJImageRightCellModel class]) : @{cellKEY : NSStringFromClass([CKJImageRightCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : rightConfig},
+        
+    };
 }
 
-
-
 - (void)initSimpleTableViewData {
-    NSMutableArray <__kindof CKJCommonSectionModel *>*sections = [NSMutableArray array];
     
-    
-    
-    {
-        CKJCommonSectionModel *section = [CKJCommonSectionModel new];
+    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithDetailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         
         CKJPayCellModel *model1 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
             
@@ -85,7 +79,6 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
             [m.cell.simpleTableView reloadData];
         }];
         
-        
         CKJTableViewCell1Model *model3 = [CKJTableViewCell1Model modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
             m.textLabelAttStr = WDAtt15_5(@"点击隐藏");
         } didSelectRowBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
@@ -96,19 +89,11 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
         [self.simpleTableView addRadioCellModels:@[model1]];
         
         
-        section.modelArray = @[model1, model2, model3];
-        [sections addObject:section];
-        
-    }
+        _sec.modelArray = @[model1, model2, model3];
+    }];
     
     
-    {
-        CKJCommonSectionModel *section = [CKJCommonSectionModel new];
-    
-        
-        section.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"下面的图片可以在左也可以在右", [UIColor kjwd_subTitleColor969696], @14) type:(CKJCommonHeaderFooterType_HEADER)];
-        
-        
+    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"下面的图片可以在左也可以在右", [UIColor kjwd_subTitleColor969696], @14) detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         CKJImageRightCellModel *model1 = [CKJImageRightCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageRightCellModel * _Nonnull m) {
             m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
             [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
@@ -165,14 +150,15 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
             }];
         } didSelectRowBlock:nil];
         
-        section.modelArray = @[model1, model2, model3, model4, model5];
-        [sections addObject:section];
-    }
+        _sec.modelArray = @[model1, model2, model3, model4, model5];
+    }];
     
-    {
-        CKJCommonSectionModel *section = [CKJCommonSectionModel new];
+    
+    
+    
+    
+    CKJCommonSectionModel *section3 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"下面是单选", [UIColor kjwd_subTitleColor969696], @14) detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         
-        section.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"下面是单选", [UIColor kjwd_subTitleColor969696], @14) type:(CKJCommonHeaderFooterType_HEADER)];
         
         CKJPayCellModel *model6 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
             m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk支付宝"];
@@ -230,13 +216,11 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
             }
         }];
         [self.simpleTableView addRadioCellModels:@[model6, model7, model8]];
+        
+        _sec.modelArray = @[model6, model7, model8, model9];
+    }];
     
-        section.modelArray = @[model6, model7, model8, model9];
-        [sections addObject:section];
-    }
-    
-    
-    self.simpleTableView.dataArr = sections;
+    self.simpleTableView.dataArr = @[section1, section2, section3];
     [self.simpleTableView kjwd_reloadData];
 }
 

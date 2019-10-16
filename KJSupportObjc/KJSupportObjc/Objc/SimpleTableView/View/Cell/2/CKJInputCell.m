@@ -9,12 +9,49 @@
 #import "CKJInputCell.h"
 #import "UIView+CKJDesingable.h"
 #import "CKJSimpleTableView.h"
-#import "MBProgressHUD+WJ.h"
+
+
+NSInteger const kInput_Name = 3673620;
+NSInteger const kInput_Sex = 4021728;
+NSInteger const kInput_Phone = 5025618;
+NSInteger const kInput_VerityCode = 6032293;
+NSInteger const kInput_idCardType = 6729211;
+NSInteger const kInput_idCardNumber = 12934174;
+NSInteger const kInput_Birthday = 362891;
+NSInteger const kInput_Relationship = 372902;
+NSInteger const kInput_Address = 886252;
+NSInteger const kInput_Email = 2628390;
+
+
+
+@interface CKJTFModel ()
+
+@property (assign, nonatomic) CGFloat seconds;
+@property (copy, nonatomic) void(^block)(NSAttributedString *_Nullable attText);
+
+@end
 
 @implementation CKJTFModel
 
 
-+ (nonnull instancetype)modelWithDetailSettingBlock:(void(^)(__kindof CKJTFModel *_Nonnull tfM))detailSettingBlock {
+- (void)__privateMethod__exeCallBack {
+    if (_block) {
+        _block(self.attributedText);
+    }
+}
+
+- (void)_setText:(NSString *_Nullable)text {
+    self.attributedText = WDCKJAttributed2(text, [UIColor darkTextColor], @15);
+}
+- (void)_setPlaceholder:(NSString *_Nullable)placeholder; {
+    self.attributedPlaceholder = WDCKJAttributed2(placeholder, [UIColor kjwd_r:190 g:190 b:190 alpha:1], @15);
+}
+- (void)_afterSecondsListenTextChange:(CGFloat)seconds callBack:(void(^_Nullable)(NSAttributedString *_Nullable attText))callBack {
+    _seconds = seconds;
+    _block = callBack;
+}
+
++ (nonnull instancetype)modelWithDetailSettingBlock:(void(^_Nullable)(__kindof CKJTFModel *_Nonnull tfM))detailSettingBlock {
     CKJTFModel *model = [[self alloc] init];
     if (detailSettingBlock) {
         detailSettingBlock(model);
@@ -28,6 +65,17 @@
         self.rightMargin = 15;
     }
     return self;
+}
+
+/// 检验手机号
++ (BOOL)verityPhone:(NSString *)phone {
+    
+    //  可以复制文字  @"手机号为空或有误"    或代码  [MBProgressHUD showError:@"手机号为空或有误"];
+       
+    if (WDKJ_IsEmpty_Str(phone)) {
+        return NO;
+    }
+    return [phone kjwd_validatePhone];
 }
 
 @end
@@ -66,6 +114,15 @@
 
 @implementation CKJInputCellModel
 
+- (NSString *_Nullable)tfText {
+    return self.tfModel.attributedText.string;
+}
+
+- (void)updateTFModel:(void(^_Nullable)(CKJTFModel *_Nonnull tfModel))block {
+    if (block && _tfModel) {
+        block(_tfModel);
+    }
+}
 
 + (nonnull instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJInputCellModelRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJInputCellModelRowBlock)didSelectRowBlock {
     return [super modelWithCellHeight:cellHeight cellModel_id:cellModel_id detailSettingBlock:detailSettingBlock didSelectRowBlock:didSelectRowBlock];
@@ -74,6 +131,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.tfModel = [[CKJTFModel alloc] init];
     }
     return self;
 }
@@ -102,31 +160,21 @@
     CKJInputCellModel *_model = model;
 
     if ([_model.tfModel isKindOfClass:[CKJTFModel class]] == NO) return;
-    
-    NSString *text = _model.tfModel.text;
+
     NSAttributedString *attributedText = _model.tfModel.attributedText;
-    
-    NSString *placeholder = _model.tfModel.placeholder;
+
     NSAttributedString *attributedPlaceholder = _model.tfModel.attributedPlaceholder;
     
-    
-    
-    if (WDKJ_IsEmpty_AttributedStr(attributedText) == NO) {
-        self.tf.attributedText = attributedText;
-    } else if (WDKJ_IsEmpty_Str(text) == NO) {
-        self.tf.text = text;
-    } else {
+    if (WDKJ_IsEmpty_AttributedStr(attributedText)) {
         self.tf.attributedText = nil;
-        self.tf.text = nil;
+    } else {
+        self.tf.attributedText = attributedText;
     }
     
-    if (WDKJ_IsEmpty_AttributedStr(attributedPlaceholder) == NO) {
-        self.tf.attributedPlaceholder = attributedPlaceholder;
-    } else if (WDKJ_IsEmpty_Str(placeholder) == NO) {
-        self.tf.placeholder = placeholder;
-    } else {
+    if (WDKJ_IsEmpty_AttributedStr(attributedPlaceholder)) {
         self.tf.attributedPlaceholder = nil;
-        self.tf.placeholder = nil;
+    } else {
+        self.tf.attributedPlaceholder = attributedPlaceholder;
     }
     self.tf.userInteractionEnabled = _model.tfModel.userInteractionEnabled;
     self.tf.textAlignment = _model.tfModel.textAlignment;
@@ -218,18 +266,14 @@
 
     __weak typeof(self) weakSelf = self;
 
-    CKJInputCellModel *model = [self.simpleTableView cellModelOfID:kInput_Phone];
-    NSString *text =   model.tfModel.text;
-    NSAttributedString *att = WDKJ_ConfirmAttString(model.tfModel.attributedText);
- 
-    NSString *textPhone = [text kjwd_trimWhiteAndNewline];
-    NSString *attPhone = [att.string kjwd_trimWhiteAndNewline];
-    BOOL empty1 = WDKJ_IsEmpty_Str(textPhone);
-    BOOL empty2 = WDKJ_IsEmpty_Str(attPhone);
+    CKJInputCellModel *phoneCellModel = [self.simpleTableView cellModelOfID:kInput_Phone];
+    NSString *text = phoneCellModel.tfModel.attributedText.string;
     
-    if (empty1 && empty2) {
+    NSString *phone = [text kjwd_trimWhiteAndNewline];
+    
+    if (![CKJTFModel verityPhone:phone]) {
         NSLog(@"%@ ", @"手机号为空或有误");
-        [MBProgressHUD showMessage:@"手机号为空或有误"];
+        [MBProgressHUD showError:@"手机号为空或有误"];
         return;
     }   
     CKJTriggerCodeBlock succ = ^(NSUInteger seconds) {
@@ -252,17 +296,34 @@
     clickCodeBlock ? clickCodeBlock(succ) : nil;
 }
 
+// 监听文字改变
 - (void)textChange:(UITextField *)tf {
     if ([self.cellModel isKindOfClass:[CKJInputCellModel class]] == NO) return;
     
     CKJInputCellModel *_model = (CKJInputCellModel *)self.cellModel;
     
-    if ([_model.tfModel isKindOfClass:[CKJTFModel class]] == NO) return;
+    CKJTFModel *tfModel = _model.tfModel;
     
-    _model.tfModel.text = tf.text;
-    _model.tfModel.attributedText = tf.attributedText;
+    if ([tfModel isKindOfClass:[CKJTFModel class]] == NO) return;
+    
+//    NSLog(@"tf.attributedText.string  %@", tf.attributedText.string);
+    
+    if (![tfModel.attributedText.string isEqualToString:tf.attributedText.string]) {
+        tfModel.attributedText = tf.attributedText;
+        
+        SEL sel = @selector(__privateMethod__exeCallBack);
+        [NSObject cancelPreviousPerformRequestsWithTarget:tfModel selector:sel object:nil];
+        [tfModel performSelector:sel withObject:nil afterDelay:tfModel.seconds];
+//        NSLog(@"后 %@", tf.attributedText.string);
+    }
 }
 
+@end
 
+@implementation CKJInputAddition
+
++ (nonnull UIImage *)systemStarImageWithSize:(CGSize)size {
+    return [UIImage kjwd_imageWithColor:[UIColor whiteColor] size:size text:@"*" textAttributes:@{NSForegroundColorAttributeName : [UIColor redColor], NSFontAttributeName : [UIFont systemFontOfSize:16]} circular:NO];
+}
 
 @end

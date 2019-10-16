@@ -7,18 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CKJBaseModel.h"
+#import "CKJSimpleBaseModel.h"
 
-@class CKJCommonHeaderFooterModel, CKJCommonCellModel, CKJSimpleTableView;
+NS_ASSUME_NONNULL_BEGIN
 
-@interface CKJCommonSectionModel : CKJBaseModel
+@class CKJCommonHeaderFooterModel, CKJCommonCellModel, CKJSimpleTableView, CKJCommonSectionModel;
+
+typedef void(^CKJSectionBlock)(__kindof CKJCommonSectionModel * _sec);
+
+
+@interface CKJCommonSectionModel : CKJSimpleBaseModel
 
 
 /**
  分区index(在全部分区数组里的index)
  */
 - (NSInteger)sectionIndex_InAllSecionModels;
-- (nonnull CKJSimpleTableView *)simpleTableView;
+- (CKJSimpleTableView *)simpleTableView;
 
 /**
  标识, 每一个SectionModel的sectionModel_id 一定不能相同
@@ -30,23 +35,38 @@
 @property (assign, nonatomic) CGFloat headerHeight;
 @property (assign, nonatomic) CGFloat footerHeight;
 
-@property (strong, nonatomic, nonnull) __kindof CKJCommonHeaderFooterModel *headerModel;
-@property (strong, nonatomic, nonnull) __kindof CKJCommonHeaderFooterModel *footerModel;
+@property (strong, nonatomic) __kindof CKJCommonHeaderFooterModel *headerModel;
+@property (strong, nonatomic) __kindof CKJCommonHeaderFooterModel *footerModel;
 
 /**  所有的CellModel */
-@property (strong, nonatomic, nonnull) NSArray <__kindof CKJCommonCellModel *>*modelArray;
+@property (strong, nonatomic, nullable) NSArray <__kindof CKJCommonCellModel *>*modelArray;
 /**  显示的CellModel */
-@property (strong, nonatomic, nonnull) NSArray <__kindof CKJCommonCellModel *>*displayModels;
+@property (strong, nonatomic, nullable) NSArray <__kindof CKJCommonCellModel *>*displayModels;
 
-+ (nonnull instancetype)sectionWithCellModelArray:(NSArray <CKJCommonCellModel *>*_Nullable)modelArray;
+
++ (instancetype)sectionWithHeaderHeight:(CGFloat)headerHeight detailSetting:(CKJSectionBlock _Nullable)detailSetting;
++ (instancetype)sectionWithFooterHeight:(CGFloat)footerHeight detailSetting:(CKJSectionBlock _Nullable)detailSetting;
++ (instancetype)sectionWithHeaderHeight:(CGFloat)headerHeight footerHeight:(CGFloat)footerHeight detailSetting:(CKJSectionBlock _Nullable)detailSetting;
+
+
++ (instancetype)sectionWithDetailSetting:(CKJSectionBlock _Nullable)detailSetting;
+
+
+/// 头 NSAttributedString
++ (instancetype)sectionWithHeaderAttString:(NSAttributedString *_Nullable)headerAttString  detailSetting:(CKJSectionBlock _Nullable)detailSetting;
+/// 头尾 NSAttributedString
++ (instancetype)sectionWithHeaderAttString:(NSAttributedString *_Nullable)headerAttString footerAttString:(NSAttributedString *_Nullable)footerAttString detailSetting:(CKJSectionBlock _Nullable)detailSetting;
 
 
 - (void)addCellModel:(__kindof CKJCommonCellModel *_Nullable)cellModel;
+- (void)addCellModels:(NSArray <__kindof CKJCommonCellModel *>*_Nullable)cellModels;
 
 /**
  带_private开头的是私有的方法，开发者不要私自调用使用
  */
-- (void)_privateMethodWithSimpleTableView:(CKJSimpleTableView *_Nonnull)simpleTableView;
+- (void)_privateMethodWithSimpleTableView:(CKJSimpleTableView *)simpleTableView;
 
 
 @end
+
+NS_ASSUME_NONNULL_END

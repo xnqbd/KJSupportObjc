@@ -10,22 +10,6 @@
 #import "NSObject+WDYHFCategory.h"
 
 
-
-
-
-@implementation CKJCommonCellArrowModel
-
-- (instancetype)init {
-    if (self = [super init]) {
-        self.rightMargin = 10;
-    }
-    return self;
-}
-
-@end
-
-
-
 @interface CKJCommonCellModel ()
 
 @property (weak, nonatomic) __kindof CKJCommonTableViewCell *cell;

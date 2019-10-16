@@ -79,7 +79,6 @@
 - (void)setupSubViews {
 //    NSLog(@"父类的 setupSubViews，   真实 %@ ", self);
 }
-
 -(nonnull CKJSimpleTableView *)simpleTableView {
     return _simpleTableView;
 }

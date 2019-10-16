@@ -14,13 +14,78 @@
 #import "CKJGeneralCell.h"
 
 @class CKJLeftView, CKJTopBottomView, CKJExtraView, CKJRightView;
-@class CKJCellModel, CKJCell, MASConstraintMaker, CKJBtn7Model;
+@class CKJCellModel, CKJCell, MASConstraintMaker, CKJBtn5Model, CKJBtn7Model;
+
+typedef void(^CKJDidClickbtn5Handle)(CKJCell *_Nonnull cell, CKJBtn5Model *_Nonnull btn5Model);
 
 typedef void(^CKJDidClickbtn7Handle)(CKJCell *_Nonnull cell, CKJBtn7Model *_Nonnull btn7Model);
+
 
 typedef void(^CKJSwitch6Block)(BOOL switchOn, CKJCellModel *_Nonnull cellModel,  UISwitch *_Nonnull senderSwitch);
 
 typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
+
+
+
+
+
+
+@interface CKJBaseBtnModel : CKJBaseModel
+
+@property (copy, nonatomic, nullable) NSAttributedString *normalAttributedTitle;
+@property (copy, nonatomic, nullable) NSAttributedString *selectedAttributedTitle;
+
+/** 改变Normal状态下的文字 */
+- (void)changeNormalText:(nullable NSString *)text;
+
+/** 改变Normal状态下的文字 */
+- (void)changeSelectedText:(nullable NSString *)text;
+
+
+
+@property (strong, nonatomic, nullable) UIImage *normalBackgroundImage;
+@property (strong, nonatomic, nullable) UIImage *selectedBackgroundImage;
+
+@property (strong, nonatomic, nullable) UIImage *normalImage;
+@property (strong, nonatomic, nullable) UIImage *selectedImage;
+
+@property (assign, nonatomic) BOOL btnHidden;
+
+/** 是否选中 */
+@property (assign, nonatomic) BOOL selected;
+/** 是否开启用户交互，默认开启 */
+@property (assign, nonatomic) BOOL userInteractionEnabled;
+
+@property (assign, nonatomic) CGSize size;
+@property (assign, nonatomic) CGFloat cornerRadius;
+@property (strong, nonatomic, nullable) UIColor *borderColor;
+@property (assign, nonatomic) CGFloat borderWidth;
+
+
+@property (assign, nonatomic) CGFloat rightMargin;
+@property (assign, nonatomic) CGFloat centerYOffset;
+
+
+
+/**
+ 对UIButton的图片和文字 进行排布回调
+ */
+@property (copy, nonatomic, nullable) void (^layoutButton)(UIButton *_Nonnull btn);
+
+
+@end
+
+
+
+
+
+@interface CKJBtn5Model : CKJBaseBtnModel
+
++ (nonnull instancetype)btn5ModelWithSize:(CGSize)size normalImage:(nullable UIImage *)normalImage rightMargin:(CGFloat)rightMargin detailSettingBlock:(void(^_Nullable)(CKJBtn5Model *_Nonnull sender))detailSettingBlock didClickBtn7Handle:(nullable CKJDidClickbtn5Handle)didClickBtn7Handle;
+
+
+@end
+
 
 
 
@@ -88,50 +153,12 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 
 
 
-@interface CKJBtn7Model : CKJBaseModel
+@interface CKJBtn7Model : CKJBaseBtnModel
 
 /**
  暂时按钮的所有状态size都一样
  */
 + (nonnull instancetype)btn7ModelWithSize:(CGSize)size normalImage:(nullable UIImage *)normalImage rightMargin:(CGFloat)rightMargin detailSettingBlock:(void(^_Nullable)(CKJBtn7Model *_Nonnull sender))detailSettingBlock didClickBtn7Handle:(nullable CKJDidClickbtn7Handle)didClickBtn7Handle;
-
-@property (copy, nonatomic, nullable) NSAttributedString *normalAttributedTitle;
-@property (copy, nonatomic, nullable) NSAttributedString *selectedAttributedTitle;
-
-/** 改变Normal状态下的文字 */
-- (void)changeNormalText:(nullable NSString *)text;
-
-/** 改变Normal状态下的文字 */
-- (void)changeSelectedText:(nullable NSString *)text;
-
-
-
-@property (strong, nonatomic, nullable) UIImage *normalBackgroundImage;
-@property (strong, nonatomic, nullable) UIImage *selectedBackgroundImage;
-
-@property (strong, nonatomic, nullable) UIImage *normalImage;
-@property (strong, nonatomic, nullable) UIImage *selectedImage;
-
-
-
-/** 是否选中 */
-@property (assign, nonatomic) BOOL selected;
-/** 是否开启用户交互，默认开启 */
-@property (assign, nonatomic) BOOL userInteractionEnabled;
-
-@property (assign, nonatomic) CGSize size;
-@property (assign, nonatomic) CGFloat cornerRadius;
-@property (strong, nonatomic, nullable) UIColor *borderColor;
-@property (assign, nonatomic) CGFloat borderWidth;
-
-@property (assign, nonatomic) CGFloat rightMargin;
-@property (assign, nonatomic) CGFloat centerYOffset;
-
-
-/**
- 对UIButton的图片和文字 进行排布回调
- */
-@property (copy, nonatomic, nullable) void (^layoutButton)(UIButton *btn);
 
 @property (copy, nonatomic, nullable) CKJDidClickbtn7Handle didClickBtn7Handle;
 
@@ -142,6 +169,8 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 @interface CKJCellModel : CKJGeneralCellModel
 
 @property (strong, nonatomic, nullable) CKJSubTitle4Model *subTitle4Model;
+
+@property (strong, nonatomic, nullable) CKJBtn5Model *btn5Model;
 
 @property (strong, nonatomic, nullable) CKJView5Model *view5Model;
 
@@ -164,6 +193,8 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 @interface CKJCell : CKJGeneralCell
 
 @property (nonnull, strong, nonatomic, readonly) UILabel *subTitle4;
+
+@property (nonnull, strong, nonatomic, readonly) UIButton *btn5;
 
 @property (nonnull, strong, nonatomic, readonly) CKJTopBottomView *view5;
 @property (nonnull, strong, nonatomic, readonly) UILabel *view5_topLabel;

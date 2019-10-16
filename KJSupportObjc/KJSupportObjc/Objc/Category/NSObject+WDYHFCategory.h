@@ -64,6 +64,9 @@ NSMutableAttributedString *_Nonnull WDAtt15_5(NSString *_Nullable name);
  */
 NSMutableAttributedString *_Nonnull WDCKJAttributed3(NSString *_Nullable text, CGFloat horizontalSpace, CGFloat lineSpace, UIColor *_Nullable color, NSNumber *_Nullable fontSize);
 
+/**
+ 拼接
+ */
 NSMutableAttributedString *_Nonnull WDCKJAttributed4(NSString *_Nullable text1, UIColor *_Nullable color1, NSNumber *_Nullable fontSize1, NSString *_Nullable text2, UIColor *_Nullable color2, NSNumber *_Nullable fontSize2);
 
 
@@ -138,6 +141,10 @@ CGFloat WDAPP_ScreenHeight(void);
 
 #pragma mark - -----------------NSArray-----------------
 @interface NSArray <__covariant ObjectType> (WDYHFCategory)
+
+
+
++ (nonnull NSArray *)kjwd_readJsonDataFromLocalWithName:(nullable NSString *)name type:(nullable NSString *)type;
 
 
 /**
@@ -232,7 +239,7 @@ CGFloat WDAPP_ScreenHeight(void);
  */
 - (void)kjwd_lookValuesDataType;
     
-
+- (NSArray *_Nonnull)kjwd_filteredArrayUsingPredicate:(NSString *_Nullable)predicate;
 
 @end
 
@@ -299,7 +306,21 @@ CGFloat WDAPP_ScreenHeight(void);
 - (BOOL)kjwd_replaceObjectAtIndex:(NSUInteger)index withObject:(ObjectType)object;
 
     
-+ (instancetype)kjwd_arrayWithKeyValuesArray:(NSArray <NSDictionary *>* _Nullable)keyValuesArray modelClass:(Class)ModelClass callBack:(void(^_Nullable )(id currentModel))callBack;
+/**
+ 字典转模型
+ */
++ (instancetype _Nonnull)kjwd_arrayWithKeyValuesArray:(NSArray <NSDictionary *>* _Nullable)keyValuesArray modelClass:(Class _Nonnull)ModelClass callBack:(void(^_Nullable )(id _Nonnull currentModel))callBack;
+
+
+/**
+ 网络获取Models模型数组 转成 CellModels数组
+ 
+ @param ResponseDataModels 网络模型数组
+ @param CellModelClass CellModelClass类（必须是CKJCommonCellModel子类）
+ @param callBack 可以详细设置CellModel数据， 比如高度或者其他
+ */
++ (instancetype _Nonnull)kjwd_arrayWithResponseDataModels:(NSArray * _Nullable)ResponseDataModels CellModelClass:(Class _Nonnull)CellModelClass callBack:(void(^_Nullable )(id _Nonnull currentModel))callBack;
+
 @end
 
 #pragma mark - -----------------NSDictionary-----------------
@@ -382,6 +403,10 @@ CGFloat WDAPP_ScreenHeight(void);
 
 /**
  从本地读取数据
+ 
+ 
+ NSDictionary *dic = [NSDictionary kjwd_readJsonDataFromLocalWithName:@"NewList" type:@"geojson"];
+ NSArray *arr = dic[@"result"];
 
  @param name 文件名
  @param type 类型
@@ -425,6 +450,8 @@ CGFloat WDAPP_ScreenHeight(void);
 + (nonnull UIColor *)kjwd_arc4Color;
 
 + (nonnull UIColor *)kjwd_r:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha;
++ (nonnull UIColor *)kjwd_rbg:(NSInteger)rgb alpha:(CGFloat)alpha;
+
 
 + (nonnull UIColor *)kjwd_colorWithHexString:(NSString *)color;
 
@@ -433,7 +460,7 @@ CGFloat WDAPP_ScreenHeight(void);
 + (nonnull UIColor *)kjwd_subTitleColor969696;
 
 + (nonnull UIColor *)kjwd_230Color;
-
++ (UIColor *)kjwd_blueBtnColor;
 
 @end
 
@@ -581,17 +608,17 @@ CGFloat WDAPP_ScreenHeight(void);
 /**
  这几个属性是 Masonry的封装
  */
-@property (nonatomic, strong, readonly) MASViewAttribute * kjwdMas_safeAreaTop;
-@property (nonatomic, strong, readonly) MASViewAttribute * kjwdMas_safeAreaBottom;
-@property (nonatomic, strong, readonly) MASViewAttribute * kjwdMas_safeAreaLeft;
-@property (nonatomic, strong, readonly) MASViewAttribute * kjwdMas_safeAreaRight;
+@property (nonatomic, strong, nullable, readonly) MASViewAttribute * kjwdMas_safeAreaTop;
+@property (nonatomic, strong, nullable, readonly) MASViewAttribute * kjwdMas_safeAreaBottom;
+@property (nonatomic, strong, nullable, readonly) MASViewAttribute * kjwdMas_safeAreaLeft;
+@property (nonatomic, strong, nullable, readonly) MASViewAttribute * kjwdMas_safeAreaRight;
 
-- (NSArray *)kjwd_masWithSuperView:(UIView *_Nonnull)superView makeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
+- (NSArray *_Nullable)kjwd_masWithSuperView:(UIView *_Nonnull)superView makeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
 
 
-- (NSArray *)kjwd_mas_makeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
-- (NSArray *)kjwd_mas_updateConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
-- (NSArray *)kjwd_mas_remakeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
+- (NSArray *_Nullable)kjwd_mas_makeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
+- (NSArray *_Nullable)kjwd_mas_updateConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
+- (NSArray *_Nullable)kjwd_mas_remakeConstraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
 - (void)kjwd_addToSuperView:(nullable UIView *)superview constraints:(void(NS_NOESCAPE ^)(MASConstraintMaker *make, UIView *superview))block;
 
 
@@ -618,13 +645,13 @@ CGFloat WDAPP_ScreenHeight(void);
  * 说明 创建并使用XIB文件初始视图控制器, 默认使用与控制器相同名字的XIB文件
  * 参数 nibName, XIB文件名
  */
-+ (instancetype)kjwd_instanceUsingAutoNib;
-+ (instancetype)kjwd_instanceWithNibName:(NSString *)nibName;
++ (nullable instancetype)kjwd_instanceUsingAutoNib;
++ (nullable instancetype)kjwd_instanceWithNibName:(NSString *)nibName;
 
 /**
  * 视图转化成图片
  */
-- (UIImage *)kjwd_shotImage;
+- (UIImage *_Nonnull)kjwd_shotImage;
 
 
 
@@ -692,6 +719,8 @@ imageTitleSpace:(CGFloat)space;
 //+ (nonnull instancetype)kjwd_tableFooterStyleWithBGColor:(nullable UIColor *)bgColor attText:(nullable NSAttributedString *)attText borderColor:(nullable UIColor *)borderColor radius:(CGFloat)radius;
 
 
+
+
 @end
 
 @interface UILabel (WDYHFCategory)
@@ -747,26 +776,17 @@ imageTitleSpace:(CGFloat)space;
 #define CKJDateFormat4 (@"yyyyMMdd")
 
 
+/**
+ 传入20190723 返回 2019-07-23
+ */
++ (nonnull NSString *)kjwd_format1:(NSString *_Nullable)dateStr;
+
 + (nullable NSDate *)kjwd_returnDate:(NSString *_Nullable)dateString withDateFormat:(NSString *_Nullable)format;
 
 /**
  输入 yyyy-MM-dd HH:mm:ss 这样的字符串-----> 返回 yyyy-MM-dd 的字符串
  */
 + (nonnull NSString *)kjwd_return_yMdWithDate:(NSString *_Nullable)dateString;
-
-
-+ (nullable NSString *)kjwd_currentDateString;
-
-/**
- 返回 yyyy-MM-dd 的字符串
- */
-+ (nonnull NSString *)kjwd_currentYearMonthDayString;
-+ (nonnull NSString *)kjwd_currentYear;        // 2016
-+ (nonnull NSString *)kjwd_currentMonth;       // 03
-+ (nonnull NSString *)kjwd_currentDay;         // 04
-+ (nonnull NSString *)kjwd_currentHour;        // 16
-+ (nonnull NSString *)kjwd_currentMinute;      // 15
-+ (nonnull NSString *)kjwd_currentSecond;      // 50
 
 
 /**
@@ -889,11 +909,10 @@ imageTitleSpace:(CGFloat)space;
 
 /**
  * 密码
- * 说明 密码验证数字与字母组合, 默认6-12位
+ * 说明 必须同时包含大写、小写、字母，这样的组合
  * 参数 min, 最少位
  * 参数 max, 最大位
  */
-- (BOOL)kjwd_validatePassword;
 - (BOOL)kjwd_validatePasswordWithMin:(unsigned int)min max:(unsigned int)max;
 
 /**
@@ -937,6 +956,13 @@ imageTitleSpace:(CGFloat)space;
 
 /** 身份证号 出生年月转为*号 */
 - (nonnull NSString *)kjwd_idCardToAsterisk;
+
+/// 返回身份证号的年月日,  比如 19980320
+- (nonnull NSString *)kjwd_idCardBirthday;
+
+/// 返回身份证号的年  比如 1998
+- (nonnull NSString *)kjwd_idCardBirthday_Year;
+
 /** 身份证号 左右各保留几位， 比如左右各保留3位， 452************026 */
 - (nonnull NSString *)kjwd_idCardLeftMargin:(NSInteger)left rightMargin:(NSInteger)right;
 
@@ -1017,11 +1043,11 @@ typedef NS_ENUM(NSInteger, KJWDArc4randomType) {
 @property (assign, nonatomic) CGFloat kjwd_helperNumber;
 
 #pragma mark - 字符串操作
-- (NSString *)kjwd_substringFromIndex:(NSUInteger)from;
-- (NSString *)kjwd_substringToIndex:(NSUInteger)to;
-- (NSString *)kjwd_substringWithRange:(NSRange)range;
-- (NSString *)kjwd_stringByAppendingString:(NSString *)aString;
-
+- (nullable NSString *)kjwd_substringFromIndex:(NSUInteger)from;
+- (nullable NSString *)kjwd_substringToIndex:(NSUInteger)to;
+- (nullable NSString *)kjwd_substringWithRange:(NSRange)range;
+- (nullable NSString *)kjwd_stringByAppendingString:(nullable NSString *)aString;
+- (nullable NSString *)kjwd_stringByReplacingCharactersInRange:(NSRange)range withString:(nullable NSString *)replacement;
 
 /**
  使用toStr 替换掉beiReplace

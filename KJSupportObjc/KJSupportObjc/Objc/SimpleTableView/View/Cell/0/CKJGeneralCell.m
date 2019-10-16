@@ -13,17 +13,17 @@
 
 @implementation CKJImage2Model
 
-+ (nonnull instancetype)image2ModelWithNormalImage:(nullable UIImage *)normalImage size:(CGSize)size left:(CGFloat)leftMargin {
++ (nonnull instancetype)image2ModelWithNormalImage:(nullable UIImage *)normalImage size:(nullable NSValue *)size left:(CGFloat)leftMargin {
     CKJImage2Model *model = [[self alloc] init];
     model.normalImage = normalImage;
-    model.size = size;
+    model.sizeValue = size ? size : [NSValue valueWithCGSize:normalImage.size];
     model.leftMargin = leftMargin;
     return model;
 }
 + (instancetype)image2ModelWithImageString:(NSString *)imageString size:(CGSize)size left:(CGFloat)leftMargin {
     CKJImage2Model *model = [[self alloc] init];
     model.normalImage = [UIImage kjwd_imageNamed:imageString];
-    model.size = size;
+    model.sizeValue = [NSValue valueWithCGSize:size];
     model.leftMargin = leftMargin;
     return model;
 }
@@ -40,10 +40,6 @@
     model.attributedText = text;
     model.leftMargin = left;
     return model;
-}
-
-+ (nonnull instancetype)title3ModelWithFont15Text:(nullable NSAttributedString *)text left:(CGFloat)left {
-    return [self title3ModelWithAttributedText:WDCKJAttributed2(text, [UIColor kjwd_titleColor333333], @15.5) left:left];
 }
 
 + (nonnull instancetype)title3ModelWithAttributedText:(nullable NSAttributedString *)text left:(CGFloat)left width:(CGFloat)width {
@@ -112,7 +108,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.right = 5;
+        self.right = 8;
         NSBundle *resourcesBundle = [CKJWorker kjbundle];
         UIImage *arrow = [UIImage imageNamed:@"kj_arrow1" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
         arrow = [arrow kjwd_scaleToSize:CGSizeMake(16, 16)];
@@ -230,13 +226,10 @@
 
 
 - (void)createRight {
-     __weak typeof(self) weakSelf = self;
-    
     // 右
     CKJRightView *rightWrapView = [CKJRightView new];
     [self.onlyView addSubview:rightWrapView];
     self.rightWrapView = rightWrapView;
-    
     
     
     UILabel *alikePriceLabel8 = [CKJLikePriceLabel8 new];
@@ -294,7 +287,7 @@
         }];
     } else {
         [self.imageBtn2 setImage:normalImage forState:UIControlStateNormal];
-        CGSize size = model.image2Model.size;
+        CGSize size = model.image2Model.sizeValue.CGSizeValue;
         [_imageBtn2 kjwd_mas_remakeConstraints:^(MASConstraintMaker *make, UIView *superview) {
             make.centerY.equalTo(superview);
             make.left.equalTo(superview).offset(leftMargin);

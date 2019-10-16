@@ -29,8 +29,6 @@
 
 - (void)initSimpleTableViewData {
     
-    NSMutableArray <__kindof CKJCommonSectionModel *>*sections = [NSMutableArray array];
-    
     KJ_typeweakself
     
     CKJGeneralCellModel *(^block)(NSString *title, NSString *vcClass) = ^CKJGeneralCellModel *(NSString *title, NSString *vcClass) {
@@ -45,27 +43,37 @@
         return model1;
     };
     
-    {
-        CKJCommonSectionModel *section = [CKJCommonSectionModel new];
-        section.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"注意：如果是代码布局的Cell，请把子控件加入到CKJCommonTableViewCell.subviews_SuperView上", [UIColor redColor], nil) type:CKJCommonHeaderFooterType_HEADER];
-
+    
+    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithDetailSetting:^(__kindof CKJCommonSectionModel * _Nonnull sec) {
+        sec.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"注意：如果是代码布局的Cell，请把子控件加入到CKJCommonTableViewCell.subviews_SuperView上", [UIColor redColor], nil) type:CKJCommonHeaderFooterType_HEADER];
+        
         CKJCommonCellModel *model0 = block(@"CKJGeneralCell的用法Demo", @"CKJGeneralCellVC");
-
+        
         CKJCommonCellModel *model1 = block(@"CKJCell的用法Demo", @"CKJCellVC");
         CKJCommonCellModel *model2 = block(@"自定义Cell、配置Cell、聚合Cell", @"RJConfigVC");
         
         CKJCommonCellModel *model3 = block(@"CKJBaseImageLeftRightCell及其子类", @"CKJImageLeftRightCellVC");
-
-        CKJCommonCellModel *model4 = block(@"输入Cell", @"RJInputVC");
+        
         CKJCommonCellModel *model5 = block(@"StackCell、ScrollViewCell示例1", @"RJSquareDemo1VC");
         
         CKJCommonCellModel *model6 = block(@"StackCell、ScrollViewCell示例2", @"RJSquareDemo2VC");
         
-        section.modelArray = @[model0, model1, model2, model3, model4, model5, model6];
-        [sections addObject:section];
-    }
+        sec.modelArray = @[model0, model1, model2, model3, model5, model6];
+    }];
     
-    self.simpleTableView.dataArr = sections;
+    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderHeight:10 footerHeight:0 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull sec) {
+        CKJCommonCellModel *model0 = block(@"注册", @"RegisterDemoVC");
+        CKJCommonCellModel *model1 = block(@"添加联系人", @"InputDemoVC");
+        CKJCommonCellModel *model2 = block(@"联系人信息", @"PersonInfoDemoVC");
+        
+        sec.modelArray = @[model0, model1, model2];
+        
+    }];
+    
+    
+    
+    
+    self.simpleTableView.dataArr = @[section1, section2];
     [self.simpleTableView kjwd_reloadData];
     
 }

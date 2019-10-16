@@ -18,6 +18,8 @@
 @optional
 
 - (void)kj_tableView:(nonnull CKJSimpleTableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(nonnull NSIndexPath *)indexPath model:(nonnull __kindof CKJCommonCellModel *)model cell:(nonnull __kindof CKJCommonTableViewCell *)cell;
+- (void)tableView:(nonnull CKJSimpleTableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(nonnull NSIndexPath *)indexPath section:(NSInteger)section row:(NSInteger)row;
+- (UITableViewCellEditingStyle)tableView:(nonnull CKJSimpleTableView *)tableView editingStyleForRowAtIndexPath:(nonnull NSIndexPath *)indexPath section:(NSInteger)section row:(NSInteger)row;
 
 
 #pragma mark - ScrollView相关

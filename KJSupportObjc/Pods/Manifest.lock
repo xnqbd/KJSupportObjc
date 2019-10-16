@@ -1,24 +1,28 @@
 PODS:
+  - ActionSheetPicker-3.0 (2.3.0)
   - DZNEmptyDataSet (1.8.1)
   - IQKeyboardManager (6.0.6)
   - Masonry (1.1.0)
 
 DEPENDENCIES:
+  - ActionSheetPicker-3.0
   - DZNEmptyDataSet
   - IQKeyboardManager (~> 6.0.2)
   - Masonry
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - ActionSheetPicker-3.0
     - DZNEmptyDataSet
     - IQKeyboardManager
     - Masonry
 
 SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   IQKeyboardManager: 6b4ecd3e59cf55a26133d802d4678721d7f88499
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: 61f4134cf7564efc636fd9fc77899b070ae8fd1a
+PODFILE CHECKSUM: 7f0860a178ea89b49495c8f67e5943ed5ca458d4
 
-COCOAPODS: 1.6.1
+COCOAPODS: 1.7.5

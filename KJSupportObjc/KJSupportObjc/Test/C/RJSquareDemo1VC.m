@@ -28,7 +28,7 @@
 
 
 - (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
-    CKJBtnsCell1Config *config1 = [CKJBtnsCell1Config configWithDetailSettingBlock:^(CKJBtnsCell1Config * _Nonnull m) {
+    CKJBaseBtnsCellConfig *config1 = [CKJBaseBtnsCellConfig configWithDetailSettingBlock:^(CKJBaseBtnsCellConfig * _Nonnull m) {
         m.stackView_Edge_SuperView = UIEdgeInsetsMake(5, 10, 5, 10);
         m.delegate = [m squareWithNumberOfItemsInSingleLine:3];
         m.h_itemSpacing = 20;
@@ -40,26 +40,25 @@
         m.delegate = self;
     }];
     return @{
-             NSStringFromClass([CKJBtnsCell1Model class]) : @{cellKEY : NSStringFromClass([CKJBtnsCell1 class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : config1},
-             NSStringFromClass([CKJScrollViewCellModel class]) : @{cellKEY : NSStringFromClass([CKJScrollViewCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : scrollViewCellConfig},
-
-             };
+        NSStringFromClass([CKJBtnsCell1Model class]) : @{cellKEY : NSStringFromClass([CKJBtnsCell1 class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : config1},
+        NSStringFromClass([CKJScrollViewCellModel class]) : @{cellKEY : NSStringFromClass([CKJScrollViewCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : scrollViewCellConfig},
+        
+    };
 }
 
 - (void)initSimpleTableViewData {
-    NSMutableArray <__kindof CKJCommonSectionModel *>*sections = [NSMutableArray array];
     
     KJ_typeweakself
-    
-    {
-        CKJCommonSectionModel *section = [CKJCommonSectionModel new];
+
+    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithDetailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         
         CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:120 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
             m.selectionStyle = UITableViewCellSelectionStyleNone;
             m.cell_bgColor = [UIColor kjwd_r:25 g:130 b:197 alpha:1];
             m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:nil left:15];
             
-            m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"预交金余额(元)", [UIColor whiteColor], @15) bottomAttributedText:WDCKJAttBold(@"2000.00", [UIColor whiteColor], @42) topEdge:UIEdgeInsetsMake(15, 0, 0, 0) bottomEdge:UIEdgeInsetsMake(0, 0, 25, 0)];
+            
+            m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"预交金余额(元)", [UIColor whiteColor], @15) bottomAttributedText:WDCKJAttributed2(@"2000.00", [UIColor whiteColor], @42) topEdge:UIEdgeInsetsMake(15, 0, 0, 0) bottomEdge:UIEdgeInsetsMake(0, 0, 25, 0)];
             
             m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(60, 30) normalImage:nil rightMargin:20 detailSettingBlock:^(CKJBtn7Model * _Nonnull sender) {
                 sender.normalAttributedTitle = WDCKJAttributed2(@"充值", [UIColor whiteColor], @15);
@@ -70,13 +69,10 @@
                 NSLog(@"点击充值");
             }];
         } didSelectRowBlock:nil];
-        section.modelArray = @[model1];
-        [sections addObject:section];
-    }
-    {
-        CKJCommonSectionModel *section = [CKJCommonSectionModel new];
-        section.headerHeight = 15;
-        
+        _sec.modelArray = @[model1];
+    }];
+    
+    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderHeight:15  detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
             m.selectionStyle = UITableViewCellSelectionStyleNone;
             m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"预交金明细", [UIColor kjwd_titleColor333333], nil) left:15];
@@ -91,27 +87,27 @@
                 }];
             }];
         } didSelectRowBlock:nil];
-        section.modelArray = @[model1];
-        [sections addObject:section];
-    }
-    {
+        _sec.modelArray = @[model1];
+    }];
+    
+    
+    
+    
+    CKJCommonSectionModel *section3 = [CKJCommonSectionModel sectionWithHeaderHeight:10  detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         
-        CKJCommonSectionModel *section = [CKJCommonSectionModel new];
-        section.headerHeight = 10;
-      
         CKJScrollViewCellModel *model2 = [CKJScrollViewCellModel modelWithCellHeight:160 cellModel_id:nil detailSettingBlock:^(__kindof CKJScrollViewCellModel * _Nonnull m) {
             NSArray *data = @[
-                              @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文1", @"job" : @"主任", @"department" : @"胸外科"},
-                              @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强1", @"job" : @"经理", @"department" : @"心内科"},
-                              @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文2", @"job" : @"主任", @"department" : @"胸外科"},
-                              @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强2", @"job" : @"经理", @"department" : @"心内科"},
-                              @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文3", @"job" : @"主任", @"department" : @"胸外科"},
-                              @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强3", @"job" : @"经理", @"department" : @"心内科"},
-                              @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文4", @"job" : @"主任", @"department" : @"胸外科"},
-                              @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强4", @"job" : @"经理", @"department" : @"心内科"},
-                              @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文5", @"job" : @"主任", @"department" : @"胸外科"},
-                              @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强5", @"job" : @"经理", @"department" : @"心内科"}
-                              ];
+                @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文1", @"job" : @"主任", @"department" : @"胸外科"},
+                @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强1", @"job" : @"经理", @"department" : @"心内科"},
+                @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文2", @"job" : @"主任", @"department" : @"胸外科"},
+                @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强2", @"job" : @"经理", @"department" : @"心内科"},
+                @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文3", @"job" : @"主任", @"department" : @"胸外科"},
+                @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强3", @"job" : @"经理", @"department" : @"心内科"},
+                @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文4", @"job" : @"主任", @"department" : @"胸外科"},
+                @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强4", @"job" : @"经理", @"department" : @"心内科"},
+                @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文5", @"job" : @"主任", @"department" : @"胸外科"},
+                @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强5", @"job" : @"经理", @"department" : @"心内科"}
+            ];
             
             m.data = [RJDemoExpertItemData scrollViewCellItemsWithDics:data detailSetting:^(__kindof RJDemoExpertItemData *__weak  _Nonnull itemData, NSUInteger index) {
                 itemData.tapBlock = ^{
@@ -121,11 +117,10 @@
             
         } didSelectRowBlock:nil];
         
-        section.modelArray = @[ model2];
-        [sections addObject:section];
-    }
+        _sec.modelArray = @[model2];
+    }];
     
-    self.simpleTableView.dataArr = sections;
+    self.simpleTableView.dataArr = @[section1, section2, section3];
     [self.simpleTableView kjwd_reloadData];
 }
 
@@ -141,7 +136,7 @@
         [m addGroupId:dateGroupId];
         m.showLine = NO;
         m.selectionStyle = UITableViewCellSelectionStyleNone;
-        m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttBold(@"月份筛选", [UIColor blackColor], @17) left:15];
+        m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"月份筛选", [UIColor blackColor], @17) left:15];
     } didSelectRowBlock:nil];
     
     [cellModels addObject:model1];
@@ -163,7 +158,7 @@
             }];
         };
     }];
-    NSArray <CKJCommonCellModel *>*models = [CKJBtnsCell1Model btnsCellModelWithItems:items numberOfItemsInSingleLine:3 cellHeight:44 topMargin:0 centerMargin:0 bottomMargin:0 groupId:dateGroupId detailSetting:^(CKJBtnsCell1Model * _Nonnull __weak m, NSUInteger cellModel_index) { 
+    NSArray <CKJCommonCellModel *>*models = [CKJBtnsCell1Model btnsCellModelWithItems:items numberOfItemsInSingleLine:3 cellHeight:44 topMargin:0 centerMargin:0 bottomMargin:0 groupId:dateGroupId detailSetting:^(CKJBtnsCell1Model * _Nonnull __weak m, NSUInteger cellModel_index) {
     }];
     [cellModels addObjectsFromArray:models];
     

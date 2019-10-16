@@ -27,10 +27,10 @@
 
 @implementation CKJStackCellModel
 
-- (void)addItem:(__kindof CKJStackCellItemData *)item {
+- (void)addItem:(__kindof CKJStackCellItemData *_Nullable)item {
     if ([item isKindOfClass:[CKJStackCellItemData class]] == NO) return;
     NSMutableArray *array = [NSMutableArray kjwd_arrayWithArray:self.data];
-    [array addObject:item];
+    [array kjwd_addObject:item];
     self.data = array;
 }
 

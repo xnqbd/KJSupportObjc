@@ -31,16 +31,71 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.headerModel = [[CKJTableViewHeaderFooterEmptyModel alloc] init];
-//        self.headerHeight = 0.01;
+        //        self.headerHeight = 0.01;
         self.footerModel = [[CKJTableViewHeaderFooterEmptyModel alloc] init];
-//        self.footerHeight = 0.01;
+        //        self.footerHeight = 0.01;
     }
     return self;
 }
 
+
++ (instancetype)sectionWithHeaderHeight:(CGFloat)headerHeight detailSetting:(CKJSectionBlock _Nullable)detailSetting {
+    return [self sectionWithHeaderHeight:headerHeight footerHeight:0 detailSetting:detailSetting];
+}
+
++ (nonnull instancetype)sectionWithFooterHeight:(CGFloat)footerHeight detailSetting:(CKJSectionBlock _Nullable)detailSetting {
+    return [self sectionWithHeaderHeight:0 footerHeight:footerHeight detailSetting:detailSetting];
+}
+
++ (nonnull instancetype)sectionWithHeaderHeight:(CGFloat)headerHeight footerHeight:(CGFloat)footerHeight detailSetting:(CKJSectionBlock _Nullable)detailSetting {
+    CKJCommonSectionModel *m = [[self alloc] init];
+    m.headerHeight = headerHeight;
+    m.footerHeight = footerHeight;
+    if (detailSetting) {
+        detailSetting(m);
+    }
+    return m;
+}
+
+
+
+
+
++ (instancetype)sectionWithHeaderAttString:(NSAttributedString *_Nullable)headerAttString  detailSetting:(CKJSectionBlock _Nullable)detailSetting {
+    CKJCommonSectionModel *m = [[self alloc] init];
+    m.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:headerAttString type:CKJCommonHeaderFooterType_HEADER];
+    if (detailSetting) {
+        detailSetting(m);
+    }
+    return m;
+}
++ (instancetype)sectionWithHeaderAttString:(NSAttributedString *_Nullable)headerAttString footerAttString:(NSAttributedString *_Nullable)footerAttString detailSetting:(CKJSectionBlock _Nullable)detailSetting {
+    CKJCommonSectionModel *m = [[self alloc] init];
+    m.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:headerAttString type:CKJCommonHeaderFooterType_HEADER];
+    m.footerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:footerAttString type:CKJCommonHeaderFooterType_FOOTER];
+    if (detailSetting) {
+        detailSetting(m);
+    }
+    return m;
+}
+
+
++ (nonnull instancetype)sectionWithDetailSetting:(CKJSectionBlock _Nullable)detailSetting {
+    CKJCommonSectionModel *m = [[self alloc] init];
+    if (detailSetting) {
+        detailSetting(m);
+    }
+    return m;
+}
+
 - (void)addCellModel:(__kindof CKJCommonCellModel *)cellModel {
     NSMutableArray *arr = [NSMutableArray kjwd_arrayWithArray:self.modelArray];
-    [arr addObject:cellModel];
+    [arr kjwd_addObject:cellModel];
+    self.modelArray = arr;
+}
+- (void)addCellModels:(NSArray <__kindof CKJCommonCellModel *>*_Nullable)cellModels {
+    NSMutableArray *arr = [NSMutableArray kjwd_arrayWithArray:self.modelArray];
+    [arr kjwd_addObjectsFromArray:cellModels];
     self.modelArray = arr;
 }
 

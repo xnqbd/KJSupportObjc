@@ -22,5 +22,9 @@
 #import "KJSupportObjc.h"
 
 #import "MBProgressHUD.h"
+#import "MBProgressHUD+WJ.h"
+
+
+#define kBuleBtnColor [UIColor kjwd_r:25 g:130 b:197 alpha:1];
 
 #endif /* PrefixHeader_pch */

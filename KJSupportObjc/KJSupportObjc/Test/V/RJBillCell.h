@@ -34,14 +34,6 @@
 //"TreatPosition":"一楼7-9窗口a"
 
 
-//@protocol RJBillCell<> <NSObject>
-//
-//
-//
-//@end
-
-
-
 @interface RJBillCellConfig : CKJCommonCellConfig
 
 

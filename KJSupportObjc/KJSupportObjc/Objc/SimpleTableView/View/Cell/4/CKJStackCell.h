@@ -82,15 +82,11 @@ typedef void(^CKJStackCellModelRowBlock)(__kindof CKJStackCellModel *_Nonnull m)
 
 @interface CKJStackCellModel : CKJCommonCellModel
 
-
-
-
 @property (strong, nonatomic) NSArray <__kindof CKJStackCellItemData *>*data;
 
-- (void)addItem:(__kindof CKJStackCellItemData *)item;
+- (void)addItem:(__kindof CKJStackCellItemData *_Nullable)item;
 
 + (nonnull instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJStackCellModelRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJStackCellModelRowBlock)didSelectRowBlock;
-
 
 @end
 

@@ -7,16 +7,30 @@
 //
 
 #import "CKJCell.h"
+#import "CKJChooseHelper.h"
 
 typedef void(^CKJTriggerCodeBlock)(NSUInteger seconds);
 
+
+//typedef NS_ENUM(NSUInteger, RJInputStyle) {
+//    RJInputStyle_Normal,
+//    RJInputStyle_Choose
+//};
+
+
 NS_ASSUME_NONNULL_BEGIN
 
+UIKIT_EXTERN NSInteger const kInput_Name;
+UIKIT_EXTERN NSInteger const kInput_Sex;
+UIKIT_EXTERN NSInteger const kInput_Phone;
+UIKIT_EXTERN NSInteger const kInput_VerityCode;
+UIKIT_EXTERN NSInteger const kInput_idCardType;
+UIKIT_EXTERN NSInteger const kInput_idCardNumber;
+UIKIT_EXTERN NSInteger const kInput_Birthday;
+UIKIT_EXTERN NSInteger const kInput_Relationship;
+UIKIT_EXTERN NSInteger const kInput_Address;
+UIKIT_EXTERN NSInteger const kInput_Email;
 
-#define kInput_Name         3673620
-#define kInput_Sex          4021728
-#define kInput_Phone        5025618
-#define kInput_VerityCode   6032293
 
 @class CKJInputCellModel, CKJTFModel;
 
@@ -37,14 +51,26 @@ typedef void(^CKJInputCellModelRowBlock)(__kindof CKJInputCellModel *_Nonnull m)
 @property(nonatomic)        UITextBorderStyle       borderStyle;
 @property(nonatomic)        UIKeyboardType keyboardType;
 
-@property(nullable, copy, nonatomic) NSString *text;
+//@property(nullable, copy, nonatomic) NSString *text;
 @property(nullable, nonatomic,copy) NSAttributedString *attributedText;
+- (void)_setText:(NSString *_Nullable)text;
 
-@property(nullable, copy, nonatomic) NSString *placeholder;
+
 @property(nullable, nonatomic,copy) NSAttributedString *attributedPlaceholder;
+- (void)_setPlaceholder:(NSString *_Nullable)placeholder;
+
 @property(nonatomic) NSTextAlignment textAlignment;
 
-+ (nonnull instancetype)modelWithDetailSettingBlock:(void(^)(__kindof CKJTFModel *_Nonnull m))detailSettingBlock;
++ (nonnull instancetype)modelWithDetailSettingBlock:(void(^_Nullable)(__kindof CKJTFModel *_Nonnull m))detailSettingBlock;
+
+//+ (nonnull instancetype)modelWithText:(NSString *_Nullable)text placeholder:(NSString *_Nullable)placeholder userInteractionEnabled:(BOOL)enable detailSetting:(void(^_Nullable)(__kindof CKJTFModel *_Nonnull m))detailSettingBlock;
+
+
+- (void)_afterSecondsListenTextChange:(CGFloat)seconds callBack:(void(^_Nullable)(NSAttributedString *_Nullable attText))callBack;
+
+
+/// 检验手机号
++ (BOOL)verityPhone:(NSString *)phone;
 
 @end
 
@@ -89,11 +115,22 @@ typedef void(^CKJInputCellModelRowBlock)(__kindof CKJInputCellModel *_Nonnull m)
 
 @interface CKJInputCellModel : CKJCellModel
 
-@property (strong, nonatomic) CKJTFModel *tfModel;
+@property (strong, nonatomic, nullable) CKJStringChooseHelper *stringChoose;
+@property (strong, nonatomic, nullable) CKJDateChooseHelper *dateChoose;
+
+- (void)updateTFModel:(void(^_Nullable)(CKJTFModel *_Nonnull tfModel))block;
+
+@property (strong, nonatomic, nonnull) CKJTFModel *tfModel;
 
 @property (strong, nonatomic, nullable) CKJGetCodeModel *getCodeModel;
 
+/// 是否  必须输入
+@property (assign, nonatomic) BOOL required;
+
+- (NSString *_Nullable)tfText;
+
 + (nonnull instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJInputCellModelRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJInputCellModelRowBlock)didSelectRowBlock;
+
 
 @end
 
@@ -103,5 +140,15 @@ typedef void(^CKJInputCellModelRowBlock)(__kindof CKJInputCellModel *_Nonnull m)
 
 
 @end
+
+
+
+
+@interface CKJInputAddition : CKJBaseModel
+
++ (nonnull UIImage *)systemStarImageWithSize:(CGSize)size;
+
+@end
+
 
 NS_ASSUME_NONNULL_END

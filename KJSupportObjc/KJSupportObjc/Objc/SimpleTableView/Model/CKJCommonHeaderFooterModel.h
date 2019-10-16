@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CKJBaseModel.h"
+#import "CKJSimpleBaseModel.h"
 
 
 typedef NS_ENUM(NSUInteger, CKJCommonHeaderFooterType) {
@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, CKJCommonHeaderFooterType) {
 };
 
 
-@interface CKJCommonHeaderFooterModel : CKJBaseModel
+@interface CKJCommonHeaderFooterModel : CKJSimpleBaseModel
 
 /**
  系统的区头区尾

@@ -12,15 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@interface CKJBtnsCell2Config : CKJBaseBtnsCellConfig
-
-@end
-
-
 @interface CKJBtnsCell2Model : CKJBaseBtnsCellModel
 
-
-//+ (nonnull NSMutableArray <CKJCommonCellModel *>*)btnsCellModelWithItems:(NSArray <__kindof CKJBaseBtnsCellItemData *>*_Nullable)items numberOfItemsInSingleLine:(NSUInteger)number cellHeight:(CGFloat)cellHeight topMargin:(CGFloat)topMargin centerMargin:(CGFloat)centerMargin bottomMargin:(CGFloat)bottomMargin groupId:(NSString *_Nullable)groupId detailSetting:(void(^_Nullable)(CKJBtnsCell2Model *__weak _Nonnull m, NSUInteger cellModel_index))detailSetting;
 
 @end
 

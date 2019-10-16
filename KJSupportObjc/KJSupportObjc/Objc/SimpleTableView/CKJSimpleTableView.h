@@ -24,6 +24,9 @@
 #import "CKJImageRightCell.h"
 #import "CKJPayCell.h"
 
+#import "CKJScrollViewCell.h"
+
+#import "CKJLikeQRCell.h"
 
 #define KJ_typeweakself __weak typeof(self) weakSelf = self;
 
@@ -65,6 +68,8 @@
 
 
 @property (strong, nonatomic) NSArray <__kindof CKJCommonSectionModel *>* _Nullable dataArr;
+- (__kindof CKJCommonSectionModel *_Nullable)lastSection;
+
 
 @property (weak, nonatomic, nullable) IBOutlet id  <CKJSimpleTableViewDataSource> simpleTableViewDataSource;
 @property (weak, nonatomic, nullable) IBOutlet id  <CKJSimpleTableViewDelegate> simpleTableViewDelegate;
@@ -80,7 +85,7 @@
 - (void)kjwd_setCellModels:(nullable NSArray <__kindof CKJCommonCellModel *>*)cellModels atSection:(NSInteger)section;
 
 /** 遍历所有的cellModel */
-- (void)kjwd_enumAllCellModelWithBlock:(nullable CKJCommonCellModelRowBlock)block;
+- (void)kjwd_enumAllCellModelWithBlock:(void(^_Nullable)(__kindof CKJCommonCellModel *_Nonnull m, NSInteger section, NSInteger row, BOOL *stop))block;
 
 
 
@@ -95,6 +100,7 @@
  @return 对应的模型
  */
 - (nullable __kindof CKJCommonCellModel *)cellModelOfID:(NSInteger)cellModel_id;
+- (nullable __kindof CKJInputCellModel *)inputCellModelOfID:(NSInteger)cellModel_id;
 - (nullable __kindof CKJCommonSectionModel *)sectionModelOfID:(NSInteger)sectionModel_id;
 - (void)searchCellModelOfID:(NSInteger)cellModel_id doSomething:(nullable CKJCommonCellModelRowBlock)doSomething;
 
@@ -151,18 +157,16 @@
 
 
 /**
- 插入模型在某个分区的某一行
+ 在某个模型的后面 插入模型
  **************这个插入数据之后，需要手动的刷新数据，因为在insertRowsAtIndexPaths会位置出现， insertRowsAtIndexPaths每次只能插入一个数据，同时插入多个数据会造成插入动画数据有问题**************
  */
-- (BOOL)kjwd_insertCellModelsInAllCellModel:(nullable NSArray<__kindof CKJCommonCellModel *>*)array section:(NSInteger)section row:(NSInteger)row;
+- (BOOL)kjwd_insertCellModelsInAllCellModel:(nullable NSArray<__kindof CKJCommonCellModel *>*)cellModels afterCellModel:(__kindof CKJCommonCellModel *_Nullable)positionModel;
+
 /**
- 使用动画 插入模型在某个分区的某一行
+ 使用动画 在某个模型的后面 插入模型
  **************调用此方法插入数据后，不要使用reloadRowsAtIndexPaths刷新，不然会崩溃，可以刷新当前所在的分区**************
  */
-- (void)kjwd_insertCellModelInAllCellModel:(nullable __kindof CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
-
-/** 在AllCellModels的某一个模型后面插入数据 */
-- (BOOL)kjwd_insertCellModelsInAllCellModel:(nullable NSArray<__kindof CKJCommonCellModel *>*)array afterCellModel:(__kindof CKJCommonCellModel *_Nullable)cellModel;
+- (BOOL)kjwd_insertCellModelInAllCellModel:(__kindof CKJCommonCellModel *_Nullable)cellModel afterCellModel:(__kindof CKJCommonCellModel *_Nullable)positionModel withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock;
 
 
 
@@ -253,3 +257,22 @@
 
 
 @end
+
+
+
+@interface NSMutableArray <ObjectType> (CKJSimpleTableView)
+
+
+/**
+ 网络获取Models模型数组 转成 CellModels数组
+ 
+ @param ResponseDataModels 网络模型数组
+ @param CellModelClass CellModelClass类（必须是CKJCommonCellModel子类）
+ @param callBack 可以详细设置CellModel数据， 比如高度或者其他
+ */
++ (instancetype _Nonnull)kjwd_arrayWithResponseDataModels:(NSArray * _Nullable)ResponseDataModels CellModelClass:(Class _Nonnull)CellModelClass callBack:(void(^_Nullable )(id _Nonnull currentModel))callBack;
+
+
+@end
+
+

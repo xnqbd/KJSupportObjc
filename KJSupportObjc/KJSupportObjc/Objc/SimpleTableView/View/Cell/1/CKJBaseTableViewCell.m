@@ -15,6 +15,21 @@
     return [super modelWithCellHeight:cellHeight cellModel_id:cellModel_id detailSettingBlock:detailSettingBlock didSelectRowBlock:didSelectRowBlock];
 }
 
++ (NSMutableArray <__kindof CKJBaseTableViewCellModel *>*_Nonnull)tableViewCellWithExtensionObjs:(NSArray *)extensionObjs detailSetting:(void(^)(__kindof CKJBaseTableViewCellModel *_Nonnull m, id extensionObj))detailSetting {
+    NSMutableArray *arr = [NSMutableArray array];
+    for (id model in extensionObjs) {
+        CKJBaseTableViewCellModel *m = [[self alloc] init];
+        m.extension_Obj = model;
+        if (detailSetting) {
+            detailSetting(m, model);
+        }
+        [arr addObject:m];
+    }
+    return arr;
+}
+
+
+
 - (void)_setText:(nullable NSString *)text {
     self.textLabelAttStr = WDCKJAttributed2(text, [UIColor kjwd_colorWithHexString:@"333333"], @16);
 }

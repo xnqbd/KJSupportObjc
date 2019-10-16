@@ -56,17 +56,6 @@ typedef void(^CKJBtnsCellItemBlock)(CKJBaseBtnsCellItemData *_Nonnull itemData, 
 @property (strong, nonatomic, nullable) UIImage *highlightedBgImage;
 
 
-
-///** 比如 控制器类名 */
-//@property (copy, nonatomic) NSString *extenStr;
-//@property (copy, nonatomic) NSString *extenObj;
-//
-//@property (copy, nonatomic) void(^extenBlock)(UIViewController *vc);
-//@property (weak, nonatomic) Class extenClass;
-//@property (copy, nonatomic) void (^cCustomBlock)(void);
-
-
-
 /** 边框宽度 */
 @property (assign, nonatomic) CGFloat borderWidth;
 /** 边框颜色 */

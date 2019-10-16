@@ -49,3 +49,9 @@
 }
 
 @end
+
+
+
+@implementation CKJNetWorkDataModel
+
+@end

@@ -59,8 +59,12 @@
     self.estimatedSectionFooterHeight = 25;
     
     self.nameSpace = [CKJAPPHelper kj_nameSpace];
+    self.separatorColor = [UIColor kjwd_rbg:220 alpha:1];
 }
 
+- (__kindof CKJCommonSectionModel *_Nullable)lastSection {
+    return self.dataArr.lastObject;
+}
 
 - (void)disableEstimated {
     if (@available(iOS 11.0, *)) {
@@ -296,8 +300,10 @@
     if ([model isKindOfClass:[CKJEmptyCellModel class]]) {
         return;
     }
-    [self enumAllCellModelsAndSet_SelectedStyleWithCellModel:model];
-    
+    if (self.selectStyleBlock) {
+        [self enumAllCellModelsAndSet_SelectedStyleWithCellModel:model];
+    }
+        
     model.didSelectRowBlock ? model.didSelectRowBlock(model) : nil;
     
     if ([self.simpleTableViewDelegate respondsToSelector:@selector(kj_tableView:didSelectRowAtSection:row:selectIndexPath:model:cell:)]) {
@@ -305,7 +311,21 @@
         [self.simpleTableViewDelegate kj_tableView:(CKJSimpleTableView *)tableView didSelectRowAtSection:section row:row selectIndexPath:indexPath model:model cell:cell];
     }
 }
-
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    if ([self.simpleTableViewDelegate respondsToSelector:@selector(tableView:commitEditingStyle:forRowAtIndexPath:section:row:)]) {
+        [self.simpleTableViewDelegate tableView:(CKJSimpleTableView *)tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath section:section row:row];
+    }
+}
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
+    if ([self.simpleTableViewDelegate respondsToSelector:@selector(tableView:editingStyleForRowAtIndexPath:section:row:)]) {
+        return [self.simpleTableViewDelegate tableView:(CKJSimpleTableView *)tableView editingStyleForRowAtIndexPath:indexPath section:section row:row];
+    }
+    return UITableViewCellEditingStyleNone;
+}
 
 #pragma mark - UIScrollViewDelegate
 
@@ -414,28 +434,35 @@
     sectionModel.modelArray = cellModels;
 }
 
-- (void)kjwd_enumAllCellModelWithBlock:(nullable CKJCommonCellModelRowBlock)block {
+- (void)kjwd_enumAllCellModelWithBlock:(void(^_Nullable)(__kindof CKJCommonCellModel *_Nonnull m, NSInteger section, NSInteger row, BOOL *stop))block {
     if (block == nil) return;
     NSArray <CKJCommonSectionModel *>* dataArr = self.dataArr;
     
-    for (int section = 0; section < dataArr.count; section++) {
+    BOOL stop = NO;
+    
+    for (NSInteger section = 0; section < dataArr.count; section++) {
         
         CKJCommonSectionModel * secionModel = dataArr[section];
         NSArray <CKJCommonCellModel *>*modelArray = secionModel.modelArray;
         
-        for (int row = 0; row < modelArray.count; row++) {
+        for (NSInteger row = 0; row < modelArray.count; row++) {
+            if (stop == YES) {
+                return;
+            }
+            
             CKJCommonCellModel *model = modelArray[row];
-            block(model);
+            block(model, section, row, &stop);
         }
     }
 }
 
 - (void)kjwd_filterCellModelForID:(NSInteger)cellModelID finishBlock:(nullable CKJCommonCellModelRowBlock)block {
     if (block == nil) return;
-    [self kjwd_enumAllCellModelWithBlock:^(__kindof CKJCommonCellModel * _Nonnull m) {
+
+    [self kjwd_enumAllCellModelWithBlock:^(__kindof CKJCommonCellModel * _Nonnull m, NSInteger section, NSInteger row, BOOL *stop) {
         if (m.cellModel_id == cellModelID) {
             block(m);
-            return;
+            *stop = YES;
         }
     }];
 }
@@ -450,6 +477,10 @@
     }
     return nil;
 }
+- (nullable __kindof CKJInputCellModel *)inputCellModelOfID:(NSInteger)cellModel_id {
+    return (CKJInputCellModel *)[self cellModelOfID:cellModel_id];
+}
+
 - (nullable __kindof CKJCommonSectionModel *)sectionModelOfID:(NSInteger)sectionModel_id {
     for (CKJCommonSectionModel *section in self.dataArr) {
         if (section.sectionModel_id == sectionModel_id) {
@@ -556,55 +587,43 @@
     self.dataArr = sections;
 }
 
-
-- (BOOL)kjwd_insertCellModelsInAllCellModel:(nullable NSArray<__kindof CKJCommonCellModel *>*)array section:(NSInteger)section row:(NSInteger)row {
-    
-    if (array == nil) {
+- (BOOL)kjwd_insertCellModelsInAllCellModel:(nullable NSArray<__kindof CKJCommonCellModel *>*)cellModels afterCellModel:(__kindof CKJCommonCellModel *_Nullable)positionModel {
+    if (cellModels == nil || positionModel == nil) {
         return NO;
     }
-    
-    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
-    
-    CKJCommonSectionModel *sectionModel = [sections kjwd_objectAtIndex:section];
-    NSMutableArray <CKJCommonCellModel *>*cellModelArray = [NSMutableArray kjwd_arrayWithArray:sectionModel.modelArray];
-    
-    if ([cellModelArray kjwd_insertObjects:array atIndex:row] == NO) {
-        return NO;
-    }
-    sectionModel.modelArray = cellModelArray;
-    self.dataArr = sections;
-    return YES;
-}
 
-
-- (void)kjwd_insertCellModelInAllCellModel:(nullable __kindof CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
-    if (model == nil) {
-        return;
-    }
+    __block BOOL result = NO;
     
-    if ([self kjwd_insertCellModelsInAllCellModel:@[model] section:section row:row]) {
-        NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:section];
-        [self insertRowsAtIndexPaths:@[path] withRowAnimation:rowAnimation];
-    }
-}
-
-- (BOOL)kjwd_insertCellModelsInAllCellModel:(nullable NSArray<__kindof CKJCommonCellModel *>*)array afterCellModel:(__kindof CKJCommonCellModel *_Nullable)cellModel {
-    if (array == nil || cellModel == nil) {
-        return NO;
-    }
-    
-    for (int section = 0; section < self.dataArr.count; section++) {
-        CKJCommonSectionModel *sectionModel = self.dataArr[section];
-        for (int row = 0; row < sectionModel.modelArray.count; row++) {
-            CKJCommonCellModel *target = sectionModel.modelArray[row];
-            if (target == cellModel) {
-                [self kjwd_insertCellModelsInAllCellModel:array section:section row:row + 1];
-                return YES;
-            }
+    [self kjwd_enumAllCellModelWithBlock:^(__kindof CKJCommonCellModel * _Nonnull m, NSInteger section, NSInteger row, BOOL *stop) {
+        if (m == positionModel) {
+            [self kjwd_insertCellModelsInAllCellModel:cellModels section:section row:row + 1];
+            result = YES;
+            *stop = YES;
         }
-    }
-    return NO;
+    }];
+
+    return result;
 }
+
+- (BOOL)kjwd_insertCellModelInAllCellModel:(__kindof CKJCommonCellModel *_Nullable)cellModel afterCellModel:(__kindof CKJCommonCellModel *_Nullable)positionModel withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
+    if (cellModel == nil || positionModel == nil) {
+        return NO;
+    }
+    
+    __block BOOL result = NO;
+    
+    [self kjwd_enumAllCellModelWithBlock:^(__kindof CKJCommonCellModel * _Nonnull m, NSInteger section, NSInteger row, BOOL *stop) {
+        if (m == positionModel) {
+            [self kjwd_insertCellModelInAllCellModel:cellModel section:section row:row + 1 withRowAnimation:rowAnimation animationBlock:animationBlock];
+            result = YES;
+            *stop = YES;
+        }
+    }];
+    
+    return result;
+}
+
+
 
 - (BOOL)appendCellModelArray:(nullable NSArray <__kindof CKJCommonCellModel *>*)array atLastRow_InAllCellModelArrayOfSection:(NSInteger)section {
     if (WDKJ_IsNull_Array(array)) {
@@ -936,12 +955,45 @@
     return displayModelArray;
 }
 
+
+- (BOOL)kjwd_insertCellModelsInAllCellModel:(nullable NSArray<__kindof CKJCommonCellModel *>*)array section:(NSInteger)section row:(NSInteger)row {
+    
+    if (array == nil) {
+        return NO;
+    }
+    
+    NSMutableArray <CKJCommonSectionModel *>*sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
+    
+    CKJCommonSectionModel *sectionModel = [sections kjwd_objectAtIndex:section];
+    NSMutableArray <CKJCommonCellModel *>*cellModelArray = [NSMutableArray kjwd_arrayWithArray:sectionModel.modelArray];
+    
+    if ([cellModelArray kjwd_insertObjects:array atIndex:row] == NO) {
+        return NO;
+    }
+    sectionModel.modelArray = cellModelArray;
+    self.dataArr = sections;
+    return YES;
+}
+
+
+- (void)kjwd_insertCellModelInAllCellModel:(nullable __kindof CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row withRowAnimation:(UITableViewRowAnimation)rowAnimation animationBlock:(void(^_Nullable)(void(^_Nonnull animationBlock)(void)))animationBlock {
+    if (model == nil) {
+        return;
+    }
+    
+    if ([self kjwd_insertCellModelsInAllCellModel:@[model] section:section row:row]) {
+        NSIndexPath *path = [NSIndexPath indexPathForRow:row inSection:section];
+        [self insertRowsAtIndexPaths:@[path] withRowAnimation:rowAnimation];
+    }
+}
+
+
 #pragma mark - 选中样式 相关
 - (void)enumAllCellModelsAndSet_SelectedStyleWithCellModel:(__kindof CKJCommonCellModel *_Nullable)cellModel {
     
     if (self.selectStyleBlock) {
         __weak typeof(self) weakSelf = self;
-        [self kjwd_enumAllCellModelWithBlock:^(__kindof CKJCommonCellModel * _Nonnull m) {
+        [self kjwd_enumAllCellModelWithBlock:^(__kindof CKJCommonCellModel * _Nonnull m, NSInteger section, NSInteger row, BOOL *stop) {
             if (weakSelf.selectStyleBlock) {
                 weakSelf.selectStyleBlock(m, m == cellModel);
             }
@@ -1025,7 +1077,7 @@
         
         NSString *cellClass = dic[cellKEY];
         BOOL isRegisterNib = [dic[isRegisterNibKEY] boolValue];
-        NSString *nibName = dic[registerNibNameKEY];
+        NSString *nibName = cellClass;
         if (WDKJ_IsEmpty_Str(nibName)) {
             nibName = cellClass;
         }
@@ -1180,3 +1232,38 @@
 
 @end
 
+
+
+
+@implementation NSMutableArray (CKJSimpleTableView)
+
+
+/**
+ 网络获取Models模型数组 转成 CellModels数组
+ 
+ @param ResponseDataModels 网络模型数组
+ @param CellModelClass CellModelClass类（必须是CKJCommonCellModel子类）
+ @param callBack 可以详细设置CellModel数据， 比如高度或者其他
+ */
++ (instancetype _Nonnull)kjwd_arrayWithResponseDataModels:(NSArray * _Nullable)ResponseDataModels CellModelClass:(Class _Nonnull)CellModelClass callBack:(void(^_Nullable )(id _Nonnull currentModel))callBack {
+    
+    ResponseDataModels = WDKJ_ConfirmArray(ResponseDataModels);
+    
+    NSMutableArray *result = [NSMutableArray array];
+    
+    [ResponseDataModels enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CKJCommonCellModel *cellModel = [[CellModelClass alloc] init];
+        if ([cellModel isKindOfClass:[CKJCommonCellModel class]] == NO) {
+            return;
+        }
+        if (callBack) {
+            callBack(cellModel);
+        }
+        cellModel.networkData = obj;
+        [result addObject:cellModel];
+    }];
+    return result;
+}
+
+
+@end

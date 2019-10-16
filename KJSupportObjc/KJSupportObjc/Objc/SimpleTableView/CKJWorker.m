@@ -8,23 +8,14 @@
 
 #import "CKJWorker.h"
 #import "NSObject+WDYHFCategory.h"
+#import "CKJCommonTableViewCell.h"
 
 
 NSString *_Nonnull const cellKEY = @"cellKEY";
 NSString *_Nonnull const isRegisterNibKEY = @"isRegisterNibKEY";
-NSString *_Nonnull const registerNibNameKEY = @"registerNibNameKEY";
 NSString *_Nonnull const configDicKEY_ConfigModel = @"configDicKEY_ConfigModel";
 NSString *_Nonnull const headerFooterKey = @"headerFooterKey";
 
-
-
-//NSString *_Nonnull const cExtenStr = @"cExtenStr";
-//NSString *_Nonnull const cExtenBlock = @"cExtenBlock";
-//NSString *_Nonnull const cExtenObj = @"cExtenObj";
-//NSString *_Nonnull const cExtenClass = @"cExtenClass";
-//
-///** 完全自定义block， 无参数 */
-//NSString *_Nonnull const cCustomBlock = @"cCustomBlock";
 
 
 NSString *_Nonnull const cNormalAttTitle = @"cNormalAttTitle";
@@ -122,13 +113,6 @@ NSString *_Nonnull const cCornerRadius = @"cCornerRadius";
             detailSetting(m, i);
         }
         
-//        m.extenStr = dic[cExtenStr];
-//        m.extenBlock = dic[cExtenBlock];
-//        m.extenObj = dic[cExtenObj];
-//        m.extenClass = dic[cExtenClass];
-//        m.cCustomBlock = dic[cCustomBlock];
-//
-        
         [result addObject:m];
     }
     return result;
@@ -154,6 +138,44 @@ NSString *_Nonnull const cCornerRadius = @"cCornerRadius";
     } else {
         _highlightedAttTitle = highlightedAttTitle;
     }
+}
+
+
+
+@end
+
+
+
+
+@implementation NSArray (CKJSimpleTableView)
+
+
+
+/**
+ 网络获取Models模型数组 转成 CellModels数组
+ 
+ @param ResponseDataModels 网络模型数组
+ @param CellModelClass CellModelClass类（必须是CKJCommonCellModel子类）
+ @param callBack 可以详细设置CellModel数据， 比如高度或者其他
+ */
++ (instancetype _Nonnull)kjwd_arrayWithResponseDataModels:(NSArray * _Nullable)ResponseDataModels CellModelClass:(Class _Nonnull)CellModelClass callBack:(void(^_Nullable )(id _Nonnull currentModel))callBack {
+    
+    ResponseDataModels = WDKJ_ConfirmArray(ResponseDataModels);
+    
+    NSMutableArray *result = [NSMutableArray array];
+    
+    [ResponseDataModels enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CKJCommonCellModel *cellModel = [[CellModelClass alloc] init];
+        if ([cellModel isKindOfClass:[CKJCommonCellModel class]] == NO) {
+            return;
+        }
+        if (callBack) {
+            callBack(cellModel);
+        }
+        cellModel.networkData = obj;
+        [result addObject:cellModel];
+    }];
+    return result;
 }
 
 

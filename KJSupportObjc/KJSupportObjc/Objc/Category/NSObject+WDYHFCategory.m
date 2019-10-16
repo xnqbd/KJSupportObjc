@@ -535,6 +535,27 @@ CGFloat WDAPP_ScreenHeight(void) {
 #pragma mark - -----------------NSArray-----------------
 @implementation NSArray (WDYHFCategory)
 
++ (nonnull NSArray *)kjwd_readJsonDataFromLocalWithName:(nullable NSString *)name type:(nullable NSString *)type {
+    if (WDKJ_IsEmpty_Str(name)) {
+        return @[];
+    }
+    if (WDKJ_IsEmpty_Str(type)) {
+        type = nil;
+    }
+    
+    // 获取文件路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:type];
+    // 将文件数据化
+    NSData *data = [[NSData alloc] initWithContentsOfFile:path];
+    if (data == nil) {
+        return @[];
+    }
+    
+    return [NSJSONSerialization JSONObjectWithData:data
+                                           options:kNilOptions
+                                             error:nil];
+}
+
 
 - (void)kjwd_DoElementPropertyValueEqualWithPropertyName:(NSString *_Nullable)propertyName handle:(void(^_Nullable)(NSMutableArray <NSArray *>*_Nonnull data, NSArray <NSString *>*_Nonnull propertyValueSortedSet))handle {
     NSMutableArray *result = [NSMutableArray array];
@@ -729,17 +750,41 @@ CGFloat WDAPP_ScreenHeight(void) {
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSLog(@"数组下标 %lu", idx);
         if ([obj isKindOfClass:[NSString class]]) {
-            NSLog(@"%lu   NSString *%@ ", idx, obj);
+//            NSLog(@"%lu   NSString *%@ ", idx, obj);
+            
+            NSLog(@"@property (copy, nonatomic) NSString *%@;", obj);
+            
         } else if ([obj isKindOfClass:[NSNumber class]]) {
-            NSLog(@"数组下标%lu   NSNumber *%@ ", idx, obj);
+//            NSLog(@"数组下标%lu   NSNumber *%@ ", idx, obj);
+            
+            
+            NSLog(@"@property (copy, nonatomic) NSNumber *%@;", obj);
+            
         } else if ([obj isKindOfClass:[NSDictionary class]]) {
             NSDictionary *temp = (NSDictionary *)obj;
             [temp kjwd_lookValuesDataType];
         } else if ([obj isKindOfClass:[NSArray class]]) {
             [self kjwd_lookValuesDataType];
-        }
+        } 
         NSLog(@"\n\n");
     }];
+}
+
+- (NSArray *_Nonnull)kjwd_filteredArrayUsingPredicate:(NSString *_Nullable)predicate {
+    if (WDKJ_IsEmpty_Str(predicate)) {
+        return @[];
+    }
+    NSPredicate *pre1 = [NSPredicate predicateWithFormat:predicate];
+    
+    NSArray *result = @[];
+    @try {
+       result = [self filteredArrayUsingPredicate:pre1];
+    } @catch (NSException *exception) {
+        NSLog(@"异常!!! 谓词在数组中匹配异常!!!  %@  %@ ", predicate, exception);
+    } @finally {
+        NSLog(@"%@ ", @"完成");
+    }
+    return result;
 }
 
 @end
@@ -945,6 +990,34 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 
+/**
+ 网络获取Models模型数组 转成 CellModels数组
+
+ @param ResponseDataModels 网络模型数组
+ @param CellModelClass CellModelClass类（必须是CKJCommonCellModel子类）
+ @param callBack 可以详细设置CellModel数据， 比如高度或者其他
+ */
++ (instancetype _Nonnull)kjwd_arrayWithResponseDataModels:(NSArray * _Nullable)ResponseDataModels CellModelClass:(Class _Nonnull)CellModelClass callBack:(void(^_Nullable )(id _Nonnull currentModel))callBack {
+    
+    ResponseDataModels = WDKJ_ConfirmArray(ResponseDataModels);
+    
+    NSMutableArray *result = [NSMutableArray array];
+
+    [ResponseDataModels enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CKJCommonCellModel *cellModel = [[CellModelClass alloc] init];
+        if ([cellModel isKindOfClass:[CKJCommonCellModel class]] == NO) {
+            return;
+        }
+        if (callBack) {
+            callBack(cellModel);
+        }
+        cellModel.networkData = obj;
+        [result addObject:cellModel];
+    }];
+    return result;
+}
+
+
 @end
 
 
@@ -1010,16 +1083,18 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 - (void)kjwd_lookValuesDataType {
+    // 在js里有的key对应的value为null，这里不会遍历出来这些键值对
+    
     [self enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSString class]]) {
-            NSLog(@"NSString *%@ = %@", key, obj);
+//            NSLog(@"NSString *%@ = %@", key, obj);
             
-//            NSLog(@"@property (copy, nonatomic) NSString *%@;", key);
+            NSLog(@"@property (copy, nonatomic) NSString *%@;              %@ ", key, obj);
             
         } else if ([obj isKindOfClass:[NSNumber class]]) {
-            NSLog(@"NSNumber *%@ = %@", key, obj);
+//            NSLog(@"NSNumber *%@ = %@", key, obj);
             
-//            NSLog(@"@property (copy, nonatomic) NSNumber *%@;", key);
+            NSLog(@"@property (copy, nonatomic) NSNumber *%@;              %@ ", key, obj);
             
         } else if ([obj isKindOfClass:[NSDictionary class]]) {
             [self kjwd_lookValuesDataType];
@@ -1214,13 +1289,15 @@ CGFloat WDAPP_ScreenHeight(void) {
     uint32_t r = arc4random_uniform(256);
     uint32_t g = arc4random_uniform(256);
     uint32_t b = arc4random_uniform(256);
-    
-    NSLog(@"随机生成颜色 r:%d  g:%d  b:%d", r, g, b);
     return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:1];
 }
 + (nonnull UIColor *)kjwd_r:(NSInteger)r g:(NSInteger)g b:(NSInteger)b alpha:(CGFloat)alpha {
     return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:alpha];
 }
++ (nonnull UIColor *)kjwd_rbg:(NSInteger)rgb alpha:(CGFloat)alpha {
+    return [self kjwd_r:rgb g:rgb b:rgb alpha:alpha];
+}
+
 + (nonnull UIColor *)kjwd_colorWithHexString:(NSString *)color {
     NSString *cString = [[color stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
     
@@ -1266,6 +1343,9 @@ CGFloat WDAPP_ScreenHeight(void) {
     return [UIColor kjwd_r:230 g:230 b:230 alpha:1];
 }
 
++ (UIColor *)kjwd_blueBtnColor {
+    return [UIColor kjwd_r:25 g:130 b:197 alpha:1];
+}
 
 @end
 
@@ -1798,13 +1878,16 @@ CGFloat WDAPP_ScreenHeight(void) {
     return [[[NSBundle mainBundle] loadNibNamed:nibName owner:nil options:nil] firstObject];
 }
 
-- (UIImage *)kjwd_shotImage {
+- (UIImage *_Nonnull)kjwd_shotImage {
     UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO,   0);
     CGContextRef context = UIGraphicsGetCurrentContext();
     //把当前的整个画面导入到context中，然后通过context输出UIImage，这样就可以把整个屏幕转化为图片
     [self.layer renderInContext:context];
     UIImage* image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
+    if (image == nil) {
+        image = [[UIImage alloc] init];
+    }
     return image;
 }
 
@@ -2194,6 +2277,14 @@ CGFloat WDAPP_ScreenHeight(void) {
 #pragma mark - -----------------NSDate-----------------
 @implementation NSDate (WDYHFCategory)
 
++ (nonnull NSString *)kjwd_format1:(NSString *_Nullable)dateStr {
+    if (WDKJ_IsEmpty_Str(dateStr)) return @"";
+    NSDate *date = [NSDate kjwd_returnDate:dateStr withDateFormat:CKJDateFormat4];
+    NSString *result = [date kjwd_dateStringWithFormatter:CKJDateFormat2];
+    return result;
+}
+
+
 + (nullable NSDate *)kjwd_returnDate:(NSString *_Nullable)dateString withDateFormat:(NSString *_Nullable)format {
     if (dateString == nil) {
         return nil;
@@ -2213,48 +2304,6 @@ CGFloat WDAPP_ScreenHeight(void) {
     NSString *dateStr = [NSString stringWithFormat:@"%@-%@-%@", date.kjwd_dateYear, date.kjwd_dateMonth, date.kjwd_dateDay];
     return dateStr;
 }
-
-
-+ (NSString *)kjwd_currentDateString {
-    NSDate *date = [NSDate date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = [NSString stringWithFormat:CKJDateFormat1];
-    NSString *dateStr = [formatter stringFromDate:date];
-    return dateStr;
-}
-
-
-
-+ (nonnull NSString *)kjwd_currentYearMonthDayString; {
-    NSString *str = [NSString stringWithFormat:@"%@-%@-%@", [NSDate kjwd_currentYear], [NSDate kjwd_currentMonth], [NSDate kjwd_currentDay]];
-    return str;
-}
-
-+ (nonnull NSString *)kjwd_currentYear {
-    NSString *dateString = [NSDate kjwd_currentDateString];
-    return [dateString substringToIndex:4];
-}
-+ (nonnull NSString *)kjwd_currentMonth {
-    NSString *dateString = [NSDate kjwd_currentDateString];
-    return [NSString stringWithFormat:@"%@", [dateString substringWithRange:NSMakeRange(5, 2)]];
-}
-+ (nonnull NSString *)kjwd_currentDay {
-    NSString *dateString = [NSDate kjwd_currentDateString];
-    return [NSString stringWithFormat:@"%@", [dateString substringWithRange:NSMakeRange(8, 2)]];
-}
-+ (nonnull NSString *)kjwd_currentHour {
-    NSString *dateString = [NSDate kjwd_currentDateString];
-    return [NSString stringWithFormat:@"%@", [dateString substringWithRange:NSMakeRange(11, 2)]];
-}
-+ (nonnull NSString *)kjwd_currentMinute {
-    NSString *dateString = [NSDate kjwd_currentDateString];
-    return [NSString stringWithFormat:@"%@", [dateString substringWithRange:NSMakeRange(14, 2)]];
-}
-+ (nonnull NSString *)kjwd_currentSecond {
-    NSString *dateString = [NSDate kjwd_currentDateString];
-    return [NSString stringWithFormat:@"%@", [dateString substringWithRange:NSMakeRange(17, 2)]];
-}
-
 
 - (nonnull NSDate *)kjwd_set_HmsEqualZero_Date {
     NSString *str = [NSString stringWithFormat:@"%@-%@-%@ 00:00:00", self.kjwd_dateYear, self.kjwd_dateMonth, self.kjwd_dateDay];
@@ -2643,17 +2692,12 @@ CGFloat WDAPP_ScreenHeight(void) {
 
 /**
  * 密码
- * 说明 密码验证数字与字母组合, 默认6-12位
+ * 说明 必须同时包含大写、小写、字母，这样的组合
  * 参数 min, 最少位
  * 参数 max, 最大位
  */
-- (BOOL)kjwd_validatePassword {
-    NSString *passWordRegex = @"^[a-zA-Z0-9]{6,12}+$";
-    NSPredicate *passWordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex];
-    return [passWordPredicate evaluateWithObject:self];
-}
 - (BOOL)kjwd_validatePasswordWithMin:(unsigned int)min max:(unsigned int)max {
-    NSString *passWordRegex = [NSString stringWithFormat:@"^[a-zA-Z0-9]{%u,%u}+$", min, max];
+    NSString *passWordRegex = [NSString stringWithFormat:@"^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z0-9]{%u,%u}$", min, max];
     NSPredicate *passWordPredicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",passWordRegex];
     return [passWordPredicate evaluateWithObject:self];
 }
@@ -2772,6 +2816,23 @@ CGFloat WDAPP_ScreenHeight(void) {
         return @"";
     }
     return [self stringByReplacingCharactersInRange:NSMakeRange(10, 4) withString:@"****"];
+}
+
+
+/// 返回身份证号的年月日,  比如 19980320
+- (nonnull NSString *)kjwd_idCardBirthday {
+    if (self.length != 18) return @"";
+    
+    NSString *birthday = [self kjwd_substringWithRange:NSMakeRange(6, 8)];
+    if (WDKJ_IsEmpty_Str(birthday)) {
+        return @"";
+    }
+    return birthday;
+}
+
+/// 返回身份证号的年  比如 1998
+- (nonnull NSString *)kjwd_idCardBirthday_Year {
+    return [[self kjwd_idCardBirthday] kjwd_substringToIndex:4];
 }
 
 - (nonnull NSString *)kjwd_idCardLeftMargin:(NSInteger)left rightMargin:(NSInteger)right {
@@ -2956,22 +3017,14 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 #pragma mark - 字符串操作
-- (NSString *)kjwd_substringFromIndex:(NSUInteger)from {
-    if ([self isKindOfClass:[NSString class]] == NO) {
-        NSLog(@"%s ---> %@ 不是NSString类型", __func__, self);
-        return nil;
-    }
+- (nullable NSString *)kjwd_substringFromIndex:(NSUInteger)from {
     if (from > self.length || from < 0) {
         NSLog(@"%s ---> %@ 长度%lu 下标%lu越界", __func__, self, self.length, from);
         return nil;
     }
     return [self substringFromIndex:from];
 }
-- (NSString *)kjwd_substringToIndex:(NSUInteger)to {
-    if ([self isKindOfClass:[NSString class]] == NO) {
-        NSLog(@"%s ---> %@ 不是NSString类型", __func__, self);
-        return nil;
-    }
+- (nullable NSString *)kjwd_substringToIndex:(NSUInteger)to {
     if (to > self.length || to < 0) {
         NSLog(@"%s ---> %@ 长度%lu 下标%lu越界", __func__, self, self.length, to);
         return nil;
@@ -2979,12 +3032,7 @@ CGFloat WDAPP_ScreenHeight(void) {
     return [self substringToIndex:to];
 }
 
-
-- (NSString *)kjwd_substringWithRange:(NSRange)range {
-    if ([self isKindOfClass:[NSString class]] == NO) {
-        NSLog(@"%s ---> %@ 不是NSString类型", __func__, self);
-        return nil;
-    }
+- (nullable NSString *)kjwd_substringWithRange:(NSRange)range {
     NSUInteger location = range.location;
     NSUInteger length = range.length;
     if (location > self.length || location < 0 || length > self.length || length < 0) {
@@ -2997,17 +3045,32 @@ CGFloat WDAPP_ScreenHeight(void) {
     }
     return [self substringWithRange:range];
 }
-- (NSString *)kjwd_stringByAppendingString:(NSString *)aString {
-    if ([self isKindOfClass:[NSString class]] == NO) {
-        NSLog(@"%s ---> %@ 不是NSString类型", __func__, self);
-        return nil;
-    }
+- (nullable NSString *)kjwd_stringByAppendingString:(nullable NSString *)aString {
     if ([aString isKindOfClass:[NSString class]] == NO || aString == nil) {
         NSLog(@"不能拼接一个空字符串 或者 非NSString类型 %@ ", aString);
         return self;
     }
     return [self stringByAppendingString:aString];
 }
+
+- (nullable NSString *)kjwd_stringByReplacingCharactersInRange:(NSRange)range withString:(nullable NSString *)replacement {
+    if ([replacement isKindOfClass:[NSString class]] == NO || replacement == nil) {
+        return nil;
+    }
+    NSUInteger location = range.location;
+    NSUInteger length = range.length;
+    if (location > self.length || location < 0 || length > self.length || length < 0) {
+        NSLog(@"%s ---> range的location 或 length 不符合规范 %@,  字符串(%@)长度是%lu", __func__, NSStringFromRange(range), self, self.length);
+        return nil;
+    }
+    
+    if (location + length > self.length) {
+        NSLog(@"%s ---> %@ 越界,  字符串(%@)长度是%lu", __func__, NSStringFromRange(range), self, self.length);
+        return nil;
+    }
+    return [self stringByReplacingCharactersInRange:range withString:replacement];
+}
+
 
 - (nonnull NSString *)kjwd_BeiReplace:(nonnull NSArray <NSString *>*)beiReplace toStr:(nonnull NSString *)toStr {
     NSString *result = self;

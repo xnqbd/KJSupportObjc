@@ -7,6 +7,7 @@
 //
 
 #import "CKJFiveLabelView.h"
+#import "NSObject+WDYHFCategory.h"
 
 @implementation CKJFiveLabelViewConfig
 

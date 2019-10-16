@@ -20,9 +20,9 @@ typedef void(^CKJGeneralCellModelRowBlock)(__kindof CKJGeneralCellModel * __weak
 
 @property (strong, nonatomic, nullable) UIImage *normalImage;
 
-@property (assign, nonatomic) CGSize size;
+@property (strong, nonatomic) NSValue *sizeValue;
 @property (assign, nonatomic) CGFloat leftMargin;
-+ (nonnull instancetype)image2ModelWithNormalImage:(nullable UIImage *)normalImage size:(CGSize)size left:(CGFloat)leftMargin;
++ (nonnull instancetype)image2ModelWithNormalImage:(nullable UIImage *)normalImage size:(nullable NSValue *)size left:(CGFloat)leftMargin;
 + (nonnull instancetype)image2ModelWithImageString:(NSString *)imageString size:(CGSize)size left:(CGFloat)leftMargin;
 
 
@@ -43,8 +43,6 @@ typedef void(^CKJGeneralCellModelRowBlock)(__kindof CKJGeneralCellModel * __weak
  默认自适应宽度
  */
 + (nonnull instancetype)title3ModelWithAttributedText:(nullable NSAttributedString *)text left:(CGFloat)left;
-
-+ (nonnull instancetype)title3ModelWithFont15Text:(nullable NSAttributedString *)text left:(CGFloat)left;
 
 
 + (nonnull instancetype)title3ModelWithAttributedText:(nullable NSAttributedString *)text left:(CGFloat)left width:(CGFloat)width;
@@ -111,6 +109,14 @@ typedef void(^CKJGeneralCellModelRowBlock)(__kindof CKJGeneralCellModel * __weak
 
 
 
+/*
+CKJGeneralCellModel *model3 = [CKJGeneralCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJGeneralCellModel *__weak  _Nonnull m) {
+    m.image2Model = [CKJImage2Model image2ModelWithImageString:@"new_personal_添加" size:CGSizeMake(23, 23) left:15];
+    m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDAtt15_5(@"添加就诊人") left:5];
+    m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
+} didSelectRowBlock:nil];
+
+*/
 
 
 @interface CKJGeneralCellModel : CKJCommonCellModel

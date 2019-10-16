@@ -19,8 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 /*
  在iOS中使用RSA加密解密，需要用到.der和.p12后缀格式的文件
  
- .der  公钥
- .p12  私钥
+ public_key.der  公钥
+ private_key.p12  私钥
+ 
+ 
+ 
+ Java用下面两个文件
+ rsa_public_key.pem  公钥
+ pkcs8_private_key.pem   私钥
  
  
  

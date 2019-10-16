@@ -15,18 +15,10 @@
 typedef void(^CKJBtnItemBlock)(__kindof CKJBtnItemData *_Nonnull itemData);
 
 
-
-
 UIKIT_EXTERN NSString *_Nonnull const cellKEY;
 UIKIT_EXTERN NSString *_Nonnull const isRegisterNibKEY;
-UIKIT_EXTERN NSString *_Nonnull const registerNibNameKEY;
 UIKIT_EXTERN NSString *_Nonnull const configDicKEY_ConfigModel;
 UIKIT_EXTERN NSString *_Nonnull const headerFooterKey;
-
-UIKIT_EXTERN NSString *_Nonnull const cExtenStr;
-UIKIT_EXTERN NSString *_Nonnull const cExtenBlock;
-UIKIT_EXTERN NSString *_Nonnull const cExtenObj;
-UIKIT_EXTERN NSString *_Nonnull const cExtenClass;
 
 
 /** 完全自定义block */
@@ -83,18 +75,9 @@ NS_ASSUME_NONNULL_BEGIN
 @interface CKJBtnItemData : CKJCommonItemData
 
 
-@property(nonatomic,getter=isEnabled) BOOL enabled;
-@property(nonatomic,getter=isSelected) BOOL selected;
-@property(nonatomic,getter=isHighlighted) BOOL highlighted;
-
-
-///** 比如 控制器类名 */
-//@property (copy, nonatomic) NSString *extenStr;
-//@property (copy, nonatomic) NSString *extenObj;
-//
-//@property (copy, nonatomic) void(^extenBlock)(UIViewController *vc);
-//@property (weak, nonatomic) Class extenClass;
-//@property (copy, nonatomic) void (^cCustomBlock)(void);
+@property(nonatomic, getter=isEnabled) BOOL enabled;
+@property(nonatomic, getter=isSelected) BOOL selected;
+@property(nonatomic, getter=isHighlighted) BOOL highlighted;
 
 
 @property (copy, nonatomic, nullable) NSAttributedString *normalAttTitle;
@@ -129,6 +112,25 @@ NS_ASSUME_NONNULL_BEGIN
  创建多个items对象
  */
 + (NSArray <__kindof CKJBtnItemData *>*_Nonnull)returnItemsWithDics:(NSArray <NSDictionary *>*_Nullable)dics detailSetting:(void(^_Nullable)(__kindof CKJBtnItemData *__weak _Nonnull itemData, NSUInteger index))detailSetting;
+
+@end
+
+
+
+
+
+
+@interface NSArray <__covariant ObjectType> (CKJSimpleTableView)
+
+
+/**
+ 网络获取Models模型数组 转成 CellModels数组
+ 
+ @param ResponseDataModels 网络模型数组
+ @param CellModelClass CellModelClass类（必须是CKJCommonCellModel子类）
+ @param callBack 可以详细设置CellModel数据， 比如高度或者其他
+ */
++ (instancetype _Nonnull)kjwd_arrayWithResponseDataModels:(NSArray * _Nullable)ResponseDataModels CellModelClass:(Class _Nonnull)CellModelClass callBack:(void(^_Nullable )(id _Nonnull currentModel))callBack;
 
 @end
 

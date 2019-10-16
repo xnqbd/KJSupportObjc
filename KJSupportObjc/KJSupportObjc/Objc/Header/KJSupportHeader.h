@@ -7,7 +7,7 @@
 //
 
 #import "CKJBaseModel.h"
-
+#import <UIKit/UIKit.h>
 
 
 

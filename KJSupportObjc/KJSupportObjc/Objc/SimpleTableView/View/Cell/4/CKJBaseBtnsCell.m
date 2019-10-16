@@ -137,7 +137,6 @@
         NSDictionary *dic = dics[i];
         CKJBaseBtnsCellItemData *m = [[CKJBaseBtnsCellItemData alloc] init];
         
-        
         m.normalAttTitle = dic[cNormalAttTitle];
         m.normalImage = dic[cNormalImage];
         m.normalBgImage = dic[cNormalBgImage];
@@ -157,14 +156,6 @@
         if (detailSetting) {
             detailSetting(m, i);
         }
-        
-        
-//        m.extenStr = dic[cExtenStr];
-//        m.extenBlock = dic[cExtenBlock];
-//        m.extenObj = dic[cExtenObj];
-//        m.extenClass = dic[cExtenClass];
-//        m.cCustomBlock = dic[cCustomBlock];
-//        
         
         [result addObject:m];
     }

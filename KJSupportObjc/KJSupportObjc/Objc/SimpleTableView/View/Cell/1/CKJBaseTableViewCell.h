@@ -43,6 +43,8 @@ typedef void(^CKJBaseTableViewCellRowBlock)(__kindof CKJBaseTableViewCellModel *
 
 + (instancetype _Nonnull)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJBaseTableViewCellRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJBaseTableViewCellRowBlock)didSelectRowBlock;
 
++ (NSMutableArray <__kindof CKJBaseTableViewCellModel *>*_Nonnull)tableViewCellWithExtensionObjs:(NSArray *)extensionObjs detailSetting:(void(^)(__kindof CKJBaseTableViewCellModel *_Nonnull m, id extensionObj))detailSetting;
+
 
 @end
 

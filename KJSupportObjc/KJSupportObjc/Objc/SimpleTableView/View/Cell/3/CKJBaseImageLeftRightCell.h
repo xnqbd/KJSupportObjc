@@ -42,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 */
 
 
+
 @interface CKJBaseImageLeftRightCellConfig : CKJCommonCellConfig
 
 
@@ -64,6 +65,8 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
+// 请使用 子类 CKJImageLeftCellModel  CKJImageRightCellModel
+// 因为 这个类 子视图，没有布局
 @interface CKJBaseImageLeftRightCellModel : CKJCommonCellModel
 
 
