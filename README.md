@@ -215,6 +215,10 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 ```
 你可以只需要创建`CKJCommonSectionModel`分区对象和`CKJCommonCellModel`每一行CellModel的子对象，用CKJSimpleTableViewDataSource、CKJSimpleTableViewDelegate代替系统的UITableViewDataSource、UITableViewDelegate方法，此刻你只需要管理数据即可，`不需要担心CKJSimpleTableView数据匹配不上导致的闪退问题`
 
+## CKJCommonSectionModel、CKJCommonCellModel
+
+
+### CKJCommonSectionModel
 你会发现现在设置区头区尾高度和标题会变得非常方便
 
 ```
@@ -225,8 +229,8 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
     CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"区头标题", [UIColor grayColor], @15) detailSetting:nil];
 
 ```
-
-设置Cell的高度也很方便，可以很方便的自适应高度
+### CKJCommonCellModel
+自适应高度 和 固定高度
 
 ```
     // Cell高度 50
@@ -236,7 +240,7 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 
 ```
 
-隐藏和显示某一行Cell，也极其简单
+隐藏和显示某一行
 
 ```
     CKJCommonCellModel *cellModel1 = [CKJCommonCellModel modelWithCellHeight:50 cellModel_id:@(234) detailSettingBlock:nil didSelectRowBlock:nil];
@@ -249,4 +253,56 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 
 ```
 
+还可以设置每一行的背景颜色cell_bgColor、选择效果selectionStyle、是否显示分割线showLine，这些操作都变得非常简单
 
+## 删除和插入相关操作
+
+### 插入
+在指定Cell的后面插入Cells数组（可使用动画）
+
+* kjwd_insertCellModelsInAllCellModel:afterCellModel:
+* kjwd_insertCellModelsInAllCellModel:afterCellModel:withRowAnimation:animationBlock:
+
+在指定分区的末尾拼接Cells数组（可使用动画）
+
+* appendCellModelArray:atLastRow_InAllCellModelArrayOfSection:
+* appendCellModelArray:atLastRow_InAllCellModelArrayOfSection:withRowAnimation:animationBlock:
+
+
+```
+    // 示例1
+    [self.simpleTableView kjwd_insertCellModelInAllCellModel:@[age_cellModel, idCardNumber_cellModel] afterCellModel:@[age_cellModel] withRowAnimation:UITableViewRowAnimationRight animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
+        animationBlock(); // 使用动画插入
+    }];
+    
+    // 示例2
+    [self.simpleTableView appendCellModelArray:@[name_cellModel, idCardNumber_cellModel, relate_cellModel, phone_cellModel, address_cellModel, email_cellModel] atLastRow_InAllCellModelArrayOfSection:1];
+    [self.simpleTableView kjwd_reloadSection:1 withRowAnimation:UITableViewRowAnimationRight];
+
+```
+
+### 删除
+
+删除模型在某个分区的某一行（可使用动画）
+
+* removeCellModelAtSection:rows:removeHiddenCellModel:
+* removeCellModelAtSection:rows:removeHiddenCellModel:withRowAnimation:animationBlock:
+
+删除模型在某个分区除了指定行的全有行，只保留指定行（可使用动画）
+
+* removeAllCellModelAtSection:keepDisplayRows:removeHiddenCellModel:
+* removeAllCellModelAtSection:keepDisplayRows:removeHiddenCellModel:withRowAnimation:animationBlock:
+
+删除某个分区（可使用动画）
+
+* removeSections:
+* removeSections:withRowAnimation:animationBlock:
+
+删除全部分区，只保留指定分区（可使用动画）
+
+* removeAllSection_notIncludedSection:
+* removeAllSection_notIncludedSection:withRowAnimation:animationBlock:
+
+```
+和插入一样的写法
+```

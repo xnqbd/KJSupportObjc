@@ -55,6 +55,26 @@
 
 - (void)reloadUI {
     
+//    [self.simpleTableView removeCellModelAtSection:cell.section rows:@[@(cell.row)] removeHiddenCellModel:NO withRowAnimation:UITableViewRowAnimationRight animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
+//                      animationBlock();
+//                  }];
+    
+//    [self.simpleTableView kjwd_insertCellModelsInAllCellModel:@[age_cellModel] afterCellModel:name_cellModel];
+    
+//    // 示例1
+//    [self.simpleTableView kjwd_insertCellModelInAllCellModel:@[age_cellModel, idCardNumber_cellModel] afterCellModel:@[age_cellModel] withRowAnimation:UITableViewRowAnimationRight animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
+//        animationBlock(); // 使用动画插入
+//    }];
+//    
+//    // 示例2
+//    [self.simpleTableView appendCellModelArray:@[name_cellModel, idCardNumber_cellModel, relate_cellModel, phone_cellModel, address_cellModel, email_cellModel] atLastRow_InAllCellModelArrayOfSection:1];
+//    [self.simpleTableView kjwd_reloadSection:1 withRowAnimation:UITableViewRowAnimationRight];
+    
+    
+    
+    
+    [self.simpleTableView removeLastSection];
+    
     NSDictionary *leftDic = @{NSForegroundColorAttributeName : [UIColor darkGrayColor]};
     NSDictionary *rightDic = @{NSForegroundColorAttributeName : [UIColor darkTextColor], NSFontAttributeName : [UIFont systemFontOfSize:16]};
     
