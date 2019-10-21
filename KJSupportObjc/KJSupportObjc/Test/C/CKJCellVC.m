@@ -65,7 +65,7 @@
 //    [self.simpleTableView kjwd_insertCellModelInAllCellModel:@[age_cellModel, idCardNumber_cellModel] afterCellModel:@[age_cellModel] withRowAnimation:UITableViewRowAnimationRight animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
 //        animationBlock(); // 使用动画插入
 //    }];
-//    
+//
 //    // 示例2
 //    [self.simpleTableView appendCellModelArray:@[name_cellModel, idCardNumber_cellModel, relate_cellModel, phone_cellModel, address_cellModel, email_cellModel] atLastRow_InAllCellModelArrayOfSection:1];
 //    [self.simpleTableView kjwd_reloadSection:1 withRowAnimation:UITableViewRowAnimationRight];

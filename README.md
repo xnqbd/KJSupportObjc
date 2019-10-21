@@ -306,3 +306,20 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 ```
 和插入一样的写法
 ```
+
+## 常用的Cell
+
+CKJSimpleTableView套件提供了常用的一些Cell，有些不用注册可以直接使用，有些需要设置CKJCommonCellConfig配置信息才能使用，常见的Cell如下表
+
+
+类名           |  简介
+-------------------------  |  --------------------------
+CKJGeneralCell              |  左边一个图片和标题，右边一个文字和图片(箭头)，一般用于我的和设置界面
+CKJCell             |  继承于CKJGeneralCell，多了上下UILabel，和开关按钮
+CKJInputCell             |  继承于CKJCell，多了输入框
+CKJTableViewCell1、CKJTableViewCell2             |  只有UILabel，`需要设置配置信息`
+CKJLeftRightCell             |  左边一个UILabel，右边一个文本类型的Cell，`需要设置配置信息`
+CKJImageLeftCell             |  图片在左边，右边上下最多5个UILabel，`需要设置配置信息`
+CKJImageRightCell             |  左边上下最多5个UILabel，图片在右边，，`需要设置配置信息`
+CKJPayCell             |  继承于CKJImageLeftCell，常用于选择支付方式
+CKJInputCell             |  继承
