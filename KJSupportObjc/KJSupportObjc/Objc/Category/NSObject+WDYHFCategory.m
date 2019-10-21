@@ -990,33 +990,6 @@ CGFloat WDAPP_ScreenHeight(void) {
 }
 
 
-/**
- 网络获取Models模型数组 转成 CellModels数组
-
- @param ResponseDataModels 网络模型数组
- @param CellModelClass CellModelClass类（必须是CKJCommonCellModel子类）
- @param callBack 可以详细设置CellModel数据， 比如高度或者其他
- */
-+ (instancetype _Nonnull)kjwd_arrayWithResponseDataModels:(NSArray * _Nullable)ResponseDataModels CellModelClass:(Class _Nonnull)CellModelClass callBack:(void(^_Nullable )(id _Nonnull currentModel))callBack {
-    
-    ResponseDataModels = WDKJ_ConfirmArray(ResponseDataModels);
-    
-    NSMutableArray *result = [NSMutableArray array];
-
-    [ResponseDataModels enumerateObjectsUsingBlock:^(id _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        CKJCommonCellModel *cellModel = [[CellModelClass alloc] init];
-        if ([cellModel isKindOfClass:[CKJCommonCellModel class]] == NO) {
-            return;
-        }
-        if (callBack) {
-            callBack(cellModel);
-        }
-        cellModel.networkData = obj;
-        [result addObject:cellModel];
-    }];
-    return result;
-}
-
 
 @end
 

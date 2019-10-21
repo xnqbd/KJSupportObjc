@@ -311,16 +311,6 @@ CGFloat WDAPP_ScreenHeight(void);
  */
 + (instancetype _Nonnull)kjwd_arrayWithKeyValuesArray:(NSArray <NSDictionary *>* _Nullable)keyValuesArray modelClass:(Class _Nonnull)ModelClass callBack:(void(^_Nullable )(id _Nonnull currentModel))callBack;
 
-
-/**
- 网络获取Models模型数组 转成 CellModels数组
- 
- @param ResponseDataModels 网络模型数组
- @param CellModelClass CellModelClass类（必须是CKJCommonCellModel子类）
- @param callBack 可以详细设置CellModel数据， 比如高度或者其他
- */
-+ (instancetype _Nonnull)kjwd_arrayWithResponseDataModels:(NSArray * _Nullable)ResponseDataModels CellModelClass:(Class _Nonnull)CellModelClass callBack:(void(^_Nullable )(id _Nonnull currentModel))callBack;
-
 @end
 
 #pragma mark - -----------------NSDictionary-----------------
