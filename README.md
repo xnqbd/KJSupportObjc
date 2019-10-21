@@ -213,9 +213,40 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
     self.simpleTableView.dataArr = @[section1, section2];
 }
 ```
-你可以只需要创建`CKJCommonSectionModel`分区对象和`CKJCommonCellModel`每一行CellModel的子对象，用CKJSimpleTableViewDataSource、CKJSimpleTableViewDelegate代替系统的UITableViewDataSource、UITableViewDelegate方法，此刻你只需要管理数据即可，不需要担心CKJSimpleTableView数据匹配不上导致的闪退问题
+你可以只需要创建`CKJCommonSectionModel`分区对象和`CKJCommonCellModel`每一行CellModel的子对象，用CKJSimpleTableViewDataSource、CKJSimpleTableViewDelegate代替系统的UITableViewDataSource、UITableViewDelegate方法，此刻你只需要管理数据即可，`不需要担心CKJSimpleTableView数据匹配不上导致的闪退问题`
 
+你会发现现在设置区头区尾高度和标题会变得非常方便
 
+```
+	// 区头高度10   区尾高度5
+    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderHeight:10 footerHeight:20 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+    }];
+    // 区头标题
+    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"区头标题", [UIColor grayColor], @15) detailSetting:nil];
 
+```
+
+设置Cell的高度也很方便，可以很方便的自适应高度
+
+```
+    // Cell高度 50
+    CKJCommonCellModel *cellModel1 = [CKJCommonCellModel modelWithCellHeight:50 cellModel_id:nil detailSettingBlock:nil didSelectRowBlock:nil];
+    // Cell高度 自适应
+    CKJCommonCellModel *cellModel2 = [CKJCommonCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:nil didSelectRowBlock:nil];
+
+```
+
+隐藏和显示某一行Cell，也极其简单
+
+```
+    CKJCommonCellModel *cellModel1 = [CKJCommonCellModel modelWithCellHeight:50 cellModel_id:@(234) detailSettingBlock:nil didSelectRowBlock:nil];
+    cellModel1.displayInTableView = NO; // 隐藏Cell
+    
+    [self.simpleTableView kjwd_filterCellModelForID:234 finishBlock:^(__kindof CKJCommonCellModel * _Nonnull m) {
+        m.displayInTableView = YES;  // 显示Cell
+        [self.simpleTableView reloadData];
+    }];
+
+```
 
 
