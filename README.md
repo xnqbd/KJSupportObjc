@@ -328,23 +328,95 @@ CKJLikeQRCell             |  单个二维码图片，`需要设置配置信息`
 
 
 ## 常用分类
-KJSupportObjc库提供了iOS最常用的分类，比如包括NSArray、NSMutableArray、NSDictionary、NSString、NSDate、UIView、UIButton、UIColor、UIImage、UIViewController等类分类以及对其各种情况异常的处理，分类方法以kjwd_开头
+KJSupportObjc库提供了iOS最常用的分类，包括NSArray、NSMutableArray、NSDictionary、NSString、NSDate、UIView、UIButton、UIColor、UIImage、UIViewController等。
+
+KJSupportObjc库对系统的类做了很多异常处理，在异常的情况下给出友好的提示。
+
+异常处理、友好提示
+
+```
+@implementation NSString (WDYHFCategory)
+
+- (nullable NSString *)kjwd_substringWithRange:(NSRange)range {
+    NSUInteger location = range.location;
+    NSUInteger length = range.length;
+    if (location > self.length || location < 0 || length > self.length || length < 0) {
+        NSLog(@"%s ---> range的location 或 length 不符合规范 %@,  字符串(%@)长度是%lu", __func__, NSStringFromRange(range), self, (unsigned long)self.length);
+        return nil;
+    }
+    if (location + length > self.length) {
+        NSLog(@"%s ---> %@ 越界,  字符串(%@)长度是%lu", __func__, NSStringFromRange(range), self, (unsigned long)self.length);
+        return nil;
+    }
+    return [self substringWithRange:range];
+}
+
+@end
 
 
-异常处理
-BOOL WDKJ_IsEmpty_Str(NSString *_Nullable str);
-BOOL WDKJ_IsEmpty_AttributedStr(NSAttributedString *_Nullable attStr);
-BOOL WDKJ_IsNull_Num(NSNumber *_Nullable number);
-BOOL WDKJ_IsNull_Array(NSArray *_Nullable array);
-NSString *WDKJ_SpaceString(NSString *_Nullable str);
-NSString *WDKJ_ConfirmString(NSString *_Nullable str);
-NSNumber *WDKJ_ConfirmNumber(NSNumber *_Nullable number);
+
+@implementation NSMutableArray (WDYHFCategory)
+
+- (BOOL)kjwd_insertObjects:(nullable NSArray *)objects atIndex:(NSUInteger)index {
+    if (WDKJ_IsNull_Array(objects)) {
+        NSLog(@"kjwd_insertObjects 对象不能被插入 因为对象为空");
+        return NO;
+    }
+    if (index < 0) {
+        NSLog(@"kjwd_insertObjects 不能插入在小于0的位置 , 当前数组个数是 %lu", (unsigned long)self.count);
+        return NO;
+    }
+    
+    if (index == self.count) {
+        [self addObjectsFromArray:objects];
+        return YES;
+    } else if (index > self.count) {
+        NSLog(@"kjwd_insertObjects 位置 %lu 越界, 当前数组个数是 %lu", (unsigned long)index, (unsigned long)self.count);
+        return NO;
+    } else {
+        NSRange range = NSMakeRange(index, [objects count]);
+        NSIndexSet *indexSet = [NSIndexSet indexSetWithIndexesInRange:range];
+        
+        [self insertObjects:objects atIndexes:indexSet];
+        return YES;
+    }
+}
+
+@end
+
+```
+
+实用功能
+
+```
+
+@interface UIView (WDYHFCategory)
+
+// View从底部向上出现的动画效果
+- (void)masonryWithAnimateFromScreenButtomWithDuration:(NSTimeInterval)duration superView:(UIView *_Nullable)superView selfMasonryHeight:(CGFloat)height coverViewColor:(UIColor *_Nullable)coverViewColor animationCompletion:(void (^_Nullable)(BOOL))completionBlock triggerTapGestureRecognizerBlock:(void(^)(void(^_disappearBlock)(void)))triggerTapGestureRecognizerBlock;
+
+// 点击灰色蒙版消失，需要开发者主动调用（View从底部向上出现的动画效果是配合使用）
+- (void)masonryWithAnimateFromScreenButtom_hiddenBackGroundView;
+- 
+@end
+
+```
 
 
+### 分类实例方法
 
 
+#### 异常处理
 
-### NSArray和NSMutableArray
+* BOOL WDKJ_IsEmpty_Str(NSString *_Nullable str);
+* BOOL WDKJ_IsEmpty_AttributedStr(NSAttributedString *_Nullable attStr);
+* BOOL WDKJ_IsNull_Num(NSNumber *_Nullable number);
+* BOOL WDKJ_IsNull_Array(NSArray *_Nullable array);
+* NSString *WDKJ_SpaceString(NSString *_Nullable str);
+* NSString *WDKJ_ConfirmString(NSString *_Nullable str);
+* NSNumber *WDKJ_ConfirmNumber(NSNumber *_Nullable number);
+
+#### NSArray和NSMutableArray
 
 
 根据一个过滤条件，返回符合条件的元素
@@ -363,7 +435,7 @@ NSNumber *WDKJ_ConfirmNumber(NSNumber *_Nullable number);
 
 * - (BOOL)kjwd_insertObjects:(nullable NSArray<ObjectType> *)objects atIndex:(NSUInteger)index;
 
-### NSString
+#### NSString
 
 字符串验证
 
@@ -381,7 +453,7 @@ NSNumber *WDKJ_ConfirmNumber(NSNumber *_Nullable number);
 *  - (nullable NSString *)kjwd_substringWithRange:(NSRange)range;
 
 
-### UIView
+#### UIView
 
 返回当前视图的控制器
 
@@ -392,7 +464,7 @@ View从底部向上出现的动画效果
 * - (void)masonryWithAnimateFromScreenButtomWithDuration:(NSTimeInterval)duration superView:(UIView *_Nullable)superView selfMasonryHeight:(CGFloat)height coverViewColor:(UIColor *_Nullable)coverViewColor animationCompletion:(void (^_Nullable)(BOOL))completionBlock triggerTapGestureRecognizerBlock:(void(^)(void(^_disappearBlock)(void)))triggerTapGestureRecognizerBlock;
 
 
-### UIButton
+#### UIButton
 
 调整图片和文字排布方式
 
@@ -403,7 +475,7 @@ imageTitleSpace:(CGFloat)space;
 
 * - (void)kjwd_addTouchUpInsideForCallBack:(void(^_Nullable)(UIButton * _sender))callBack;
 
-### 其他分类
+#### 其他分类
 
 ### NSURL
 解决 有中文 会导致转换失败的问题, 场景1：设置UIImage时使用
@@ -411,6 +483,6 @@ imageTitleSpace:(CGFloat)space;
 * + (NSURL *)kjwd_URLWithString:(nullable NSString *)urlString;
 
 
-### UIWindow
+#### UIWindow
 
 * + (UIWindow *)kjwd_appdelegateWindow;
