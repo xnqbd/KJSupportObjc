@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -364,6 +364,23 @@
 			path = 3;
 			sourceTree = "<group>";
 		};
+		467B2786235F2CAA00E5BD38 /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				46E912792356E0CA003AFFC4 /* CKJCommonTableViewCell.h */,
+				46E9127A2356E0CA003AFFC4 /* CKJCommonTableViewCell.m */,
+				46E912862356E0CA003AFFC4 /* CKJStackCell.m */,
+				46E9128B2356E0CA003AFFC4 /* CKJStackCell.h */,
+				46E9127E2356E0CA003AFFC4 /* CKJBaseTableViewCell.m */,
+				46E912822356E0CA003AFFC4 /* CKJBaseTableViewCell.h */,
+				46E9128F2356E0CA003AFFC4 /* CKJBaseImageLeftRightCell.h */,
+				46E912932356E0CA003AFFC4 /* CKJBaseImageLeftRightCell.m */,
+				46E912882356E0CA003AFFC4 /* CKJBaseBtnsCell.h */,
+				46E9128A2356E0CA003AFFC4 /* CKJBaseBtnsCell.m */,
+			);
+			path = Private;
+			sourceTree = "<group>";
+		};
 		46E912322356E0C9003AFFC4 /* Objc */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,6 +501,7 @@
 		46E9126B2356E0CA003AFFC4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				467B2786235F2CAA00E5BD38 /* Private */,
 				46E9126C2356E0CA003AFFC4 /* Demo */,
 				46E912702356E0CA003AFFC4 /* Cell */,
 				46E912A12356E0CA003AFFC4 /* HeaderFooter */,
@@ -538,8 +556,6 @@
 			isa = PBXGroup;
 			children = (
 				46E912782356E0CA003AFFC4 /* CKJEmptyCell.m */,
-				46E912792356E0CA003AFFC4 /* CKJCommonTableViewCell.h */,
-				46E9127A2356E0CA003AFFC4 /* CKJCommonTableViewCell.m */,
 				46E9127B2356E0CA003AFFC4 /* CKJEmptyCell.h */,
 			);
 			path = 6;
@@ -549,11 +565,9 @@
 			isa = PBXGroup;
 			children = (
 				46E9127D2356E0CA003AFFC4 /* CKJTableViewCell1.m */,
-				46E9127E2356E0CA003AFFC4 /* CKJBaseTableViewCell.m */,
 				46E9127F2356E0CA003AFFC4 /* CKJTableViewCell2.m */,
 				46E912802356E0CA003AFFC4 /* CKJLeftRightCell.h */,
 				46E912812356E0CA003AFFC4 /* CKJTableViewCell1.h */,
-				46E912822356E0CA003AFFC4 /* CKJBaseTableViewCell.h */,
 				46E912832356E0CA003AFFC4 /* CKJTableViewCell2.h */,
 				46E912842356E0CA003AFFC4 /* CKJLeftRightCell.m */,
 			);
@@ -563,14 +577,10 @@
 		46E912852356E0CA003AFFC4 /* 4 */ = {
 			isa = PBXGroup;
 			children = (
-				46E912862356E0CA003AFFC4 /* CKJStackCell.m */,
-				46E912872356E0CA003AFFC4 /* CKJBtnsCell2.m */,
-				46E912882356E0CA003AFFC4 /* CKJBaseBtnsCell.h */,
-				46E912892356E0CA003AFFC4 /* CKJBtnsCell1.m */,
-				46E9128A2356E0CA003AFFC4 /* CKJBaseBtnsCell.m */,
-				46E9128B2356E0CA003AFFC4 /* CKJStackCell.h */,
-				46E9128C2356E0CA003AFFC4 /* CKJBtnsCell2.h */,
 				46E9128D2356E0CA003AFFC4 /* CKJBtnsCell1.h */,
+				46E912892356E0CA003AFFC4 /* CKJBtnsCell1.m */,
+				46E9128C2356E0CA003AFFC4 /* CKJBtnsCell2.h */,
+				46E912872356E0CA003AFFC4 /* CKJBtnsCell2.m */,
 			);
 			path = 4;
 			sourceTree = "<group>";
@@ -578,11 +588,9 @@
 		46E9128E2356E0CA003AFFC4 /* 3 */ = {
 			isa = PBXGroup;
 			children = (
-				46E9128F2356E0CA003AFFC4 /* CKJBaseImageLeftRightCell.h */,
 				46E912902356E0CA003AFFC4 /* CKJPayCell.h */,
 				46E912912356E0CA003AFFC4 /* CKJImageLeftCell.m */,
 				46E912922356E0CA003AFFC4 /* CKJImageRightCell.m */,
-				46E912932356E0CA003AFFC4 /* CKJBaseImageLeftRightCell.m */,
 				46E912942356E0CA003AFFC4 /* CKJImageRightCell.h */,
 				46E912952356E0CA003AFFC4 /* CKJImageLeftCell.h */,
 				46E912962356E0CA003AFFC4 /* CKJPayCell.m */,

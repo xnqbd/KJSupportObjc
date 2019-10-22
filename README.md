@@ -307,7 +307,7 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 和插入一样的写法
 ```
 
-## 常用的Cell
+## 核心Cell
 
 CKJSimpleTableView套件提供了常用的一些Cell，有些不用注册可以直接使用，有些需要设置CKJCommonCellConfig配置信息才能使用，常见的Cell如下表
 
@@ -320,6 +320,97 @@ CKJInputCell             |  继承于CKJCell，多了输入框
 CKJTableViewCell1、CKJTableViewCell2             |  只有UILabel，`需要设置配置信息`
 CKJLeftRightCell             |  左边一个UILabel，右边一个文本类型的Cell，`需要设置配置信息`
 CKJImageLeftCell             |  图片在左边，右边上下最多5个UILabel，`需要设置配置信息`
-CKJImageRightCell             |  左边上下最多5个UILabel，图片在右边，，`需要设置配置信息`
+CKJImageRightCell             |  左边上下最多5个UILabel，图片在右边，`需要设置配置信息`
 CKJPayCell             |  继承于CKJImageLeftCell，常用于选择支付方式
-CKJInputCell             |  继承
+CKJBtnsCell1、CKJBtnsCell2             |  常用于三到九宫格布局，`需要设置配置信息`
+CKJScrollViewCell             |  单行可以滚动的多个ItemView，类似相册一样，`需要设置配置信息`
+CKJLikeQRCell             |  单个二维码图片，`需要设置配置信息`
+
+
+## 常用分类
+KJSupportObjc库提供了iOS最常用的分类，比如包括NSArray、NSMutableArray、NSDictionary、NSString、NSDate、UIView、UIButton、UIColor、UIImage、UIViewController等类分类以及对其各种情况异常的处理，分类方法以kjwd_开头
+
+
+异常处理
+BOOL WDKJ_IsEmpty_Str(NSString *_Nullable str);
+BOOL WDKJ_IsEmpty_AttributedStr(NSAttributedString *_Nullable attStr);
+BOOL WDKJ_IsNull_Num(NSNumber *_Nullable number);
+BOOL WDKJ_IsNull_Array(NSArray *_Nullable array);
+NSString *WDKJ_SpaceString(NSString *_Nullable str);
+NSString *WDKJ_ConfirmString(NSString *_Nullable str);
+NSNumber *WDKJ_ConfirmNumber(NSNumber *_Nullable number);
+
+
+
+
+
+### NSArray和NSMutableArray
+
+
+根据一个过滤条件，返回符合条件的元素
+
+* - (nullable ObjectType)kjwd_do_filter_returnConformObject:(BOOL (^)(ObjectType objc))filterBlock;
+
+根据一个过滤条件，返回符合条件的元素下标（如果没有符合的，就返回nil）
+
+* - (nullable NSNumber *)kjwd_do_filter_returnConformIndex:(BOOL (^)(ObjectType objc))filterBlock;
+
+删除指定下标数组的元素
+
+*  - (void)kjwd_removeAllObjects_IncludedRows:(NSArray <NSNumber *>*)includedRows;
+
+插入元素
+
+* - (BOOL)kjwd_insertObjects:(nullable NSArray<ObjectType> *)objects atIndex:(NSUInteger)index;
+
+### NSString
+
+字符串验证
+
+* - (BOOL)kjwd_validatePhone;
+* - (BOOL)kjwd_validateIdentityCard;
+
+随机数生成
+
+* + (NSString *)kjwd_returnArc4randomWithNum:(NSUInteger)num type:(KJWDArc4randomType)type;
+
+字符串操作
+
+*  - (nullable NSString *)kjwd_substringFromIndex:(NSUInteger)from;
+*  - (nullable NSString *)kjwd_substringToIndex:(NSUInteger)to;
+*  - (nullable NSString *)kjwd_substringWithRange:(NSRange)range;
+
+
+### UIView
+
+返回当前视图的控制器
+
+* - (nullable __kindof UIViewController *)kjwd_currentViewController;
+
+View从底部向上出现的动画效果
+
+* - (void)masonryWithAnimateFromScreenButtomWithDuration:(NSTimeInterval)duration superView:(UIView *_Nullable)superView selfMasonryHeight:(CGFloat)height coverViewColor:(UIColor *_Nullable)coverViewColor animationCompletion:(void (^_Nullable)(BOOL))completionBlock triggerTapGestureRecognizerBlock:(void(^)(void(^_disappearBlock)(void)))triggerTapGestureRecognizerBlock;
+
+
+### UIButton
+
+调整图片和文字排布方式
+
+* - (void)kjwd_layoutButtonWithEdgeInsetsStyle:(GLButtonEdgeInsetsStyle)style
+imageTitleSpace:(CGFloat)space;
+
+最常用的 点击按钮 回调
+
+* - (void)kjwd_addTouchUpInsideForCallBack:(void(^_Nullable)(UIButton * _sender))callBack;
+
+### 其他分类
+
+### NSURL
+解决 有中文 会导致转换失败的问题, 场景1：设置UIImage时使用
+
+* + (NSURL *)kjwd_URLWithString:(nullable NSString *)urlString;
+
+
+### UIWindow
+
+* + (UIWindow *)kjwd_appdelegateWindow;
