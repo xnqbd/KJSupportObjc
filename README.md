@@ -407,14 +407,15 @@ KJSupportObjc库对系统的类做了很多异常处理，在异常的情况下�
 
 
 #### 异常处理
-
-* BOOL WDKJ_IsEmpty_Str(NSString *_Nullable str);
-* BOOL WDKJ_IsEmpty_AttributedStr(NSAttributedString *_Nullable attStr);
-* BOOL WDKJ_IsNull_Num(NSNumber *_Nullable number);
-* BOOL WDKJ_IsNull_Array(NSArray *_Nullable array);
-* NSString *WDKJ_SpaceString(NSString *_Nullable str);
-* NSString *WDKJ_ConfirmString(NSString *_Nullable str);
-* NSNumber *WDKJ_ConfirmNumber(NSNumber *_Nullable number);
+```
+BOOL WDKJ_IsEmpty_Str(NSString *_Nullable str);
+BOOL WDKJ_IsEmpty_AttributedStr(NSAttributedString *_Nullable attStr);
+BOOL WDKJ_IsNull_Num(NSNumber *_Nullable number);
+BOOL WDKJ_IsNull_Array(NSArray *_Nullable array);
+NSString *WDKJ_SpaceString(NSString *_Nullable str);
+NSString *WDKJ_ConfirmString(NSString *_Nullable str);
+NSNumber *WDKJ_ConfirmNumber(NSNumber *_Nullable number);
+```
 
 #### NSArray和NSMutableArray
 
@@ -425,43 +426,43 @@ KJSupportObjc库对系统的类做了很多异常处理，在异常的情况下�
 
 根据一个过滤条件，返回符合条件的元素下标（如果没有符合的，就返回nil）
 
-* - (nullable NSNumber *)kjwd_do_filter_returnConformIndex:(BOOL (^)(ObjectType objc))filterBlock;
+* ``` - (nullable NSNumber *)kjwd_do_filter_returnConformIndex:(BOOL (^)(ObjectType objc))filterBlock; ```
 
 删除指定下标数组的元素
 
-*  - (void)kjwd_removeAllObjects_IncludedRows:(NSArray <NSNumber *>*)includedRows;
+*  ``` - (void)kjwd_removeAllObjects_IncludedRows:(NSArray <NSNumber *>*)includedRows; ```
 
 插入元素
 
-* - (BOOL)kjwd_insertObjects:(nullable NSArray<ObjectType> *)objects atIndex:(NSUInteger)index;
+* ``` - (BOOL)kjwd_insertObjects:(nullable NSArray<ObjectType> *)objects atIndex:(NSUInteger)index; ```
 
 #### NSString
 
 字符串验证
 
-* - (BOOL)kjwd_validatePhone;
-* - (BOOL)kjwd_validateIdentityCard;
+* ``` - (BOOL)kjwd_validatePhone; ```
+* ``` - (BOOL)kjwd_validateIdentityCard; ```
 
 随机数生成
 
-* + (NSString *)kjwd_returnArc4randomWithNum:(NSUInteger)num type:(KJWDArc4randomType)type;
+* ``` + (NSString *)kjwd_returnArc4randomWithNum:(NSUInteger)num type:(KJWDArc4randomType)type; ```
 
 字符串操作
 
-*  - (nullable NSString *)kjwd_substringFromIndex:(NSUInteger)from;
-*  - (nullable NSString *)kjwd_substringToIndex:(NSUInteger)to;
-*  - (nullable NSString *)kjwd_substringWithRange:(NSRange)range;
+*  ``` - (nullable NSString *)kjwd_substringFromIndex:(NSUInteger)from; ```
+*  ``` - (nullable NSString *)kjwd_substringToIndex:(NSUInteger)to; ```
+*  ``` - (nullable NSString *)kjwd_substringWithRange:(NSRange)range; ```
 
 
 #### UIView
 
 返回当前视图的控制器
 
-* - (nullable __kindof UIViewController *)kjwd_currentViewController;
+*  ``` - (nullable __kindof UIViewController *)kjwd_currentViewController; ```
 
 View从底部向上出现的动画效果
 
-* - (void)masonryWithAnimateFromScreenButtomWithDuration:(NSTimeInterval)duration superView:(UIView *_Nullable)superView selfMasonryHeight:(CGFloat)height coverViewColor:(UIColor *_Nullable)coverViewColor animationCompletion:(void (^_Nullable)(BOOL))completionBlock triggerTapGestureRecognizerBlock:(void(^)(void(^_disappearBlock)(void)))triggerTapGestureRecognizerBlock;
+* ``` - (void)masonryWithAnimateFromScreenButtomWithDuration:(NSTimeInterval)duration superView:(UIView *_Nullable)superView selfMasonryHeight:(CGFloat)height coverViewColor:(UIColor *_Nullable)coverViewColor animationCompletion:(void (^_Nullable)(BOOL))completionBlock triggerTapGestureRecognizerBlock:(void(^)(void(^_disappearBlock)(void)))triggerTapGestureRecognizerBlock; ```
 
 
 #### UIButton
@@ -469,21 +470,21 @@ View从底部向上出现的动画效果
 调整图片和文字排布方式
 
 
-*  ```- (void)kjwd_layoutButtonWithEdgeInsetsStyle:(GLButtonEdgeInsetsStyle)style
-imageTitleSpace:(CGFloat)space;```
+*  ``` - (void)kjwd_layoutButtonWithEdgeInsetsStyle:(GLButtonEdgeInsetsStyle)style
+imageTitleSpace:(CGFloat)space; ```
 
 最常用的 点击按钮 回调
 
-* - (void)kjwd_addTouchUpInsideForCallBack:(void(^_Nullable)(UIButton * _sender))callBack;
+* ``` - (void)kjwd_addTouchUpInsideForCallBack:(void(^_Nullable)(UIButton * _sender))callBack; ```
 
 #### 其他分类
 
 #### NSURL
 解决 有中文 会导致转换失败的问题, 场景1：设置UIImage时使用
 
-* + (NSURL *)kjwd_URLWithString:(nullable NSString *)urlString;
+* ``` + (NSURL *)kjwd_URLWithString:(nullable NSString *)urlString; ```
 
 
 #### UIWindow
 
-* + (UIWindow *)kjwd_appdelegateWindow;
+* ``` + (UIWindow *)kjwd_appdelegateWindow; ```
