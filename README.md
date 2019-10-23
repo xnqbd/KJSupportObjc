@@ -421,7 +421,7 @@ KJSupportObjc库对系统的类做了很多异常处理，在异常的情况下�
 
 根据一个过滤条件，返回符合条件的元素
 
-* - (nullable ObjectType)kjwd_do_filter_returnConformObject:(BOOL (^)(ObjectType objc))filterBlock;
+*  ``` - (nullable ObjectType)kjwd_do_filter_returnConformObject:(BOOL (^)(ObjectType objc))filterBlock; ```
 
 根据一个过滤条件，返回符合条件的元素下标（如果没有符合的，就返回nil）
 
@@ -469,7 +469,7 @@ View从底部向上出现的动画效果
 调整图片和文字排布方式
 
 
-* ``` - (void)kjwd_layoutButtonWithEdgeInsetsStyle:(GLButtonEdgeInsetsStyle)style
+*  ```- (void)kjwd_layoutButtonWithEdgeInsetsStyle:(GLButtonEdgeInsetsStyle)style
 imageTitleSpace:(CGFloat)space;```
 
 最常用的 点击按钮 回调
