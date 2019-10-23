@@ -468,8 +468,9 @@ View从底部向上出现的动画效果
 
 调整图片和文字排布方式
 
-* - (void)kjwd_layoutButtonWithEdgeInsetsStyle:(GLButtonEdgeInsetsStyle)style
-imageTitleSpace:(CGFloat)space;
+
+* ``` - (void)kjwd_layoutButtonWithEdgeInsetsStyle:(GLButtonEdgeInsetsStyle)style
+imageTitleSpace:(CGFloat)space;```
 
 最常用的 点击按钮 回调
 
@@ -477,7 +478,7 @@ imageTitleSpace:(CGFloat)space;
 
 #### 其他分类
 
-### NSURL
+#### NSURL
 解决 有中文 会导致转换失败的问题, 场景1：设置UIImage时使用
 
 * + (NSURL *)kjwd_URLWithString:(nullable NSString *)urlString;
