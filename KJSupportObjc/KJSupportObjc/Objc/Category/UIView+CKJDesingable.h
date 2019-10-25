@@ -32,13 +32,10 @@ IB_DESIGNABLE
 
 /** 背景色(正常) */
 @property (strong, nonatomic) IBInspectable UIColor *normalBackgroundColor;
-
 /** 高亮 */
 @property (strong, nonatomic) IBInspectable UIColor *hightedBackgroundColor;
-
 /** 背景色(选中) */
 @property (strong, nonatomic) IBInspectable UIColor *selectedBackgroundColor;
-
 /** 不可用 */
 @property (strong, nonatomic) IBInspectable  UIColor *disableBackgroundColor;
 

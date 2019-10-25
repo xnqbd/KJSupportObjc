@@ -5,7 +5,6 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 ## 系统的UITableView有什么问题？
 传统情况下，项目里很多控制器都会使用到UITableView，而且每个控制器要注册不同的Cell，实现
 
-
 * registerNib:forCellReuseIdentifier:
 * registerClass:forCellReuseIdentifier:
 * numberOfSectionsInTableView:  
@@ -170,7 +169,7 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 @end
 
 ```
-上面这样一个示例，你会清晰的发现，当一个UITableView里面有多种类型的情况时，这代码已经变得难以阅读你也很难很好的掌握这几个协议方法之间匹配关系了，上面的示例仅仅是在一个UITableView里面，往往公司的项目都很庞大，使用UITableView地方特别多，
+上面这样一个示例，你会清晰的发现，当一个UITableView里面有多种类型的情况时，这代码已经变得难以阅读你也很难很好的掌握这几个协议方法之间匹配关系了，上面的示例仅仅是在一个UITableView里面，往往公司的项目都很庞大，使用UITableView地方特别多，使用传统的方式不仅仅要写很多重复的代码，枯燥无味，而且项目也很难维护，下面是CKJSimpleTableView解决这样的问题的方式。
 
 ## 准备与CKJSimpleTableView见面
 这是CKJSimpleTableView的写法
@@ -222,9 +221,8 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 你会发现现在设置区头区尾高度和标题会变得非常方便
 
 ```
-	// 区头高度10   区尾高度5
-    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderHeight:10 footerHeight:20 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
-    }];
+// 区头高度10   区尾高度5
+    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderHeight:10 footerHeight:20 detailSetting:nil];
     // 区头标题
     CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"区头标题", [UIColor grayColor], @15) detailSetting:nil];
 
@@ -250,7 +248,6 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
         m.displayInTableView = YES;  // 显示Cell
         [self.simpleTableView reloadData];
     }];
-
 ```
 
 还可以设置每一行的背景颜色cell_bgColor、选择效果selectionStyle、是否显示分割线showLine，这些操作都变得非常简单
@@ -272,7 +269,7 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 ```
     // 示例1
     [self.simpleTableView kjwd_insertCellModelInAllCellModel:@[age_cellModel, idCardNumber_cellModel] afterCellModel:@[age_cellModel] withRowAnimation:UITableViewRowAnimationRight animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
-        animationBlock(); // 使用动画插入
+        animationBlock(); // 使用动画插入，执行动画
     }];
     
     // 示例2
@@ -309,7 +306,7 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 
 ## 核心Cell
 
-CKJSimpleTableView套件提供了常用的一些Cell，有些不用注册可以直接使用，有些需要设置CKJCommonCellConfig配置信息才能使用，常见的Cell如下表
+CKJSimpleTableView套件提供了最常用的一些Cell，极大节省了开发时长，常见的Cell如下表，点击此处查看具体Cell
 
 
 类名           |  简介
@@ -469,7 +466,6 @@ View从底部向上出现的动画效果
 
 调整图片和文字排布方式
 
-
 *  ``` - (void)kjwd_layoutButtonWithEdgeInsetsStyle:(GLButtonEdgeInsetsStyle)style
 imageTitleSpace:(CGFloat)space; ```
 
@@ -484,7 +480,57 @@ imageTitleSpace:(CGFloat)space; ```
 
 * ``` + (NSURL *)kjwd_URLWithString:(nullable NSString *)urlString; ```
 
-
 #### UIWindow
 
 * ``` + (UIWindow *)kjwd_appdelegateWindow; ```
+
+
+## 可设计IBInspectable
+封装了UIView和UIButton直接在xib、storyboard里面直接拖线使用的IBInspectable，设置代码也可以使用
+
+```
+IB_DESIGNABLE
+@interface UIView (CKJDesingable)
+
+/** 边框宽度 */
+@property (assign, nonatomic) IBInspectable CGFloat kBorderWidth;
+/** 边框颜色 */
+@property (strong, nonatomic) IBInspectable UIColor *kBorderColor;
+/** 圆角*/
+@property (assign, nonatomic) IBInspectable CGFloat kCornerRadius;
+
+@end
+
+
+IB_DESIGNABLE
+@interface UIButton (CKJDesingable)
+
+/** 背景色(正常) */
+@property (strong, nonatomic) IBInspectable UIColor *normalBackgroundColor;
+/** 高亮 */
+@property (strong, nonatomic) IBInspectable UIColor *hightedBackgroundColor;
+/** 背景色(选中) */
+@property (strong, nonatomic) IBInspectable UIColor *selectedBackgroundColor;
+/** 不可用 */
+@property (strong, nonatomic) IBInspectable  UIColor *disableBackgroundColor;
+
+@end
+
+```
+
+![Markdown preferences pane](./res/IBInspectable.jpg)
+
+## 常用工具
+
+类名           |  简介
+-------------------------  |  --------------------------
+CKJRSA              |  RSA加密
+FileManagerTool             |  本地文件管理类
+CKJToolPickerView	|	普通选择器视图
+CKJDatePickerView	|	日期选择器视图
+
+## 核心Cell套件
+
+### CKJGeneralCell
+左边一个图片和标题，右边一个文字和图片(箭头)，一般用于我的和设置界面
+![Markdown preferences pane](./res/CKJGeneralCell.png)

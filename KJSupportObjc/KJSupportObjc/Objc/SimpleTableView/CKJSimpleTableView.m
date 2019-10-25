@@ -808,7 +808,7 @@
 /** 删除最后一个分区 */
 - (void)removeLastSection {
     NSMutableArray <CKJCommonSectionModel *>*_sections = [NSMutableArray kjwd_arrayWithArray:self.dataArr];
-    [_sections removeObjectAtIndex:_sections.count - 1];
+    [_sections kjwd_removeObjectAtIndex:_sections.count - 1];
     self.dataArr = _sections;
 }
 

@@ -13,7 +13,7 @@
 #import "CKJLeftRightCell.h"
 #import "RJTestListVC.h"
 
-@interface CKJCellVC ()
+@interface CKJCellVC () <NSURLSessionDelegate>
 
 /** 当前选中的区域 */
 @property (strong, nonatomic, nullable) WDYHFAreaItem *selectAreaItem;
@@ -55,6 +55,10 @@
 
 - (void)reloadUI {
     
+//    NSURLSession *sesson = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:self delegateQueue:[[NSOperationQueue alloc]init]];
+
+
+    
 //    [self.simpleTableView removeCellModelAtSection:cell.section rows:@[@(cell.row)] removeHiddenCellModel:NO withRowAnimation:UITableViewRowAnimationRight animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
 //                      animationBlock();
 //                  }];
@@ -73,7 +77,7 @@
     
     
     
-    [self.simpleTableView removeLastSection];
+//    [self.simpleTableView removeLastSection];
     
     NSDictionary *leftDic = @{NSForegroundColorAttributeName : [UIColor darkGrayColor]};
     NSDictionary *rightDic = @{NSForegroundColorAttributeName : [UIColor darkTextColor], NSFontAttributeName : [UIFont systemFontOfSize:16]};
@@ -510,5 +514,11 @@
 
 
 
-
+// 这个方法是 如何处理证书? （使用、忽略、拒绝）
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler {
+    
+//    NSURLAuthenticationChallenge
+//    NSURLAuthenticationMethodServerTrust
+    challenge;
+}
 @end
