@@ -533,7 +533,7 @@ CKJDatePickerView	|	日期选择器视图
 
 ### CKJGeneralCell
 左边一个图片和标题，右边一个文字和图片(箭头)，一般用于我的和设置界面
-<img style="width:450px" src="./res/CKJGeneralCell.png">
+<img style="width:400px" src="./res/CKJGeneralCell.png">
 
 ```
 CKJGeneralCellModel *model1 = [CKJGeneralCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJGeneralCellModel * _Nonnull m) {
@@ -547,7 +547,7 @@ CKJGeneralCellModel *model1 = [CKJGeneralCellModel modelWithCellHeight:44 cellMo
 ### CKJCell
 继承于CKJGeneralCell，主要多了上下UILabel，和开关按钮
 
-<img style="width:450px" src="./res/CKJCell.png">
+<img style="width:400px" src="./res/CKJCell.png">
 
 ```
 CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:84 cellModel_id:@(kkkk_YHFStatusCellID) detailSettingBlock:^(CKJCellModel *m) {
@@ -574,3 +574,37 @@ CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:84 cellModel_id:@(kkkk_
 ### CKJInputCell
 继承于CKJCell，多了输入框
 
+<img style="width:400px" src="./res/CKJInputCell1.png">
+
+
+<img style="width:400px" src="./res/CKJInputCell2.png">
+
+注册账户界面
+
+```
+// 请输入手机号Cell，并且加了验证
+CKJInputCellModel *phone = [CKJInputCellModel modelWithCellHeight:0 cellModel_id:@(kInput_Phone) detailSettingBlock:^(__kindof CKJInputCellModel * _Nonnull m) {   self.input_block1(m, WDKJ_ER(@"手机号"));
+    [m updateTFModel:^(CKJTFModel * _Nonnull tfModel) {
+        [tfModel _setPlaceholder:@"请输入手机号"];
+        tfModel.keyboardType = UIKeyboardTypePhonePad;
+    }];
+    [m addRequired:[CKJInputExpressionRequiredModel modelWithRequiredText:@"手机号格式错误" failExpression:^BOOL(NSAttributedString * _Nonnull attText, CKJInputCellModel * _Nonnull cm) {
+        return [attText.string kjwd_varityPhoneFail];
+    }]];
+} didSelectRowBlock:nil];
+```
+添加就诊人界面
+
+```
+CKJInputCellModel *idCardType = [self image:nil title:@"证件类型" tfText:@"" placeholder:@"" required:YES cellId:kInput_idCardType didSelectRowBlock:^(__kindof CKJInputCellModel * _Nonnull m) {
+    // 选择器数据源
+    m.stringChoose = [CKJStringChooseHelper helperWithHeader:m.title3Text items:[RJProjectResorce IDCardType] detailSetting:nil];
+}];
+CKJInputCellModel *idCardNumber = [self image:nil title:@"证件号" tfText:@"" placeholder:@"请输入证件号" required:YES cellId:kInput_idCardNumber  didSelectRowBlock:^(__kindof CKJInputCellModel * _Nonnull m) {
+    // 延迟0.7秒处理输入框文本，给用户好的体验
+    [m.tfModel _afterSecondsListenTextChange:0.7 callBack:^(NSAttributedString * _Nullable attText) {
+        // 处理输入框文本回调
+        [weakSelf handleZhengJianHao:attText.string];
+    }];
+}];
+```
