@@ -30,6 +30,7 @@
             m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"likePrice8", [UIColor kjwd_subTitleColor969696], @14) left:0 right:0];
             m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
         } didSelectRowBlock:nil];
+        
         _sec.modelArray = @[model1];
     }];
     
