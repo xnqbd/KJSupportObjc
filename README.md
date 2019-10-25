@@ -533,15 +533,15 @@ CKJDatePickerView	|	日期选择器视图
 
 ### CKJGeneralCell
 左边一个图片和标题，右边一个文字和图片(箭头)，一般用于我的和设置界面
-![Markdown preferences pane](./res/CKJGeneralCell.png)
+<img style="width:450px" src="./res/CKJGeneralCell.png">
 
 ```
-        CKJGeneralCellModel *model1 = [CKJGeneralCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJGeneralCellModel * _Nonnull m) {
-            m.image2Model = [CKJImage2Model image2ModelWithImageString:@"touxiang.jpg" size:CGSizeMake(25, 25) left:15];
-            m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"title3", [UIColor kjwd_titleColor333333], nil) left:10];
-            m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"likePrice8", [UIColor kjwd_subTitleColor969696], @14) left:0 right:0];
-            m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
-        } didSelectRowBlock:nil];  
+CKJGeneralCellModel *model1 = [CKJGeneralCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJGeneralCellModel * _Nonnull m) {
+    m.image2Model = [CKJImage2Model image2ModelWithImageString:@"touxiang.jpg" size:CGSizeMake(25, 25) left:15];
+    m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"title3", [UIColor kjwd_titleColor333333], nil) left:10];
+    m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"likePrice8", [UIColor kjwd_subTitleColor969696], @14) left:0 right:0];
+    m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
+} didSelectRowBlock:nil];  
 
 ```
 ### CKJCell
@@ -550,23 +550,27 @@ CKJDatePickerView	|	日期选择器视图
 <img style="width:450px" src="./res/CKJCell.png">
 
 ```
-        CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:84 cellModel_id:@(kkkk_YHFStatusCellID) detailSettingBlock:^(CKJCellModel *m) {
-            m.image2Model = [CKJImage2Model image2ModelWithImageString:@"touxiang.jpg" size:CGSizeMake(25, 25) left:0];
-            m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"title3", leftDic) left:0];
-            m.subTitle4Model = [CKJSubTitle4Model subTitle4ModelWithAttributedText:WDCKJAttributed2(@"subTitle4", [UIColor kjwd_subTitleColor969696], @14) top:0 left:0 bottom:0 right:0];
-            m.btn5Model = [CKJBtn5Model btn5ModelWithSize:CGSizeMake(60, 60) normalImage:nil rightMargin:0 detailSettingBlock:^(CKJBtn5Model * _Nonnull sender) {
-                [sender changeNormalText:@"btn5"];
-            } didClickBtn5Handle:^(CKJCell * _Nonnull cell, CKJBtn5Model * _Nonnull btn5Model) {
-                NSLog(@"当前分区%ld  %ld行,  点击了btn5", (long)cell.section, (long)cell.row);
-            }];
-            m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"topText5", [UIColor kjwd_titleColor333333], @14) bottomAttributedText:WDCKJAttributed2(@"bottomTex5", [UIColor kjwd_subTitleColor969696], @14) centerMarign:5 topBottomMargin:3 leftMargin:0 rightMargin:0];
-            m.switch6Model = [CKJSwitch6Model switch6ModelWithSwitchOn:YES left:0 top:0 right:0 bottom:0 callBack:^(BOOL switchOn, CKJCellModel * _Nonnull cellModel, UISwitch * _Nonnull senderSwitch) {
-                NSLog(@"当前分区%ld  %ld行,  点击了UISwitch，当前状态是 %@ ", (long)cellModel.cell.section, (long)cellModel.cell.row, switchOn ? @"开" : @"关");
-            }];
-            m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(30, 30) normalImage:[UIImage kjwd_imageNamed:@"touxiang.jpg"] rightMargin:0 detailSettingBlock:nil didClickBtn7Handle:^(CKJCell * _Nonnull cell, CKJBtn7Model * _Nonnull btn7Model) {
-                NSLog(@"当前分区%ld  %ld行,  点击了btn7", (long)cell.section, (long)cell.row);
-            }];
-            m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"likePrice8", [UIColor kjwd_subTitleColor969696], @14) left:0 right:0];
-            m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
-        } didSelectRowBlock:nil];
+CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:84 cellModel_id:@(kkkk_YHFStatusCellID) detailSettingBlock:^(CKJCellModel *m) {
+    m.image2Model = [CKJImage2Model image2ModelWithImageString:@"touxiang.jpg" size:CGSizeMake(25, 25) left:0];
+    m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"title3", leftDic) left:0];
+    m.subTitle4Model = [CKJSubTitle4Model subTitle4ModelWithAttributedText:WDCKJAttributed2(@"subTitle4", [UIColor kjwd_subTitleColor969696], @14) top:0 left:0 bottom:0 right:0];
+    m.btn5Model = [CKJBtn5Model btn5ModelWithSize:CGSizeMake(60, 60) normalImage:nil rightMargin:0 detailSettingBlock:^(CKJBtn5Model * _Nonnull sender) {
+        [sender changeNormalText:@"btn5"];
+    } didClickBtn5Handle:^(CKJCell * _Nonnull cell, CKJBtn5Model * _Nonnull btn5Model) {
+        NSLog(@"当前分区%ld  %ld行,  点击了btn5", (long)cell.section, (long)cell.row);
+    }];
+    m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"topText5", [UIColor kjwd_titleColor333333], @14) bottomAttributedText:WDCKJAttributed2(@"bottomTex5", [UIColor kjwd_subTitleColor969696], @14) centerMarign:5 topBottomMargin:3 leftMargin:0 rightMargin:0];
+    m.switch6Model = [CKJSwitch6Model switch6ModelWithSwitchOn:YES left:0 top:0 right:0 bottom:0 callBack:^(BOOL switchOn, CKJCellModel * _Nonnull cellModel, UISwitch * _Nonnull senderSwitch) {
+        NSLog(@"当前分区%ld  %ld行,  点击了UISwitch，当前状态是 %@ ", (long)cellModel.cell.section, (long)cellModel.cell.row, switchOn ? @"开" : @"关");
+    }];
+    m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(30, 30) normalImage:[UIImage kjwd_imageNamed:@"touxiang.jpg"] rightMargin:0 detailSettingBlock:nil didClickBtn7Handle:^(CKJCell * _Nonnull cell, CKJBtn7Model * _Nonnull btn7Model) {
+        NSLog(@"当前分区%ld  %ld行,  点击了btn7", (long)cell.section, (long)cell.row);
+    }];
+    m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"likePrice8", [UIColor kjwd_subTitleColor969696], @14) left:0 right:0];
+    m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
+} didSelectRowBlock:nil];
 ```
+
+### CKJInputCell
+继承于CKJCell，多了输入框
+
