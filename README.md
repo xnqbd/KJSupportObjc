@@ -576,11 +576,6 @@ CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:84 cellModel_id:@(kkkk_
 
 <img style="width:400px" src="./res/CKJInputCell1.png">
 
-
-<img style="width:400px" src="./res/CKJInputCell2.png">
-
-注册账户界面
-
 ```
 // 请输入手机号Cell，并且加了验证
 CKJInputCellModel *phone = [CKJInputCellModel modelWithCellHeight:0 cellModel_id:@(kInput_Phone) detailSettingBlock:^(__kindof CKJInputCellModel * _Nonnull m) {   self.input_block1(m, WDKJ_ER(@"手机号"));
@@ -593,7 +588,8 @@ CKJInputCellModel *phone = [CKJInputCellModel modelWithCellHeight:0 cellModel_id
     }]];
 } didSelectRowBlock:nil];
 ```
-添加就诊人界面
+
+<img style="width:400px" src="./res/CKJInputCell2.png">
 
 ```
 CKJInputCellModel *idCardType = [self image:nil title:@"证件类型" tfText:@"" placeholder:@"" required:YES cellId:kInput_idCardType didSelectRowBlock:^(__kindof CKJInputCellModel * _Nonnull m) {
@@ -608,3 +604,6 @@ CKJInputCellModel *idCardNumber = [self image:nil title:@"证件号" tfText:@"" 
     }];
 }];
 ```
+
+CKJInputCell在CKJCell基础上主要又增加了一个输入框和获取验证码的功能，核心Cell库已经处理了Cell重用带来的问题，并且解决了约束冲突，自动实现了输入框代理，以及增加延迟识别功能，并实现对文本选择器和日期选择器进行了封装，以及在异常情况给用户友好的提示，覆盖了普通开发大部分常见的需求，具体的代码请下载本库查看。
+
