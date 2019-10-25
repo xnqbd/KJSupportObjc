@@ -533,7 +533,8 @@ CKJDatePickerView	|	日期选择器视图
 
 ### CKJGeneralCell
 左边一个图片和标题，右边一个文字和图片(箭头)，一般用于我的和设置界面
-<img style="width:400px" src="./res/CKJGeneralCell.png">
+
+![Markdown preferences pane](./res/CKJGeneralCell.png)
 
 ```
 CKJGeneralCellModel *model1 = [CKJGeneralCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJGeneralCellModel * _Nonnull m) {
@@ -545,9 +546,12 @@ CKJGeneralCellModel *model1 = [CKJGeneralCellModel modelWithCellHeight:44 cellMo
 
 ```
 ### CKJCell
+
 继承于CKJGeneralCell，主要多了上下UILabel，和开关按钮
 
-<img style="width:400px" src="./res/CKJCell.png">
+![Markdown preferences pane](./res/CKJCell.png)
+
+
 
 ```
 CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:84 cellModel_id:@(kkkk_YHFStatusCellID) detailSettingBlock:^(CKJCellModel *m) {
