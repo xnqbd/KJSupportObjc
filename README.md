@@ -579,6 +579,7 @@ CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:84 cellModel_id:@(kkkk_
 继承于CKJCell，多了输入框
 
 <img style="width:400px" src="./res/CKJInputCell1.png">
+<img style="width:400px" src="./res/CKJInputCell2.png">
 
 ```
 // 请输入手机号Cell，并且加了验证
