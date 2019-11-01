@@ -306,7 +306,7 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 
 ## 核心Cell
 
-CKJSimpleTableView套件提供了最常用的一些Cell，极大节省了开发时长，常见的Cell如下表，点击此处查看具体Cell
+CKJSimpleTableView套件提供了最常用的一些Cell，满足大部分功能需求，极大节省了开发时长
 
 
 类名           |  简介
@@ -323,6 +323,107 @@ CKJBtnsCell1、CKJBtnsCell2             |  常用于三到九宫格布局，`需
 CKJScrollViewCell             |  单行可以滚动的多个ItemView，类似相册一样，`需要设置配置信息`
 CKJLikeQRCell             |  单个二维码图片，`需要设置配置信息`
 
+类名           |  简介
+-------------------------  |  --------------------------
+![CKJGeneralCell.PNG](./res/CKJGeneralCell.PNG)              |  ![CKJCell.PNG](./res/CKJCell.PNG)
+![CKJInputCell1.PNG](./res/CKJInputCell1.PNG)              |  ![CKJInputCell2.PNG](./res/CKJInputCell2.PNG)
+![CKJLeftRightCell.PNG](./res/CKJLeftRightCell.PNG)              |  ![CKJTableViewCell.PNG](./res/CKJTableViewCell.PNG)
+![方块Cell1.PNG](./res/Square1.PNG)              |  ![方块Cell2.PNG](./res/Square2.PNG)
+
+请看下面代码
+
+```
+
+#import "DemoCoreCellVC.h"
+
+@interface DemoCoreCellVC ()
+
+@end
+
+@implementation DemoCoreCellVC
+
+#define kPriceCellID 321
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.navigationItem.title = @"核心Cell代码示例";
+    [self installComplementData];
+}
+
+#pragma mark - CKJSimpleTableView 数据源 和 代理
+- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
+    
+    CKJImageLeftCellConfig *leftConfig = [CKJImageLeftCellConfig configWithDetailSettingBlock:^(__kindof CKJImageLeftCellConfig * _Nonnull m) {
+        m.imageSize = CGSizeMake(80, 80);
+        m.fiveConfig = [CKJFiveLabelViewConfig configWithDetailSettingBlock:^(__kindof CKJFiveLabelViewConfig * _Nonnull m) {
+            m.subTitle_numberOfLines = 3;
+        }];
+    }];
+    
+    return @{
+        NSStringFromClass([CKJImageLeftCellModel class]) : @{cellKEY : NSStringFromClass([CKJImageLeftCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : leftConfig},
+    };
+}
+
+- (void)installComplementData {
+    
+    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJImageLeftCell", [UIColor kjwd_subTitleColor969696], @14) headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+        CKJImageLeftCellModel *model1 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
+            m.b_Image_URL = @"http://image.cmsfg.com/Images/20180608/2018060812432648.jpg";
+            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
+               fm.title = WDCKJAttributed2(@"鼻饲流质", [UIColor kjwd_titleColor333333], nil);
+                fm.subTitle = WDCKJAttributed2(@"鼻饲流质营养治疗适用于不能自行经口进食、昏迷、手术前后营养不良、食欲低下但有一定消化吸收功能者", [UIColor kjwd_subTitleColor969696], nil);
+            }];
+        } didSelectRowBlock:nil];
+        _sec.modelArray = @[model1];
+    }];
+    
+    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderHeight:10 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+        CKJGeneralCellModel *model1 = [CKJGeneralCellModel modelWithCellHeight:44 cellModel_id:@(kPriceCellID) detailSettingBlock:^(__kindof CKJGeneralCellModel * _Nonnull m) {
+            m.image2Model = [CKJImage2Model image2ModelWithImageString:@"demo余额.png" size:CGSizeMake(22, 22) left:15];
+            m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"余额", [UIColor kjwd_titleColor333333], nil) left:10];
+            m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"620.86元", [UIColor kjwd_subTitleColor969696], @14) left:0 right:0];
+            m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
+        } didSelectRowBlock:^(__kindof CKJGeneralCellModel *__weak  _Nonnull m) {
+           NSLog(@"点击了当前行");
+        }];
+        
+        
+        CKJCellModel *model2 = [CKJCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
+            m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"开启常用地点入口", [UIColor kjwd_titleColor333333], @15) bottomAttributedText:WDCKJAttributed2(@"关闭后，将隐藏首页的常用地点入口", [UIColor kjwd_subTitleColor969696], @13) centerMarign:5 topBottomMargin:8 leftMargin:15 rightMargin:0];
+            m.switch6Model = [CKJSwitch6Model switch6ModelWithSwitchOn:YES left:0 top:0 bottom:0 callBack:^(BOOL switchOn, CKJCellModel *cellModel, UISwitch *senderSwitch) {
+                NSLog(@"检测到 开关按钮切换，此时状态是 %@ %@", cellModel.view5Model.topText.string, switchOn ? @"开启" : @"关闭");
+            }];
+            m.likePrice61Model = [CKJLikePriceLabel61Model likePriceModelWithLeftMargin:15];
+        } didSelectRowBlock:nil];
+        
+        CKJTableViewCell1Model *model3 = [CKJTableViewCell1Model modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+            m.textLabelAttStr = WDCKJAttributed2(@"点击本行更新余额", [UIColor kjwd_subTitleColor969696], nil);
+            m.textAlignment = NSTextAlignmentCenter;
+        } didSelectRowBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+            [m.cell.simpleTableView kjwd_filterCellModelForID:kPriceCellID finishBlock:^(CKJGeneralCellModel * _Nonnull m) {
+                NSString *arc1 = [NSString kjwd_returnArc4randomWithNum:3 type:KJWDArc4randomType_Number];
+                NSString *point = [NSString kjwd_returnArc4randomWithNum:2 type:KJWDArc4randomType_Number];
+                [m.likePrice8Model changeText:[NSString stringWithFormat:@"%@.%@元", arc1, point]];
+            }];
+            [m.cell.simpleTableView kjwd_reloadData];
+        }];
+        _sec.modelArray = @[model1, model2, model3];
+    }];
+    self.simpleTableView.dataArr = @[section1, section2];
+}
+
+@end
+
+
+```
+效果如下
+
+![核心Cell示例.PNG](./res/核心Cell示例.PNG)
+
+开发者只需管理好数据模型，UI全部根据数据模型进行渲染，如果想要修改UI的数据，只需要找到其数据模型，修改数据模型的数据，UI会自动改变。有些核心Cell需要设置配置数据，有些可以直接进行使用。比如上面示例中， CKJImageLeftCell则需要设置配置数据，而CKJGeneralCell和CKJCell则不需要。
+
+对于封装好的核心Cell，省去了开发者在不同的界面里重复的布局Cell带来的麻烦，可以提高开发效率节约开发时间。
 
 
 ## 常用分类
@@ -532,282 +633,3 @@ CKJDatePickerView	|	日期选择器视图
 
 ## 核心Cell套件
 
-核心Cell封装了日常开发中最常见的一些Cell种类，开发者只需管理好数据模型，UI全部根据数据模型来的，如果想要修改UI的数据，只需要找到其数据模型，修改数据模型的数据，UI会自动改变。
-
-
-
-
-类名           |  简介
--------------------------  |  --------------------------
-![Markdown preferences pane](./res/CKJGeneralCell.PNG)              |  ![Markdown preferences pane](./res/CKJCell.PNG)
-![Markdown preferences pane](./res/CKJInputCell1.PNG)              |  ![Markdown preferences pane](./res/CKJInputCell2.PNG)
-
-
-
-
-### CKJGeneralCell
-左边一个图片和标题，右边一个文字和图片(箭头)，一般用于我的和设置界面
-
-```
-CKJGeneralCellModel *model1 = [CKJGeneralCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJGeneralCellModel * _Nonnull m) {
-    m.image2Model = [CKJImage2Model image2ModelWithImageString:@"touxiang.jpg" size:CGSizeMake(25, 25) left:15];
-    m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"title3", [UIColor kjwd_titleColor333333], nil) left:10];
-    m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"likePrice8", [UIColor kjwd_subTitleColor969696], @14) left:0 right:0];
-    m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
-} didSelectRowBlock:nil];  
-
-```
-
-![Markdown preferences pane](./res/CKJGeneralCell.png)
-
-### CKJCell
-
-继承于CKJGeneralCell，主要多了上下UILabel，和开关按钮
-
-
-```
-CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:84 cellModel_id:@(kkkk_YHFStatusCellID) detailSettingBlock:^(CKJCellModel *m) {
-    m.image2Model = [CKJImage2Model image2ModelWithImageString:@"touxiang.jpg" size:CGSizeMake(25, 25) left:0];
-    m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"title3", leftDic) left:0];
-    m.subTitle4Model = [CKJSubTitle4Model subTitle4ModelWithAttributedText:WDCKJAttributed2(@"subTitle4", [UIColor kjwd_subTitleColor969696], @14) top:0 left:0 bottom:0 right:0];
-    m.btn5Model = [CKJBtn5Model btn5ModelWithSize:CGSizeMake(60, 60) normalImage:nil rightMargin:0 detailSettingBlock:^(CKJBtn5Model * _Nonnull sender) {
-        [sender changeNormalText:@"btn5"];
-    } didClickBtn5Handle:^(CKJCell * _Nonnull cell, CKJBtn5Model * _Nonnull btn5Model) {
-        NSLog(@"当前分区%ld  %ld行,  点击了btn5", (long)cell.section, (long)cell.row);
-    }];
-    m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"topText5", [UIColor kjwd_titleColor333333], @14) bottomAttributedText:WDCKJAttributed2(@"bottomTex5", [UIColor kjwd_subTitleColor969696], @14) centerMarign:5 topBottomMargin:3 leftMargin:0 rightMargin:0];
-    m.switch6Model = [CKJSwitch6Model switch6ModelWithSwitchOn:YES left:0 top:0 right:0 bottom:0 callBack:^(BOOL switchOn, CKJCellModel * _Nonnull cellModel, UISwitch * _Nonnull senderSwitch) {
-        NSLog(@"当前分区%ld  %ld行,  点击了UISwitch，当前状态是 %@ ", (long)cellModel.cell.section, (long)cellModel.cell.row, switchOn ? @"开" : @"关");
-    }];
-    m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(30, 30) normalImage:[UIImage kjwd_imageNamed:@"touxiang.jpg"] rightMargin:0 detailSettingBlock:nil didClickBtn7Handle:^(CKJCell * _Nonnull cell, CKJBtn7Model * _Nonnull btn7Model) {
-        NSLog(@"当前分区%ld  %ld行,  点击了btn7", (long)cell.section, (long)cell.row);
-    }];
-    m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"likePrice8", [UIColor kjwd_subTitleColor969696], @14) left:0 right:0];
-    m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
-} didSelectRowBlock:nil];
-```
-下图是所有Cell布局都可以用CKJCell实现，开发者只需要设置其模型即可
-![Markdown preferences pane](./res/CKJCell.png)
-
-### CKJInputCell
-继承于CKJCell，多了输入框
-
-```
-// 请输入手机号Cell，并且加了验证
-CKJInputCellModel *phone = [CKJInputCellModel modelWithCellHeight:0 cellModel_id:@(kInput_Phone) detailSettingBlock:^(__kindof CKJInputCellModel * _Nonnull m) {   self.input_block1(m, WDKJ_ER(@"手机号"));
-    [m updateTFModel:^(CKJTFModel * _Nonnull tfModel) {
-        [tfModel _setPlaceholder:@"请输入手机号"];
-        tfModel.keyboardType = UIKeyboardTypePhonePad;
-    }];
-    [m addRequired:[CKJInputExpressionRequiredModel modelWithRequiredText:@"手机号格式错误" failExpression:^BOOL(NSAttributedString * _Nonnull attText, CKJInputCellModel * _Nonnull cm) {
-        return [attText.string kjwd_varityPhoneFail];
-    }]];
-} didSelectRowBlock:nil];
-```
-![Markdown preferences pane](./res/CKJInputCell1.png)
-
-
-
-```
-CKJInputCellModel *idCardType = [self image:nil title:@"证件类型" tfText:@"" placeholder:@"" required:YES cellId:kInput_idCardType didSelectRowBlock:^(__kindof CKJInputCellModel * _Nonnull m) {
-    // 选择器数据源
-    m.stringChoose = [CKJStringChooseHelper helperWithHeader:m.title3Text items:[RJProjectResorce IDCardType] detailSetting:nil];
-}];
-CKJInputCellModel *idCardNumber = [self image:nil title:@"证件号" tfText:@"" placeholder:@"请输入证件号" required:YES cellId:kInput_idCardNumber  didSelectRowBlock:^(__kindof CKJInputCellModel * _Nonnull m) {
-    // 延迟0.7秒处理输入框文本，给用户好的体验
-    [m.tfModel _afterSecondsListenTextChange:0.7 callBack:^(NSAttributedString * _Nullable attText) {
-        // 处理输入框文本回调
-        [weakSelf handleZhengJianHao:attText.string];
-    }];
-}];
-```
-![Markdown preferences pane](./res/CKJInputCell2.png)
-
-
-CKJInputCell在CKJCell基础上主要又增加了一个输入框和获取验证码的功能，核心Cell库已经处理了Cell重用带来的问题，并且解决了约束冲突，并自动实现了输入框代理，以及增加延迟识别功能，并实现对文本选择器和日期选择器进行了封装，以及在异常情况给用户友好的提示，覆盖了普通开发大部分常见的需求，具体的代码请下载本库查看。
-
-### CKJTableViewCell1、CKJTableViewCell2
-可以自定义上下左右的间距、numberOfLines、以及textAlignment对齐方式
-
-```
-CKJTableViewCell1Model *model1 = [CKJTableViewCell1Model modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
-    [m _setText:@"古之欲明明德于天下者，先治其国。欲治其国者，先齐其家。欲齐其家者，先修其身。欲修其身者，先正其心。欲正其心者，先诚其意。欲诚其意者，先致其知；致知在格物。物格而后知至，知至而后意诚，意诚而后心正，心正而后身修，身修而后家齐，家齐而后国治，国治而后天下平。"];
-    m.numberOfLines = 0;
-} didSelectRowBlock:nil];
-CKJTableViewCell1Model *model2 = [CKJTableViewCell1Model modelWithCellHeight:40 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
-    [m _setText:@"出自《礼记·大学》"];
-    m.textAlignment = NSTextAlignmentRight;
-} didSelectRowBlock:nil];
-```
-![Markdown preferences pane](./res/CKJTableViewCell.png)
-
-
-### CKJLeftRightCenterEqualCell、CKJLeftRightTopEqualCell
-左边一个UILabel，右边一个文本类型的Cell，`需要设置配置信息`
-
-
-```
-#pragma mark - CKJSimpleTableView 数据源 和 代理
-- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
-    CKJLeftRightTopEqualCellConfig *topEqualCellConfig = [CKJLeftRightTopEqualCellConfig configWithLeftLabelTopMargin:5 detailSettingBlock:^(CKJLeftRightTopEqualCellConfig * _Nonnull m) {
-       m.leftLab_width = 80; // 左边UILabel固定宽度
-    }];
-    CKJLeftRightCenterEqualCellConfig *centerEqualCellConfig = [CKJLeftRightCenterEqualCellConfig configWithDetailSettingBlock:^(CKJLeftRightCenterEqualCellConfig * _Nonnull m) {
-        m.leftLab_width_MultipliedBySuperView = 0.3; // 左边UILabel宽度相对于父视图的宽度的倍数
-    }];
-    return @{
-        NSStringFromClass([CKJLeftRightTopEqualCellModel class]) : @{cellKEY : NSStringFromClass([CKJLeftRightTopEqualCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : topEqualCellConfig},
-        NSStringFromClass([CKJLeftRightCenterEqualCellModel class]) : @{cellKEY : NSStringFromClass([CKJLeftRightCenterEqualCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : centerEqualCellConfig},
-    };
-}
-
-- (void)initSimpleTableViewData {
-    CGFloat margin = 20;
-    CKJLeftRightTopEqualCellModel *(^createTopEqualModel)(NSString *left, NSString *right) = ^CKJLeftRightTopEqualCellModel *(NSString *left, NSString *right) {
-        CKJLeftRightTopEqualCellModel *model1 = [CKJLeftRightTopEqualCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightTopEqualCellModel * _Nonnull m) {
-            m.showLine = YES;
-            m.rightLab_textAlignment = NSTextAlignmentLeft;
-            m.leftAttStr = WDCKJAttributed2(left, [UIColor kjwd_titleColor333333], nil);
-            m.rightAttStr = WDCKJAttributed2(right, [UIColor kjwd_subTitleColor969696], nil);
-            m.leftLab_MarginTo_SuperViewLeft = margin;
-            m.rightLab_MarginTo_SuperViewRight = margin;
-        } didSelectRowBlock:nil];
-        return model1;
-    };
-    
-    CKJLeftRightCenterEqualCellModel *(^createCenterEqualModel)(NSString *left, NSString *right) = ^CKJLeftRightCenterEqualCellModel *(NSString *left, NSString *right) {
-        CKJLeftRightCenterEqualCellModel *model1 = [CKJLeftRightCenterEqualCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightCenterEqualCellModel * _Nonnull m) {
-            m.showLine = YES;
-            m.rightLab_textAlignment = NSTextAlignmentRight;
-            m.leftAttStr = WDCKJAttributed2(left, [UIColor kjwd_titleColor333333], nil);
-            m.rightAttStr = WDCKJAttributed2(right, [UIColor kjwd_subTitleColor969696], nil);
-            m.leftLab_MarginTo_SuperViewLeft = margin;
-            m.rightLab_MarginTo_SuperViewRight = margin;
-        } didSelectRowBlock:nil];
-        return model1;
-    };
-    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"顶部对齐", [UIColor kjwd_subTitleColor969696], @14) detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
-        CKJLeftRightTopEqualCellModel *model1 = createTopEqualModel(@"就诊人：", @"张三");
-        CKJLeftRightTopEqualCellModel *model2 = createTopEqualModel(@"身份证号：", @"330501****3715");
-        CKJLeftRightTopEqualCellModel *model3 = createTopEqualModel(@"就诊医院：", @"上海交通大学医学院附属仁济医院东院（浦东新浦建路160号）");
-        CKJLeftRightTopEqualCellModel *model4 = createTopEqualModel(@"门诊科室：", @"东院东消化科-幽门螺杆菌相关疾病 普通专病");
-        CKJLeftRightTopEqualCellModel *model5 = createTopEqualModel(@"就诊位置：", @"上海市浦东新浦建路160号东外科大楼（7号楼1楼）");
-        _sec.modelArray = @[model1, model2, model3, model4, model5];
-    }];
-    
-    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"中心对齐", [UIColor kjwd_subTitleColor969696], @14) detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
-
-        CKJLeftRightCenterEqualCellModel *model1 = createCenterEqualModel(@"就诊人：", @"张三");
-        CKJLeftRightCenterEqualCellModel *model2 = createCenterEqualModel(@"身份证号：", @"330501****3715");
-        CKJLeftRightCenterEqualCellModel *model3 = createCenterEqualModel(@"就诊医院：", @"上海交通大学医学院附属仁济医院东院（浦东新浦建路160号）");
-        CKJLeftRightCenterEqualCellModel *model4 = createCenterEqualModel(@"门诊科室：", @"东院东消化科-幽门螺杆菌相关疾病 普通专病");
-        CKJLeftRightCenterEqualCellModel *model5 = createCenterEqualModel(@"就诊位置：", @"上海市浦东新浦建路160号东外科大楼（7号楼1楼）");
-        _sec.modelArray = @[model1, model2, model3, model4, model5];
-    }];
-    
-    self.simpleTableView.dataArr = @[section1, section2];
-}
-```
-
-![Markdown preferences pane](./res/CKJLeftRightCell.png)
-
-
-### CKJImageLeftCell、CKJImageRightCell、CKJPayCell
-图片在左(或在右)，右(或者左)边上下最多5个UILabel，`需要设置配置信息`
-
-```
-
-#pragma mark - CKJSimpleTableView 数据源 和 代理
-- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
-    
-    CKJImageLeftCellConfig *leftConfig = [CKJImageLeftCellConfig configWithDetailSettingBlock:^(__kindof CKJImageLeftCellConfig * _Nonnull m) {
-        m.imageSize = CGSizeMake(80, 80);
-        m.fiveConfig = [CKJFiveLabelViewConfig configWithDetailSettingBlock:^(__kindof CKJFiveLabelViewConfig * _Nonnull m) {
-            m.subTitle_numberOfLines = 3;
-        }];
-    }];
-    CKJImageRightCellConfig *rightConfig = [CKJImageRightCellConfig configWithDetailSettingBlock:^(__kindof CKJImageRightCellConfig * _Nonnull m) {
-        m.imageSize = CGSizeMake(80, 90);
-        m.fiveConfig = [CKJFiveLabelViewConfig configWithDetailSettingBlock:^(__kindof CKJFiveLabelViewConfig * _Nonnull m) {
-            m.title_margin_subTitle = 5;
-            m.subTitle_numberOfLines = 3;
-        }];
-    }];
-    
-    CKJPayCellConfig *payConfig = [CKJPayCellConfig appearanceForProject];
-    
-    return @{
-        NSStringFromClass([CKJPayCellModel class]) : @{cellKEY : NSStringFromClass([CKJPayCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : payConfig},
-        
-        NSStringFromClass([CKJImageLeftCellModel class]) : @{cellKEY : NSStringFromClass([CKJImageLeftCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : leftConfig},
-        NSStringFromClass([CKJImageRightCellModel class]) : @{cellKEY : NSStringFromClass([CKJImageRightCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : rightConfig},
-        
-    };
-}
-
-CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJImageLeftCell", [UIColor kjwd_subTitleColor969696], @14) detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
-    CKJImageLeftCellModel *model1 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
-        m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
-        [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
-            fm.title = WDCKJAttributed2(@"银联", [UIColor kjwd_titleColor333333], nil);
-            fm.subTitle = WDCKJAttributed2(@"推荐有银联账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
-            fm.threeTitle = WDCKJAttributed2(@"订单号：1c9f4d1cbe214ab6a948a1ab3ef5f1", [UIColor kjwd_subTitleColor969696], nil);
-            fm.fourTitle = WDCKJAttributed2(@"总金额：29.30元", [UIColor kjwd_subTitleColor969696], nil);
-            fm.fiveTitle = WDCKJAttributed2(@"订单简介：门诊检查费", [UIColor kjwd_subTitleColor969696], nil);
-        }];
-    } didSelectRowBlock:nil];
-    
-    CKJImageLeftCellModel *model2 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
-        m.b_Image_URL = @"http://image.cmsfg.com/Images/20180608/2018060812432648.jpg";
-        [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
-           fm.title = WDCKJAttributed2(@"鼻饲流质", [UIColor kjwd_titleColor333333], nil);
-            fm.subTitle = WDCKJAttributed2(@"鼻饲流质营养治疗适用于不能自行经口进食、昏迷、手术前后营养不良、食欲低下但有一定消化吸收功能者", [UIColor kjwd_subTitleColor969696], nil);
-        }];
-    } didSelectRowBlock:nil];
-    _sec.modelArray = @[model1, model2];
-}];
-
-CKJCommonSectionModel *section4 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJPayCell 单选", [UIColor kjwd_subTitleColor969696], @14) detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
-    
-    CKJPayCellModel *model6 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
-        m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk支付宝"];
-        [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
-            fm.title = WDCKJAttributed2(@"支付宝", [UIColor kjwd_titleColor333333], nil);
-            fm.subTitle = WDCKJAttributed2(@"推荐有支付宝账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
-        }];
-        m.extension_Interger = TestPayStyle_AliPay;
-    } didSelectRowBlock:nil];
-    
-    CKJPayCellModel *model7 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
-        m.b_ImageName = [UIImage imageNamed:@"wdyhfsdkechat"];
-        [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
-            fm.title = WDCKJAttributed2(@"微信", [UIColor kjwd_titleColor333333], nil);
-            fm.subTitle = WDCKJAttributed2(@"推荐有微信账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
-            fm.threeTitle = WDCKJAttributed2(@"额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1", [UIColor kjwd_subTitleColor969696], nil);
-        }];
-        m.extension_Interger = TestPayStyle_WeiXin;
-    } didSelectRowBlock:nil];
-    
-
-    CKJPayCellModel *model8 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
-        m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
-        [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
-            fm.title = WDCKJAttributed2(@"银联", [UIColor kjwd_titleColor333333], nil);
-            fm.subTitle = WDCKJAttributed2(@"推荐有银联账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
-            fm.threeTitle = WDCKJAttributed2(@"额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1", [UIColor kjwd_subTitleColor969696], nil);
-            fm.fourTitle = WDCKJAttributed2(@"额外信息22额外信息22额外信息22额外信息22额外信息22额外信息22额外信息22额外信息22额外信息22", [UIColor kjwd_subTitleColor969696], nil);
-        }];
-        m.extension_Interger = TestPayStyle_YinLian;
-    } didSelectRowBlock:nil];
-    [self.simpleTableView addRadioCellModels:@[model6, model7, model8]];
-    _sec.modelArray = @[model6, model7, model8];
-}];
-    
-```
-![Markdown preferences pane](./res/CKJBaseImageLeftRightCell.png)
-
-CKJImageLeftCell、CKJImageRightCell继承于同一父类，都是一张图片和上下五个UILabel，通过配置可以设置图片大小、上下五个UILabel之间的各个间距、numberOfLines等等，图片可以使用本地或网络图片，如果是网络图片，默认SDWebImage进行加载，也可以设置其占位图片，可重用性高，不同的控制器可以有不同的配置
-
-CKJPayCell继承于CKJImageLeftCell，大多数用于选择支付方式，库增加了单选的支持，调用[self.simpleTableView addRadioCellModels:@[model6, model7, model8]]把单选数组加入其中，调用[simpleTableView currentSelectRadioCellModel]就可以轻松获取当前选择方式
-
-### CKJBtnsCell1，CKJBtnsCell2
