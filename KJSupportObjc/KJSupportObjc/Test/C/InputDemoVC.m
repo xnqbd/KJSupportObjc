@@ -71,7 +71,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"添加就诊人";
+    self.navigationItem.title = @"CKJInput示例1";
     KJ_typeweakself
     CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithFooterHeight:10 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull sec) {
 //        sec.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"Demo会自动识别证件号的出生年月，\n如果小于14岁，则必须填写监护人信息，\n如果大于等于14岁，则只需填写本人信息\n并且证件号TextField输入框会有延迟识别的能力", [UIColor grayColor], @15) type:CKJCommonHeaderFooterType_HEADER];

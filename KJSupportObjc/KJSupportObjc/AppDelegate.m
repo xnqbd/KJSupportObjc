@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "RJTestListVC.h"
+#import "KJSupportObjcListVC.h"
 
 @interface AppDelegate ()
 
@@ -24,7 +24,7 @@
     // 让UIWindow显示出来(让窗口成为主窗口 并且显示出来)
     // 一个应用程序只能有一个主窗口
     [self.window makeKeyAndVisible];
-    UINavigationController *rootvc = [[UINavigationController alloc] initWithRootViewController:[[RJTestListVC alloc] init]];
+    UINavigationController *rootvc = [[UINavigationController alloc] initWithRootViewController:[[KJSupportObjcListVC alloc] init]];
     
     self.window.rootViewController = rootvc;
     

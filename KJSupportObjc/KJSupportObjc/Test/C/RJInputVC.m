@@ -37,7 +37,7 @@
 - (void)kj_tableView:(CKJSimpleTableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath model:(__kindof CKJCommonCellModel *)model cell:(__kindof CKJCommonTableViewCell *)cell {
     if ([model isKindOfClass:[CKJInputCellModel class]] == NO) return;
     
-    CKJInputCellModel *_model = model;
+//    CKJInputCellModel *_model = model;
 //    if (_model.extension_Interger == RJInputStyle_Choose) {
 //        NSLog(@"可以进行弹框了 %@", _model.title3Model.attributedText.string);
 //    }

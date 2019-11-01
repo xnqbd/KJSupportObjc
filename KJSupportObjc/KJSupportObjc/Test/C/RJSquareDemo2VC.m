@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"StackCell、ScrollViewCell示例2";
+    self.navigationItem.title = @"CKJBtnsCell、CKJScrollViewCell示例2";
     [self initSimpleTableViewData];
 }
 
@@ -67,7 +67,7 @@
 - (void)initSimpleTableViewData {
     
     KJ_typeweakself
-    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithDetailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJBtnsCell示例", [UIColor kjwd_subTitleColor969696], nil) headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         
         UIImage *(^b_image)(NSString *imageName) = ^UIImage *(NSString *imageName) {
             return [[UIImage kjwd_imageNamed:imageName] kjwd_scaleToSize:CGSizeMake(30, 30)];
@@ -114,7 +114,7 @@
     }];
     
     
-    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderHeight:10 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJBtnsCell示例", [UIColor kjwd_subTitleColor969696], nil) headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         
         UIImage *(^b_image)(NSString *imageName) = ^UIImage *(NSString *imageName) {
             return [[UIImage kjwd_imageNamed:imageName] kjwd_scaleToSize:CGSizeMake(30, 30)];
@@ -137,14 +137,7 @@
         _sec.modelArray = arr;
     }];
     
-    CKJCommonSectionModel *section3 = [CKJCommonSectionModel sectionWithHeaderHeight:10 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
-        
-        
-        CKJCellModel *model0 = [CKJCellModel modelWithCellHeight:40 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
-            m.selectionStyle = UITableViewCellSelectionStyleNone;
-            m.showLine = NO;
-            m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"住院信息", nil, nil) left:15];
-        } didSelectRowBlock:nil];
+    CKJCommonSectionModel *section3 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJScrollViewCell示例", [UIColor kjwd_subTitleColor969696], nil) headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         
         CKJScrollViewCellModel *model1 = [CKJScrollViewCellModel modelWithCellHeight:85 cellModel_id:nil detailSettingBlock:^(__kindof CKJScrollViewCellModel * _Nonnull m) {
             NSArray *data = @[
@@ -162,7 +155,7 @@
             }];
             m.data = items;
         } didSelectRowBlock:nil];
-        _sec.modelArray = @[model0, model1];
+        _sec.modelArray = @[model1];
     }];
     
     self.simpleTableView.dataArr = @[section1, section2, section3];

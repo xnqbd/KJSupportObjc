@@ -12,7 +12,7 @@
 #import "CKJToolPickerView.h"
 #import "CKJLeftRightTopEqualCell.h"
 #import "CKJLeftRightCenterEqualCell.h"
-#import "RJTestListVC.h"
+#import "KJSupportObjcListVC.h"
 
 @interface CKJCellVC ()
 
@@ -48,7 +48,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"设置";
+    self.navigationItem.title = @"CKJCell示例";
     [self reloadUI];
 }
 
@@ -123,10 +123,25 @@
             m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed(@"吴振强", rightDic) left:0 right:rightMarign];
         } didSelectRowBlock:nil];
         
-        CKJCellModel *model2 = [CKJCellModel modelWithCellHeight:65 cellModel_id:nil detailSettingBlock:^(CKJCellModel *m) {
-            m.showLine = NO;
-            m.image2Model = [CKJImage2Model image2ModelWithImageString:@"wdyhfsdkmark" size:CGSizeMake(30, 30) left:leftMarign];
-            m.subTitle4Model = [CKJSubTitle4Model subTitle4ModelWithAttributedText:WDCKJAttributed2(@"结算失败。现金支付部分将在30分钟内，原路退回，请留意查看！", [UIColor kjwd_r:24 g:167 b:99 alpha:1], @16) top:10 left:10 bottom:10 right:10];
+        UIImage *image = [[UIImage kjwd_imageNamed:@"wdyhfsdk编辑"] kjwd_scaleToSize:CGSizeMake(25, 25)];
+        
+        CKJCellModel *model14 = [CKJCellModel modelWithCellHeight:47 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
+            m.selectionStyle = UITableViewCellSelectionStyleNone;
+            m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"通知手机号", [UIColor kjwd_subTitleColor969696], @15) left:leftMarign];
+            m.likePrice61Model = [CKJLikePriceLabel61Model likePriceModelWithAttText:WDAtt15_5([@"18377216632" kjwd_PhoneLeftMargin:3 rightMargin:2 starNumber:6]) left:0 right:10];
+            
+            m.btn7Model = [CKJCellBtnModel btnModelWithSize:image.size normalImage:image rightMargin:rightMarign detailSettingBlock:nil didClickBtnHandle:^(CKJCell * _Nonnull cell, CKJCellBtnModel * _Nonnull btn5Model) {
+                NSLog(@"进行编辑%@", cell.cellModel.title3Text);
+            }];
+        } didSelectRowBlock:nil];
+        
+        CKJCellModel *model15 = [CKJCellModel modelWithCellHeight:47 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
+            m.selectionStyle = UITableViewCellSelectionStyleNone;
+            m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"通知座机", [UIColor kjwd_subTitleColor969696], @15) left:leftMarign];
+            m.btn7Model = [CKJCellBtnModel btnModelWithSize:image.size normalImage:image rightMargin:10 detailSettingBlock:nil didClickBtnHandle:^(CKJCell * _Nonnull cell, CKJCellBtnModel * _Nonnull btn5Model) {
+                NSLog(@"进行编辑%@", cell.cellModel.title3Text);
+            }];
+            m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"021-832781", [UIColor kjwd_subTitleColor969696], @15) left:6 right:rightMarign];
         } didSelectRowBlock:nil];
         
         CKJCellModel *model10 = [CKJCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
@@ -134,6 +149,7 @@
             m.switch6Model = [CKJSwitch6Model switch6ModelWithSwitchOn:YES left:0 top:0 bottom:0 callBack:^(BOOL switchOn, CKJCellModel *cellModel, UISwitch *senderSwitch) {
                 NSLog(@"%@ %@", cellModel.view5Model.topText.string, switchOn ? @"开启" : @"关闭");
             }];
+            m.likePrice61Model = [CKJLikePriceLabel61Model likePriceModelWithLeftMargin:15];
         } didSelectRowBlock:nil];
         
         CKJCellModel *model11 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
@@ -142,6 +158,7 @@
             m.switch6Model = [CKJSwitch6Model switch6ModelWithSwitchOn:YES left:0 top:0 bottom:0 callBack:^(BOOL switchOn, CKJCellModel *cellModel, UISwitch *senderSwitch) {
                 NSLog(@"%@ %@", cellModel.title3Model.attributedText.string, switchOn ? @"开启" : @"关闭");
             }];
+            m.likePrice61Model = [CKJLikePriceLabel61Model likePriceModelWithLeftMargin:15];
         } didSelectRowBlock:nil];
         
         CKJCellModel *model12 = [CKJCellModel modelWithCellHeight:44 cellModel_id:@(kkkk_HospitalCellID) detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
@@ -152,6 +169,12 @@
             [weakSelf succShow];
         }];
         
+        
+        CKJCellModel *model20 = [CKJCellModel modelWithCellHeight:65 cellModel_id:nil detailSettingBlock:^(CKJCellModel *m) {
+            m.showLine = NO;
+            m.image2Model = [CKJImage2Model image2ModelWithImageString:@"wdyhfsdkmark" size:CGSizeMake(30, 30) left:leftMarign];
+            m.subTitle4Model = [CKJSubTitle4Model subTitle4ModelWithAttributedText:WDCKJAttributed2(@"结算失败。现金支付部分将在30分钟内，原路退回，请留意查看！", [UIColor kjwd_r:24 g:167 b:99 alpha:1], @16) top:10 left:10 bottom:10 right:10];
+        } didSelectRowBlock:nil];
         
         CKJCellModel *model3 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
             m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(@"操作1", leftDic) left:25];
@@ -190,7 +213,7 @@
             }];
         } didSelectRowBlock:nil];
         
-        _sec.modelArray = @[model0, model1, model2, model10, model11, model12, model3, model4];
+        _sec.modelArray = @[model0, model1, model14, model15, model10, model11, model12, model20, model3, model4];
         
     }];
     self.simpleTableView.dataArr = @[section1, section2];

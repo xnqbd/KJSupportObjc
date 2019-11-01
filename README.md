@@ -325,10 +325,10 @@ CKJLikeQRCell             |  单个二维码图片，`需要设置配置信息`
 
 类名           |  简介
 -------------------------  |  --------------------------
-![CKJGeneralCell.PNG](./res/CKJGeneralCell.PNG)              |  ![CKJCell.PNG](./res/CKJCell.PNG)
-![CKJInputCell1.PNG](./res/CKJInputCell1.PNG)              |  ![CKJInputCell2.PNG](./res/CKJInputCell2.PNG)
-![CKJLeftRightCell.PNG](./res/CKJLeftRightCell.PNG)              |  ![CKJTableViewCell.PNG](./res/CKJTableViewCell.PNG)
-![方块Cell1.PNG](./res/Square1.PNG)              |  ![方块Cell2.PNG](./res/Square2.PNG)
+![CKJGeneralCell.PNG](./res/Cell/CKJGeneralCell.PNG)              |  ![CKJCell.PNG](./res/Cell/CKJCell.PNG)
+![CKJInputCell1.PNG](./res/Cell/CKJInputCell1.PNG)              |  ![CKJInputCell2.PNG](./res/Cell/CKJInputCell2.PNG)
+![CKJLeftRightCell.PNG](./res/Cell/CKJLeftRightCell.PNG)              |  ![CKJTableViewCell.PNG](./res/Cell/CKJTableViewCell.PNG)
+![方块Cell1.PNG](./res/Cell/Square1.PNG)              |  ![方块Cell2.PNG](./res/Cell/Square2.PNG)
 
 请看下面代码
 
@@ -370,6 +370,7 @@ CKJLikeQRCell             |  单个二维码图片，`需要设置配置信息`
     CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJImageLeftCell", [UIColor kjwd_subTitleColor969696], @14) headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         CKJImageLeftCellModel *model1 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
             m.b_Image_URL = @"http://image.cmsfg.com/Images/20180608/2018060812432648.jpg";
+            m.b_placeholderImage = [UIImage kjwd_imageNamed:@"占位图片.png"];
             [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
                fm.title = WDCKJAttributed2(@"鼻饲流质", [UIColor kjwd_titleColor333333], nil);
                 fm.subTitle = WDCKJAttributed2(@"鼻饲流质营养治疗适用于不能自行经口进食、昏迷、手术前后营养不良、食欲低下但有一定消化吸收功能者", [UIColor kjwd_subTitleColor969696], nil);
@@ -419,7 +420,7 @@ CKJLikeQRCell             |  单个二维码图片，`需要设置配置信息`
 ```
 效果如下
 
-![核心Cell示例.PNG](./res/核心Cell示例.PNG)
+![核心Cell示例.PNG](./res/Cell/核心Cell示例.PNG)
 
 开发者只需管理好数据模型，UI全部根据数据模型进行渲染，如果想要修改UI的数据，只需要找到其数据模型，修改数据模型的数据，UI会自动改变。有些核心Cell需要设置配置数据，有些可以直接进行使用。比如上面示例中， CKJImageLeftCell则需要设置配置数据，而CKJGeneralCell和CKJCell则不需要。
 
@@ -631,5 +632,4 @@ FileManagerTool             |  本地文件管理类
 CKJToolPickerView	|	普通选择器视图
 CKJDatePickerView	|	日期选择器视图
 
-## 核心Cell套件
 

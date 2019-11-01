@@ -13,18 +13,21 @@
 
 #import "CKJGeneralCell.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
+
 @class CKJLeftView, CKJTopBottomView, CKJExtraView, CKJRightView;
 @class CKJCellModel, CKJCell, MASConstraintMaker, CKJCellBtnModel;
 
-typedef void(^CKJDidClickBtnHandle)(CKJCell *_Nonnull cell, CKJCellBtnModel *_Nonnull btn5Model);
+typedef void(^CKJDidClickBtnHandle)(CKJCell *cell, CKJCellBtnModel *btn5Model);
 
-//typedef void(^CKJDidClickbtn7Handle)(CKJCell *_Nonnull cell, CKJBtn7Model *_Nonnull btn7Model);
-//typedef void(^CKJDidClickbtn9Handle)(CKJCell *_Nonnull cell, CKJBtn9Model *_Nonnull btn7Model);
+//typedef void(^CKJDidClickbtn7Handle)(CKJCell *cell, CKJBtn7Model *btn7Model);
+//typedef void(^CKJDidClickbtn9Handle)(CKJCell *cell, CKJBtn9Model *btn7Model);
 
 
-typedef void(^CKJSwitch6Block)(BOOL switchOn, CKJCellModel *_Nonnull cellModel,  UISwitch *_Nonnull senderSwitch);
+typedef void(^CKJSwitch6Block)(BOOL switchOn, CKJCellModel *cellModel,  UISwitch *senderSwitch);
 
-typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
+typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *m);
 
 
 
@@ -35,7 +38,7 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 
 @property (copy, nonatomic, nullable) CKJDidClickBtnHandle didClickBtnHandle;
 
-+ (nonnull instancetype)btnModelWithSize:(CGSize)size normalImage:(nullable UIImage *)normalImage rightMargin:(CGFloat)rightMargin detailSettingBlock:(void(^_Nullable)(CKJCellBtnModel *_Nonnull sender))detailSettingBlock didClickBtnHandle:(nullable CKJDidClickBtnHandle)didClickBtnHandle;
++ (instancetype)btnModelWithSize:(CGSize)size normalImage:(nullable UIImage *)normalImage rightMargin:(CGFloat)rightMargin detailSettingBlock:(void(^_Nullable)(CKJCellBtnModel *sender))detailSettingBlock didClickBtnHandle:(nullable CKJDidClickBtnHandle)didClickBtnHandle;
 
 
 @end
@@ -78,9 +81,9 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
  @param leftMargin        上下Label 距离父视图Left边的间距
  @param rightMargin       上下Label 距离父视图Right边的间距
  */
-+ (nonnull instancetype)view5ModelWithTopAttributedText:(nullable NSAttributedString *)topText bottomAttributedText:(nullable NSAttributedString *)bottomText centerMarign:(CGFloat)centerMarign topBottomMargin:(CGFloat)topBottomMargin leftMargin:(CGFloat)leftMargin rightMargin:(CGFloat)rightMargin;
++ (instancetype)view5ModelWithTopAttributedText:(nullable NSAttributedString *)topText bottomAttributedText:(nullable NSAttributedString *)bottomText centerMarign:(CGFloat)centerMarign topBottomMargin:(CGFloat)topBottomMargin leftMargin:(CGFloat)leftMargin rightMargin:(CGFloat)rightMargin;
 
-+ (nonnull instancetype)view5ModelWithTopAttributedText:(nullable NSAttributedString *)topText bottomAttributedText:(nullable NSAttributedString *)bottomText topEdge:(UIEdgeInsets)topEdge bottomEdge:(UIEdgeInsets)bottomEdge;
++ (instancetype)view5ModelWithTopAttributedText:(nullable NSAttributedString *)topText bottomAttributedText:(nullable NSAttributedString *)bottomText topEdge:(UIEdgeInsets)topEdge bottomEdge:(UIEdgeInsets)bottomEdge;
 
 @end
 
@@ -97,7 +100,7 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 @property (assign, nonatomic) CGFloat bottom;
 @property (copy, nonatomic, nonnull) CKJSwitch6Block swicthBlock;
 
-+ (nonnull instancetype)switch6ModelWithSwitchOn:(BOOL)switchOn left:(CGFloat)left top:(CGFloat)top bottom:(CGFloat)bottom callBack:(nonnull CKJSwitch6Block)callBack;
++ (instancetype)switch6ModelWithSwitchOn:(BOOL)switchOn left:(CGFloat)left top:(CGFloat)top bottom:(CGFloat)bottom callBack:(CKJSwitch6Block)callBack;
 
 @end
 
@@ -110,10 +113,13 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 @property (assign, nonatomic) CGFloat leftMargin;
 @property (assign, nonatomic) CGFloat rightMargin;
 
-+ (nonnull instancetype)likePriceModelWithAttText:(nullable NSAttributedString *)text left:(CGFloat)left right:(CGFloat)right;
++ (instancetype)likePriceModelWithAttText:(nullable NSAttributedString *)text left:(CGFloat)left right:(CGFloat)right;
 
 /** 改变文字 */
 - (void)changeText:(nullable NSString *)text;
+
+/// 这个是为了增加Switch右边的距离
++ (instancetype)likePriceModelWithLeftMargin:(CGFloat)leftMargin;
 
 @end
 
@@ -138,7 +144,7 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 
 @property (strong, nonatomic, nullable) CKJCellBtnModel *btn9Model;
 
-+ (nonnull instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJCellModelRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJCellModelRowBlock)didSelectRowBlock;
++ (instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJCellModelRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJCellModelRowBlock)didSelectRowBlock;
 
 
 @end
@@ -148,19 +154,22 @@ typedef void(^CKJCellModelRowBlock)(__kindof CKJCellModel *_Nonnull m);
 
 @interface CKJCell : CKJGeneralCell
 
-@property (nonnull, strong, nonatomic, readonly) UILabel *subTitle4;
+@property (strong, nonatomic, readonly) UILabel *subTitle4;
 
-@property (nonnull, strong, nonatomic, readonly) UIButton *btn5;
+@property (strong, nonatomic, readonly) UIButton *btn5;
 
-@property (nonnull, strong, nonatomic, readonly) CKJTopBottomView *view5;
-@property (nonnull, strong, nonatomic, readonly) UILabel *view5_topLabel;
-@property (nonnull, strong, nonatomic, readonly) UILabel *view5_bottomLabel;
+@property (strong, nonatomic, readonly) CKJTopBottomView *view5;
+@property (strong, nonatomic, readonly) UILabel *view5_topLabel;
+@property (strong, nonatomic, readonly) UILabel *view5_bottomLabel;
 
-@property (nonnull, strong, nonatomic, readonly) UIView *kjSwitch6;
+@property (strong, nonatomic, readonly) UIView *kjSwitch6;
 
-@property (nonnull, strong, nonatomic, readonly) UIButton *btn7;
+@property (strong, nonatomic, readonly) UIButton *btn7;
 
-- (UIView *_Nonnull)tfWrapperView;
+- (UIView *)tfWrapperView;
 
 @end
 
+
+
+NS_ASSUME_NONNULL_END

@@ -23,7 +23,7 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"CKJBaseImageLeftRightCell及其子类";
+    self.navigationItem.title = @"CKJImageLeftRightCell示例";
     
     
     [self initSimpleTableViewData];
@@ -54,47 +54,44 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
         
         NSStringFromClass([CKJImageLeftCellModel class]) : @{cellKEY : NSStringFromClass([CKJImageLeftCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : leftConfig},
         NSStringFromClass([CKJImageRightCellModel class]) : @{cellKEY : NSStringFromClass([CKJImageRightCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : rightConfig},
-        
     };
 }
 
 - (void)initSimpleTableViewData {
     
-    
-    
-    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithDetailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
-        
-        CKJPayCellModel *model1 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
-            
-            m.b_ImageName = [UIImage kjwd_imageWithColor:[UIColor redColor] size:CGSizeMake(40, 40)];
-            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
-                fm.title = WDCKJAttributed2(@"标题", [UIColor kjwd_titleColor333333], nil);
-                fm.subTitle = WDCKJAttributed2(@"少时诵诗书", [UIColor kjwd_subTitleColor969696], nil);
-                fm.threeTitle = WDCKJAttributed2(@"额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1", [UIColor kjwd_subTitleColor969696], nil);
-            }];
-        } didSelectRowBlock:nil];
-        
-        __weak CKJPayCellModel *weakModel1 = model1;
-        
-        CKJTableViewCell1Model *model2 = [CKJTableViewCell1Model modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
-            m.textLabelAttStr = WDAtt15_5(@"点击展开");
-        } didSelectRowBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
-            weakModel1.displayInTableView = YES;
-            [m.cell.simpleTableView reloadData];
-        }];
-        
-        CKJTableViewCell1Model *model3 = [CKJTableViewCell1Model modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
-            m.textLabelAttStr = WDAtt15_5(@"点击隐藏");
-        } didSelectRowBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
-            weakModel1.displayInTableView = NO;
-            [m.cell.simpleTableView reloadData];
-        }];
-        
-        [self.simpleTableView addRadioCellModels:@[model1]];
-        
-        
-        _sec.modelArray = @[model1, model2, model3];
-    }];
+//    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithDetailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+//
+//        CKJPayCellModel *model1 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
+//
+//            m.b_ImageName = [UIImage kjwd_imageWithColor:[UIColor redColor] size:CGSizeMake(40, 40)];
+//            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
+//                fm.title = WDCKJAttributed2(@"标题", [UIColor kjwd_titleColor333333], nil);
+//                fm.subTitle = WDCKJAttributed2(@"少时诵诗书", [UIColor kjwd_subTitleColor969696], nil);
+//                fm.threeTitle = WDCKJAttributed2(@"额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1", [UIColor kjwd_subTitleColor969696], nil);
+//            }];
+//        } didSelectRowBlock:nil];
+//
+//        __weak CKJPayCellModel *weakModel1 = model1;
+//
+//        CKJTableViewCell1Model *model2 = [CKJTableViewCell1Model modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+//            m.textLabelAttStr = WDAtt15_5(@"点击展开");
+//        } didSelectRowBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+//            weakModel1.displayInTableView = YES;
+//            [m.cell.simpleTableView reloadData];
+//        }];
+//
+//        CKJTableViewCell1Model *model3 = [CKJTableViewCell1Model modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+//            m.textLabelAttStr = WDAtt15_5(@"点击隐藏");
+//        } didSelectRowBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+//            weakModel1.displayInTableView = NO;
+//            [m.cell.simpleTableView reloadData];
+//        }];
+//
+//        [self.simpleTableView addRadioCellModels:@[model1]];
+//
+//
+//        _sec.modelArray = @[model1, model2, model3];
+//    }];
     
     CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJImageLeftCell", [UIColor kjwd_subTitleColor969696], @14) headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         CKJImageLeftCellModel *model1 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {

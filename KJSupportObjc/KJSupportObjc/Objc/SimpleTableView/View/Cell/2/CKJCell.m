@@ -128,6 +128,10 @@
     self.attributedText = [CKJWorker changeOriginAtt:self.attributedText text:text];
 }
 
++ (instancetype)likePriceModelWithLeftMargin:(CGFloat)leftMargin {
+    return [self likePriceModelWithAttText:WDAtt15_5(@"") left:leftMargin right:0];
+}
+
 @end
 
 #pragma mark - -----模型和cell-----

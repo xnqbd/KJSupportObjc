@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"StackCell、ScrollViewCell示例1";
+    self.navigationItem.title = @"CKJBtnsCell、CKJScrollViewCell示例1";
     [self initSimpleTableViewData];
 }
 
@@ -42,7 +42,6 @@
     return @{
         NSStringFromClass([CKJBtnsCell1Model class]) : @{cellKEY : NSStringFromClass([CKJBtnsCell1 class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : config1},
         NSStringFromClass([CKJScrollViewCellModel class]) : @{cellKEY : NSStringFromClass([CKJScrollViewCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : scrollViewCellConfig},
-        
     };
 }
 
@@ -50,7 +49,8 @@
     
     KJ_typeweakself
     
-    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderHeight:15  detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+  
+    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJBtnsCell示例", [UIColor kjwd_subTitleColor969696], nil) headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
             m.selectionStyle = UITableViewCellSelectionStyleNone;
             m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"预交金明细", [UIColor kjwd_titleColor333333], nil) left:15];
@@ -69,7 +69,7 @@
     }];
     
     
-    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderHeight:10  detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJScrollViewCell示例", [UIColor kjwd_subTitleColor969696], nil) headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         
         CKJScrollViewCellModel *model2 = [CKJScrollViewCellModel modelWithCellHeight:160 cellModel_id:nil detailSettingBlock:^(__kindof CKJScrollViewCellModel * _Nonnull m) {
             NSArray *data = @[
@@ -123,7 +123,7 @@
     NSMutableArray *data = [NSMutableArray array];
     
     for (NSString *title in titles) {
-        [data addObject:@{cNormalAttTitle : WDAtt13(title), cNormalBgImage : image, cCornerRadius : @(5)}];
+        [data addObject:@{cNormalAttTitle : WDAtt13(title), cNormalBgImage : image, cCornerRadius : @5}];
     }
     
     NSArray <CKJBaseBtnsCellItemData *>*items = [CKJBaseBtnsCellItemData returnItemsWithDics:data detailSetting:^(CKJBaseBtnsCellItemData * _Nonnull __weak itemData, NSUInteger index) {

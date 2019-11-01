@@ -25,7 +25,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"注册账户";
+    self.navigationItem.title = @"CKJInput示例2";
     
     CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithFooterHeight:10 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull sec) {
         sec.rowHeight = 44;
@@ -81,7 +81,7 @@
         } didSelectRowBlock:nil];
         
         
-        sec.modelArray = @[name, phone, model3, model4];
+        sec.modelArray = @[name, phone, model3];
     }];
     self.simpleTableView.dataArr = @[section1];
     
