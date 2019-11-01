@@ -49,37 +49,15 @@
 - (void)initSimpleTableViewData {
     
     KJ_typeweakself
-
-    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithDetailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
-        
-        CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:120 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
-            m.selectionStyle = UITableViewCellSelectionStyleNone;
-            m.cell_bgColor = [UIColor kjwd_r:25 g:130 b:197 alpha:1];
-            m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:nil left:15];
-            
-            
-            m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"预交金余额(元)", [UIColor whiteColor], @15) bottomAttributedText:WDCKJAttributed2(@"2000.00", [UIColor whiteColor], @42) topEdge:UIEdgeInsetsMake(15, 0, 0, 0) bottomEdge:UIEdgeInsetsMake(0, 0, 25, 0)];
-            
-            m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(60, 30) normalImage:nil rightMargin:20 detailSettingBlock:^(CKJBtn7Model * _Nonnull sender) {
-                sender.normalAttributedTitle = WDCKJAttributed2(@"充值", [UIColor whiteColor], @15);
-                sender.cornerRadius = 15;
-                sender.borderColor = [UIColor kjwd_r:169 g:218 b:255 alpha:1];
-                sender.borderWidth = 2;
-            } didClickBtn7Handle:^(CKJCell * _Nonnull cell, CKJBtn7Model * _Nonnull btn7Model) {
-                NSLog(@"点击充值");
-            }];
-        } didSelectRowBlock:nil];
-        _sec.modelArray = @[model1];
-    }];
     
-    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderHeight:15  detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderHeight:15  detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         CKJCellModel *model1 = [CKJCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
             m.selectionStyle = UITableViewCellSelectionStyleNone;
             m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"预交金明细", [UIColor kjwd_titleColor333333], nil) left:15];
             
-            m.btn7Model = [CKJBtn7Model btn7ModelWithSize:CGSizeMake(60, 30) normalImage:nil rightMargin:12 detailSettingBlock:^(CKJBtn7Model * _Nonnull sender) {
+            m.btn7Model = [CKJCellBtnModel btnModelWithSize:CGSizeMake(60, 30) normalImage:nil rightMargin:12 detailSettingBlock:^(CKJCellBtnModel * _Nonnull sender) {
                 sender.normalAttributedTitle = WDCKJAttributed2(@"筛选", [UIColor kjwd_r:25 g:130 b:197 alpha:1], nil);
-            } didClickBtn7Handle:^(CKJCell * _Nonnull cell, CKJBtn7Model * _Nonnull btn7Model) {
+            } didClickBtnHandle:^(CKJCell * _Nonnull cell, CKJCellBtnModel * _Nonnull btn7Model) {
                 NSLog(@"点击筛选");
                 if (cell.currentSectionAllCellModelArray.count > 1) return;
                 [cell.simpleTableView appendCellModelArray:[weakSelf extensionCellModels] atLastRow_InAllCellModelArrayOfSection:cell.section withRowAnimation:UITableViewRowAnimationTop animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
@@ -91,9 +69,7 @@
     }];
     
     
-    
-    
-    CKJCommonSectionModel *section3 = [CKJCommonSectionModel sectionWithHeaderHeight:10  detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderHeight:10  detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         
         CKJScrollViewCellModel *model2 = [CKJScrollViewCellModel modelWithCellHeight:160 cellModel_id:nil detailSettingBlock:^(__kindof CKJScrollViewCellModel * _Nonnull m) {
             NSArray *data = @[
@@ -120,7 +96,7 @@
         _sec.modelArray = @[model2];
     }];
     
-    self.simpleTableView.dataArr = @[section1, section2, section3];
+    self.simpleTableView.dataArr = @[section1, section2];
     [self.simpleTableView kjwd_reloadData];
 }
 

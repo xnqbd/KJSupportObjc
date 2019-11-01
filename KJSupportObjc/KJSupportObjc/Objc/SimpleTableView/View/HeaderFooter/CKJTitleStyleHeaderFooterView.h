@@ -17,7 +17,7 @@
 
 @property (assign, nonatomic) NSTextAlignment textAlignment;
 
-+ (nonnull instancetype)modelWithAttributedString:(nullable NSAttributedString *)attributedString type:(CKJCommonHeaderFooterType)type;
++ (nonnull instancetype)modelWithAttributedString:(nullable NSAttributedString *)attributedString textAlignment:(NSTextAlignment)textAlignment type:(CKJCommonHeaderFooterType)type;
 
 @end
 

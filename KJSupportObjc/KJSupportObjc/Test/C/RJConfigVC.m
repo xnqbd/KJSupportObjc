@@ -8,7 +8,8 @@
 
 #import "RJConfigVC.h"
 #import "SelectDateCell.h"
-#import "CKJLeftRightCell.h"
+#import "CKJLeftRightTopEqualCell.h"
+#import "CKJLeftRightCenterEqualCell.h"
 
 #import "RJBillDetailModel.h"
 #import "RJBillCell.h"
@@ -43,19 +44,19 @@
         m.endDate = EndDate_Today;
     }];
     
-    CKJLeftRightCellTopEqualConfig *config3 = [CKJLeftRightCellTopEqualConfig configWithLeftLabelTopMargin:2 detailSettingBlock:nil];
+    CKJLeftRightTopEqualCellConfig *config3 = [CKJLeftRightTopEqualCellConfig configWithLeftLabelTopMargin:2 detailSettingBlock:nil];
     
     return @{
         NSStringFromClass([RJBillCellModel class]) : @{cellKEY : NSStringFromClass([RJBillCell class]), isRegisterNibKEY : @YES},
         NSStringFromClass([SelectDateCellModel class]) : @{cellKEY : NSStringFromClass([SelectDateCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : config1},
-        NSStringFromClass([CKJLeftRightCellModel class]) : @{cellKEY : NSStringFromClass([CKJLeftRightCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : config3},
+        NSStringFromClass([CKJLeftRightTopEqualCellModel class]) : @{cellKEY : NSStringFromClass([CKJLeftRightTopEqualCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : config3},
         
     };
 }
 
 
 - (void)kj_tableView:(CKJSimpleTableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath model:(__kindof CKJCommonCellModel *)model cell:(__kindof CKJCommonTableViewCell *)cell {
-    if ([model isKindOfClass:[CKJLeftRightCellModel class]]) {
+    if ([model isKindOfClass:[CKJLeftRightTopEqualCellModel class]]) {
         
         RJBillDetailModel *target = model.extension_Obj;
         
@@ -108,7 +109,7 @@
     NSMutableAttributedString *header = WDCKJAttributed2(@"一般可以在returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s里面进行对Cell初始化的配置，以统一配置不同的界面不同的风格情况， 比如下面的SelectDateCell可以配置开始和结束默认时间，以及CKJLeftRightCell居中对齐和顶部对齐。", [UIColor redColor], nil);
     [header appendAttributedString:WDCKJAttributed2(@"\n\n在本Demo中CKJCombineCellProtocol协议将几个CKJLeftRightCell聚合成一个虚拟的RJBillDetailCell，(本质上还是那几个CKJLeftRightCell)，\n要特别注意：这个协议仅仅是展示作用，如果虚拟的RJBillDetailCell想要在某一时刻修改内容，那么请自定义Cell!", [UIColor redColor], nil)];
     
-    CKJCommonSectionModel *section = [CKJCommonSectionModel sectionWithHeaderAttString:header detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+    CKJCommonSectionModel *section = [CKJCommonSectionModel sectionWithHeaderAttString:header headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         _sec.footerHeight = 15;
         
         SelectDateCellModel *model1 = [SelectDateCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(SelectDateCellModel *m) {

@@ -11,38 +11,18 @@
 
 #import "UIView+CKJDesingable.h"
 
-
-@implementation CKJBaseBtnModel
-
-
-- (void)changeNormalText:(nullable NSString *)text {
-    self.normalAttributedTitle = [CKJWorker changeOriginAtt:self.normalAttributedTitle text:text];
-}
-- (void)changeSelectedText:(nullable NSString *)text {
-    self.selectedAttributedTitle = [CKJWorker changeOriginAtt:self.selectedAttributedTitle text:text];
-}
+@implementation CKJCellBtnModel
 
 
-- (instancetype)init {
-    if (self = [super init]) {
-        self.userInteractionEnabled = YES;
-    }
-    return self;
-}
-
-@end
-
-@implementation CKJBtn5Model
-
-+ (nonnull instancetype)btn5ModelWithSize:(CGSize)size normalImage:(nullable UIImage *)normalImage rightMargin:(CGFloat)rightMargin detailSettingBlock:(void(^_Nullable)(CKJBtn5Model *_Nonnull sender))detailSettingBlock didClickBtn7Handle:(nullable CKJDidClickbtn5Handle)didClickBtn7Handle {
-    CKJBtn5Model *model = [[self alloc] init];
++ (nonnull instancetype)btnModelWithSize:(CGSize)size normalImage:(nullable UIImage *)normalImage rightMargin:(CGFloat)rightMargin detailSettingBlock:(void(^_Nullable)(CKJCellBtnModel *_Nonnull sender))detailSettingBlock didClickBtnHandle:(nullable CKJDidClickBtnHandle)didClickBtnHandle {
+    CKJCellBtnModel *model = [[self alloc] init];
     model.normalImage = normalImage;
     model.rightMargin = rightMargin;
     model.size = size;
     if (detailSettingBlock) {
         detailSettingBlock(model);
     }
-//    model.didClickBtn5Handle = didClickBtn5Handle;
+    model.didClickBtnHandle = didClickBtnHandle;
     return model;
 }
 
@@ -91,32 +71,13 @@
 @implementation CKJSwitch6Model
 
 
-+ (instancetype)switch6ModelWithSwitchOn:(BOOL)switchOn left:(CGFloat)left top:(CGFloat)top right:(CGFloat)right bottom:(CGFloat)bottom callBack:(CKJSwitch6Block)callBack {
++ (nonnull instancetype)switch6ModelWithSwitchOn:(BOOL)switchOn left:(CGFloat)left top:(CGFloat)top bottom:(CGFloat)bottom callBack:(nonnull CKJSwitch6Block)callBack {
     CKJSwitch6Model *model = [[self alloc] init];
     model.switchOn = switchOn;
     model.left = left;
     model.top = top;
-    model.right = right;
     model.bottom = bottom;
     model.swicthBlock = callBack;
-    return model;
-}
-
-@end
-
-@implementation CKJBtn7Model
-
-
-
-+ (nonnull instancetype)btn7ModelWithSize:(CGSize)size normalImage:(nullable UIImage *)normalImage rightMargin:(CGFloat)rightMargin detailSettingBlock:(void(^_Nullable)(CKJBtn7Model *_Nonnull sender))detailSettingBlock didClickBtn7Handle:(nullable CKJDidClickbtn7Handle)didClickBtn7Handle {
-    CKJBtn7Model *model = [[self alloc] init];
-    model.normalImage = normalImage;
-    model.rightMargin = rightMargin;
-    model.size = size;
-    if (detailSettingBlock) {
-        detailSettingBlock(model);
-    }
-    model.didClickBtn7Handle = didClickBtn7Handle;
     return model;
 }
 
@@ -154,6 +115,20 @@
 @implementation CKJButton7
 @end
 
+@implementation CKJLikePriceLabel61Model
+
++ (instancetype)likePriceModelWithAttText:(NSAttributedString *)text left:(CGFloat)left right:(CGFloat)right {
+    CKJLikePriceLabel61Model *model = [[self alloc] init];
+    model.attributedText = text;
+    model.leftMargin = left;
+    model.rightMargin = right;
+    return model;
+}
+- (void)changeText:(nullable NSString *)text {
+    self.attributedText = [CKJWorker changeOriginAtt:self.attributedText text:text];
+}
+
+@end
 
 #pragma mark - -----模型和cell-----
 @implementation CKJCellModel
@@ -194,6 +169,7 @@
 
 
 @property (strong, nonatomic) UIView *kjSwitch6;
+@property (strong, nonatomic) UILabel *alikePriceLabel61;
 @property (strong, nonatomic) UIButton *btn7;
 
 @end
@@ -214,7 +190,7 @@
     /*
      顺序
      
-     [subTitle4  btn5  View5  tfWrapperView  kjSwitch6   btn7]
+     [subTitle4  btn5  View5  tfWrapperView  kjSwitch6  price61  btn7]
      
      */
     
@@ -262,6 +238,7 @@
         
         self.kjSwitch6.backgroundColor = [UIColor blueColor];
         //        self.rightWrapView.backgroundColor = [UIColor darkGrayColor];
+        self.alikePriceLabel61.backgroundColor = [UIColor kjwd_blueBtnColor];
         
         self.btn7.backgroundColor = [UIColor redColor];
         self.arrowImageView9.backgroundColor = [UIColor grayColor];
@@ -282,6 +259,8 @@
     [self update_tfWrapperView_Constraint];
     
     [self origin_switchView6_Constraint];
+    
+    [self update_alikePriceLabel61_Constraint];
     
     [self origin_btn7_Constraint];
 }
@@ -306,11 +285,15 @@
 }
 
 - (void)create_btn5 {
-    
+    __weak typeof(self) weakSelf = self;
     CKJButton5 *btn5 = [CKJButton5 buttonWithType:UIButtonTypeCustom];
-//    [btn5 addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [btn5 kjwd_addTouchUpInsideForCallBack:^(UIButton * _Nonnull _sender) {
+        CKJCellModel *model = (CKJCellModel *)weakSelf.cellModel;
+        if (model.btn5Model.didClickBtnHandle) {
+            model.btn5Model.didClickBtnHandle(weakSelf, model.btn5Model);
+        }
+    }];
     [self.subviews_SuperView addSubview:btn5];
-    
     self.btn5 = btn5;
 }
 
@@ -349,14 +332,29 @@
 }
 
 - (void)create_67 {
+    __weak typeof(self) weakSelf = self;
+    
     CKJSwitchView *switchView6 = [[CKJSwitchView alloc] init];
     [switchView6.swicth addTarget:self action:@selector(swicthAction:) forControlEvents:UIControlEventValueChanged];
     [switchView6 setContentHuggingPriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     [switchView6 setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     [self.subviews_SuperView addSubview:switchView6];
+    
+    
+    UILabel *alikePriceLabel61 = [CKJLikePriceLabel61 new];
+    [self.subviews_SuperView addSubview:alikePriceLabel61];
+    self.alikePriceLabel61 = alikePriceLabel61;
+    [alikePriceLabel61 kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
+        make.top.bottom.equalTo(superview);
+    }];
 
-    CKJButton7 *btn7 = [self __privateMethodOfCreateBtn7];
-    [btn7 addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    CKJButton7 *btn7 = [CKJButton7 buttonWithType:UIButtonTypeCustom];
+    [btn7 kjwd_addTouchUpInsideForCallBack:^(UIButton * _Nonnull _sender) {
+        CKJCellModel *model = (CKJCellModel *)weakSelf.cellModel;
+        if (model.btn7Model.didClickBtnHandle) {
+            model.btn7Model.didClickBtnHandle(weakSelf, model.btn7Model);
+        }
+    }];
     [self.subviews_SuperView addSubview:btn7];
     
     self.kjSwitch6 = switchView6;
@@ -376,7 +374,7 @@
     CGFloat bottomMargin = subTitle4Model.bottomMargin;
     CGFloat rightMargin = subTitle4Model.rightMargin;
     
-    // [subTitle4  btn5  View5  tfWrapperView  kjSwitch6   btn7]
+    // [subTitle4  btn5  View5  tfWrapperView  kjSwitch6  price61  btn7]
     
     [_subTitle4 kjwd_mas_remakeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.left.equalTo(superview).offset(subTitle4LeftMarign);
@@ -389,74 +387,27 @@
 
 - (void)origin_btn5_Constraint {
     
-    
     CKJCellModel *model = (CKJCellModel *)self.cellModel;
-    CKJBtn5Model *btn5Model = model.btn5Model;
+    CKJCellBtnModel *btn5Model = model.btn5Model;
     
     UIButton *btn5 = self.btn5;
     
-    [btn5 setAttributedTitle:btn5Model.normalAttributedTitle forState:UIControlStateNormal];
-    [btn5 setAttributedTitle:btn5Model.selectedAttributedTitle forState:UIControlStateSelected];
-    
-    UIImage *normalBackgroundImage =  btn5Model.normalBackgroundImage;
-    UIImage *selectedBackgroundImage = btn5Model.selectedBackgroundImage;
-    UIImage *normalImage = btn5Model.normalImage;
-    UIImage *selectedImage = btn5Model.selectedImage;
-    
-    normalBackgroundImage = WDKJ_IsNullObj(normalBackgroundImage, [UIImage class]) ? nil : normalBackgroundImage;
-    selectedBackgroundImage = WDKJ_IsNullObj(selectedBackgroundImage, [UIImage class]) ? nil : selectedBackgroundImage;
-    normalImage = WDKJ_IsNullObj(normalImage, [UIImage class]) ? nil : normalImage;
-    selectedImage =  WDKJ_IsNullObj(selectedImage, [UIImage class]) ? nil : selectedImage;
-    
-    [btn5 setBackgroundImage:normalBackgroundImage forState:UIControlStateNormal];
-    [btn5 setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
-    [btn5 setImage:normalImage forState:UIControlStateNormal];
-    [btn5 setImage:selectedImage forState:UIControlStateSelected];
-    
-    BOOL emptyAttributedTitle = WDKJ_IsEmpty_Str(btn5.currentAttributedTitle.string);
-    BOOL emptyImage = btn5.currentImage == nil;
-    BOOL emptyBackgroundImage = btn5.currentBackgroundImage == nil;
-    // 如果什么都没有， 那么就width = 0
-    
-    // [subTitle4  btn5  View5  tfWrapperView  kjSwitch6   btn7]
-    
-    if ((emptyAttributedTitle && emptyImage && emptyBackgroundImage) || btn5Model.btnHidden) {
+    // [subTitle4  btn5  View5  tfWrapperView  kjSwitch6  price61  btn7]
+    [CKJWorker reloadWithBtnModel:btn5Model btn:btn5 emptyHandle:^(CKJCellBtnModel * _Nonnull btnM) {
         
         [_btn5 kjwd_mas_remakeConstraints:^(MASConstraintMaker *make, UIView *superview) {
             make.centerY.equalTo(superview);
             make.width.height.equalTo(@0);
             make.right.equalTo(_view5.mas_left);
         }];
-    } else {
-        CGFloat centerYOffset = btn5Model.centerYOffset;
-        CGFloat rightMargin = btn5Model.rightMargin;
-        CGSize size = btn5Model.size;
+    } noEmptyHandle:^(CKJCellBtnModel * _Nonnull btnM) {
         
         [_btn5 kjwd_mas_remakeConstraints:^(MASConstraintMaker *make, UIView *superview) {
-            make.centerY.equalTo(superview).offset(centerYOffset);
-            make.width.equalTo(@(size.width));
-            make.height.equalTo(@(size.height));
-            make.right.equalTo(_view5.mas_left).offset(-(rightMargin));
+            make.centerY.equalTo(superview).offset(btnM.centerYOffset);
+            make.size.mas_equalTo(btnM.size);
+            make.right.equalTo(_view5.mas_left).offset(-(btnM.rightMargin));
         }];
-        
-        if (btn5Model.cornerRadius > 0) {
-            btn5.layer.cornerRadius = btn5Model.cornerRadius;
-            btn5.clipsToBounds = YES;
-        } else {
-            btn5.layer.cornerRadius = 0;
-            btn5.clipsToBounds = NO;
-        }
-        btn5.kBorderColor = btn5Model.borderColor;
-        btn5.kBorderWidth = btn5Model.borderWidth;
-        btn5.selected = btn5Model.selected;
-        btn5.userInteractionEnabled = btn5Model.userInteractionEnabled;
-        
-        if (btn5Model.layoutButton) {
-            btn5Model.layoutButton(btn5);
-        }
-    }
-    
-    [btn5 kjwd_setHidden:btn5Model.btnHidden];
+    }];
 }
 
 - (void)origin_topBottomView_Constraint {
@@ -506,120 +457,75 @@
 - (void)origin_switchView6_Constraint {
     
     CKJCellModel *model = (CKJCellModel *)self.cellModel;
-
-        CKJSwitch6Model *switch6Model = model.switch6Model;
-        // CGFloat left = switch6Model.left;
-        CGFloat top = switch6Model.top;
-        CGFloat right = switch6Model.right;
-        CGFloat bottom = switch6Model.bottom;
-        
-        /*
-         顺序
-         
-         [subTitle4  btn5  View5  tfWrapperView  kjSwitch6   btn7]
-         */
     
-        if (switch6Model == nil) {
-            self.kjSwitch6.hidden = YES;
-            [_kjSwitch6 kjwd_mas_remakeConstraints:^(MASConstraintMaker *make, UIView *superview) {
-                make.top.bottom.equalTo(superview);
-                make.right.equalTo(self.btn7.mas_left);
-                make.width.equalTo(@0);
-            }];
-        } else {
-            self.kjSwitch6.hidden = NO;
-            
-            [_kjSwitch6 kjwd_mas_remakeConstraints:^(MASConstraintMaker *make, UIView *superview) {
-                make.top.equalTo(superview).offset(top);
-                make.bottom.equalTo(superview).offset(-(bottom));
-                make.right.equalTo(self.btn7.mas_left).offset(-(right));
-                make.width.equalTo(@60);
-            }];
-            ((CKJSwitchView *)self.kjSwitch6).swicth.on = switch6Model.switchOn;
-        }
+    CKJSwitch6Model *switch6Model = model.switch6Model;
+    // CGFloat left = switch6Model.left;
+    CGFloat top = switch6Model.top;
+    CGFloat bottom = switch6Model.bottom;
+    
+    // [subTitle4  btn5  View5  tfWrapperView  kjSwitch6  price61  btn7]
+    
+    if (switch6Model == nil) {
+        _kjSwitch6.hidden = YES;
+        [_kjSwitch6 kjwd_mas_remakeConstraints:^(MASConstraintMaker *make, UIView *superview) {
+            make.top.bottom.equalTo(superview);
+            make.width.equalTo(@0);
+        }];
+    } else {
+        self.kjSwitch6.hidden = NO;
+        
+        [_kjSwitch6 kjwd_mas_remakeConstraints:^(MASConstraintMaker *make, UIView *superview) {
+            make.top.equalTo(superview).offset(top);
+            make.bottom.equalTo(superview).offset(-(bottom));
+            make.width.equalTo(@60);
+        }];
+        ((CKJSwitchView *)self.kjSwitch6).swicth.on = switch6Model.switchOn;
+    }
+}
+
+- (void)update_alikePriceLabel61_Constraint {
+    
+    CKJCellModel *model = (CKJCellModel *)self.cellModel;
+    
+    // [subTitle4  btn5  View5  tfWrapperView  kjSwitch6  price61  btn7]
+    
+    _alikePriceLabel61.attributedText = WDKJ_ConfirmAttString(model.likePrice61Model.attributedText);
+    
+    CGFloat left = model.likePrice61Model.leftMargin;
+    CGFloat right = model.likePrice61Model.rightMargin;
+    
+    [_alikePriceLabel61 kjwd_mas_updateConstraints:^(MASConstraintMaker *make, UIView *superview) {
+        MASViewAttribute *temp = _btn7.mas_left;
+        
+        make.left.equalTo(_kjSwitch6.mas_right).offset(left);
+        make.right.equalTo(temp).offset(-(right));
+    }];
 }
 
 
 - (void)origin_btn7_Constraint {
     CKJCellModel *model = (CKJCellModel *)self.cellModel;
-    CKJBtn7Model *btn7Model = model.btn7Model;
+    CKJCellBtnModel *btn7Model = model.btn7Model;
     
     UIButton *btn7 = self.btn7;
     
-    [btn7 setAttributedTitle:btn7Model.normalAttributedTitle forState:UIControlStateNormal];
-    [btn7 setAttributedTitle:btn7Model.selectedAttributedTitle forState:UIControlStateSelected];
-    
-    UIImage *normalBackgroundImage =  btn7Model.normalBackgroundImage;
-    UIImage *selectedBackgroundImage = btn7Model.selectedBackgroundImage;
-    UIImage *normalImage = btn7Model.normalImage;
-    UIImage *selectedImage = btn7Model.selectedImage;
-    
-    normalBackgroundImage = WDKJ_IsNullObj(normalBackgroundImage, [UIImage class]) ? nil : normalBackgroundImage;
-    selectedBackgroundImage = WDKJ_IsNullObj(selectedBackgroundImage, [UIImage class]) ? nil : selectedBackgroundImage;
-    normalImage = WDKJ_IsNullObj(normalImage, [UIImage class]) ? nil : normalImage;
-    selectedImage =  WDKJ_IsNullObj(selectedImage, [UIImage class]) ? nil : selectedImage;
-    
-    [btn7 setBackgroundImage:normalBackgroundImage forState:UIControlStateNormal];
-    [btn7 setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
-    [btn7 setImage:normalImage forState:UIControlStateNormal];
-    [btn7 setImage:selectedImage forState:UIControlStateSelected];
-    
-    BOOL emptyAttributedTitle = WDKJ_IsEmpty_Str(btn7.currentAttributedTitle.string);
-    BOOL emptyImage = btn7.currentImage == nil;
-    BOOL emptyBackgroundImage = btn7.currentBackgroundImage == nil;
-    // 如果什么都没有， 那么就width = 0
-    
-    if ((emptyAttributedTitle && emptyImage && emptyBackgroundImage) || btn7Model.btnHidden) {
+    [CKJWorker reloadWithBtnModel:btn7Model btn:btn7 emptyHandle:^(CKJCellBtnModel * _Nonnull btnM) {
         
         [_btn7 kjwd_mas_remakeConstraints:^(MASConstraintMaker *make, UIView *superview) {
             make.centerY.right.equalTo(superview);
             make.width.equalTo(@0);
             make.right.equalTo(superview);
         }];
-    } else {
-        CGFloat centerYOffset = btn7Model.centerYOffset;
-        CGFloat rightMargin = btn7Model.rightMargin;
-        CGSize size = btn7Model.size;
+    } noEmptyHandle:^(CKJCellBtnModel * _Nonnull btnM) {
         
         [_btn7 kjwd_mas_remakeConstraints:^(MASConstraintMaker *make, UIView *superview) {
-            make.centerY.equalTo(superview).offset(centerYOffset);
-            make.width.equalTo(@(size.width));
-            make.height.equalTo(@(size.height));
-            make.right.equalTo(superview).offset(-(rightMargin));
+            make.centerY.equalTo(superview).offset(btnM.centerYOffset);
+            make.size.mas_equalTo(btnM.size);
+            make.right.equalTo(superview).offset(-(btnM.rightMargin));
         }];
-        
-        if (btn7Model.cornerRadius > 0) {
-            btn7.layer.cornerRadius = btn7Model.cornerRadius;
-            btn7.clipsToBounds = YES;
-        } else {
-            btn7.layer.cornerRadius = 0;
-            btn7.clipsToBounds = NO;
-        }
-        btn7.kBorderColor = btn7Model.borderColor;
-        btn7.kBorderWidth = btn7Model.borderWidth;
-        btn7.selected = btn7Model.selected;
-        btn7.userInteractionEnabled = btn7Model.userInteractionEnabled;
-        
-        if (btn7Model.layoutButton) {
-            btn7Model.layoutButton(btn7);
-        }
-    }
-    
-    [btn7 kjwd_setHidden:btn7Model.btnHidden];
+    }];
 }
 
-
-
-- (void)btnAction:(UIButton *)sender {
-    CKJCellModel *model = (CKJCellModel *)self.cellModel;
-    if (model.btn7Model.didClickBtn7Handle) {
-        model.btn7Model.didClickBtn7Handle(self, model.btn7Model);
-    }
-}
-
-- (__kindof UIButton *)__privateMethodOfCreateBtn7 {
-    return [CKJButton7 buttonWithType:(UIButtonTypeCustom)];
-}
 - (UIView *_Nonnull)tfWrapperView {
     return _tfWrapperView;
 }

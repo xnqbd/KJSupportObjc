@@ -49,10 +49,31 @@
 
 
 
+@implementation CKJLikePriceLabel61
+
+- (instancetype)init {
+    if (self = [super init]) {
+        [self setContentHuggingPriority:850 forAxis:UILayoutConstraintAxisHorizontal];
+        [self setContentCompressionResistancePriority:850 forAxis:UILayoutConstraintAxisHorizontal];
+    }
+    return self;
+}
+
+@end
+
 @implementation CKJRightView
 @end
 
 @implementation CKJLikePriceLabel8
+
+- (instancetype)init {
+    if (self = [super init]) {
+        [self setContentHuggingPriority:850 forAxis:UILayoutConstraintAxisHorizontal];
+        [self setContentCompressionResistancePriority:850 forAxis:UILayoutConstraintAxisHorizontal];
+    }
+    return self;
+}
+
 @end
 @implementation CKJArrowImageView9
 @end

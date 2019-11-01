@@ -89,8 +89,6 @@
 }
 @end
 
-
-
 @implementation CKJArrow9Model
 
 + (instancetype)arrow9ModelWithImage:(UIImage *)image right:(nullable NSNumber *)right {
@@ -108,7 +106,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.right = 8;
+        self.right = 10;
         NSBundle *resourcesBundle = [CKJWorker kjbundle];
         UIImage *arrow = [UIImage imageNamed:@"kj_arrow1" inBundle:resourcesBundle compatibleWithTraitCollection:nil];
         arrow = [arrow kjwd_scaleToSize:CGSizeMake(16, 16)];
@@ -120,8 +118,11 @@
 @end
 
 
-
 @implementation CKJGeneralCellModel
+
+- (NSString *_Nullable)title3Text {
+    return _title3Model.attributedText.string;
+}
 
 + (nonnull instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJGeneralCellModelRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJGeneralCellModelRowBlock)didSelectRowBlock {
     return [super modelWithCellHeight:cellHeight cellModel_id:cellModel_id detailSettingBlock:detailSettingBlock didSelectRowBlock:didSelectRowBlock];
@@ -233,10 +234,9 @@
     
     
     UILabel *alikePriceLabel8 = [CKJLikePriceLabel8 new];
-    [alikePriceLabel8 setContentHuggingPriority:850 forAxis:UILayoutConstraintAxisHorizontal];
-    [alikePriceLabel8 setContentCompressionResistancePriority:850 forAxis:UILayoutConstraintAxisHorizontal];
     [rightWrapView addSubview:alikePriceLabel8];
     self.alikePriceLabel8 = alikePriceLabel8;
+    
     
     // 右边箭头图片
     CKJArrowImageView9 *arrowImageView9 = [CKJArrowImageView9 new];
@@ -272,11 +272,13 @@
 
 - (void)origin_imageBtn2_Constraint {
     CKJGeneralCellModel *model = self.cellModel;
-
-    UIImage *normalImage = model.image2Model.normalImage;
-    CGFloat leftMargin = model.image2Model.leftMargin;
     
-    CGFloat title3LeftMargin = model.title3Model.leftMargin;
+    CKJImage2Model *image2Model = model.image2Model;
+
+    UIImage *normalImage = image2Model.normalImage;
+    CGFloat leftMargin = image2Model.leftMargin;
+    
+    CGFloat title3LeftMargin = self.cellModel.title3Model.leftMargin;
     
     if (normalImage == nil) {
         [_imageBtn2 kjwd_mas_remakeConstraints:^(MASConstraintMaker *make, UIView *superview) {
@@ -287,7 +289,7 @@
         }];
     } else {
         [self.imageBtn2 setImage:normalImage forState:UIControlStateNormal];
-        CGSize size = model.image2Model.sizeValue.CGSizeValue;
+        CGSize size = image2Model.sizeValue.CGSizeValue;
         [_imageBtn2 kjwd_mas_remakeConstraints:^(MASConstraintMaker *make, UIView *superview) {
             make.centerY.equalTo(superview);
             make.left.equalTo(superview).offset(leftMargin);
@@ -295,6 +297,21 @@
             make.height.equalTo(@(size.height));
             make.right.equalTo(self.title3.mas_left).offset(-(title3LeftMargin));
         }];
+    }
+    
+    
+    CGFloat radius = image2Model.cornerRadius;
+    
+    if (radius <= 0) {
+        if (_imageBtn2.layer.cornerRadius != 0) {
+            _imageBtn2.layer.cornerRadius = 0;
+            _imageBtn2.clipsToBounds = NO;
+        }
+    } else {
+        if (_imageBtn2.layer.cornerRadius != radius) {
+            _imageBtn2.layer.cornerRadius = radius;
+            _imageBtn2.clipsToBounds = YES;
+        }
     }
 }
 
@@ -340,6 +357,7 @@
         make.right.equalTo(temp).offset(-(right));
     }];
 }
+
 - (void)origin_arrowImageView9_Constraint {
     CKJArrow9Model *arrow9 = self.cellModel.arrow9Model;
     CGFloat right = arrow9.right;

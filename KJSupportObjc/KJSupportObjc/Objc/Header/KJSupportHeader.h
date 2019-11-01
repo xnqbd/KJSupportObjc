@@ -17,9 +17,6 @@
 @end
 
 
-
-
-
 @interface CKJLeftView : UIView
 @end
 
@@ -28,10 +25,6 @@
 @end
 @interface CKJSubTitle4Label : UILabel
 @end
-
-
-
-
 
 
 @interface CKJCenterView : UIView
@@ -47,6 +40,10 @@
 @property (strong, nonatomic) UISwitch *swicth;
 @end
 
+
+
+@interface CKJLikePriceLabel61 : UILabel
+@end
 
 @interface CKJRightView : UIView
 @end

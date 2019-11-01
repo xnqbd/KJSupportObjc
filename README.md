@@ -311,7 +311,7 @@ CKJSimpleTableView套件提供了最常用的一些Cell，极大节省了开发�
 
 类名           |  简介
 -------------------------  |  --------------------------
-CKJGeneralCell              |  左边一个图片和标题，右边一个文字和图片(箭头)，一般用于我的和设置界面
+CKJGeneralCell              |  左边一个图片和标题，右边一个文字和图片(箭头)，一般用于我的和设置界面 ![Markdown preferences pane](./res/CKJGeneralCell.png)
 CKJCell             |  继承于CKJGeneralCell，主要多了上下UILabel，和开关按钮
 CKJInputCell             |  继承于CKJCell，多了输入框
 CKJTableViewCell1、CKJTableViewCell2             |  只有UILabel
@@ -322,6 +322,8 @@ CKJPayCell             |  继承于CKJImageLeftCell，常用于选择支付方�
 CKJBtnsCell1、CKJBtnsCell2             |  常用于三到九宫格布局，`需要设置配置信息`
 CKJScrollViewCell             |  单行可以滚动的多个ItemView，类似相册一样，`需要设置配置信息`
 CKJLikeQRCell             |  单个二维码图片，`需要设置配置信息`
+![Markdown preferences pane](./res/CKJGeneralCell.png)             |  ![Markdown preferences pane](./res/CKJGeneralCell.png)
+
 
 
 ## 常用分类
@@ -532,6 +534,15 @@ CKJDatePickerView	|	日期选择器视图
 ## 核心Cell套件
 
 核心Cell封装了日常开发中最常见的一些Cell种类，开发者只需管理好数据模型，UI全部根据数据模型来的，如果想要修改UI的数据，只需要找到其数据模型，修改数据模型的数据，UI会自动改变。
+
+
+类名           |  简介
+-------------------------  |  --------------------------
+CKJRSA              |  RSA加密
+FileManagerTool             |  本地文件管理类
+CKJToolPickerView	|	普通选择器视图
+CKJDatePickerView	|	日期选择器视图
+
 
 ### CKJGeneralCell
 左边一个图片和标题，右边一个文字和图片(箭头)，一般用于我的和设置界面

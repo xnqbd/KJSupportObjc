@@ -9,7 +9,8 @@
 #import "CKJInputCell.h"
 #import "UIView+CKJDesingable.h"
 #import "CKJSimpleTableView.h"
-
+#import "CKJLibraryHelper.h"
+#import <Masonry/Masonry.h>
 
 NSInteger const kInput_Name = 3673620;
 NSInteger const kInput_Sex = 4021728;
@@ -22,14 +23,33 @@ NSInteger const kInput_Relationship = 372902;
 NSInteger const kInput_Address = 886252;
 NSInteger const kInput_Email = 2628390;
 
+CKJInputExpressionRequiredModel * WDKJ_ER(NSString *emptyRequiredText) {
+    CKJInputExpressionRequiredModel *model = [[CKJInputExpressionRequiredModel alloc] init];
+    model.requiredText = [NSString stringWithFormat:@"%@不能为空", emptyRequiredText];
+    model.requiredExpression = ^BOOL(NSAttributedString * _Nonnull attText, CKJInputCellModel * _Nonnull cm) {
+        return WDKJ_IsEmpty_Str(attText.string);
+    };
+    return model;
+}
 
+@implementation CKJInputExpressionRequiredModel
 
-@interface CKJTFModel ()
+- (instancetype)init {
+    if (self = [super init]) {
+        self.required = YES;
+    }
+    return self;
+}
 
-@property (assign, nonatomic) CGFloat seconds;
-@property (copy, nonatomic) void(^block)(NSAttributedString *_Nullable attText);
++ (instancetype)modelWithRequiredText:(NSString *)requiredText failExpression:(CKJExpressionRequiredBlock)expression {
+    CKJInputExpressionRequiredModel *model = [[CKJInputExpressionRequiredModel alloc] init];
+    model.requiredText = requiredText;
+    model.requiredExpression = expression;
+    return model;
+}
 
 @end
+
 
 @implementation CKJTFModel
 
@@ -68,14 +88,14 @@ NSInteger const kInput_Email = 2628390;
 }
 
 /// 检验手机号
-+ (BOOL)verityPhone:(NSString *)phone {
++ (BOOL)varityPhoneFail:(NSString *)phone {
     
     //  可以复制文字  @"手机号为空或有误"    或代码  [MBProgressHUD showError:@"手机号为空或有误"];
        
     if (WDKJ_IsEmpty_Str(phone)) {
-        return NO;
+        return YES;
     }
-    return [phone kjwd_validatePhone];
+    return [phone kjwd_varityPhoneFail];
 }
 
 @end
@@ -114,6 +134,13 @@ NSInteger const kInput_Email = 2628390;
 
 @implementation CKJInputCellModel
 
+- (void)addRequired:(CKJInputExpressionRequiredModel *)model {
+    if (WDKJ_IsNullObj(model, [CKJInputExpressionRequiredModel class])) return;
+    NSMutableArray *arr = [NSMutableArray kjwd_arrayWithArray:self.expressionRequiredArray];
+    [arr addObject:model];
+    self.expressionRequiredArray = arr;
+}
+
 - (NSString *_Nullable)tfText {
     return self.tfModel.attributedText.string;
 }
@@ -139,15 +166,12 @@ NSInteger const kInput_Email = 2628390;
 @end
 
 
-
-
 @interface CKJInputCell ()
 
 @property (strong, nonatomic) UITextField *tf;
 @property (strong, nonatomic) CKJCountDownButton *codeBtn;
 
 @end
-
 
 
 @implementation CKJInputCell
@@ -158,30 +182,10 @@ NSInteger const kInput_Email = 2628390;
     if ([model isKindOfClass:[CKJInputCellModel class]] == NO) return;
 
     CKJInputCellModel *_model = model;
-
-    if ([_model.tfModel isKindOfClass:[CKJTFModel class]] == NO) return;
-
-    NSAttributedString *attributedText = _model.tfModel.attributedText;
-
-    NSAttributedString *attributedPlaceholder = _model.tfModel.attributedPlaceholder;
-    
-    if (WDKJ_IsEmpty_AttributedStr(attributedText)) {
-        self.tf.attributedText = nil;
-    } else {
-        self.tf.attributedText = attributedText;
-    }
-    
-    if (WDKJ_IsEmpty_AttributedStr(attributedPlaceholder)) {
-        self.tf.attributedPlaceholder = nil;
-    } else {
-        self.tf.attributedPlaceholder = attributedPlaceholder;
-    }
-    self.tf.userInteractionEnabled = _model.tfModel.userInteractionEnabled;
-    self.tf.textAlignment = _model.tfModel.textAlignment;
-    self.tf.borderStyle = _model.tfModel.borderStyle;
-    self.tf.keyboardType = _model.tfModel.keyboardType;
-    
     CKJTFModel *tfModel = _model.tfModel;
+
+    [CKJLibraryHelper commomCode1WithTFModel:tfModel tf:self.tf];
+    
     CKJGetCodeModel *getCodeModel = _model.getCodeModel;
     
     
@@ -267,11 +271,11 @@ NSInteger const kInput_Email = 2628390;
     __weak typeof(self) weakSelf = self;
 
     CKJInputCellModel *phoneCellModel = [self.simpleTableView cellModelOfID:kInput_Phone];
-    NSString *text = phoneCellModel.tfModel.attributedText.string;
+    NSString *text = phoneCellModel.tfText;
     
     NSString *phone = [text kjwd_trimWhiteAndNewline];
     
-    if (![CKJTFModel verityPhone:phone]) {
+    if ([CKJTFModel varityPhoneFail:phone]) {
         NSLog(@"%@ ", @"手机号为空或有误");
         [MBProgressHUD showError:@"手机号为空或有误"];
         return;
@@ -299,23 +303,10 @@ NSInteger const kInput_Email = 2628390;
 // 监听文字改变
 - (void)textChange:(UITextField *)tf {
     if ([self.cellModel isKindOfClass:[CKJInputCellModel class]] == NO) return;
-    
     CKJInputCellModel *_model = (CKJInputCellModel *)self.cellModel;
-    
     CKJTFModel *tfModel = _model.tfModel;
     
-    if ([tfModel isKindOfClass:[CKJTFModel class]] == NO) return;
-    
-//    NSLog(@"tf.attributedText.string  %@", tf.attributedText.string);
-    
-    if (![tfModel.attributedText.string isEqualToString:tf.attributedText.string]) {
-        tfModel.attributedText = tf.attributedText;
-        
-        SEL sel = @selector(__privateMethod__exeCallBack);
-        [NSObject cancelPreviousPerformRequestsWithTarget:tfModel selector:sel object:nil];
-        [tfModel performSelector:sel withObject:nil afterDelay:tfModel.seconds];
-//        NSLog(@"后 %@", tf.attributedText.string);
-    }
+    [CKJLibraryHelper commomCode2WithTFModel:tfModel tf:self.tf];
 }
 
 @end

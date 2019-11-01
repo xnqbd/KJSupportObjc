@@ -1,20 +1,35 @@
 //
-//  CKJBaseTableViewToolVC.m
+//  CKJBaseTableVC.m
 //  HKGoodColor
 //
 //  Created by chenkaijie on 2017/12/26.
 //  Copyright © 2017年 chenkaijie. All rights reserved.
 //
 
-#import "CKJBaseTableViewToolVC.h"
+#import "CKJBaseTableVC.h"
 #import "CKJSimpleTableView.h"
 #import <Masonry/Masonry.h>
 
-@interface CKJBaseTableViewToolVC ()
+@interface CKJBaseTableVC ()
 
 @end
 
-@implementation CKJBaseTableViewToolVC
+@implementation CKJBaseTableVC
+
+- (CGFloat)inputCellHeight {
+    return 44;
+}
+- (instancetype)init {
+    if (self = [super init]) {
+         __weak typeof(self) weakSelf = self;
+        self.input_block1 = ^(CKJInputCellModel *m, CKJInputExpressionRequiredModel * _Nullable emptyModel){
+            m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDAtt15_5(nil) left:10];
+            m.cellHeight = [weakSelf inputCellHeight];
+            [m addRequired:emptyModel];
+        };
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -110,6 +125,58 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+
+- (void)createFooterViewWithBtnTitle:(NSString *)title clickHandle:(void(^_Nullable)(UIButton * _Nonnull sender, __kindof CKJBaseTableVC *se, CKJSimpleTableView *simpleTableView))clickHandle {
+    
+    KJ_typeweakself
+    self.simpleTableView.tableFooterView = [self footerViewWithBtnTitle:title clickHandle:^(UIButton * _Nonnull sender) {
+        if (clickHandle) {
+            clickHandle(sender, weakSelf, weakSelf.simpleTableView);
+        }
+    }];
+}
+
+- (UIView *)footerViewWithBtnTitle:(NSString *)title clickHandle:(void(^_Nullable)(UIButton * _Nonnull sender))clickHandle {
+    
+    CGFloat swidth = [UIScreen mainScreen].bounds.size.width;
+    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, swidth, 80)];
+    bgView.backgroundColor = [UIColor clearColor];
+    
+    
+    UIButton *save = ({
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [btn setBackgroundColor:[UIColor kjwd_blueBtnColor]];
+        [btn setTitle:title forState:UIControlStateNormal];
+        btn.layer.cornerRadius = 5;
+        btn.layer.masksToBounds = YES;
+        [btn kjwd_addTouchUpInsideForCallBack:^(UIButton * _Nonnull sender) {
+            if (clickHandle) {
+                clickHandle(sender);
+            }
+        }];
+        btn;
+    });
+    
+    [save kjwd_addToSuperView:bgView constraints:^(MASConstraintMaker *make, UIView *superview) {
+        make.center.mas_equalTo(superview);
+        make.width.equalTo(superview).offset(-40).priority(550);
+        make.height.equalTo(@45);
+    }];
+    return bgView;
+}
+
+
+//- (void)dealloc {
+//    [self kj_removeNotification];
+//}
+//- (void)kj_removeNotification {
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:kNoti_LoginSuccess object:nil];
+//}
+//
+//- (void)kj_addNotification {
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSucc:) name:kNoti_LoginSuccess object:nil];
+//}
 
 
 @end

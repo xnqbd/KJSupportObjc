@@ -6,11 +6,11 @@
 //  Copyright © 2019 Lyc. All rights reserved.
 //
 
-#import "CKJBaseTableViewToolVC.h"
+#import "CKJBaseTableVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PersonInfoDemoVC : CKJBaseTableViewToolVC
+@interface PersonInfoDemoVC : CKJBaseTableVC
 
 @end
 

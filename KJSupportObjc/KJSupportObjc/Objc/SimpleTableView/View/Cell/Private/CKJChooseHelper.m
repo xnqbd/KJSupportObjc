@@ -8,7 +8,7 @@
 
 #import "CKJChooseHelper.h"
 #import <ActionSheetPicker_3_0/ActionSheetPicker.h>
-
+#import "NSObject+WDYHFCategory.h"
 
 @implementation CKJStringChooseItem
 
@@ -34,10 +34,6 @@
     return helper;
 }
 
-
-//- (NSInteger)calculateSelectIndexWithSelectedStr:(NSString *)selectedStr {
-//
-//}
 
 - (void)showWithSelectedStr:(NSString *_Nonnull)selectedStr origin:(UIView *_Nullable)origin callBack:(CKJChooseBlock _Nonnull)callBack {
     //    @{@"name":@"性别",@"type":@"choose",@"key":@"Gender",@"required":@"true",@"img":@"jzk_xb"}

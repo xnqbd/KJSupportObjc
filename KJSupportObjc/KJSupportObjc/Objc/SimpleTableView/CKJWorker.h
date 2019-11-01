@@ -10,7 +10,8 @@
 #import <UIKit/UIKit.h>
 #import "KJSupportHeader.h"
 
-@class CKJBtnItemData;
+
+@class CKJBtnItemData, CKJBaseBtnModel;
 
 typedef void(^CKJBtnItemBlock)(__kindof CKJBtnItemData *_Nonnull itemData);
 
@@ -54,6 +55,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSAttributedString *_Nonnull)changeOriginAtt:(nullable NSAttributedString *)origin text:(nullable NSString *)text;
 
 + (NSBundle *_Nonnull)kjbundle;
+
+
++ (void)reloadWithBtnModel:(CKJBaseBtnModel *)btn5Model btn:(UIButton *)btn5 emptyHandle:(void(^)(__kindof CKJBaseBtnModel *btnM))emptyHandle noEmptyHandle:(void(^)(__kindof CKJBaseBtnModel *btnM))noEmptyHandle;
 
 @end
 
@@ -114,6 +118,53 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSArray <__kindof CKJBtnItemData *>*_Nonnull)returnItemsWithDics:(NSArray <NSDictionary *>*_Nullable)dics detailSetting:(void(^_Nullable)(__kindof CKJBtnItemData *__weak _Nonnull itemData, NSUInteger index))detailSetting;
 
 @end
+
+
+
+
+
+
+
+
+@interface CKJBaseBtnModel : CKJBaseModel
+
+@property (copy, nonatomic, nullable) NSAttributedString *normalAttributedTitle;
+@property (copy, nonatomic, nullable) NSAttributedString *selectedAttributedTitle;
+
+/** 改变Normal状态下的文字 */
+- (void)changeNormalText:(nullable NSString *)text;
+
+/** 改变Normal状态下的文字 */
+- (void)changeSelectedText:(nullable NSString *)text;
+
+@property (strong, nonatomic, nullable) UIImage *normalBackgroundImage;
+@property (strong, nonatomic, nullable) UIImage *selectedBackgroundImage;
+
+@property (strong, nonatomic, nullable) UIImage *normalImage;
+@property (strong, nonatomic, nullable) UIImage *selectedImage;
+
+@property (assign, nonatomic) BOOL btnHidden;
+
+/** 是否选中 */
+@property (assign, nonatomic) BOOL selected;
+/** 是否开启用户交互，默认开启 */
+@property (assign, nonatomic) BOOL userInteractionEnabled;
+
+@property (assign, nonatomic) CGSize size;
+@property (assign, nonatomic) CGFloat cornerRadius;
+@property (strong, nonatomic, nullable) UIColor *borderColor;
+@property (assign, nonatomic) CGFloat borderWidth;
+
+
+
+/**
+ 对UIButton的图片和文字 进行排布回调
+ */
+@property (copy, nonatomic, nullable) void (^layoutButton)(UIButton *_Nonnull btn);
+
+
+@end
+
 
 
 

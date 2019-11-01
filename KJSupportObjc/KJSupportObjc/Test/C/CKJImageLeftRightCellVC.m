@@ -34,16 +34,18 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
 - (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
     
     CKJImageLeftCellConfig *leftConfig = [CKJImageLeftCellConfig configWithDetailSettingBlock:^(__kindof CKJImageLeftCellConfig * _Nonnull m) {
-        m.imageSize = CGSizeMake(40, 40);
+        m.imageSize = CGSizeMake(80, 80);
         m.fiveConfig = [CKJFiveLabelViewConfig configWithDetailSettingBlock:^(__kindof CKJFiveLabelViewConfig * _Nonnull m) {
+            m.subTitle_numberOfLines = 3;
         }];
     }];
     CKJImageRightCellConfig *rightConfig = [CKJImageRightCellConfig configWithDetailSettingBlock:^(__kindof CKJImageRightCellConfig * _Nonnull m) {
-        m.imageSize = CGSizeMake(60, 60);
+        m.imageSize = CGSizeMake(80, 90);
         m.fiveConfig = [CKJFiveLabelViewConfig configWithDetailSettingBlock:^(__kindof CKJFiveLabelViewConfig * _Nonnull m) {
+            m.title_margin_subTitle = 5;
+            m.subTitle_numberOfLines = 3;
         }];
     }];
-    
     
     CKJPayCellConfig *payConfig = [CKJPayCellConfig appearanceForProject];
     
@@ -57,6 +59,8 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
 }
 
 - (void)initSimpleTableViewData {
+    
+    
     
     CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithDetailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         
@@ -92,8 +96,30 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
         _sec.modelArray = @[model1, model2, model3];
     }];
     
+    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJImageLeftCell", [UIColor kjwd_subTitleColor969696], @14) headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+        CKJImageLeftCellModel *model1 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
+            m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
+            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
+                fm.title = WDCKJAttributed2(@"银联", [UIColor kjwd_titleColor333333], nil);
+                fm.subTitle = WDCKJAttributed2(@"推荐有银联账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
+                fm.threeTitle = WDCKJAttributed2(@"订单号：1c9f4d1cbe214ab6a948a1ab3ef5f1", [UIColor kjwd_subTitleColor969696], nil);
+                fm.fourTitle = WDCKJAttributed2(@"总金额：29.30元", [UIColor kjwd_subTitleColor969696], nil);
+                fm.fiveTitle = WDCKJAttributed2(@"订单简介：门诊检查费", [UIColor kjwd_subTitleColor969696], nil);
+            }];
+        } didSelectRowBlock:nil];
+        
+        CKJImageLeftCellModel *model2 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
+            m.b_Image_URL = @"http://image.cmsfg.com/Images/20180608/2018060812432648.jpg";
+            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
+               fm.title = WDCKJAttributed2(@"鼻饲流质", [UIColor kjwd_titleColor333333], nil);
+                fm.subTitle = WDCKJAttributed2(@"鼻饲流质营养治疗适用于不能自行经口进食、昏迷、手术前后营养不良、食欲低下但有一定消化吸收功能者", [UIColor kjwd_subTitleColor969696], nil);
+            }];
+        } didSelectRowBlock:nil];
+        _sec.modelArray = @[model1, model2];
+    }];
     
-    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"下面的图片可以在左也可以在右", [UIColor kjwd_subTitleColor969696], @14) detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+    
+    CKJCommonSectionModel *section3 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJImageRightCell", [UIColor kjwd_subTitleColor969696], @14) headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         CKJImageRightCellModel *model1 = [CKJImageRightCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageRightCellModel * _Nonnull m) {
             m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
             [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
@@ -105,60 +131,17 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
             }];
         } didSelectRowBlock:nil];
         
-        
-        CKJImageLeftCellModel *model2 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
-            m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
+        CKJImageRightCellModel *model2 = [CKJImageRightCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageRightCellModel * _Nonnull m) {
+            m.b_Image_URL = @"http://image.cmsfg.com/Images/20180608/2018060812432648.jpg";
             [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
-                fm.title = WDCKJAttributed2(@"银联", [UIColor kjwd_titleColor333333], nil);
-                fm.subTitle = WDCKJAttributed2(@"推荐有银联账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
-                fm.threeTitle = WDCKJAttributed2(@"订单号：1c9f4d1cbe214ab6a948a1ab3ef5f1", [UIColor kjwd_subTitleColor969696], nil);
-                fm.fourTitle = WDCKJAttributed2(@"总金额：29.30元", [UIColor kjwd_subTitleColor969696], nil);
-                fm.fiveTitle = WDCKJAttributed2(@"订单简介：门诊检查费", [UIColor kjwd_subTitleColor969696], nil);
+               fm.title = WDCKJAttributed2(@"鼻饲流质", [UIColor kjwd_titleColor333333], nil);
+                fm.subTitle = WDCKJAttributed2(@"鼻饲流质营养治疗适用于不能自行经口进食、昏迷、手术前后营养不良、食欲低下但有一定消化吸收功能者", [UIColor kjwd_subTitleColor969696], nil);
             }];
         } didSelectRowBlock:nil];
-        
-        
-        
-        
-        CKJImageLeftCellModel *model3 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
-            m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
-            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
-                fm.title = WDCKJAttributed2(@"银联", [UIColor kjwd_titleColor333333], nil);
-                fm.subTitle = WDCKJAttributed2(@"推荐有银联账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
-                fm.threeTitle = WDCKJAttributed2(@"订单号：1c9f4d1cbe214ab6a948a1ab3ef5f1", [UIColor kjwd_subTitleColor969696], nil);
-                fm.fourTitle = WDCKJAttributed2(@"总金额：29.30元", [UIColor kjwd_subTitleColor969696], nil);
-            }];
-        } didSelectRowBlock:nil];
-        
-        
-        CKJImageLeftCellModel *model4 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
-            m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
-            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
-                fm.title = WDCKJAttributed2(@"银联", [UIColor kjwd_titleColor333333], nil);
-                fm.subTitle = WDCKJAttributed2(@"推荐有银联账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
-                fm.threeTitle = WDCKJAttributed2(@"订单号：1c9f4d1cbe214ab6a948a1ab3ef5f1", [UIColor kjwd_subTitleColor969696], nil);
-            }];
-        } didSelectRowBlock:nil];
-        
-        
-        CKJImageLeftCellModel *model5 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
-            m.b_Image_URL = @"https://ps.ssl.qhmsg.com/sdr/400__/t01c8515616311ff6b9.jpg";
-            m.b_placeholderImage = [UIImage kjwd_imageWithColor:[UIColor blueColor] size:CGSizeMake(100, 100)];
-            [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
-                fm.title = WDCKJAttributed2(@"银联", [UIColor kjwd_titleColor333333], nil);
-                fm.subTitle = WDCKJAttributed2(@"推荐有银联账户的用户使用", [UIColor kjwd_subTitleColor969696], nil);
-            }];
-        } didSelectRowBlock:nil];
-        
-        _sec.modelArray = @[model1, model2, model3, model4, model5];
+        _sec.modelArray = @[model1, model2];
     }];
     
-    
-    
-    
-    
-    CKJCommonSectionModel *section3 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"下面是单选", [UIColor kjwd_subTitleColor969696], @14) detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
-        
+    CKJCommonSectionModel *section4 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJPayCell 单选", [UIColor kjwd_subTitleColor969696], @14) headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         
         CKJPayCellModel *model6 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
             m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk支付宝"];
@@ -169,9 +152,7 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
             m.extension_Interger = TestPayStyle_AliPay;
         } didSelectRowBlock:nil];
         
-        
         CKJPayCellModel *model7 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
-            
             m.b_ImageName = [UIImage imageNamed:@"wdyhfsdkechat"];
             [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
                 fm.title = WDCKJAttributed2(@"微信", [UIColor kjwd_titleColor333333], nil);
@@ -181,7 +162,7 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
             m.extension_Interger = TestPayStyle_WeiXin;
         } didSelectRowBlock:nil];
         
-        
+
         CKJPayCellModel *model8 = [CKJPayCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
             m.b_ImageName = [UIImage imageNamed:@"wdyhfsdk银联"];
             [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
@@ -217,10 +198,10 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
         }];
         [self.simpleTableView addRadioCellModels:@[model6, model7, model8]];
         
-        _sec.modelArray = @[model6, model7, model8, model9];
+        _sec.modelArray = @[model6, model7, model8/*, model9*/];
     }];
     
-    self.simpleTableView.dataArr = @[section1, section2, section3];
+    self.simpleTableView.dataArr = @[/*section1,*/ section2, section3, section4];
     [self.simpleTableView kjwd_reloadData];
 }
 

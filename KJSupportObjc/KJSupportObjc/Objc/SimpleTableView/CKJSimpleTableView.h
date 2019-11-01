@@ -17,6 +17,8 @@
 #import "CKJSimpleTableViewDelegate.h"
 
 #import "CKJInputCell.h"
+#import "CKJInputCustomSuperCell.h"
+
 #import "CKJTableViewCell1.h"
 #import "CKJTableViewCell2.h"
 #import "CKJGeneralCell.h"
@@ -256,10 +258,19 @@
 - (void)triggerRadioActionWithCellModel:(__kindof CKJCommonCellModel *_Nonnull)m;
 
 
+#pragma mark - 输入框相关
+
+/// 控制台输出 输入框的值
+- (void)readInputValue;
+
+/// 验证所有CKJInputCell的输入框是否为空
+- (BOOL)verityInputFail;
+
 @end
 
 
 
+#pragma mark - 分类
 @interface NSMutableArray <ObjectType> (CKJSimpleTableView)
 
 

@@ -12,14 +12,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class CKJGeneralCellModel;
+@class CKJGeneralCellModel, CKJGeneralCell;
 typedef void(^CKJGeneralCellModelRowBlock)(__kindof CKJGeneralCellModel * __weak _Nonnull m);
+
 
 
 @interface CKJImage2Model : CKJBaseModel
 
 @property (strong, nonatomic, nullable) UIImage *normalImage;
-
+@property (assign, nonatomic) CGFloat cornerRadius;
 @property (strong, nonatomic) NSValue *sizeValue;
 @property (assign, nonatomic) CGFloat leftMargin;
 + (nonnull instancetype)image2ModelWithNormalImage:(nullable UIImage *)normalImage size:(nullable NSValue *)size left:(CGFloat)leftMargin;
@@ -87,6 +88,7 @@ typedef void(^CKJGeneralCellModelRowBlock)(__kindof CKJGeneralCellModel * __weak
 @end
 
 
+
 @interface CKJArrow9Model : CKJBaseModel
 
 /**
@@ -124,6 +126,7 @@ CKJGeneralCellModel *model3 = [CKJGeneralCellModel modelWithCellHeight:44 cellMo
 @property (strong, nonatomic, nullable) CKJImage2Model *image2Model;
 @property (strong, nonatomic, nullable) CKJTitle3Model *title3Model;
 
+- (NSString *_Nullable)title3Text;
 
 @property (strong, nonatomic, nullable) CKJLikePriceLabel8Model *likePrice8Model;
 @property (strong, nonatomic, nullable) CKJArrow9Model *arrow9Model;
@@ -139,9 +142,6 @@ CKJGeneralCellModel *model3 = [CKJGeneralCellModel modelWithCellHeight:44 cellMo
 @property (nonnull, strong, nonatomic, readonly) CKJLeftView *leftWrapView;
 @property (nonnull, strong, nonatomic, readonly) UIButton *imageBtn2;
 @property (nonnull, strong, nonatomic, readonly) UILabel *title3;
-
-
-
 
 @property (nonnull, strong, nonatomic, readonly) CKJRightView *rightWrapView;
 @property (nonnull, strong, nonatomic, readonly) UIImageView *arrowImageView9;

@@ -5,11 +5,12 @@
 //  Created by chenkaijie on 2019/1/7.
 //
 
-#import "CKJLeftRightCell.h"
+#import "CKJBaseLeftRightCell.h"
 #import "NSObject+WDYHFCategory.h"
+#import "CKJLeftRightTopEqualCell.h"
 
 
-@implementation CKJLeftRightCellBaseConfig
+@implementation CKJBaseLeftRightCellConfig
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -20,42 +21,19 @@
 
 @end
 
-@implementation CKJLeftRightCellTopEqualConfig
 
 
-
-+ (nonnull instancetype)configWithLeftLabelTopMargin:(CGFloat)LeftLabelTopMargin detailSettingBlock:(nullable CKJLeftRightCellTopEqualConfigBlock)detailSettingBlock {
-    CKJLeftRightCellTopEqualConfig *config = [[CKJLeftRightCellTopEqualConfig alloc] init];
-    config.leftLabel_TopMarginToSuperView = LeftLabelTopMargin;
-    if (detailSettingBlock) {
-        detailSettingBlock(config);
-    }
-    return config;
-}
-
-@end
-
-@implementation CKJLeftRightCellCenterEqualConfig
-
-+ (nonnull instancetype)configWithDetailSettingBlock:(nullable CKJLeftRightCellCenterEqualConfigBlock)detailSettingBlock {
-    return [super configWithDetailSettingBlock:detailSettingBlock];
-}
-
-@end
-
-
-
-@implementation CKJLeftRightCellModel
+@implementation CKJBaseLeftRightCellModel
 
 + (instancetype)modelWithLeftMargin:(CGFloat)leftMargin centerMargin:(CGFloat)centerMargin rightMargin:(CGFloat)rightMargin {
-    CKJLeftRightCellModel *model = [[self alloc] init];
+    CKJBaseLeftRightCellModel *model = [[self alloc] init];
     model.leftLab_MarginTo_SuperViewLeft = leftMargin;
     model.centerMargin = centerMargin;
     model.rightLab_MarginTo_SuperViewRight = rightMargin;
     return model;
 }
 
-+ (instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJLeftRightCellModelRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJLeftRightCellModelRowBlock)didSelectRowBlock {
++ (instancetype)modelWithCellHeight:(CGFloat)cellHeight cellModel_id:(nullable NSNumber *)cellModel_id detailSettingBlock:(nullable CKJBaseLeftRightCellModelRowBlock)detailSettingBlock didSelectRowBlock:(nullable CKJBaseLeftRightCellModelRowBlock)didSelectRowBlock {
     return [super modelWithCellHeight:cellHeight cellModel_id:cellModel_id detailSettingBlock:detailSettingBlock didSelectRowBlock:didSelectRowBlock];
 }
 
@@ -73,12 +51,12 @@
 @end
 
 
-@implementation CKJLeftRightCell
+@implementation CKJBaseLeftRightCell
 
 - (void)setupData:(CKJCommonCellModel *)model section:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath tableView:(CKJSimpleTableView *)tableView {
-    if ([model isKindOfClass:[CKJLeftRightCellModel class]] == NO) return;
+    if ([model isKindOfClass:[CKJBaseLeftRightCellModel class]] == NO) return;
     
-    CKJLeftRightCellModel *_model = (CKJLeftRightCellModel *)model;
+    CKJBaseLeftRightCellModel *_model = (CKJBaseLeftRightCellModel *)model;
     
     NSAttributedString *leftAttStr = _model.leftAttStr;
     NSAttributedString *rightAttStr = _model.rightAttStr;
@@ -126,11 +104,11 @@
     [subTitle setContentCompressionResistancePriority:740 forAxis:UILayoutConstraintAxisHorizontal];
 
     
-    CKJLeftRightCellBaseConfig *config = self.configModel;
+    CKJBaseLeftRightCellConfig *config = self.configModel;
    
     WDCKJ_ifDEBUG(^{
-        if (config == nil || ([config isKindOfClass:[CKJLeftRightCellBaseConfig class]] == NO)) {
-            NSException *exception = [NSException exceptionWithName:@"未配置Config对象" reason:[NSString stringWithFormat:@"%@必须配置一个继承于CKJLeftRightCellBaseConfig的对象，推荐使用CKJLeftRightCellTopEqualConfig或者CKJLeftRightCellCenterEqualConfig", self] userInfo:nil];
+        if (config == nil || ([config isKindOfClass:[CKJBaseLeftRightCellConfig class]] == NO)) {
+            NSException *exception = [NSException exceptionWithName:@"未配置Config对象" reason:[NSString stringWithFormat:@"%@必须配置一个继承于CKJBaseLeftRightCellConfig的对象，推荐使用CKJLeftRightTopEqualCellConfig或者CKJLeftRightCenterEqualCellConfig", self] userInfo:nil];
             [exception raise];
         }
     }, nil);
@@ -145,8 +123,8 @@
     [title kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.left.equalTo(superview);
         
-        if ([config isKindOfClass:[CKJLeftRightCellTopEqualConfig class]])  { // 顶部对齐
-            CKJLeftRightCellTopEqualConfig *temp = (CKJLeftRightCellTopEqualConfig *)config;
+        if ([config isKindOfClass:[CKJLeftRightTopEqualCellConfig class]])  { // 顶部对齐
+            CKJLeftRightTopEqualCellConfig *temp = (CKJLeftRightTopEqualCellConfig *)config;
             make.top.equalTo(superview).offset(temp.leftLabel_TopMarginToSuperView);
         } else { // 默认中心对齐
             make.centerY.equalTo(superview);
@@ -165,7 +143,7 @@
     [subTitle kjwd_mas_makeConstraints:^(MASConstraintMaker *make, UIView *superview) {
         make.left.equalTo(title.mas_right);
         make.bottom.equalTo(superview).offset(-(config.rightLabel_BottomMarginToSuperView));
-        if ([config isKindOfClass:[CKJLeftRightCellTopEqualConfig class]])  { // 顶部对齐
+        if ([config isKindOfClass:[CKJLeftRightTopEqualCellConfig class]])  { // 顶部对齐
             make.top.equalTo(title);
         } else { // 默认中心对齐
             make.centerY.equalTo(title);

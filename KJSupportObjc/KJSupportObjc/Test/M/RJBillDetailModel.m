@@ -7,7 +7,8 @@
 //
 
 #import "RJBillDetailModel.h"
-#import "CKJLeftRightCell.h"
+#import "CKJLeftRightTopEqualCell.h"
+#import "CKJLeftRightCenterEqualCell.h"
 
 @implementation RJBillDetailModel
 
@@ -25,7 +26,7 @@
     CGFloat margin = 20;
     CGFloat cellH = 0;
     
-    CKJLeftRightCellModelRowBlock block = ^(CKJLeftRightCellModel *model) {
+    CKJLeftRightTopEqualCellRowBlock block = ^(CKJLeftRightTopEqualCellModel *model) {
         //         model.showLine = YES;
         // model.rightLab_textAlignment = NSTextAlignmentRight;
         model.leftLab_MarginTo_SuperViewLeft = margin;
@@ -35,31 +36,31 @@
         model.extension_Obj = self;
     };
     
-    CKJLeftRightCellModel *model1 = [CKJLeftRightCellModel modelWithCellHeight:cellH cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightCellModel * _Nonnull m) {
+    CKJLeftRightTopEqualCellModel *model1 = [CKJLeftRightTopEqualCellModel modelWithCellHeight:cellH cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightTopEqualCellModel * _Nonnull m) {
         m.leftAttStr = WDCKJAttributed2(@"类别名称：", color333, nil);
         m.rightAttStr = WDCKJAttributed2(self.ProjectType, color333, nil);
         block(m);
     } didSelectRowBlock:nil];
     
-    CKJLeftRightCellModel *model2 = [CKJLeftRightCellModel modelWithCellHeight:cellH cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightCellModel * _Nonnull m) {
+    CKJLeftRightTopEqualCellModel *model2 = [CKJLeftRightTopEqualCellModel modelWithCellHeight:cellH cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightTopEqualCellModel * _Nonnull m) {
         m.leftAttStr = WDCKJAttributed2(@"药品名称：", color333, nil);
         m.rightAttStr = WDCKJAttributed2(self.ProjectName, color333, nil);
         block(m);
     } didSelectRowBlock:nil];
     
-    CKJLeftRightCellModel *model3 = [CKJLeftRightCellModel modelWithCellHeight:cellH cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightCellModel * _Nonnull m) {
+    CKJLeftRightTopEqualCellModel *model3 = [CKJLeftRightTopEqualCellModel modelWithCellHeight:cellH cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightTopEqualCellModel * _Nonnull m) {
         m.leftAttStr = WDCKJAttributed2(@"药品规格：", color333, nil);
         m.rightAttStr = WDCKJAttributed2(self.Spec, color333, nil);
         block(m);
     } didSelectRowBlock:nil];
     
-    CKJLeftRightCellModel *model4 = [CKJLeftRightCellModel modelWithCellHeight:cellH cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightCellModel * _Nonnull m) {
+    CKJLeftRightTopEqualCellModel *model4 = [CKJLeftRightTopEqualCellModel modelWithCellHeight:cellH cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightTopEqualCellModel * _Nonnull m) {
         m.leftAttStr = WDCKJAttributed2(@"药品数量：", color333, nil);
         m.rightAttStr = WDCKJAttributed2(self.Unit, color333, nil);
         block(m);
     } didSelectRowBlock:nil];
     
-    CKJLeftRightCellModel *model5 = [CKJLeftRightCellModel modelWithCellHeight:cellH cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightCellModel * _Nonnull m) {
+    CKJLeftRightTopEqualCellModel *model5 = [CKJLeftRightTopEqualCellModel modelWithCellHeight:cellH cellModel_id:nil detailSettingBlock:^(__kindof CKJLeftRightTopEqualCellModel * _Nonnull m) {
         m.leftAttStr = WDCKJAttributed2(@"药品单价：", color333, nil);
         m.rightAttStr = WDCKJAttributed2([NSString stringWithFormat:@"%@元", self.Price], [UIColor redColor], nil);
         block(m);

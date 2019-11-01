@@ -8,6 +8,7 @@
 
 #import "InputDemoVC.h"
 #import "RJProjectResorce.h"
+#import "MBProgressHUD+WJ.h"
 
 @interface InputDemoVC ()
 
@@ -73,22 +74,26 @@
     self.navigationItem.title = @"添加就诊人";
     KJ_typeweakself
     CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithFooterHeight:10 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull sec) {
-        sec.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"Demo会自动识别证件号的出生年月，\n如果小于14岁，则必须填写监护人信息，\n如果大于等于14岁，则只需填写本人信息\n并且证件号TextField输入框会有延迟识别的能力", [UIColor grayColor], @15) type:CKJCommonHeaderFooterType_HEADER];
-  
+//        sec.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"Demo会自动识别证件号的出生年月，\n如果小于14岁，则必须填写监护人信息，\n如果大于等于14岁，则只需填写本人信息\n并且证件号TextField输入框会有延迟识别的能力", [UIColor grayColor], @15) type:CKJCommonHeaderFooterType_HEADER];
+//  sec.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"Demo会自动识别证件号的出生年月，\n如果小于14岁，则必须填写监护人信息，\n如果大于等于14岁，则只需填写本人信息\n并且证件号TextField输入框会有延迟识别的能力", [UIColor grayColor], @15) type:CKJCommonHeaderFooterType_HEADER];
+        
         CKJInputCellModel *name = [self image:nil title:@"姓名" tfText:@"" placeholder:@"请输入姓名" required:YES cellId:kInput_Name didSelectRowBlock:nil];
         CKJInputCellModel *sex = [self image:nil title:@"性别" tfText:@"" placeholder:@"" required:YES cellId:kInput_Sex didSelectRowBlock:^(__kindof CKJInputCellModel * _Nonnull m) {
-            m.stringChoose = [CKJStringChooseHelper helperWithHeader:@"性别" items:[RJProjectResorce Gender] detailSetting:nil];
+            m.stringChoose = [CKJStringChooseHelper helperWithHeader:m.title3Text items:[RJProjectResorce Gender] detailSetting:nil];
         }];
         CKJInputCellModel *idCardType = [self image:nil title:@"证件类型" tfText:@"" placeholder:@"" required:YES cellId:kInput_idCardType didSelectRowBlock:^(__kindof CKJInputCellModel * _Nonnull m) {
-            m.stringChoose = [CKJStringChooseHelper helperWithHeader:@"证件类型" items:[RJProjectResorce IDCardType] detailSetting:nil];
+            // 选择器数据源
+            m.stringChoose = [CKJStringChooseHelper helperWithHeader:m.title3Text items:[RJProjectResorce IDCardType] detailSetting:nil];
         }];
         CKJInputCellModel *idCardNumber = [self image:nil title:@"证件号" tfText:@"" placeholder:@"请输入证件号" required:YES cellId:kInput_idCardNumber  didSelectRowBlock:^(__kindof CKJInputCellModel * _Nonnull m) {
+            // 延迟0.7秒处理输入框文本，给用户好的体验
             [m.tfModel _afterSecondsListenTextChange:0.7 callBack:^(NSAttributedString * _Nullable attText) {
+                // 处理输入框文本回调
                 [weakSelf handleZhengJianHao:attText.string];
             }];
         }];
         CKJInputCellModel *birthday = [self image:nil title:@"出生年月" tfText:@"" placeholder:@"" required:YES cellId:kInput_Birthday didSelectRowBlock:^(__kindof CKJInputCellModel * _Nonnull m) {
-            m.dateChoose = [CKJDateChooseHelper dateHelperWithHeader:@"出生年月" detailSetting:^(__kindof CKJDateChooseHelper * _Nonnull helper) {
+            m.dateChoose = [CKJDateChooseHelper dateHelperWithHeader:m.title3Text detailSetting:^(__kindof CKJDateChooseHelper * _Nonnull helper) {
                 [helper systemConfig];
             }];
         }];
@@ -98,52 +103,32 @@
     CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithFooterHeight:10 detailSetting:nil];
     
     
+    
     self.simpleTableView.dataArr = @[section1, section2];
 
-    [self createFooterView];
-}
-
-- (void)createFooterView {
-    
-    CGFloat swidth = [UIScreen mainScreen].bounds.size.width;
-    
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, swidth, 80)];
-    bgView.backgroundColor = [UIColor clearColor];
-    
-    UIButton *save = ({
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn setBackgroundColor:[UIColor kjwd_blueBtnColor]];
-        [btn setTitle:@"保存" forState:UIControlStateNormal];
-        btn.layer.cornerRadius = 5;
-        btn.layer.masksToBounds = YES;
-        [btn addTarget:self action:@selector(saveAction) forControlEvents:UIControlEventTouchUpInside];
-        btn;
-    });
-
-    [bgView addSubview:save];
-    
-    [save mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(bgView);
-        make.width.equalTo(bgView).offset(-40).priority(550);
-        make.height.equalTo(@45);
+    [self createFooterViewWithBtnTitle:@"保存" clickHandle:^(UIButton * _Nonnull sender, InputDemoVC *se, CKJSimpleTableView *simpleTableView) {
+        [se saveAction];
     }];
-    self.simpleTableView.tableFooterView = bgView;
+    [self.simpleTableView reloadData];
+    [self jianhuren];
 }
 
+/// 统一创建inputCell
 - (CKJInputCellModel *)image:(NSString *)image title:(NSString *)title tfText:(NSString *)text placeholder:(NSString *)placeholder required:(BOOL)required cellId:(NSInteger)cellId  didSelectRowBlock:(nullable CKJInputCellModelRowBlock)didSelectRowBlock  {
     
     CGFloat left_margin = 10;
     NSDictionary *leftDic = @{NSForegroundColorAttributeName : [UIColor kjwd_titleColor333333], NSFontAttributeName : [UIFont systemFontOfSize:14]};
     CKJInputCellModel *model = [CKJInputCellModel modelWithCellHeight:44 cellModel_id:@(cellId) detailSettingBlock:^(CKJInputCellModel * _Nonnull m) {
+        m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(title, leftDic) left:0];
+               
         didSelectRowBlock ? didSelectRowBlock(m) : nil;
         
         CGSize size = CGSizeMake(20, 20);
         UIImage *image = [CKJInputAddition systemStarImageWithSize:size];
-        m.required = required;
         m.image2Model = [CKJImage2Model image2ModelWithNormalImage:required ? image : [UIImage new] size:[NSValue valueWithCGSize:size] left:left_margin];
-        m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed(title, leftDic) left:0];
-        
+        if (required) {
+            [m addRequired:WDKJ_ER(m.title3Model.attributedText.string)];
+        }
         if (m.stringChoose || m.dateChoose) {
             m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
         }
@@ -163,12 +148,15 @@
     CKJInputCellModel *name = [self image:nil title:@"监护人姓名" tfText:@"" placeholder:@"请输入姓名" required:YES cellId:JianHuPersonName didSelectRowBlock:nil];
     CKJInputCellModel *idCardNumber = [self image:nil title:@"监护人身份证号" tfText:@"" placeholder:@"请输入证件号" required:YES cellId:JianHuPersonidCardNumber didSelectRowBlock:nil];
     CKJInputCellModel *relate = [self image:nil title:@"关系" tfText:@"" placeholder:@"" required:YES cellId:kInput_Relationship didSelectRowBlock:^(__kindof CKJInputCellModel * _Nonnull m) {
-        m.stringChoose = [CKJStringChooseHelper helperWithHeader:@"关系" items:[RJProjectResorce Relationship] detailSetting:nil];
+        m.stringChoose = [CKJStringChooseHelper helperWithHeader:m.title3Text items:[RJProjectResorce Relationship] detailSetting:nil];
     }];
     CKJInputCellModel *phone = [self image:nil title:@"手机号" tfText:@"" placeholder:@"请输入手机号" required:YES cellId:kInput_Phone didSelectRowBlock:^(__kindof CKJInputCellModel * _Nonnull m) {
         [m updateTFModel:^(CKJTFModel * _Nonnull tfModel) {
            tfModel.keyboardType = UIKeyboardTypePhonePad;
         }];
+        [m addRequired:[CKJInputExpressionRequiredModel modelWithRequiredText:@"手机号格式错误" failExpression:^BOOL(NSAttributedString * _Nonnull attText, CKJInputCellModel * _Nonnull cm) {
+            return [attText.string kjwd_varityPhoneFail];
+        }]];
     }];
     CKJInputCellModel *address = [self image:nil title:@"地址" tfText:@"" placeholder:@"请输入联系地址" required:NO cellId:kInput_Address didSelectRowBlock:nil];
     CKJInputCellModel *email = [self image:nil title:@"邮箱" tfText:@"" placeholder:@"请输入邮箱" required:NO cellId:kInput_Email didSelectRowBlock:nil];
@@ -204,18 +192,8 @@
 
 // 点击 保存
 - (void)saveAction {
-    for (CKJCommonSectionModel *section in self.simpleTableView.dataArr) {
-        for (CKJCommonCellModel *model in section.modelArray) {
-             if ([model isKindOfClass:[CKJInputCellModel class]]) {
-                 CKJInputCellModel *m = (CKJInputCellModel *)model;
-                 NSString *tfText = m.tfText;
-                 if (m.required && WDKJ_IsEmpty_Str(tfText)) {
-                     [MBProgressHUD showError:[NSString stringWithFormat:@"%@不能为空", m.title3Model.attributedText.string]];
-                     return;
-                 }
-             }
-        }
-    }
+    if ([self.simpleTableView verityInputFail]) return;
+    
     NSString *_name = [self.simpleTableView inputCellModelOfID:kInput_Name].tfText;
     
     // 证件类型
@@ -252,15 +230,7 @@
 //    NSString *_verityCode = [self.simpleTableView inputCellModelOfID:kInput_VerityCode].tfText;
     
     
-    NSMutableString *des = [NSMutableString string];
-    
-    [self.simpleTableView kjwd_enumAllCellModelWithBlock:^(CKJInputCellModel * _Nonnull m, NSInteger section, NSInteger row, BOOL *stop) {
-        if ([m isKindOfClass:[CKJInputCellModel class]]) {
-            [des appendFormat:@"%@：%@  ", m.title3Model.attributedText.string, m.tfText];
-        }
-    }];
-    
-    NSLog(@"%@", des);
+    [self.simpleTableView readInputValue];
 }
 
 

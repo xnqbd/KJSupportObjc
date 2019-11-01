@@ -79,8 +79,8 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
     // 如果要进行header footer自适应高度，那么一定设置这个, 如果用xib、storyboard进行拖线SimpleTableView，那么xib、storyboard面板有默认的设置，是一个坑
-//    temp.estimatedSectionHeaderHeight = UITableViewAutomaticDimension;
-//    temp.estimatedSectionFooterHeight = UITableViewAutomaticDimension;
+    //    temp.estimatedSectionHeaderHeight = UITableViewAutomaticDimension;
+    //    temp.estimatedSectionFooterHeight = UITableViewAutomaticDimension;
     
     //        NSLog(@" \n ------------ %@  %@ \n ------------  %@     %@", tableView.dataSource, tableView.delegate, temp.simpleTableViewDataSource, temp.simpleTableViewDelegate);
     NSArray *dataArr = self.dataArr;
@@ -97,10 +97,10 @@
 
 - (UITableViewCell *)tableView:(CKJSimpleTableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger section = indexPath.section, row = indexPath.row;
-
+    
     CKJCommonSectionModel *sectionModel = self.dataArr[section];
     // 显示的数组
-//    NSArray <CKJCommonCellModel *>*displayModelArray = [self displayCellModelArrayAtSection:section];
+    //    NSArray <CKJCommonCellModel *>*displayModelArray = [self displayCellModelArrayAtSection:section];
     
     CKJCommonCellModel *model = sectionModel.displayModels[row];
     
@@ -139,7 +139,7 @@
         cell.selectionStyle = model.selectionStyle;
     }
     
-    if (cell.cellModel != model) {    
+    if (cell.cellModel != model) {
         cell.cellModel = model;
     }
     
@@ -148,7 +148,7 @@
     if (cell.onlyView.backgroundColor != model.cell_bgColor) {
         cell.onlyView.backgroundColor = model.cell_bgColor;
     }
-//    [self updateRightWithModel:model cell:cell];
+    //    [self updateRightWithModel:model cell:cell];
     
     [cell setupData:model section:section row:row selectIndexPath:indexPath tableView:tableView];
     
@@ -201,11 +201,11 @@
     
     if (headerClass) {
         
-//        NSLog(@"取 %@ ", headerClass);
+        //        NSLog(@"取 %@ ", headerClass);
         CKJCommonTableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:headerClass];
         
         if (headerView == nil) {
-//            NSLog(@"缓存池中没有 %@ ", headerView);
+            //            NSLog(@"缓存池中没有 %@ ", headerView);
             headerView = [[[CKJAPPHelper returnClass_ClassString:headerClass] alloc] initWithReuseIdentifier:headerClass];
         }
         headerView.headerFooterModel = headerModel;
@@ -303,7 +303,7 @@
     if (self.selectStyleBlock) {
         [self enumAllCellModelsAndSet_SelectedStyleWithCellModel:model];
     }
-        
+    
     model.didSelectRowBlock ? model.didSelectRowBlock(model) : nil;
     
     if ([self.simpleTableViewDelegate respondsToSelector:@selector(kj_tableView:didSelectRowAtSection:row:selectIndexPath:model:cell:)]) {
@@ -458,7 +458,7 @@
 
 - (void)kjwd_filterCellModelForID:(NSInteger)cellModelID finishBlock:(nullable CKJCommonCellModelRowBlock)block {
     if (block == nil) return;
-
+    
     [self kjwd_enumAllCellModelWithBlock:^(__kindof CKJCommonCellModel * _Nonnull m, NSInteger section, NSInteger row, BOOL *stop) {
         if (m.cellModel_id == cellModelID) {
             block(m);
@@ -502,7 +502,7 @@
     if (filterBlock == nil) {
         return nil;
     }
-
+    
     CKJCommonSectionModel *sectionModel = [self.dataArr kjwd_objectAtIndex:section];
     for (CKJCommonCellModel *model in sectionModel.modelArray) {
         if (filterBlock(model)) {
@@ -591,7 +591,7 @@
     if (cellModels == nil || positionModel == nil) {
         return NO;
     }
-
+    
     __block BOOL result = NO;
     
     [self kjwd_enumAllCellModelWithBlock:^(__kindof CKJCommonCellModel * _Nonnull m, NSInteger section, NSInteger row, BOOL *stop) {
@@ -601,7 +601,7 @@
             *stop = YES;
         }
     }];
-
+    
     return result;
 }
 
@@ -647,7 +647,7 @@
     CKJCommonSectionModel *sectionModel = [sections kjwd_objectAtIndex:section];
     
     NSMutableArray <CKJCommonCellModel *>*all_cellModelArray = [NSMutableArray kjwd_arrayWithArray:sectionModel.modelArray];
-
+    
     
     [all_cellModelArray kjwd_addObjectsFromArray:array];
     sectionModel.modelArray = all_cellModelArray;
@@ -741,14 +741,14 @@
     
     // 取交集
     NSArray <NSNumber *>*arr = [displayCellModelArray.kjwd_indexArray kjwd_intersectWithArray:rows].allObjects;
-//    NSIndexSet *indexSet = arr.kjwd_indexSetValue;
+    //    NSIndexSet *indexSet = arr.kjwd_indexSetValue;
     
     NSMutableArray <NSIndexPath *>*paths = [NSMutableArray array];
     [arr enumerateObjectsUsingBlock:^(NSNumber * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         NSIndexPath *path = [NSIndexPath indexPathForRow:obj.integerValue inSection:section];
         [paths addObject:path];
     }];
-
+    
     void (^block)(void) = ^{
         WDCKJdispatch_async_main_queue(^{
             // 如果这里崩溃，可能是因为 同一个CKJEmptyCellModel， 加入CKJCommonSectionModel的CellModels，导致删除的index不对
@@ -784,7 +784,7 @@
         NSArray <NSNumber *>*hiddenIndex = [self returnHiddenIndex_all_cellModelArray:all_cellModelArray];
         [allKeepIndex kjwd_addObjectsFromArray:hiddenIndex];
         
-//        NSLog(@"所有保留的下标 %@ ", allKeepIndex);
+        //        NSLog(@"所有保留的下标 %@ ", allKeepIndex);
         // 进行删除操作
         [all_cellModelArray kjwd_removeAllObjects_notIncludedRows:allKeepIndex];
     }
@@ -834,8 +834,8 @@
      
      */
     
-
-   NSSet *set1 = [self.dataArr.kjwd_indexArray kjwd_intersectWithArray:includedSections];
+    
+    NSSet *set1 = [self.dataArr.kjwd_indexArray kjwd_intersectWithArray:includedSections];
     //NSLog(@"差集 %@ ", set1);
     
     [_sections removeObjectsAtIndexes:set1.allObjects.kjwd_indexSetValue];
@@ -882,7 +882,7 @@
     NSIndexSet *willDelete = [sections kjwd_returnIndexSet_notIncludedRowsOfYou:notIncludedSections];
     
     [self removeAllSection_notIncludedSection:notIncludedSections];
-
+    
     void (^block)(void) = ^{
         WDCKJdispatch_async_main_queue(^{
             [self deleteSections:willDelete withRowAnimation:rowAnimation];
@@ -1048,21 +1048,81 @@
     });
 }
 
+
+#pragma mark - 输入框相关
+
+/// 控制台输出 输入框的值
+- (void)readInputValue {
+    NSMutableString *des = [NSMutableString string];
+    [self kjwd_enumAllCellModelWithBlock:^(CKJInputCellModel * _Nonnull m, NSInteger section, NSInteger row, BOOL *stop) {
+        if ([m isKindOfClass:[CKJInputCellModel class]]) {
+            [des appendFormat:@"%@：%@  ", m.title3Text, m.tfText];
+        }
+    }];
+    NSLog(@"输入框的全部内容如下\n%@", des);
+}
+
+- (BOOL)verityInputFail {
+    UIView *view = self.kjwd_currentViewController.view;
+    if (!view) {
+        view = self;
+    }
+    
+    for (CKJCommonSectionModel *section in self.dataArr) {
+        for (CKJCommonCellModel *model in section.modelArray) {
+            if (model.displayInTableView == NO) continue;
+            
+            if ([model isKindOfClass:[CKJInputCellModel class]]) {
+                CKJInputCellModel *m = (CKJInputCellModel *)model;
+                for (CKJInputExpressionRequiredModel *expModel in m.expressionRequiredArray) {
+                    
+                    if (expModel.required && !expModel.requiredExpression) {
+                        NSLog(@"你缺少 对输入框文本限制处理，请设置 requiredExpression，  这是本Cell信息---> titl3: %@  Placeholder: %@  ", m.title3Text, m.tfModel.attributedPlaceholder.string);
+                    }
+                    
+                    if (expModel.required && expModel.requiredExpression) {
+                        if (expModel.requiredExpression(m.tfModel.attributedText, m)) {
+                            [MBProgressHUD showError:[NSString stringWithFormat:@"%@", expModel.requiredText] toView:view];
+                            return YES;
+                        }
+                    }
+                }
+            } else if ([model isKindOfClass:[CKJInputCustomSuperCellModel class]]) {
+                CKJInputCustomSuperCellModel *m = (CKJInputCustomSuperCellModel *)model;
+                for (CKJInputExpressionRequiredModel *expModel in m.expressionRequiredArray) {
+                    
+                    if (expModel.required && !expModel.requiredExpression) {
+                        NSLog(@"你缺少 对输入框文本限制处理，请设置 requiredExpression， 这是本Cell信息---> Placeholder: %@  ", m.tfModel.attributedPlaceholder.string);
+                    }
+                    
+                    if (expModel.required && expModel.requiredExpression) {
+                        if (expModel.requiredExpression(m.tfModel.attributedText, m)) {
+                            [MBProgressHUD showError:[NSString stringWithFormat:@"%@", expModel.requiredText] toView:view];
+                            return YES;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return NO;
+}
+
 #pragma mark - 键值对
 - (NSMutableDictionary *)cell_Model_keyValues {
     if (_cell_Model_keyValues) return _cell_Model_keyValues;
     _cell_Model_keyValues = [NSMutableDictionary dictionary];
     
     NSDictionary *dic = @{
-                          NSStringFromClass([CKJCommonCellModel class]) : @{cellKEY : NSStringFromClass([CKJCommonTableViewCell class]), isRegisterNibKEY : @NO},
-                          NSStringFromClass([CKJGeneralCellModel class]) : @{cellKEY : NSStringFromClass([CKJGeneralCell class]), isRegisterNibKEY : @NO},
-                          NSStringFromClass([CKJCellModel class]) : @{cellKEY : NSStringFromClass([CKJCell class]), isRegisterNibKEY : @NO},
-                          NSStringFromClass([CKJInputCellModel class]) : @{cellKEY : NSStringFromClass([CKJInputCell class]), isRegisterNibKEY : @NO},
-                           NSStringFromClass([CKJTableViewCell1Model class]) : @{cellKEY : NSStringFromClass([CKJTableViewCell1 class]), isRegisterNibKEY : @NO},
-                          NSStringFromClass([CKJTableViewCell2Model class]) : @{cellKEY : NSStringFromClass([CKJTableViewCell2 class]), isRegisterNibKEY : @NO},
-                          NSStringFromClass([CKJEmptyCellModel class]) : @{cellKEY : NSStringFromClass([CKJEmptyCell class]), isRegisterNibKEY : @NO}
-                          // 上面这几个不要删除，只需 这样的键值对添加即可
-                          };
+        NSStringFromClass([CKJCommonCellModel class]) : @{cellKEY : NSStringFromClass([CKJCommonTableViewCell class]), isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJGeneralCellModel class]) : @{cellKEY : NSStringFromClass([CKJGeneralCell class]), isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJCellModel class]) : @{cellKEY : NSStringFromClass([CKJCell class]), isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJInputCellModel class]) : @{cellKEY : NSStringFromClass([CKJInputCell class]), isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJTableViewCell1Model class]) : @{cellKEY : NSStringFromClass([CKJTableViewCell1 class]), isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJTableViewCell2Model class]) : @{cellKEY : NSStringFromClass([CKJTableViewCell2 class]), isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJEmptyCellModel class]) : @{cellKEY : NSStringFromClass([CKJEmptyCell class]), isRegisterNibKEY : @NO}
+        // 上面这几个不要删除，只需 这样的键值对添加即可
+    };
     if ([self.simpleTableViewDataSource respondsToSelector:@selector(returnCell_Model_keyValues:)]) {
         NSDictionary *temp = [self.simpleTableViewDataSource returnCell_Model_keyValues:self];
         [_cell_Model_keyValues addEntriesFromDictionary:temp];
@@ -1086,11 +1146,11 @@
             continue;
         }
         if (isRegisterNib) {
-//            NSLog(@"注册Nib %@ ", nibName);
+            //            NSLog(@"注册Nib %@ ", nibName);
             [self registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellReuseIdentifier:cellClass];
         } else {
-//            NSLog(@"注册Class %@ ", cellClass);
-//            [self registerClass:NSClassFromString(cellClass) forCellReuseIdentifier:cellClass];
+            //            NSLog(@"注册Class %@ ", cellClass);
+            //            [self registerClass:NSClassFromString(cellClass) forCellReuseIdentifier:cellClass];
         }
     }
     return _cell_Model_keyValues;
@@ -1105,12 +1165,12 @@
         [_header_Model_keyValues addEntriesFromDictionary:temp];
     }
     NSDictionary *dic = @{
-                          NSStringFromClass([CKJCommonHeaderFooterModel class]) :
-                              @{headerFooterKey : NSStringFromClass([CKJCommonTableViewHeaderFooterView class])},
-                          NSStringFromClass([CKJTableViewHeaderFooterEmptyModel class]) :
-                              @{headerFooterKey : NSStringFromClass([CKJTableViewHeaderFooterEmptyView class])},
-                          NSStringFromClass([CKJTitleStyleHeaderFooterModel class]) : @{headerFooterKey : NSStringFromClass([CKJTitleStyleHeaderFooterView class])}
-                          };
+        NSStringFromClass([CKJCommonHeaderFooterModel class]) :
+            @{headerFooterKey : NSStringFromClass([CKJCommonTableViewHeaderFooterView class])},
+        NSStringFromClass([CKJTableViewHeaderFooterEmptyModel class]) :
+            @{headerFooterKey : NSStringFromClass([CKJTableViewHeaderFooterEmptyView class])},
+        NSStringFromClass([CKJTitleStyleHeaderFooterModel class]) : @{headerFooterKey : NSStringFromClass([CKJTitleStyleHeaderFooterView class])}
+    };
     [_header_Model_keyValues addEntriesFromDictionary:dic];
     [self registerHeaderFooterWithKeyValues:_header_Model_keyValues];
     return _header_Model_keyValues;
@@ -1125,12 +1185,12 @@
         [_footer_Model_keyValues addEntriesFromDictionary:temp];
     }
     NSDictionary *dic = @{
-                          NSStringFromClass([CKJCommonHeaderFooterModel class]) :
-                              @{headerFooterKey : NSStringFromClass([CKJCommonTableViewHeaderFooterView class])},
-                          NSStringFromClass([CKJTableViewHeaderFooterEmptyModel class]) :
-                              @{headerFooterKey : NSStringFromClass([CKJTableViewHeaderFooterEmptyView class])},
-                          NSStringFromClass([CKJTitleStyleHeaderFooterModel class]) : @{headerFooterKey : NSStringFromClass([CKJTitleStyleHeaderFooterView class])}
-                          };
+        NSStringFromClass([CKJCommonHeaderFooterModel class]) :
+            @{headerFooterKey : NSStringFromClass([CKJCommonTableViewHeaderFooterView class])},
+        NSStringFromClass([CKJTableViewHeaderFooterEmptyModel class]) :
+            @{headerFooterKey : NSStringFromClass([CKJTableViewHeaderFooterEmptyView class])},
+        NSStringFromClass([CKJTitleStyleHeaderFooterModel class]) : @{headerFooterKey : NSStringFromClass([CKJTitleStyleHeaderFooterView class])}
+    };
     [_footer_Model_keyValues addEntriesFromDictionary:dic];
     [self registerHeaderFooterWithKeyValues:_footer_Model_keyValues];
     return _footer_Model_keyValues;
@@ -1151,7 +1211,7 @@
 
 
 - (void)dealloc {
-//    NSLog(@"%@ %p 销毁", [self class], self);
+    //    NSLog(@"%@ %p 销毁", [self class], self);
 }
 
 #pragma mark - 其他
@@ -1182,7 +1242,7 @@
     } else if (keepRows) {
         indexSet = [displayArray kjwd_returnIndexSet_notIncludedRowsOfYou:keepRows];
     }
-
+    
     void (^block)(void) = ^{
         NSArray *temp = @[];
         if (deleteRows) {

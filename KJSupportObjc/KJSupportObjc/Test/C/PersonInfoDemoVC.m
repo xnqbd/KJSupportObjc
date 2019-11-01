@@ -47,7 +47,7 @@
     
     CKJGeneralCellModel *card = [CKJGeneralCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJGeneralCellModel * _Nonnull m) {
         m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"就诊卡", [UIColor kjwd_titleColor333333], nil) left:15];
-        m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"点击查看", [UIColor redColor], @13) left:0 right:15];
+        m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"点击查看", [UIColor kjwd_blueBtnColor], @13) left:0 right:15];
         m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
     } didSelectRowBlock:^(__kindof CKJGeneralCellModel *__weak  _Nonnull m) {
         NSLog(@"点击了就诊卡");

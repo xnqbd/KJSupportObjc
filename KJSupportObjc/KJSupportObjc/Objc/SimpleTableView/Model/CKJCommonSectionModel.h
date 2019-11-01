@@ -53,9 +53,11 @@ typedef void(^CKJSectionBlock)(__kindof CKJCommonSectionModel * _sec);
 
 
 /// 头 NSAttributedString
-+ (instancetype)sectionWithHeaderAttString:(NSAttributedString *_Nullable)headerAttString  detailSetting:(CKJSectionBlock _Nullable)detailSetting;
++ (instancetype)sectionWithHeaderAttString:(NSAttributedString *_Nullable)headerAttString headerAlignment:(NSTextAlignment)headerAlignment detailSetting:(CKJSectionBlock _Nullable)detailSetting;
+/// 尾 NSAttributedString
++ (instancetype)sectionWithFooterAttString:(NSAttributedString *_Nullable)footerAttString footerAlignment:(NSTextAlignment)footerAlignment  detailSetting:(CKJSectionBlock _Nullable)detailSetting;
 /// 头尾 NSAttributedString
-+ (instancetype)sectionWithHeaderAttString:(NSAttributedString *_Nullable)headerAttString footerAttString:(NSAttributedString *_Nullable)footerAttString detailSetting:(CKJSectionBlock _Nullable)detailSetting;
++ (instancetype)sectionWithHeaderAttString:(NSAttributedString *_Nullable)headerAttString headerAlignment:(NSTextAlignment)headerAlignment footerAttString:(NSAttributedString *_Nullable)footerAttString footerAlignment:(NSTextAlignment)footerAlignment detailSetting:(CKJSectionBlock _Nullable)detailSetting;
 
 
 - (void)addCellModel:(__kindof CKJCommonCellModel *_Nullable)cellModel;

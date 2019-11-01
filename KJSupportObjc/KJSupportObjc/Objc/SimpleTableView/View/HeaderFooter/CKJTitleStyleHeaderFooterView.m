@@ -12,10 +12,10 @@
 
 @implementation CKJTitleStyleHeaderFooterModel
 
-+ (instancetype)modelWithAttributedString:(nullable NSAttributedString *)attributedString type:(CKJCommonHeaderFooterType)type {
++ (nonnull instancetype)modelWithAttributedString:(nullable NSAttributedString *)attributedString textAlignment:(NSTextAlignment)textAlignment type:(CKJCommonHeaderFooterType)type {
     CKJTitleStyleHeaderFooterModel *model = [[self alloc] init];
     model.attributedTitle = attributedString;
-    model.textAlignment = NSTextAlignmentLeft;
+    model.textAlignment = textAlignment;
     model.type = type;
     return model;
 }

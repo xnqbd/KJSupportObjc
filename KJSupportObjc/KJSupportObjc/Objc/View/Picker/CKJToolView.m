@@ -12,6 +12,14 @@
 
 
 
+@interface CKJFlagView : UIView
+@end
+
+@implementation CKJFlagView
+@end
+
+
+
 @interface CKJToolView ()
 
 @property (strong, nonatomic) UIBarButtonItem *titleItem;
@@ -19,7 +27,6 @@
 @end
 
 @implementation CKJToolView
-
 
 
 - (instancetype)initWithFrame:(CGRect)frame {

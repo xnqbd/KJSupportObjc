@@ -11,13 +11,6 @@
 
 typedef void(^CKJTriggerCodeBlock)(NSUInteger seconds);
 
-
-//typedef NS_ENUM(NSUInteger, RJInputStyle) {
-//    RJInputStyle_Normal,
-//    RJInputStyle_Choose
-//};
-
-
 NS_ASSUME_NONNULL_BEGIN
 
 UIKIT_EXTERN NSInteger const kInput_Name;
@@ -32,10 +25,27 @@ UIKIT_EXTERN NSInteger const kInput_Address;
 UIKIT_EXTERN NSInteger const kInput_Email;
 
 
-@class CKJInputCellModel, CKJTFModel;
+@class CKJInputCellModel, CKJTFModel, CKJInputExpressionRequiredModel, CKJInputEmptyRequiredModel;
+
+/// EmptyRequired 空必须
+CKJInputExpressionRequiredModel * WDKJ_ER(NSString *emptyRequiredText);
 
 
 typedef void(^CKJInputCellModelRowBlock)(__kindof CKJInputCellModel *_Nonnull m);
+typedef BOOL(^CKJExpressionRequiredBlock)(NSAttributedString *attText, __kindof CKJCommonCellModel *cm);
+
+@interface CKJInputExpressionRequiredModel<E> : CKJBaseModel
+
+/// 默认是YES，必须
+@property (assign, nonatomic) BOOL required;
+
+@property (copy, nonatomic) NSString *requiredText;
+@property (copy, nonatomic) CKJExpressionRequiredBlock requiredExpression;
+
++ (instancetype)modelWithRequiredText:(NSString *)requiredText failExpression:(CKJExpressionRequiredBlock)expression;
+
+@end
+
 
 
 
@@ -63,14 +73,18 @@ typedef void(^CKJInputCellModelRowBlock)(__kindof CKJInputCellModel *_Nonnull m)
 
 + (nonnull instancetype)modelWithDetailSettingBlock:(void(^_Nullable)(__kindof CKJTFModel *_Nonnull m))detailSettingBlock;
 
-//+ (nonnull instancetype)modelWithText:(NSString *_Nullable)text placeholder:(NSString *_Nullable)placeholder userInteractionEnabled:(BOOL)enable detailSetting:(void(^_Nullable)(__kindof CKJTFModel *_Nonnull m))detailSettingBlock;
-
-
 - (void)_afterSecondsListenTextChange:(CGFloat)seconds callBack:(void(^_Nullable)(NSAttributedString *_Nullable attText))callBack;
 
 
 /// 检验手机号
-+ (BOOL)verityPhone:(NSString *)phone;
++ (BOOL)varityPhoneFail:(NSString *)phone;
+
+
+
+#pragma mark - 下面是私有的
+@property (assign, nonatomic) CGFloat seconds;
+@property (copy, nonatomic) void(^block)(NSAttributedString *_Nullable attText);
+
 
 @end
 
@@ -103,7 +117,7 @@ typedef void(^CKJInputCellModelRowBlock)(__kindof CKJInputCellModel *_Nonnull m)
 /**
  点击了验证码Block
  */
-@property (copy, nonatomic, nonnull) void (^clickCodeBlock)(_Nonnull CKJTriggerCodeBlock triggerCodeBlock);
+@property (copy, nonatomic) void (^clickCodeBlock)(_Nonnull CKJTriggerCodeBlock triggerCodeBlock);
 
 
 + (nonnull instancetype)modelWithClickCodeBtnBlock:(void (^)(_Nonnull CKJTriggerCodeBlock triggerCodeBlock))clickCodeBlock detailSettingBlock:(void(^)(__kindof CKJGetCodeModel *_Nonnull m))detailSettingBlock;
@@ -124,8 +138,12 @@ typedef void(^CKJInputCellModelRowBlock)(__kindof CKJInputCellModel *_Nonnull m)
 
 @property (strong, nonatomic, nullable) CKJGetCodeModel *getCodeModel;
 
-/// 是否  必须输入
-@property (assign, nonatomic) BOOL required;
+/// 输入框的限制
+@property (strong, nonatomic, nullable) NSArray <CKJInputExpressionRequiredModel *>*expressionRequiredArray;
+
+/// 增加限制
+- (void)addRequired:(CKJInputExpressionRequiredModel *)model;
+
 
 - (NSString *_Nullable)tfText;
 
@@ -135,9 +153,8 @@ typedef void(^CKJInputCellModelRowBlock)(__kindof CKJInputCellModel *_Nonnull m)
 @end
 
 
+
 @interface CKJInputCell : CKJCell
-
-
 
 @end
 

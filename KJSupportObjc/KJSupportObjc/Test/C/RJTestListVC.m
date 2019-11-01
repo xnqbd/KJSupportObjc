@@ -10,6 +10,7 @@
 #import "CKJImageLeftCell.h"
 #import "CKJImageRightCell.h"
 #import "CKJPayCell.h"
+#import "TableViewCellDemoVC.h"
 
 @interface RJTestListVC ()
 
@@ -44,8 +45,7 @@
     };
     
     
-    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithDetailSetting:^(__kindof CKJCommonSectionModel * _Nonnull sec) {
-        sec.headerModel = [CKJTitleStyleHeaderFooterModel modelWithAttributedString:WDCKJAttributed2(@"注意：如果是代码布局的Cell，请把子控件加入到CKJCommonTableViewCell.subviews_SuperView上", [UIColor redColor], nil) type:CKJCommonHeaderFooterType_HEADER];
+    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"注意：如果是代码布局的Cell，请把子控件加入到CKJCommonTableViewCell.subviews_SuperView上", [UIColor redColor], nil) headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         
         CKJCommonCellModel *model0 = block(@"CKJGeneralCell的用法Demo", @"CKJGeneralCellVC");
         
@@ -57,19 +57,21 @@
         CKJCommonCellModel *model5 = block(@"StackCell、ScrollViewCell示例1", @"RJSquareDemo1VC");
         
         CKJCommonCellModel *model6 = block(@"StackCell、ScrollViewCell示例2", @"RJSquareDemo2VC");
+        CKJCommonCellModel *model7 = block(@"CKJTableViewCell示例", @"TableViewCellDemoVC");
+        CKJCommonCellModel *model8 = block(@"CKJLeftRightCell示例", @"DemoLeftRightCellVC");
+
         
-        sec.modelArray = @[model0, model1, model2, model3, model5, model6];
+        
+        _sec.modelArray = @[model0, model1, model2, model3, model5, model6, model7, model8];
     }];
     
-    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderHeight:10 footerHeight:0 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull sec) {
+    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderHeight:10 footerHeight:0 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         CKJCommonCellModel *model0 = block(@"注册", @"RegisterDemoVC");
         CKJCommonCellModel *model1 = block(@"添加联系人", @"InputDemoVC");
         CKJCommonCellModel *model2 = block(@"联系人信息", @"PersonInfoDemoVC");
         
-        sec.modelArray = @[model0, model1, model2];
-        
+        _sec.modelArray = @[model0, model1, model2];
     }];
-    
     
     
     

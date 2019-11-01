@@ -7,6 +7,8 @@
 //
 
 #import "RegisterDemoVC.h"
+#import "MBProgressHUD+WJ.h"
+#import "RJCustomInputCell.h"
 
 @interface RegisterDemoVC ()
 
@@ -14,34 +16,41 @@
 
 @implementation RegisterDemoVC
 
+- (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
+    return @{
+        NSStringFromClass([RJCustomInputCellModel class]) : @{cellKEY : NSStringFromClass([RJCustomInputCell class]), isRegisterNibKEY : @YES}
+        
+    };
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.title = @"注册账户";
     
-    void(^block)(CKJInputCellModel *m) = ^(CKJInputCellModel *m){
-        m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDAtt15_5(nil) left:10];
-        m.selectionStyle = UITableViewCellSelectionStyleNone;
-    };
-    
     CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithFooterHeight:10 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull sec) {
         sec.rowHeight = 44;
-        CKJInputCellModel *model1 = [CKJInputCellModel modelWithCellHeight:0 cellModel_id:@(kInput_Name) detailSettingBlock:^(__kindof CKJInputCellModel * _Nonnull m) {   block(m);
+        CKJInputCellModel *name = [CKJInputCellModel modelWithCellHeight:0 cellModel_id:@(kInput_Name) detailSettingBlock:^(__kindof CKJInputCellModel * _Nonnull m) {   self.input_block1(m, WDKJ_ER(@"姓名"));
             [m updateTFModel:^(CKJTFModel * _Nonnull tfModel) {
-                [tfModel _setPlaceholder:@"请输入真实姓名"];
+                [tfModel _setPlaceholder:@"请输入姓名"];
             }];
         } didSelectRowBlock:nil];
-        CKJInputCellModel *model2 = [CKJInputCellModel modelWithCellHeight:0 cellModel_id:@(kInput_Phone) detailSettingBlock:^(__kindof CKJInputCellModel * _Nonnull m) {   block(m);
+        CKJInputCellModel *phone = [CKJInputCellModel modelWithCellHeight:0 cellModel_id:@(kInput_Phone) detailSettingBlock:^(__kindof CKJInputCellModel * _Nonnull m) {   self.input_block1(m, WDKJ_ER(@"手机号"));
             [m updateTFModel:^(CKJTFModel * _Nonnull tfModel) {
                 [tfModel _setPlaceholder:@"请输入手机号"];
                 tfModel.keyboardType = UIKeyboardTypePhonePad;
             }];
+            [m addRequired:[CKJInputExpressionRequiredModel modelWithRequiredText:@"手机号格式错误" failExpression:^BOOL(NSAttributedString * _Nonnull attText, CKJInputCellModel * _Nonnull cm) {
+                return [attText.string kjwd_varityPhoneFail];
+            }]];
         } didSelectRowBlock:nil];
-        CKJInputCellModel *model3 = [CKJInputCellModel modelWithCellHeight:0 cellModel_id:@(kInput_VerityCode) detailSettingBlock:^(__kindof CKJInputCellModel * _Nonnull m) {  block(m);
+        CKJInputCellModel *model3 = [CKJInputCellModel modelWithCellHeight:0 cellModel_id:@(kInput_VerityCode) detailSettingBlock:^(__kindof CKJInputCellModel * _Nonnull m) {  self.input_block1(m, WDKJ_ER(@"验证码"));
             [m updateTFModel:^(CKJTFModel * _Nonnull tfModel) {
                 [tfModel _setPlaceholder:@"请输入短信验证码"];
                 tfModel.keyboardType = UIKeyboardTypeNumberPad;
             }];
-            
+            [m addRequired:[CKJInputExpressionRequiredModel modelWithRequiredText:@"验证码必须是6位" failExpression:^BOOL(NSAttributedString * _Nonnull attText, CKJInputCellModel * _Nonnull cm) {
+                return attText.string.length != 6;
+            }]];
             // 注意：一定要设置 手机号的cellId 为 kInput_Phone，不然无法发送验证码
             m.getCodeModel = [CKJGetCodeModel modelWithClickCodeBtnBlock:^(CKJTriggerCodeBlock  _Nonnull triggerCodeBlock) {
                 
@@ -59,70 +68,42 @@
             }];
         } didSelectRowBlock:nil];
         
-        sec.modelArray = @[model1, model2, model3];
+        RJCustomInputCellModel *model4 = [RJCustomInputCellModel modelWithCellHeight:50 cellModel_id:nil detailSettingBlock:^(RJCustomInputCellModel * _Nonnull m) {
+            [m updateTFModel:^(CKJTFModel * _Nonnull tfModel) {
+                [tfModel _setPlaceholder:@"请输入新手机号"];
+                tfModel.keyboardType = UIKeyboardTypeNumberPad;
+                tfModel.textAlignment = NSTextAlignmentRight;
+            }];
+            [m addRequired:WDKJ_ER(@"新手机号")];
+            [m addRequired:[CKJInputExpressionRequiredModel modelWithRequiredText:@"新手机格式不正确" failExpression:^BOOL(NSAttributedString * _Nonnull attText, __kindof CKJCommonCellModel * _Nonnull cm) {
+                return [attText.string kjwd_varityPhoneFail];
+            }]];
+        } didSelectRowBlock:nil];
+        
+        
+        sec.modelArray = @[name, phone, model3, model4];
     }];
     self.simpleTableView.dataArr = @[section1];
     
-    [self createFooterView];
-}
+    [self createFooterViewWithBtnTitle:@"注册" clickHandle:^(UIButton * _Nonnull sender, RegisterDemoVC *se, CKJSimpleTableView *simpleTableView) {
 
-- (void)createFooterView {
-    
-    CGFloat swidth = [UIScreen mainScreen].bounds.size.width;
-    
-    UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, swidth, 80)];
-    bgView.backgroundColor = [UIColor clearColor];
-    
-    UIButton *save = ({
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [btn setBackgroundColor:[UIColor kjwd_blueBtnColor]];
-        [btn setTitle:@"注册" forState:UIControlStateNormal];
-        btn.layer.cornerRadius = 5;
-        btn.layer.masksToBounds = YES;
-        [btn addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
-        btn;
-    });
-    
-    [bgView addSubview:save];
-    
-    [save mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.mas_equalTo(bgView);
-        make.width.equalTo(bgView).offset(-40).priority(550);
-        make.height.equalTo(@45);
+        if ([se.simpleTableView verityInputFail]) return;
+        
+        // 姓名
+        NSString *_name = [self.simpleTableView inputCellModelOfID:kInput_Name].tfText;
+        
+        // 手机号
+        NSString *_phone = [self.simpleTableView inputCellModelOfID:kInput_Phone].tfText;
+        
+        // 验证码
+        NSString *_verityCode = [self.simpleTableView inputCellModelOfID:kInput_VerityCode].tfText;
+
+        NSLog(@"验证通过------发送------注册网络请求------");
     }];
-    self.simpleTableView.tableFooterView = bgView;
 }
 
 - (void)scrollViewWillBeginDragging:(nonnull UIScrollView *)scrollView {
     [self.view endEditing:YES];
-}
-// 点击 注册
-- (void)registerAction {
-    
-    // 姓名
-    NSString *_name = [self.simpleTableView inputCellModelOfID:kInput_Name].tfText;
-    
-    // 手机号
-    NSString *_phone = [self.simpleTableView inputCellModelOfID:kInput_Phone].tfText;
-    
-    // 验证码
-    NSString *_verityCode = [self.simpleTableView inputCellModelOfID:kInput_VerityCode].tfText;
-
-
-    if (WDKJ_IsEmpty_Str(_name)) {
-        [MBProgressHUD showError:@"姓名不能为空" toView:self.view];
-        return;
-    }
-    if (![CKJTFModel verityPhone:_phone]) {
-        [MBProgressHUD showError:@"手机号为空或有误"];
-        return;
-    }
-    if (WDKJ_IsEmpty_Str(_verityCode)) {
-        [MBProgressHUD showError:@"验证码不能为空" toView:self.view];
-        return;
-    }
-    NSLog(@"发送------注册网络请求------");
 }
 
 @end

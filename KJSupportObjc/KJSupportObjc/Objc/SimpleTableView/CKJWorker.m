@@ -60,6 +60,62 @@ NSString *_Nonnull const cCornerRadius = @"cCornerRadius";
 }
 
 
++ (void)reloadWithBtnModel:(CKJBaseBtnModel *)btn5Model btn:(UIButton *)btn5 emptyHandle:(void(^)(__kindof CKJBaseBtnModel *btnM))emptyHandle noEmptyHandle:(void(^)(__kindof CKJBaseBtnModel *btnM))noEmptyHandle  {
+    
+    [btn5 setAttributedTitle:btn5Model.normalAttributedTitle forState:UIControlStateNormal];
+    [btn5 setAttributedTitle:btn5Model.selectedAttributedTitle forState:UIControlStateSelected];
+    
+    UIImage *normalBackgroundImage =  btn5Model.normalBackgroundImage;
+    UIImage *selectedBackgroundImage = btn5Model.selectedBackgroundImage;
+    UIImage *normalImage = btn5Model.normalImage;
+    UIImage *selectedImage = btn5Model.selectedImage;
+    
+    normalBackgroundImage = WDKJ_IsNullObj(normalBackgroundImage, [UIImage class]) ? nil : normalBackgroundImage;
+    selectedBackgroundImage = WDKJ_IsNullObj(selectedBackgroundImage, [UIImage class]) ? nil : selectedBackgroundImage;
+    normalImage = WDKJ_IsNullObj(normalImage, [UIImage class]) ? nil : normalImage;
+    selectedImage =  WDKJ_IsNullObj(selectedImage, [UIImage class]) ? nil : selectedImage;
+    
+    [btn5 setBackgroundImage:normalBackgroundImage forState:UIControlStateNormal];
+    [btn5 setBackgroundImage:selectedBackgroundImage forState:UIControlStateSelected];
+    [btn5 setImage:normalImage forState:UIControlStateNormal];
+    [btn5 setImage:selectedImage forState:UIControlStateSelected];
+    
+    BOOL emptyAttributedTitle = WDKJ_IsEmpty_Str(btn5.currentAttributedTitle.string);
+    BOOL emptyImage = btn5.currentImage == nil;
+    BOOL emptyBackgroundImage = btn5.currentBackgroundImage == nil;
+    // 如果什么都没有， 那么就width = 0
+    
+    // [subTitle4  btn5  View5  tfWrapperView  kjSwitch6   btn7]
+    
+    if ((emptyAttributedTitle && emptyImage && emptyBackgroundImage) || btn5Model.btnHidden) {
+        if (emptyHandle) {
+            emptyHandle(btn5Model);
+        }
+    } else {
+        if (noEmptyHandle) {
+            noEmptyHandle(btn5Model);
+        }
+        
+        if (btn5Model.cornerRadius > 0) {
+            btn5.layer.cornerRadius = btn5Model.cornerRadius;
+            btn5.clipsToBounds = YES;
+        } else {
+            btn5.layer.cornerRadius = 0;
+            btn5.clipsToBounds = NO;
+        }
+        btn5.layer.borderColor = btn5Model.borderColor.CGColor;
+        btn5.layer.borderWidth = btn5Model.borderWidth;
+        btn5.selected = btn5Model.selected;
+        btn5.userInteractionEnabled = btn5Model.userInteractionEnabled;
+        
+        if (btn5Model.layoutButton) {
+            btn5Model.layoutButton(btn5);
+        }
+    }
+    
+    [btn5 kjwd_setHidden:btn5Model.btnHidden];
+}
+
 @end
 
 
@@ -145,4 +201,24 @@ NSString *_Nonnull const cCornerRadius = @"cCornerRadius";
 @end
 
 
+
+@implementation CKJBaseBtnModel
+
+
+- (void)changeNormalText:(nullable NSString *)text {
+    self.normalAttributedTitle = [CKJWorker changeOriginAtt:self.normalAttributedTitle text:text];
+}
+- (void)changeSelectedText:(nullable NSString *)text {
+    self.selectedAttributedTitle = [CKJWorker changeOriginAtt:self.selectedAttributedTitle text:text];
+}
+
+
+- (instancetype)init {
+    if (self = [super init]) {
+        self.userInteractionEnabled = YES;
+    }
+    return self;
+}
+
+@end
 
