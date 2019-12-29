@@ -1,6 +1,6 @@
 # KJSupportObjc
 
-KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定义UITableView及常见的Cell套件为一体的一个常用轻量级的库，适用于所有iOS开发者，包括Objective-C和Swift
+KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定义UITableView封装UITableView及常见的Cell套件为一体的一个常用轻量级的库，适用于所有iOS开发者，包括Objective-C和Swift
 
 ## 系统的UITableView有什么问题？
 传统情况下，项目里很多控制器都会使用到UITableView，而且每个控制器要注册不同的Cell，实现
