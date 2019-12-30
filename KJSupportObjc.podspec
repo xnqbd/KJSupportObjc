@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "KJSupportObjc"
-s.version      = "9.1.0"
+s.version      = "9.2.0"
 s.summary      = "包含常见的分类、工具，UITableView的工具等等"
 
 s.homepage     = "https://github.com/xnqbd/KJSupportObjc"
@@ -25,5 +25,6 @@ s.source_files  = "KJSupportObjc/KJSupportObjc/Objc/**/*.{h,m}"
 s.requires_arc = true
 
 s.dependency "Masonry"
+s.dependency "ActionSheetPicker-3.0" 
 
 end
