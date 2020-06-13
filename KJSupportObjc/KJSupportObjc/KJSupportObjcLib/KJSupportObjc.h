@@ -15,7 +15,7 @@
 
 
 // 使用方式
-// 1.直接把KJSupportObjc文件夹下的所有文件拖入项目
+// 1.直接把KJSupportObjcLib文件夹下的所有文件拖入项目
 // 2.使用CocoaPods导入下面几个库
 // pod 'Masonry'
 // pod 'ActionSheetPicker-3.0'

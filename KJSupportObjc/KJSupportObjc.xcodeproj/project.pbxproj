@@ -489,7 +489,7 @@
 		955997E1209AECF900163047 /* KJSupportObjc */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D8C12494E505008109C9 /* Objc */,
+				BC31D8C12494E505008109C9 /* KJSupportObjcLib */,
 				BC31D96D2494E506008109C9 /* Test */,
 				46E913582356E24E003AFFC4 /* OriginProject */,
 				168AF97E229ED5AD00619C79 /* 3 */,
@@ -507,7 +507,7 @@
 			path = KJSupportObjc;
 			sourceTree = "<group>";
 		};
-		BC31D8C12494E505008109C9 /* Objc */ = {
+		BC31D8C12494E505008109C9 /* KJSupportObjcLib */ = {
 			isa = PBXGroup;
 			children = (
 				BC31D8C22494E505008109C9 /* KJSupportObjc.h */,
@@ -520,7 +520,7 @@
 				BC31D9672494E506008109C9 /* FixMode */,
 				BC31D96A2494E506008109C9 /* Header */,
 			);
-			path = Objc;
+			path = KJSupportObjcLib;
 			sourceTree = "<group>";
 		};
 		BC31D8C32494E505008109C9 /* Category */ = {
