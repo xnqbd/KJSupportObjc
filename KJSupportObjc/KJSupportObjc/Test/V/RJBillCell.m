@@ -13,7 +13,7 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.cellHeight = 44;
+        self.cellHeight = @44;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
@@ -28,7 +28,7 @@
     
     self.timeLab.text = [[NSDate kjwd_returnDate:model.BillDate withDateFormat:CKJDateFormat4] kjwd_YearMonthDayString];
     
-    self.amountLab.attributedText = WDCKJAttributed4(@"收费：", [UIColor kjwd_titleColor333333], nil, [NSString stringWithFormat:@"￥%@", model.Total], [UIColor redColor], nil);
+    self.amountLab.attributedText = WDCKJAttAppend(@"收费：", [UIColor kjwd_title], nil, [NSString stringWithFormat:@"￥%@", model.Total], [UIColor redColor], nil);
 }
 
 @end

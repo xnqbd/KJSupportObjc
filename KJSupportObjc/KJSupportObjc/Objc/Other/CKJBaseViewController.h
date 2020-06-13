@@ -26,11 +26,24 @@
 - (void)kj_addNotification;
 - (void)kj_removeNotification;
 
+- (void)_set_subViews;
 
 /**
  增加补充数据
  */
 - (void)installComplementData;
+
+
+/// 实心的
+- (UIView *)footerViewWithBtnTitle:(NSString *)title clickHandle:(void(^_Nullable)(UIButton * _Nonnull sender))clickHandle;
+
+
+/// 镂空的
+- (UIView *)strokeFooterViewWithBtnTitle:(NSString *)title clickHandle:(void(^_Nullable)(UIButton * _Nonnull sender))clickHandle;
+
+
+
+
 
 @end
 

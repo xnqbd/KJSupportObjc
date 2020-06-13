@@ -9,10 +9,6 @@
 #import "RJDemoExpertItemView.h"
 #import "UIView+CKJDesingable.h"
 
-@implementation RJDemoExpertItemData
-
-@end
-
 @implementation RJDemoExpertItemView
 
 - (void)awakeFromNib {
@@ -22,9 +18,8 @@
 }
 
 - (IBAction)tap:(UITapGestureRecognizer *)sender {
-    RJDemoExpertItemData *itemData = self.itemData;
-    if (itemData.tapBlock) {
-        itemData.tapBlock();
+    if (self.tapBlock) {
+        self.tapBlock();
     }
 }
 

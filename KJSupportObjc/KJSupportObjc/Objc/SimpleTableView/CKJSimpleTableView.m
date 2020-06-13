@@ -11,6 +11,10 @@
 #import "CKJTableViewCell1.h"
 #import "CKJTableViewCell2.h"
 #import "CKJEmptyCell.h"
+#import "CKJHUD+KJSupport.h"
+
+
+CGFloat const kOCell_Left_Margin = 12;
 
 
 @interface CKJSimpleTableView ()
@@ -29,6 +33,19 @@
 @end
 
 @implementation CKJSimpleTableView
+
++ (UIView *)createSimpleTableViewWithEdge:(UIEdgeInsets)edge style:(UITableViewStyle)style detail:(void(^)(CKJSimpleTableView *s))detail {
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = [UIColor whiteColor];
+    CKJSimpleTableView *tableView = [[self alloc] initWithFrame:CGRectZero style:style];
+    [tableView kjwd_addToSuperView:view constraints:^(MASConstraintMaker * _Nonnull make, UIView * _Nonnull superview) {
+        make.edges.equalTo(superview).insets(edge);
+    }];
+    if (detail) {
+        detail(tableView);
+    }
+    return view;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     if (self = [super initWithFrame:frame style:style]) {
@@ -60,10 +77,23 @@
     
     self.nameSpace = [CKJAPPHelper kj_nameSpace];
     self.separatorColor = [UIColor kjwd_rbg:220 alpha:1];
+    
+    self.simpleStyle = [[CKJSimpleTableViewStyle alloc] init];
+    self.backgroundColor = [UIColor kjwd_rbg:247 alpha:1];
+}
+
+- (void)setDataArr:(NSArray<__kindof CKJCommonSectionModel *> *)dataArr {
+    dataArr.lastObject.footerHeight = @0;  // 默认最后一个分区的区尾高度为0，如果想要改变默认行为，在设置完dataArr后，再次找到最后一个分区设置区尾相关数据
+    _dataArr = dataArr;
 }
 
 - (__kindof CKJCommonSectionModel *_Nullable)lastSection {
     return self.dataArr.lastObject;
+}
+- (void)updateStyle:(void(^)(CKJSimpleTableViewStyle *s))update {
+    if (update) {
+        update(self.simpleStyle);
+    }
 }
 
 - (void)disableEstimated {
@@ -117,14 +147,16 @@
     CKJCommonTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:modelName];
     if (cell == nil) {
         NSDictionary *dic = self.cell_Model_keyValues[key];
-        NSString *cellClass = dic[cellKEY];
-        BOOL isRegisterNib = [dic[isRegisterNibKEY] boolValue];
+        NSString *cellClass = dic[KJPrefix_cellKEY];
+        BOOL isRegisterNib = [dic[KJPrefix_isRegisterNibKEY] boolValue];
         
         if (cellClass) {
             if (isRegisterNib) {
-#warning 如果没有取出cell，看看xib文件有没有加入本项目的target
+                // 如果这里出现崩溃
+                // 1. 看看xib文件有没有加入本项目的target
+                // 2. xib文件有错误的IBOutlet没有删除
                 cell = [tableView dequeueReusableCellWithIdentifier:cellClass forIndexPath:indexPath];
-                cell.configDic = dic;
+                cell.readOnly_configDic = dic;
             } else {
                 cell = [tableView dequeueReusableCellWithIdentifier:cellClass];
                 if (cell == nil) {
@@ -144,41 +176,97 @@
     }
     
     [model _privateMethodWithCell:cell];
-    [cell _privateMethodWithSimpleTableView:tableView sectionModel:sectionModel section:section row:row];
-    if (cell.onlyView.backgroundColor != model.cell_bgColor) {
-        cell.onlyView.backgroundColor = model.cell_bgColor;
-    }
-    //    [self updateRightWithModel:model cell:cell];
+    [cell _privateMethodWithSimpleTableView:tableView sectionModel:sectionModel section:section row:row cell:cell model:model];
+    
     
     [cell setupData:model section:section row:row selectIndexPath:indexPath tableView:tableView];
     
-    if (model.showLine) {
-        cell.separatorInset = UIEdgeInsetsMake(0, 15, 0, 0);
-    } else {
-        cell.separatorInset = UIEdgeInsetsMake(0, cell.bounds.size.width + 1000, 0, 0);
+    if (model.lineEdge) {
+        cell.separatorInset = model.lineEdge.UIEdgeInsetsValue;
+    } else if (sectionModel.lineEdge) {
+        cell.separatorInset = sectionModel.lineEdge.UIEdgeInsetsValue;
+    } else if (self.simpleStyle.lineEdge) {
+        cell.separatorInset = self.simpleStyle.lineEdge.UIEdgeInsetsValue;
     }
     
     return cell;
 }
-
-
-
 #pragma mark - UITableViewDelegate
+
+- (void)tableView:(CKJSimpleTableView *)tableView willDisplayCell:(CKJCommonTableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSInteger section = indexPath.section, row = indexPath.row;
+
+    CKJCommonSectionModel *sectionModel = self.dataArr[section];
+
+    UIView *onlyView = cell.onlyView;
+
+    if (_simpleStyle.sectionCornerStyle.sectionCornerEnable) {
+        // 圆角弧度半径
+        CGFloat cornerRadius = _simpleStyle.sectionCornerStyle.corner_Radius;
+
+        // 创建一个shapeLayer
+        CAShapeLayer *layer =  cell.cornerLayer;
+        // 创建一个可变的图像Path句柄，该路径用于保存绘图信息
+        CGMutablePathRef pathRef = CGPathCreateMutable();
+        // 获取cell的size
+        CGRect bounds = CGRectInset(cell.bounds, 0, 0);
+
+        if (sectionModel.displayModels.count == 1) {
+            
+            UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:bounds cornerRadius:cornerRadius];
+
+            layer.path = path.CGPath;
+        } else {
+
+            if (row == 0) {
+                // 初始起点为cell的左下角坐标
+                CGPathMoveToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds));
+                CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds), CGRectGetMidX(bounds), CGRectGetMinY(bounds), cornerRadius);
+                CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
+                CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds));
+            } else if (row == sectionModel.displayModels.count - 1) {
+                // 初始起点为cell的左上角坐标
+                CGPathMoveToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMinY(bounds));
+                CGPathAddArcToPoint(pathRef, nil, CGRectGetMinX(bounds), CGRectGetMaxY(bounds), CGRectGetMidX(bounds), CGRectGetMaxY(bounds), cornerRadius);
+                CGPathAddArcToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMaxY(bounds), CGRectGetMaxX(bounds), CGRectGetMidY(bounds), cornerRadius);
+                CGPathAddLineToPoint(pathRef, nil, CGRectGetMaxX(bounds), CGRectGetMinY(bounds));
+            } else {
+                // 添加cell的rectangle信息到path中（不包括圆角）
+                CGPathAddRect(pathRef, nil, bounds);
+            }
+
+            layer.path = pathRef;
+
+            CFRelease(pathRef);
+        }
+        
+        layer.fillColor = self.simpleStyle.sectionCornerStyle.stroke_Color.CGColor;
+        onlyView.backgroundColor = self.backgroundColor;
+    } else {
+        if (cell.cornerLayer.opacity != 0) {
+            cell.cornerLayer.opacity = 0;
+        }
+    }
+    if ([self.simpleTableViewDelegate respondsToSelector:@selector(tableView:willDisplayCell:forRowAtIndexPath:section:row:model:sectionModel:)]) {
+        CKJCommonCellModel *m = [sectionModel.displayModels kjwd_objectAtIndex:row];
+        [self.simpleTableViewDelegate tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath section:section row:row model:m sectionModel:sectionModel];
+    }
+}
+
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     CKJCommonSectionModel *sectionModel = self.dataArr[section];
-    CKJCommonHeaderFooterModel *headerModel = sectionModel.headerModel;
-    if ([headerModel isMemberOfClass:[CKJTableViewHeaderFooterEmptyModel class]]) {
-        return sectionModel.headerHeight;
+    NSNumber *headerHeight = sectionModel.headerHeight;
+    NSNumber *sectionHeaderHeight = self.simpleStyle.sectionHeaderHeight;
+    
+    if (!WDKJ_IsNull_Num(headerHeight)) {
+        return headerHeight.floatValue;
     }
     
-    if (headerModel == nil) {
-        return sectionModel.headerHeight;
-    } else {
-        if (sectionModel.headerHeight > 0) {
-            return sectionModel.headerHeight;
-        }
-        return UITableViewAutomaticDimension;
+    if (!WDKJ_IsNull_Num(sectionHeaderHeight)) {
+        return sectionHeaderHeight.floatValue;
     }
+    return UITableViewAutomaticDimension;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -197,7 +285,7 @@
     }
     
     NSDictionary *dic = self.header_Model_keyValues[modelClassName];
-    NSString *headerClass = dic[headerFooterKey];
+    NSString *headerClass = dic[KJPrefix_headerFooterKey];
     
     if (headerClass) {
         
@@ -218,19 +306,17 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     CKJCommonSectionModel *sectionModel = self.dataArr[section];
-    CKJCommonHeaderFooterModel *footerModel = sectionModel.footerModel;
-    if ([footerModel isMemberOfClass:[CKJTableViewHeaderFooterEmptyModel class]]) {
-        return sectionModel.footerHeight;
+    NSNumber *footerHeight = sectionModel.footerHeight;
+    NSNumber *sectionFooterHeight = self.simpleStyle.sectionFooterHeight;
+    
+    if (!WDKJ_IsNull_Num(footerHeight)) {
+        return footerHeight.floatValue;
     }
     
-    if (footerModel == nil) {
-        return sectionModel.footerHeight;
-    } else {
-        if (sectionModel.footerHeight > 0) {
-            return sectionModel.footerHeight;
-        }
-        return UITableViewAutomaticDimension;
+    if (!WDKJ_IsNull_Num(sectionFooterHeight)) {
+        return sectionFooterHeight.floatValue;
     }
+    return UITableViewAutomaticDimension;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
@@ -249,7 +335,7 @@
     }
     
     NSDictionary *dic = self.footer_Model_keyValues[modelClassName];
-    NSString *footerClass = dic[headerFooterKey];
+    NSString *footerClass = dic[KJPrefix_headerFooterKey];
     
     if (footerClass) {
         
@@ -267,7 +353,6 @@
     }
 }
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
 #warning 如果此方法没有调用，请检查当前的tableView.delegate 是不是此 CKJSimpleTableView对象
@@ -280,16 +365,21 @@
     CKJCommonSectionModel *sectionModel = [self.dataArr kjwd_objectAtIndex:section];
     
     CKJCommonCellModel *model = displayModelArray[row];
-    if (model.cellHeight <= 0) {
-        if (sectionModel.rowHeight > 0) {
-            return sectionModel.rowHeight;
-        }
-        return UITableViewAutomaticDimension;
-    } else {
-        return model.cellHeight;
+    
+    if (!WDKJ_IsNull_Num(model.cellHeight)) {
+        return model.cellHeight.floatValue;
     }
+    
+    if (!WDKJ_IsNull_Num(sectionModel.rowHeight)) {
+        return sectionModel.rowHeight.floatValue;
+    }
+    
+    if (!WDKJ_IsNull_Num(self.simpleStyle.rowHeight)) {
+        return self.simpleStyle.rowHeight.floatValue;
+    }
+    
+    return UITableViewAutomaticDimension;
 }
-
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     NSInteger section = indexPath.section, row = indexPath.row;
@@ -314,15 +404,19 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    if ([self.simpleTableViewDelegate respondsToSelector:@selector(tableView:commitEditingStyle:forRowAtIndexPath:section:row:)]) {
-        [self.simpleTableViewDelegate tableView:(CKJSimpleTableView *)tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath section:section row:row];
+    CKJCommonTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    CKJCommonCellModel *model = cell.cellModel;
+    if ([self.simpleTableViewDelegate respondsToSelector:@selector(tableView:commitEditingStyle:forRowAtIndexPath:section:row:model:cell:)]) {
+        [self.simpleTableViewDelegate tableView:(CKJSimpleTableView *)tableView commitEditingStyle:editingStyle forRowAtIndexPath:indexPath section:section row:row model:model cell:cell];
     }
 }
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    if ([self.simpleTableViewDelegate respondsToSelector:@selector(tableView:editingStyleForRowAtIndexPath:section:row:)]) {
-        return [self.simpleTableViewDelegate tableView:(CKJSimpleTableView *)tableView editingStyleForRowAtIndexPath:indexPath section:section row:row];
+    CKJCommonTableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    CKJCommonCellModel *model = cell.cellModel;
+    if ([self.simpleTableViewDelegate respondsToSelector:@selector(tableView:editingStyleForRowAtIndexPath:section:row:model:cell:)]) {
+        return [self.simpleTableViewDelegate tableView:(CKJSimpleTableView *)tableView editingStyleForRowAtIndexPath:indexPath section:section row:row model:model cell:cell];
     }
     return UITableViewCellEditingStyleNone;
 }
@@ -456,7 +550,7 @@
     }
 }
 
-- (void)kjwd_filterCellModelForID:(NSInteger)cellModelID finishBlock:(nullable CKJCommonCellModelRowBlock)block {
+- (void)kjwd_filterCellModelForID:(nonnull NSString *)cellModelID finishBlock:(nullable CKJCommonCellModelRowBlock)block {
     if (block == nil) return;
     
     [self kjwd_enumAllCellModelWithBlock:^(__kindof CKJCommonCellModel * _Nonnull m, NSInteger section, NSInteger row, BOOL *stop) {
@@ -467,30 +561,41 @@
     }];
 }
 
-- (nullable __kindof CKJCommonCellModel *)cellModelOfID:(NSInteger)cellModel_id {
+- (nullable __kindof CKJCommonCellModel *)cellModelOfID:(nonnull NSString *)cellModel_id {
     for (CKJCommonSectionModel *section in self.dataArr) {
         for (CKJCommonCellModel *model in section.modelArray) {
-            if (model.cellModel_id == cellModel_id) {
+            if ([model.cellModel_id isEqualToString:cellModel_id]) {
                 return model;
             }
         }
     }
     return nil;
 }
-- (nullable __kindof CKJInputCellModel *)inputCellModelOfID:(NSInteger)cellModel_id {
+- (nullable __kindof CKJCellModel *)ckjCellModelOfID:( NSString *)cellModel_id {
+    return (CKJCellModel *)[self cellModelOfID:cellModel_id];
+}
+
+- (nullable __kindof CKJInputCellModel *)inputCellModelOfID:(nonnull NSString *)cellModel_id {
     return (CKJInputCellModel *)[self cellModelOfID:cellModel_id];
 }
 
-- (nullable __kindof CKJCommonSectionModel *)sectionModelOfID:(NSInteger)sectionModel_id {
+- (nullable __kindof CKJCommonSectionModel *)sectionModelOfID:(nonnull NSString *)sectionModel_id {
     for (CKJCommonSectionModel *section in self.dataArr) {
-        if (section.sectionModel_id == sectionModel_id) {
+        if ([section.sectionModel_id isEqualToString:sectionModel_id]) {
             return section;
         }
     }
     return nil;
 }
+- (void)searchSectionModelOfID:(nonnull NSString *)sectionModel_id doSomething:(void(^_Nullable)(__kindof CKJCommonSectionModel *_Nonnull sm))doSomething {
+    if (doSomething == nil) return;
+    CKJCommonSectionModel *model = [self sectionModelOfID:sectionModel_id];
+    if (model) {
+        doSomething(model);
+    }
+}
 
-- (void)searchCellModelOfID:(NSInteger)cellModel_id doSomething:(nullable CKJCommonCellModelRowBlock)doSomething {
+- (void)searchCellModelOfID:(nonnull NSString *)cellModel_id doSomething:(nullable CKJCommonCellModelRowBlock)doSomething {
     if (doSomething == nil) return;
     CKJCommonCellModel *model = [self cellModelOfID:cellModel_id];
     if (model) {
@@ -527,7 +632,7 @@
     return result;
 }
 
-- (void)do_InSection:(NSUInteger)section conformBlock:(BOOL (^ _Nonnull)(__kindof CKJCommonCellModel *cellModel))conformBlock handle:(void(^ _Nonnull)(BOOL isConform, __kindof CKJCommonCellModel *cellModel))handle {
+- (void)do_InSection:(NSUInteger)section conformBlock:(BOOL (^_Nullable)(__kindof CKJCommonCellModel *cellModel))conformBlock handle:(void(^_Nullable)(BOOL isConform, __kindof CKJCommonCellModel *cellModel))handle {
     if ((conformBlock == nil) || (handle == nil)) {
         return;
     }
@@ -541,11 +646,11 @@
     }
 }
 
-- (nullable NSIndexPath *)indexPathOf_CellModel_id:(NSInteger)cellModel_id {
+- (nullable NSIndexPath *)indexPathOf_CellModel_id:(nonnull NSString *)cellModel_id {
     __block NSIndexPath *indexPath = nil;
     [self.dataArr enumerateObjectsUsingBlock:^(CKJCommonSectionModel * _Nonnull sectionModel, NSUInteger sectionIdx, BOOL * _Nonnull stop) {
         [sectionModel.modelArray enumerateObjectsUsingBlock:^(CKJCommonCellModel * _Nonnull cellModel, NSUInteger rowIdx, BOOL * _Nonnull stop) {
-            if (cellModel.cellModel_id == cellModel_id) {
+            if ([cellModel.cellModel_id isEqualToString:cellModel_id]) {
                 indexPath = [NSIndexPath indexPathForRow:rowIdx inSection:sectionIdx];
             }
         }];
@@ -1056,7 +1161,7 @@
     NSMutableString *des = [NSMutableString string];
     [self kjwd_enumAllCellModelWithBlock:^(CKJInputCellModel * _Nonnull m, NSInteger section, NSInteger row, BOOL *stop) {
         if ([m isKindOfClass:[CKJInputCellModel class]]) {
-            [des appendFormat:@"%@：%@  ", m.title3Text, m.tfText];
+            [des appendFormat:@"%@：%@  ", m.title3Text, m.getTfText];
         }
     }];
     NSLog(@"输入框的全部内容如下\n%@", des);
@@ -1077,36 +1182,77 @@
                 for (CKJInputExpressionRequiredModel *expModel in m.expressionRequiredArray) {
                     
                     if (expModel.required && !expModel.requiredExpression) {
-                        NSLog(@"你缺少 对输入框文本限制处理，请设置 requiredExpression，  这是本Cell信息---> titl3: %@  Placeholder: %@  ", m.title3Text, m.tfModel.attributedPlaceholder.string);
+                        NSLog(@"你缺少 对输入框文本限制处理，请设置 requiredExpression，  这是本Cell信息---> titl3: %@  Placeholder: %@  ", m.title3Text, m.tfModel.attPlaceholder.string);
                     }
                     
                     if (expModel.required && expModel.requiredExpression) {
-                        if (expModel.requiredExpression(m.tfModel.attributedText, m)) {
-                            [MBProgressHUD showError:[NSString stringWithFormat:@"%@", expModel.requiredText] toView:view];
-                            return YES;
-                        }
-                    }
-                }
-            } else if ([model isKindOfClass:[CKJInputCustomSuperCellModel class]]) {
-                CKJInputCustomSuperCellModel *m = (CKJInputCustomSuperCellModel *)model;
-                for (CKJInputExpressionRequiredModel *expModel in m.expressionRequiredArray) {
-                    
-                    if (expModel.required && !expModel.requiredExpression) {
-                        NSLog(@"你缺少 对输入框文本限制处理，请设置 requiredExpression， 这是本Cell信息---> Placeholder: %@  ", m.tfModel.attributedPlaceholder.string);
-                    }
-                    
-                    if (expModel.required && expModel.requiredExpression) {
-                        if (expModel.requiredExpression(m.tfModel.attributedText, m)) {
-                            [MBProgressHUD showError:[NSString stringWithFormat:@"%@", expModel.requiredText] toView:view];
+                        if (expModel.requiredExpression(m.tfModel.attText.string, m)) {
+                            [CKJHUD kjwd_showMessage:[NSString stringWithFormat:@"%@", expModel.requiredText] toView:view];
                             return YES;
                         }
                     }
                 }
             }
+//            else if ([model isKindOfClass:[CKJInputCustomSuperCellModel class]]) {
+//                CKJInputCustomSuperCellModel *m = (CKJInputCustomSuperCellModel *)model;
+//                for (CKJInputExpressionRequiredModel *expModel in m.expressionRequiredArray) {
+//
+//                    if (expModel.required && !expModel.requiredExpression) {
+//                        NSLog(@"你缺少 对输入框文本限制处理，请设置 requiredExpression， 这是本Cell信息---> Placeholder: %@  ", m.tfModel.attributedPlaceholder.string);
+//                    }
+//
+//                    if (expModel.required && expModel.requiredExpression) {
+//                        if (expModel.requiredExpression(m.tfModel.attributedText, m)) {
+//                            [CKJHUD showError:[NSString stringWithFormat:@"%@", expModel.requiredText] toView:view];
+//                            return YES;
+//                        }
+//                    }
+//                }
+//            }
         }
     }
     return NO;
 }
+
+- (CKJInputCellModel *)_newtitle:(NSString *_Nullable)title tfText:(NSString *)text placeholder:(id)placeholder emptyRequirdText:(nullable NSString *)emptyRequirdText cellId:(nonnull NSString *)cellId detail:(nullable CKJInputCellModelRowBlock)detail {
+
+    CKJSimpleTableViewStyle *style = self.simpleStyle;
+    
+    CKJInputTitleStyle *titleStyle = style.haveTitleStyle;
+
+    CKJInputCellModel *model = [CKJInputCellModel inputWithCellHeight:nil cellModel_id:cellId detailSettingBlock:^(CKJInputCellModel * _Nonnull m) {
+        m.title3Model = [CKJTitle3Model title3ModelWithText:WDCKJAttributed(title, titleStyle.titleAttributes) left:titleStyle.left];
+        m.title3Model.width = titleStyle.titleWidth;
+        
+        [m updateTFModel:^(CKJTFModel * _Nonnull tfModel) {
+            if ([placeholder isKindOfClass:[NSString class]]) {
+                [tfModel _setPlaceholder:placeholder];
+            } else if ([placeholder isKindOfClass:[NSAttributedString class]]) {
+                tfModel.attPlaceholder = placeholder;
+            }
+            
+            tfModel.attText = WDCKJAttributed2(text, style.tfTextAttributed[NSForegroundColorAttributeName], style.tfTextAttributed[NSFontAttributeName]);
+            tfModel.textAlignment = style.tfAlignment;
+            tfModel.tfRightMargin = style.tfStyle_Right;
+        }];
+        
+        if (!WDKJ_IsEmpty_Str(emptyRequirdText)) {
+            [m addRequired:WDKJ_ER(emptyRequirdText)];
+        }
+        detail ? detail(m) : nil;
+        
+        if (m.stringChoose || m.dateChoose) {
+            m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
+            m.arrow9Model.right = style.tfStyle_Right;
+            [m updateTFModel:^(CKJTFModel * _Nonnull tfModel) {
+                tfModel.userInteractionEnabled = NO;
+                tfModel.tfRightMargin = 5;
+            }];
+        }
+    }];
+    return model;
+}
+
 
 #pragma mark - 键值对
 - (NSMutableDictionary *)cell_Model_keyValues {
@@ -1114,13 +1260,19 @@
     _cell_Model_keyValues = [NSMutableDictionary dictionary];
     
     NSDictionary *dic = @{
-        NSStringFromClass([CKJCommonCellModel class]) : @{cellKEY : NSStringFromClass([CKJCommonTableViewCell class]), isRegisterNibKEY : @NO},
-        NSStringFromClass([CKJGeneralCellModel class]) : @{cellKEY : NSStringFromClass([CKJGeneralCell class]), isRegisterNibKEY : @NO},
-        NSStringFromClass([CKJCellModel class]) : @{cellKEY : NSStringFromClass([CKJCell class]), isRegisterNibKEY : @NO},
-        NSStringFromClass([CKJInputCellModel class]) : @{cellKEY : NSStringFromClass([CKJInputCell class]), isRegisterNibKEY : @NO},
-        NSStringFromClass([CKJTableViewCell1Model class]) : @{cellKEY : NSStringFromClass([CKJTableViewCell1 class]), isRegisterNibKEY : @NO},
-        NSStringFromClass([CKJTableViewCell2Model class]) : @{cellKEY : NSStringFromClass([CKJTableViewCell2 class]), isRegisterNibKEY : @NO},
-        NSStringFromClass([CKJEmptyCellModel class]) : @{cellKEY : NSStringFromClass([CKJEmptyCell class]), isRegisterNibKEY : @NO}
+        NSStringFromClass([CKJCommonCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJCommonTableViewCell class]), KJPrefix_isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJGeneralCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJGeneralCell class]), KJPrefix_isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJCell class]), KJPrefix_isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJInputCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJInputCell class]), KJPrefix_isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJTableViewCell1Model class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJTableViewCell1 class]), KJPrefix_isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJTableViewCell2Model class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJTableViewCell2 class]), KJPrefix_isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJEmptyCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJEmptyCell class]), KJPrefix_isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJImageViewCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJImageViewCell class]), KJPrefix_isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJOneBtnCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJOneBtnCell class]), KJPrefix_isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJLeftRightCenterEqualCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJLeftRightCenterEqualCell class]), KJPrefix_isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJLeftRightTopEqualCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJLeftRightTopEqualCell class]), KJPrefix_isRegisterNibKEY : @NO},
+        NSStringFromClass([CKJTwoBtnCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJTwoBtnCell class]), KJPrefix_isRegisterNibKEY : @NO},
+
         // 上面这几个不要删除，只需 这样的键值对添加即可
     };
     if ([self.simpleTableViewDataSource respondsToSelector:@selector(returnCell_Model_keyValues:)]) {
@@ -1135,8 +1287,8 @@
         NSString *modelClass = key;
         NSDictionary *dic = _cell_Model_keyValues[modelClass];
         
-        NSString *cellClass = dic[cellKEY];
-        BOOL isRegisterNib = [dic[isRegisterNibKEY] boolValue];
+        NSString *cellClass = dic[KJPrefix_cellKEY];
+        BOOL isRegisterNib = [dic[KJPrefix_isRegisterNibKEY] boolValue];
         NSString *nibName = cellClass;
         if (WDKJ_IsEmpty_Str(nibName)) {
             nibName = cellClass;
@@ -1147,6 +1299,10 @@
         }
         if (isRegisterNib) {
             //            NSLog(@"注册Nib %@ ", nibName);
+            
+            nibName = [CKJAPPHelper return_ModelName:nibName];
+           
+            
             [self registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellReuseIdentifier:cellClass];
         } else {
             //            NSLog(@"注册Class %@ ", cellClass);
@@ -1166,10 +1322,10 @@
     }
     NSDictionary *dic = @{
         NSStringFromClass([CKJCommonHeaderFooterModel class]) :
-            @{headerFooterKey : NSStringFromClass([CKJCommonTableViewHeaderFooterView class])},
+            @{KJPrefix_headerFooterKey : NSStringFromClass([CKJCommonTableViewHeaderFooterView class])},
         NSStringFromClass([CKJTableViewHeaderFooterEmptyModel class]) :
-            @{headerFooterKey : NSStringFromClass([CKJTableViewHeaderFooterEmptyView class])},
-        NSStringFromClass([CKJTitleStyleHeaderFooterModel class]) : @{headerFooterKey : NSStringFromClass([CKJTitleStyleHeaderFooterView class])}
+            @{KJPrefix_headerFooterKey : NSStringFromClass([CKJTableViewHeaderFooterEmptyView class])},
+        NSStringFromClass([CKJTitleStyleHeaderFooterModel class]) : @{KJPrefix_headerFooterKey : NSStringFromClass([CKJTitleStyleHeaderFooterView class])}
     };
     [_header_Model_keyValues addEntriesFromDictionary:dic];
     [self registerHeaderFooterWithKeyValues:_header_Model_keyValues];
@@ -1186,10 +1342,10 @@
     }
     NSDictionary *dic = @{
         NSStringFromClass([CKJCommonHeaderFooterModel class]) :
-            @{headerFooterKey : NSStringFromClass([CKJCommonTableViewHeaderFooterView class])},
+            @{KJPrefix_headerFooterKey : NSStringFromClass([CKJCommonTableViewHeaderFooterView class])},
         NSStringFromClass([CKJTableViewHeaderFooterEmptyModel class]) :
-            @{headerFooterKey : NSStringFromClass([CKJTableViewHeaderFooterEmptyView class])},
-        NSStringFromClass([CKJTitleStyleHeaderFooterModel class]) : @{headerFooterKey : NSStringFromClass([CKJTitleStyleHeaderFooterView class])}
+            @{KJPrefix_headerFooterKey : NSStringFromClass([CKJTableViewHeaderFooterEmptyView class])},
+        NSStringFromClass([CKJTitleStyleHeaderFooterModel class]) : @{KJPrefix_headerFooterKey : NSStringFromClass([CKJTitleStyleHeaderFooterView class])}
     };
     [_footer_Model_keyValues addEntriesFromDictionary:dic];
     [self registerHeaderFooterWithKeyValues:_footer_Model_keyValues];
@@ -1201,7 +1357,7 @@
     for (NSString *key in keyValues.allKeys) {
         NSString *modelClass = key;
         NSDictionary *dic = keyValues[modelClass];
-        NSString *viewClass = dic[headerFooterKey];
+        NSString *viewClass = dic[KJPrefix_headerFooterKey];
         if (WDKJ_IsEmpty_Str(viewClass)) {
             break;
         }
@@ -1298,14 +1454,18 @@
 @implementation NSMutableArray (CKJSimpleTableView)
 
 
+
+
 /**
  网络获取Models模型数组 转成 CellModels数组
+ 
+ NSMutableArray <CKJCommonCellModel *>*cellModels = [NSMutableArray kjwd_arrayWithResponseDataModels:arr CellModelClass:[RJPersonManagerCellModel class] callBack:nil];
  
  @param ResponseDataModels 网络模型数组
  @param CellModelClass CellModelClass类（必须是CKJCommonCellModel子类）
  @param callBack 可以详细设置CellModel数据， 比如高度或者其他
  */
-+ (instancetype _Nonnull)kjwd_arrayWithResponseDataModels:(NSArray * _Nullable)ResponseDataModels CellModelClass:(Class _Nonnull)CellModelClass callBack:(void(^_Nullable )(id _Nonnull currentModel))callBack {
++ (instancetype _Nonnull)kjwd_arrayWithResponseDataModels:(NSArray * _Nullable)ResponseDataModels CellModelClass:(Class _Nonnull)CellModelClass callBack:(void(^_Nullable )(__kindof CKJCommonCellModel * _Nonnull currentModel))callBack {
     
     ResponseDataModels = WDKJ_ConfirmArray(ResponseDataModels);
     
@@ -1325,5 +1485,29 @@
     return result;
 }
 
+
+
++ (instancetype)kjwd_arrayWithResponseDics:(NSArray <NSDictionary *>* _Nullable)responseDics ResponseDataModelClass:(Class)responseDataModelClass CellModelClass:(Class _Nonnull)CellModelClass callBack:(void(^_Nullable )(__kindof CKJCommonCellModel *currentModel, id dataModel))callBack {
+    NSMutableArray *result = [NSMutableArray array];
+    
+    
+    responseDics = WDKJ_ConfirmArray(responseDics);
+    
+    [responseDics enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        CKJCommonCellModel *cellModel = [[CellModelClass alloc] init];
+        if ([cellModel isKindOfClass:[CKJCommonCellModel class]] == NO) {
+            return;
+        }
+        
+        NSObject *model = [[responseDataModelClass alloc] init];
+        [model setValuesForKeysWithDictionary:WDKJ_ConfirmDic(obj)];
+        if (callBack) {
+            callBack(cellModel, model);
+        }
+        cellModel.networkData = model;
+        [result addObject:cellModel];
+    }];
+    return result;
+}
 
 @end

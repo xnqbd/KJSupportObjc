@@ -8,7 +8,7 @@
 
 #import "CKJBaseModel.h"
 #import <UIKit/UIKit.h>
-
+#import "CKJProjectConfig.h"
 
 
 // 附加View

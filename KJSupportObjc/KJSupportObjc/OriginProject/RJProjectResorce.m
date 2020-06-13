@@ -22,29 +22,30 @@
         return [[UIImage kjwd_imageNamed:imageName] kjwd_scaleToSize:CGSizeMake(40, 40)];
     };
     return @[
-             @{cNormalAttTitle : WDAtt13(@"自助预约"), cNormalImage : b_image(@"newhome_自助预约")},
-             @{cNormalAttTitle : WDAtt13(@"自助挂号"), cNormalImage : b_image(@"newhome_自助挂号")},
-             @{cNormalAttTitle : WDAtt13(@"线上缴费"), cNormalImage : b_image(@"newhome_线上缴费")},
-             @{cNormalAttTitle : WDAtt13(@"排队叫号"), cNormalImage : b_image(@"newhome_排队叫号")},
+             @{KJPrefix_cNormalAttTitle : WDAtt13(@"自助预约"), KJPrefix_cNormalImage : b_image(@"newhome_自助预约")},
+             @{KJPrefix_cNormalAttTitle : WDAtt13(@"自助挂号"), KJPrefix_cNormalImage : b_image(@"newhome_自助挂号")},
+             @{KJPrefix_cNormalAttTitle : WDAtt13(@"线上缴费"), KJPrefix_cNormalImage : b_image(@"newhome_线上缴费")},
+             @{KJPrefix_cNormalAttTitle : WDAtt13(@"排队叫号"), KJPrefix_cNormalImage : b_image(@"newhome_排队叫号")},
              ];
 }
-+ (NSArray <NSDictionary *>*)item2 {
++ (NSArray *)item2 {
     UIImage *(^b_image)(NSString *imageName) = ^UIImage *(NSString *imageName) {
         return [[UIImage kjwd_imageNamed:imageName] kjwd_scaleToSize:CGSizeMake(30, 30)];
     };
     return @[
-             @{cNormalAttTitle : WDAtt13(@"报告查询"), cNormalImage : b_image(@"newhome_报告")},
-             @{cNormalAttTitle : WDAtt13(@"费用查询"), cNormalImage : b_image(@"newhome_药费查询")},
-//             @{cNormalAttTitle : WDAtt13(@"处方查询"), cNormalImage : b_image(@"newhome_处方")},
-//             @{cNormalAttTitle : WDAtt13(@"药品查询"), cNormalImage : b_image(@"newhome_药品")},
-             @{cNormalAttTitle : WDAtt13(@"精准预约"), cNormalImage : b_image(@"newhome_预约")},
-             @{cNormalAttTitle : WDAtt13(@"日间手术"), cNormalImage : b_image(@"newhome_手术")},
-             @{cNormalAttTitle : WDAtt13(@"小i机器人"), cNormalImage : b_image(@"newhome_机器人")},
-             @{cNormalAttTitle : WDAtt13(@"预交金"), cNormalImage : b_image(@"newhome_预交金")
+             @[@{KJPrefix_cNormalAttTitle : WDAtt13(@"报告查询"), KJPrefix_cNormalImage : b_image(@"newhome_报告")},
+             @{KJPrefix_cNormalAttTitle : WDAtt13(@"费用查询"), KJPrefix_cNormalImage : b_image(@"newhome_药费查询")},
+//             @{KJPrefix_cNormalAttTitle : WDAtt13(@"处方查询"), KJPrefix_cNormalImage : b_image(@"newhome_处方")},
+//             @{KJPrefix_cNormalAttTitle : WDAtt13(@"药品查询"), KJPrefix_cNormalImage : b_image(@"newhome_药品")},
+             @{KJPrefix_cNormalAttTitle : WDAtt13(@"精准预约"), KJPrefix_cNormalImage : b_image(@"newhome_预约")},
+             @{KJPrefix_cNormalAttTitle : WDAtt13(@"日间手术"), KJPrefix_cNormalImage : b_image(@"newhome_手术")}],
+             @[@{KJPrefix_cNormalAttTitle : WDAtt13(@"小i机器人"), KJPrefix_cNormalImage : b_image(@"newhome_机器人")},
+             @{KJPrefix_cNormalAttTitle : WDAtt13(@"预交金"), KJPrefix_cNormalImage : b_image(@"newhome_预交金")
                },
-             @{cNormalAttTitle : WDAtt13(@"项目药品价格"), cNormalImage : b_image(@"newhome_项目药品价格")}
+             @{KJPrefix_cNormalAttTitle : WDAtt13(@"项目药品价格"), KJPrefix_cNormalImage : b_image(@"newhome_项目药品价格")}]
              ];
 }
+
 + (NSArray <NSDictionary *>*)item3 {
     return @[
              @{@"title" : @"入院取号", @"imageName" : @"newhome_入院取号"},
@@ -158,37 +159,51 @@
 }
 
 
+
 + (NSArray <CKJStringChooseItem *>*)Gender {
     return @[
-    [CKJStringChooseItem itemWithContent:@"男"  takeStr:@"1"],
-    [CKJStringChooseItem itemWithContent:@"女"   takeStr:@"2"],
-    [CKJStringChooseItem itemWithContent:@"未知" takeStr:@"0"]
+    [CKJStringChooseItem itemWithID:@"1"  text:@"男"],
+    [CKJStringChooseItem itemWithID:@"2"   text:@"女"],
+    [CKJStringChooseItem itemWithID:@"0" text:@"未知"]
     ];
 }
 
 + (NSArray <CKJStringChooseItem *>*)CardType {
     return @[
-       [CKJStringChooseItem itemWithContent:@"自费卡"  takeStr:@"0"],
-       [CKJStringChooseItem itemWithContent:@"医保卡"  takeStr:@"1"]
+       [CKJStringChooseItem itemWithID:@"0"  text:@"自费卡"],
+       [CKJStringChooseItem itemWithID:@"1"  text:@"医保卡"]
        ];
 }
 
 + (NSArray <CKJStringChooseItem *>*)Relationship {
     return @[
-       [CKJStringChooseItem itemWithContent:@"本人"  takeStr:@"0"],
-       [CKJStringChooseItem itemWithContent:@"家人"   takeStr:@"1"],
-       [CKJStringChooseItem itemWithContent:@"朋友" takeStr:@"2"],
-       [CKJStringChooseItem itemWithContent:@"其他" takeStr:@"3"]
+       [CKJStringChooseItem itemWithID:@"0"  text:@"本人"],
+       [CKJStringChooseItem itemWithID:@"1"  text:@"家人"],
+       [CKJStringChooseItem itemWithID:@"2" text:@"朋友"],
+       [CKJStringChooseItem itemWithID:@"3" text:@"其他"]
        ];
 }
 
-+ (NSArray <CKJStringChooseItem *>*)IDCardType {
+
++ (NSArray <CKJStringChooseItem *>*)ALLCardType {
+    return [[self KJ_IDCardType] kjwd_mergeArray:[self KJ_OtherCardType]];
+}
+
+
++ (NSArray <CKJStringChooseItem *>*)KJ_IDCardType {
     return @[
-        [CKJStringChooseItem itemWithContent:@"身份证" takeStr:@"1"],
-        [CKJStringChooseItem itemWithContent:@"护照"   takeStr:@"3"],
-        [CKJStringChooseItem itemWithContent:@"驾驶证" takeStr:@"5"],
-        [CKJStringChooseItem itemWithContent:@"军官证" takeStr:@"4"],
-        [CKJStringChooseItem itemWithContent:@"其他"   takeStr:@"99"]
+        [CKJStringChooseItem itemWithID:@"1" text:@"身份证"]
+    ];
+}
+
++ (NSArray <CKJStringChooseItem *>*)KJ_OtherCardType {
+    return @[
+        [CKJStringChooseItem itemWithID:@"3"   text:@"护照"],
+        [CKJStringChooseItem itemWithID:@"4" text:@"军官证"],
+        [CKJStringChooseItem itemWithID:@"5" text:@"驾驶证"],
+        [CKJStringChooseItem itemWithID:@"6" text:@"港澳通行证"],
+        [CKJStringChooseItem itemWithID:@"7" text:@"台胞证"],
+        [CKJStringChooseItem itemWithID:@"99"   text:@"其他"]
     ];
 }
 

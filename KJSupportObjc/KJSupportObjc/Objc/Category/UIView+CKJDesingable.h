@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #pragma mark - -------------UIView-------------
-IB_DESIGNABLE
+//IB_DESIGNABLE
 @interface UIView (CKJDesingable)
 
 /** 边框宽度 */
@@ -27,7 +27,7 @@ IB_DESIGNABLE
 @end
 
 #pragma mark - -------------UIButton-------------
-IB_DESIGNABLE
+//IB_DESIGNABLE
 @interface UIButton (CKJDesingable)
 
 /** 背景色(正常) */
@@ -61,4 +61,15 @@ IB_DESIGNABLE
 @end
 
 
+
+
+
+
+@interface CKJBottomLineView : UIView
+
+@property (strong, nonatomic) IBInspectable UIColor *bottomColor;
+
+
+
+@end
 

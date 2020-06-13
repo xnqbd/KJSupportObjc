@@ -180,6 +180,10 @@
 /**
  *  读取数据
  *
+ *
+ *  let path = Bundle.main.path(forResource: "111", ofType: "xlsx")
+ *  let data = FileManagerTool.readData(atPath: path)
+ *
  *  @param fileFullPath 文件全路径
  *
  *  @return 读取的数据

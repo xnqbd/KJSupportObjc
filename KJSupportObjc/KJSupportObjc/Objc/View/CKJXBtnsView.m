@@ -64,13 +64,14 @@
             //WDCKJBGColor_Arc4Color(btn);
             //__weak typeof(self) weakSelf = self;
             btn.titleLabel.font = [UIFont systemFontOfSize:15.5];
-            [btn setTitleColor:[UIColor kjwd_titleColor333333] forState:UIControlStateNormal];
+            [btn setTitleColor:[UIColor kjwd_title] forState:UIControlStateNormal];
             
             __weak CKJXBtnItemData *weakItemData = item;
             
             [btn kjwd_addTouchUpInsideForCallBack:^(UIButton * _Nonnull sender) {
-                CKJBtnItemBlock block = weakItemData.callBack;
-                block ? block(weakItemData) : nil;
+                if (weakItemData.click_Button) {
+                    weakItemData.click_Button(sender, weakItemData);
+                }
             }];
             
             [self updateItemView:btn itemData:item];
@@ -84,58 +85,8 @@
 }
 
 
-
-
-
 - (void)updateItemView:(__kindof UIButton *)btn itemData:(CKJXBtnItemData *)itemData {
-    
-    
-    btn.selected = itemData.selected;
-    btn.highlighted = itemData.highlighted;
-    btn.enabled = itemData.enabled;
-    
-    NSAttributedString *normalAttTitle = itemData.normalAttTitle;
-    UIImage *normalImage = itemData.normalImage;
-    UIImage *normalBgImage = itemData.normalBgImage;
-    
-    NSAttributedString *selectedAttTitle = itemData.selectedAttTitle;
-    UIImage *selectedImage = itemData.selectedImage;
-    UIImage *selectedBgImage = itemData.selectedBgImage;
-    
-    NSAttributedString *highlightedAttTitle = itemData.highlightedAttTitle;
-    UIImage *highlightedImage = itemData.highlightedImage;
-    UIImage *highlightedBgImage = itemData.highlightedBgImage;
-    
-    // 请确保 title 是 NSAttributedString 类型的，不然会崩溃
-    
-    // normal
-    [btn setAttributedTitle:normalAttTitle forState:UIControlStateNormal];
-    [self btn:btn image:normalImage forState:UIControlStateNormal];
-    [self btn:btn bgImage:normalBgImage forState:UIControlStateNormal];
-    
-    // select
-    [btn setAttributedTitle:selectedAttTitle forState:UIControlStateSelected];
-    [self btn:btn image:selectedImage forState:UIControlStateSelected];
-    [self btn:btn bgImage:selectedBgImage forState:UIControlStateSelected];
-    
-    // highlighted
-    [btn setAttributedTitle:highlightedAttTitle forState:UIControlStateHighlighted];
-    [self btn:btn image:highlightedImage forState:UIControlStateHighlighted];
-    [self btn:btn bgImage:highlightedBgImage forState:UIControlStateHighlighted];
-    
-    if (btn.kBorderWidth != itemData.borderWidth) {
-        btn.kBorderWidth = itemData.borderWidth;
-    }
-    if (btn.kBorderColor != itemData.borderColor) {
-        btn.kBorderColor = itemData.borderColor;
-    }
-    if (btn.kCornerRadius != itemData.cornerRadius) {
-        btn.kCornerRadius = itemData.cornerRadius;
-    }
-//    if (itemData.layoutButton) {
-//        itemData.layoutButton(btn);
-//    }
-    //    [btn kjwd_layoutButtonWithEdgeInsetsStyle:GLButtonEdgeInsetsStyleTop imageTitleSpace:10];
+    [CKJWorker reloadBtn:btn btnData:itemData];
 }
 
 

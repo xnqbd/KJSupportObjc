@@ -38,18 +38,18 @@
 
 #pragma mark - CKJSimpleTableView 数据源 和 代理
 - (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
-    SelectDateCellConfig *config1 = [SelectDateCellConfig configWithDetailSettingBlock:^(SelectDateCellConfig * _Nonnull m) {
+    SelectDateCellConfig *config1 = [SelectDateCellConfig cellConfigWithDetail:^(SelectDateCellConfig * _Nonnull m) {
         m.endDateUserInteractionEnabled = NO;
         m.beginDate = BeginDate_Today;
         m.endDate = EndDate_Today;
     }];
     
-    CKJLeftRightTopEqualCellConfig *config3 = [CKJLeftRightTopEqualCellConfig configWithLeftLabelTopMargin:2 detailSettingBlock:nil];
+    
     
     return @{
-        NSStringFromClass([RJBillCellModel class]) : @{cellKEY : NSStringFromClass([RJBillCell class]), isRegisterNibKEY : @YES},
-        NSStringFromClass([SelectDateCellModel class]) : @{cellKEY : NSStringFromClass([SelectDateCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : config1},
-        NSStringFromClass([CKJLeftRightTopEqualCellModel class]) : @{cellKEY : NSStringFromClass([CKJLeftRightTopEqualCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : config3},
+        NSStringFromClass([RJBillCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([RJBillCell class]), KJPrefix_isRegisterNibKEY : @YES},
+        NSStringFromClass([SelectDateCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([SelectDateCell class]), KJPrefix_isRegisterNibKEY : @NO, KJPrefix_configDicKEY_ConfigModel : config1},
+        NSStringFromClass([CKJLeftRightTopEqualCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJLeftRightTopEqualCell class]), KJPrefix_isRegisterNibKEY : @NO},
         
     };
 }
@@ -58,7 +58,7 @@
 - (void)kj_tableView:(CKJSimpleTableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath model:(__kindof CKJCommonCellModel *)model cell:(__kindof CKJCommonTableViewCell *)cell {
     if ([model isKindOfClass:[CKJLeftRightTopEqualCellModel class]]) {
         
-        RJBillDetailModel *target = model.extension_Obj;
+        RJBillDetailModel *target = model.extension_Obj1;
         
         NSLog(@"这几行每个都可以得到这个数据 %@ ", target);
     }
@@ -110,10 +110,12 @@
     [header appendAttributedString:WDCKJAttributed2(@"\n\n在本Demo中CKJCombineCellProtocol协议将几个CKJLeftRightCell聚合成一个虚拟的RJBillDetailCell，(本质上还是那几个CKJLeftRightCell)，\n要特别注意：这个协议仅仅是展示作用，如果虚拟的RJBillDetailCell想要在某一时刻修改内容，那么请自定义Cell!", [UIColor redColor], nil)];
     
     CKJCommonSectionModel *section = [CKJCommonSectionModel sectionWithHeaderAttString:header headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
-        _sec.footerHeight = 15;
+        _sec.footerHeight = @15;
         
-        SelectDateCellModel *model1 = [SelectDateCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(SelectDateCellModel *m) {
-            m.cell_bgColor = [UIColor groupTableViewBackgroundColor];
+        SelectDateCellModel *model1 = [SelectDateCellModel commonWithCellHeight:@44 cellModel_id:nil detailSettingBlock:^(SelectDateCellModel *m) {
+            [m updateBGConfig:^(CKJCommonCellBGImageViewConfig * _Nonnull bg) {
+                bg.bgColor = [UIColor groupTableViewBackgroundColor];
+            }];
         } didSelectRowBlock:nil];
         
         _sec.modelArray = @[model1];
@@ -136,18 +138,18 @@
     [data enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([obj isKindOfClass:[NSDictionary class]] == NO) return;
         CKJCommonSectionModel *section = [CKJCommonSectionModel new];
-        section.footerHeight = 15;
+        section.footerHeight = @15;
         
         
-        RJBillCellModel *model2 = [RJBillCellModel modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(RJBillCellModel * _Nonnull m) {
+        RJBillCellModel *model2 = [RJBillCellModel commonWithCellHeight:@44 cellModel_id:nil detailSettingBlock:^(RJBillCellModel * _Nonnull m) {
             [m kjwd_setValuesForKeysWithDictionary:obj];
         } didSelectRowBlock:nil];
         
         // 科室
-        CKJTableViewCell1Model *model1 = [CKJTableViewCell1Model modelWithCellHeight:40 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+        CKJTableViewCell1Model *model1 = [CKJTableViewCell1Model baseTableViewCellWithCellHeight:@40 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
             m.selectionStyle = UITableViewCellSelectionStyleNone;
             NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:WDKJ_ConfirmString(obj[@"DeptName"]) attributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont boldSystemFontOfSize:18]}];
-            m.textLabelAttStr = att;
+            m.attText = att;
         } didSelectRowBlock:nil];
         
         section.modelArray = @[model1, model2];

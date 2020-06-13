@@ -11,23 +11,57 @@
 
 @implementation CKJPickerRowModel
 
+
++ (instancetype)rowModelWithTitle:(id)title {
+    CKJPickerRowModel *m = [[self alloc] init];
+    if ([title isKindOfClass:[NSString class]]) {
+        m.title = title;
+    } else if ([title isKindOfClass:[NSAttributedString class]]) {
+        m.attTitle = title;
+    }
+    return m;
+}
+
++ (NSArray <NSString *>*)_getTitles:(NSArray <CKJPickerRowModel *>*)array {
+    NSMutableArray *result = [NSMutableArray array];
+    for (CKJPickerRowModel *m in array) {
+        [result kjwd_addObject:m.title];
+    }
+    return result;
+}
+
 - (nullable NSString *)returnTitleOfComponent:(NSInteger)component row:(NSInteger)row componentModel:(CKJPickerComponentModel *)componentModel pickerView:(UIPickerView *)pickerView {
-    return self.title;
+    return _title;
 }
 - (nullable NSAttributedString *)returnAttributedTitleOfComponent:(NSInteger)component row:(NSInteger)row componentModel:(CKJPickerComponentModel *)componentModel pickerView:(UIPickerView *)pickerView {
-    return self.attributedTitle;
+    return self.attTitle;
 }
 
 - (__kindof UIView *)returnViewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view componentModel:(CKJPickerComponentModel *)componentModel pickerView:(UIPickerView *)pickerView {
+    
+    BOOL customView = !WDKJ_IsNullObj(self.view, [UIView class]);
+    
     if (view == nil) {
-        view = [[UILabel alloc] init];
+        if (customView) {
+            view = self.view;
+        } else {
+            view = [[UILabel alloc] init];
+        }
     }
-    if ([view isKindOfClass:UILabel.class]) {
+    
+    if (customView) {
+        NSLog(@"类似cellForRow 应该更新数据   component: %ld   row: %ld ", component, row);
+    } else {
         UILabel *lab = (UILabel *)view;
         lab.textAlignment = NSTextAlignmentCenter;
-//        lab.backgroundColor = [UIColor kjwd_arc4Color];
-// lab.text = [NSString stringWithFormat:@"%ld分区 %ld行", (long)component, (long)row];
-        lab.text = self.title;
+        // lab.backgroundColor = [UIColor kjwd_arc4Color];
+        // lab.text = [NSString stringWithFormat:@"%ld分区 %ld行", (long)component, (long)row];
+       
+        if (!WDKJ_IsEmpty_Str(_title)) {
+            lab.text = _title;
+        } else if (!WDKJ_IsEmpty_AttributedStr(_attTitle)) {
+            lab.attributedText = _attTitle;
+        }
     }
     
     return view;
@@ -37,6 +71,39 @@
 
 @end
 @implementation CKJPickerComponentModel
+
+
++ (NSMutableArray <CKJPickerComponentModel *>*)createComponentsByRows:(NSArray <NSArray <CKJPickerRowModel *>*>*)rowss {
+    NSMutableArray *result = [NSMutableArray array];
+    for (int i = 0; i < rowss.count; i++) {
+        NSArray <CKJPickerRowModel *>* rows = rowss[i];
+        CKJPickerComponentModel *compoment = [[CKJPickerComponentModel alloc] init];
+        compoment.modelArray = rows;
+        [result addObject:compoment];
+    }
+    return result;
+}
+
++ (instancetype)componentWithDetail:(void(^_Nonnull)(CKJPickerComponentModel *m))detail {
+    CKJPickerComponentModel *m = [[self alloc] init];
+    if (detail) {
+        detail(m);
+    }
+    return m;
+}
+- (void)_setSelectModel:(CKJPickerRowModel *)rowModel {
+    if (WDKJ_IsNullObj(rowModel, [CKJPickerRowModel class])) {
+        return;
+    }
+    NSArray *modelArray = self.modelArray;
+    for (int i = 0; i < modelArray.count; i++) {
+        CKJPickerRowModel *m = modelArray[i];
+        if (m == rowModel) {
+            self.selectIndex = i;
+            break;
+        }
+    }
+}
 
 @end
 
@@ -57,16 +124,17 @@
     return self;
 }
 
-- (void)setDataArr:(NSArray<CKJPickerComponentModel *> *)dataArr {
-    _dataArr = dataArr;
-    [dataArr enumerateObjectsUsingBlock:^(CKJPickerComponentModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        NSInteger defaultSelectIndex = obj.defaultSelectIndex;
-        if (defaultSelectIndex < obj.modelArray.count) {
-            [self selectRow:defaultSelectIndex inComponent:idx animated:YES];
+- (void)_setDefaultSelectIndex {
+    // 这个应该在 [self.picker reloadAllComponents];之后再调用
+    [self.dataArr enumerateObjectsUsingBlock:^(CKJPickerComponentModel * _Nonnull obj, NSUInteger component, BOOL * _Nonnull stop) {
+        NSInteger defaultSelectIndex = obj.selectIndex;
+        if (defaultSelectIndex < [self numberOfRowsInComponent:component]) {
+            [self selectRow:defaultSelectIndex inComponent:component animated:NO];
         }
     }];
 }
 
+#pragma mark - UIPickerViewDataSource
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     NSInteger count = self.dataArr.count;
     return count;
@@ -80,7 +148,39 @@
     return array.count;
 }
 
+#pragma mark - UIPickerViewDelegate
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
+//    NSLog(@" 已经选中 %ld  %ld   ", component, row);
+    
+    if (self.endScroll_didSelect_callBack) {
+    
+        NSMutableArray <CKJPickerRowModel *>*result = [NSMutableArray array];
+        
+        NSArray <CKJPickerComponentModel *>*sections = self.dataArr;
+        
+        for (int component = 0; component < sections.count; component++) {
+            CKJPickerComponentModel *section = sections[component];
+            NSArray <CKJPickerRowModel *>*rows = section.modelArray;
+            
+            NSInteger selectRow = [pickerView selectedRowInComponent:component];
+            section.selectIndex = selectRow;
+            
+            CKJPickerRowModel *currentRowModel = rows[selectRow];
+            
+            [result addObject:currentRowModel];
+        }
+        
+        
+        CKJPickerRowModel *currentRow = sections[component].modelArray[row];
+        
+        
+        self.endScroll_didSelect_callBack(result, currentRow);
+    }
+}
+
 - (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    
     CKJPickerComponentModel *componentModel = [self.dataArr kjwd_objectAtIndex:component];
     NSArray <CKJPickerRowModel *>*array = componentModel.modelArray;
     CKJPickerRowModel *model = [array kjwd_objectAtIndex:row];
@@ -93,6 +193,7 @@
 }
 
 - (nullable NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component {
+
     CKJPickerComponentModel *componentModel = [self.dataArr kjwd_objectAtIndex:component];
     NSArray <CKJPickerRowModel *>*array = componentModel.modelArray;
     CKJPickerRowModel *model = [array kjwd_objectAtIndex:row];

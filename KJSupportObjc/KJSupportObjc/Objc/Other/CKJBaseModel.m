@@ -8,6 +8,12 @@
 
 #import "CKJBaseModel.h"
 #import "NSObject+WDYHFCategory.h"
+#import "CKJGeneralCell.h"
+
+
+CGFloat const kO_super_margin_title = 12;
+//CGFloat const kO_super_margin_title = 12;
+
 
 @implementation CKJBaseModel
 
@@ -18,7 +24,8 @@
     return model;
 }
 
-+ (nonnull instancetype)detailSettingBlock:(void(^_Nullable )(__kindof CKJBaseModel *_Nonnull __weak m))detailSettingBlock {
+
++ (nonnull instancetype)detail:(void(^_Nullable )(__kindof CKJBaseModel *_Nonnull __weak m))detailSettingBlock {
     CKJBaseModel *model = [[self alloc] init];
     if (detailSettingBlock) {
         detailSettingBlock(model);
@@ -40,7 +47,7 @@
 
 @implementation CKJCommonConfig
 
-+ (nonnull instancetype)configWithDetailSettingBlock:(nullable void(^)(__kindof CKJCommonConfig *m))detailSettingBlock {
++ (nonnull instancetype)configWithDetail:(nullable void(^)(__kindof CKJCommonConfig *c))detailSettingBlock {
     CKJCommonConfig *config = [[self alloc] init];
     if (detailSettingBlock) {
         detailSettingBlock(config);
@@ -52,6 +59,3 @@
 
 
 
-@implementation CKJNetWorkDataModel
-
-@end

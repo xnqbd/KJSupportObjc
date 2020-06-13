@@ -9,9 +9,9 @@
 #import "RJDemoScrollItemView.h"
 #import "UIView+CKJDesingable.h"
 
-@implementation RJDemoScrollItemData
-
-@end
+//@implementation RJDemoScrollItemData
+//
+//@end
 
 
 @implementation RJDemoScrollItemView
@@ -26,9 +26,8 @@
 
 
 - (IBAction)tap:(UITapGestureRecognizer *)sender {
-    RJDemoScrollItemData *itemData = self.itemData;
-    if (itemData.tapBlock) {
-        itemData.tapBlock();
+    if (self.tapBlock) {
+        self.tapBlock();
     }
 }
 

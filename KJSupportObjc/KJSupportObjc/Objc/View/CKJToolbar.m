@@ -20,7 +20,7 @@
 
 + (instancetype)itemWithTitle:(nullable NSString *)title normalTextColor:(nullable UIColor *)normalTextColor normalTextFont:(nullable NSNumber *)normalTextFont callBack:(void(^)(UIBarButtonItem *sender))callBack {
     CKJToolbarItem *toolbarItem = [[self alloc] init];
-    UIBarButtonItem *item = [UIBarButtonItem kjwd_itemWithTitle:title style:UIBarButtonItemStyleDone callBack:callBack];
+    UIBarButtonItem *item = [UIBarButtonItem kjwd_itemWithTitle:title color:[UIColor kjwd_title] callBack:callBack];
     toolbarItem.item = item;
     
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];

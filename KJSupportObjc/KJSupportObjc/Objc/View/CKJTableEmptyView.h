@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-+ (nonnull instancetype)configWithDetailSettingBlock:(nullable void(^)(__kindof CKJTableEmptyViewConfig *m))detailSettingBlock;
++ (nonnull instancetype)cellConfigWithDetail:(nullable void(^)(__kindof CKJTableEmptyViewConfig *m))detailSettingBlock;
 
 @end
 

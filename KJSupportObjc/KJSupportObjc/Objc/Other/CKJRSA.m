@@ -300,7 +300,7 @@ static NSData *base64_decode(NSString *str){
 }
 
 + (NSData *)encryptData:(NSData *)data privateKey:(NSString *)privKey{
-    if(!data || !privKey){
+    if ([self dataIsEmpty:data] || [self strIsEmpty:privKey]) {
         return nil;
     }
     SecKeyRef keyRef = [CKJRSA addPrivateKey:privKey];
@@ -311,6 +311,10 @@ static NSData *base64_decode(NSString *str){
 }
 
 + (NSData *)decryptData:(NSData *)data withKeyRef:(SecKeyRef) keyRef{
+    if ([self dataIsEmpty:data]) {
+        return nil;
+    }
+    
     const uint8_t *srcbuf = (const uint8_t *)[data bytes];
     size_t srclen = (size_t)data.length;
     
@@ -365,14 +369,22 @@ static NSData *base64_decode(NSString *str){
 
 
 + (NSString *)decryptString:(NSString *)str privateKey:(NSString *)privKey{
+    if ([self strIsEmpty:str] || [self strIsEmpty:privKey]) {
+        return nil;
+    }
+    
     NSData *data = [[NSData alloc] initWithBase64EncodedString:str options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    if ([self dataIsEmpty:data]) {
+        return nil;
+    }
+    
     data = [self decryptData:data privateKey:privKey];
     NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     return ret;
 }
 
 + (NSData *)decryptData:(NSData *)data privateKey:(NSString *)privKey{
-    if(!data || !privKey){
+    if ([self dataIsEmpty:data] || [self strIsEmpty:privKey]) {
         return nil;
     }
     SecKeyRef keyRef = [self addPrivateKey:privKey];
@@ -386,16 +398,20 @@ static NSData *base64_decode(NSString *str){
 
 /* START: Encryption & Decryption with RSA public key */
 
-+ (NSString *)encryptString:(NSString *)str publicKey:(NSString *)pubKey{
++ (nullable NSString *)encryptString:(NSString *)str publicKey:(NSString *)pubKey{
+    if ([self strIsEmpty:str] || [self strIsEmpty:pubKey]) {
+        return nil;
+    }
     NSData *data = [self encryptData:[str dataUsingEncoding:NSUTF8StringEncoding] publicKey:pubKey];
     NSString *ret = base64_encode_data(data);
     return ret;
 }
 
-+ (NSData *)encryptData:(NSData *)data publicKey:(NSString *)pubKey{
-    if(!data || !pubKey){
++ (nullable NSData *)encryptData:(NSData *)data publicKey:(NSString *)pubKey{
+    if ([self dataIsEmpty:data] || [self strIsEmpty:pubKey]) {
         return nil;
     }
+    
     SecKeyRef keyRef = [self addPublicKey:pubKey];
     if(!keyRef){
         return nil;
@@ -403,7 +419,10 @@ static NSData *base64_decode(NSString *str){
     return [self encryptData:data withKeyRef:keyRef isSign:NO];
 }
 
-+ (NSString *)decryptString:(NSString *)str publicKey:(NSString *)pubKey{
++ ( NSString *)decryptString:(NSString *)str publicKey:(NSString *)pubKey{
+    if ([self strIsEmpty:str] || [self strIsEmpty:pubKey]) {
+        return nil;
+    }
     NSData *data = [[NSData alloc] initWithBase64EncodedString:str options:NSDataBase64DecodingIgnoreUnknownCharacters];
     data = [self decryptData:data publicKey:pubKey];
     NSString *ret = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -411,7 +430,7 @@ static NSData *base64_decode(NSString *str){
 }
 
 + (NSData *)decryptData:(NSData *)data publicKey:(NSString *)pubKey{
-    if(!data || !pubKey){
+    if ([self dataIsEmpty:data] || [self strIsEmpty:pubKey]) {
         return nil;
     }
     SecKeyRef keyRef = [self addPublicKey:pubKey];
@@ -499,6 +518,19 @@ static NSData *base64_decode(NSString *str){
 }
 
 
++ (BOOL)strIsEmpty:(NSString *)str {
+    if (str == nil || ![str isKindOfClass:[NSString class]]) {
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL)dataIsEmpty:(NSData *)data {
+    if (data == nil || ![data isKindOfClass:[NSData class]]) {
+        return YES;
+    }
+    return NO;
+}
 
 
 

@@ -36,7 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface SelectDateCell : CKJCommonTableViewCell<SelectDateCellModel *>
+@interface SelectDateCell : CKJCommonTableViewCell //<SelectDateCellModel *>
 
 @end
 

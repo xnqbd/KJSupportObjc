@@ -11,6 +11,10 @@
 
 @implementation CKJFiveLabelViewConfig
 
++ (instancetype)fiveLabelViewConfigWithDetail:(nullable void(^)(__kindof CKJFiveLabelViewConfig *c))detailSettingBlock {
+    return [super configWithDetail:detailSettingBlock];
+}
+
 
 - (instancetype)init {
     if (self = [super init]) {

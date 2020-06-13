@@ -46,6 +46,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (assign, nonatomic) CGFloat left_margin;
 @property (assign, nonatomic) CGFloat right_margin;
 
+
++ (instancetype)fiveLabelViewConfigWithDetail:(nullable void(^)(__kindof CKJFiveLabelViewConfig *c))detailSettingBlock;
+
+
 @end
 
 
@@ -74,7 +78,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithFrame:(CGRect)frame config:(nonnull CKJFiveLabelViewConfig *)config;
 
-//+ (nonnull instancetype)fiveViewWithConfig:(nonnull CKJFiveLabelViewConfig *)config;
 
 - (void)updateUIWithData:(CKJFiveLabelModel *_Nullable)data;
 

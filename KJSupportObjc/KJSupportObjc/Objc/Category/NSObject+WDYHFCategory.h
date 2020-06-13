@@ -9,6 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <Masonry/Masonry.h>
 
+
+
+
+
+
 typedef NS_ENUM(NSInteger, KJWDArc4randomType) {
     /**
      *  0-9
@@ -74,8 +79,15 @@ BOOL WDKJ_CompareNumberOrString(id numberOrString, NSString *_myStr);
 
 #pragma mark - -----------------其他-----------------
 
+
+NSString *WDKJ_Sex(NSNumber *sex);
+
 NSMutableAttributedString *WDCKJAttributed(NSString *_Nullable name, NSDictionary *_Nullable dic);
-NSMutableAttributedString *WDCKJAttributed2(NSString *_Nullable text, UIColor *_Nullable color, NSNumber *_Nullable fontSize);
+NSMutableAttributedString *WDCKJAttributed2(NSString *_Nullable text, UIColor *_Nullable color, id _Nullable fontSize);
+NSMutableAttributedString * WDAttTitle(NSString *_Nullable text);
+NSMutableAttributedString * WDAttTitle14(NSString *_Nullable text);
+NSMutableAttributedString * WDAttSubTitle(NSString *_Nullable text);
+NSMutableAttributedString * WDAttSubTitle14(NSString *_Nullable text);
 NSMutableAttributedString *WDAtt13(NSString *_Nullable name);
 NSMutableAttributedString *WDAtt15_5(NSString *_Nullable name);
 
@@ -95,7 +107,7 @@ NSMutableAttributedString *WDCKJAttributed3(NSString *_Nullable text, CGFloat ho
 /**
  拼接
  */
-NSMutableAttributedString *WDCKJAttributed4(NSString *_Nullable text1, UIColor *_Nullable color1, NSNumber *_Nullable fontSize1, NSString *_Nullable text2, UIColor *_Nullable color2, NSNumber *_Nullable fontSize2);
+NSMutableAttributedString *WDCKJAttAppend(NSString *_Nullable text1, UIColor *_Nullable color1, NSNumber *_Nullable fontSize1, NSString *_Nullable text2, UIColor *_Nullable color2, NSNumber *_Nullable fontSize2);
 
 
 /**
@@ -150,6 +162,7 @@ CGFloat WDAPP_ScreenHeight(void);
 @interface NSData (WDYHFCategory)
 
 - (NSString *)kjwd_utf8String;
++ (instancetype)kjwd_dataWithContentsOfURL:(id)url;
 
 @end
 
@@ -240,6 +253,9 @@ CGFloat WDAPP_ScreenHeight(void);
 - (NSString *)kjwd_arrayString;
 
 
+/// 传入["0", "5", "8"] 返回 "058"
+- (NSString *)kjwd_stringValue;
+
 /**
  必须保证元素的NSNumber类型
 
@@ -253,6 +269,12 @@ CGFloat WDAPP_ScreenHeight(void);
  @return 下标数组
  */
 - (NSArray <NSNumber *>*)kjwd_indexArray;
+
+
+/**
+ 合并
+ */
+- (NSMutableArray *)kjwd_mergeArray:(NSArray *_Nullable)otherArray;
 
 /**
  交集
@@ -274,6 +296,10 @@ CGFloat WDAPP_ScreenHeight(void);
 #pragma mark - -----------------NSMutableArray-----------------
 // 关于NSMutableArray线程安全的思考和实现 http://blog.csdn.net/kongdeqin/article/details/53171189
 @interface NSMutableArray <ObjectType> (WDYHFCategory)
+
++ (instancetype)kjwd_enumTo:(NSUInteger)to returnItemBlock:(id(^_Nonnull)(NSUInteger i))callBack;
++ (instancetype)kjwd_enumFrom:(NSUInteger)from to:(NSUInteger)to returnItemBlock:(id(^_Nonnull)(NSUInteger i))callBack;
+
 
 + (instancetype)kjwd_arrayWithArray:(nullable NSArray<ObjectType> *)array;
 
@@ -369,6 +395,9 @@ CGFloat WDAPP_ScreenHeight(void);
  */
 - (void)kjwd_lookValuesDataType;
 
+/// 打印归档的日志
+- (void)kjwd_encode_log;
+
 /**
  返回的数组只有两个元素，第一个元素是KeysArray，第二个元素是ValuesArray，这KeysArray和ValuesArray元素个数相同，（注意：KeysArray的顺序和self想要的顺序不一定是一致的）
 
@@ -449,9 +478,9 @@ CGFloat WDAPP_ScreenHeight(void);
 #pragma mark - -----------------UIAlertController-----------------
 @interface UIAlertController (WDYHFCategory)
 
-+ (instancetype)kjwd_alertTitle:(NSString *)alertTitle message:(NSString *)message alertAction_Left:(NSString *)leftActionTitle leftBlock:(void(^)(void))leftBlock right:(NSString *)rightActionTitle rightBlock:(void(^)(void))rightBlock presentingVC:(UIViewController *)presentingVC;
++ (instancetype)kjwd_alertTitle:(NSString *_Nullable)alertTitle message:(NSString *_Nullable)message alertAction_Left:(NSString *_Nullable)leftActionTitle leftBlock:(void(^_Nullable)(void))leftBlock right:(NSString *_Nullable)rightActionTitle rightBlock:(void(^_Nullable)(void))rightBlock presentingVC:(UIViewController *_Nullable)presentingVC;
 
-+ (instancetype)kjwd_alertTitle:(NSString *)alertTitle message:(NSString *)message actionSheet_top:(NSString *)topSheetTitle topBlock:(void(^)(void))topBlock centerSheet:(NSString *)centerSheetTitle centerBlock:(void(^)(void))centerBlock buttomSheet:(NSString *)buttomSheetTitle buttomBlock:(void(^)(void))buttomBlock presentingVC:(UIViewController *)presentingVC;
++ (instancetype)kjwd_alertTitle:(NSString *_Nullable)alertTitle message:(NSString *_Nullable)message actionSheet_top:(NSString *_Nullable)topSheetTitle topBlock:(void(^_Nullable)(void))topBlock centerSheet:(NSString *_Nullable)centerSheetTitle centerBlock:(void(^_Nullable)(void))centerBlock buttomSheet:(NSString *_Nullable)buttomSheetTitle buttomBlock:(void(^_Nullable)(void))buttomBlock presentingVC:(UIViewController *_Nullable)presentingVC;
 
 @end
 
@@ -472,8 +501,8 @@ CGFloat WDAPP_ScreenHeight(void);
 
 + (UIColor *)kjwd_colorWithHexString:(NSString *)color;
 
-+ (UIColor *)kjwd_titleColor333333;
-+ (UIColor *)kjwd_subTitleColor969696;
++ (UIColor *)kjwd_title;
++ (UIColor *)kjwd_subTitle;
 
 + (UIColor *)kjwd_230Color;
 
@@ -496,10 +525,11 @@ CGFloat WDAPP_ScreenHeight(void);
  打开URL
  
  @param urlString  比如 电话 tel:18822221111，
- @param options 可以传@{}
+ @param options 可以传nil
  @param completion 可以传nil
  */
-+ (void)kjwd_openURLWithString:(nullable NSString *)urlString options:(NSDictionary<UIApplicationOpenExternalURLOptionsKey, id> *)options completionHandler:(void (^ __nullable)(BOOL success))completion;
++ (void)kjwd_openURLWithString:(NSString *_Nullable)urlString options:(NSDictionary<UIApplicationOpenExternalURLOptionsKey, id> *_Nullable)options completionHandler:(void (^_Nullable)(BOOL success))completion;
+
 
 
 @end
@@ -522,7 +552,7 @@ CGFloat WDAPP_ScreenHeight(void);
  *  如果当前导航控制器不包含所想要pop到的控制器，那么把newVc插入到导航控制器的viewControllers数组里
  *  @param vcClass 类名 (例如[ViewController class])
  */
-- (void)kjwd_popToSpecifyVC:(Class)vcClass currentStackBlock:(void(^)(__kindof UIViewController *findZheVC))currentStackBlock newAllocVC:(__kindof UIViewController *_Nullable)newVc;
+- (void)kjwd_popToSpecifyVC:(Class)vcClass currentStackBlock:(void(^_Nullable)(__kindof UIViewController *findZheVC))currentStackBlock newAllocVC:(__kindof UIViewController *_Nullable)newVc;
 /**
  *  通过动画切换根视图控制器
  */
@@ -559,7 +589,7 @@ CGFloat WDAPP_ScreenHeight(void);
 #pragma mark - -----------------UIBarButtonItem-----------------
 @interface UIBarButtonItem (WDYHFCategory)
 
-+ (instancetype)kjwd_itemWithTitle:(nullable NSString *)title style:(UIBarButtonItemStyle)style callBack:(void(^)(UIBarButtonItem *sender))callBack;
++ ( instancetype)kjwd_itemWithTitle:(nullable NSString *)title color:(nullable UIColor *)color callBack:(void(^)(UIBarButtonItem *sender))callBack;
 
 
 /**
@@ -617,11 +647,15 @@ CGFloat WDAPP_ScreenHeight(void);
 #pragma mark - -----------------UIView-----------------
 @interface UIView (WDYHFCategory)
 
+@property (strong, nonatomic, nullable) id ex_Obj1;
 
-/**
- *  返回当前视图的控制器
- */
+
+
+/// 返回当前视图的控制器
 - (nullable __kindof UIViewController *)kjwd_currentViewController;
+
+/// 获取当前的Cell，实例 CKJCommonTableViewCell *cell = [btn kjwd_getCell];
+- (nullable __kindof UITableViewCell *)kjwd_getCell;
 
 
 /**
@@ -693,7 +727,9 @@ CGFloat WDAPP_ScreenHeight(void);
  @param ges 手势
  @param handleBlock 手势触发的回调
  */
-- (void)kjwd_addGestureRecognizer:(UIGestureRecognizer *)ges handleBlock:(void(^)(UIGestureRecognizer *_gestureRecognizer, UIView *_currentView))handleBlock;
+- (void)kjwd_addGestureRecognizer:(UIGestureRecognizer *)ges handleBlock:(void(^)(__kindof UIGestureRecognizer * gestureRecognizer, __kindof UIView * currentView))handleBlock;
+
+- (void)kjwd_addTapGestureRecognizerHandleBlock:(void(^)(UITapGestureRecognizer *_gestureRecognizer, UIView *_currentView))handleBlock;
 
 @end
 
@@ -735,8 +771,8 @@ imageTitleSpace:(CGFloat)space;
 - (void)kjwd_addTouchUpInsideForCallBack:(void(^_Nullable)(UIButton * _sender))callBack;
 - (void)kjwd_addControlEvents:(UIControlEvents)controlEvents forCallBack:(void(^_Nullable)(UIButton * _sender))callBack;
 
-
-
+/// 实心样式的
++ (instancetype)fillStyleWithTitle:(id)title bgColor:(UIColor *_Nullable)bgColor radius:(NSNumber *_Nullable)radius callBack:(void(^_Nullable)(UIButton * _sender))callBack;
 
 
 @end
@@ -784,6 +820,15 @@ imageTitleSpace:(CGFloat)space;
 
 
 
+/*
+ 
+ [a compare:b] == NSOrderedAscending  升序   a < b     a日期较早
+ [a compare:b] == NSOrderedSame,      相等
+ [a compare:b] == NSOrderedDescending 降序   a > b     a日期较晚
+ 
+ 
+ */
+
 #pragma mark - -----------------NSDate-----------------
 @interface NSDate (WDYHFCategory)
 
@@ -793,10 +838,10 @@ imageTitleSpace:(CGFloat)space;
 #define CKJDateFormat3 (@"yyyyMMddHHmmss")
 #define CKJDateFormat4 (@"yyyyMMdd")
 
+#define CKJDateFormat5 (@"yyyy-MM-dd HH:mm")
 
-/**
- 传入20190723 返回 2019-07-23
- */
+
+/// 传入20190723 返回 2019-07-23
 + (NSString *)kjwd_format1:(NSString *_Nullable)dateStr;
 
 + (nullable NSDate *)kjwd_returnDate:(NSString *_Nullable)dateString withDateFormat:(NSString *_Nullable)format;
@@ -820,16 +865,16 @@ imageTitleSpace:(CGFloat)space;
  返回 yyyy-MM-dd HH:mm:ss 的字符串
  */
 - (NSString *)kjwd_dateString;
-/**
- 返回 yyyy-MM-dd 的字符串
- */
+
+
+/// 返回 yyyy-MM-dd 的字符串
 - (NSString *)kjwd_YearMonthDayString;
-- (NSString *)kjwd_dateYear;
-- (NSString *)kjwd_dateMonth;
-- (NSString *)kjwd_dateDay;
-- (NSString *)kjwd_dateHour;
-- (NSString *)kjwd_dateMinute;
-- (NSString *)kjwd_dateSecond;
+- (NSString *)kjwd_year;
+- (NSString *)kjwd_month;
+- (NSString *)kjwd_day;
+- (NSString *)kjwd_hour;
+- (NSString *)kjwd_minute;
+- (NSString *)kjwd_second;
 
 /// 通过 格式 返回 时间字符串 比如 传入 "yyyyMMdd" 返回 "20180203"
 - (NSString *)kjwd_dateStringWithFormatter:(NSString *)formatterStr;
@@ -843,9 +888,14 @@ imageTitleSpace:(CGFloat)space;
 - (BOOL)kjwd_isSameDayToDate2:(NSDate *)date2;
 
 /** 明天 */
-- (NSDate *)kjwd_tomorrowDate;
+- (NSDate *)kjwd_tomorrow;
 /** 昨天 */
-- (NSDate *)kjwd_yesterdayDate;
+- (NSDate *)kjwd_yesterDay;
+/** 明年 */
+- (NSDate *)kjwd_nextyear;
+/** 去年 */
+- (NSDate *)kjwd_yesterYear;
+
 
 /**
  * 返回 1小时前 这样的字符 (传入2017-12-21 20:53:00.0  这样的字符串)
@@ -874,6 +924,10 @@ imageTitleSpace:(CGFloat)space;
 /** 生成指定大小的图片 */
 - (UIImage *)kjwd_scaleToSize:(CGSize)size;
 
+/// 不拉伸缩放，可以传入宽度或者高度
+- (UIImage *)kjwd_noTransformScaleToWidth:(NSNumber *_Nullable)newWidthNumber height:(NSNumber *_Nullable)newHeightNumber;
+
+
 /** 设置圆角并生成新图片 */
 - (UIImage *)kjwd_setCornerRadius:(CGFloat)radius;
 
@@ -886,6 +940,19 @@ imageTitleSpace:(CGFloat)space;
                                      text:(nullable NSString *)text
                            textAttributes:(nullable NSDictionary *)textAttributes
                                  circular:(BOOL)isCircular;
+
+
+/*
+ 渐变色生成图片
+ 
+ gradientType
+ 1. 上到下
+ 2. 左到右
+ 3. 左上到右下
+ 4. 右上到左下
+ 
+ */
++ (UIImage *)kjwd_gradientColorImageFromColors:(NSArray <UIColor *>*)colors gradientType:(NSInteger)gradientType imgSize:(CGSize)imgSize;
 
 @end
 
@@ -909,10 +976,10 @@ imageTitleSpace:(CGFloat)space;
 - (BOOL)kjwd_validateEmail;
 
 /// 手机号码验证
-- (BOOL)kjwd_varityPhoneFail;
+- (BOOL)kjwd_varityPhoneSuccess;
 
 /// 默认左3位  右2位， *6位， 比如  177******94
-- (NSString *)kjwd_PhoneStar;
+- (NSString *)kjwd_Phone_defaultStar;
 /** 手机号 左右各保留几位， 比如左3位  右2位， *6位，  177******94 */
 - (NSString *)kjwd_PhoneLeftMargin:(NSInteger)left rightMargin:(NSInteger)right starNumber:(NSInteger)starNumber;
 
@@ -973,17 +1040,30 @@ imageTitleSpace:(CGFloat)space;
 
 
 
-/** 身份证号 出生年月转为*号 */
+/** 身份证号 年月日转为*号 */
 - (NSString *)kjwd_idCardToAsterisk;
 
 /// 返回身份证号的年月日,  比如 19980320
 - (NSString *)kjwd_idCardBirthday;
 
+/// 返回身份证号的年月日,  比如 1998-03-20
+- ( NSString *)kjwd_idCardBirthday2;
+
 /// 返回身份证号的年  比如 1998
 - (NSString *)kjwd_idCardBirthday_Year;
 
+
+/** 身份证号 左右各保留3位， 452************026 */
+- (NSString *)kjwd_idCard_defaultStar;
+
 /** 身份证号 左右各保留几位， 比如左右各保留3位， 452************026 */
 - (NSString *)kjwd_idCardLeftMargin:(NSInteger)left rightMargin:(NSInteger)right;
+
+/// 获取身份证上的性别
+- (NSString *)kjwd_idCard_GetSex;
+/// 获取身份证上的年龄
+- (NSString *)kjwd_idCard_GetAge;
+
 
 /**
  * MD5加密
@@ -1045,10 +1125,25 @@ imageTitleSpace:(CGFloat)space;
 - (NSString *)kjwd_BeiReplace:(NSArray <NSString *>*)beiReplace toStr:(NSString *)toStr;
 
 
+/// 查找符合正则的结果数组
+/// @param options 一般传入NSRegularExpressionCaseInsensitive不区分字母大小写
+- (NSArray <NSTextCheckingResult *>*)kjwd_searchWithRegularExpression:(NSString *)reg options:(NSRegularExpressionOptions)options;
+
+- (NSArray <NSString *>*)kjwd_general_searchWithReg:(NSString *)reg options:(NSRegularExpressionOptions)options;
+
+/// 正则 捕获组
+- (NSArray <NSArray <NSString *>*>*)kjwd_group_searchWithReg:(NSString *)reg options:(NSRegularExpressionOptions)options;
+
 @end
 
+#pragma mark - -----------------NSDecimalNumber-----------------
+@interface NSMutableAttributedString (WDYHFCategory)
 
-#pragma mark - -----------------NSAttributedString-----------------
+- (NSMutableAttributedString *)kjwd_append:(NSAttributedString *_Nullable)att;
+
+@end
+
+#pragma mark - -----------------NSDecimalNumber-----------------
 @interface NSDecimalNumber (WDYHFCategory)
 
 
@@ -1108,9 +1203,17 @@ typedef void (^TouchedCountDownButtonHandler)(CKJCountDownButton *countDownButto
 
 @interface CKJAPPHelper : NSObject
 
+
+/// 主Version
 + (NSString *)currentVersion;
+/// buildVersion
++ (NSString *)currentBuildVersion;
+
++ (NSString *)bundleId;
+
 + (CGFloat)screenWidth;
 + (CGFloat)screenHeight;
++ (NSString *)kjwd_documentPath;
 
 
 #pragma mark - Swift命名空间相关

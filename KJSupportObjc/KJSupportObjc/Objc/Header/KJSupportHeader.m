@@ -62,6 +62,15 @@
 @end
 
 @implementation CKJRightView
+
+- (instancetype)init {
+    if (self = [super init]) {
+//        self.hidden = YES;
+//        self.backgroundColor = [UIColor orangeColor];
+    }
+    return self;
+}
+
 @end
 
 @implementation CKJLikePriceLabel8

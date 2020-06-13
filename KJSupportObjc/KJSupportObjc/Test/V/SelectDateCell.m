@@ -8,7 +8,7 @@
 
 #import "SelectDateCell.h"
 #import "NSObject+WDYHFCategory.h"
-
+#import "CKJHUD+KJSupport.h"
 
 @implementation SelectDateCellConfig
 
@@ -54,7 +54,7 @@
     
     self.subviews_SuperView.backgroundColor = [UIColor groupTableViewBackgroundColor];
     
-    SelectDateCellConfig *config = self.configDic[configDicKEY_ConfigModel];
+    SelectDateCellConfig *config = self.readOnly_configDic[KJPrefix_configDicKEY_ConfigModel];
     
     
     UIImage *image = [[UIImage imageNamed:@"person_date"] kjwd_scaleToSize:CGSizeMake(20, 20)];
@@ -63,7 +63,7 @@
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn addTarget:self action:@selector(dateAction:) forControlEvents:UIControlEventTouchUpInside];
         [btn setImage:image forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor kjwd_titleColor333333] forState:UIControlStateNormal];
+        [btn setTitleColor:[UIColor kjwd_title] forState:UIControlStateNormal];
         btn.backgroundColor = [UIColor whiteColor];
         [btn setTitle:date forState:UIControlStateNormal];
         [btn setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0, 10)];
@@ -125,17 +125,17 @@
     NSString *endDate   = self.endDateBtn.titleLabel.text;
     if (!startDate.length) {
         NSLog(@"请输入开始日期");
-        [MBProgressHUD showError:@"请输入开始日期"];
+        [CKJHUD kjwd_showMessage:@"请输入开始日期"];
         return;
     }
     if (!endDate.length) {
         NSLog(@"请输入结束日期");
-        [MBProgressHUD showError:@"请输入结束日期"];
+        [CKJHUD kjwd_showMessage:@"请输入结束日期"];
         return;
     }
     if (startDate.longLongValue > endDate.longLongValue) {
         NSLog(@"开始时间不能大于结束时间");
-        [MBProgressHUD showError:@"开始时间不能大于结束时间"];
+        [CKJHUD kjwd_showMessage:@"开始时间不能大于结束时间"];
         return;
     }
    NSLog(@"得到日期");

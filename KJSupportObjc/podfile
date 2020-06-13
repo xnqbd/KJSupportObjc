@@ -9,8 +9,8 @@ target 'KJSupportObjc' do
 
 
 pod 'Masonry'
-pod 'DZNEmptyDataSet'
 pod 'IQKeyboardManager', '~> 6.0.2'
 pod 'ActionSheetPicker-3.0'
+pod 'SDWebImage'
 
 end

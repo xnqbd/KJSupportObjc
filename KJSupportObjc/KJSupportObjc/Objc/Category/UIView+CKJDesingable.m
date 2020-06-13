@@ -50,6 +50,11 @@
 }
 
 
+
+/*
+ self.thebgV.backgroundColor = [UIColor whiteColor];
+ [self.thebgV kjwd_cornerRadius:8 shadowColor:nil shadowOffset:CGSizeZero shadowOpacity:nil shadowRadius:@5];
+ */
 - (void)kjwd_cornerRadius:(CGFloat)cornerRadius shadowColor:(nullable UIColor *)shadowColor shadowOffset:(CGSize)shadowOffset shadowOpacity:(nullable NSNumber *)shadowOpacity shadowRadius:(nullable NSNumber *)shadowRadius {
     
     if (self.backgroundColor == nil) {
@@ -176,6 +181,27 @@
     }
     return 0;
 }
+
+
+@end
+
+
+
+@implementation CKJBottomLineView
+
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextAddRect(ctx, CGRectMake(0, rect.size.height - 0.7, rect.size.width, 0.7));
+    if (self.bottomColor) {
+        [self.bottomColor setFill];
+    } else {
+        UIColor *color = [UIColor colorWithRed:230 / 255.0 green:230 / 255.0 blue:230 / 255.0 alpha:1];
+        [color setFill];
+    }
+    CGContextFillPath(ctx);
+}
+
 
 
 @end

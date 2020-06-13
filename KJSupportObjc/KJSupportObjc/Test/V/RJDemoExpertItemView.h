@@ -7,26 +7,26 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CKJScrollViewCell.h"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
 
-@interface RJDemoExpertItemData : CKJScrollViewCellItemData
-
-@property (copy, nonatomic) NSString *avatarImageName;
-@property (copy, nonatomic) NSString *name;
-@property (copy, nonatomic) NSString *job;
-@property (copy, nonatomic) NSString *department;
-
-@property (copy, nonatomic) CKJBlockType1 tapBlock;
-
-@end
+//@interface RJDemoExpertItemData : UIView
+//
+//@property (copy, nonatomic) NSString *avatarImageName;
+//@property (copy, nonatomic) NSString *name;
+//@property (copy, nonatomic) NSString *job;
+//@property (copy, nonatomic) NSString *department;
+//
+//@property (copy, nonatomic) CKJBlockType1 tapBlock;
+//
+//@end
 
 /**
  专家View
  */
-@interface RJDemoExpertItemView : CKJScrollViewCellItemView
+@interface RJDemoExpertItemView : UIView
 
 @property (weak, nonatomic) IBOutlet UIView *wrapper;
 @property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
@@ -34,6 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *jobLab;
 @property (weak, nonatomic) IBOutlet UIButton *departmentLab;
 
+@property (copy, nonatomic) CKJBlockType1 tapBlock;
 
 @end
 

@@ -11,8 +11,8 @@
 
 @implementation CKJTableEmptyViewConfig
 
-+ (nonnull instancetype)configWithDetailSettingBlock:(nullable void(^)(__kindof CKJTableEmptyViewConfig *m))detailSettingBlock {
-    return [super configWithDetailSettingBlock:detailSettingBlock];
++ (nonnull instancetype)cellConfigWithDetail:(nullable void(^)(__kindof CKJTableEmptyViewConfig *m))detailSettingBlock {
+    return [super configWithDetail:detailSettingBlock];
 }
 
 
@@ -41,7 +41,7 @@
     
     UILabel *label = [[UILabel alloc] init];
     label.font = [UIFont systemFontOfSize:15.5];
-    label.textColor = [UIColor kjwd_titleColor333333];
+    label.textColor = [UIColor kjwd_title];
     label.textAlignment = NSTextAlignmentCenter;
     label.numberOfLines = 0;
 //    label.text = @"请点击下方取号按钮,\n凭号码到入院登记处办理入院手续。";

@@ -7,7 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import "CKJCombineCellProtocol.h"
+#import "NSObject+WDYHFCategory.h"
+
+
+
+UIKIT_EXTERN CGFloat const kO_super_margin_title; // 12
+
+
+
+@class CKJArrow9Model;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -31,7 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)modelWithDic:(nullable NSDictionary *)dic;
 
-+ (nonnull instancetype)detailSettingBlock:(void(^_Nullable )(__kindof CKJBaseModel *_Nonnull __weak m))detailSettingBlock;
++ (nonnull instancetype)detail:(void(^_Nullable )(__kindof CKJBaseModel *_Nonnull __weak m))detailSettingBlock;
+
 
 
 
@@ -48,7 +59,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface CKJCommonConfig : CKJBaseModel
 
-+ (nonnull instancetype)configWithDetailSettingBlock:(nullable void(^)(__kindof CKJCommonConfig *m))detailSettingBlock;
++ (nonnull instancetype)configWithDetail:(nullable void(^)(__kindof CKJCommonConfig *c))detailSettingBlock;
 
 @end
 
@@ -58,9 +69,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
-@interface CKJNetWorkDataModel : CKJBaseModel
 
-@end
+
 
 
 
