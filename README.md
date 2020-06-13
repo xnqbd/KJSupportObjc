@@ -177,17 +177,17 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 ```obj-c
 - (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
     return @{
-             NSStringFromClass([RJDepartmentImageCellModel class]) : @{cellKEY : NSStringFromClass([RJDepartmentImageCell class]), isRegisterNibKEY : @YES},
-             NSStringFromClass([RJSchedule_DoctorCellModel class]) : @{cellKEY : NSStringFromClass([RJSchedule_DoctorCell class]), isRegisterNibKEY : @YES},
-             NSStringFromClass([RJSchedule_IntroductionCellModel class]) : @{cellKEY : NSStringFromClass([RJSchedule_IntroductionCell class]), isRegisterNibKEY : @YES},
-             NSStringFromClass([RJSchedule_DateCellModel class]) : @{cellKEY : NSStringFromClass([RJSchedule_DateCell class]), isRegisterNibKEY : @YES},
-             NSStringFromClass([RJSchedule_DetailTitleCellModel class]) : @{cellKEY : NSStringFromClass([RJSchedule_DetailTitleCell class]), isRegisterNibKEY : @NO}
+             NSStringFromClass([RJDepartmentImageCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([RJDepartmentImageCell class]), KJPrefix_isRegisterNibKEY : @YES},
+             NSStringFromClass([RJSchedule_DoctorCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([RJSchedule_DoctorCell class]), KJPrefix_isRegisterNibKEY : @YES},
+             NSStringFromClass([RJSchedule_IntroductionCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([RJSchedule_IntroductionCell class]), KJPrefix_isRegisterNibKEY : @YES},
+             NSStringFromClass([RJSchedule_DateCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([RJSchedule_DateCell class]), KJPrefix_isRegisterNibKEY : @YES},
+             NSStringFromClass([RJSchedule_DetailTitleCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([RJSchedule_DetailTitleCell class]), KJPrefix_isRegisterNibKEY : @NO}
              };
 }
 
 - (void)initSimpleTableViewData {
     KJ_typeweakself
-    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithDetailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithDetail:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
         RJSchedule_DoctorCellModel *model1 = [RJSchedule_DoctorCellModel modelWithCellHeight:70 cellModel_id:nil detailSettingBlock:^(RJSchedule_DoctorCellModel * _Nonnull m) {
             m.doctModel = _doctModel;
         } didSelectRowBlock:nil];
@@ -221,36 +221,46 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 你会发现现在设置区头区尾高度和标题会变得非常方便
 
 ```
-// 区头高度10   区尾高度5
-    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderHeight:10 footerHeight:20 detailSetting:nil];
-    // 区头标题
-    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"区头标题", [UIColor grayColor], @15) detailSetting:nil];
+@interface CKJCommonSectionModel : CKJSimpleBaseModel
 
+// 设置区头、区尾高度
++ (instancetype)sectionWithHeaderHeight:(NSNumber *_Nullable)headerHeight footerHeight:(NSNumber *_Nullable)footerHeight detailSetting:(CKJSectionBlock _Nullable)detailSetting;      
+
+// 设置区头、区尾标题
++ (instancetype)sectionWithHeaderAttString:(NSAttributedString *_Nullable)headerAttString headerAlignment:(NSTextAlignment)headerAlignment footerAttString:(NSAttributedString *_Nullable)footerAttString footerAlignment:(NSTextAlignment)footerAlignment detailSetting:(CKJSectionBlock _Nullable)detailSetting;
+
+......
+
+@end
 ```
 ### CKJCommonCellModel
 自适应高度 和 固定高度
 
 ```
-    // Cell高度 50
-    CKJCommonCellModel *cellModel1 = [CKJCommonCellModel modelWithCellHeight:50 cellModel_id:nil detailSettingBlock:nil didSelectRowBlock:nil];
-    // Cell高度 自适应
-    CKJCommonCellModel *cellModel2 = [CKJCommonCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:nil didSelectRowBlock:nil];
-
-```
-
-隐藏和显示某一行
-
-```
-    CKJCommonCellModel *cellModel1 = [CKJCommonCellModel modelWithCellHeight:50 cellModel_id:@(234) detailSettingBlock:nil didSelectRowBlock:nil];
-    cellModel1.displayInTableView = NO; // 隐藏Cell
+@interface CKJCommonCellModel : CKJSimpleBaseModel
+       
+// 行高，依次看CKJCommonCellModel.cellHeight，CKJCommonSectionModel.rowHeight，CKJSimpleTableViewStyle.rowHeight的值，如果都为nil，最后自适应高度，也可以设置UITableViewAutomaticDimension
+@property (copy, nonatomic, nullable) NSNumber *cellHeight;
+       
+// 标记, 每一个CellModel的cellModel_id 一定不能相同
+@property (copy, nonatomic, nullable) NSString *cellModel_id;
+       
+// 是否在UITableView里面显示
+@property (assign, nonatomic) BOOL displayInTableView;
     
-    [self.simpleTableView kjwd_filterCellModelForID:234 finishBlock:^(__kindof CKJCommonCellModel * _Nonnull m) {
-        m.displayInTableView = YES;  // 显示Cell
-        [self.simpleTableView reloadData];
-    }];
-```
+// 点击某一行时候回调
+@property (copy, nonatomic, nullable) CKJCommonCellModelRowBlock didSelectRowBlock;
+    
+// 背景设置
+- (void)updateBGConfig:(void(^_Nullable)(CKJCommonCellBGImageViewConfig *bg))BGConfig;
 
-还可以设置每一行的背景颜色cell_bgColor、选择效果selectionStyle、是否显示分割线showLine，这些操作都变得非常简单
+// 设置分割线是否显示
+- (void)_showLine:(BOOL)show;
+
+......
+    
+@end
+```
 
 ## 删除和插入相关操作
 
@@ -265,18 +275,6 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 * appendCellModelArray:atLastRow_InAllCellModelArrayOfSection:
 * appendCellModelArray:atLastRow_InAllCellModelArrayOfSection:withRowAnimation:animationBlock:
 
-
-```
-    // 示例1
-    [self.simpleTableView kjwd_insertCellModelInAllCellModel:@[age_cellModel, idCardNumber_cellModel] afterCellModel:@[age_cellModel] withRowAnimation:UITableViewRowAnimationRight animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
-        animationBlock(); // 使用动画插入，执行动画
-    }];
-    
-    // 示例2
-    [self.simpleTableView appendCellModelArray:@[name_cellModel, idCardNumber_cellModel, relate_cellModel, phone_cellModel, address_cellModel, email_cellModel] atLastRow_InAllCellModelArrayOfSection:1];
-    [self.simpleTableView kjwd_reloadSection:1 withRowAnimation:UITableViewRowAnimationRight];
-
-```
 
 ### 删除
 
@@ -314,7 +312,7 @@ CKJSimpleTableView套件提供了最常用的一些Cell，满足大部分功能�
 CKJGeneralCell              |  左边一个图片和标题，右边一个文字和图片(箭头)，一般用于我的和设置界面 
 CKJCell             |  继承于CKJGeneralCell，主要多了上下UILabel，和开关按钮
 CKJInputCell             |  继承于CKJCell，多了输入框
-CKJTableViewCell1、CKJTableViewCell2             |  只有UILabel
+CKJTableViewCell1、CKJTableViewCell2             |  单个UILabel
 CKJLeftRightCenterEqualCell、CKJLeftRightTopEqualCell             |  左边一个UILabel，右边一个文本类型的Cell，`需要设置配置信息`
 CKJImageLeftCell             |  图片在左边，右边上下最多5个UILabel，`需要设置配置信息`
 CKJImageRightCell             |  左边上下最多5个UILabel，图片在右边，`需要设置配置信息`
@@ -322,6 +320,9 @@ CKJPayCell             |  继承于CKJImageLeftCell，常用于选择支付方�
 CKJBtnsCell1、CKJBtnsCell2             |  常用于三到九宫格布局，`需要设置配置信息`
 CKJScrollViewCell             |  单行可以滚动的多个ItemView，类似相册一样，`需要设置配置信息`
 CKJLikeQRCell             |  单个二维码图片，`需要设置配置信息`
+CKJImageViewCell             |  单个图片
+CKJOneBtnCell             |  单个按钮，可以作为登录、注册、提交、确认按钮
+CKJTwoBtnCell             |  两个按钮，在Cell左右两侧
 
 类名           |  简介
 -------------------------  |  --------------------------
@@ -330,76 +331,84 @@ CKJLikeQRCell             |  单个二维码图片，`需要设置配置信息`
 ![CKJLeftRightCell.PNG](./res/Cell/CKJLeftRightCell.PNG)              |  ![CKJTableViewCell.PNG](./res/Cell/CKJTableViewCell.PNG)
 ![方块Cell1.PNG](./res/Cell/Square1.PNG)              |  ![方块Cell2.PNG](./res/Cell/Square2.PNG)
 
-请看下面代码
+
+
+
+### 综合示例
 
 ```
 
-#import "DemoCoreCellVC.h"
-
-@interface DemoCoreCellVC ()
-
-@end
-
 @implementation DemoCoreCellVC
-
-#define kPriceCellID 321
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.navigationItem.title = @"核心Cell代码示例";
+    self.navigationItem.title = @"部分Cell代码示例";
     [self installComplementData];
 }
 
+#define kPriceCellID @"kPriceCellID"
+
 #pragma mark - CKJSimpleTableView 数据源 和 代理
 - (nonnull NSDictionary <NSString *, NSDictionary <NSString *, id>*> *)returnCell_Model_keyValues:(CKJSimpleTableView *_Nonnull)s {
-    
-    CKJImageLeftCellConfig *leftConfig = [CKJImageLeftCellConfig configWithDetailSettingBlock:^(__kindof CKJImageLeftCellConfig * _Nonnull m) {
-        m.imageSize = CGSizeMake(80, 80);
-        m.fiveConfig = [CKJFiveLabelViewConfig configWithDetailSettingBlock:^(__kindof CKJFiveLabelViewConfig * _Nonnull m) {
+    // 有些KJSupportObjc库系统的Cell可以进行在这里配置
+    CKJImageLeftCellConfig *leftConfig = [CKJImageLeftCellConfig imageLeftCellConfigWithDetail:^(__kindof CKJImageLeftCellConfig * _Nonnull m) {
+        [m updateImgConfig:^(CKJImageViewConfig * _Nonnull c) {
+            c.imageSize = CGSizeMake(80, 80);
+        }];
+        m.fiveConfig = [CKJFiveLabelViewConfig fiveLabelViewConfigWithDetail:^(__kindof CKJFiveLabelViewConfig * _Nonnull m) {
             m.subTitle_numberOfLines = 3;
         }];
     }];
-    
     return @{
-        NSStringFromClass([CKJImageLeftCellModel class]) : @{cellKEY : NSStringFromClass([CKJImageLeftCell class]), isRegisterNibKEY : @NO, configDicKEY_ConfigModel : leftConfig},
+        NSStringFromClass([CKJImageLeftCellModel class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJImageLeftCell class]), KJPrefix_isRegisterNibKEY : @NO, KJPrefix_configDicKEY_ConfigModel : leftConfig},
     };
 }
 
 - (void)installComplementData {
     
-    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderAttString:WDCKJAttributed2(@"CKJImageLeftCell", [UIColor kjwd_subTitleColor969696], @14) headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
-        CKJImageLeftCellModel *model1 = [CKJImageLeftCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
+    CKJCommonSectionModel *section1 = [CKJCommonSectionModel sectionWithHeaderHeight:@10 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+        CKJImageLeftCellModel *model1 = [CKJImageLeftCellModel imageLeftWithCellHeight:@(UITableViewAutomaticDimension) cellModel_id:nil detailSettingBlock:^(__kindof CKJImageLeftCellModel * _Nonnull m) {
             m.b_Image_URL = @"http://image.cmsfg.com/Images/20180608/2018060812432648.jpg";
-            m.b_placeholderImage = [UIImage kjwd_imageNamed:@"占位图片.png"];
             [m updateFiveData:^(CKJFiveLabelModel * _Nonnull fm) {
-               fm.title = WDCKJAttributed2(@"鼻饲流质", [UIColor kjwd_titleColor333333], nil);
-                fm.subTitle = WDCKJAttributed2(@"鼻饲流质营养治疗适用于不能自行经口进食、昏迷、手术前后营养不良、食欲低下但有一定消化吸收功能者", [UIColor kjwd_subTitleColor969696], nil);
+                fm.title = WDCKJAttributed2(@"鼻饲流质", [UIColor kjwd_title], nil);
+                fm.subTitle = WDCKJAttributed2(@"鼻饲流质营养治疗适用于不能自行经口进食、昏迷、手术前后营养不良、食欲低下但有一定消化吸收功能者", [UIColor kjwd_subTitle], nil);
             }];
         } didSelectRowBlock:nil];
         _sec.modelArray = @[model1];
     }];
     
-    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderHeight:10 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
-        CKJGeneralCellModel *model1 = [CKJGeneralCellModel modelWithCellHeight:44 cellModel_id:@(kPriceCellID) detailSettingBlock:^(__kindof CKJGeneralCellModel * _Nonnull m) {
+    CKJCommonSectionModel *section2 = [CKJCommonSectionModel sectionWithHeaderAttString:@"铃声设置" headerAlignment:NSTextAlignmentLeft detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+        __weak typeof(self) weakSelf = self;
+        _sec.rowHeight = @38;
+          CKJCellModel *model1 = [CKJCellModel ckjCellWithCellHeight:@60 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
+              m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"无线局域网", [UIColor kjwd_title], @15) bottomAttributedText:WDCKJAttributed2(@"隔空投送、隔空播放需要无线局域网", [UIColor kjwd_subTitle], @13) centerMarign:5 topBottomMargin:8 leftMargin:kO_super_margin_title rightMargin:0];
+              m.switch6Model = [CKJSwitch6Model switch6ModelWithSwitchOn:YES left:0 top:0 bottom:0 callBack:^(BOOL switchOn, CKJCellModel *cellModel, UISwitch *senderSwitch) {
+                  if (senderSwitch.on) { // 使用动画删除Cell
+                      [cellModel.cell.simpleTableView appendCellModelArray:[weakSelf wifiCellModels] atLastRow_InAllCellModelArrayOfSection:1 withRowAnimation:UITableViewRowAnimationBottom animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
+                          animationBlock();
+                      }];
+                  } else {      // 使用动画增加Cell
+                      [cellModel.cell.simpleTableView removeAllCellModelAtSection:1 keepDisplayRows:@[@0] removeHiddenCellModel:NO withRowAnimation:UITableViewRowAnimationTop animationBlock:^(void (^ _Nonnull animationBlock)(void)) {
+                         animationBlock();
+                      }];
+                  }
+              }];
+              m.likePrice61Model = [CKJLikePriceLabel61Model likePriceModelWithLeftMargin:10];
+          } didSelectRowBlock:nil];
+        
+        [_sec addCellModel:model1];
+        [_sec addCellModels:[self wifiCellModels]];
+    }];
+    CKJCommonSectionModel *section3 = [CKJCommonSectionModel sectionWithHeaderHeight:@10 detailSetting:^(__kindof CKJCommonSectionModel * _Nonnull _sec) {
+        CKJGeneralCellModel *model1 = [CKJGeneralCellModel generalWithCellHeight:@44 cellModel_id:kPriceCellID detailSettingBlock:^(__kindof CKJGeneralCellModel * _Nonnull m) {
             m.image2Model = [CKJImage2Model image2ModelWithImageString:@"demo余额.png" size:CGSizeMake(22, 22) left:15];
-            m.title3Model = [CKJTitle3Model title3ModelWithAttributedText:WDCKJAttributed2(@"余额", [UIColor kjwd_titleColor333333], nil) left:10];
-            m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"620.86元", [UIColor kjwd_subTitleColor969696], @14) left:0 right:0];
+            m.title3Model = [CKJTitle3Model title3ModelWithText:WDCKJAttributed2(@"余额", [UIColor kjwd_title], nil) left:10];
+            m.likePrice8Model = [CKJLikePriceLabel8Model likePriceLabel8ModelWithAttText:WDCKJAttributed2(@"620.86元", [UIColor kjwd_subTitle], @14) left:0 right:0];
             m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
-        } didSelectRowBlock:^(__kindof CKJGeneralCellModel *__weak  _Nonnull m) {
-           NSLog(@"点击了当前行");
-        }];
-        
-        
-        CKJCellModel *model2 = [CKJCellModel modelWithCellHeight:0 cellModel_id:nil detailSettingBlock:^(__kindof CKJCellModel * _Nonnull m) {
-            m.view5Model = [CKJView5Model view5ModelWithTopAttributedText:WDCKJAttributed2(@"开启常用地点入口", [UIColor kjwd_titleColor333333], @15) bottomAttributedText:WDCKJAttributed2(@"关闭后，将隐藏首页的常用地点入口", [UIColor kjwd_subTitleColor969696], @13) centerMarign:5 topBottomMargin:8 leftMargin:15 rightMargin:0];
-            m.switch6Model = [CKJSwitch6Model switch6ModelWithSwitchOn:YES left:0 top:0 bottom:0 callBack:^(BOOL switchOn, CKJCellModel *cellModel, UISwitch *senderSwitch) {
-                NSLog(@"检测到 开关按钮切换，此时状态是 %@ %@", cellModel.view5Model.topText.string, switchOn ? @"开启" : @"关闭");
-            }];
-            m.likePrice61Model = [CKJLikePriceLabel61Model likePriceModelWithLeftMargin:15];
         } didSelectRowBlock:nil];
         
-        CKJTableViewCell1Model *model3 = [CKJTableViewCell1Model modelWithCellHeight:44 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
-            m.textLabelAttStr = WDCKJAttributed2(@"点击本行更新余额", [UIColor kjwd_subTitleColor969696], nil);
+        CKJTableViewCell1Model *model2 = [CKJTableViewCell1Model baseTableViewCellWithCellHeight:@44 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+            m.attText = WDCKJAttributed2(@"点击本行更新余额", [UIColor kjwd_subTitle], nil);
             m.textAlignment = NSTextAlignmentCenter;
         } didSelectRowBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
             [m.cell.simpleTableView kjwd_filterCellModelForID:kPriceCellID finishBlock:^(CKJGeneralCellModel * _Nonnull m) {
@@ -407,22 +416,28 @@ CKJLikeQRCell             |  单个二维码图片，`需要设置配置信息`
                 NSString *point = [NSString kjwd_returnArc4randomWithNum:2 type:KJWDArc4randomType_Number];
                 [m.likePrice8Model changeText:[NSString stringWithFormat:@"%@.%@元", arc1, point]];
             }];
-            [m.cell.simpleTableView kjwd_reloadData];
         }];
-        _sec.modelArray = @[model1, model2, model3];
+        _sec.modelArray = @[model1, model2];
     }];
-    self.simpleTableView.dataArr = @[section1, section2];
+    
+    self.simpleTableView.dataArr = @[section1, section2, section3];
+}
+
+- (NSArray <CKJCommonCellModel *>*)wifiCellModels {
+    CGSize size = CGSizeMake(23, 23);
+    CKJGeneralCellModel *model2 = [CKJGeneralCellModel generalWithTitle:@"Wonders" arrow:[CKJArrow9Model arrow9ModelWithImage:[[UIImage kjwd_imageNamed:@"wifi"] kjwd_scaleToSize:size] right:@12 click:nil] didSelectRowBlock:nil];
+    CKJGeneralCellModel *model3 = [CKJGeneralCellModel generalWithTitle:@"Wonders-VIP" arrow:[CKJArrow9Model arrow9ModelWithImage:[[UIImage kjwd_imageNamed:@"wifi"] kjwd_scaleToSize:size] right:@12 click:nil] didSelectRowBlock:nil];
+    return @[model2, model3];
 }
 
 @end
 
-
 ```
 效果如下
 
-![核心Cell示例.PNG](./res/Cell/核心Cell示例.PNG)
+<img src="./res/demo1.gif" width="320">
 
-开发者只需管理好数据模型，UI全部根据数据模型进行渲染，如果想要修改UI的数据，只需要找到其数据模型，修改数据模型的数据，UI会自动改变。有些核心Cell需要设置配置数据，有些可以直接进行使用。比如上面示例中， CKJImageLeftCell则需要设置配置数据，而CKJGeneralCell和CKJCell则不需要。
+开发者只需管理好数据模型，UI全部根据数据模型进行渲染，如果想要修改UI的数据，只需要找到其数据模型，修改数据模型的数据，UI会自动改变。有些核心Cell需要设置配置数据，有些可以直接进行使用。比如上面示例中， CKJImageLeftCell则需要设置配置数据，而CKJGeneralCell和CKJTableViewCell1则不需要。
 
 对于封装好的核心Cell，省去了开发者在不同的界面里重复的布局Cell带来的麻烦，可以提高开发效率节约开发时间。
 
@@ -452,7 +467,6 @@ KJSupportObjc库对系统的类做了很多异常处理，在异常的情况下�
 }
 
 @end
-
 
 
 @implementation NSMutableArray (WDYHFCategory)
@@ -515,6 +529,7 @@ BOOL WDKJ_IsNull_Array(NSArray *_Nullable array);
 NSString *WDKJ_SpaceString(NSString *_Nullable str);
 NSString *WDKJ_ConfirmString(NSString *_Nullable str);
 NSNumber *WDKJ_ConfirmNumber(NSNumber *_Nullable number);
+......
 ```
 
 #### NSArray和NSMutableArray
@@ -620,8 +635,9 @@ IB_DESIGNABLE
 @end
 
 ```
+<img src="./res/IBInspectable.jpg" width="420">
 
-![Markdown preferences pane](./res/IBInspectable.jpg)
+
 
 ## 常用工具
 
@@ -629,7 +645,9 @@ IB_DESIGNABLE
 -------------------------  |  --------------------------
 CKJRSA              |  RSA加密
 FileManagerTool             |  本地文件管理类
-CKJToolPickerView	|	普通选择器视图
-CKJDatePickerView	|	日期选择器视图
+CKJToolPickerView    |    普通选择器视图
+CKJDatePickerView    |    日期选择器视图
+CKJKeyChain            |   系统钥匙串存储
+CKJHUD                    |   HUD加载框
 
 
