@@ -220,7 +220,7 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 ### CKJCommonSectionModel
 你会发现现在设置区头区尾高度和标题会变得非常方便
 
-```
+```obj-c
 @interface CKJCommonSectionModel : CKJSimpleBaseModel
 
 // 设置区头、区尾高度
@@ -236,7 +236,7 @@ KJSupportObjc 是在iOS平台集常用分类、工具、异常处理、和自定
 ### CKJCommonCellModel
 自适应高度 和 固定高度
 
-```
+```obj-c
 @interface CKJCommonCellModel : CKJSimpleBaseModel
        
 // 行高，依次看CKJCommonCellModel.cellHeight，CKJCommonSectionModel.rowHeight，CKJSimpleTableViewStyle.rowHeight的值，如果都为nil，最后自适应高度，也可以设置UITableViewAutomaticDimension
@@ -336,7 +336,7 @@ CKJTwoBtnCell             |  两个按钮，在Cell左右两侧
 
 ### 综合示例
 
-```
+```obj-c
 
 @implementation DemoCoreCellVC
 
@@ -449,7 +449,7 @@ KJSupportObjc库对系统的类做了很多异常处理，在异常的情况下�
 
 异常处理、友好提示
 
-```
+```obj-c
 @implementation NSString (WDYHFCategory)
 
 - (nullable NSString *)kjwd_substringWithRange:(NSRange)range {
@@ -502,7 +502,7 @@ KJSupportObjc库对系统的类做了很多异常处理，在异常的情况下�
 
 实用功能
 
-```
+```obj-c
 
 @interface UIView (WDYHFCategory)
 
@@ -521,7 +521,7 @@ KJSupportObjc库对系统的类做了很多异常处理，在异常的情况下�
 
 
 #### 异常处理
-```
+```obj-c
 BOOL WDKJ_IsEmpty_Str(NSString *_Nullable str);
 BOOL WDKJ_IsEmpty_AttributedStr(NSAttributedString *_Nullable attStr);
 BOOL WDKJ_IsNull_Num(NSNumber *_Nullable number);
@@ -606,7 +606,7 @@ imageTitleSpace:(CGFloat)space; ```
 ## 可设计IBInspectable
 封装了UIView和UIButton直接在xib、storyboard里面直接拖线使用的IBInspectable，设置代码也可以使用
 
-```
+```obj-c
 IB_DESIGNABLE
 @interface UIView (CKJDesingable)
 
