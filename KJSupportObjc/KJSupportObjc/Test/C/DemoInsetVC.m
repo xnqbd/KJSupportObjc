@@ -59,15 +59,15 @@
                 //                        [MBProgressHUD showError:error.localizedDescription];
                 //                    }
                 //                }];
-            } detailSettingBlock:nil];
+            } detail:nil];
         }];
         
         
 
-        CKJInputCellModel *pwd = [self.simpleTableView _newtitle:@"密码" tfText:@"" placeholder:@"请输入密码" emptyRequirdText:@"密码" cellId:kOInput_Pwd detail:nil];
+        CKJInputCellModel *pwd = [self.simpleTableView _newtitle:@"密码" tfText:@"" placeholder:@"请输入密码" emptyRequirdText:@"密码" cellId:kOInput_DefaultPwd detail:nil];
         
         
-        CKJInputCellModel *confirmPwd = [self.simpleTableView _newtitle:@"确认密码" tfText:@"" placeholder:@"请再次输入密码" emptyRequirdText:@"确认密码" cellId:kOInput_ConfirmPwd detail:^(__kindof CKJInputCellModel * _Nonnull m) {
+        CKJInputCellModel *confirmPwd = [self.simpleTableView _newtitle:@"确认密码" tfText:@"" placeholder:@"请再次输入密码" emptyRequirdText:@"确认密码" cellId:kOInput_DefaultConfirmPwd detail:^(__kindof CKJInputCellModel * _Nonnull m) {
             [m addRequired:[CKJInputExpressionRequiredModel system_confirmPwdNotEqualPwdWithTableView:self.simpleTableView]];
         }];
         

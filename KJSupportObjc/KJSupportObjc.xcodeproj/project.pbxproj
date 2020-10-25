@@ -24,78 +24,85 @@
 		955997EC209AECFA00163047 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 955997EB209AECFA00163047 /* Assets.xcassets */; };
 		955997EF209AECFA00163047 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 955997ED209AECFA00163047 /* LaunchScreen.storyboard */; };
 		955997F2209AECFA00163047 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 955997F1209AECFA00163047 /* main.m */; };
-		BC31D9C42494E506008109C9 /* NSObject+WDYHFCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8C42494E505008109C9 /* NSObject+WDYHFCategory.m */; };
-		BC31D9C52494E506008109C9 /* UIView+CKJDesingable.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8C72494E505008109C9 /* UIView+CKJDesingable.m */; };
-		BC31D9C62494E506008109C9 /* FileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8C92494E505008109C9 /* FileManagerTool.m */; };
-		BC31D9C72494E506008109C9 /* CKJBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8CC2494E505008109C9 /* CKJBaseViewController.m */; };
-		BC31D9C82494E506008109C9 /* KJCommonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8CE2494E505008109C9 /* KJCommonManager.m */; };
-		BC31D9C92494E506008109C9 /* CKJRSA.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8D02494E505008109C9 /* CKJRSA.m */; };
-		BC31D9CA2494E506008109C9 /* CKJHUD+KJSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8D22494E505008109C9 /* CKJHUD+KJSupport.m */; };
-		BC31D9CB2494E506008109C9 /* CKJGlobalHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8D32494E505008109C9 /* CKJGlobalHeader.m */; };
-		BC31D9CC2494E506008109C9 /* CKJKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8D72494E505008109C9 /* CKJKeyChain.m */; };
-		BC31D9CD2494E506008109C9 /* CKJHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8D82494E505008109C9 /* CKJHUD.m */; };
-		BC31D9CE2494E506008109C9 /* LightStorageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8D92494E505008109C9 /* LightStorageManager.m */; };
-		BC31D9CF2494E506008109C9 /* CKJBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8DB2494E505008109C9 /* CKJBaseModel.m */; };
-		BC31D9D02494E506008109C9 /* CKJProjectConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8DE2494E505008109C9 /* CKJProjectConfig.m */; };
-		BC31D9D12494E506008109C9 /* CKJSearch_TF.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8E12494E505008109C9 /* CKJSearch_TF.m */; };
-		BC31D9D22494E506008109C9 /* CKJPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8E42494E505008109C9 /* CKJPickerView.m */; };
-		BC31D9D32494E506008109C9 /* CKJToolPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8E52494E505008109C9 /* CKJToolPickerView.m */; };
-		BC31D9D42494E506008109C9 /* CKJDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8E62494E505008109C9 /* CKJDatePickerView.m */; };
-		BC31D9D52494E506008109C9 /* CKJToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8E72494E505008109C9 /* CKJToolView.m */; };
-		BC31D9D62494E506008109C9 /* CKJCountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8EB2494E505008109C9 /* CKJCountingLabel.m */; };
-		BC31D9D72494E506008109C9 /* CKJXBtnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8ED2494E505008109C9 /* CKJXBtnsView.m */; };
-		BC31D9D82494E506008109C9 /* CKJFiveLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8F02494E505008109C9 /* CKJFiveLabelView.m */; };
-		BC31D9D92494E506008109C9 /* CKJToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8F12494E505008109C9 /* CKJToolbar.m */; };
-		BC31D9DA2494E506008109C9 /* CKJPayBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8F22494E505008109C9 /* CKJPayBottomView.m */; };
-		BC31D9DB2494E506008109C9 /* CKJTwoLabelAsCompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8F62494E505008109C9 /* CKJTwoLabelAsCompleteView.m */; };
-		BC31D9DC2494E506008109C9 /* CKJTableEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8F72494E505008109C9 /* CKJTableEmptyView.m */; };
-		BC31D9DD2494E506008109C9 /* CKJTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8F92494E505008109C9 /* CKJTextFiled.m */; };
-		BC31D9DE2494E506008109C9 /* CKJSimpleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D8FD2494E505008109C9 /* CKJSimpleTableView.m */; };
-		BC31D9DF2494E506008109C9 /* CKJButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9002494E505008109C9 /* CKJButton.m */; };
-		BC31D9E02494E506008109C9 /* CKJWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9012494E505008109C9 /* CKJWorker.m */; };
-		BC31D9E12494E506008109C9 /* CKJBaseTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D90A2494E505008109C9 /* CKJBaseTableVC.m */; };
-		BC31D9E22494E506008109C9 /* CKJCommonSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D90E2494E505008109C9 /* CKJCommonSectionModel.m */; };
-		BC31D9E32494E506008109C9 /* CKJCommonCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D90F2494E505008109C9 /* CKJCommonCellModel.m */; };
-		BC31D9E42494E506008109C9 /* CKJInputData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9122494E505008109C9 /* CKJInputData.m */; };
-		BC31D9E52494E506008109C9 /* CKJSimpleBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9142494E505008109C9 /* CKJSimpleBaseModel.m */; };
-		BC31D9E62494E506008109C9 /* CKJCommonHeaderFooterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9152494E505008109C9 /* CKJCommonHeaderFooterModel.m */; };
-		BC31D9E72494E506008109C9 /* CKJSimpleTableViewStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9162494E505008109C9 /* CKJSimpleTableViewStyle.m */; };
-		BC31D9E82494E506008109C9 /* CKJDemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D91A2494E505008109C9 /* CKJDemoCell.m */; };
-		BC31D9E92494E506008109C9 /* CKJDemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC31D91B2494E505008109C9 /* CKJDemoCell.xib */; };
-		BC31D9EA2494E506008109C9 /* CKJEmptyHeaderFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9202494E505008109C9 /* CKJEmptyHeaderFooterCell.m */; };
-		BC31D9EB2494E506008109C9 /* CKJOneBtnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9212494E505008109C9 /* CKJOneBtnCell.m */; };
-		BC31D9EC2494E506008109C9 /* CKJTwoBtnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9222494E505008109C9 /* CKJTwoBtnCell.m */; };
-		BC31D9ED2494E506008109C9 /* CKJEmptyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9232494E505008109C9 /* CKJEmptyCell.m */; };
-		BC31D9EE2494E506008109C9 /* CKJLikeQRCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9242494E505008109C9 /* CKJLikeQRCell.m */; };
-		BC31D9EF2494E506008109C9 /* CKJImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9252494E505008109C9 /* CKJImageViewCell.m */; };
-		BC31D9F02494E506008109C9 /* CKJGeneralCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D92D2494E506008109C9 /* CKJGeneralCell.m */; };
-		BC31D9F12494E506008109C9 /* CKJInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9302494E506008109C9 /* CKJInputCell.m */; };
-		BC31D9F22494E506008109C9 /* CKJCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9312494E506008109C9 /* CKJCell.m */; };
-		BC31D9F32494E506008109C9 /* CKJLeftRightTopEqualCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9352494E506008109C9 /* CKJLeftRightTopEqualCell.m */; };
-		BC31D9F42494E506008109C9 /* CKJLeftRightCenterEqualCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9362494E506008109C9 /* CKJLeftRightCenterEqualCell.m */; };
-		BC31D9F52494E506008109C9 /* CKJTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9382494E506008109C9 /* CKJTableViewCell1.m */; };
-		BC31D9F62494E506008109C9 /* CKJTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9392494E506008109C9 /* CKJTableViewCell2.m */; };
-		BC31D9F72494E506008109C9 /* CKJStackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D93D2494E506008109C9 /* CKJStackCell.m */; };
-		BC31D9F82494E506008109C9 /* CKJBaseLeftRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D93F2494E506008109C9 /* CKJBaseLeftRightCell.m */; };
-		BC31D9F92494E506008109C9 /* CKJBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9412494E506008109C9 /* CKJBaseTableViewCell.m */; };
-		BC31D9FA2494E506008109C9 /* CKJInputCustomSuperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9432494E506008109C9 /* CKJInputCustomSuperCell.m */; };
-		BC31D9FB2494E506008109C9 /* CKJLibraryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9442494E506008109C9 /* CKJLibraryHelper.m */; };
-		BC31D9FC2494E506008109C9 /* CKJBaseBtnsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9472494E506008109C9 /* CKJBaseBtnsCell.m */; };
-		BC31D9FD2494E506008109C9 /* CKJBaseImageLeftRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9492494E506008109C9 /* CKJBaseImageLeftRightCell.m */; };
-		BC31D9FE2494E506008109C9 /* CKJChooseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D94B2494E506008109C9 /* CKJChooseHelper.m */; };
-		BC31D9FF2494E506008109C9 /* CKJCommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D94D2494E506008109C9 /* CKJCommonTableViewCell.m */; };
-		BC31DA002494E506008109C9 /* CKJBtnsCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9502494E506008109C9 /* CKJBtnsCell2.m */; };
-		BC31DA012494E506008109C9 /* CKJBtnsCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9512494E506008109C9 /* CKJBtnsCell1.m */; };
-		BC31DA022494E506008109C9 /* CKJImageLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9562494E506008109C9 /* CKJImageLeftCell.m */; };
-		BC31DA032494E506008109C9 /* CKJImageRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9572494E506008109C9 /* CKJImageRightCell.m */; };
-		BC31DA042494E506008109C9 /* CKJPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D95A2494E506008109C9 /* CKJPayCell.m */; };
-		BC31DA052494E506008109C9 /* CKJScrollViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D95D2494E506008109C9 /* CKJScrollViewCell.m */; };
-		BC31DA062494E506008109C9 /* CKJTableViewHeaderFooterEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D95F2494E506008109C9 /* CKJTableViewHeaderFooterEmptyView.m */; };
-		BC31DA072494E506008109C9 /* CKJCommonTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9622494E506008109C9 /* CKJCommonTableViewHeaderFooterView.m */; };
-		BC31DA082494E506008109C9 /* CKJTitleStyleHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9642494E506008109C9 /* CKJTitleStyleHeaderFooterView.m */; };
-		BC31DA092494E506008109C9 /* KJSupportObjc.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BC31D9662494E506008109C9 /* KJSupportObjc.bundle */; };
-		BC31DA0A2494E506008109C9 /* CKJFixMode.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D9682494E506008109C9 /* CKJFixMode.m */; };
-		BC31DA0B2494E506008109C9 /* KJSupportHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BC31D96B2494E506008109C9 /* KJSupportHeader.m */; };
+		BC163AC72545BD020057968E /* NSObject+WDYHFCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A0A2545BD010057968E /* NSObject+WDYHFCategory.m */; };
+		BC163AC82545BD020057968E /* NSObject+CKJMasonry.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A0E2545BD010057968E /* NSObject+CKJMasonry.m */; };
+		BC163AC92545BD020057968E /* UIView+CKJDesingable.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A0F2545BD010057968E /* UIView+CKJDesingable.m */; };
+		BC163ACA2545BD020057968E /* CKJSimpleTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A112545BD010057968E /* CKJSimpleTableView.m */; };
+		BC163ACB2545BD020057968E /* CKJButton.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A152545BD010057968E /* CKJButton.m */; };
+		BC163ACC2545BD020057968E /* CKJWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A162545BD010057968E /* CKJWorker.m */; };
+		BC163ACD2545BD020057968E /* CKJBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A182545BD010057968E /* CKJBaseModel.m */; };
+		BC163ACE2545BD020057968E /* CKJCommonSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A212545BD010057968E /* CKJCommonSectionModel.m */; };
+		BC163ACF2545BD020057968E /* CKJCommonCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A222545BD010057968E /* CKJCommonCellModel.m */; };
+		BC163AD02545BD020057968E /* CKJInputData.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A252545BD010057968E /* CKJInputData.m */; };
+		BC163AD12545BD020057968E /* CKJSimpleBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A272545BD010057968E /* CKJSimpleBaseModel.m */; };
+		BC163AD22545BD020057968E /* CKJCommonHeaderFooterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A282545BD010057968E /* CKJCommonHeaderFooterModel.m */; };
+		BC163AD32545BD020057968E /* CKJSimpleTableViewStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A292545BD010057968E /* CKJSimpleTableViewStyle.m */; };
+		BC163AD42545BD020057968E /* CKJEmptyHeaderFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A2F2545BD010057968E /* CKJEmptyHeaderFooterCell.m */; };
+		BC163AD52545BD020057968E /* CKJOneBtnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A302545BD010057968E /* CKJOneBtnCell.m */; };
+		BC163AD62545BD020057968E /* CKJStaticCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A312545BD010057968E /* CKJStaticCell.m */; };
+		BC163AD72545BD020057968E /* CKJTwoBtnCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A322545BD010057968E /* CKJTwoBtnCell.m */; };
+		BC163AD82545BD020057968E /* CKJDynamicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A332545BD010057968E /* CKJDynamicCell.m */; };
+		BC163AD92545BD020057968E /* CKJEmptyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A342545BD010057968E /* CKJEmptyCell.m */; };
+		BC163ADA2545BD020057968E /* CKJImageViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A352545BD010057968E /* CKJImageViewCell.m */; };
+		BC163ADB2545BD020057968E /* CKJGeneralCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A3E2545BD010057968E /* CKJGeneralCell.m */; };
+		BC163ADC2545BD020057968E /* CKJInputCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A412545BD010057968E /* CKJInputCell.m */; };
+		BC163ADD2545BD020057968E /* CKJCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A422545BD010057968E /* CKJCell.m */; };
+		BC163ADE2545BD020057968E /* CKJLeftRightTopEqualCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A462545BD010057968E /* CKJLeftRightTopEqualCell.m */; };
+		BC163ADF2545BD020057968E /* CKJLeftRightCenterEqualCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A472545BD020057968E /* CKJLeftRightCenterEqualCell.m */; };
+		BC163AE02545BD020057968E /* CKJTableViewCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A492545BD020057968E /* CKJTableViewCell1.m */; };
+		BC163AE12545BD020057968E /* CKJTableViewCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A4A2545BD020057968E /* CKJTableViewCell2.m */; };
+		BC163AE22545BD020057968E /* CKJStackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A4E2545BD020057968E /* CKJStackCell.m */; };
+		BC163AE32545BD020057968E /* CKJBaseLeftRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A502545BD020057968E /* CKJBaseLeftRightCell.m */; };
+		BC163AE42545BD020057968E /* CKJBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A522545BD020057968E /* CKJBaseTableViewCell.m */; };
+		BC163AE52545BD020057968E /* CKJInputCustomSuperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A542545BD020057968E /* CKJInputCustomSuperCell.m */; };
+		BC163AE62545BD020057968E /* CKJLibraryHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A552545BD020057968E /* CKJLibraryHelper.m */; };
+		BC163AE72545BD020057968E /* CKJBaseBtnsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A582545BD020057968E /* CKJBaseBtnsCell.m */; };
+		BC163AE82545BD020057968E /* CKJBaseImageLeftRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A5A2545BD020057968E /* CKJBaseImageLeftRightCell.m */; };
+		BC163AE92545BD020057968E /* CKJChooseHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A5C2545BD020057968E /* CKJChooseHelper.m */; };
+		BC163AEA2545BD020057968E /* CKJCommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A5E2545BD020057968E /* CKJCommonTableViewCell.m */; };
+		BC163AEB2545BD020057968E /* CKJBtnsCell2.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A612545BD020057968E /* CKJBtnsCell2.m */; };
+		BC163AEC2545BD020057968E /* CKJBtnsCell1.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A622545BD020057968E /* CKJBtnsCell1.m */; };
+		BC163AED2545BD020057968E /* CKJImageLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A672545BD020057968E /* CKJImageLeftCell.m */; };
+		BC163AEE2545BD020057968E /* CKJImageRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A682545BD020057968E /* CKJImageRightCell.m */; };
+		BC163AEF2545BD020057968E /* CKJPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A6B2545BD020057968E /* CKJPayCell.m */; };
+		BC163AF02545BD020057968E /* CKJScrollViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A6E2545BD020057968E /* CKJScrollViewCell.m */; };
+		BC163AF12545BD020057968E /* CKJTableViewHeaderFooterEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A702545BD020057968E /* CKJTableViewHeaderFooterEmptyView.m */; };
+		BC163AF22545BD020057968E /* CKJCommonTableViewHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A732545BD020057968E /* CKJCommonTableViewHeaderFooterView.m */; };
+		BC163AF32545BD020057968E /* CKJTitleStyleHeaderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A752545BD020057968E /* CKJTitleStyleHeaderFooterView.m */; };
+		BC163AF42545BD020057968E /* KJCommonManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A782545BD020057968E /* KJCommonManager.m */; };
+		BC163AF52545BD020057968E /* CKJFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A792545BD020057968E /* CKJFileManager.m */; };
+		BC163AF62545BD020057968E /* CKJUIMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A7D2545BD020057968E /* CKJUIMaker.m */; };
+		BC163AF72545BD020057968E /* CKJPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A822545BD020057968E /* CKJPickerView.m */; };
+		BC163AF82545BD020057968E /* CKJToolPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A832545BD020057968E /* CKJToolPickerView.m */; };
+		BC163AF92545BD020057968E /* CKJDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A842545BD020057968E /* CKJDatePickerView.m */; };
+		BC163AFA2545BD020057968E /* CKJToolView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A852545BD020057968E /* CKJToolView.m */; };
+		BC163AFB2545BD020057968E /* CKJCountingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A892545BD020057968E /* CKJCountingLabel.m */; };
+		BC163AFC2545BD020057968E /* CKJXBtnsView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A8B2545BD020057968E /* CKJXBtnsView.m */; };
+		BC163AFD2545BD020057968E /* CKJFiveLabelView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A8E2545BD020057968E /* CKJFiveLabelView.m */; };
+		BC163AFE2545BD020057968E /* CKJToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A8F2545BD020057968E /* CKJToolbar.m */; };
+		BC163AFF2545BD020057968E /* CKJPayBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A902545BD020057968E /* CKJPayBottomView.m */; };
+		BC163B002545BD020057968E /* CKJUpdateView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A912545BD020057968E /* CKJUpdateView.m */; };
+		BC163B012545BD020057968E /* CKJTwoLabelAsCompleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A942545BD020057968E /* CKJTwoLabelAsCompleteView.m */; };
+		BC163B022545BD020057968E /* CKJTableEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A952545BD020057968E /* CKJTableEmptyView.m */; };
+		BC163B032545BD020057968E /* CKJTextFiled.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A972545BD020057968E /* CKJTextFiled.m */; };
+		BC163B042545BD020057968E /* CKJHUD+KJSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A9D2545BD020057968E /* CKJHUD+KJSupport.m */; };
+		BC163B052545BD020057968E /* CKJHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163A9E2545BD020057968E /* CKJHUD.m */; };
+		BC163B062545BD020057968E /* CKJCopy.h in Sources */ = {isa = PBXBuildFile; fileRef = BC163AA02545BD020057968E /* CKJCopy.h */; };
+		BC163B072545BD020057968E /* CKJDemoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163AA32545BD020057968E /* CKJDemoCell.m */; };
+		BC163B082545BD020057968E /* CKJDemoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC163AA42545BD020057968E /* CKJDemoCell.xib */; };
+		BC163B092545BD020057968E /* CKJSecret.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163AA82545BD020057968E /* CKJSecret.m */; };
+		BC163B0A2545BD020057968E /* CKJAuthImitateZhiFuBao.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163AAB2545BD020057968E /* CKJAuthImitateZhiFuBao.m */; };
+		BC163B0B2545BD020057968E /* CKJAuthID.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163AAE2545BD020057968E /* CKJAuthID.m */; };
+		BC163B0C2545BD020057968E /* CKJGesturesVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163AB02545BD020057968E /* CKJGesturesVC.m */; };
+		BC163B0D2545BD020057968E /* CKJGesturesUnlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163AB32545BD020057968E /* CKJGesturesUnlockView.m */; };
+		BC163B0E2545BD020057968E /* CKJKeyChain.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163AB52545BD020057968E /* CKJKeyChain.m */; };
+		BC163B0F2545BD020057968E /* KJSupportObjc.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BC163AB62545BD020057968E /* KJSupportObjc.bundle */; };
+		BC163B102545BD020057968E /* CKJFixMode.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163AB82545BD020057968E /* CKJFixMode.m */; };
+		BC163B112545BD020057968E /* KJSupportHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163ABB2545BD020057968E /* KJSupportHeader.m */; };
+		BC163B122545BD020057968E /* CKJBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163ABE2545BD020057968E /* CKJBaseViewController.m */; };
+		BC163B132545BD020057968E /* CKJBaseTableVC.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163AC12545BD020057968E /* CKJBaseTableVC.m */; };
+		BC163B142545BD020057968E /* CKJTool.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163AC32545BD020057968E /* CKJTool.m */; };
+		BC163B152545BD020057968E /* CKJLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC163AC42545BD020057968E /* CKJLocationManager.m */; };
 		BC31DA0C2494E506008109C9 /* wifi.png in Resources */ = {isa = PBXBuildFile; fileRef = BC31D96F2494E506008109C9 /* wifi.png */; };
 		BC31DA0D2494E506008109C9 /* zhuyuan出院结算@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC31D9702494E506008109C9 /* zhuyuan出院结算@2x.png */; };
 		BC31DA0E2494E506008109C9 /* zhuyuan充值记录@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC31D9712494E506008109C9 /* zhuyuan充值记录@2x.png */; };
@@ -183,152 +190,165 @@
 		955997F0209AECFA00163047 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		955997F1209AECFA00163047 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A1CC382CDF748F1B8658DC0F /* Pods_KJSupportObjc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KJSupportObjc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC31D8C22494E505008109C9 /* KJSupportObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSupportObjc.h; sourceTree = "<group>"; };
-		BC31D8C42494E505008109C9 /* NSObject+WDYHFCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WDYHFCategory.m"; sourceTree = "<group>"; };
-		BC31D8C52494E505008109C9 /* UIView+CKJDesingable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CKJDesingable.h"; sourceTree = "<group>"; };
-		BC31D8C62494E505008109C9 /* NSObject+WDYHFCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WDYHFCategory.h"; sourceTree = "<group>"; };
-		BC31D8C72494E505008109C9 /* UIView+CKJDesingable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CKJDesingable.m"; sourceTree = "<group>"; };
-		BC31D8C92494E505008109C9 /* FileManagerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManagerTool.m; sourceTree = "<group>"; };
-		BC31D8CA2494E505008109C9 /* CKJGlobalHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJGlobalHeader.h; sourceTree = "<group>"; };
-		BC31D8CB2494E505008109C9 /* CKJHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJHUD.h; sourceTree = "<group>"; };
-		BC31D8CC2494E505008109C9 /* CKJBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseViewController.m; sourceTree = "<group>"; };
-		BC31D8CD2494E505008109C9 /* CKJKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJKeyChain.h; sourceTree = "<group>"; };
-		BC31D8CE2494E505008109C9 /* KJCommonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJCommonManager.m; sourceTree = "<group>"; };
-		BC31D8CF2494E505008109C9 /* CKJBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseModel.h; sourceTree = "<group>"; };
-		BC31D8D02494E505008109C9 /* CKJRSA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJRSA.m; sourceTree = "<group>"; };
-		BC31D8D12494E505008109C9 /* LightStorageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LightStorageManager.h; sourceTree = "<group>"; };
-		BC31D8D22494E505008109C9 /* CKJHUD+KJSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKJHUD+KJSupport.m"; sourceTree = "<group>"; };
-		BC31D8D32494E505008109C9 /* CKJGlobalHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJGlobalHeader.m; sourceTree = "<group>"; };
-		BC31D8D42494E505008109C9 /* FileManagerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileManagerTool.h; sourceTree = "<group>"; };
-		BC31D8D52494E505008109C9 /* KJCommonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJCommonManager.h; sourceTree = "<group>"; };
-		BC31D8D62494E505008109C9 /* CKJBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseViewController.h; sourceTree = "<group>"; };
-		BC31D8D72494E505008109C9 /* CKJKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJKeyChain.m; sourceTree = "<group>"; };
-		BC31D8D82494E505008109C9 /* CKJHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJHUD.m; sourceTree = "<group>"; };
-		BC31D8D92494E505008109C9 /* LightStorageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LightStorageManager.m; sourceTree = "<group>"; };
-		BC31D8DA2494E505008109C9 /* CKJRSA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJRSA.h; sourceTree = "<group>"; };
-		BC31D8DB2494E505008109C9 /* CKJBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseModel.m; sourceTree = "<group>"; };
-		BC31D8DC2494E505008109C9 /* CKJHUD+KJSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKJHUD+KJSupport.h"; sourceTree = "<group>"; };
-		BC31D8DE2494E505008109C9 /* CKJProjectConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJProjectConfig.m; sourceTree = "<group>"; };
-		BC31D8DF2494E505008109C9 /* CKJProjectConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJProjectConfig.h; sourceTree = "<group>"; };
-		BC31D8E12494E505008109C9 /* CKJSearch_TF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSearch_TF.m; sourceTree = "<group>"; };
-		BC31D8E32494E505008109C9 /* CKJToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolView.h; sourceTree = "<group>"; };
-		BC31D8E42494E505008109C9 /* CKJPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJPickerView.m; sourceTree = "<group>"; };
-		BC31D8E52494E505008109C9 /* CKJToolPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolPickerView.m; sourceTree = "<group>"; };
-		BC31D8E62494E505008109C9 /* CKJDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJDatePickerView.m; sourceTree = "<group>"; };
-		BC31D8E72494E505008109C9 /* CKJToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolView.m; sourceTree = "<group>"; };
-		BC31D8E82494E505008109C9 /* CKJPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJPickerView.h; sourceTree = "<group>"; };
-		BC31D8E92494E505008109C9 /* CKJDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJDatePickerView.h; sourceTree = "<group>"; };
-		BC31D8EA2494E505008109C9 /* CKJToolPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolPickerView.h; sourceTree = "<group>"; };
-		BC31D8EB2494E505008109C9 /* CKJCountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCountingLabel.m; sourceTree = "<group>"; };
-		BC31D8EC2494E505008109C9 /* CKJTextFiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTextFiled.h; sourceTree = "<group>"; };
-		BC31D8ED2494E505008109C9 /* CKJXBtnsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJXBtnsView.m; sourceTree = "<group>"; };
-		BC31D8EE2494E505008109C9 /* CKJTableEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableEmptyView.h; sourceTree = "<group>"; };
-		BC31D8EF2494E505008109C9 /* CKJTwoLabelAsCompleteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTwoLabelAsCompleteView.h; sourceTree = "<group>"; };
-		BC31D8F02494E505008109C9 /* CKJFiveLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJFiveLabelView.m; sourceTree = "<group>"; };
-		BC31D8F12494E505008109C9 /* CKJToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolbar.m; sourceTree = "<group>"; };
-		BC31D8F22494E505008109C9 /* CKJPayBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJPayBottomView.m; sourceTree = "<group>"; };
-		BC31D8F32494E505008109C9 /* CKJSearch_TF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSearch_TF.h; sourceTree = "<group>"; };
-		BC31D8F42494E505008109C9 /* CKJCountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCountingLabel.h; sourceTree = "<group>"; };
-		BC31D8F52494E505008109C9 /* CKJFiveLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJFiveLabelView.h; sourceTree = "<group>"; };
-		BC31D8F62494E505008109C9 /* CKJTwoLabelAsCompleteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTwoLabelAsCompleteView.m; sourceTree = "<group>"; };
-		BC31D8F72494E505008109C9 /* CKJTableEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableEmptyView.m; sourceTree = "<group>"; };
-		BC31D8F82494E505008109C9 /* CKJXBtnsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJXBtnsView.h; sourceTree = "<group>"; };
-		BC31D8F92494E505008109C9 /* CKJTextFiled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTextFiled.m; sourceTree = "<group>"; };
-		BC31D8FA2494E505008109C9 /* CKJPayBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJPayBottomView.h; sourceTree = "<group>"; };
-		BC31D8FB2494E505008109C9 /* CKJToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolbar.h; sourceTree = "<group>"; };
-		BC31D8FD2494E505008109C9 /* CKJSimpleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSimpleTableView.m; sourceTree = "<group>"; };
-		BC31D9002494E505008109C9 /* CKJButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJButton.m; sourceTree = "<group>"; };
-		BC31D9012494E505008109C9 /* CKJWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJWorker.m; sourceTree = "<group>"; };
-		BC31D9022494E505008109C9 /* CKJButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJButton.h; sourceTree = "<group>"; };
-		BC31D9032494E505008109C9 /* CKJWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJWorker.h; sourceTree = "<group>"; };
-		BC31D9052494E505008109C9 /* CKJSimpleTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableViewDelegate.h; sourceTree = "<group>"; };
-		BC31D9062494E505008109C9 /* CKJCombineCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCombineCellProtocol.h; sourceTree = "<group>"; };
-		BC31D9072494E505008109C9 /* CKJSimpleTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableViewDataSource.h; sourceTree = "<group>"; };
-		BC31D9092494E505008109C9 /* CKJBaseTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseTableVC.h; sourceTree = "<group>"; };
-		BC31D90A2494E505008109C9 /* CKJBaseTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseTableVC.m; sourceTree = "<group>"; };
-		BC31D90C2494E505008109C9 /* CKJInputData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJInputData.h; sourceTree = "<group>"; };
-		BC31D90D2494E505008109C9 /* CKJSimpleBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleBaseModel.h; sourceTree = "<group>"; };
-		BC31D90E2494E505008109C9 /* CKJCommonSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonSectionModel.m; sourceTree = "<group>"; };
-		BC31D90F2494E505008109C9 /* CKJCommonCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonCellModel.m; sourceTree = "<group>"; };
-		BC31D9102494E505008109C9 /* CKJSimpleTableViewStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableViewStyle.h; sourceTree = "<group>"; };
-		BC31D9112494E505008109C9 /* CKJCommonHeaderFooterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonHeaderFooterModel.h; sourceTree = "<group>"; };
-		BC31D9122494E505008109C9 /* CKJInputData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJInputData.m; sourceTree = "<group>"; };
-		BC31D9132494E505008109C9 /* CKJCommonSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonSectionModel.h; sourceTree = "<group>"; };
-		BC31D9142494E505008109C9 /* CKJSimpleBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSimpleBaseModel.m; sourceTree = "<group>"; };
-		BC31D9152494E505008109C9 /* CKJCommonHeaderFooterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonHeaderFooterModel.m; sourceTree = "<group>"; };
-		BC31D9162494E505008109C9 /* CKJSimpleTableViewStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSimpleTableViewStyle.m; sourceTree = "<group>"; };
-		BC31D9172494E505008109C9 /* CKJCommonCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonCellModel.h; sourceTree = "<group>"; };
-		BC31D91A2494E505008109C9 /* CKJDemoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJDemoCell.m; sourceTree = "<group>"; };
-		BC31D91B2494E505008109C9 /* CKJDemoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKJDemoCell.xib; sourceTree = "<group>"; };
-		BC31D91C2494E505008109C9 /* CKJDemoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJDemoCell.h; sourceTree = "<group>"; };
-		BC31D91F2494E505008109C9 /* CKJImageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJImageViewCell.h; sourceTree = "<group>"; };
-		BC31D9202494E505008109C9 /* CKJEmptyHeaderFooterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJEmptyHeaderFooterCell.m; sourceTree = "<group>"; };
-		BC31D9212494E505008109C9 /* CKJOneBtnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJOneBtnCell.m; sourceTree = "<group>"; };
-		BC31D9222494E505008109C9 /* CKJTwoBtnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTwoBtnCell.m; sourceTree = "<group>"; };
-		BC31D9232494E505008109C9 /* CKJEmptyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJEmptyCell.m; sourceTree = "<group>"; };
-		BC31D9242494E505008109C9 /* CKJLikeQRCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJLikeQRCell.m; sourceTree = "<group>"; };
-		BC31D9252494E505008109C9 /* CKJImageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJImageViewCell.m; sourceTree = "<group>"; };
-		BC31D9262494E505008109C9 /* CKJOneBtnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJOneBtnCell.h; sourceTree = "<group>"; };
-		BC31D9272494E505008109C9 /* CKJEmptyHeaderFooterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJEmptyHeaderFooterCell.h; sourceTree = "<group>"; };
-		BC31D9282494E505008109C9 /* CKJTwoBtnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTwoBtnCell.h; sourceTree = "<group>"; };
-		BC31D9292494E506008109C9 /* CKJLikeQRCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJLikeQRCell.h; sourceTree = "<group>"; };
-		BC31D92A2494E506008109C9 /* CKJEmptyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJEmptyCell.h; sourceTree = "<group>"; };
-		BC31D92C2494E506008109C9 /* CKJInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJInputCell.h; sourceTree = "<group>"; };
-		BC31D92D2494E506008109C9 /* CKJGeneralCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJGeneralCell.m; sourceTree = "<group>"; };
-		BC31D92E2494E506008109C9 /* CKJCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCell.h; sourceTree = "<group>"; };
-		BC31D92F2494E506008109C9 /* CKJGeneralCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJGeneralCell.h; sourceTree = "<group>"; };
-		BC31D9302494E506008109C9 /* CKJInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJInputCell.m; sourceTree = "<group>"; };
-		BC31D9312494E506008109C9 /* CKJCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCell.m; sourceTree = "<group>"; };
-		BC31D9332494E506008109C9 /* CKJLeftRightCenterEqualCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJLeftRightCenterEqualCell.h; sourceTree = "<group>"; };
-		BC31D9342494E506008109C9 /* CKJLeftRightTopEqualCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJLeftRightTopEqualCell.h; sourceTree = "<group>"; };
-		BC31D9352494E506008109C9 /* CKJLeftRightTopEqualCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJLeftRightTopEqualCell.m; sourceTree = "<group>"; };
-		BC31D9362494E506008109C9 /* CKJLeftRightCenterEqualCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJLeftRightCenterEqualCell.m; sourceTree = "<group>"; };
-		BC31D9382494E506008109C9 /* CKJTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewCell1.m; sourceTree = "<group>"; };
-		BC31D9392494E506008109C9 /* CKJTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewCell2.m; sourceTree = "<group>"; };
-		BC31D93A2494E506008109C9 /* CKJTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewCell1.h; sourceTree = "<group>"; };
-		BC31D93B2494E506008109C9 /* CKJTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewCell2.h; sourceTree = "<group>"; };
-		BC31D93D2494E506008109C9 /* CKJStackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJStackCell.m; sourceTree = "<group>"; };
-		BC31D93E2494E506008109C9 /* CKJBaseBtnsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseBtnsCell.h; sourceTree = "<group>"; };
-		BC31D93F2494E506008109C9 /* CKJBaseLeftRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseLeftRightCell.m; sourceTree = "<group>"; };
-		BC31D9402494E506008109C9 /* CKJChooseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJChooseHelper.h; sourceTree = "<group>"; };
-		BC31D9412494E506008109C9 /* CKJBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseTableViewCell.m; sourceTree = "<group>"; };
-		BC31D9422494E506008109C9 /* CKJBaseImageLeftRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseImageLeftRightCell.h; sourceTree = "<group>"; };
-		BC31D9432494E506008109C9 /* CKJInputCustomSuperCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJInputCustomSuperCell.m; sourceTree = "<group>"; };
-		BC31D9442494E506008109C9 /* CKJLibraryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJLibraryHelper.m; sourceTree = "<group>"; };
-		BC31D9452494E506008109C9 /* CKJCommonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonTableViewCell.h; sourceTree = "<group>"; };
-		BC31D9462494E506008109C9 /* CKJBaseLeftRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseLeftRightCell.h; sourceTree = "<group>"; };
-		BC31D9472494E506008109C9 /* CKJBaseBtnsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseBtnsCell.m; sourceTree = "<group>"; };
-		BC31D9482494E506008109C9 /* CKJStackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJStackCell.h; sourceTree = "<group>"; };
-		BC31D9492494E506008109C9 /* CKJBaseImageLeftRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseImageLeftRightCell.m; sourceTree = "<group>"; };
-		BC31D94A2494E506008109C9 /* CKJBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseTableViewCell.h; sourceTree = "<group>"; };
-		BC31D94B2494E506008109C9 /* CKJChooseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJChooseHelper.m; sourceTree = "<group>"; };
-		BC31D94C2494E506008109C9 /* CKJInputCustomSuperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJInputCustomSuperCell.h; sourceTree = "<group>"; };
-		BC31D94D2494E506008109C9 /* CKJCommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonTableViewCell.m; sourceTree = "<group>"; };
-		BC31D94E2494E506008109C9 /* CKJLibraryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJLibraryHelper.h; sourceTree = "<group>"; };
-		BC31D9502494E506008109C9 /* CKJBtnsCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBtnsCell2.m; sourceTree = "<group>"; };
-		BC31D9512494E506008109C9 /* CKJBtnsCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBtnsCell1.m; sourceTree = "<group>"; };
-		BC31D9522494E506008109C9 /* CKJBtnsCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBtnsCell2.h; sourceTree = "<group>"; };
-		BC31D9532494E506008109C9 /* CKJBtnsCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBtnsCell1.h; sourceTree = "<group>"; };
-		BC31D9552494E506008109C9 /* CKJPayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJPayCell.h; sourceTree = "<group>"; };
-		BC31D9562494E506008109C9 /* CKJImageLeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJImageLeftCell.m; sourceTree = "<group>"; };
-		BC31D9572494E506008109C9 /* CKJImageRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJImageRightCell.m; sourceTree = "<group>"; };
-		BC31D9582494E506008109C9 /* CKJImageRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJImageRightCell.h; sourceTree = "<group>"; };
-		BC31D9592494E506008109C9 /* CKJImageLeftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJImageLeftCell.h; sourceTree = "<group>"; };
-		BC31D95A2494E506008109C9 /* CKJPayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJPayCell.m; sourceTree = "<group>"; };
-		BC31D95C2494E506008109C9 /* CKJScrollViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJScrollViewCell.h; sourceTree = "<group>"; };
-		BC31D95D2494E506008109C9 /* CKJScrollViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJScrollViewCell.m; sourceTree = "<group>"; };
-		BC31D95F2494E506008109C9 /* CKJTableViewHeaderFooterEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewHeaderFooterEmptyView.m; sourceTree = "<group>"; };
-		BC31D9602494E506008109C9 /* CKJCommonTableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonTableViewHeaderFooterView.h; sourceTree = "<group>"; };
-		BC31D9612494E506008109C9 /* CKJTitleStyleHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTitleStyleHeaderFooterView.h; sourceTree = "<group>"; };
-		BC31D9622494E506008109C9 /* CKJCommonTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonTableViewHeaderFooterView.m; sourceTree = "<group>"; };
-		BC31D9632494E506008109C9 /* CKJTableViewHeaderFooterEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewHeaderFooterEmptyView.h; sourceTree = "<group>"; };
-		BC31D9642494E506008109C9 /* CKJTitleStyleHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTitleStyleHeaderFooterView.m; sourceTree = "<group>"; };
-		BC31D9652494E506008109C9 /* CKJSimpleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableView.h; sourceTree = "<group>"; };
-		BC31D9662494E506008109C9 /* KJSupportObjc.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = KJSupportObjc.bundle; sourceTree = "<group>"; };
-		BC31D9682494E506008109C9 /* CKJFixMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJFixMode.m; sourceTree = "<group>"; };
-		BC31D9692494E506008109C9 /* CKJFixMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJFixMode.h; sourceTree = "<group>"; };
-		BC31D96B2494E506008109C9 /* KJSupportHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJSupportHeader.m; sourceTree = "<group>"; };
-		BC31D96C2494E506008109C9 /* KJSupportHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSupportHeader.h; sourceTree = "<group>"; };
+		BC163A072545BD010057968E /* KJSupportObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSupportObjc.h; sourceTree = "<group>"; };
+		BC163A0A2545BD010057968E /* NSObject+WDYHFCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WDYHFCategory.m"; sourceTree = "<group>"; };
+		BC163A0B2545BD010057968E /* NSObject+CKJMasonry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+CKJMasonry.h"; sourceTree = "<group>"; };
+		BC163A0C2545BD010057968E /* UIView+CKJDesingable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+CKJDesingable.h"; sourceTree = "<group>"; };
+		BC163A0D2545BD010057968E /* NSObject+WDYHFCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WDYHFCategory.h"; sourceTree = "<group>"; };
+		BC163A0E2545BD010057968E /* NSObject+CKJMasonry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+CKJMasonry.m"; sourceTree = "<group>"; };
+		BC163A0F2545BD010057968E /* UIView+CKJDesingable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+CKJDesingable.m"; sourceTree = "<group>"; };
+		BC163A112545BD010057968E /* CKJSimpleTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSimpleTableView.m; sourceTree = "<group>"; };
+		BC163A142545BD010057968E /* CKJBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseModel.h; sourceTree = "<group>"; };
+		BC163A152545BD010057968E /* CKJButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJButton.m; sourceTree = "<group>"; };
+		BC163A162545BD010057968E /* CKJWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJWorker.m; sourceTree = "<group>"; };
+		BC163A172545BD010057968E /* CKJButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJButton.h; sourceTree = "<group>"; };
+		BC163A182545BD010057968E /* CKJBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseModel.m; sourceTree = "<group>"; };
+		BC163A192545BD010057968E /* CKJWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJWorker.h; sourceTree = "<group>"; };
+		BC163A1B2545BD010057968E /* CKJSimpleTableViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableViewDelegate.h; sourceTree = "<group>"; };
+		BC163A1C2545BD010057968E /* CKJCombineCellProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCombineCellProtocol.h; sourceTree = "<group>"; };
+		BC163A1D2545BD010057968E /* CKJSimpleTableViewDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableViewDataSource.h; sourceTree = "<group>"; };
+		BC163A1F2545BD010057968E /* CKJInputData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJInputData.h; sourceTree = "<group>"; };
+		BC163A202545BD010057968E /* CKJSimpleBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleBaseModel.h; sourceTree = "<group>"; };
+		BC163A212545BD010057968E /* CKJCommonSectionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonSectionModel.m; sourceTree = "<group>"; };
+		BC163A222545BD010057968E /* CKJCommonCellModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonCellModel.m; sourceTree = "<group>"; };
+		BC163A232545BD010057968E /* CKJSimpleTableViewStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableViewStyle.h; sourceTree = "<group>"; };
+		BC163A242545BD010057968E /* CKJCommonHeaderFooterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonHeaderFooterModel.h; sourceTree = "<group>"; };
+		BC163A252545BD010057968E /* CKJInputData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJInputData.m; sourceTree = "<group>"; };
+		BC163A262545BD010057968E /* CKJCommonSectionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonSectionModel.h; sourceTree = "<group>"; };
+		BC163A272545BD010057968E /* CKJSimpleBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSimpleBaseModel.m; sourceTree = "<group>"; };
+		BC163A282545BD010057968E /* CKJCommonHeaderFooterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonHeaderFooterModel.m; sourceTree = "<group>"; };
+		BC163A292545BD010057968E /* CKJSimpleTableViewStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSimpleTableViewStyle.m; sourceTree = "<group>"; };
+		BC163A2A2545BD010057968E /* CKJCommonCellModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonCellModel.h; sourceTree = "<group>"; };
+		BC163A2E2545BD010057968E /* CKJImageViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJImageViewCell.h; sourceTree = "<group>"; };
+		BC163A2F2545BD010057968E /* CKJEmptyHeaderFooterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJEmptyHeaderFooterCell.m; sourceTree = "<group>"; };
+		BC163A302545BD010057968E /* CKJOneBtnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJOneBtnCell.m; sourceTree = "<group>"; };
+		BC163A312545BD010057968E /* CKJStaticCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJStaticCell.m; sourceTree = "<group>"; };
+		BC163A322545BD010057968E /* CKJTwoBtnCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTwoBtnCell.m; sourceTree = "<group>"; };
+		BC163A332545BD010057968E /* CKJDynamicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJDynamicCell.m; sourceTree = "<group>"; };
+		BC163A342545BD010057968E /* CKJEmptyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJEmptyCell.m; sourceTree = "<group>"; };
+		BC163A352545BD010057968E /* CKJImageViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJImageViewCell.m; sourceTree = "<group>"; };
+		BC163A362545BD010057968E /* CKJStaticCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJStaticCell.h; sourceTree = "<group>"; };
+		BC163A372545BD010057968E /* CKJOneBtnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJOneBtnCell.h; sourceTree = "<group>"; };
+		BC163A382545BD010057968E /* CKJEmptyHeaderFooterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJEmptyHeaderFooterCell.h; sourceTree = "<group>"; };
+		BC163A392545BD010057968E /* CKJDynamicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJDynamicCell.h; sourceTree = "<group>"; };
+		BC163A3A2545BD010057968E /* CKJTwoBtnCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTwoBtnCell.h; sourceTree = "<group>"; };
+		BC163A3B2545BD010057968E /* CKJEmptyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJEmptyCell.h; sourceTree = "<group>"; };
+		BC163A3D2545BD010057968E /* CKJInputCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJInputCell.h; sourceTree = "<group>"; };
+		BC163A3E2545BD010057968E /* CKJGeneralCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJGeneralCell.m; sourceTree = "<group>"; };
+		BC163A3F2545BD010057968E /* CKJCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCell.h; sourceTree = "<group>"; };
+		BC163A402545BD010057968E /* CKJGeneralCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJGeneralCell.h; sourceTree = "<group>"; };
+		BC163A412545BD010057968E /* CKJInputCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJInputCell.m; sourceTree = "<group>"; };
+		BC163A422545BD010057968E /* CKJCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCell.m; sourceTree = "<group>"; };
+		BC163A442545BD010057968E /* CKJLeftRightCenterEqualCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJLeftRightCenterEqualCell.h; sourceTree = "<group>"; };
+		BC163A452545BD010057968E /* CKJLeftRightTopEqualCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJLeftRightTopEqualCell.h; sourceTree = "<group>"; };
+		BC163A462545BD010057968E /* CKJLeftRightTopEqualCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJLeftRightTopEqualCell.m; sourceTree = "<group>"; };
+		BC163A472545BD020057968E /* CKJLeftRightCenterEqualCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJLeftRightCenterEqualCell.m; sourceTree = "<group>"; };
+		BC163A492545BD020057968E /* CKJTableViewCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewCell1.m; sourceTree = "<group>"; };
+		BC163A4A2545BD020057968E /* CKJTableViewCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewCell2.m; sourceTree = "<group>"; };
+		BC163A4B2545BD020057968E /* CKJTableViewCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewCell1.h; sourceTree = "<group>"; };
+		BC163A4C2545BD020057968E /* CKJTableViewCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewCell2.h; sourceTree = "<group>"; };
+		BC163A4E2545BD020057968E /* CKJStackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJStackCell.m; sourceTree = "<group>"; };
+		BC163A4F2545BD020057968E /* CKJBaseBtnsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseBtnsCell.h; sourceTree = "<group>"; };
+		BC163A502545BD020057968E /* CKJBaseLeftRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseLeftRightCell.m; sourceTree = "<group>"; };
+		BC163A512545BD020057968E /* CKJChooseHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJChooseHelper.h; sourceTree = "<group>"; };
+		BC163A522545BD020057968E /* CKJBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseTableViewCell.m; sourceTree = "<group>"; };
+		BC163A532545BD020057968E /* CKJBaseImageLeftRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseImageLeftRightCell.h; sourceTree = "<group>"; };
+		BC163A542545BD020057968E /* CKJInputCustomSuperCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJInputCustomSuperCell.m; sourceTree = "<group>"; };
+		BC163A552545BD020057968E /* CKJLibraryHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJLibraryHelper.m; sourceTree = "<group>"; };
+		BC163A562545BD020057968E /* CKJCommonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonTableViewCell.h; sourceTree = "<group>"; };
+		BC163A572545BD020057968E /* CKJBaseLeftRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseLeftRightCell.h; sourceTree = "<group>"; };
+		BC163A582545BD020057968E /* CKJBaseBtnsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseBtnsCell.m; sourceTree = "<group>"; };
+		BC163A592545BD020057968E /* CKJStackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJStackCell.h; sourceTree = "<group>"; };
+		BC163A5A2545BD020057968E /* CKJBaseImageLeftRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseImageLeftRightCell.m; sourceTree = "<group>"; };
+		BC163A5B2545BD020057968E /* CKJBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseTableViewCell.h; sourceTree = "<group>"; };
+		BC163A5C2545BD020057968E /* CKJChooseHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJChooseHelper.m; sourceTree = "<group>"; };
+		BC163A5D2545BD020057968E /* CKJInputCustomSuperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJInputCustomSuperCell.h; sourceTree = "<group>"; };
+		BC163A5E2545BD020057968E /* CKJCommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonTableViewCell.m; sourceTree = "<group>"; };
+		BC163A5F2545BD020057968E /* CKJLibraryHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJLibraryHelper.h; sourceTree = "<group>"; };
+		BC163A612545BD020057968E /* CKJBtnsCell2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBtnsCell2.m; sourceTree = "<group>"; };
+		BC163A622545BD020057968E /* CKJBtnsCell1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBtnsCell1.m; sourceTree = "<group>"; };
+		BC163A632545BD020057968E /* CKJBtnsCell2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBtnsCell2.h; sourceTree = "<group>"; };
+		BC163A642545BD020057968E /* CKJBtnsCell1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBtnsCell1.h; sourceTree = "<group>"; };
+		BC163A662545BD020057968E /* CKJPayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJPayCell.h; sourceTree = "<group>"; };
+		BC163A672545BD020057968E /* CKJImageLeftCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJImageLeftCell.m; sourceTree = "<group>"; };
+		BC163A682545BD020057968E /* CKJImageRightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJImageRightCell.m; sourceTree = "<group>"; };
+		BC163A692545BD020057968E /* CKJImageRightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJImageRightCell.h; sourceTree = "<group>"; };
+		BC163A6A2545BD020057968E /* CKJImageLeftCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJImageLeftCell.h; sourceTree = "<group>"; };
+		BC163A6B2545BD020057968E /* CKJPayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJPayCell.m; sourceTree = "<group>"; };
+		BC163A6D2545BD020057968E /* CKJScrollViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJScrollViewCell.h; sourceTree = "<group>"; };
+		BC163A6E2545BD020057968E /* CKJScrollViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJScrollViewCell.m; sourceTree = "<group>"; };
+		BC163A702545BD020057968E /* CKJTableViewHeaderFooterEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableViewHeaderFooterEmptyView.m; sourceTree = "<group>"; };
+		BC163A712545BD020057968E /* CKJCommonTableViewHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCommonTableViewHeaderFooterView.h; sourceTree = "<group>"; };
+		BC163A722545BD020057968E /* CKJTitleStyleHeaderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTitleStyleHeaderFooterView.h; sourceTree = "<group>"; };
+		BC163A732545BD020057968E /* CKJCommonTableViewHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCommonTableViewHeaderFooterView.m; sourceTree = "<group>"; };
+		BC163A742545BD020057968E /* CKJTableViewHeaderFooterEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableViewHeaderFooterEmptyView.h; sourceTree = "<group>"; };
+		BC163A752545BD020057968E /* CKJTitleStyleHeaderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTitleStyleHeaderFooterView.m; sourceTree = "<group>"; };
+		BC163A762545BD020057968E /* CKJSimpleTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSimpleTableView.h; sourceTree = "<group>"; };
+		BC163A782545BD020057968E /* KJCommonManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJCommonManager.m; sourceTree = "<group>"; };
+		BC163A792545BD020057968E /* CKJFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJFileManager.m; sourceTree = "<group>"; };
+		BC163A7A2545BD020057968E /* CKJUIMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJUIMaker.h; sourceTree = "<group>"; };
+		BC163A7B2545BD020057968E /* CKJFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJFileManager.h; sourceTree = "<group>"; };
+		BC163A7C2545BD020057968E /* KJCommonManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJCommonManager.h; sourceTree = "<group>"; };
+		BC163A7D2545BD020057968E /* CKJUIMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJUIMaker.m; sourceTree = "<group>"; };
+		BC163A812545BD020057968E /* CKJToolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolView.h; sourceTree = "<group>"; };
+		BC163A822545BD020057968E /* CKJPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJPickerView.m; sourceTree = "<group>"; };
+		BC163A832545BD020057968E /* CKJToolPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolPickerView.m; sourceTree = "<group>"; };
+		BC163A842545BD020057968E /* CKJDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJDatePickerView.m; sourceTree = "<group>"; };
+		BC163A852545BD020057968E /* CKJToolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolView.m; sourceTree = "<group>"; };
+		BC163A862545BD020057968E /* CKJPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJPickerView.h; sourceTree = "<group>"; };
+		BC163A872545BD020057968E /* CKJDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJDatePickerView.h; sourceTree = "<group>"; };
+		BC163A882545BD020057968E /* CKJToolPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolPickerView.h; sourceTree = "<group>"; };
+		BC163A892545BD020057968E /* CKJCountingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJCountingLabel.m; sourceTree = "<group>"; };
+		BC163A8A2545BD020057968E /* CKJTextFiled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTextFiled.h; sourceTree = "<group>"; };
+		BC163A8B2545BD020057968E /* CKJXBtnsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJXBtnsView.m; sourceTree = "<group>"; };
+		BC163A8C2545BD020057968E /* CKJTableEmptyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTableEmptyView.h; sourceTree = "<group>"; };
+		BC163A8D2545BD020057968E /* CKJTwoLabelAsCompleteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTwoLabelAsCompleteView.h; sourceTree = "<group>"; };
+		BC163A8E2545BD020057968E /* CKJFiveLabelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJFiveLabelView.m; sourceTree = "<group>"; };
+		BC163A8F2545BD020057968E /* CKJToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJToolbar.m; sourceTree = "<group>"; };
+		BC163A902545BD020057968E /* CKJPayBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJPayBottomView.m; sourceTree = "<group>"; };
+		BC163A912545BD020057968E /* CKJUpdateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJUpdateView.m; sourceTree = "<group>"; };
+		BC163A922545BD020057968E /* CKJCountingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCountingLabel.h; sourceTree = "<group>"; };
+		BC163A932545BD020057968E /* CKJFiveLabelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJFiveLabelView.h; sourceTree = "<group>"; };
+		BC163A942545BD020057968E /* CKJTwoLabelAsCompleteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTwoLabelAsCompleteView.m; sourceTree = "<group>"; };
+		BC163A952545BD020057968E /* CKJTableEmptyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTableEmptyView.m; sourceTree = "<group>"; };
+		BC163A962545BD020057968E /* CKJXBtnsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJXBtnsView.h; sourceTree = "<group>"; };
+		BC163A972545BD020057968E /* CKJTextFiled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTextFiled.m; sourceTree = "<group>"; };
+		BC163A982545BD020057968E /* CKJUpdateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJUpdateView.h; sourceTree = "<group>"; };
+		BC163A992545BD020057968E /* CKJPayBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJPayBottomView.h; sourceTree = "<group>"; };
+		BC163A9A2545BD020057968E /* CKJToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJToolbar.h; sourceTree = "<group>"; };
+		BC163A9C2545BD020057968E /* CKJHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJHUD.h; sourceTree = "<group>"; };
+		BC163A9D2545BD020057968E /* CKJHUD+KJSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CKJHUD+KJSupport.m"; sourceTree = "<group>"; };
+		BC163A9E2545BD020057968E /* CKJHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJHUD.m; sourceTree = "<group>"; };
+		BC163A9F2545BD020057968E /* CKJHUD+KJSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKJHUD+KJSupport.h"; sourceTree = "<group>"; };
+		BC163AA02545BD020057968E /* CKJCopy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJCopy.h; sourceTree = "<group>"; };
+		BC163AA32545BD020057968E /* CKJDemoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJDemoCell.m; sourceTree = "<group>"; };
+		BC163AA42545BD020057968E /* CKJDemoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CKJDemoCell.xib; sourceTree = "<group>"; };
+		BC163AA52545BD020057968E /* CKJDemoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJDemoCell.h; sourceTree = "<group>"; };
+		BC163AA72545BD020057968E /* CKJKeyChain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJKeyChain.h; sourceTree = "<group>"; };
+		BC163AA82545BD020057968E /* CKJSecret.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJSecret.m; sourceTree = "<group>"; };
+		BC163AAB2545BD020057968E /* CKJAuthImitateZhiFuBao.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJAuthImitateZhiFuBao.m; sourceTree = "<group>"; };
+		BC163AAC2545BD020057968E /* CKJAuthID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJAuthID.h; sourceTree = "<group>"; };
+		BC163AAD2545BD020057968E /* CKJAuthImitateZhiFuBao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJAuthImitateZhiFuBao.h; sourceTree = "<group>"; };
+		BC163AAE2545BD020057968E /* CKJAuthID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJAuthID.m; sourceTree = "<group>"; };
+		BC163AB02545BD020057968E /* CKJGesturesVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJGesturesVC.m; sourceTree = "<group>"; };
+		BC163AB12545BD020057968E /* CKJGesturesUnlockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJGesturesUnlockView.h; sourceTree = "<group>"; };
+		BC163AB22545BD020057968E /* CKJGesturesVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJGesturesVC.h; sourceTree = "<group>"; };
+		BC163AB32545BD020057968E /* CKJGesturesUnlockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJGesturesUnlockView.m; sourceTree = "<group>"; };
+		BC163AB42545BD020057968E /* CKJSecret.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJSecret.h; sourceTree = "<group>"; };
+		BC163AB52545BD020057968E /* CKJKeyChain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJKeyChain.m; sourceTree = "<group>"; };
+		BC163AB62545BD020057968E /* KJSupportObjc.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = KJSupportObjc.bundle; sourceTree = "<group>"; };
+		BC163AB82545BD020057968E /* CKJFixMode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJFixMode.m; sourceTree = "<group>"; };
+		BC163AB92545BD020057968E /* CKJFixMode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJFixMode.h; sourceTree = "<group>"; };
+		BC163ABB2545BD020057968E /* KJSupportHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KJSupportHeader.m; sourceTree = "<group>"; };
+		BC163ABC2545BD020057968E /* KJSupportHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KJSupportHeader.h; sourceTree = "<group>"; };
+		BC163ABE2545BD020057968E /* CKJBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseViewController.m; sourceTree = "<group>"; };
+		BC163ABF2545BD020057968E /* CKJBaseTableVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseTableVC.h; sourceTree = "<group>"; };
+		BC163AC02545BD020057968E /* CKJBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJBaseViewController.h; sourceTree = "<group>"; };
+		BC163AC12545BD020057968E /* CKJBaseTableVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJBaseTableVC.m; sourceTree = "<group>"; };
+		BC163AC32545BD020057968E /* CKJTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJTool.m; sourceTree = "<group>"; };
+		BC163AC42545BD020057968E /* CKJLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKJLocationManager.m; sourceTree = "<group>"; };
+		BC163AC52545BD020057968E /* CKJTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJTool.h; sourceTree = "<group>"; };
+		BC163AC62545BD020057968E /* CKJLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKJLocationManager.h; sourceTree = "<group>"; };
 		BC31D96F2494E506008109C9 /* wifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wifi.png; sourceTree = "<group>"; };
 		BC31D9702494E506008109C9 /* zhuyuan出院结算@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan出院结算@2x.png"; sourceTree = "<group>"; };
 		BC31D9712494E506008109C9 /* zhuyuan充值记录@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "zhuyuan充值记录@2x.png"; sourceTree = "<group>"; };
@@ -489,7 +509,7 @@
 		955997E1209AECF900163047 /* KJSupportObjc */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D8C12494E505008109C9 /* KJSupportObjcLib */,
+				BC163A062545BD010057968E /* KJSupportObjc */,
 				BC31D96D2494E506008109C9 /* Test */,
 				46E913582356E24E003AFFC4 /* OriginProject */,
 				168AF97E229ED5AD00619C79 /* 3 */,
@@ -507,357 +527,426 @@
 			path = KJSupportObjc;
 			sourceTree = "<group>";
 		};
-		BC31D8C12494E505008109C9 /* KJSupportObjcLib */ = {
+		BC163A062545BD010057968E /* KJSupportObjc */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D8C22494E505008109C9 /* KJSupportObjc.h */,
-				BC31D8C32494E505008109C9 /* Category */,
-				BC31D8C82494E505008109C9 /* Other */,
-				BC31D8DD2494E505008109C9 /* outside */,
-				BC31D8E02494E505008109C9 /* View */,
-				BC31D8FC2494E505008109C9 /* SimpleTableView */,
-				BC31D9662494E506008109C9 /* KJSupportObjc.bundle */,
-				BC31D9672494E506008109C9 /* FixMode */,
-				BC31D96A2494E506008109C9 /* Header */,
+				BC163A072545BD010057968E /* KJSupportObjc.h */,
+				BC163A092545BD010057968E /* Category */,
+				BC163A102545BD010057968E /* CKJSimpleTableView */,
+				BC163A772545BD020057968E /* other */,
+				BC163A7E2545BD020057968E /* outside */,
+				BC163A7F2545BD020057968E /* View */,
+				BC163AA02545BD020057968E /* CKJCopy.h */,
+				BC163AA12545BD020057968E /* copy */,
+				BC163AA62545BD020057968E /* secret */,
+				BC163AB62545BD020057968E /* KJSupportObjc.bundle */,
+				BC163AB72545BD020057968E /* FixMode */,
+				BC163ABA2545BD020057968E /* Header */,
+				BC163ABD2545BD020057968E /* base */,
+				BC163AC22545BD020057968E /* tool */,
 			);
-			path = KJSupportObjcLib;
+			path = KJSupportObjc;
 			sourceTree = "<group>";
 		};
-		BC31D8C32494E505008109C9 /* Category */ = {
+		BC163A092545BD010057968E /* Category */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D8C42494E505008109C9 /* NSObject+WDYHFCategory.m */,
-				BC31D8C52494E505008109C9 /* UIView+CKJDesingable.h */,
-				BC31D8C62494E505008109C9 /* NSObject+WDYHFCategory.h */,
-				BC31D8C72494E505008109C9 /* UIView+CKJDesingable.m */,
+				BC163A0A2545BD010057968E /* NSObject+WDYHFCategory.m */,
+				BC163A0B2545BD010057968E /* NSObject+CKJMasonry.h */,
+				BC163A0C2545BD010057968E /* UIView+CKJDesingable.h */,
+				BC163A0D2545BD010057968E /* NSObject+WDYHFCategory.h */,
+				BC163A0E2545BD010057968E /* NSObject+CKJMasonry.m */,
+				BC163A0F2545BD010057968E /* UIView+CKJDesingable.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
 		};
-		BC31D8C82494E505008109C9 /* Other */ = {
+		BC163A102545BD010057968E /* CKJSimpleTableView */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D8C92494E505008109C9 /* FileManagerTool.m */,
-				BC31D8CA2494E505008109C9 /* CKJGlobalHeader.h */,
-				BC31D8CB2494E505008109C9 /* CKJHUD.h */,
-				BC31D8CC2494E505008109C9 /* CKJBaseViewController.m */,
-				BC31D8CD2494E505008109C9 /* CKJKeyChain.h */,
-				BC31D8CE2494E505008109C9 /* KJCommonManager.m */,
-				BC31D8CF2494E505008109C9 /* CKJBaseModel.h */,
-				BC31D8D02494E505008109C9 /* CKJRSA.m */,
-				BC31D8D12494E505008109C9 /* LightStorageManager.h */,
-				BC31D8D22494E505008109C9 /* CKJHUD+KJSupport.m */,
-				BC31D8D32494E505008109C9 /* CKJGlobalHeader.m */,
-				BC31D8D42494E505008109C9 /* FileManagerTool.h */,
-				BC31D8D52494E505008109C9 /* KJCommonManager.h */,
-				BC31D8D62494E505008109C9 /* CKJBaseViewController.h */,
-				BC31D8D72494E505008109C9 /* CKJKeyChain.m */,
-				BC31D8D82494E505008109C9 /* CKJHUD.m */,
-				BC31D8D92494E505008109C9 /* LightStorageManager.m */,
-				BC31D8DA2494E505008109C9 /* CKJRSA.h */,
-				BC31D8DB2494E505008109C9 /* CKJBaseModel.m */,
-				BC31D8DC2494E505008109C9 /* CKJHUD+KJSupport.h */,
+				BC163A112545BD010057968E /* CKJSimpleTableView.m */,
+				BC163A122545BD010057968E /* support */,
+				BC163A762545BD020057968E /* CKJSimpleTableView.h */,
 			);
-			path = Other;
+			path = CKJSimpleTableView;
 			sourceTree = "<group>";
 		};
-		BC31D8DD2494E505008109C9 /* outside */ = {
+		BC163A122545BD010057968E /* support */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D8DE2494E505008109C9 /* CKJProjectConfig.m */,
-				BC31D8DF2494E505008109C9 /* CKJProjectConfig.h */,
-			);
-			path = outside;
-			sourceTree = "<group>";
-		};
-		BC31D8E02494E505008109C9 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				BC31D8E12494E505008109C9 /* CKJSearch_TF.m */,
-				BC31D8E22494E505008109C9 /* Picker */,
-				BC31D8EB2494E505008109C9 /* CKJCountingLabel.m */,
-				BC31D8EC2494E505008109C9 /* CKJTextFiled.h */,
-				BC31D8ED2494E505008109C9 /* CKJXBtnsView.m */,
-				BC31D8EE2494E505008109C9 /* CKJTableEmptyView.h */,
-				BC31D8EF2494E505008109C9 /* CKJTwoLabelAsCompleteView.h */,
-				BC31D8F02494E505008109C9 /* CKJFiveLabelView.m */,
-				BC31D8F12494E505008109C9 /* CKJToolbar.m */,
-				BC31D8F22494E505008109C9 /* CKJPayBottomView.m */,
-				BC31D8F32494E505008109C9 /* CKJSearch_TF.h */,
-				BC31D8F42494E505008109C9 /* CKJCountingLabel.h */,
-				BC31D8F52494E505008109C9 /* CKJFiveLabelView.h */,
-				BC31D8F62494E505008109C9 /* CKJTwoLabelAsCompleteView.m */,
-				BC31D8F72494E505008109C9 /* CKJTableEmptyView.m */,
-				BC31D8F82494E505008109C9 /* CKJXBtnsView.h */,
-				BC31D8F92494E505008109C9 /* CKJTextFiled.m */,
-				BC31D8FA2494E505008109C9 /* CKJPayBottomView.h */,
-				BC31D8FB2494E505008109C9 /* CKJToolbar.h */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		BC31D8E22494E505008109C9 /* Picker */ = {
-			isa = PBXGroup;
-			children = (
-				BC31D8E32494E505008109C9 /* CKJToolView.h */,
-				BC31D8E42494E505008109C9 /* CKJPickerView.m */,
-				BC31D8E52494E505008109C9 /* CKJToolPickerView.m */,
-				BC31D8E62494E505008109C9 /* CKJDatePickerView.m */,
-				BC31D8E72494E505008109C9 /* CKJToolView.m */,
-				BC31D8E82494E505008109C9 /* CKJPickerView.h */,
-				BC31D8E92494E505008109C9 /* CKJDatePickerView.h */,
-				BC31D8EA2494E505008109C9 /* CKJToolPickerView.h */,
-			);
-			path = Picker;
-			sourceTree = "<group>";
-		};
-		BC31D8FC2494E505008109C9 /* SimpleTableView */ = {
-			isa = PBXGroup;
-			children = (
-				BC31D8FD2494E505008109C9 /* CKJSimpleTableView.m */,
-				BC31D8FE2494E505008109C9 /* support */,
-				BC31D9652494E506008109C9 /* CKJSimpleTableView.h */,
-			);
-			path = SimpleTableView;
-			sourceTree = "<group>";
-		};
-		BC31D8FE2494E505008109C9 /* support */ = {
-			isa = PBXGroup;
-			children = (
-				BC31D8FF2494E505008109C9 /* other */,
-				BC31D9042494E505008109C9 /* protocol */,
-				BC31D9082494E505008109C9 /* Controller */,
-				BC31D90B2494E505008109C9 /* Model */,
-				BC31D9182494E505008109C9 /* View */,
+				BC163A132545BD010057968E /* other */,
+				BC163A1A2545BD010057968E /* protocol */,
+				BC163A1E2545BD010057968E /* Model */,
+				BC163A2B2545BD010057968E /* View */,
 			);
 			path = support;
 			sourceTree = "<group>";
 		};
-		BC31D8FF2494E505008109C9 /* other */ = {
+		BC163A132545BD010057968E /* other */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D9002494E505008109C9 /* CKJButton.m */,
-				BC31D9012494E505008109C9 /* CKJWorker.m */,
-				BC31D9022494E505008109C9 /* CKJButton.h */,
-				BC31D9032494E505008109C9 /* CKJWorker.h */,
+				BC163A142545BD010057968E /* CKJBaseModel.h */,
+				BC163A152545BD010057968E /* CKJButton.m */,
+				BC163A162545BD010057968E /* CKJWorker.m */,
+				BC163A172545BD010057968E /* CKJButton.h */,
+				BC163A182545BD010057968E /* CKJBaseModel.m */,
+				BC163A192545BD010057968E /* CKJWorker.h */,
 			);
 			path = other;
 			sourceTree = "<group>";
 		};
-		BC31D9042494E505008109C9 /* protocol */ = {
+		BC163A1A2545BD010057968E /* protocol */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D9052494E505008109C9 /* CKJSimpleTableViewDelegate.h */,
-				BC31D9062494E505008109C9 /* CKJCombineCellProtocol.h */,
-				BC31D9072494E505008109C9 /* CKJSimpleTableViewDataSource.h */,
+				BC163A1B2545BD010057968E /* CKJSimpleTableViewDelegate.h */,
+				BC163A1C2545BD010057968E /* CKJCombineCellProtocol.h */,
+				BC163A1D2545BD010057968E /* CKJSimpleTableViewDataSource.h */,
 			);
 			path = protocol;
 			sourceTree = "<group>";
 		};
-		BC31D9082494E505008109C9 /* Controller */ = {
+		BC163A1E2545BD010057968E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D9092494E505008109C9 /* CKJBaseTableVC.h */,
-				BC31D90A2494E505008109C9 /* CKJBaseTableVC.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		BC31D90B2494E505008109C9 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				BC31D90C2494E505008109C9 /* CKJInputData.h */,
-				BC31D90D2494E505008109C9 /* CKJSimpleBaseModel.h */,
-				BC31D90E2494E505008109C9 /* CKJCommonSectionModel.m */,
-				BC31D90F2494E505008109C9 /* CKJCommonCellModel.m */,
-				BC31D9102494E505008109C9 /* CKJSimpleTableViewStyle.h */,
-				BC31D9112494E505008109C9 /* CKJCommonHeaderFooterModel.h */,
-				BC31D9122494E505008109C9 /* CKJInputData.m */,
-				BC31D9132494E505008109C9 /* CKJCommonSectionModel.h */,
-				BC31D9142494E505008109C9 /* CKJSimpleBaseModel.m */,
-				BC31D9152494E505008109C9 /* CKJCommonHeaderFooterModel.m */,
-				BC31D9162494E505008109C9 /* CKJSimpleTableViewStyle.m */,
-				BC31D9172494E505008109C9 /* CKJCommonCellModel.h */,
+				BC163A1F2545BD010057968E /* CKJInputData.h */,
+				BC163A202545BD010057968E /* CKJSimpleBaseModel.h */,
+				BC163A212545BD010057968E /* CKJCommonSectionModel.m */,
+				BC163A222545BD010057968E /* CKJCommonCellModel.m */,
+				BC163A232545BD010057968E /* CKJSimpleTableViewStyle.h */,
+				BC163A242545BD010057968E /* CKJCommonHeaderFooterModel.h */,
+				BC163A252545BD010057968E /* CKJInputData.m */,
+				BC163A262545BD010057968E /* CKJCommonSectionModel.h */,
+				BC163A272545BD010057968E /* CKJSimpleBaseModel.m */,
+				BC163A282545BD010057968E /* CKJCommonHeaderFooterModel.m */,
+				BC163A292545BD010057968E /* CKJSimpleTableViewStyle.m */,
+				BC163A2A2545BD010057968E /* CKJCommonCellModel.h */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		BC31D9182494E505008109C9 /* View */ = {
+		BC163A2B2545BD010057968E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D9192494E505008109C9 /* Demo */,
-				BC31D91D2494E505008109C9 /* Cell */,
-				BC31D95E2494E506008109C9 /* HeaderFooter */,
+				BC163A2C2545BD010057968E /* Cell */,
+				BC163A6F2545BD020057968E /* HeaderFooter */,
 			);
 			path = View;
 			sourceTree = "<group>";
 		};
-		BC31D9192494E505008109C9 /* Demo */ = {
+		BC163A2C2545BD010057968E /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D91A2494E505008109C9 /* CKJDemoCell.m */,
-				BC31D91B2494E505008109C9 /* CKJDemoCell.xib */,
-				BC31D91C2494E505008109C9 /* CKJDemoCell.h */,
-			);
-			path = Demo;
-			sourceTree = "<group>";
-		};
-		BC31D91D2494E505008109C9 /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				BC31D91E2494E505008109C9 /* OtherCell */,
-				BC31D92B2494E506008109C9 /* 0 */,
-				BC31D9322494E506008109C9 /* 6 */,
-				BC31D9372494E506008109C9 /* 1 */,
-				BC31D93C2494E506008109C9 /* Private */,
-				BC31D94F2494E506008109C9 /* 4 */,
-				BC31D9542494E506008109C9 /* 3 */,
-				BC31D95B2494E506008109C9 /* 5 */,
+				BC163A2D2545BD010057968E /* OtherCell */,
+				BC163A3C2545BD010057968E /* 0 */,
+				BC163A432545BD010057968E /* 6 */,
+				BC163A482545BD020057968E /* 1 */,
+				BC163A4D2545BD020057968E /* Private */,
+				BC163A602545BD020057968E /* 4 */,
+				BC163A652545BD020057968E /* 3 */,
+				BC163A6C2545BD020057968E /* 5 */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		BC31D91E2494E505008109C9 /* OtherCell */ = {
+		BC163A2D2545BD010057968E /* OtherCell */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D91F2494E505008109C9 /* CKJImageViewCell.h */,
-				BC31D9202494E505008109C9 /* CKJEmptyHeaderFooterCell.m */,
-				BC31D9212494E505008109C9 /* CKJOneBtnCell.m */,
-				BC31D9222494E505008109C9 /* CKJTwoBtnCell.m */,
-				BC31D9232494E505008109C9 /* CKJEmptyCell.m */,
-				BC31D9242494E505008109C9 /* CKJLikeQRCell.m */,
-				BC31D9252494E505008109C9 /* CKJImageViewCell.m */,
-				BC31D9262494E505008109C9 /* CKJOneBtnCell.h */,
-				BC31D9272494E505008109C9 /* CKJEmptyHeaderFooterCell.h */,
-				BC31D9282494E505008109C9 /* CKJTwoBtnCell.h */,
-				BC31D9292494E506008109C9 /* CKJLikeQRCell.h */,
-				BC31D92A2494E506008109C9 /* CKJEmptyCell.h */,
+				BC163A2E2545BD010057968E /* CKJImageViewCell.h */,
+				BC163A2F2545BD010057968E /* CKJEmptyHeaderFooterCell.m */,
+				BC163A302545BD010057968E /* CKJOneBtnCell.m */,
+				BC163A312545BD010057968E /* CKJStaticCell.m */,
+				BC163A322545BD010057968E /* CKJTwoBtnCell.m */,
+				BC163A332545BD010057968E /* CKJDynamicCell.m */,
+				BC163A342545BD010057968E /* CKJEmptyCell.m */,
+				BC163A352545BD010057968E /* CKJImageViewCell.m */,
+				BC163A362545BD010057968E /* CKJStaticCell.h */,
+				BC163A372545BD010057968E /* CKJOneBtnCell.h */,
+				BC163A382545BD010057968E /* CKJEmptyHeaderFooterCell.h */,
+				BC163A392545BD010057968E /* CKJDynamicCell.h */,
+				BC163A3A2545BD010057968E /* CKJTwoBtnCell.h */,
+				BC163A3B2545BD010057968E /* CKJEmptyCell.h */,
 			);
 			path = OtherCell;
 			sourceTree = "<group>";
 		};
-		BC31D92B2494E506008109C9 /* 0 */ = {
+		BC163A3C2545BD010057968E /* 0 */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D92C2494E506008109C9 /* CKJInputCell.h */,
-				BC31D92D2494E506008109C9 /* CKJGeneralCell.m */,
-				BC31D92E2494E506008109C9 /* CKJCell.h */,
-				BC31D92F2494E506008109C9 /* CKJGeneralCell.h */,
-				BC31D9302494E506008109C9 /* CKJInputCell.m */,
-				BC31D9312494E506008109C9 /* CKJCell.m */,
+				BC163A3D2545BD010057968E /* CKJInputCell.h */,
+				BC163A3E2545BD010057968E /* CKJGeneralCell.m */,
+				BC163A3F2545BD010057968E /* CKJCell.h */,
+				BC163A402545BD010057968E /* CKJGeneralCell.h */,
+				BC163A412545BD010057968E /* CKJInputCell.m */,
+				BC163A422545BD010057968E /* CKJCell.m */,
 			);
 			path = 0;
 			sourceTree = "<group>";
 		};
-		BC31D9322494E506008109C9 /* 6 */ = {
+		BC163A432545BD010057968E /* 6 */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D9332494E506008109C9 /* CKJLeftRightCenterEqualCell.h */,
-				BC31D9342494E506008109C9 /* CKJLeftRightTopEqualCell.h */,
-				BC31D9352494E506008109C9 /* CKJLeftRightTopEqualCell.m */,
-				BC31D9362494E506008109C9 /* CKJLeftRightCenterEqualCell.m */,
+				BC163A442545BD010057968E /* CKJLeftRightCenterEqualCell.h */,
+				BC163A452545BD010057968E /* CKJLeftRightTopEqualCell.h */,
+				BC163A462545BD010057968E /* CKJLeftRightTopEqualCell.m */,
+				BC163A472545BD020057968E /* CKJLeftRightCenterEqualCell.m */,
 			);
 			path = 6;
 			sourceTree = "<group>";
 		};
-		BC31D9372494E506008109C9 /* 1 */ = {
+		BC163A482545BD020057968E /* 1 */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D9382494E506008109C9 /* CKJTableViewCell1.m */,
-				BC31D9392494E506008109C9 /* CKJTableViewCell2.m */,
-				BC31D93A2494E506008109C9 /* CKJTableViewCell1.h */,
-				BC31D93B2494E506008109C9 /* CKJTableViewCell2.h */,
+				BC163A492545BD020057968E /* CKJTableViewCell1.m */,
+				BC163A4A2545BD020057968E /* CKJTableViewCell2.m */,
+				BC163A4B2545BD020057968E /* CKJTableViewCell1.h */,
+				BC163A4C2545BD020057968E /* CKJTableViewCell2.h */,
 			);
 			path = 1;
 			sourceTree = "<group>";
 		};
-		BC31D93C2494E506008109C9 /* Private */ = {
+		BC163A4D2545BD020057968E /* Private */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D93D2494E506008109C9 /* CKJStackCell.m */,
-				BC31D93E2494E506008109C9 /* CKJBaseBtnsCell.h */,
-				BC31D93F2494E506008109C9 /* CKJBaseLeftRightCell.m */,
-				BC31D9402494E506008109C9 /* CKJChooseHelper.h */,
-				BC31D9412494E506008109C9 /* CKJBaseTableViewCell.m */,
-				BC31D9422494E506008109C9 /* CKJBaseImageLeftRightCell.h */,
-				BC31D9432494E506008109C9 /* CKJInputCustomSuperCell.m */,
-				BC31D9442494E506008109C9 /* CKJLibraryHelper.m */,
-				BC31D9452494E506008109C9 /* CKJCommonTableViewCell.h */,
-				BC31D9462494E506008109C9 /* CKJBaseLeftRightCell.h */,
-				BC31D9472494E506008109C9 /* CKJBaseBtnsCell.m */,
-				BC31D9482494E506008109C9 /* CKJStackCell.h */,
-				BC31D9492494E506008109C9 /* CKJBaseImageLeftRightCell.m */,
-				BC31D94A2494E506008109C9 /* CKJBaseTableViewCell.h */,
-				BC31D94B2494E506008109C9 /* CKJChooseHelper.m */,
-				BC31D94C2494E506008109C9 /* CKJInputCustomSuperCell.h */,
-				BC31D94D2494E506008109C9 /* CKJCommonTableViewCell.m */,
-				BC31D94E2494E506008109C9 /* CKJLibraryHelper.h */,
+				BC163A4E2545BD020057968E /* CKJStackCell.m */,
+				BC163A4F2545BD020057968E /* CKJBaseBtnsCell.h */,
+				BC163A502545BD020057968E /* CKJBaseLeftRightCell.m */,
+				BC163A512545BD020057968E /* CKJChooseHelper.h */,
+				BC163A522545BD020057968E /* CKJBaseTableViewCell.m */,
+				BC163A532545BD020057968E /* CKJBaseImageLeftRightCell.h */,
+				BC163A542545BD020057968E /* CKJInputCustomSuperCell.m */,
+				BC163A552545BD020057968E /* CKJLibraryHelper.m */,
+				BC163A562545BD020057968E /* CKJCommonTableViewCell.h */,
+				BC163A572545BD020057968E /* CKJBaseLeftRightCell.h */,
+				BC163A582545BD020057968E /* CKJBaseBtnsCell.m */,
+				BC163A592545BD020057968E /* CKJStackCell.h */,
+				BC163A5A2545BD020057968E /* CKJBaseImageLeftRightCell.m */,
+				BC163A5B2545BD020057968E /* CKJBaseTableViewCell.h */,
+				BC163A5C2545BD020057968E /* CKJChooseHelper.m */,
+				BC163A5D2545BD020057968E /* CKJInputCustomSuperCell.h */,
+				BC163A5E2545BD020057968E /* CKJCommonTableViewCell.m */,
+				BC163A5F2545BD020057968E /* CKJLibraryHelper.h */,
 			);
 			path = Private;
 			sourceTree = "<group>";
 		};
-		BC31D94F2494E506008109C9 /* 4 */ = {
+		BC163A602545BD020057968E /* 4 */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D9502494E506008109C9 /* CKJBtnsCell2.m */,
-				BC31D9512494E506008109C9 /* CKJBtnsCell1.m */,
-				BC31D9522494E506008109C9 /* CKJBtnsCell2.h */,
-				BC31D9532494E506008109C9 /* CKJBtnsCell1.h */,
+				BC163A612545BD020057968E /* CKJBtnsCell2.m */,
+				BC163A622545BD020057968E /* CKJBtnsCell1.m */,
+				BC163A632545BD020057968E /* CKJBtnsCell2.h */,
+				BC163A642545BD020057968E /* CKJBtnsCell1.h */,
 			);
 			path = 4;
 			sourceTree = "<group>";
 		};
-		BC31D9542494E506008109C9 /* 3 */ = {
+		BC163A652545BD020057968E /* 3 */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D9552494E506008109C9 /* CKJPayCell.h */,
-				BC31D9562494E506008109C9 /* CKJImageLeftCell.m */,
-				BC31D9572494E506008109C9 /* CKJImageRightCell.m */,
-				BC31D9582494E506008109C9 /* CKJImageRightCell.h */,
-				BC31D9592494E506008109C9 /* CKJImageLeftCell.h */,
-				BC31D95A2494E506008109C9 /* CKJPayCell.m */,
+				BC163A662545BD020057968E /* CKJPayCell.h */,
+				BC163A672545BD020057968E /* CKJImageLeftCell.m */,
+				BC163A682545BD020057968E /* CKJImageRightCell.m */,
+				BC163A692545BD020057968E /* CKJImageRightCell.h */,
+				BC163A6A2545BD020057968E /* CKJImageLeftCell.h */,
+				BC163A6B2545BD020057968E /* CKJPayCell.m */,
 			);
 			path = 3;
 			sourceTree = "<group>";
 		};
-		BC31D95B2494E506008109C9 /* 5 */ = {
+		BC163A6C2545BD020057968E /* 5 */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D95C2494E506008109C9 /* CKJScrollViewCell.h */,
-				BC31D95D2494E506008109C9 /* CKJScrollViewCell.m */,
+				BC163A6D2545BD020057968E /* CKJScrollViewCell.h */,
+				BC163A6E2545BD020057968E /* CKJScrollViewCell.m */,
 			);
 			path = 5;
 			sourceTree = "<group>";
 		};
-		BC31D95E2494E506008109C9 /* HeaderFooter */ = {
+		BC163A6F2545BD020057968E /* HeaderFooter */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D95F2494E506008109C9 /* CKJTableViewHeaderFooterEmptyView.m */,
-				BC31D9602494E506008109C9 /* CKJCommonTableViewHeaderFooterView.h */,
-				BC31D9612494E506008109C9 /* CKJTitleStyleHeaderFooterView.h */,
-				BC31D9622494E506008109C9 /* CKJCommonTableViewHeaderFooterView.m */,
-				BC31D9632494E506008109C9 /* CKJTableViewHeaderFooterEmptyView.h */,
-				BC31D9642494E506008109C9 /* CKJTitleStyleHeaderFooterView.m */,
+				BC163A702545BD020057968E /* CKJTableViewHeaderFooterEmptyView.m */,
+				BC163A712545BD020057968E /* CKJCommonTableViewHeaderFooterView.h */,
+				BC163A722545BD020057968E /* CKJTitleStyleHeaderFooterView.h */,
+				BC163A732545BD020057968E /* CKJCommonTableViewHeaderFooterView.m */,
+				BC163A742545BD020057968E /* CKJTableViewHeaderFooterEmptyView.h */,
+				BC163A752545BD020057968E /* CKJTitleStyleHeaderFooterView.m */,
 			);
 			path = HeaderFooter;
 			sourceTree = "<group>";
 		};
-		BC31D9672494E506008109C9 /* FixMode */ = {
+		BC163A772545BD020057968E /* other */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D9682494E506008109C9 /* CKJFixMode.m */,
-				BC31D9692494E506008109C9 /* CKJFixMode.h */,
+				BC163A782545BD020057968E /* KJCommonManager.m */,
+				BC163A792545BD020057968E /* CKJFileManager.m */,
+				BC163A7A2545BD020057968E /* CKJUIMaker.h */,
+				BC163A7B2545BD020057968E /* CKJFileManager.h */,
+				BC163A7C2545BD020057968E /* KJCommonManager.h */,
+				BC163A7D2545BD020057968E /* CKJUIMaker.m */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		BC163A7E2545BD020057968E /* outside */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = outside;
+			sourceTree = "<group>";
+		};
+		BC163A7F2545BD020057968E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BC163A802545BD020057968E /* Picker */,
+				BC163A892545BD020057968E /* CKJCountingLabel.m */,
+				BC163A8A2545BD020057968E /* CKJTextFiled.h */,
+				BC163A8B2545BD020057968E /* CKJXBtnsView.m */,
+				BC163A8C2545BD020057968E /* CKJTableEmptyView.h */,
+				BC163A8D2545BD020057968E /* CKJTwoLabelAsCompleteView.h */,
+				BC163A8E2545BD020057968E /* CKJFiveLabelView.m */,
+				BC163A8F2545BD020057968E /* CKJToolbar.m */,
+				BC163A902545BD020057968E /* CKJPayBottomView.m */,
+				BC163A912545BD020057968E /* CKJUpdateView.m */,
+				BC163A922545BD020057968E /* CKJCountingLabel.h */,
+				BC163A932545BD020057968E /* CKJFiveLabelView.h */,
+				BC163A942545BD020057968E /* CKJTwoLabelAsCompleteView.m */,
+				BC163A952545BD020057968E /* CKJTableEmptyView.m */,
+				BC163A962545BD020057968E /* CKJXBtnsView.h */,
+				BC163A972545BD020057968E /* CKJTextFiled.m */,
+				BC163A982545BD020057968E /* CKJUpdateView.h */,
+				BC163A992545BD020057968E /* CKJPayBottomView.h */,
+				BC163A9A2545BD020057968E /* CKJToolbar.h */,
+				BC163A9B2545BD020057968E /* HUD */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BC163A802545BD020057968E /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				BC163A812545BD020057968E /* CKJToolView.h */,
+				BC163A822545BD020057968E /* CKJPickerView.m */,
+				BC163A832545BD020057968E /* CKJToolPickerView.m */,
+				BC163A842545BD020057968E /* CKJDatePickerView.m */,
+				BC163A852545BD020057968E /* CKJToolView.m */,
+				BC163A862545BD020057968E /* CKJPickerView.h */,
+				BC163A872545BD020057968E /* CKJDatePickerView.h */,
+				BC163A882545BD020057968E /* CKJToolPickerView.h */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
+		BC163A9B2545BD020057968E /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				BC163A9C2545BD020057968E /* CKJHUD.h */,
+				BC163A9D2545BD020057968E /* CKJHUD+KJSupport.m */,
+				BC163A9E2545BD020057968E /* CKJHUD.m */,
+				BC163A9F2545BD020057968E /* CKJHUD+KJSupport.h */,
+			);
+			path = HUD;
+			sourceTree = "<group>";
+		};
+		BC163AA12545BD020057968E /* copy */ = {
+			isa = PBXGroup;
+			children = (
+				BC163AA22545BD020057968E /* cell */,
+			);
+			path = copy;
+			sourceTree = "<group>";
+		};
+		BC163AA22545BD020057968E /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				BC163AA32545BD020057968E /* CKJDemoCell.m */,
+				BC163AA42545BD020057968E /* CKJDemoCell.xib */,
+				BC163AA52545BD020057968E /* CKJDemoCell.h */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		BC163AA62545BD020057968E /* secret */ = {
+			isa = PBXGroup;
+			children = (
+				BC163AA72545BD020057968E /* CKJKeyChain.h */,
+				BC163AA82545BD020057968E /* CKJSecret.m */,
+				BC163AA92545BD020057968E /* Auth */,
+				BC163AB42545BD020057968E /* CKJSecret.h */,
+				BC163AB52545BD020057968E /* CKJKeyChain.m */,
+			);
+			path = secret;
+			sourceTree = "<group>";
+		};
+		BC163AA92545BD020057968E /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				BC163AAA2545BD020057968E /* BiometricAuth */,
+				BC163AAF2545BD020057968E /* CKJGesturesUnlockView */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		BC163AAA2545BD020057968E /* BiometricAuth */ = {
+			isa = PBXGroup;
+			children = (
+				BC163AAB2545BD020057968E /* CKJAuthImitateZhiFuBao.m */,
+				BC163AAC2545BD020057968E /* CKJAuthID.h */,
+				BC163AAD2545BD020057968E /* CKJAuthImitateZhiFuBao.h */,
+				BC163AAE2545BD020057968E /* CKJAuthID.m */,
+			);
+			path = BiometricAuth;
+			sourceTree = "<group>";
+		};
+		BC163AAF2545BD020057968E /* CKJGesturesUnlockView */ = {
+			isa = PBXGroup;
+			children = (
+				BC163AB02545BD020057968E /* CKJGesturesVC.m */,
+				BC163AB12545BD020057968E /* CKJGesturesUnlockView.h */,
+				BC163AB22545BD020057968E /* CKJGesturesVC.h */,
+				BC163AB32545BD020057968E /* CKJGesturesUnlockView.m */,
+			);
+			path = CKJGesturesUnlockView;
+			sourceTree = "<group>";
+		};
+		BC163AB72545BD020057968E /* FixMode */ = {
+			isa = PBXGroup;
+			children = (
+				BC163AB82545BD020057968E /* CKJFixMode.m */,
+				BC163AB92545BD020057968E /* CKJFixMode.h */,
 			);
 			path = FixMode;
 			sourceTree = "<group>";
 		};
-		BC31D96A2494E506008109C9 /* Header */ = {
+		BC163ABA2545BD020057968E /* Header */ = {
 			isa = PBXGroup;
 			children = (
-				BC31D96B2494E506008109C9 /* KJSupportHeader.m */,
-				BC31D96C2494E506008109C9 /* KJSupportHeader.h */,
+				BC163ABB2545BD020057968E /* KJSupportHeader.m */,
+				BC163ABC2545BD020057968E /* KJSupportHeader.h */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		BC163ABD2545BD020057968E /* base */ = {
+			isa = PBXGroup;
+			children = (
+				BC163ABE2545BD020057968E /* CKJBaseViewController.m */,
+				BC163ABF2545BD020057968E /* CKJBaseTableVC.h */,
+				BC163AC02545BD020057968E /* CKJBaseViewController.h */,
+				BC163AC12545BD020057968E /* CKJBaseTableVC.m */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		BC163AC22545BD020057968E /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				BC163AC32545BD020057968E /* CKJTool.m */,
+				BC163AC42545BD020057968E /* CKJLocationManager.m */,
+				BC163AC52545BD020057968E /* CKJTool.h */,
+				BC163AC62545BD020057968E /* CKJLocationManager.h */,
+			);
+			path = tool;
 			sourceTree = "<group>";
 		};
 		BC31D96D2494E506008109C9 /* Test */ = {
@@ -1077,11 +1166,10 @@
 				BC31DA132494E506008109C9 /* wdyhfsdkright arrow.png in Resources */,
 				1657522420DCD4EB00CB0C8F /* 7.png in Resources */,
 				BC31DA282494E506008109C9 /* NewList.geojson in Resources */,
-				BC31D9E92494E506008109C9 /* CKJDemoCell.xib in Resources */,
+				BC163B0F2545BD020057968E /* KJSupportObjc.bundle in Resources */,
 				1657522220DCD4EB00CB0C8F /* 4.png in Resources */,
 				BC31DA0E2494E506008109C9 /* zhuyuan充值记录@2x.png in Resources */,
 				BC31DA1A2494E506008109C9 /* zhuyuan历史住院记录@2x.png in Resources */,
-				BC31DA092494E506008109C9 /* KJSupportObjc.bundle in Resources */,
 				BC31DA182494E506008109C9 /* demo余额.png in Resources */,
 				BC31DA142494E506008109C9 /* zhuyuan出院结算@3x.png in Resources */,
 				BC31DA112494E506008109C9 /* zhuyuan充值记录@3x.png in Resources */,
@@ -1105,6 +1193,7 @@
 				BC31DA212494E506008109C9 /* OldList.geojson in Resources */,
 				1657522520DCD4EB00CB0C8F /* 6.png in Resources */,
 				BC31DA262494E506008109C9 /* billDetail.geojson in Resources */,
+				BC163B082545BD020057968E /* CKJDemoCell.xib in Resources */,
 				BC31DA1C2494E506008109C9 /* wdyhfsdkhospital.png in Resources */,
 				1657522820DCD4EB00CB0C8F /* 1.png in Resources */,
 				955997EA209AECF900163047 /* Main.storyboard in Resources */,
@@ -1162,105 +1251,112 @@
 			buildActionMask = 2147483647;
 			files = (
 				164822AB22D613460047C9CF /* MBProgressHUD.m in Sources */,
-				BC31D9E62494E506008109C9 /* CKJCommonHeaderFooterModel.m in Sources */,
-				BC31D9D72494E506008109C9 /* CKJXBtnsView.m in Sources */,
-				BC31D9C82494E506008109C9 /* KJCommonManager.m in Sources */,
-				BC31D9EA2494E506008109C9 /* CKJEmptyHeaderFooterCell.m in Sources */,
-				BC31D9DA2494E506008109C9 /* CKJPayBottomView.m in Sources */,
-				BC31D9FB2494E506008109C9 /* CKJLibraryHelper.m in Sources */,
-				BC31D9DC2494E506008109C9 /* CKJTableEmptyView.m in Sources */,
 				BC31DA452494E506008109C9 /* SelectDateCell.m in Sources */,
-				BC31D9C52494E506008109C9 /* UIView+CKJDesingable.m in Sources */,
-				BC31D9E72494E506008109C9 /* CKJSimpleTableViewStyle.m in Sources */,
-				BC31D9E52494E506008109C9 /* CKJSimpleBaseModel.m in Sources */,
+				BC163AE62545BD020057968E /* CKJLibraryHelper.m in Sources */,
+				BC163AEE2545BD020057968E /* CKJImageRightCell.m in Sources */,
 				BC31DA412494E506008109C9 /* RJDemoScrollItemView.m in Sources */,
-				BC31DA0A2494E506008109C9 /* CKJFixMode.m in Sources */,
-				BC31D9F52494E506008109C9 /* CKJTableViewCell1.m in Sources */,
-				BC31D9E82494E506008109C9 /* CKJDemoCell.m in Sources */,
-				BC31D9D42494E506008109C9 /* CKJDatePickerView.m in Sources */,
-				BC31DA072494E506008109C9 /* CKJCommonTableViewHeaderFooterView.m in Sources */,
+				BC163AC92545BD020057968E /* UIView+CKJDesingable.m in Sources */,
+				BC163AE52545BD020057968E /* CKJInputCustomSuperCell.m in Sources */,
+				BC163AC72545BD020057968E /* NSObject+WDYHFCategory.m in Sources */,
+				BC163AF02545BD020057968E /* CKJScrollViewCell.m in Sources */,
+				BC163B0B2545BD020057968E /* CKJAuthID.m in Sources */,
+				BC163ADE2545BD020057968E /* CKJLeftRightTopEqualCell.m in Sources */,
+				BC163ADC2545BD020057968E /* CKJInputCell.m in Sources */,
 				BC31DA392494E506008109C9 /* CKJGeneralCellVC.m in Sources */,
-				BC31DA022494E506008109C9 /* CKJImageLeftCell.m in Sources */,
-				BC31D9EB2494E506008109C9 /* CKJOneBtnCell.m in Sources */,
-				BC31D9EC2494E506008109C9 /* CKJTwoBtnCell.m in Sources */,
 				BC31DA342494E506008109C9 /* KJSupportObjcListVC.m in Sources */,
-				BC31D9E32494E506008109C9 /* CKJCommonCellModel.m in Sources */,
-				BC31D9CA2494E506008109C9 /* CKJHUD+KJSupport.m in Sources */,
-				BC31D9F62494E506008109C9 /* CKJTableViewCell2.m in Sources */,
-				BC31D9CB2494E506008109C9 /* CKJGlobalHeader.m in Sources */,
+				BC163B062545BD020057968E /* CKJCopy.h in Sources */,
 				BC31DA3C2494E506008109C9 /* CKJCellVC.m in Sources */,
+				BC163AD42545BD020057968E /* CKJEmptyHeaderFooterCell.m in Sources */,
 				955997F2209AECFA00163047 /* main.m in Sources */,
-				BC31D9D32494E506008109C9 /* CKJToolPickerView.m in Sources */,
+				BC163ADD2545BD020057968E /* CKJCell.m in Sources */,
+				BC163AE32545BD020057968E /* CKJBaseLeftRightCell.m in Sources */,
+				BC163AED2545BD020057968E /* CKJImageLeftCell.m in Sources */,
 				BC31DA372494E506008109C9 /* DemoImageLeftRightCellVC.m in Sources */,
-				BC31DA0B2494E506008109C9 /* KJSupportHeader.m in Sources */,
-				BC31D9F12494E506008109C9 /* CKJInputCell.m in Sources */,
-				BC31D9F42494E506008109C9 /* CKJLeftRightCenterEqualCell.m in Sources */,
-				BC31D9EF2494E506008109C9 /* CKJImageViewCell.m in Sources */,
 				BC31DA322494E506008109C9 /* TableViewCellDemoVC.m in Sources */,
+				BC163B032545BD020057968E /* CKJTextFiled.m in Sources */,
+				BC163AF52545BD020057968E /* CKJFileManager.m in Sources */,
+				BC163AD22545BD020057968E /* CKJCommonHeaderFooterModel.m in Sources */,
 				BC31DA352494E506008109C9 /* DemoInsetVC.m in Sources */,
-				BC31D9D92494E506008109C9 /* CKJToolbar.m in Sources */,
-				BC31D9EE2494E506008109C9 /* CKJLikeQRCell.m in Sources */,
-				BC31DA042494E506008109C9 /* CKJPayCell.m in Sources */,
 				955997E4209AECF900163047 /* AppDelegate.m in Sources */,
+				BC163AF62545BD020057968E /* CKJUIMaker.m in Sources */,
+				BC163ACE2545BD020057968E /* CKJCommonSectionModel.m in Sources */,
+				BC163AF32545BD020057968E /* CKJTitleStyleHeaderFooterView.m in Sources */,
+				BC163AD52545BD020057968E /* CKJOneBtnCell.m in Sources */,
+				BC163AF82545BD020057968E /* CKJToolPickerView.m in Sources */,
+				BC163ACD2545BD020057968E /* CKJBaseModel.m in Sources */,
 				46E9135B2356E24E003AFFC4 /* RJProjectResorce.m in Sources */,
-				BC31D9FD2494E506008109C9 /* CKJBaseImageLeftRightCell.m in Sources */,
-				BC31D9F32494E506008109C9 /* CKJLeftRightTopEqualCell.m in Sources */,
-				BC31DA062494E506008109C9 /* CKJTableViewHeaderFooterEmptyView.m in Sources */,
-				BC31D9CF2494E506008109C9 /* CKJBaseModel.m in Sources */,
+				BC163B012545BD020057968E /* CKJTwoLabelAsCompleteView.m in Sources */,
+				BC163AE12545BD020057968E /* CKJTableViewCell2.m in Sources */,
+				BC163B092545BD020057968E /* CKJSecret.m in Sources */,
+				BC163B042545BD020057968E /* CKJHUD+KJSupport.m in Sources */,
+				BC163AE92545BD020057968E /* CKJChooseHelper.m in Sources */,
+				BC163AD72545BD020057968E /* CKJTwoBtnCell.m in Sources */,
 				BC31DA3B2494E506008109C9 /* CKJImageLeftRightCellVC.m in Sources */,
-				BC31DA002494E506008109C9 /* CKJBtnsCell2.m in Sources */,
-				BC31D9F22494E506008109C9 /* CKJCell.m in Sources */,
-				BC31D9D52494E506008109C9 /* CKJToolView.m in Sources */,
-				BC31D9F02494E506008109C9 /* CKJGeneralCell.m in Sources */,
-				BC31D9ED2494E506008109C9 /* CKJEmptyCell.m in Sources */,
-				BC31D9D62494E506008109C9 /* CKJCountingLabel.m in Sources */,
+				BC163AEC2545BD020057968E /* CKJBtnsCell1.m in Sources */,
+				BC163AF92545BD020057968E /* CKJDatePickerView.m in Sources */,
 				BC31DA312494E506008109C9 /* RJSquareDemo1VC.m in Sources */,
-				BC31DA082494E506008109C9 /* CKJTitleStyleHeaderFooterView.m in Sources */,
-				BC31D9CE2494E506008109C9 /* LightStorageManager.m in Sources */,
-				BC31D9D02494E506008109C9 /* CKJProjectConfig.m in Sources */,
-				BC31DA052494E506008109C9 /* CKJScrollViewCell.m in Sources */,
+				BC163AFC2545BD020057968E /* CKJXBtnsView.m in Sources */,
+				BC163AE42545BD020057968E /* CKJBaseTableViewCell.m in Sources */,
+				BC163ADF2545BD020057968E /* CKJLeftRightCenterEqualCell.m in Sources */,
+				BC163AE22545BD020057968E /* CKJStackCell.m in Sources */,
 				BC31DA2C2494E506008109C9 /* DemoCoreCellVC.m in Sources */,
-				BC31D9CC2494E506008109C9 /* CKJKeyChain.m in Sources */,
-				BC31D9E02494E506008109C9 /* CKJWorker.m in Sources */,
-				BC31D9DF2494E506008109C9 /* CKJButton.m in Sources */,
+				BC163AD02545BD020057968E /* CKJInputData.m in Sources */,
+				BC163AD82545BD020057968E /* CKJDynamicCell.m in Sources */,
+				BC163ACF2545BD020057968E /* CKJCommonCellModel.m in Sources */,
+				BC163B102545BD020057968E /* CKJFixMode.m in Sources */,
+				BC163AEA2545BD020057968E /* CKJCommonTableViewCell.m in Sources */,
+				BC163AD32545BD020057968E /* CKJSimpleTableViewStyle.m in Sources */,
 				BC31DA2A2494E506008109C9 /* WDYHFHospitalItem.m in Sources */,
-				BC31D9FE2494E506008109C9 /* CKJChooseHelper.m in Sources */,
-				BC31D9E42494E506008109C9 /* CKJInputData.m in Sources */,
-				BC31DA012494E506008109C9 /* CKJBtnsCell1.m in Sources */,
-				BC31D9DE2494E506008109C9 /* CKJSimpleTableView.m in Sources */,
+				BC163AD92545BD020057968E /* CKJEmptyCell.m in Sources */,
+				BC163B0E2545BD020057968E /* CKJKeyChain.m in Sources */,
 				BC31DA3F2494E506008109C9 /* RJCustomInputCell.m in Sources */,
+				BC163AFE2545BD020057968E /* CKJToolbar.m in Sources */,
+				BC163AE02545BD020057968E /* CKJTableViewCell1.m in Sources */,
 				BC31DA2D2494E506008109C9 /* RJSquareDemo2VC.m in Sources */,
 				BC31DA422494E506008109C9 /* RJBillCell.m in Sources */,
-				BC31D9DB2494E506008109C9 /* CKJTwoLabelAsCompleteView.m in Sources */,
-				BC31D9F92494E506008109C9 /* CKJBaseTableViewCell.m in Sources */,
+				BC163AF12545BD020057968E /* CKJTableViewHeaderFooterEmptyView.m in Sources */,
+				BC163AC82545BD020057968E /* NSObject+CKJMasonry.m in Sources */,
+				BC163ACA2545BD020057968E /* CKJSimpleTableView.m in Sources */,
+				BC163ADB2545BD020057968E /* CKJGeneralCell.m in Sources */,
 				BC31DA332494E506008109C9 /* RJTestResource.m in Sources */,
-				BC31D9C72494E506008109C9 /* CKJBaseViewController.m in Sources */,
+				BC163AFD2545BD020057968E /* CKJFiveLabelView.m in Sources */,
 				BC31DA4B2494E776008109C9 /* RJInputData.m in Sources */,
-				BC31D9CD2494E506008109C9 /* CKJHUD.m in Sources */,
-				BC31D9D12494E506008109C9 /* CKJSearch_TF.m in Sources */,
-				BC31D9FA2494E506008109C9 /* CKJInputCustomSuperCell.m in Sources */,
-				BC31D9D22494E506008109C9 /* CKJPickerView.m in Sources */,
-				BC31DA032494E506008109C9 /* CKJImageRightCell.m in Sources */,
+				BC163B072545BD020057968E /* CKJDemoCell.m in Sources */,
+				BC163B022545BD020057968E /* CKJTableEmptyView.m in Sources */,
 				BC31DA362494E506008109C9 /* DemoLeftRightCellVC.m in Sources */,
 				BC31DA3A2494E506008109C9 /* RJConfigVC.m in Sources */,
-				BC31D9DD2494E506008109C9 /* CKJTextFiled.m in Sources */,
-				BC31D9E22494E506008109C9 /* CKJCommonSectionModel.m in Sources */,
 				BC31DA302494E506008109C9 /* RegisterDemoVC.m in Sources */,
-				BC31D9C62494E506008109C9 /* FileManagerTool.m in Sources */,
+				BC163ADA2545BD020057968E /* CKJImageViewCell.m in Sources */,
+				BC163B0C2545BD020057968E /* CKJGesturesVC.m in Sources */,
 				BC31DA442494E506008109C9 /* RJDemoExpertItemView.m in Sources */,
-				BC31D9FF2494E506008109C9 /* CKJCommonTableViewCell.m in Sources */,
+				BC163AE82545BD020057968E /* CKJBaseImageLeftRightCell.m in Sources */,
 				BC31DA2F2494E506008109C9 /* RegisterDemo2VC.m in Sources */,
-				BC31D9C92494E506008109C9 /* CKJRSA.m in Sources */,
+				BC163AFA2545BD020057968E /* CKJToolView.m in Sources */,
+				BC163AF22545BD020057968E /* CKJCommonTableViewHeaderFooterView.m in Sources */,
 				BC31DA382494E506008109C9 /* DemoOtherCellVC.swift in Sources */,
+				BC163AF42545BD020057968E /* KJCommonManager.m in Sources */,
 				BC31DA2B2494E506008109C9 /* RJBillDetailModel.m in Sources */,
-				BC31D9C42494E506008109C9 /* NSObject+WDYHFCategory.m in Sources */,
-				BC31D9D82494E506008109C9 /* CKJFiveLabelView.m in Sources */,
-				BC31D9FC2494E506008109C9 /* CKJBaseBtnsCell.m in Sources */,
-				BC31D9F82494E506008109C9 /* CKJBaseLeftRightCell.m in Sources */,
-				BC31D9E12494E506008109C9 /* CKJBaseTableVC.m in Sources */,
+				BC163AD62545BD020057968E /* CKJStaticCell.m in Sources */,
+				BC163ACC2545BD020057968E /* CKJWorker.m in Sources */,
+				BC163AFB2545BD020057968E /* CKJCountingLabel.m in Sources */,
+				BC163AF72545BD020057968E /* CKJPickerView.m in Sources */,
 				164822AC22D613460047C9CF /* MBProgressHUD+WJ.m in Sources */,
+				BC163B002545BD020057968E /* CKJUpdateView.m in Sources */,
+				BC163B0A2545BD020057968E /* CKJAuthImitateZhiFuBao.m in Sources */,
+				BC163B112545BD020057968E /* KJSupportHeader.m in Sources */,
+				BC163AEB2545BD020057968E /* CKJBtnsCell2.m in Sources */,
+				BC163AE72545BD020057968E /* CKJBaseBtnsCell.m in Sources */,
+				BC163AEF2545BD020057968E /* CKJPayCell.m in Sources */,
+				BC163AFF2545BD020057968E /* CKJPayBottomView.m in Sources */,
+				BC163ACB2545BD020057968E /* CKJButton.m in Sources */,
+				BC163AD12545BD020057968E /* CKJSimpleBaseModel.m in Sources */,
+				BC163B152545BD020057968E /* CKJLocationManager.m in Sources */,
+				BC163B122545BD020057968E /* CKJBaseViewController.m in Sources */,
+				BC163B052545BD020057968E /* CKJHUD.m in Sources */,
 				BC31DA2E2494E506008109C9 /* PersonInfoDemoVC.m in Sources */,
-				BC31D9F72494E506008109C9 /* CKJStackCell.m in Sources */,
+				BC163B132545BD020057968E /* CKJBaseTableVC.m in Sources */,
+				BC163B142545BD020057968E /* CKJTool.m in Sources */,
+				BC163B0D2545BD020057968E /* CKJGesturesUnlockView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1415,7 +1511,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rj.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = test1;
+				PROVISIONING_PROFILE_SPECIFIER = new_test;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KJSupportObjc/Demo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1442,7 +1538,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rj.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = test1;
+				PROVISIONING_PROFILE_SPECIFIER = new_test;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/KJSupportObjc/Demo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

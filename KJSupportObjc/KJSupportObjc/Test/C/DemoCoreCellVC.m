@@ -81,7 +81,7 @@
             m.arrow9Model = [CKJArrow9Model arrow9SystemModel];
         } didSelectRowBlock:nil];
         
-        CKJTableViewCell1Model *model2 = [CKJTableViewCell1Model baseTableViewCellWithCellHeight:@44 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+        CKJTableViewCell1Model *model2 = [CKJTableViewCell1Model baseTableViewCellWithCellHeight:@44 cellModel_id:nil detail:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
             m.attText = WDCKJAttributed2(@"点击本行更新余额", [UIColor kjwd_subTitle], nil);
             m.textAlignment = NSTextAlignmentCenter;
         } didSelectRowBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {

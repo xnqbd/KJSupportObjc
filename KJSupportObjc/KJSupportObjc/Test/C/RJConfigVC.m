@@ -58,7 +58,7 @@
 - (void)kj_tableView:(CKJSimpleTableView *)tableView didSelectRowAtSection:(NSInteger)section row:(NSInteger)row selectIndexPath:(NSIndexPath *)indexPath model:(__kindof CKJCommonCellModel *)model cell:(__kindof CKJCommonTableViewCell *)cell {
     if ([model isKindOfClass:[CKJLeftRightTopEqualCellModel class]]) {
         
-        RJBillDetailModel *target = model.extension_Obj1;
+        RJBillDetailModel *target = model.kjwd_extension_Obj1;
         
         NSLog(@"这几行每个都可以得到这个数据 %@ ", target);
     }
@@ -146,7 +146,7 @@
         } didSelectRowBlock:nil];
         
         // 科室
-        CKJTableViewCell1Model *model1 = [CKJTableViewCell1Model baseTableViewCellWithCellHeight:@40 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+        CKJTableViewCell1Model *model1 = [CKJTableViewCell1Model baseTableViewCellWithCellHeight:@40 cellModel_id:nil detail:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
             m.selectionStyle = UITableViewCellSelectionStyleNone;
             NSMutableAttributedString *att = [[NSMutableAttributedString alloc] initWithString:WDKJ_ConfirmString(obj[@"DeptName"]) attributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont boldSystemFontOfSize:18]}];
             m.attText = att;

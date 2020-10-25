@@ -125,17 +125,17 @@
     NSString *endDate   = self.endDateBtn.titleLabel.text;
     if (!startDate.length) {
         NSLog(@"请输入开始日期");
-        [CKJHUD kjwd_showMessage:@"请输入开始日期"];
+        [CKJHUD kjwd_showMessageAutoHide:@"请输入开始日期"];
         return;
     }
     if (!endDate.length) {
         NSLog(@"请输入结束日期");
-        [CKJHUD kjwd_showMessage:@"请输入结束日期"];
+        [CKJHUD kjwd_showMessageAutoHide:@"请输入结束日期"];
         return;
     }
     if (startDate.longLongValue > endDate.longLongValue) {
         NSLog(@"开始时间不能大于结束时间");
-        [CKJHUD kjwd_showMessage:@"开始时间不能大于结束时间"];
+        [CKJHUD kjwd_showMessageAutoHide:@"开始时间不能大于结束时间"];
         return;
     }
    NSLog(@"得到日期");

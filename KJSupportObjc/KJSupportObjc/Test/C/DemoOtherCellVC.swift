@@ -43,7 +43,7 @@ class DemoOtherCellVC: CKJBaseTableVC {
                 m.addRequired(CKJInputExpressionRequiredModel.system_phoneRegError())
             })
             
-            let pwd = self.simpleTableView._newtitle(nil, tfText: "123456", placeholder: "密码", emptyRequirdText: "密码", cellId: kOInput_Pwd) {(m) in
+            let pwd = self.simpleTableView._newtitle(nil, tfText: "123456", placeholder: "密码", emptyRequirdText: "密码", cellId: kOInput_DefaultPwd) {(m) in
                 m.lineEdge = NSValue(uiEdgeInsets: UIEdgeInsets.zero)
             }
             

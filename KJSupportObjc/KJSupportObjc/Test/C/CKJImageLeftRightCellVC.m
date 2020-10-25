@@ -150,7 +150,7 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
                 fm.title = WDCKJAttributed2(@"支付宝", [UIColor kjwd_title], nil);
                 fm.subTitle = WDCKJAttributed2(@"推荐有支付宝账户的用户使用", [UIColor kjwd_subTitle], nil);
             }];
-            m.extension_Interger = TestPayStyle_AliPay;
+            m.kjwd_extension_Interger1 = TestPayStyle_AliPay;
         } didSelectRowBlock:nil];
         
         CKJPayCellModel *model7 = [CKJPayCellModel payWithCellHeight:@(UITableViewAutomaticDimension) cellModel_id:nil detailSettingBlock:^(__kindof CKJPayCellModel * _Nonnull m) {
@@ -160,7 +160,7 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
                 fm.subTitle = WDCKJAttributed2(@"推荐有微信账户的用户使用", [UIColor kjwd_subTitle], nil);
                 fm.threeTitle = WDCKJAttributed2(@"额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1", [UIColor kjwd_subTitle], nil);
             }];
-            m.extension_Interger = TestPayStyle_WeiXin;
+            m.kjwd_extension_Interger1 = TestPayStyle_WeiXin;
         } didSelectRowBlock:nil];
         
 
@@ -172,7 +172,7 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
                 fm.threeTitle = WDCKJAttributed2(@"额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1额外信息1", [UIColor kjwd_subTitle], nil);
                 fm.fourTitle = WDCKJAttributed2(@"额外信息22额外信息22额外信息22额外信息22额外信息22额外信息22额外信息22额外信息22额外信息22", [UIColor kjwd_subTitle], nil);
             }];
-            m.extension_Interger = TestPayStyle_YinLian;
+            m.kjwd_extension_Interger1 = TestPayStyle_YinLian;
         } didSelectRowBlock:nil];
         
         CKJGeneralCellModel *model9 = [CKJGeneralCellModel generalWithCellHeight:@44 cellModel_id:nil detailSettingBlock:^(CKJGeneralCellModel *m) {
@@ -181,7 +181,7 @@ typedef NS_ENUM(NSUInteger, TestPayStyle) {
             CKJCommonCellModel *radio = m.cell.simpleTableView.currentSelectRadioCellModel;
             // 需要判断空的情况
             if (radio != nil) {
-                switch (radio.extension_Interger) {
+                switch (radio.kjwd_extension_Interger1) {
                     case TestPayStyle_AliPay:
                         NSLog(@"支付宝");
                         break;

@@ -14,7 +14,7 @@
 #import "CKJBtnsCell1.h"
 #import "CKJBtnsCell2.h"
 
-@interface RJSquareDemo2VC ()<CKJScrollViewCellDelegate>
+@interface RJSquareDemo2VC ()
 
 @end
 
@@ -48,10 +48,33 @@
             stackView_superView.kBorderWidth = 1;
         };
     }];
-    CKJScrollViewCellConfig *scrollViewCellConfig = [CKJScrollViewCellConfig scrollViewCellConfigWithItemWidth:120 itemSpace:20 detail:^(__kindof CKJScrollViewCellConfig * _Nonnull m) {
+    CKJScrollViewCellConfig *scrollViewCellConfig = [CKJScrollViewCellConfig scrollViewCellConfigWithItemWidth:120 itemSpace:20 createItemViews:^NSArray<UIView *> * _Nonnull{
+        NSArray *data = @[
+            @{@"title" : @"入院取号", @"imageName" : @"newhome_入院取号"},
+            @{@"title" : @"出院取号", @"imageName" : @"newhome_出院取号"},
+            @{@"title" : @"住院日清单", @"imageName" : @"newhome_住院清单"},
+            @{@"title" : @"入院取号2", @"imageName" : @"newhome_入院取号"},
+            @{@"title" : @"出院取号2", @"imageName" : @"newhome_出院取号"},
+            @{@"title" : @"住院日清单2", @"imageName" : @"newhome_住院清单"}
+        ];
+        
+        NSMutableArray <UIView *>*arr = [NSMutableArray array];
+        for (int i = 0; i < data.count; i++) {
+            NSDictionary *itemData = data[i];
+            NSString *title = itemData[@"title"];
+            RJDemoScrollItemView *itemView = [RJDemoScrollItemView kjwd_instanceUsingAutoNib];
+            itemView.imageV.image = [UIImage kjwd_imageNamed:itemData[@"imageName"]];
+            itemView.lab.text = title;
+            itemView.tapBlock = ^{
+                NSLog(@"点击了 %@   ", title);
+            };
+            [arr addObject:itemView];
+        }
+        return arr;
+    } detail:^(__kindof CKJScrollViewCellConfig * _Nonnull m) {
         m.items_Edge_ScrollView = UIEdgeInsetsMake(10, 20, 10, 20);
-        m.delegate = self;
     }];
+    
     return @{
         NSStringFromClass([CKJBtnsCell1Model class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJBtnsCell1 class]), KJPrefix_isRegisterNibKEY : @NO, KJPrefix_configDicKEY_ConfigModel : config1},
         NSStringFromClass([CKJBtnsCell2Model class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJBtnsCell2 class]), KJPrefix_isRegisterNibKEY : @NO, KJPrefix_configDicKEY_ConfigModel : config2},
@@ -155,32 +178,6 @@
     
     self.simpleTableView.dataArr = @[section1, section2, section3];
     [self.simpleTableView kjwd_reloadData];
-}
-
-#pragma mark - CKJScrollViewCellDelegate
-- (NSArray <__kindof UIView *>*)createItemViewForCKJScrollViewCell:(__kindof CKJScrollViewCell *_Nonnull __weak)cell {
-    NSArray *data = @[
-        @{@"title" : @"入院取号", @"imageName" : @"newhome_入院取号"},
-        @{@"title" : @"出院取号", @"imageName" : @"newhome_出院取号"},
-        @{@"title" : @"住院日清单", @"imageName" : @"newhome_住院清单"},
-        @{@"title" : @"入院取号2", @"imageName" : @"newhome_入院取号"},
-        @{@"title" : @"出院取号2", @"imageName" : @"newhome_出院取号"},
-        @{@"title" : @"住院日清单2", @"imageName" : @"newhome_住院清单"}
-    ];
-    
-    NSMutableArray *arr = [NSMutableArray array];
-    for (int i = 0; i < data.count; i++) {
-        NSDictionary *itemData = data[i];
-        NSString *title = itemData[@"title"];
-        RJDemoScrollItemView *itemView = [RJDemoScrollItemView kjwd_instanceUsingAutoNib];
-        itemView.imageV.image = [UIImage kjwd_imageNamed:itemData[@"imageName"]];
-        itemView.lab.text = title;
-        itemView.tapBlock = ^{
-            NSLog(@"点击了 %@   ", title);
-        };
-        [arr addObject:itemView];
-    }
-    return arr;
 }
 
 @end

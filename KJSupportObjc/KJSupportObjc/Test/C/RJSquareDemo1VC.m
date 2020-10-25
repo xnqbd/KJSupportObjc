@@ -12,7 +12,7 @@
 #import "RJDemoExpertItemView.h"
 #import "CKJBtnsCell1.h"
 
-@interface RJSquareDemo1VC () <CKJScrollViewCellDelegate>
+@interface RJSquareDemo1VC () 
 
 @end
 
@@ -31,9 +31,42 @@
     CKJBaseBtnsCellConfig *config1 = [CKJBaseBtnsCellConfig btnsConfigWithH_itemSpacing:20 detail:^(CKJBaseBtnsCellConfig * _Nonnull m) {
         m.delegate = [m squareWithNumberOfItemsInSingleLine:3];
     }];
-    CKJScrollViewCellConfig *scrollViewCellConfig = [CKJScrollViewCellConfig scrollViewCellConfigWithItemWidth:100 itemSpace:20 detail:^(__kindof CKJScrollViewCellConfig * _Nonnull m) {
+    CKJScrollViewCellConfig *scrollViewCellConfig = [CKJScrollViewCellConfig scrollViewCellConfigWithItemWidth:100 itemSpace:20 createItemViews:^NSArray<UIView *> * _Nonnull{
+        
+        NSArray *arr = @[
+                       @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文1", @"job" : @"主任", @"department" : @"胸外科"},
+                       @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强1", @"job" : @"经理", @"department" : @"心内科"},
+                       @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文2", @"job" : @"主任", @"department" : @"胸外科"},
+                       @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强2", @"job" : @"经理", @"department" : @"心内科"},
+                       @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文3", @"job" : @"主任", @"department" : @"胸外科"},
+                       @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强3", @"job" : @"经理", @"department" : @"心内科"},
+                       @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文4", @"job" : @"主任", @"department" : @"胸外科"},
+                       @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强4", @"job" : @"经理", @"department" : @"心内科"},
+                       @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文5", @"job" : @"主任", @"department" : @"胸外科"},
+                       @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强5", @"job" : @"经理", @"department" : @"心内科"}
+                   ];
+        
+        NSMutableArray *views = [NSMutableArray array];
+        
+        for (int i = 0; i < arr.count; i++) {
+            NSDictionary *itemData = arr[i];
+            RJDemoExpertItemView *itemView = [RJDemoExpertItemView kjwd_instanceUsingAutoNib];
+            
+            NSString *name = itemData[@"name"];
+            
+            itemView.avatarImageView.image = [UIImage kjwd_imageNamed:itemData[@"avatarImageName"]];
+            itemView.nameLab.text = name;
+            itemView.jobLab.text = itemData[@"job"];
+            [itemView.departmentLab setTitle:itemData[@"department"] forState:UIControlStateNormal];
+            
+            itemView.tapBlock = ^{
+                NSLog(@"点击了  %@   ", name);
+              };
+            [views addObject:itemView];
+        }
+        return views;
+    } detail:^(__kindof CKJScrollViewCellConfig * _Nonnull m) {
         m.items_Edge_ScrollView = UIEdgeInsetsMake(15, 20, 15, 20);
-        m.delegate = self;
     }];
     return @{
         NSStringFromClass([CKJBtnsCell1Model class]) : @{KJPrefix_cellKEY : NSStringFromClass([CKJBtnsCell1 class]), KJPrefix_isRegisterNibKEY : @NO, KJPrefix_configDicKEY_ConfigModel : config1},
@@ -50,7 +83,7 @@
             m.selectionStyle = UITableViewCellSelectionStyleNone;
             m.title3Model = [CKJTitle3Model title3ModelWithText:WDCKJAttributed2(@"预交金明细", [UIColor kjwd_title], nil) left:15];
             
-            m.btn7Model = [CKJCellBtnModel btnModelWithSize:CGSizeMake(60, 30) normalImage:nil rightMargin:12 detailSettingBlock:^(CKJCellBtnModel * _Nonnull sender) {
+            m.btn7Model = [CKJCellBtnModel btnModelWithSize:CGSizeMake(60, 30) normalImage:nil rightMargin:12 detail:^(CKJCellBtnModel * _Nonnull sender) {
                 sender.normalAttributedTitle = WDCKJAttributed2(@"筛选", [UIColor kjwd_r:25 g:130 b:197 alpha:1], nil);
             } didClickBtnHandle:^(CKJCell * _Nonnull cell, CKJCellBtnModel * _Nonnull btn7Model) {
                 NSLog(@"点击筛选");
@@ -137,7 +170,7 @@
     }];
     [cellModels addObjectsFromArray:models];
     
-    CKJTableViewCell1Model *model4 = [CKJTableViewCell1Model baseTableViewCellWithCellHeight:@40 cellModel_id:nil detailSettingBlock:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
+    CKJTableViewCell1Model *model4 = [CKJTableViewCell1Model baseTableViewCellWithCellHeight:@40 cellModel_id:nil detail:^(__kindof CKJTableViewCell1Model * _Nonnull m) {
         [m addGroupId:dateGroupId];
         [m _showLine:NO];
         m.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -147,44 +180,6 @@
     [cellModels addObject:model4];
     
     return cellModels;
-}
-
-#pragma mark - CKJScrollViewCellDelegate
-- (NSArray <__kindof UIView *>*)createItemViewForCKJScrollViewCell:(__kindof CKJScrollViewCell *_Nonnull __weak)cell {
-    
-    NSArray *arr = @[
-                   @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文1", @"job" : @"主任", @"department" : @"胸外科"},
-                   @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强1", @"job" : @"经理", @"department" : @"心内科"},
-                   @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文2", @"job" : @"主任", @"department" : @"胸外科"},
-                   @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强2", @"job" : @"经理", @"department" : @"心内科"},
-                   @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文3", @"job" : @"主任", @"department" : @"胸外科"},
-                   @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强3", @"job" : @"经理", @"department" : @"心内科"},
-                   @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文4", @"job" : @"主任", @"department" : @"胸外科"},
-                   @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强4", @"job" : @"经理", @"department" : @"心内科"},
-                   @{@"avatarImageName" : @"newhome_报告", @"name" : @"狄文5", @"job" : @"主任", @"department" : @"胸外科"},
-                   @{@"avatarImageName" : @"newhome_药费查询", @"name" : @"赵小强5", @"job" : @"经理", @"department" : @"心内科"}
-               ];
-    
-    NSMutableArray *views = [NSMutableArray array];
-    
-    for (int i = 0; i < arr.count; i++) {
-        NSDictionary *itemData = arr[i];
-        RJDemoExpertItemView *itemView = [RJDemoExpertItemView kjwd_instanceUsingAutoNib];
-        
-        NSString *name = itemData[@"name"];
-        
-        
-        itemView.avatarImageView.image = [UIImage kjwd_imageNamed:itemData[@"avatarImageName"]];
-        itemView.nameLab.text = name;
-        itemView.jobLab.text = itemData[@"job"];
-        [itemView.departmentLab setTitle:itemData[@"department"] forState:UIControlStateNormal];
-        
-        itemView.tapBlock = ^{
-            NSLog(@"点击了  %@   ", name);
-          };
-        [views addObject:itemView];
-    }
-    return views;
 }
 
 
